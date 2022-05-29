@@ -82,9 +82,9 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///    VkBool32           nullDescriptor;
 ///} VkPhysicalDeviceRobustness2FeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`robust_buffer_access2`] indicates whether buffer accesses are tightly bounds-checked against
@@ -100,31 +100,31 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// - [`null_descriptor`] indicates whether descriptors  **can**  be written with a
 ///   [`crate::Handle::null`] resource or view, which are considered valid to access and act as if
 ///   the descriptor were bound to nothing.
-/// If the [`PhysicalDeviceRobustness2FeaturesEXT`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceRobustness2FeaturesEXT`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceRobustness2FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceRobustness2FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage
 /// - If [`robust_buffer_access2`] is enabled then [`robustBufferAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess)
 ///   **must**  also be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_robustness2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2FeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -192,22 +192,42 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
         self.null_descriptor
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::robust_buffer_access2`]
-    pub fn set_robust_buffer_access2_raw(mut self, value: Bool32) -> Self {
+    pub fn set_robust_buffer_access2_raw(&mut self, value: Bool32) -> &mut Self {
         self.robust_buffer_access2 = value;
         self
     }
     ///Sets the raw value of [`Self::robust_image_access2`]
-    pub fn set_robust_image_access2_raw(mut self, value: Bool32) -> Self {
+    pub fn set_robust_image_access2_raw(&mut self, value: Bool32) -> &mut Self {
         self.robust_image_access2 = value;
         self
     }
     ///Sets the raw value of [`Self::null_descriptor`]
-    pub fn set_null_descriptor_raw(mut self, value: Bool32) -> Self {
+    pub fn set_null_descriptor_raw(&mut self, value: Bool32) -> &mut Self {
+        self.null_descriptor = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::robust_buffer_access2`]
+    pub fn with_robust_buffer_access2_raw(mut self, value: Bool32) -> Self {
+        self.robust_buffer_access2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::robust_image_access2`]
+    pub fn with_robust_image_access2_raw(mut self, value: Bool32) -> Self {
+        self.robust_image_access2 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::null_descriptor`]
+    pub fn with_null_descriptor_raw(mut self, value: Bool32) -> Self {
         self.null_descriptor = value;
         self
     }
@@ -300,27 +320,52 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::robust_buffer_access2`]
-    pub fn set_robust_buffer_access2(mut self, value: bool) -> Self {
+    pub fn set_robust_buffer_access2(&mut self, value: bool) -> &mut Self {
         self.robust_buffer_access2 = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::robust_image_access2`]
-    pub fn set_robust_image_access2(mut self, value: bool) -> Self {
+    pub fn set_robust_image_access2(&mut self, value: bool) -> &mut Self {
         self.robust_image_access2 = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::null_descriptor`]
-    pub fn set_null_descriptor(mut self, value: bool) -> Self {
+    pub fn set_null_descriptor(&mut self, value: bool) -> &mut Self {
+        self.null_descriptor = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::robust_buffer_access2`]
+    pub fn with_robust_buffer_access2(mut self, value: bool) -> Self {
+        self.robust_buffer_access2 = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::robust_image_access2`]
+    pub fn with_robust_image_access2(mut self, value: bool) -> Self {
+        self.robust_image_access2 = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::null_descriptor`]
+    pub fn with_null_descriptor(mut self, value: bool) -> Self {
         self.null_descriptor = value as u8 as u32;
         self
     }
@@ -337,31 +382,31 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 ///    VkDeviceSize       robustUniformBufferAccessSizeAlignment;
 ///} VkPhysicalDeviceRobustness2PropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`robust_storage_buffer_access_size_alignment`] is the number of bytes that the range of a storage buffer descriptor is rounded up to when used for bounds-checking when [`robustBufferAccess2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess2) is enabled. This value  **must**  be either 1 or 4.
 /// - [`robust_uniform_buffer_access_size_alignment`] is the number of bytes that the range of a uniform buffer descriptor is rounded up to when used for bounds-checking when [`robustBufferAccess2`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-robustBufferAccess2) is enabled. This value  **must**  be a power of two in the range [1, 256].
-/// # Description
-/// If the [`PhysicalDeviceRobustness2PropertiesEXT`] structure is included in the [`p_next`] chain
+///# Description
+///If the [`PhysicalDeviceRobustness2PropertiesEXT`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_robustness2`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2PropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -403,7 +448,12 @@ impl<'lt> PhysicalDeviceRobustness2PropertiesEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -448,22 +498,48 @@ impl<'lt> PhysicalDeviceRobustness2PropertiesEXT<'lt> {
         &mut self.robust_uniform_buffer_access_size_alignment
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::robust_storage_buffer_access_size_alignment`]
-    pub fn set_robust_storage_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_robust_storage_buffer_access_size_alignment(
+        &mut self,
+        value: crate::vulkan1_0::DeviceSize,
+    ) -> &mut Self {
         self.robust_storage_buffer_access_size_alignment = value;
         self
     }
     ///Sets the value of [`Self::robust_uniform_buffer_access_size_alignment`]
-    pub fn set_robust_uniform_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_robust_uniform_buffer_access_size_alignment(
+        &mut self,
+        value: crate::vulkan1_0::DeviceSize,
+    ) -> &mut Self {
+        self.robust_uniform_buffer_access_size_alignment = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::robust_storage_buffer_access_size_alignment`]
+    pub fn with_robust_storage_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+        self.robust_storage_buffer_access_size_alignment = value;
+        self
+    }
+    ///Sets the value of [`Self::robust_uniform_buffer_access_size_alignment`]
+    pub fn with_robust_uniform_buffer_access_size_alignment(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.robust_uniform_buffer_access_size_alignment = value;
         self
     }

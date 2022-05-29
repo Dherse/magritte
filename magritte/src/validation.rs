@@ -47,7 +47,7 @@ pub unsafe fn create_debug_utils_messenger(
     types: Option<DebugUtilsMessageTypeFlagsEXT>,
 ) -> Result<Unique<DebugUtilsMessengerEXT>, VulkanResultCodes> {
     let debug_info = DebugUtilsMessengerCreateInfoEXT::default()
-        .set_message_severity(match level {
+        .with_message_severity(match level {
             Level::Error => DebugUtilsMessageSeverityFlagsEXT::ERROR,
             Level::Warn => DebugUtilsMessageSeverityFlagsEXT::WARNING | DebugUtilsMessageSeverityFlagsEXT::ERROR,
             Level::Info => {
@@ -57,8 +57,8 @@ pub unsafe fn create_debug_utils_messenger(
             },
             Level::Debug | Level::Trace => DebugUtilsMessageSeverityFlagsEXT::all(),
         })
-        .set_message_type(types.unwrap_or_else(DebugUtilsMessageTypeFlagsEXT::all))
-        .set_pfn_user_callback(Some(vulkan_debug_callback));
+        .with_message_type(types.unwrap_or_else(DebugUtilsMessageTypeFlagsEXT::all))
+        .with_pfn_user_callback(Some(vulkan_debug_callback));
 
     let (debug_utils, _) = instance.create_debug_utils_messenger_ext(&debug_info, None)?;
 

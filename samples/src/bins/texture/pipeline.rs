@@ -82,13 +82,13 @@ impl Pipeline {
 
         // Here, we gather all of the information about the vertex shader inputs
         let vertex_input_state_info = PipelineVertexInputStateCreateInfo::default()
-            .set_vertex_attribute_descriptions(&vertex_input_attribute_descriptions)
-            .set_vertex_binding_descriptions(std::slice::from_ref(&vertex_input_binding_description));
+            .with_vertex_attribute_descriptions(&vertex_input_attribute_descriptions)
+            .with_vertex_binding_descriptions(std::slice::from_ref(&vertex_input_binding_description));
 
         // We define the topology of our primitives, in this case a list of triangles.
         // This structure is very powerful and can be use for a lot more.
         let vertex_input_assembly_state_info =
-            PipelineInputAssemblyStateCreateInfo::default().set_topology(PrimitiveTopology::TRIANGLE_LIST);
+            PipelineInputAssemblyStateCreateInfo::default()with_topology(PrimitiveTopology::TRIANGLE_LIST);
 
         // We define the viewport we will use.
         let viewport = Viewport {
@@ -111,71 +111,71 @@ impl Pipeline {
 
         // We collect the viewport and the scissor
         let viewport_state_info = PipelineViewportStateCreateInfo::default()
-            .set_scissors(std::slice::from_ref(&scissor))
-            .set_viewports(std::slice::from_ref(&viewport));
+            .with_scissors(std::slice::from_ref(&scissor))
+            .with_viewports(std::slice::from_ref(&viewport));
 
         // We configure the rasterization
         let rasterization_info = PipelineRasterizationStateCreateInfo::default()
-            .set_front_face(FrontFace::COUNTER_CLOCKWISE)
-            .set_line_width(1.0)
-            .set_polygon_mode(PolygonMode::FILL);
+            .with_front_face(FrontFace::COUNTER_CLOCKWISE)
+            .with_line_width(1.0)
+            .with_polygon_mode(PolygonMode::FILL);
 
         // We don't do multisampling
         let multisample_state_info =
-            PipelineMultisampleStateCreateInfo::default().set_rasterization_samples(SampleCountFlagBits::_1);
+            PipelineMultisampleStateCreateInfo::default()with_rasterization_samples(SampleCountFlagBits::_1);
 
         // We don't care about the stencil, we create a NOOP stencil state.
         let depth_stencil_state = StencilOpState::default()
-            .set_fail_op(StencilOp::KEEP)
-            .set_pass_op(StencilOp::KEEP)
-            .set_depth_fail_op(StencilOp::KEEP)
-            .set_compare_op(CompareOp::ALWAYS);
+            .with_fail_op(StencilOp::KEEP)
+            .with_pass_op(StencilOp::KEEP)
+            .with_depth_fail_op(StencilOp::KEEP)
+            .with_compare_op(CompareOp::ALWAYS);
 
         let depth_state_info = PipelineDepthStencilStateCreateInfo::default()
-            .set_depth_test_enable(true)
-            .set_depth_write_enable(true)
-            .set_depth_compare_op(CompareOp::LESS_OR_EQUAL)
-            .set_front(depth_stencil_state)
-            .set_back(depth_stencil_state)
-            .set_max_depth_bounds(1.0);
+            .with_depth_test_enable(true)
+            .with_depth_write_enable(true)
+            .with_depth_compare_op(CompareOp::LESS_OR_EQUAL)
+            .with_front(depth_stencil_state)
+            .with_back(depth_stencil_state)
+            .with_max_depth_bounds(1.0);
 
         // How to blend color
         // One per output attachment
         let color_blend_attachment_state = PipelineColorBlendAttachmentState::default()
-            .set_blend_enable(false)
-            .set_src_color_blend_factor(BlendFactor::SRC_COLOR)
-            .set_dst_color_blend_factor(BlendFactor::ONE_MINUS_DST_COLOR)
-            .set_color_blend_op(BlendOp::ADD)
-            .set_src_alpha_blend_factor(BlendFactor::ZERO)
-            .set_dst_alpha_blend_factor(BlendFactor::ZERO)
-            .set_alpha_blend_op(BlendOp::ADD)
-            .set_color_write_mask(ColorComponentFlags::all());
+            .with_blend_enable(false)
+            .with_src_color_blend_factor(BlendFactor::SRC_COLOR)
+            .with_dst_color_blend_factor(BlendFactor::ONE_MINUS_DST_COLOR)
+            .with_color_blend_op(BlendOp::ADD)
+            .with_src_alpha_blend_factor(BlendFactor::ZERO)
+            .with_dst_alpha_blend_factor(BlendFactor::ZERO)
+            .with_alpha_blend_op(BlendOp::ADD)
+            .with_color_write_mask(ColorComponentFlags::all());
 
         // We gather the blending information for each output
         let color_blend_state = PipelineColorBlendStateCreateInfo::default()
-            .set_logic_op(LogicOp::CLEAR)
-            .set_attachments(std::slice::from_ref(&color_blend_attachment_state));
+            .with_logic_op(LogicOp::CLEAR)
+            .with_attachments(std::slice::from_ref(&color_blend_attachment_state));
 
         // What state is dynamic (in our case nothing)
         // A typical use case for dynamic state would be a dynamic viewport and scissor
         // to avoid having to recreated the pipeline when resizing the window.
         let dynamic_state = [];
 
-        let dynamic_state_info = PipelineDynamicStateCreateInfo::default().set_dynamic_states(&dynamic_state);
+        let dynamic_state_info = PipelineDynamicStateCreateInfo::default()with_dynamic_states(&dynamic_state);
 
         // Gather all of the information for creating the pipeline
         let graphics_pipeline_info = GraphicsPipelineCreateInfo::default()
-            .set_stages(&shader_stage_create_infos)
-            .set_vertex_input_state(&vertex_input_state_info)
-            .set_input_assembly_state(&vertex_input_assembly_state_info)
-            .set_viewport_state(&viewport_state_info)
-            .set_rasterization_state(&rasterization_info)
-            .set_multisample_state(&multisample_state_info)
-            .set_depth_stencil_state(&depth_state_info)
-            .set_color_blend_state(&color_blend_state)
-            .set_dynamic_state(&dynamic_state_info)
-            .set_layout(pipeline_layout.as_raw())
-            .set_render_pass(renderpass.renderpass().as_raw());
+            .with_stages(&shader_stage_create_infos)
+            .with_vertex_input_state(&vertex_input_state_info)
+            .with_input_assembly_state(&vertex_input_assembly_state_info)
+            .with_viewport_state(&viewport_state_info)
+            .with_rasterization_state(&rasterization_info)
+            .with_multisample_state(&multisample_state_info)
+            .with_depth_stencil_state(&depth_state_info)
+            .with_color_blend_state(&color_blend_state)
+            .with_dynamic_state(&dynamic_state_info)
+            .with_layout(pipeline_layout.as_raw())
+            .with_render_pass(renderpass.renderpass().as_raw());
 
         // Create the pipeline
         let (mut pipelines, _) = unsafe {

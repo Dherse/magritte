@@ -317,12 +317,12 @@ use std::{
 ///containing a locally unique device identifier, as returned in
 ///[`PhysicalDeviceIdProperties`]::deviceLUID.
 ///```c
-/// #define VK_LUID_SIZE                      8U
-/// ```
+///#define VK_LUID_SIZE                      8U
+///```
 ///or the equivalent
 ///```c
-/// #define VK_LUID_SIZE_KHR                  VK_LUID_SIZE
-/// ```
+///#define VK_LUID_SIZE_KHR                  VK_LUID_SIZE
+///```
 ///# Related
 /// - [`khr_external_fence_capabilities`]
 /// - [`khr_external_memory_capabilities`]
@@ -349,12 +349,12 @@ pub const LUID_SIZE: u32 = 8;
 ///[`PhysicalDeviceIdProperties::device_uuid`] and
 ///[`PhysicalDeviceIdProperties::driver_uuid`].
 ///```c
-/// #define VK_QUEUE_FAMILY_EXTERNAL          (~1U)
-/// ```
+///#define VK_QUEUE_FAMILY_EXTERNAL          (~1U)
+///```
 ///or the equivalent
 ///```c
-/// #define VK_QUEUE_FAMILY_EXTERNAL_KHR      VK_QUEUE_FAMILY_EXTERNAL
-/// ```
+///#define VK_QUEUE_FAMILY_EXTERNAL_KHR      VK_QUEUE_FAMILY_EXTERNAL
+///```
 ///# Related
 /// - [`khr_external_memory`]
 /// - [`crate::vulkan1_1`]
@@ -375,12 +375,12 @@ pub const QUEUE_FAMILY_EXTERNAL: u32 = !1;
 ///group, as returned in
 ///[`PhysicalDeviceGroupProperties`]::physicalDevices.
 ///```c
-/// #define VK_MAX_DEVICE_GROUP_SIZE          32U
-/// ```
+///#define VK_MAX_DEVICE_GROUP_SIZE          32U
+///```
 ///or the equivalent
 ///```c
-/// #define VK_MAX_DEVICE_GROUP_SIZE_KHR      VK_MAX_DEVICE_GROUP_SIZE
-/// ```
+///#define VK_MAX_DEVICE_GROUP_SIZE_KHR      VK_MAX_DEVICE_GROUP_SIZE
+///```
 ///# Related
 /// - [`khr_device_group_creation`]
 /// - [`crate::vulkan1_1`]
@@ -403,25 +403,25 @@ pub const MAX_DEVICE_GROUP_SIZE: u32 = 32;
 ///VkResult vkEnumerateInstanceVersion(
 ///    uint32_t*                                   pApiVersion);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`p_api_version`] is a pointer to a `uint32_t`, which is the version of Vulkan supported by instance-level functionality, encoded as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers).
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`p_api_version`] **must**  be a valid pointer to a `uint32_t` value
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkEnumerateInstanceVersion")]
 pub type FNEnumerateInstanceVersion = Option<unsafe extern "system" fn(p_api_version: *mut u32) -> VulkanResultCodes>;
 ///[vkGetPhysicalDeviceFeatures2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceFeatures2.html) - Reports capabilities of a physical device
@@ -433,37 +433,37 @@ pub type FNEnumerateInstanceVersion = Option<unsafe extern "system" fn(p_api_ver
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceFeatures2*                  pFeatures);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceFeatures2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceFeatures2*                  pFeatures);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the supported features.
 /// - [`p_features`] is a pointer to a [`PhysicalDeviceFeatures2`] structure in which the physical
 ///   device features are returned.
-/// # Description
-/// Each structure in [`p_features`] and its `pNext` chain contains members
-/// corresponding to fine-grained features.
-/// [`get_physical_device_features2`] writes each member to a boolean value
-/// indicating whether that feature is supported.
-/// ## Valid Usage (Implicit)
+///# Description
+///Each structure in [`p_features`] and its `pNext` chain contains members
+///corresponding to fine-grained features.
+///[`get_physical_device_features2`] writes each member to a boolean value
+///indicating whether that feature is supported.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_features`] **must**  be a valid pointer to a [`PhysicalDeviceFeatures2`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceFeatures2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceFeatures2")]
 pub type FNGetPhysicalDeviceFeatures2 = Option<
     for<'lt> unsafe extern "system" fn(physical_device: PhysicalDevice, p_features: *mut PhysicalDeviceFeatures2<'lt>),
@@ -477,38 +477,38 @@ pub type FNGetPhysicalDeviceFeatures2 = Option<
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceProperties2*                pProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceProperties2*                pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the physical device whose properties will be queried.
 /// - [`p_properties`] is a pointer to a [`PhysicalDeviceProperties2`] structure in which properties
 ///   are returned.
-/// # Description
-/// Each structure in [`p_properties`] and its `pNext` chain contains
-/// members corresponding to implementation-dependent properties, behaviors, or
-/// limits.
-/// [`get_physical_device_properties2`] fills in each member to specify the
-/// corresponding value for the implementation.
-/// ## Valid Usage (Implicit)
+///# Description
+///Each structure in [`p_properties`] and its `pNext` chain contains
+///members corresponding to implementation-dependent properties, behaviors, or
+///limits.
+///[`get_physical_device_properties2`] fills in each member to specify the
+///corresponding value for the implementation.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_properties`] **must**  be a valid pointer to a [`PhysicalDeviceProperties2`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceProperties2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceProperties2")]
 pub type FNGetPhysicalDeviceProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -527,40 +527,40 @@ pub type FNGetPhysicalDeviceProperties2 = Option<
 ///    VkFormat                                    format,
 ///    VkFormatProperties2*                        pFormatProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceFormatProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkFormat                                    format,
 ///    VkFormatProperties2*                        pFormatProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the format properties.
 /// - [`format`] is the format whose properties are queried.
 /// - [`p_format_properties`] is a pointer to a [`FormatProperties2`] structure in which physical
 ///   device properties for [`format`] are returned.
-/// # Description
-/// [`get_physical_device_format_properties2`] behaves similarly to
-/// [`get_physical_device_format_properties`], with the ability to return
-/// extended information in a `pNext` chain of output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_format_properties2`] behaves similarly to
+///[`get_physical_device_format_properties`], with the ability to return
+///extended information in a `pNext` chain of output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`format`] **must**  be a valid [`Format`] value
 /// - [`p_format_properties`] **must**  be a valid pointer to a [`FormatProperties2`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Format`]
 /// - [`FormatProperties2`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceFormatProperties2")]
 pub type FNGetPhysicalDeviceFormatProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -579,54 +579,54 @@ pub type FNGetPhysicalDeviceFormatProperties2 = Option<
 ///    const VkPhysicalDeviceImageFormatInfo2*     pImageFormatInfo,
 ///    VkImageFormatProperties2*                   pImageFormatProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///VkResult vkGetPhysicalDeviceImageFormatProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    const VkPhysicalDeviceImageFormatInfo2*     pImageFormatInfo,
 ///    VkImageFormatProperties2*                   pImageFormatProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the image capabilities.
 /// - [`p_image_format_info`] is a pointer to a [`PhysicalDeviceImageFormatInfo2`] structure
 ///   describing the parameters that would be consumed by [`create_image`].
 /// - [`p_image_format_properties`] is a pointer to a [`ImageFormatProperties2`] structure in which
 ///   capabilities are returned.
-/// # Description
-/// [`get_physical_device_image_format_properties2`] behaves similarly to
-/// [`get_physical_device_image_format_properties`], with the ability to return
-/// extended information in a `pNext` chain of output structures.
-/// ## Valid Usage
+///# Description
+///[`get_physical_device_image_format_properties2`] behaves similarly to
+///[`get_physical_device_image_format_properties`], with the ability to return
+///extended information in a `pNext` chain of output structures.
+///## Valid Usage
 /// - If the `pNext` chain of [`p_image_format_properties`] includes a
 ///   [`AndroidHardwareBufferUsageANDROID`] structure, the `pNext` chain of [`p_image_format_info`]
 ///   **must**  include a [`PhysicalDeviceExternalImageFormatInfo`] structure with `handleType` set
 ///   to `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_image_format_info`] **must**  be a valid pointer to a valid
 ///   [`PhysicalDeviceImageFormatInfo2`] structure
 /// - [`p_image_format_properties`] **must**  be a valid pointer to a [`ImageFormatProperties2`]
 ///   structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageFormatProperties2`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceImageFormatInfo2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2")]
 pub type FNGetPhysicalDeviceImageFormatProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -645,44 +645,44 @@ pub type FNGetPhysicalDeviceImageFormatProperties2 = Option<
 ///    uint32_t*                                   pQueueFamilyPropertyCount,
 ///    VkQueueFamilyProperties2*                   pQueueFamilyProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceQueueFamilyProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    uint32_t*                                   pQueueFamilyPropertyCount,
 ///    VkQueueFamilyProperties2*                   pQueueFamilyProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the physical device whose properties will be queried.
 /// - [`p_queue_family_property_count`] is a pointer to an integer related to the number of queue
 ///   families available or queried, as described in
 ///   [`get_physical_device_queue_family_properties`].
 /// - [`p_queue_family_properties`] is either `NULL` or a pointer to an array of
 ///   [`QueueFamilyProperties2`] structures.
-/// # Description
-/// [`get_physical_device_queue_family_properties2`] behaves similarly to
-/// [`get_physical_device_queue_family_properties`], with the ability to return
-/// extended information in a `pNext` chain of output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_queue_family_properties2`] behaves similarly to
+///[`get_physical_device_queue_family_properties`], with the ability to return
+///extended information in a `pNext` chain of output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_queue_family_property_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_queue_family_property_count`] is not `0`, and
 ///   [`p_queue_family_properties`] is not `NULL`, [`p_queue_family_properties`] **must**  be a
 ///   valid pointer to an array of [`p_queue_family_property_count`][`QueueFamilyProperties2`]
 ///   structures
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`QueueFamilyProperties2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2")]
 pub type FNGetPhysicalDeviceQueueFamilyProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -700,37 +700,37 @@ pub type FNGetPhysicalDeviceQueueFamilyProperties2 = Option<
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceMemoryProperties2*          pMemoryProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceMemoryProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    VkPhysicalDeviceMemoryProperties2*          pMemoryProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the handle to the device to query.
 /// - [`p_memory_properties`] is a pointer to a [`PhysicalDeviceMemoryProperties2`] structure in
 ///   which the properties are returned.
-/// # Description
-/// [`get_physical_device_memory_properties2`] behaves similarly to
-/// [`get_physical_device_memory_properties`], with the ability to return
-/// extended information in a `pNext` chain of output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_memory_properties2`] behaves similarly to
+///[`get_physical_device_memory_properties`], with the ability to return
+///extended information in a `pNext` chain of output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_memory_properties`] **must**  be a valid pointer to a [`PhysicalDeviceMemoryProperties2`]
 ///   structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceMemoryProperties2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2")]
 pub type FNGetPhysicalDeviceMemoryProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -755,8 +755,8 @@ pub type FNGetPhysicalDeviceMemoryProperties2 = Option<
 ///    uint32_t*                                   pPropertyCount,
 ///    VkSparseImageFormatProperties2*             pProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///void vkGetPhysicalDeviceSparseImageFormatProperties2KHR(
 ///    VkPhysicalDevice                            physicalDevice,
@@ -764,7 +764,7 @@ pub type FNGetPhysicalDeviceMemoryProperties2 = Option<
 ///    uint32_t*                                   pPropertyCount,
 ///    VkSparseImageFormatProperties2*             pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the sparse image format
 ///   properties.
 /// - [`p_format_info`] is a pointer to a [`PhysicalDeviceSparseImageFormatInfo2`] structure
@@ -773,12 +773,12 @@ pub type FNGetPhysicalDeviceMemoryProperties2 = Option<
 ///   properties available or queried, as described below.
 /// - [`p_properties`] is either `NULL` or a pointer to an array of [`SparseImageFormatProperties2`]
 ///   structures.
-/// # Description
-/// [`get_physical_device_sparse_image_format_properties2`] behaves identically to
-/// [`get_physical_device_sparse_image_format_properties`], with the ability to
-/// return extended information by adding extending structures to the
-/// `pNext` chain of its [`p_properties`] parameter.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_sparse_image_format_properties2`] behaves identically to
+///[`get_physical_device_sparse_image_format_properties`], with the ability to
+///return extended information by adding extending structures to the
+///`pNext` chain of its [`p_properties`] parameter.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_format_info`] **must**  be a valid pointer to a valid
 ///   [`PhysicalDeviceSparseImageFormatInfo2`] structure
@@ -786,19 +786,19 @@ pub type FNGetPhysicalDeviceMemoryProperties2 = Option<
 /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
 ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
 ///   [`p_property_count`][`SparseImageFormatProperties2`] structures
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceSparseImageFormatInfo2`]
 /// - [`SparseImageFormatProperties2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2")]
 pub type FNGetPhysicalDeviceSparseImageFormatProperties2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -818,43 +818,43 @@ pub type FNGetPhysicalDeviceSparseImageFormatProperties2 = Option<
 ///    VkCommandPool                               commandPool,
 ///    VkCommandPoolTrimFlags                      flags);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_maintenance1
 ///void vkTrimCommandPoolKHR(
 ///    VkDevice                                    device,
 ///    VkCommandPool                               commandPool,
 ///    VkCommandPoolTrimFlags                      flags);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the command pool.
 /// - [`command_pool`] is the command pool to trim.
 /// - [`flags`] is reserved for future use.
-/// # Description
-/// Trimming a command pool recycles unused memory from the command pool back to
-/// the system.
-/// Command buffers allocated from the pool are not affected by the command.
-/// ## Valid Usage (Implicit)
+///# Description
+///Trimming a command pool recycles unused memory from the command pool back to
+///the system.
+///Command buffers allocated from the pool are not affected by the command.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`command_pool`] **must**  be a valid [`CommandPool`] handle
 /// - [`flags`] **must**  be `0`
 /// - [`command_pool`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_pool`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`CommandPool`]
 /// - [`CommandPoolTrimFlags`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkTrimCommandPool")]
 pub type FNTrimCommandPool =
     Option<unsafe extern "system" fn(device: Device, command_pool: CommandPool, flags: CommandPoolTrimFlags)>;
@@ -868,40 +868,40 @@ pub type FNTrimCommandPool =
 ///    const VkPhysicalDeviceExternalBufferInfo*   pExternalBufferInfo,
 ///    VkExternalBufferProperties*                 pExternalBufferProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///void vkGetPhysicalDeviceExternalBufferPropertiesKHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    const VkPhysicalDeviceExternalBufferInfo*   pExternalBufferInfo,
 ///    VkExternalBufferProperties*                 pExternalBufferProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the buffer capabilities.
 /// - [`p_external_buffer_info`] is a pointer to a [`PhysicalDeviceExternalBufferInfo`] structure
 ///   describing the parameters that would be consumed by [`create_buffer`].
 /// - [`p_external_buffer_properties`] is a pointer to a [`ExternalBufferProperties`] structure in
 ///   which capabilities are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_external_buffer_info`] **must**  be a valid pointer to a valid
 ///   [`PhysicalDeviceExternalBufferInfo`] structure
 /// - [`p_external_buffer_properties`] **must**  be a valid pointer to a
 ///   [`ExternalBufferProperties`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalBufferProperties`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceExternalBufferInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceExternalBufferProperties")]
 pub type FNGetPhysicalDeviceExternalBufferProperties = Option<
     for<'lt> unsafe extern "system" fn(
@@ -922,40 +922,40 @@ pub type FNGetPhysicalDeviceExternalBufferProperties = Option<
 ///    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
 ///    VkExternalSemaphoreProperties*              pExternalSemaphoreProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///void vkGetPhysicalDeviceExternalSemaphorePropertiesKHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
 ///    VkExternalSemaphoreProperties*              pExternalSemaphoreProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the semaphore capabilities.
 /// - [`p_external_semaphore_info`] is a pointer to a [`PhysicalDeviceExternalSemaphoreInfo`]
 ///   structure describing the parameters that would be consumed by [`create_semaphore`].
 /// - [`p_external_semaphore_properties`] is a pointer to a [`ExternalSemaphoreProperties`]
 ///   structure in which capabilities are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_external_semaphore_info`] **must**  be a valid pointer to a valid
 ///   [`PhysicalDeviceExternalSemaphoreInfo`] structure
 /// - [`p_external_semaphore_properties`] **must**  be a valid pointer to a
 ///   [`ExternalSemaphoreProperties`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreProperties`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceExternalSemaphoreInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceExternalSemaphoreProperties")]
 pub type FNGetPhysicalDeviceExternalSemaphoreProperties = Option<
     for<'lt> unsafe extern "system" fn(
@@ -976,40 +976,40 @@ pub type FNGetPhysicalDeviceExternalSemaphoreProperties = Option<
 ///    const VkPhysicalDeviceExternalFenceInfo*    pExternalFenceInfo,
 ///    VkExternalFenceProperties*                  pExternalFenceProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///void vkGetPhysicalDeviceExternalFencePropertiesKHR(
 ///    VkPhysicalDevice                            physicalDevice,
 ///    const VkPhysicalDeviceExternalFenceInfo*    pExternalFenceInfo,
 ///    VkExternalFenceProperties*                  pExternalFenceProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device from which to query the fence capabilities.
 /// - [`p_external_fence_info`] is a pointer to a [`PhysicalDeviceExternalFenceInfo`] structure
 ///   describing the parameters that would be consumed by [`create_fence`].
 /// - [`p_external_fence_properties`] is a pointer to a [`ExternalFenceProperties`] structure in
 ///   which capabilities are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_external_fence_info`] **must**  be a valid pointer to a valid
 ///   [`PhysicalDeviceExternalFenceInfo`] structure
 /// - [`p_external_fence_properties`] **must**  be a valid pointer to a [`ExternalFenceProperties`]
 ///   structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceProperties`]
 /// - [`PhysicalDevice`]
 /// - [`PhysicalDeviceExternalFenceInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceExternalFenceProperties")]
 pub type FNGetPhysicalDeviceExternalFenceProperties = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1028,34 +1028,34 @@ pub type FNGetPhysicalDeviceExternalFenceProperties = Option<
 ///    uint32_t*                                   pPhysicalDeviceGroupCount,
 ///    VkPhysicalDeviceGroupProperties*            pPhysicalDeviceGroupProperties);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_device_group_creation
 ///VkResult vkEnumeratePhysicalDeviceGroupsKHR(
 ///    VkInstance                                  instance,
 ///    uint32_t*                                   pPhysicalDeviceGroupCount,
 ///    VkPhysicalDeviceGroupProperties*            pPhysicalDeviceGroupProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is a handle to a Vulkan instance previously created with [`create_instance`].
 /// - [`p_physical_device_group_count`] is a pointer to an integer related to the number of device
 ///   groups available or queried, as described below.
 /// - [`p_physical_device_group_properties`] is either `NULL` or a pointer to an array of
 ///   [`PhysicalDeviceGroupProperties`] structures.
-/// # Description
-/// If [`p_physical_device_group_properties`] is `NULL`, then the number of device
-/// groups available is returned in [`p_physical_device_group_count`].
-/// Otherwise, [`p_physical_device_group_count`] **must**  point to a variable set by
-/// the user to the number of elements in the
-/// [`p_physical_device_group_properties`] array, and on return the variable is
-/// overwritten with the number of structures actually written to
-/// [`p_physical_device_group_properties`].
-/// If [`p_physical_device_group_count`] is less than the number of device groups
-/// available, at most [`p_physical_device_group_count`] structures will be
-/// written, and `VK_INCOMPLETE` will be returned instead of
-/// `VK_SUCCESS`, to indicate that not all the available device groups were
-/// returned.Every physical device  **must**  be in exactly one device group.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`p_physical_device_group_properties`] is `NULL`, then the number of device
+///groups available is returned in [`p_physical_device_group_count`].
+///Otherwise, [`p_physical_device_group_count`] **must**  point to a variable set by
+///the user to the number of elements in the
+///[`p_physical_device_group_properties`] array, and on return the variable is
+///overwritten with the number of structures actually written to
+///[`p_physical_device_group_properties`].
+///If [`p_physical_device_group_count`] is less than the number of device groups
+///available, at most [`p_physical_device_group_count`] structures will be
+///written, and `VK_INCOMPLETE` will be returned instead of
+///`VK_SUCCESS`, to indicate that not all the available device groups were
+///returned.Every physical device  **must**  be in exactly one device group.
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_physical_device_group_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_physical_device_group_count`] is not `0`, and
@@ -1063,22 +1063,22 @@ pub type FNGetPhysicalDeviceExternalFenceProperties = Option<
 ///   **must**  be a valid pointer to an array of
 ///   [`p_physical_device_group_count`][`PhysicalDeviceGroupProperties`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INITIALIZATION_FAILED`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Instance`]
 /// - [`PhysicalDeviceGroupProperties`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkEnumeratePhysicalDeviceGroups")]
 pub type FNEnumeratePhysicalDeviceGroups = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1103,8 +1103,8 @@ pub type FNEnumeratePhysicalDeviceGroups = Option<
 ///    uint32_t                                    remoteDeviceIndex,
 ///    VkPeerMemoryFeatureFlags*                   pPeerMemoryFeatures);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_device_group
 ///void vkGetDeviceGroupPeerMemoryFeaturesKHR(
 ///    VkDevice                                    device,
@@ -1113,7 +1113,7 @@ pub type FNEnumeratePhysicalDeviceGroups = Option<
 ///    uint32_t                                    remoteDeviceIndex,
 ///    VkPeerMemoryFeatureFlags*                   pPeerMemoryFeatures);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the memory.
 /// - [`heap_index`] is the index of the memory heap from which the memory is allocated.
 /// - [`local_device_index`] is the device index of the physical device that performs the memory
@@ -1123,28 +1123,28 @@ pub type FNEnumeratePhysicalDeviceGroups = Option<
 /// - [`p_peer_memory_features`] is a pointer to a [`PeerMemoryFeatureFlags`] bitmask indicating
 ///   which types of memory accesses are supported for the combination of heap, local, and remote
 ///   devices.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`heap_index`] **must**  be less than `memoryHeapCount`
 /// - [`local_device_index`] **must**  be a valid device index
 /// - [`remote_device_index`] **must**  be a valid device index
 /// - [`local_device_index`] **must**  not equal [`remote_device_index`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_peer_memory_features`] **must**  be a valid pointer to a [`PeerMemoryFeatureFlags`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`PeerMemoryFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceGroupPeerMemoryFeatures")]
 pub type FNGetDeviceGroupPeerMemoryFeatures = Option<
     unsafe extern "system" fn(
@@ -1165,44 +1165,44 @@ pub type FNGetDeviceGroupPeerMemoryFeatures = Option<
 ///    uint32_t                                    bindInfoCount,
 ///    const VkBindBufferMemoryInfo*               pBindInfos);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_bind_memory2
 ///VkResult vkBindBufferMemory2KHR(
 ///    VkDevice                                    device,
 ///    uint32_t                                    bindInfoCount,
 ///    const VkBindBufferMemoryInfo*               pBindInfos);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the buffers and memory.
 /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
 /// - [`p_bind_infos`] is a pointer to an array of [`bind_info_count`][`BindBufferMemoryInfo`]
 ///   structures describing buffers and memory to bind.
-/// # Description
-/// On some implementations, it  **may**  be more efficient to batch memory bindings
-/// into a single command.
-/// ## Valid Usage (Implicit)
+///# Description
+///On some implementations, it  **may**  be more efficient to batch memory bindings
+///into a single command.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
 ///   [`BindBufferMemoryInfo`] structures
 /// - [`bind_info_count`] **must**  be greater than `0`
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`BindBufferMemoryInfo`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkBindBufferMemory2")]
 pub type FNBindBufferMemory2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1221,49 +1221,49 @@ pub type FNBindBufferMemory2 = Option<
 ///    uint32_t                                    bindInfoCount,
 ///    const VkBindImageMemoryInfo*                pBindInfos);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_bind_memory2
 ///VkResult vkBindImageMemory2KHR(
 ///    VkDevice                                    device,
 ///    uint32_t                                    bindInfoCount,
 ///    const VkBindImageMemoryInfo*                pBindInfos);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the images and memory.
 /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
 /// - [`p_bind_infos`] is a pointer to an array of [`BindImageMemoryInfo`] structures, describing
 ///   images and memory to bind.
-/// # Description
-/// On some implementations, it  **may**  be more efficient to batch memory bindings
-/// into a single command.
-/// ## Valid Usage
+///# Description
+///On some implementations, it  **may**  be more efficient to batch memory bindings
+///into a single command.
+///## Valid Usage
 /// - If any [`BindImageMemoryInfo::image`] was created with `VK_IMAGE_CREATE_DISJOINT_BIT` then all
 ///   planes of [`BindImageMemoryInfo::image`] **must**  be bound individually in separate
 ///   [`p_bind_infos`]
 /// - [`p_bind_infos`] **must**  not refer to the same image subresource more than once
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
 ///   [`BindImageMemoryInfo`] structures
 /// - [`bind_info_count`] **must**  be greater than `0`
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`BindImageMemoryInfo`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkBindImageMemory2")]
 pub type FNBindImageMemory2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1307,8 +1307,8 @@ pub type FNBindImageMemory2 = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkDescriptorUpdateTemplate*                 pDescriptorUpdateTemplate);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///VkResult vkCreateDescriptorUpdateTemplateKHR(
 ///    VkDevice                                    device,
@@ -1316,7 +1316,7 @@ pub type FNBindImageMemory2 = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkDescriptorUpdateTemplate*                 pDescriptorUpdateTemplate);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the descriptor update template.
 /// - [`p_create_info`] is a pointer to a [`DescriptorUpdateTemplateCreateInfo`] structure
 ///   specifying the set of descriptors to update with a single call to
@@ -1325,8 +1325,8 @@ pub type FNBindImageMemory2 = Option<
 ///   chapter.
 /// - [`p_descriptor_update_template`] is a pointer to a [`DescriptorUpdateTemplate`] handle in
 ///   which the resulting descriptor update template object is returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid
 ///   [`DescriptorUpdateTemplateCreateInfo`] structure
@@ -1335,23 +1335,23 @@ pub type FNBindImageMemory2 = Option<
 /// - [`p_descriptor_update_template`] **must**  be a valid pointer to a
 ///   [`DescriptorUpdateTemplate`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AllocationCallbacks`]
 /// - [`DescriptorUpdateTemplate`]
 /// - [`DescriptorUpdateTemplateCreateInfo`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateDescriptorUpdateTemplate")]
 pub type FNCreateDescriptorUpdateTemplate = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1371,27 +1371,27 @@ pub type FNCreateDescriptorUpdateTemplate = Option<
 ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///void vkDestroyDescriptorUpdateTemplateKHR(
 ///    VkDevice                                    device,
 ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that has been used to create the descriptor update template
 /// - [`descriptor_update_template`] is the descriptor update template to destroy.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`AllocationCallbacks`] were provided when [`descriptor_update_template`] was created, a
 ///   compatible set of callbacks  **must**  be provided here
 /// - If no [`AllocationCallbacks`] were provided when [`descriptor_update_template`] was created,
 ///   [`p_allocator`] **must**  be `NULL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`descriptor_update_template`] is not [`crate::Handle::null`],
 ///   [`descriptor_update_template`] **must**  be a valid [`DescriptorUpdateTemplate`] handle
@@ -1400,21 +1400,21 @@ pub type FNCreateDescriptorUpdateTemplate = Option<
 /// - If [`descriptor_update_template`] is a valid handle, it  **must**  have been created,
 ///   allocated, or retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`descriptor_update_template`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AllocationCallbacks`]
 /// - [`DescriptorUpdateTemplate`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyDescriptorUpdateTemplate")]
 pub type FNDestroyDescriptorUpdateTemplate = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1435,8 +1435,8 @@ pub type FNDestroyDescriptorUpdateTemplate = Option<
 ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
 ///    const void*                                 pData);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///void vkUpdateDescriptorSetWithTemplateKHR(
 ///    VkDevice                                    device,
@@ -1444,7 +1444,7 @@ pub type FNDestroyDescriptorUpdateTemplate = Option<
 ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
 ///    const void*                                 pData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that updates the descriptor set.
 /// - [`descriptor_set`] is the descriptor set to update
 /// - [`descriptor_update_template`] is a [`DescriptorUpdateTemplate`] object specifying the update
@@ -1452,24 +1452,24 @@ pub type FNDestroyDescriptorUpdateTemplate = Option<
 /// - [`p_data`] is a pointer to memory containing one or more     [`DescriptorImageInfo`],
 ///   [`DescriptorBufferInfo`], or     [`BufferView`] structures or [`AccelerationStructureKHR`] or
 ///   [`AccelerationStructureNV`] handles     used to write the descriptors.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`p_data`] **must**  be a valid pointer to a memory containing one or more valid instances of
 ///   [`DescriptorImageInfo`], [`DescriptorBufferInfo`], or [`BufferView`] in a layout defined by
 ///   [`descriptor_update_template`] when it was created with [`create_descriptor_update_template`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
 /// - [`descriptor_update_template`] **must**  be a valid [`DescriptorUpdateTemplate`] handle
 /// - [`descriptor_update_template`] **must**  have been created, allocated, or retrieved from
 ///   [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`descriptor_set`] **must**  be externally synchronized
 ///
-/// ## API example
-/// ```c
+///## API example
+///```c
 ///struct AppBufferView {
 ///    VkBufferView bufferView;
 ///    uint32_t     applicationRelatedInformation;
@@ -1520,6 +1520,7 @@ pub type FNDestroyDescriptorUpdateTemplate = Option<
 /// compact
 ///    },
 ///};
+///
 ///// create a descriptor update template for descriptor set updates
 ///const VkDescriptorUpdateTemplateCreateInfo createInfo =
 ///{
@@ -1546,23 +1547,24 @@ pub type FNDestroyDescriptorUpdateTemplate = Option<
 ///    &myDescriptorUpdateTemplate);
 ///
 ///AppDataStructure appData;
+///
 ///// fill appData here or cache it in your engine
 ///vkUpdateDescriptorSetWithTemplate(myDevice, myDescriptorSet, myDescriptorUpdateTemplate,
 /// &appData);
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorSet`]
 /// - [`DescriptorUpdateTemplate`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkUpdateDescriptorSetWithTemplate")]
 pub type FNUpdateDescriptorSetWithTemplate = Option<
     unsafe extern "system" fn(
@@ -1582,38 +1584,38 @@ pub type FNUpdateDescriptorSetWithTemplate = Option<
 ///    const VkBufferMemoryRequirementsInfo2*      pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///void vkGetBufferMemoryRequirements2KHR(
 ///    VkDevice                                    device,
 ///    const VkBufferMemoryRequirementsInfo2*      pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the buffer.
 /// - [`p_info`] is a pointer to a [`BufferMemoryRequirementsInfo2`] structure containing parameters
 ///   required for the memory requirements query.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   memory requirements of the buffer object are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferMemoryRequirementsInfo2`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`BufferMemoryRequirementsInfo2`]
 /// - [`Device`]
 /// - [`MemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetBufferMemoryRequirements2")]
 pub type FNGetBufferMemoryRequirements2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1632,38 +1634,38 @@ pub type FNGetBufferMemoryRequirements2 = Option<
 ///    const VkImageMemoryRequirementsInfo2*       pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///void vkGetImageMemoryRequirements2KHR(
 ///    VkDevice                                    device,
 ///    const VkImageMemoryRequirementsInfo2*       pInfo,
 ///    VkMemoryRequirements2*                      pMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the image.
 /// - [`p_info`] is a pointer to a [`ImageMemoryRequirementsInfo2`] structure containing parameters
 ///   required for the memory requirements query.
 /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
 ///   memory requirements of the image object are returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageMemoryRequirementsInfo2`] structure
 /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`ImageMemoryRequirementsInfo2`]
 /// - [`MemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetImageMemoryRequirements2")]
 pub type FNGetImageMemoryRequirements2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1683,8 +1685,8 @@ pub type FNGetImageMemoryRequirements2 = Option<
 ///    uint32_t*                                   pSparseMemoryRequirementCount,
 ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///void vkGetImageSparseMemoryRequirements2KHR(
 ///    VkDevice                                    device,
@@ -1692,7 +1694,7 @@ pub type FNGetImageMemoryRequirements2 = Option<
 ///    uint32_t*                                   pSparseMemoryRequirementCount,
 ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the image.
 /// - [`p_info`] is a pointer to a [`ImageSparseMemoryRequirementsInfo2`] structure containing
 ///   parameters required for the memory requirements query.
@@ -1700,8 +1702,8 @@ pub type FNGetImageMemoryRequirements2 = Option<
 ///   sparse memory requirements available or queried, as described below.
 /// - [`p_sparse_memory_requirements`] is either `NULL` or a pointer to an array of
 ///   [`SparseImageMemoryRequirements2`] structures.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageSparseMemoryRequirementsInfo2`]
 ///   structure
@@ -1710,19 +1712,19 @@ pub type FNGetImageMemoryRequirements2 = Option<
 ///   [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**  be
 ///   a valid pointer to an array of
 ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`ImageSparseMemoryRequirementsInfo2`]
 /// - [`SparseImageMemoryRequirements2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetImageSparseMemoryRequirements2")]
 pub type FNGetImageSparseMemoryRequirements2 = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1743,8 +1745,8 @@ pub type FNGetImageSparseMemoryRequirements2 = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSamplerYcbcrConversion*                   pYcbcrConversion);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///VkResult vkCreateSamplerYcbcrConversionKHR(
 ///    VkDevice                                    device,
@@ -1752,7 +1754,7 @@ pub type FNGetImageSparseMemoryRequirements2 = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSamplerYcbcrConversion*                   pYcbcrConversion);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that creates the sampler Y′C<sub>B</sub>C<sub>R</sub>
 ///   conversion.
 /// - [`p_create_info`] is a pointer to a [`SamplerYcbcrConversionCreateInfo`] structure specifying
@@ -1761,16 +1763,16 @@ pub type FNGetImageSparseMemoryRequirements2 = Option<
 ///   chapter.
 /// - [`p_ycbcr_conversion`] is a pointer to a [`SamplerYcbcrConversion`] handle in which the
 ///   resulting sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is returned.
-/// # Description
-/// The interpretation of the configured sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is
+///# Description
+///The interpretation of the configured sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is
 /// described
-/// in more detail in [the description of
-/// sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
-/// ## Valid Usage
+///in more detail in [the description of
+///sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
+///## Valid Usage
 /// - The [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-samplerYcbcrConversion)
 ///   **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`SamplerYcbcrConversionCreateInfo`]
 ///   structure
@@ -1778,23 +1780,23 @@ pub type FNGetImageSparseMemoryRequirements2 = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`p_ycbcr_conversion`] **must**  be a valid pointer to a [`SamplerYcbcrConversion`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SamplerYcbcrConversion`]
 /// - [`SamplerYcbcrConversionCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateSamplerYcbcrConversion")]
 pub type FNCreateSamplerYcbcrConversion = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1814,21 +1816,21 @@ pub type FNCreateSamplerYcbcrConversion = Option<
 ///    VkSamplerYcbcrConversion                    ycbcrConversion,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///void vkDestroySamplerYcbcrConversionKHR(
 ///    VkDevice                                    device,
 ///    VkSamplerYcbcrConversion                    ycbcrConversion,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that destroys the Y′C<sub>B</sub>C<sub>R</sub> conversion.
 /// - [`ycbcr_conversion`] is the conversion to destroy.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - If [`ycbcr_conversion`] is not [`crate::Handle::null`], [`ycbcr_conversion`] **must**  be a
 ///   valid [`SamplerYcbcrConversion`] handle
@@ -1837,21 +1839,21 @@ pub type FNCreateSamplerYcbcrConversion = Option<
 /// - If [`ycbcr_conversion`] is a valid handle, it  **must**  have been created, allocated, or
 ///   retrieved from [`device`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`ycbcr_conversion`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AllocationCallbacks`]
 /// - [`Device`]
 /// - [`SamplerYcbcrConversion`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroySamplerYcbcrConversion")]
 pub type FNDestroySamplerYcbcrConversion = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1871,30 +1873,30 @@ pub type FNDestroySamplerYcbcrConversion = Option<
 ///    const VkDeviceQueueInfo2*                   pQueueInfo,
 ///    VkQueue*                                    pQueue);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that owns the queue.
 /// - [`p_queue_info`] is a pointer to a [`DeviceQueueInfo2`] structure, describing parameters of
 ///   the device queue to be retrieved.
 /// - [`p_queue`] is a pointer to a [`Queue`] object that will be filled with the handle for the
 ///   requested queue.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_queue_info`] **must**  be a valid pointer to a valid [`DeviceQueueInfo2`] structure
 /// - [`p_queue`] **must**  be a valid pointer to a [`Queue`] handle
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Device`]
 /// - [`DeviceQueueInfo2`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceQueue2")]
 pub type FNGetDeviceQueue2 = Option<
     for<'lt> unsafe extern "system" fn(device: Device, p_queue_info: *const DeviceQueueInfo2<'lt>, p_queue: *mut Queue),
@@ -1910,59 +1912,59 @@ pub type FNGetDeviceQueue2 = Option<
 ///    const VkDescriptorSetLayoutCreateInfo*      pCreateInfo,
 ///    VkDescriptorSetLayoutSupport*               pSupport);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_maintenance3
 ///void vkGetDescriptorSetLayoutSupportKHR(
 ///    VkDevice                                    device,
 ///    const VkDescriptorSetLayoutCreateInfo*      pCreateInfo,
 ///    VkDescriptorSetLayoutSupport*               pSupport);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that would create the descriptor set layout.
 /// - [`p_create_info`] is a pointer to a [`DescriptorSetLayoutCreateInfo`] structure specifying the
 ///   state of the descriptor set layout object.
 /// - [`p_support`] is a pointer to a [`DescriptorSetLayoutSupport`] structure, in which information
 ///   about support for the descriptor set layout object is returned.
-/// # Description
-/// Some implementations have limitations on what fits in a descriptor set which
-/// are not easily expressible in terms of existing limits like
-/// `maxDescriptorSet`*, for example if all descriptor types share a limited
-/// space in memory but each descriptor is a different size or alignment.
-/// This command returns information about whether a descriptor set satisfies
-/// this limit.
-/// If the descriptor set layout satisfies the
-/// [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
-/// limit, this command is guaranteed to return [`TRUE`] in
-/// [`DescriptorSetLayoutSupport::supported`].
-/// If the descriptor set layout exceeds the
-/// [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
-/// limit, whether the descriptor set layout is supported is
-/// implementation-dependent and  **may**  depend on whether the descriptor sizes and
-/// alignments cause the layout to exceed an internal limit.This command does not consider other
+///# Description
+///Some implementations have limitations on what fits in a descriptor set which
+///are not easily expressible in terms of existing limits like
+///`maxDescriptorSet`*, for example if all descriptor types share a limited
+///space in memory but each descriptor is a different size or alignment.
+///This command returns information about whether a descriptor set satisfies
+///this limit.
+///If the descriptor set layout satisfies the
+///[`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
+///limit, this command is guaranteed to return [`TRUE`] in
+///[`DescriptorSetLayoutSupport::supported`].
+///If the descriptor set layout exceeds the
+///[`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
+///limit, whether the descriptor set layout is supported is
+///implementation-dependent and  **may**  depend on whether the descriptor sizes and
+///alignments cause the layout to exceed an internal limit.This command does not consider other
 /// limits such as
-/// `maxPerStageDescriptor`*, and so a descriptor set layout that is
-/// supported according to this command  **must**  still satisfy the pipeline layout
-/// limits such as `maxPerStageDescriptor`* in order to be used in a
-/// pipeline layout.
-/// ## Valid Usage (Implicit)
+///`maxPerStageDescriptor`*, and so a descriptor set layout that is
+///supported according to this command  **must**  still satisfy the pipeline layout
+///limits such as `maxPerStageDescriptor`* in order to be used in a
+///pipeline layout.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`DescriptorSetLayoutCreateInfo`]
 ///   structure
 /// - [`p_support`] **must**  be a valid pointer to a [`DescriptorSetLayoutSupport`] structure
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorSetLayoutCreateInfo`]
 /// - [`DescriptorSetLayoutSupport`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDescriptorSetLayoutSupport")]
 pub type FNGetDescriptorSetLayoutSupport = Option<
     for<'lt> unsafe extern "system" fn(
@@ -1980,26 +1982,26 @@ pub type FNGetDescriptorSetLayoutSupport = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    deviceMask);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_device_group
 ///void vkCmdSetDeviceMaskKHR(
 ///    VkCommandBuffer                             commandBuffer,
 ///    uint32_t                                    deviceMask);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is command buffer whose current device mask is modified.
 /// - [`device_mask`] is the new value of the current device mask.
-/// # Description
-/// [`device_mask`] is used to filter out subsequent commands from executing on
-/// all physical devices whose bit indices are not set in the mask, except
-/// commands beginning a render pass instance, commands transitioning to the
-/// next subpass in the render pass instance, and commands ending a render pass
-/// instance, which always execute on the set of physical devices whose bit
-/// indices are included in the [`device_mask`] member of the
-/// [`DeviceGroupRenderPassBeginInfo`] structure passed to the command
-/// beginning the corresponding render pass instance.
-/// ## Valid Usage
+///# Description
+///[`device_mask`] is used to filter out subsequent commands from executing on
+///all physical devices whose bit indices are not set in the mask, except
+///commands beginning a render pass instance, commands transitioning to the
+///next subpass in the render pass instance, and commands ending a render pass
+///instance, which always execute on the set of physical devices whose bit
+///indices are included in the [`device_mask`] member of the
+///[`DeviceGroupRenderPassBeginInfo`] structure passed to the command
+///beginning the corresponding render pass instance.
+///## Valid Usage
 /// - [`device_mask`] **must**  be a valid device mask value
 /// - [`device_mask`] **must**  not be zero
 /// - [`device_mask`] **must**  not include any set bits that were not in the
@@ -2010,29 +2012,29 @@ pub type FNGetDescriptorSetLayoutSupport = Option<
 ///   [`DeviceGroupRenderPassBeginInfo`]::[`device_mask`] value when the render pass instance began
 ///   recording
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics,
 ///   compute, or transfer operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetDeviceMask")]
 pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: CommandBuffer, device_mask: u32)>;
 ///[vkCmdDispatchBase](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdDispatchBase.html) - Dispatch compute work items with non-zero base values for the workgroup IDs
@@ -2050,8 +2052,8 @@ pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: C
 ///    uint32_t                                    groupCountY,
 ///    uint32_t                                    groupCountZ);
 ///```
-/// or the equivalent command
-/// ```c
+///or the equivalent command
+///```c
 ///// Provided by VK_KHR_device_group
 ///void vkCmdDispatchBaseKHR(
 ///    VkCommandBuffer                             commandBuffer,
@@ -2062,7 +2064,7 @@ pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: C
 ///    uint32_t                                    groupCountY,
 ///    uint32_t                                    groupCountZ);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`base_group_x`] is the start value for the X component of `WorkgroupId`.
 /// - [`base_group_y`] is the start value for the Y component of `WorkgroupId`.
@@ -2070,15 +2072,15 @@ pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: C
 /// - [`group_count_x`] is the number of local workgroups to dispatch in the X dimension.
 /// - [`group_count_y`] is the number of local workgroups to dispatch in the Y dimension.
 /// - [`group_count_z`] is the number of local workgroups to dispatch in the Z dimension.
-/// # Description
-/// When the command is executed, a global workgroup consisting of
-/// [`group_count_x`] × [`group_count_y`] × [`group_count_z`]
-/// local workgroups is assembled, with `WorkgroupId` values ranging from
-/// [`baseGroup*`, `baseGroup*` +  `groupCount*`) in each
-/// component.
-/// [`cmd_dispatch`] is equivalent to
-/// `vkCmdDispatchBase(0,0,0,groupCountX,groupCountY,groupCountZ)`.
-/// ## Valid Usage
+///# Description
+///When the command is executed, a global workgroup consisting of
+///[`group_count_x`] × [`group_count_y`] × [`group_count_z`]
+///local workgroups is assembled, with `WorkgroupId` values ranging from
+///[`baseGroup*`, `baseGroup*` +  `groupCount*`) in each
+///component.
+///[`cmd_dispatch`] is equivalent to
+///`vkCmdDispatchBase(0,0,0,groupCountX,groupCountY,groupCountZ)`.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -2218,30 +2220,30 @@ pub type FNCmdSetDeviceMask = Option<unsafe extern "system" fn(command_buffer: C
 /// - If any of [`base_group_x`], [`base_group_y`], or [`base_group_z`] are not zero, then the bound
 ///   compute pipeline  **must**  have been created with the `VK_PIPELINE_CREATE_DISPATCH_BASE` flag
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
 ///   operations
 /// - This command  **must**  only be called outside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDispatchBase")]
 pub type FNCmdDispatchBase = Option<
     unsafe extern "system" fn(
@@ -2271,27 +2273,27 @@ pub type FNCmdDispatchBase = Option<
 /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET,
 ///} VkDescriptorUpdateTemplateType;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///typedef VkDescriptorUpdateTemplateType VkDescriptorUpdateTemplateTypeKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DESCRIPTOR_SET`] specifies that the descriptor update template will be used for descriptor
 ///   set updates only.
 /// - [`PUSH_DESCRIPTORS_KHR`] specifies that the descriptor update template will be used for push
 ///   descriptor updates only.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorUpdateTemplateCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateType")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2375,28 +2377,28 @@ impl std::fmt::Debug for DescriptorUpdateTemplateType {
 /// VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY,
 ///} VkPointClippingBehavior;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkPointClippingBehavior VkPointClippingBehaviorKHR;
 ///```
-/// # Description
+///# Description
 /// - [`ALL_CLIP_PLANES`] specifies that the primitive is discarded if the vertex lies outside any
 ///   clip plane, including the planes bounding the view volume.
 /// - [`USER_CLIP_PLANES_ONLY`] specifies that the primitive is discarded only if the vertex lies
 ///   outside any user clip plane.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevicePointClippingProperties`]
 /// - [`PhysicalDeviceVulkan11Properties`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPointClippingBehavior")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2473,28 +2475,28 @@ impl std::fmt::Debug for PointClippingBehavior {
 ///    VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR = VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT,
 ///} VkTessellationDomainOrigin;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkTessellationDomainOrigin VkTessellationDomainOriginKHR;
 ///```
-/// # Description
+///# Description
 /// - [`UPPER_LEFT`] specifies that the origin of the domain space is in the upper left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul).
 /// - [`LOWER_LEFT`] specifies that the origin of the domain space is in the lower left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll).
-/// This enum affects how the `VertexOrderCw` and `VertexOrderCcw`
-/// tessellation execution modes are interpreted, since the winding is defined
-/// relative to the orientation of the domain.
-/// # Related
+///This enum affects how the `VertexOrderCw` and `VertexOrderCcw`
+///tessellation execution modes are interpreted, since the winding is defined
+///relative to the orientation of the domain.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PipelineTessellationDomainOriginStateCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTessellationDomainOrigin")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2586,12 +2588,12 @@ impl std::fmt::Debug for TessellationDomainOrigin {
 /// VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_2020,
 ///} VkSamplerYcbcrModelConversion;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrModelConversion VkSamplerYcbcrModelConversionKHR;
 ///```
-/// # Description
+///# Description
 /// - [`RGB_IDENTITY`] specifies that the input values to the conversion are unmodified.
 /// - [`YCBCR_IDENTITY`] specifies no model conversion but the inputs are range expanded as for
 ///   Y′C<sub>B</sub>C<sub>R</sub>.
@@ -2600,31 +2602,31 @@ impl std::fmt::Debug for TessellationDomainOrigin {
 /// - [`YCBCR2020`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′
 ///   defined in BT.2020 and described in the “BT.2020 Y′C<sub>B</sub>C<sub>R</sub> conversion” section
 ///   of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
-/// In the `VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_*` color models, for the
-/// input to the sampler Y′C<sub>B</sub>C<sub>R</sub> range expansion and model conversion:
+///In the `VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_*` color models, for the
+///input to the sampler Y′C<sub>B</sub>C<sub>R</sub> range expansion and model conversion:
 /// - the Y (Y′ luma) component corresponds to the G component of an RGB image.
 /// - the CB (C<sub>B</sub> or “U” blue color difference) component corresponds to the B component
 ///   of an RGB image.
 /// - the CR (C<sub>R</sub> or “V” red color difference) component corresponds to the R component of
 ///   an RGB image.
 /// - the alpha component, if present, is not modified by color model conversion.
-/// These rules reflect the mapping of components after the component swizzle
-/// operation (controlled by
-/// [`SamplerYcbcrConversionCreateInfo::components`]).
-/// # Related
+///These rules reflect the mapping of components after the component swizzle
+///operation (controlled by
+///[`SamplerYcbcrConversionCreateInfo::components`]).
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 /// - [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`SamplerYcbcrConversionCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrModelConversion")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2719,36 +2721,36 @@ impl std::fmt::Debug for SamplerYcbcrModelConversion {
 ///    VK_SAMPLER_YCBCR_RANGE_ITU_NARROW_KHR = VK_SAMPLER_YCBCR_RANGE_ITU_NARROW,
 ///} VkSamplerYcbcrRange;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrRange VkSamplerYcbcrRangeKHR;
 ///```
-/// # Description
+///# Description
 /// - [`ITU_FULL`] specifies that the full range of the encoded values are valid and interpreted
 ///   according to the ITU “full range” quantization rules.
 /// - [`ITU_NARROW`] specifies that headroom and foot room are reserved in the numerical range of
 ///   encoded values, and the remaining values are expanded according to the ITU “narrow range”
 ///   quantization rules.
-/// The formulae for these conversions is described in the
-/// [Sampler Y′C<sub>B</sub>C<sub>R</sub> Range
-/// Expansion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion-rangeexpand) section of the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.No range modification takes place if `ycbcrModel` is
-/// `VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY`; the `ycbcrRange`
-/// field of [`SamplerYcbcrConversionCreateInfo`] is ignored in this case.
-/// # Related
+///The formulae for these conversions is described in the
+///[Sampler Y′C<sub>B</sub>C<sub>R</sub> Range
+///Expansion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion-rangeexpand) section of the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.No range modification takes place if `ycbcrModel` is
+///`VK_SAMPLER_YCBCR_MODEL_CONVERSION_RGB_IDENTITY`; the `ycbcrRange`
+///field of [`SamplerYcbcrConversionCreateInfo`] is ignored in this case.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 /// - [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`SamplerYcbcrConversionCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrRange")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2826,30 +2828,30 @@ impl std::fmt::Debug for SamplerYcbcrRange {
 ///    VK_CHROMA_LOCATION_MIDPOINT_KHR = VK_CHROMA_LOCATION_MIDPOINT,
 ///} VkChromaLocation;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkChromaLocation VkChromaLocationKHR;
 ///```
-/// # Description
+///# Description
 /// - [`COSITED_EVEN`] specifies that downsampled chroma samples are aligned with luma samples with
 ///   even coordinates.
 /// - [`MIDPOINT`] specifies that downsampled chroma samples are located half way between each even
 ///   luma sample and the nearest higher odd luma sample.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 /// - [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - [`BufferCollectionPropertiesFUCHSIA`]
 /// - [`SamplerYcbcrConversionCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkChromaLocation")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2919,19 +2921,19 @@ impl std::fmt::Debug for ChromaLocation {
 ///    VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT = 0x00000001,
 ///} VkDeviceQueueCreateFlagBits;
 ///```
-/// # Description
+///# Description
 /// - [`PROTECTED`] specifies that the device queue is a protected-capable queue.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceQueueCreateFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceQueueCreateFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3010,7 +3012,7 @@ impl std::fmt::Debug for DeviceQueueCreateFlagBits {
 ///    VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 0x00000100,
 ///} VkSubgroupFeatureFlagBits;
 ///```
-/// # Description
+///# Description
 /// - [`BASIC`] specifies the device will accept SPIR-V shader modules containing the
 ///   `GroupNonUniform` capability.
 /// - [`VOTE`] specifies the device will accept SPIR-V shader modules containing the
@@ -3029,17 +3031,17 @@ impl std::fmt::Debug for DeviceQueueCreateFlagBits {
 ///   `GroupNonUniformQuad` capability.
 /// - [`PARTITIONED_NV`] specifies the device will accept SPIR-V shader modules containing the
 ///   `GroupNonUniformPartitionedNV` capability.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SubgroupFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubgroupFeatureFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3190,12 +3192,12 @@ impl std::fmt::Debug for SubgroupFeatureFlagBits {
 /// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT,
 ///} VkExternalMemoryHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -3234,10 +3236,10 @@ impl std::fmt::Debug for SubgroupFeatureFlagBits {
 /// - [`ZIRCON_VMO_FUCHSIA`] is a Zircon handle to a virtual memory object.
 /// - [`RDMA_ADDRESS_NV`] is a handle to an allocation accessible by remote devices. It owns a
 ///   reference to the underlying memory resource represented by its Vulkan memory object.
-/// Some external memory handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external memory handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 /// - [`ImportMemoryFdInfoKHR`]
@@ -3255,13 +3257,13 @@ impl std::fmt::Debug for SubgroupFeatureFlagBits {
 /// - [`get_memory_win32_handle_properties_khr`]
 /// - [`get_memory_zircon_handle_properties_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3452,12 +3454,12 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagBits {
 ///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalMemoryFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalMemoryFeatureFlagBits VkExternalMemoryFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DEDICATED_ONLY`] specifies that images or buffers created with the specified parameters and
 ///   handle type  **must**  use the mechanisms defined by [`MemoryDedicatedRequirements`] and
 ///   [`MemoryDedicatedAllocateInfo`] to create (or import) a dedicated allocation for the image or
@@ -3466,34 +3468,34 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagBits {
 ///   objects.
 /// - [`IMPORTABLE`] specifies that handles of this type  **can**  be imported as Vulkan memory
 ///   objects.
-/// Because their semantics in external APIs roughly align with that of an image
-/// or buffer with a dedicated allocation in Vulkan, implementations are
+///Because their semantics in external APIs roughly align with that of an image
+///or buffer with a dedicated allocation in Vulkan, implementations are
 /// **required**  to report [`DEDICATED_ONLY`] for
-/// the following external handle types:
+///the following external handle types:
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` for images only
-/// Implementations  **must**  not report
-/// [`DEDICATED_ONLY`] for buffers with
-/// external handle type
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
-/// Implementations  **must**  not report
-/// [`DEDICATED_ONLY`] for images or buffers
-/// with external handle type
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
-/// # Related
+///Implementations  **must**  not report
+///[`DEDICATED_ONLY`] for buffers with
+///external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
+///Implementations  **must**  not report
+///[`DEDICATED_ONLY`] for images or buffers
+///with external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3594,12 +3596,12 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagBits {
 /// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT,
 ///} VkExternalSemaphoreHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkExternalSemaphoreHandleTypeFlagBits VkExternalSemaphoreHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -3631,10 +3633,10 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagBits {
 ///   native API that accepts a Zircon event handle. Zircon event handles are created with
 ///   `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights. Vulkan on Fuchsia uses only the
 ///   ZX_EVENT_SIGNALED bit when signaling or waiting.
-/// Some external semaphore handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external semaphore handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreHandleTypeFlags`]
 /// - [`ImportSemaphoreFdInfoKHR`]
@@ -3645,13 +3647,13 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagBits {
 /// - [`SemaphoreGetWin32HandleInfoKHR`]
 /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreHandleTypeFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3786,27 +3788,27 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlagBits {
 /// VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalSemaphoreFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`EXPORTABLE`] specifies that handles of this type  **can**  be exported from Vulkan semaphore
 ///   objects.
 /// - [`IMPORTABLE`] specifies that handles of this type  **can**  be imported as Vulkan semaphore
 ///   objects.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreFeatureFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3881,25 +3883,25 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlagBits {
 ///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = VK_SEMAPHORE_IMPORT_TEMPORARY_BIT,
 ///} VkSemaphoreImportFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore
 ///typedef VkSemaphoreImportFlagBits VkSemaphoreImportFlagBitsKHR;
 ///```
-/// # Description
-/// These bits have the following meanings:
+///# Description
+///These bits have the following meanings:
 /// - [`TEMPORARY`] specifies that the semaphore payload will be imported only temporarily, as described in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), regardless of the permanence of `handleType`.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SemaphoreImportFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreImportFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -3984,12 +3986,12 @@ impl std::fmt::Debug for SemaphoreImportFlagBits {
 ///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT,
 ///} VkExternalFenceHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkExternalFenceHandleTypeFlagBits VkExternalFenceHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -4010,10 +4012,10 @@ impl std::fmt::Debug for SemaphoreImportFlagBits {
 ///   reference to the underlying synchronization primitive associated with the file descriptor.
 ///   Implementations which support importing this handle type  **must**  accept any type of sync or
 ///   fence FD supported by the native system they are running on.
-/// Some external fence handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external fence handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceHandleTypeFlags`]
 /// - [`FenceGetFdInfoKHR`]
@@ -4022,13 +4024,13 @@ impl std::fmt::Debug for SemaphoreImportFlagBits {
 /// - [`ImportFenceWin32HandleInfoKHR`]
 /// - [`PhysicalDeviceExternalFenceInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceHandleTypeFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4137,25 +4139,25 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlagBits {
 ///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalFenceFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`EXPORTABLE`] specifies handles of this type  **can**  be exported from Vulkan fence objects.
 /// - [`IMPORTABLE`] specifies handles of this type  **can**  be imported to Vulkan fence objects.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceFeatureFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4229,26 +4231,26 @@ impl std::fmt::Debug for ExternalFenceFeatureFlagBits {
 ///    VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = VK_FENCE_IMPORT_TEMPORARY_BIT,
 ///} VkFenceImportFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence
 ///typedef VkFenceImportFlagBits VkFenceImportFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`TEMPORARY`] specifies that the fence payload will be imported only temporarily, as described
 ///   in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing),
 ///   regardless of the permanence of `handleType`.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`FenceImportFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFenceImportFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4328,12 +4330,12 @@ impl std::fmt::Debug for FenceImportFlagBits {
 ///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT,
 ///} VkPeerMemoryFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`COPY_SRC`] specifies that the memory  **can**  be accessed as the source of any `vkCmdCopy*`
 ///   command.
 /// - [`COPY_DST`] specifies that the memory  **can**  be accessed as the destination of any
@@ -4341,26 +4343,26 @@ impl std::fmt::Debug for FenceImportFlagBits {
 /// - [`GENERIC_SRC`] specifies that the memory  **can**  be read as any memory access type.
 /// - [`GENERIC_DST`] specifies that the memory  **can**  be written as any memory access type.
 ///   Shader atomics are considered to be writes.
-/// [`COPY_DST`] **must**  be supported for all host
-/// local heaps and for at least one device-local memory heap.If a device does not support a peer
+///[`COPY_DST`] **must**  be supported for all host
+///local heaps and for at least one device-local memory heap.If a device does not support a peer
 /// memory feature, it is still valid to use
-/// a resource that includes both local and peer memory bindings with the
-/// corresponding access type as long as only the local bindings are actually
-/// accessed.
-/// For example, an application doing split-frame rendering would use
-/// framebuffer attachments that include both local and peer memory bindings,
-/// but would scissor the rendering to only update local memory.
-/// # Related
+///a resource that includes both local and peer memory bindings with the
+///corresponding access type as long as only the local bindings are actually
+///accessed.
+///For example, an application doing split-frame rendering would use
+///framebuffer attachments that include both local and peer memory bindings,
+///but would scissor the rendering to only update local memory.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PeerMemoryFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPeerMemoryFeatureFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4450,12 +4452,12 @@ impl std::fmt::Debug for PeerMemoryFeatureFlagBits {
 /// VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT,
 ///} VkMemoryAllocateFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DEVICE_MASK`] specifies that memory will be allocated for the devices in
 ///   [`MemoryAllocateFlagsInfo::device_mask`].
 /// - [`DEVICE_ADDRESS`] specifies that the memory  **can**  be attached to a buffer object created
@@ -4465,17 +4467,17 @@ impl std::fmt::Debug for PeerMemoryFeatureFlagBits {
 /// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the memory’s address  **can**  be saved and
 ///   reused on a subsequent run (e.g. for trace capture and replay), see
 ///   [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`MemoryAllocateFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlagBits")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4574,7 +4576,7 @@ impl std::fmt::Debug for MemoryAllocateFlagBits {
 ///    VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV = 0x00000100,
 ///} VkSubgroupFeatureFlagBits;
 ///```
-/// # Description
+///# Description
 /// - [`BASIC`] specifies the device will accept SPIR-V shader modules containing the
 ///   `GroupNonUniform` capability.
 /// - [`VOTE`] specifies the device will accept SPIR-V shader modules containing the
@@ -4593,17 +4595,17 @@ impl std::fmt::Debug for MemoryAllocateFlagBits {
 ///   `GroupNonUniformQuad` capability.
 /// - [`PARTITIONED_NV`] specifies the device will accept SPIR-V shader modules containing the
 ///   `GroupNonUniformPartitionedNV` capability.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SubgroupFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubgroupFeatureFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -4976,22 +4978,22 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
 ///// Provided by VK_VERSION_1_1
 ///typedef VkFlags VkDescriptorUpdateTemplateCreateFlags;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///typedef VkDescriptorUpdateTemplateCreateFlags VkDescriptorUpdateTemplateCreateFlagsKHR;
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorUpdateTemplateCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5030,12 +5032,12 @@ impl std::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
 ///    VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR = VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT,
 ///} VkPeerMemoryFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`COPY_SRC`] specifies that the memory  **can**  be accessed as the source of any `vkCmdCopy*`
 ///   command.
 /// - [`COPY_DST`] specifies that the memory  **can**  be accessed as the destination of any
@@ -5043,26 +5045,26 @@ impl std::fmt::Debug for DescriptorUpdateTemplateCreateFlags {
 /// - [`GENERIC_SRC`] specifies that the memory  **can**  be read as any memory access type.
 /// - [`GENERIC_DST`] specifies that the memory  **can**  be written as any memory access type.
 ///   Shader atomics are considered to be writes.
-/// [`COPY_DST`] **must**  be supported for all host
-/// local heaps and for at least one device-local memory heap.If a device does not support a peer
+///[`COPY_DST`] **must**  be supported for all host
+///local heaps and for at least one device-local memory heap.If a device does not support a peer
 /// memory feature, it is still valid to use
-/// a resource that includes both local and peer memory bindings with the
-/// corresponding access type as long as only the local bindings are actually
-/// accessed.
-/// For example, an application doing split-frame rendering would use
-/// framebuffer attachments that include both local and peer memory bindings,
-/// but would scissor the rendering to only update local memory.
-/// # Related
+///a resource that includes both local and peer memory bindings with the
+///corresponding access type as long as only the local bindings are actually
+///accessed.
+///For example, an application doing split-frame rendering would use
+///framebuffer attachments that include both local and peer memory bindings,
+///but would scissor the rendering to only update local memory.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PeerMemoryFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPeerMemoryFeatureFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5372,12 +5374,12 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
 /// VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT,
 ///} VkMemoryAllocateFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DEVICE_MASK`] specifies that memory will be allocated for the devices in
 ///   [`MemoryAllocateFlagsInfo::device_mask`].
 /// - [`DEVICE_ADDRESS`] specifies that the memory  **can**  be attached to a buffer object created
@@ -5387,17 +5389,17 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
 /// - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the memory’s address  **can**  be saved and
 ///   reused on a subsequent run (e.g. for trace capture and replay), see
 ///   [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`MemoryAllocateFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5688,23 +5690,23 @@ impl std::fmt::Debug for MemoryAllocateFlags {
 ///// Provided by VK_VERSION_1_1
 ///typedef VkFlags VkCommandPoolTrimFlags;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance1
 ///typedef VkCommandPoolTrimFlags VkCommandPoolTrimFlagsKHR;
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`trim_command_pool`]
 /// - [`trim_command_pool_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -5769,12 +5771,12 @@ impl std::fmt::Debug for CommandPoolTrimFlags {
 /// VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT,
 ///} VkExternalMemoryHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -5813,10 +5815,10 @@ impl std::fmt::Debug for CommandPoolTrimFlags {
 /// - [`ZIRCON_VMO_FUCHSIA`] is a Zircon handle to a virtual memory object.
 /// - [`RDMA_ADDRESS_NV`] is a handle to an allocation accessible by remote devices. It owns a
 ///   reference to the underlying memory resource represented by its Vulkan memory object.
-/// Some external memory handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external memory handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 /// - [`ImportMemoryFdInfoKHR`]
@@ -5834,13 +5836,13 @@ impl std::fmt::Debug for CommandPoolTrimFlags {
 /// - [`get_memory_win32_handle_properties_khr`]
 /// - [`get_memory_zircon_handle_properties_fuchsia`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryHandleTypeFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6342,12 +6344,12 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
 ///    VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalMemoryFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalMemoryFeatureFlagBits VkExternalMemoryFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`DEDICATED_ONLY`] specifies that images or buffers created with the specified parameters and
 ///   handle type  **must**  use the mechanisms defined by [`MemoryDedicatedRequirements`] and
 ///   [`MemoryDedicatedAllocateInfo`] to create (or import) a dedicated allocation for the image or
@@ -6356,34 +6358,34 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
 ///   objects.
 /// - [`IMPORTABLE`] specifies that handles of this type  **can**  be imported as Vulkan memory
 ///   objects.
-/// Because their semantics in external APIs roughly align with that of an image
-/// or buffer with a dedicated allocation in Vulkan, implementations are
+///Because their semantics in external APIs roughly align with that of an image
+///or buffer with a dedicated allocation in Vulkan, implementations are
 /// **required**  to report [`DEDICATED_ONLY`] for
-/// the following external handle types:
+///the following external handle types:
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT`
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` for images only
-/// Implementations  **must**  not report
-/// [`DEDICATED_ONLY`] for buffers with
-/// external handle type
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
-/// Implementations  **must**  not report
-/// [`DEDICATED_ONLY`] for images or buffers
-/// with external handle type
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
-/// `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
-/// # Related
+///Implementations  **must**  not report
+///[`DEDICATED_ONLY`] for buffers with
+///external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`.
+///Implementations  **must**  not report
+///[`DEDICATED_ONLY`] for images or buffers
+///with external handle type
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`, or
+///`VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT`.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryFeatureFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -6695,12 +6697,12 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
 /// VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT,
 ///} VkExternalSemaphoreHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkExternalSemaphoreHandleTypeFlagBits VkExternalSemaphoreHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -6732,10 +6734,10 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
 ///   native API that accepts a Zircon event handle. Zircon event handles are created with
 ///   `ZX_RIGHTS_BASIC` and `ZX_RIGHTS_SIGNAL` rights. Vulkan on Fuchsia uses only the
 ///   ZX_EVENT_SIGNALED bit when signaling or waiting.
-/// Some external semaphore handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external semaphore handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreHandleTypeFlags`]
 /// - [`ImportSemaphoreFdInfoKHR`]
@@ -6746,13 +6748,13 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
 /// - [`SemaphoreGetWin32HandleInfoKHR`]
 /// - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreHandleTypeFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -7128,27 +7130,27 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
 /// VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalSemaphoreFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`EXPORTABLE`] specifies that handles of this type  **can**  be exported from Vulkan semaphore
 ///   objects.
 /// - [`IMPORTABLE`] specifies that handles of this type  **can**  be imported as Vulkan semaphore
 ///   objects.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreFeatureFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -7427,25 +7429,25 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
 ///    VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR = VK_SEMAPHORE_IMPORT_TEMPORARY_BIT,
 ///} VkSemaphoreImportFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore
 ///typedef VkSemaphoreImportFlagBits VkSemaphoreImportFlagBitsKHR;
 ///```
-/// # Description
-/// These bits have the following meanings:
+///# Description
+///These bits have the following meanings:
 /// - [`TEMPORARY`] specifies that the semaphore payload will be imported only temporarily, as described in [Importing Semaphore Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-importing), regardless of the permanence of `handleType`.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SemaphoreImportFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreImportFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -7723,12 +7725,12 @@ impl std::fmt::Debug for SemaphoreImportFlags {
 ///    VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT_KHR = VK_EXTERNAL_FENCE_HANDLE_TYPE_SYNC_FD_BIT,
 ///} VkExternalFenceHandleTypeFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkExternalFenceHandleTypeFlagBits VkExternalFenceHandleTypeFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage
 ///   outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system
 ///   calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it
@@ -7749,10 +7751,10 @@ impl std::fmt::Debug for SemaphoreImportFlags {
 ///   reference to the underlying synchronization primitive associated with the file descriptor.
 ///   Implementations which support importing this handle type  **must**  accept any type of sync or
 ///   fence FD supported by the native system they are running on.
-/// Some external fence handle types can only be shared within the same
-/// underlying physical device and/or the same driver version, as defined in the
-/// following table:
-/// # Related
+///Some external fence handle types can only be shared within the same
+///underlying physical device and/or the same driver version, as defined in the
+///following table:
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceHandleTypeFlags`]
 /// - [`FenceGetFdInfoKHR`]
@@ -7761,13 +7763,13 @@ impl std::fmt::Debug for SemaphoreImportFlags {
 /// - [`ImportFenceWin32HandleInfoKHR`]
 /// - [`PhysicalDeviceExternalFenceInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceHandleTypeFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -8096,25 +8098,25 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
 ///    VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT_KHR = VK_EXTERNAL_FENCE_FEATURE_IMPORTABLE_BIT,
 ///} VkExternalFenceFeatureFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`EXPORTABLE`] specifies handles of this type  **can**  be exported from Vulkan fence objects.
 /// - [`IMPORTABLE`] specifies handles of this type  **can**  be imported to Vulkan fence objects.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceFeatureFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -8390,26 +8392,26 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
 ///    VK_FENCE_IMPORT_TEMPORARY_BIT_KHR = VK_FENCE_IMPORT_TEMPORARY_BIT,
 ///} VkFenceImportFlagBits;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence
 ///typedef VkFenceImportFlagBits VkFenceImportFlagBitsKHR;
 ///```
-/// # Description
+///# Description
 /// - [`TEMPORARY`] specifies that the fence payload will be imported only temporarily, as described
 ///   in [Importing Fence Payloads](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-fences-importing),
 ///   regardless of the permanence of `handleType`.
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`FenceImportFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFenceImportFlags")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -8671,39 +8673,39 @@ impl std::fmt::Debug for FenceImportFlags {
 ///    VkPhysicalDeviceFeatures    features;
 ///} VkPhysicalDeviceFeatures2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkPhysicalDeviceFeatures2 VkPhysicalDeviceFeatures2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`features`] is a [`PhysicalDeviceFeatures`] structure describing the fine-grained features of
 ///   the Vulkan 1.0 API.
-/// # Description
-/// The [`p_next`] chain of this structure is used to extend the structure with
-/// features defined by extensions.
-/// This structure  **can**  be used in [`get_physical_device_features2`] or  **can**  be
-/// included in the [`p_next`] chain of a [`DeviceCreateInfo`] structure,
-/// in which case it controls which features are enabled in the device in lieu
-/// of `pEnabledFeatures`.
-/// ## Valid Usage (Implicit)
+///# Description
+///The [`p_next`] chain of this structure is used to extend the structure with
+///features defined by extensions.
+///This structure  **can**  be used in [`get_physical_device_features2`] or  **can**  be
+///included in the [`p_next`] chain of a [`DeviceCreateInfo`] structure,
+///in which case it controls which features are enabled in the device in lieu
+///of `pEnabledFeatures`.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDeviceFeatures`]
 /// - [`StructureType`]
 /// - [`get_physical_device_features2`]
 /// - [`get_physical_device_features2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFeatures2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -8735,7 +8737,12 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -8770,17 +8777,32 @@ impl<'lt> PhysicalDeviceFeatures2<'lt> {
         &mut self.features
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::features`]
-    pub fn set_features(mut self, value: crate::vulkan1_0::PhysicalDeviceFeatures) -> Self {
+    pub fn set_features(&mut self, value: crate::vulkan1_0::PhysicalDeviceFeatures) -> &mut Self {
+        self.features = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::features`]
+    pub fn with_features(mut self, value: crate::vulkan1_0::PhysicalDeviceFeatures) -> Self {
         self.features = value;
         self
     }
@@ -10697,21 +10719,21 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkPhysicalDeviceProperties    properties;
 ///} VkPhysicalDeviceProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkPhysicalDeviceProperties2 VkPhysicalDeviceProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`properties`] is a [`PhysicalDeviceProperties`] structure describing properties of the
 ///   physical device. This structure is written with the same values as if it were written by
 ///   [`get_physical_device_properties`].
-/// # Description
-/// The [`p_next`] chain of this structure is used to extend the structure with
-/// properties defined by extensions.
-/// ## Valid Usage (Implicit)
+///# Description
+///The [`p_next`] chain of this structure is used to extend the structure with
+///properties defined by extensions.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
@@ -10754,20 +10776,20 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT`], [`PhysicalDeviceVulkan11Properties`],
 ///   [`PhysicalDeviceVulkan12Properties`], or [`PhysicalDeviceVulkan13Properties`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDeviceProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_properties2`]
 /// - [`get_physical_device_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProperties2")]
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
@@ -10801,7 +10823,12 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -10836,17 +10863,32 @@ impl<'lt> PhysicalDeviceProperties2<'lt> {
         &mut self.properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::properties`]
-    pub fn set_properties(mut self, value: crate::vulkan1_0::PhysicalDeviceProperties) -> Self {
+    pub fn set_properties(&mut self, value: crate::vulkan1_0::PhysicalDeviceProperties) -> &mut Self {
+        self.properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::properties`]
+    pub fn with_properties(mut self, value: crate::vulkan1_0::PhysicalDeviceProperties) -> Self {
         self.properties = value;
         self
     }
@@ -11782,18 +11824,18 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkFormatProperties    formatProperties;
 ///} VkFormatProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkFormatProperties2 VkFormatProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format_properties`] is a [`FormatProperties`] structure describing features supported by the
 ///   requested format.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`DrmFormatModifierPropertiesList2EXT`],
@@ -11801,20 +11843,20 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   [`VideoDecodeH265ProfileEXT`], [`VideoEncodeH264ProfileEXT`], [`VideoEncodeH265ProfileEXT`],
 ///   [`VideoProfileKHR`], or [`VideoProfilesKHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`FormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_format_properties2`]
 /// - [`get_physical_device_format_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -11846,7 +11888,12 @@ impl<'lt> FormatProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -11881,17 +11928,32 @@ impl<'lt> FormatProperties2<'lt> {
         &mut self.format_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::format_properties`]
-    pub fn set_format_properties(mut self, value: crate::vulkan1_0::FormatProperties) -> Self {
+    pub fn set_format_properties(&mut self, value: crate::vulkan1_0::FormatProperties) -> &mut Self {
+        self.format_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::format_properties`]
+    pub fn with_format_properties(mut self, value: crate::vulkan1_0::FormatProperties) -> Self {
         self.format_properties = value;
         self
     }
@@ -12059,44 +12121,44 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkImageFormatProperties    imageFormatProperties;
 ///} VkImageFormatProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkImageFormatProperties2 VkImageFormatProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure. The [`p_next`]
 ///   chain of [`ImageFormatProperties2`] is used to allow the specification of additional
 ///   capabilities to be returned from [`get_physical_device_image_format_properties2`].
 /// - [`image_format_properties`] is a [`ImageFormatProperties`] structure in which capabilities are
 ///   returned.
-/// # Description
-/// If the combination of parameters to
-/// [`get_physical_device_image_format_properties2`] is not supported by the
-/// implementation for use in [`create_image`], then all members of
-/// [`image_format_properties`] will be filled with zero.
-/// ## Valid Usage (Implicit)
+///# Description
+///If the combination of parameters to
+///[`get_physical_device_image_format_properties2`] is not supported by the
+///implementation for use in [`create_image`], then all members of
+///[`image_format_properties`] will be filled with zero.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`AndroidHardwareBufferUsageANDROID`],
 ///   [`ExternalImageFormatProperties`], [`FilterCubicImageViewImageFormatPropertiesEXT`],
 ///   [`SamplerYcbcrConversionImageFormatProperties`], or [`TextureLodGatherFormatPropertiesAMD`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageFormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_image_format_properties2`]
 /// - [`get_physical_device_image_format_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatProperties2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12131,7 +12193,12 @@ impl<'lt> ImageFormatProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12166,17 +12233,32 @@ impl<'lt> ImageFormatProperties2<'lt> {
         &mut self.image_format_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::image_format_properties`]
-    pub fn set_image_format_properties(mut self, value: crate::vulkan1_0::ImageFormatProperties) -> Self {
+    pub fn set_image_format_properties(&mut self, value: crate::vulkan1_0::ImageFormatProperties) -> &mut Self {
+        self.image_format_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::image_format_properties`]
+    pub fn with_image_format_properties(mut self, value: crate::vulkan1_0::ImageFormatProperties) -> Self {
         self.image_format_properties = value;
         self
     }
@@ -12279,12 +12361,12 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkImageCreateFlags    flags;
 ///} VkPhysicalDeviceImageFormatInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkPhysicalDeviceImageFormatInfo2 VkPhysicalDeviceImageFormatInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure. The [`p_next`]
 ///   chain of [`PhysicalDeviceImageFormatInfo2`] is used to provide additional image parameters to
@@ -12299,18 +12381,18 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   corresponding to [`ImageCreateInfo`]::[`usage`].
 /// - [`flags`] is a bitmask of [`ImageCreateFlagBits`] indicating additional parameters of the
 ///   image, corresponding to [`ImageCreateInfo`]::[`flags`].
-/// # Description
-/// The members of [`PhysicalDeviceImageFormatInfo2`] correspond to the
-/// arguments to [`get_physical_device_image_format_properties`], with
-/// [`s_type`] and [`p_next`] added for extensibility.
-/// ## Valid Usage
+///# Description
+///The members of [`PhysicalDeviceImageFormatInfo2`] correspond to the
+///arguments to [`get_physical_device_image_format_properties`], with
+///[`s_type`] and [`p_next`] added for extensibility.
+///## Valid Usage
 /// - [`tiling`] **must**  be `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT` if and only if the
 ///   [`p_next`] chain includes [`PhysicalDeviceImageDrmFormatModifierInfoEXT`]
 /// - If [`tiling`] is `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT` and [`flags`] contains
 ///   `VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT`, then the [`p_next`] chain  **must**  include a
 ///   [`ImageFormatListCreateInfo`] structure with non-zero `viewFormatCount`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`ImageFormatListCreateInfo`],
@@ -12324,7 +12406,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
 /// - [`usage`] **must**  not be `0`
 /// - [`flags`] **must**  be a valid combination of [`ImageCreateFlagBits`] values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Format`]
 /// - [`ImageCreateFlags`]
@@ -12335,13 +12417,13 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`get_physical_device_image_format_properties2`]
 /// - [`get_physical_device_image_format_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageFormatInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12394,7 +12476,12 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12454,37 +12541,72 @@ impl<'lt> PhysicalDeviceImageFormatInfo2<'lt> {
         &mut self.flags
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::format`]
-    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
         self.format = value;
         self
     }
     ///Sets the value of [`Self::type_`]
-    pub fn set_type_(mut self, value: crate::vulkan1_0::ImageType) -> Self {
+    pub fn set_type_(&mut self, value: crate::vulkan1_0::ImageType) -> &mut Self {
         self.type_ = value;
         self
     }
     ///Sets the value of [`Self::tiling`]
-    pub fn set_tiling(mut self, value: crate::vulkan1_0::ImageTiling) -> Self {
+    pub fn set_tiling(&mut self, value: crate::vulkan1_0::ImageTiling) -> &mut Self {
         self.tiling = value;
         self
     }
     ///Sets the value of [`Self::usage`]
-    pub fn set_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
         self.usage = value;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::vulkan1_0::ImageCreateFlags) -> Self {
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::ImageCreateFlags) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::format`]
+    pub fn with_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+        self.format = value;
+        self
+    }
+    ///Sets the value of [`Self::type_`]
+    pub fn with_type_(mut self, value: crate::vulkan1_0::ImageType) -> Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the value of [`Self::tiling`]
+    pub fn with_tiling(mut self, value: crate::vulkan1_0::ImageTiling) -> Self {
+        self.tiling = value;
+        self
+    }
+    ///Sets the value of [`Self::usage`]
+    pub fn with_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::vulkan1_0::ImageCreateFlags) -> Self {
         self.flags = value;
         self
     }
@@ -12584,38 +12706,38 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkQueueFamilyProperties    queueFamilyProperties;
 ///} VkQueueFamilyProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkQueueFamilyProperties2 VkQueueFamilyProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`queue_family_properties`] is a [`QueueFamilyProperties`] structure which is populated with
 ///   the same values as in [`get_physical_device_queue_family_properties`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`QueueFamilyCheckpointProperties2NV`],
 ///   [`QueueFamilyCheckpointPropertiesNV`], [`QueueFamilyGlobalPriorityPropertiesKHR`],
 ///   [`QueueFamilyQueryResultStatusProperties2KHR`], or [`VideoQueueFamilyProperties2KHR`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`QueueFamilyProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_queue_family_properties2`]
 /// - [`get_physical_device_queue_family_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyProperties2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12648,7 +12770,12 @@ impl<'lt> QueueFamilyProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12683,17 +12810,32 @@ impl<'lt> QueueFamilyProperties2<'lt> {
         &mut self.queue_family_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::queue_family_properties`]
-    pub fn set_queue_family_properties(mut self, value: crate::vulkan1_0::QueueFamilyProperties) -> Self {
+    pub fn set_queue_family_properties(&mut self, value: crate::vulkan1_0::QueueFamilyProperties) -> &mut Self {
+        self.queue_family_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::queue_family_properties`]
+    pub fn with_queue_family_properties(mut self, value: crate::vulkan1_0::QueueFamilyProperties) -> Self {
         self.queue_family_properties = value;
         self
     }
@@ -12794,36 +12936,36 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkPhysicalDeviceMemoryProperties    memoryProperties;
 ///} VkPhysicalDeviceMemoryProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkPhysicalDeviceMemoryProperties2 VkPhysicalDeviceMemoryProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_properties`] is a [`PhysicalDeviceMemoryProperties`] structure which is populated
 ///   with the same values as in [`get_physical_device_memory_properties`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDeviceMemoryProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_memory_properties2`]
 /// - [`get_physical_device_memory_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryProperties2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12856,7 +12998,12 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -12891,17 +13038,32 @@ impl<'lt> PhysicalDeviceMemoryProperties2<'lt> {
         &mut self.memory_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::memory_properties`]
-    pub fn set_memory_properties(mut self, value: crate::vulkan1_0::PhysicalDeviceMemoryProperties) -> Self {
+    pub fn set_memory_properties(&mut self, value: crate::vulkan1_0::PhysicalDeviceMemoryProperties) -> &mut Self {
+        self.memory_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::memory_properties`]
+    pub fn with_memory_properties(mut self, value: crate::vulkan1_0::PhysicalDeviceMemoryProperties) -> Self {
         self.memory_properties = value;
         self
     }
@@ -12935,34 +13097,34 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkSparseImageFormatProperties    properties;
 ///} VkSparseImageFormatProperties2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkSparseImageFormatProperties2 VkSparseImageFormatProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`properties`] is a [`SparseImageFormatProperties`] structure which is populated with the same
 ///   values as in [`get_physical_device_sparse_image_format_properties`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SparseImageFormatProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_sparse_image_format_properties2`]
 /// - [`get_physical_device_sparse_image_format_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageFormatProperties2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -12995,7 +13157,12 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -13030,17 +13197,32 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
         &mut self.properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::properties`]
-    pub fn set_properties(mut self, value: crate::vulkan1_0::SparseImageFormatProperties) -> Self {
+    pub fn set_properties(&mut self, value: crate::vulkan1_0::SparseImageFormatProperties) -> &mut Self {
+        self.properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::properties`]
+    pub fn with_properties(mut self, value: crate::vulkan1_0::SparseImageFormatProperties) -> Self {
         self.properties = value;
         self
     }
@@ -13060,12 +13242,12 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 ///    VkImageTiling            tiling;
 ///} VkPhysicalDeviceSparseImageFormatInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_physical_device_properties2
 ///typedef VkPhysicalDeviceSparseImageFormatInfo2 VkPhysicalDeviceSparseImageFormatInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the image format.
@@ -13073,14 +13255,14 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 /// - [`samples`] is a [`SampleCountFlagBits`] value specifying the number of samples per texel.
 /// - [`usage`] is a bitmask describing the intended usage of the image.
 /// - [`tiling`] is the tiling arrangement of the texel blocks in memory.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`samples`] **must**  be a bit value that is set in [`ImageFormatProperties::sample_counts`]
 ///   returned by [`get_physical_device_image_format_properties`] with [`format`], [`type_`],
 ///   [`tiling`], and [`usage`] equal to those in this command and `flags` equal to the value that
 ///   is set in [`ImageCreateInfo::flags`] when the image is created
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`format`] **must**  be a valid [`Format`] value
@@ -13089,7 +13271,7 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 /// - [`usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
 /// - [`usage`] **must**  not be `0`
 /// - [`tiling`] **must**  be a valid [`ImageTiling`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Format`]
 /// - [`ImageTiling`]
@@ -13100,13 +13282,13 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 /// - [`get_physical_device_sparse_image_format_properties2`]
 /// - [`get_physical_device_sparse_image_format_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSparseImageFormatInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13150,7 +13332,12 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -13210,37 +13397,72 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
         &mut self.tiling
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::format`]
-    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
         self.format = value;
         self
     }
     ///Sets the value of [`Self::type_`]
-    pub fn set_type_(mut self, value: crate::vulkan1_0::ImageType) -> Self {
+    pub fn set_type_(&mut self, value: crate::vulkan1_0::ImageType) -> &mut Self {
         self.type_ = value;
         self
     }
     ///Sets the value of [`Self::samples`]
-    pub fn set_samples(mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> Self {
+    pub fn set_samples(&mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> &mut Self {
         self.samples = value;
         self
     }
     ///Sets the value of [`Self::usage`]
-    pub fn set_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
         self.usage = value;
         self
     }
     ///Sets the value of [`Self::tiling`]
-    pub fn set_tiling(mut self, value: crate::vulkan1_0::ImageTiling) -> Self {
+    pub fn set_tiling(&mut self, value: crate::vulkan1_0::ImageTiling) -> &mut Self {
+        self.tiling = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::format`]
+    pub fn with_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+        self.format = value;
+        self
+    }
+    ///Sets the value of [`Self::type_`]
+    pub fn with_type_(mut self, value: crate::vulkan1_0::ImageType) -> Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the value of [`Self::samples`]
+    pub fn with_samples(mut self, value: crate::vulkan1_0::SampleCountFlagBits) -> Self {
+        self.samples = value;
+        self
+    }
+    ///Sets the value of [`Self::usage`]
+    pub fn with_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the value of [`Self::tiling`]
+    pub fn with_tiling(mut self, value: crate::vulkan1_0::ImageTiling) -> Self {
         self.tiling = value;
         self
     }
@@ -13257,22 +13479,24 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 ///    VkBool32           variablePointers;
 ///} VkPhysicalDeviceVariablePointersFeatures;
 ///```
-/// ```c
+///
+///```c
 ///// Provided by VK_VERSION_1_1
 ///typedef VkPhysicalDeviceVariablePointersFeatures VkPhysicalDeviceVariablePointerFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_variable_pointers
 ///typedef VkPhysicalDeviceVariablePointersFeatures VkPhysicalDeviceVariablePointersFeaturesKHR;
 ///```
-/// ```c
+///
+///```c
 ///// Provided by VK_KHR_variable_pointers
 ///typedef VkPhysicalDeviceVariablePointersFeatures VkPhysicalDeviceVariablePointerFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -13283,32 +13507,32 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 /// - [`variable_pointers`] specifies whether the implementation supports the SPIR-V
 ///   `VariablePointers` capability. When this feature is not enabled, shader modules  **must**  not
 ///   declare the `VariablePointers` capability.
-/// If the [`PhysicalDeviceVariablePointersFeatures`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceVariablePointersFeatures`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceVariablePointersFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceVariablePointersFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage
 /// - If [`variable_pointers`] is enabled then [`variable_pointers_storage_buffer`] **must**  also
 ///   be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES`
-/// # Related
+///# Related
 /// - [`khr_variable_pointers`]
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVariablePointersFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13358,17 +13582,32 @@ impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
         self.variable_pointers
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::variable_pointers_storage_buffer`]
-    pub fn set_variable_pointers_storage_buffer_raw(mut self, value: Bool32) -> Self {
+    pub fn set_variable_pointers_storage_buffer_raw(&mut self, value: Bool32) -> &mut Self {
         self.variable_pointers_storage_buffer = value;
         self
     }
     ///Sets the raw value of [`Self::variable_pointers`]
-    pub fn set_variable_pointers_raw(mut self, value: Bool32) -> Self {
+    pub fn set_variable_pointers_raw(&mut self, value: Bool32) -> &mut Self {
+        self.variable_pointers = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers_storage_buffer`]
+    pub fn with_variable_pointers_storage_buffer_raw(mut self, value: Bool32) -> Self {
+        self.variable_pointers_storage_buffer = value;
+        self
+    }
+    ///Sets the raw value of [`Self::variable_pointers`]
+    pub fn with_variable_pointers_raw(mut self, value: Bool32) -> Self {
         self.variable_pointers = value;
         self
     }
@@ -13439,22 +13678,42 @@ impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::variable_pointers_storage_buffer`]
-    pub fn set_variable_pointers_storage_buffer(mut self, value: bool) -> Self {
+    pub fn set_variable_pointers_storage_buffer(&mut self, value: bool) -> &mut Self {
         self.variable_pointers_storage_buffer = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::variable_pointers`]
-    pub fn set_variable_pointers(mut self, value: bool) -> Self {
+    pub fn set_variable_pointers(&mut self, value: bool) -> &mut Self {
+        self.variable_pointers = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::variable_pointers_storage_buffer`]
+    pub fn with_variable_pointers_storage_buffer(mut self, value: bool) -> Self {
+        self.variable_pointers_storage_buffer = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::variable_pointers`]
+    pub fn with_variable_pointers(mut self, value: bool) -> Self {
         self.variable_pointers = value as u8 as u32;
         self
     }
@@ -13470,12 +13729,12 @@ impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
 ///    VkExternalMemoryHandleTypeFlags    compatibleHandleTypes;
 ///} VkExternalMemoryProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalMemoryProperties VkExternalMemoryPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`external_memory_features`] is a bitmask of [`ExternalMemoryFeatureFlagBits`] specifying the
 ///   features of `handleType`.
 /// - [`export_from_imported_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBits`]
@@ -13483,29 +13742,29 @@ impl<'lt> PhysicalDeviceVariablePointersFeatures<'lt> {
 /// - [`compatible_handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBits`] specifying
 ///   handle types which  **can**  be specified at the same time as `handleType` when creating an
 ///   image compatible with external memory.
-/// # Description
-/// [`compatible_handle_types`] **must**  include at least `handleType`.
-/// Inclusion of a handle type in [`compatible_handle_types`] does not imply the
-/// values returned in [`ImageFormatProperties2`] will be the same when
-/// [`PhysicalDeviceExternalImageFormatInfo::handle_type`] is set to
-/// that type.
-/// The application is responsible for querying the capabilities of all handle
-/// types intended for concurrent use in a single image and intersecting them to
-/// obtain the compatible set of capabilities.
-/// # Related
+///# Description
+///[`compatible_handle_types`] **must**  include at least `handleType`.
+///Inclusion of a handle type in [`compatible_handle_types`] does not imply the
+///values returned in [`ImageFormatProperties2`] will be the same when
+///[`PhysicalDeviceExternalImageFormatInfo::handle_type`] is set to
+///that type.
+///The application is responsible for querying the capabilities of all handle
+///types intended for concurrent use in a single image and intersecting them to
+///obtain the compatible set of capabilities.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalBufferProperties`]
 /// - [`ExternalImageFormatProperties`]
 /// - [`ExternalMemoryFeatureFlags`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryProperties")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -13560,12 +13819,30 @@ impl ExternalMemoryProperties {
         &mut self.compatible_handle_types
     }
     ///Sets the value of [`Self::external_memory_features`]
-    pub fn set_external_memory_features(mut self, value: crate::vulkan1_1::ExternalMemoryFeatureFlags) -> Self {
+    pub fn set_external_memory_features(&mut self, value: crate::vulkan1_1::ExternalMemoryFeatureFlags) -> &mut Self {
         self.external_memory_features = value;
         self
     }
     ///Sets the value of [`Self::export_from_imported_handle_types`]
     pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::external_memory_features`]
+    pub fn with_external_memory_features(mut self, value: crate::vulkan1_1::ExternalMemoryFeatureFlags) -> Self {
+        self.external_memory_features = value;
+        self
+    }
+    ///Sets the value of [`Self::export_from_imported_handle_types`]
+    pub fn with_export_from_imported_handle_types(
         mut self,
         value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags,
     ) -> Self {
@@ -13573,7 +13850,7 @@ impl ExternalMemoryProperties {
         self
     }
     ///Sets the value of [`Self::compatible_handle_types`]
-    pub fn set_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
+    pub fn with_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
         self.compatible_handle_types = value;
         self
     }
@@ -13594,41 +13871,41 @@ impl ExternalMemoryProperties {
 ///    VkExternalMemoryHandleTypeFlagBits    handleType;
 ///} VkPhysicalDeviceExternalImageFormatInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkPhysicalDeviceExternalImageFormatInfo VkPhysicalDeviceExternalImageFormatInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the memory handle
 ///   type that will be used with the memory associated with the image.
-/// # Description
-/// If [`handle_type`] is 0, [`get_physical_device_image_format_properties2`]
-/// will behave as if [`PhysicalDeviceExternalImageFormatInfo`] was not
-/// present, and [`ExternalImageFormatProperties`] will be ignored.If [`handle_type`] is not
+///# Description
+///If [`handle_type`] is 0, [`get_physical_device_image_format_properties2`]
+///will behave as if [`PhysicalDeviceExternalImageFormatInfo`] was not
+///present, and [`ExternalImageFormatProperties`] will be ignored.If [`handle_type`] is not
 /// compatible with the `format`, `type`,
-/// `tiling`, `usage`, and `flags` specified in
-/// [`PhysicalDeviceImageFormatInfo2`], then
-/// [`get_physical_device_image_format_properties2`] returns
-/// `VK_ERROR_FORMAT_NOT_SUPPORTED`.
-/// ## Valid Usage (Implicit)
+///`tiling`, `usage`, and `flags` specified in
+///[`PhysicalDeviceImageFormatInfo2`], then
+///[`get_physical_device_image_format_properties2`] returns
+///`VK_ERROR_FORMAT_NOT_SUPPORTED`.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO`
 /// - If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid
 ///   [`ExternalMemoryHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalImageFormatInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13661,7 +13938,12 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -13689,17 +13971,32 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
         &mut self.handle_type
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_type`]
-    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_type`]
+    pub fn with_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
@@ -13715,32 +14012,32 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
 ///    VkExternalMemoryProperties    externalMemoryProperties;
 ///} VkExternalImageFormatProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalImageFormatProperties VkExternalImageFormatPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`external_memory_properties`] is a [`ExternalMemoryProperties`] structure specifying various
 ///   capabilities of the external handle type when used with the specified image creation
 ///   parameters.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryProperties`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalImageFormatProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13773,7 +14070,12 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -13808,17 +14110,32 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
         &mut self.external_memory_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::external_memory_properties`]
-    pub fn set_external_memory_properties(mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> Self {
+    pub fn set_external_memory_properties(&mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> &mut Self {
+        self.external_memory_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::external_memory_properties`]
+    pub fn with_external_memory_properties(mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> Self {
         self.external_memory_properties = value;
         self
     }
@@ -13836,12 +14153,12 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 ///    VkExternalMemoryHandleTypeFlagBits    handleType;
 ///} VkPhysicalDeviceExternalBufferInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkPhysicalDeviceExternalBufferInfo VkPhysicalDeviceExternalBufferInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`BufferCreateFlagBits`] describing additional parameters of the
@@ -13850,15 +14167,15 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 ///   corresponding to [`BufferCreateInfo`]::[`usage`].
 /// - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the memory handle
 ///   type that will be used with the memory associated with the buffer.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`BufferCreateFlagBits`] values
 /// - [`usage`] **must**  be a valid combination of [`BufferUsageFlagBits`] values
 /// - [`usage`] **must**  not be `0`
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`BufferCreateFlags`]
 /// - [`BufferUsageFlags`]
@@ -13867,13 +14184,13 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 /// - [`get_physical_device_external_buffer_properties`]
 /// - [`get_physical_device_external_buffer_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalBufferInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -13916,7 +14233,12 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -13960,27 +14282,52 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
         &mut self.handle_type
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::vulkan1_0::BufferCreateFlags) -> Self {
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::BufferCreateFlags) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::usage`]
-    pub fn set_usage(mut self, value: crate::vulkan1_0::BufferUsageFlags) -> Self {
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::BufferUsageFlags) -> &mut Self {
         self.usage = value;
         self
     }
     ///Sets the value of [`Self::handle_type`]
-    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::vulkan1_0::BufferCreateFlags) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::usage`]
+    pub fn with_usage(mut self, value: crate::vulkan1_0::BufferUsageFlags) -> Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the value of [`Self::handle_type`]
+    pub fn with_handle_type(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
@@ -13996,35 +14343,35 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
 ///    VkExternalMemoryProperties    externalMemoryProperties;
 ///} VkExternalBufferProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory_capabilities
 ///typedef VkExternalBufferProperties VkExternalBufferPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`external_memory_properties`] is a [`ExternalMemoryProperties`] structure specifying various
 ///   capabilities of the external handle type when used with the specified buffer creation
 ///   parameters.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryProperties`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_buffer_properties`]
 /// - [`get_physical_device_external_buffer_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalBufferProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14057,7 +14404,12 @@ impl<'lt> ExternalBufferProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14092,17 +14444,32 @@ impl<'lt> ExternalBufferProperties<'lt> {
         &mut self.external_memory_properties
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::external_memory_properties`]
-    pub fn set_external_memory_properties(mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> Self {
+    pub fn set_external_memory_properties(&mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> &mut Self {
+        self.external_memory_properties = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::external_memory_properties`]
+    pub fn with_external_memory_properties(mut self, value: crate::vulkan1_1::ExternalMemoryProperties) -> Self {
         self.external_memory_properties = value;
         self
     }
@@ -14122,16 +14489,16 @@ impl<'lt> ExternalBufferProperties<'lt> {
 ///    VkBool32           deviceLUIDValid;
 ///} VkPhysicalDeviceIDProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities, VK_KHR_external_memory_capabilities,
 ///// VK_KHR_external_semaphore_capabilities
 ///typedef VkPhysicalDeviceIDProperties VkPhysicalDeviceIDPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`device_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique
 ///   identifier for the device.
 /// - [`driver_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique
@@ -14142,50 +14509,50 @@ impl<'lt> ExternalBufferProperties<'lt> {
 ///   adapter corresponding to the device.
 /// - [`device_luid_valid`] is a boolean value that will be [`TRUE`] if [`device_luid`] contains a
 ///   valid LUID and [`device_node_mask`] contains a valid node mask, and [`FALSE`] if they do not.
-/// If the [`PhysicalDeviceIdProperties`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.[`device_uuid`] **must**  be immutable for a
+///If the [`PhysicalDeviceIdProperties`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.[`device_uuid`] **must**  be immutable for a
 /// given device across instances,
-/// processes, driver APIs, driver versions, and system reboots.Applications  **can**  compare the
+///processes, driver APIs, driver versions, and system reboots.Applications  **can**  compare the
 /// [`driver_uuid`] value across instance and
-/// process boundaries, and  **can**  make similar queries in external APIs to
-/// determine whether they are capable of sharing memory objects and resources
-/// using them with the device.[`device_uuid`] and/or [`driver_uuid`] **must**  be used to determine
+///process boundaries, and  **can**  make similar queries in external APIs to
+///determine whether they are capable of sharing memory objects and resources
+///using them with the device.[`device_uuid`] and/or [`driver_uuid`] **must**  be used to determine
 /// whether
-/// a particular external object can be shared between driver components, where
-/// such a restriction exists as defined in the compatibility table for the
-/// particular object type:
+///a particular external object can be shared between driver components, where
+///such a restriction exists as defined in the compatibility table for the
+///particular object type:
 /// - [External memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
 /// - [External semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
 /// - [External fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
-/// If [`device_luid_valid`] is [`FALSE`], the values of [`device_luid`]
-/// and [`device_node_mask`] are undefined.
-/// If [`device_luid_valid`] is [`TRUE`] and Vulkan is running on the
-/// Windows operating system, the contents of [`device_luid`] **can**  be cast to
-/// an `LUID` object and  **must**  be equal to the locally unique identifier of a
-/// `IDXGIAdapter1` object that corresponds to `physicalDevice`.
-/// If [`device_luid_valid`] is [`TRUE`], [`device_node_mask`] **must**
-/// contain exactly one bit.
-/// If Vulkan is running on an operating system that supports the Direct3D 12
-/// API and `physicalDevice` corresponds to an individual device in a linked
-/// device adapter, [`device_node_mask`] identifies the Direct3D 12 node
-/// corresponding to `physicalDevice`.
-/// Otherwise, [`device_node_mask`] **must**  be `1`.
-/// ## Valid Usage (Implicit)
+///If [`device_luid_valid`] is [`FALSE`], the values of [`device_luid`]
+///and [`device_node_mask`] are undefined.
+///If [`device_luid_valid`] is [`TRUE`] and Vulkan is running on the
+///Windows operating system, the contents of [`device_luid`] **can**  be cast to
+///an `LUID` object and  **must**  be equal to the locally unique identifier of a
+///`IDXGIAdapter1` object that corresponds to `physicalDevice`.
+///If [`device_luid_valid`] is [`TRUE`], [`device_node_mask`] **must**
+///contain exactly one bit.
+///If Vulkan is running on an operating system that supports the Direct3D 12
+///API and `physicalDevice` corresponds to an individual device in a linked
+///device adapter, [`device_node_mask`] identifies the Direct3D 12 node
+///corresponding to `physicalDevice`.
+///Otherwise, [`device_node_mask`] **must**  be `1`.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceIDProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14232,12 +14599,22 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
         self.device_luid_valid
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_luid_valid`]
-    pub fn set_device_luid_valid_raw(mut self, value: Bool32) -> Self {
+    pub fn set_device_luid_valid_raw(&mut self, value: Bool32) -> &mut Self {
+        self.device_luid_valid = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_luid_valid`]
+    pub fn with_device_luid_valid_raw(mut self, value: Bool32) -> Self {
         self.device_luid_valid = value;
         self
     }
@@ -14318,37 +14695,72 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::device_uuid`]
-    pub fn set_device_uuid(mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> Self {
+    pub fn set_device_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.device_uuid = value;
         self
     }
     ///Sets the value of [`Self::driver_uuid`]
-    pub fn set_driver_uuid(mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> Self {
+    pub fn set_driver_uuid(&mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> &mut Self {
         self.driver_uuid = value;
         self
     }
     ///Sets the value of [`Self::device_luid`]
-    pub fn set_device_luid(mut self, value: [u8; crate::vulkan1_1::LUID_SIZE as usize]) -> Self {
+    pub fn set_device_luid(&mut self, value: [u8; crate::vulkan1_1::LUID_SIZE as usize]) -> &mut Self {
         self.device_luid = value;
         self
     }
     ///Sets the value of [`Self::device_node_mask`]
-    pub fn set_device_node_mask(mut self, value: u32) -> Self {
+    pub fn set_device_node_mask(&mut self, value: u32) -> &mut Self {
         self.device_node_mask = value;
         self
     }
     ///Sets the value of [`Self::device_luid_valid`]
-    pub fn set_device_luid_valid(mut self, value: bool) -> Self {
+    pub fn set_device_luid_valid(&mut self, value: bool) -> &mut Self {
+        self.device_luid_valid = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::device_uuid`]
+    pub fn with_device_uuid(mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> Self {
+        self.device_uuid = value;
+        self
+    }
+    ///Sets the value of [`Self::driver_uuid`]
+    pub fn with_driver_uuid(mut self, value: [u8; crate::core::UUID_SIZE as usize]) -> Self {
+        self.driver_uuid = value;
+        self
+    }
+    ///Sets the value of [`Self::device_luid`]
+    pub fn with_device_luid(mut self, value: [u8; crate::vulkan1_1::LUID_SIZE as usize]) -> Self {
+        self.device_luid = value;
+        self
+    }
+    ///Sets the value of [`Self::device_node_mask`]
+    pub fn with_device_node_mask(mut self, value: u32) -> Self {
+        self.device_node_mask = value;
+        self
+    }
+    ///Sets the value of [`Self::device_luid_valid`]
+    pub fn with_device_luid_valid(mut self, value: bool) -> Self {
         self.device_luid_valid = value as u8 as u32;
         self
     }
@@ -14367,33 +14779,33 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
 ///    VkExternalMemoryHandleTypeFlags    handleTypes;
 ///} VkExternalMemoryImageCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory
 ///typedef VkExternalMemoryImageCreateInfo VkExternalMemoryImageCreateInfoKHR;
 ///```
-/// # Description
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is zero, or a bitmask of [`ExternalMemoryHandleTypeFlagBits`] specifying one
 ///   or more external memory handle types.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBits`]
 ///   values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryImageCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14426,7 +14838,12 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14454,17 +14871,32 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
         &mut self.handle_types
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_types`]
-    pub fn set_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_types`]
+    pub fn with_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
         self.handle_types = value;
         self
     }
@@ -14483,33 +14915,33 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
 ///    VkExternalMemoryHandleTypeFlags    handleTypes;
 ///} VkExternalMemoryBufferCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory
 ///typedef VkExternalMemoryBufferCreateInfo VkExternalMemoryBufferCreateInfoKHR;
 ///```
-/// # Description
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is zero, or a bitmask of [`ExternalMemoryHandleTypeFlagBits`] specifying one
 ///   or more external memory handle types.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBits`]
 ///   values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryBufferCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14542,7 +14974,12 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14570,17 +15007,32 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
         &mut self.handle_types
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_types`]
-    pub fn set_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_types`]
+    pub fn with_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
         self.handle_types = value;
         self
     }
@@ -14600,38 +15052,38 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
 ///    VkExternalMemoryHandleTypeFlags    handleTypes;
 ///} VkExportMemoryAllocateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_memory
 ///typedef VkExportMemoryAllocateInfo VkExportMemoryAllocateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is a bitmask of [`ExternalMemoryHandleTypeFlagBits`] specifying one or more
 ///   memory handle types the application  **can**  export from the resulting allocation. The
 ///   application  **can**  request multiple handle types for the same allocation.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The bits in [`handle_types`] **must**  be supported and compatible, as reported by
 ///   [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBits`]
 ///   values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalMemoryHandleTypeFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportMemoryAllocateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14666,7 +15118,12 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14694,17 +15151,32 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
         &mut self.handle_types
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_types`]
-    pub fn set_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_types`]
+    pub fn with_handle_types(mut self, value: crate::vulkan1_1::ExternalMemoryHandleTypeFlags) -> Self {
         self.handle_types = value;
         self
     }
@@ -14720,36 +15192,36 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
 ///    VkExternalSemaphoreHandleTypeFlagBits    handleType;
 ///} VkPhysicalDeviceExternalSemaphoreInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkPhysicalDeviceExternalSemaphoreInfo VkPhysicalDeviceExternalSemaphoreInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalSemaphoreHandleTypeFlagBits`] value specifying the external
 ///   semaphore handle type for which capabilities will be returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`SemaphoreTypeCreateInfo`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_semaphore_properties`]
 /// - [`get_physical_device_external_semaphore_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalSemaphoreInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14782,7 +15254,12 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14810,17 +15287,32 @@ impl<'lt> PhysicalDeviceExternalSemaphoreInfo<'lt> {
         &mut self.handle_type
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_type`]
-    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_type`]
+    pub fn with_handle_type(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
@@ -14854,12 +15346,12 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkExternalSemaphoreFeatureFlags       externalSemaphoreFeatures;
 ///} VkExternalSemaphoreProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore_capabilities
 ///typedef VkExternalSemaphoreProperties VkExternalSemaphorePropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`export_from_imported_handle_types`] is a bitmask of [`ExternalSemaphoreHandleTypeFlagBits`]
@@ -14869,14 +15361,14 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   semaphore.
 /// - [`external_semaphore_features`] is a bitmask of [`ExternalSemaphoreFeatureFlagBits`]
 ///   describing the features of `handleType`.
-/// # Description
-/// If `handleType` is not supported by the implementation, then
-/// [`ExternalSemaphoreProperties`]::[`external_semaphore_features`] will be
-/// set to zero.
-/// ## Valid Usage (Implicit)
+///# Description
+///If `handleType` is not supported by the implementation, then
+///[`ExternalSemaphoreProperties`]::[`external_semaphore_features`] will be
+///set to zero.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreFeatureFlags`]
 /// - [`ExternalSemaphoreHandleTypeFlags`]
@@ -14884,13 +15376,13 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`get_physical_device_external_semaphore_properties`]
 /// - [`get_physical_device_external_semaphore_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -14934,7 +15426,12 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -14985,17 +15482,51 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
         &mut self.external_semaphore_features
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::export_from_imported_handle_types`]
     pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags,
+    ) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::external_semaphore_features`]
+    pub fn set_external_semaphore_features(
+        &mut self,
+        value: crate::vulkan1_1::ExternalSemaphoreFeatureFlags,
+    ) -> &mut Self {
+        self.external_semaphore_features = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::export_from_imported_handle_types`]
+    pub fn with_export_from_imported_handle_types(
         mut self,
         value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags,
     ) -> Self {
@@ -15003,12 +15534,12 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
         self
     }
     ///Sets the value of [`Self::compatible_handle_types`]
-    pub fn set_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> Self {
+    pub fn with_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> Self {
         self.compatible_handle_types = value;
         self
     }
     ///Sets the value of [`Self::external_semaphore_features`]
-    pub fn set_external_semaphore_features(mut self, value: crate::vulkan1_1::ExternalSemaphoreFeatureFlags) -> Self {
+    pub fn with_external_semaphore_features(mut self, value: crate::vulkan1_1::ExternalSemaphoreFeatureFlags) -> Self {
         self.external_semaphore_features = value;
         self
     }
@@ -15027,38 +15558,38 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
 ///    VkExternalSemaphoreHandleTypeFlags    handleTypes;
 ///} VkExportSemaphoreCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_semaphore
 ///typedef VkExportSemaphoreCreateInfo VkExportSemaphoreCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is a bitmask of [`ExternalSemaphoreHandleTypeFlagBits`] specifying one or
 ///   more semaphore handle types the application  **can**  export from the resulting semaphore. The
 ///   application  **can**  request multiple handle types for the same semaphore.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The bits in [`handle_types`] **must**  be supported and compatible, as reported by
 ///   [`ExternalSemaphoreProperties`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalSemaphoreHandleTypeFlagBits`]
 ///   values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalSemaphoreHandleTypeFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportSemaphoreCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15094,7 +15625,12 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15122,17 +15658,32 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
         &mut self.handle_types
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_types`]
-    pub fn set_handle_types(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> Self {
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_types`]
+    pub fn with_handle_types(mut self, value: crate::vulkan1_1::ExternalSemaphoreHandleTypeFlags) -> Self {
         self.handle_types = value;
         self
     }
@@ -15148,35 +15699,35 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
 ///    VkExternalFenceHandleTypeFlagBits    handleType;
 ///} VkPhysicalDeviceExternalFenceInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkPhysicalDeviceExternalFenceInfo VkPhysicalDeviceExternalFenceInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_type`] is a [`ExternalFenceHandleTypeFlagBits`] value specifying an external fence
 ///   handle type for which capabilities will be returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_physical_device_external_fence_properties`]
 /// - [`get_physical_device_external_fence_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalFenceInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15209,7 +15760,12 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15237,17 +15793,32 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
         &mut self.handle_type
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_type`]
-    pub fn set_handle_type(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> Self {
+    pub fn set_handle_type(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> &mut Self {
+        self.handle_type = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_type`]
+    pub fn with_handle_type(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlagBits) -> Self {
         self.handle_type = value;
         self
     }
@@ -15265,12 +15836,12 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 ///    VkExternalFenceFeatureFlags       externalFenceFeatures;
 ///} VkExternalFenceProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence_capabilities
 ///typedef VkExternalFenceProperties VkExternalFencePropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`export_from_imported_handle_types`] is a bitmask of [`ExternalFenceHandleTypeFlagBits`]
 ///   indicating which types of imported handle `handleType` **can**  be exported from.
 /// - [`compatible_handle_types`] is a bitmask of [`ExternalFenceHandleTypeFlagBits`] specifying
@@ -15278,14 +15849,14 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 ///   fence.
 /// - [`external_fence_features`] is a bitmask of [`ExternalFenceFeatureFlagBits`] indicating the
 ///   features of `handleType`.
-/// # Description
-/// If `handleType` is not supported by the implementation, then
-/// [`ExternalFenceProperties`]::[`external_fence_features`] will be set to
-/// zero.
-/// ## Valid Usage (Implicit)
+///# Description
+///If `handleType` is not supported by the implementation, then
+///[`ExternalFenceProperties`]::[`external_fence_features`] will be set to
+///zero.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceFeatureFlags`]
 /// - [`ExternalFenceHandleTypeFlags`]
@@ -15293,13 +15864,13 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 /// - [`get_physical_device_external_fence_properties`]
 /// - [`get_physical_device_external_fence_properties_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15342,7 +15913,12 @@ impl<'lt> ExternalFenceProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15393,17 +15969,45 @@ impl<'lt> ExternalFenceProperties<'lt> {
         &mut self.external_fence_features
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::export_from_imported_handle_types`]
     pub fn set_export_from_imported_handle_types(
+        &mut self,
+        value: crate::vulkan1_1::ExternalFenceHandleTypeFlags,
+    ) -> &mut Self {
+        self.export_from_imported_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::compatible_handle_types`]
+    pub fn set_compatible_handle_types(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> &mut Self {
+        self.compatible_handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::external_fence_features`]
+    pub fn set_external_fence_features(&mut self, value: crate::vulkan1_1::ExternalFenceFeatureFlags) -> &mut Self {
+        self.external_fence_features = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::export_from_imported_handle_types`]
+    pub fn with_export_from_imported_handle_types(
         mut self,
         value: crate::vulkan1_1::ExternalFenceHandleTypeFlags,
     ) -> Self {
@@ -15411,12 +16015,12 @@ impl<'lt> ExternalFenceProperties<'lt> {
         self
     }
     ///Sets the value of [`Self::compatible_handle_types`]
-    pub fn set_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> Self {
+    pub fn with_compatible_handle_types(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> Self {
         self.compatible_handle_types = value;
         self
     }
     ///Sets the value of [`Self::external_fence_features`]
-    pub fn set_external_fence_features(mut self, value: crate::vulkan1_1::ExternalFenceFeatureFlags) -> Self {
+    pub fn with_external_fence_features(mut self, value: crate::vulkan1_1::ExternalFenceFeatureFlags) -> Self {
         self.external_fence_features = value;
         self
     }
@@ -15435,38 +16039,38 @@ impl<'lt> ExternalFenceProperties<'lt> {
 ///    VkExternalFenceHandleTypeFlags    handleTypes;
 ///} VkExportFenceCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_external_fence
 ///typedef VkExportFenceCreateInfo VkExportFenceCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`handle_types`] is a bitmask of [`ExternalFenceHandleTypeFlagBits`] specifying one or more
 ///   fence handle types the application  **can**  export from the resulting fence. The application
 ///   **can**  request multiple handle types for the same fence.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The bits in [`handle_types`] **must**  be supported and compatible, as reported by
 ///   [`ExternalFenceProperties`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO`
 /// - [`handle_types`] **must**  be a valid combination of [`ExternalFenceHandleTypeFlagBits`]
 ///   values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ExternalFenceHandleTypeFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportFenceCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15500,7 +16104,12 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15528,17 +16137,32 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
         &mut self.handle_types
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::handle_types`]
-    pub fn set_handle_types(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> Self {
+    pub fn set_handle_types(&mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> &mut Self {
+        self.handle_types = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::handle_types`]
+    pub fn with_handle_types(mut self, value: crate::vulkan1_1::ExternalFenceHandleTypeFlags) -> Self {
         self.handle_types = value;
         self
     }
@@ -15556,14 +16180,14 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
 ///    VkBool32           multiviewTessellationShader;
 ///} VkPhysicalDeviceMultiviewFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_multiview
 ///typedef VkPhysicalDeviceMultiviewFeatures VkPhysicalDeviceMultiviewFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -15572,30 +16196,30 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
 ///   be zero.
 /// - [`multiview_geometry_shader`] specifies whether the implementation supports multiview rendering within a render pass, with [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#geometry). If this feature is not enabled, then a pipeline compiled against a subpass with a non-zero view mask  **must**  not include a geometry shader.
 /// - [`multiview_tessellation_shader`] specifies whether the implementation supports multiview rendering within a render pass, with [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#tessellation). If this feature is not enabled, then a pipeline compiled against a subpass with a non-zero view mask  **must**  not include any tessellation shaders.
-/// If the [`PhysicalDeviceMultiviewFeatures`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceMultiviewFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage
+///If the [`PhysicalDeviceMultiviewFeatures`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceMultiviewFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage
 /// - If [`multiview_geometry_shader`] is enabled then [`multiview`] **must**  also be enabled
 /// - If [`multiview_tessellation_shader`] is enabled then [`multiview`] **must**  also be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15656,22 +16280,42 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
         self.multiview_tessellation_shader
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::multiview`]
-    pub fn set_multiview_raw(mut self, value: Bool32) -> Self {
+    pub fn set_multiview_raw(&mut self, value: Bool32) -> &mut Self {
         self.multiview = value;
         self
     }
     ///Sets the raw value of [`Self::multiview_geometry_shader`]
-    pub fn set_multiview_geometry_shader_raw(mut self, value: Bool32) -> Self {
+    pub fn set_multiview_geometry_shader_raw(&mut self, value: Bool32) -> &mut Self {
         self.multiview_geometry_shader = value;
         self
     }
     ///Sets the raw value of [`Self::multiview_tessellation_shader`]
-    pub fn set_multiview_tessellation_shader_raw(mut self, value: Bool32) -> Self {
+    pub fn set_multiview_tessellation_shader_raw(&mut self, value: Bool32) -> &mut Self {
+        self.multiview_tessellation_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview`]
+    pub fn with_multiview_raw(mut self, value: Bool32) -> Self {
+        self.multiview = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_geometry_shader`]
+    pub fn with_multiview_geometry_shader_raw(mut self, value: Bool32) -> Self {
+        self.multiview_geometry_shader = value;
+        self
+    }
+    ///Sets the raw value of [`Self::multiview_tessellation_shader`]
+    pub fn with_multiview_tessellation_shader_raw(mut self, value: Bool32) -> Self {
         self.multiview_tessellation_shader = value;
         self
     }
@@ -15764,27 +16408,52 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::multiview`]
-    pub fn set_multiview(mut self, value: bool) -> Self {
+    pub fn set_multiview(&mut self, value: bool) -> &mut Self {
         self.multiview = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::multiview_geometry_shader`]
-    pub fn set_multiview_geometry_shader(mut self, value: bool) -> Self {
+    pub fn set_multiview_geometry_shader(&mut self, value: bool) -> &mut Self {
         self.multiview_geometry_shader = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::multiview_tessellation_shader`]
-    pub fn set_multiview_tessellation_shader(mut self, value: bool) -> Self {
+    pub fn set_multiview_tessellation_shader(&mut self, value: bool) -> &mut Self {
+        self.multiview_tessellation_shader = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::multiview`]
+    pub fn with_multiview(mut self, value: bool) -> Self {
+        self.multiview = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::multiview_geometry_shader`]
+    pub fn with_multiview_geometry_shader(mut self, value: bool) -> Self {
+        self.multiview_geometry_shader = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::multiview_tessellation_shader`]
+    pub fn with_multiview_tessellation_shader(mut self, value: bool) -> Self {
         self.multiview_tessellation_shader = value as u8 as u32;
         self
     }
@@ -15801,37 +16470,37 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
 ///    uint32_t           maxMultiviewInstanceIndex;
 ///} VkPhysicalDeviceMultiviewProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_multiview
 ///typedef VkPhysicalDeviceMultiviewProperties VkPhysicalDeviceMultiviewPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`max_multiview_view_count`] is one greater than the maximum view index that  **can**  be used
 ///   in a subpass.
 /// - [`max_multiview_instance_index`] is the maximum valid value of instance index allowed to be
 ///   generated by a drawing command recorded within a subpass of a multiview render pass instance.
-/// If the [`PhysicalDeviceMultiviewProperties`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceMultiviewProperties`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -15865,7 +16534,12 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -15908,22 +16582,42 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
         &mut self.max_multiview_instance_index
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::max_multiview_view_count`]
-    pub fn set_max_multiview_view_count(mut self, value: u32) -> Self {
+    pub fn set_max_multiview_view_count(&mut self, value: u32) -> &mut Self {
         self.max_multiview_view_count = value;
         self
     }
     ///Sets the value of [`Self::max_multiview_instance_index`]
-    pub fn set_max_multiview_instance_index(mut self, value: u32) -> Self {
+    pub fn set_max_multiview_instance_index(&mut self, value: u32) -> &mut Self {
+        self.max_multiview_instance_index = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::max_multiview_view_count`]
+    pub fn with_max_multiview_view_count(mut self, value: u32) -> Self {
+        self.max_multiview_view_count = value;
+        self
+    }
+    ///Sets the value of [`Self::max_multiview_instance_index`]
+    pub fn with_max_multiview_instance_index(mut self, value: u32) -> Self {
         self.max_multiview_instance_index = value;
         self
     }
@@ -15947,12 +16641,12 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 ///    const uint32_t*    pCorrelationMasks;
 ///} VkRenderPassMultiviewCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_multiview
 ///typedef VkRenderPassMultiviewCreateInfo VkRenderPassMultiviewCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`subpass_count`] is zero or the number of subpasses in the render pass.
@@ -15967,90 +16661,90 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 /// - [`correlation_mask_count`] is zero or the number of correlation masks.
 /// - [`correlation_masks`] is a pointer to an array of [`correlation_mask_count`] view masks
 ///   indicating sets of views that  **may**  be more efficient to render concurrently.
-/// # Description
-/// When a subpass uses a non-zero view mask, *multiview* functionality is
-/// considered to be enabled.
-/// Multiview is all-or-nothing for a render pass - that is, either all
-/// subpasses  **must**  have a non-zero view mask (though some subpasses  **may**  have
-/// only one view) or all  **must**  be zero.
-/// Multiview causes all drawing and clear commands in the subpass to behave as
-/// if they were broadcast to each view, where a view is represented by one
-/// layer of the framebuffer attachments.
-/// All draws and clears are broadcast to each *view index* whose bit is set in
-/// the view mask.
-/// The view index is provided in the `ViewIndex` shader input variable, and
-/// color, depth/stencil, and input attachments all read/write the layer of the
-/// framebuffer corresponding to the view index.If the view mask is zero for all subpasses,
+///# Description
+///When a subpass uses a non-zero view mask, *multiview* functionality is
+///considered to be enabled.
+///Multiview is all-or-nothing for a render pass - that is, either all
+///subpasses  **must**  have a non-zero view mask (though some subpasses  **may**  have
+///only one view) or all  **must**  be zero.
+///Multiview causes all drawing and clear commands in the subpass to behave as
+///if they were broadcast to each view, where a view is represented by one
+///layer of the framebuffer attachments.
+///All draws and clears are broadcast to each *view index* whose bit is set in
+///the view mask.
+///The view index is provided in the `ViewIndex` shader input variable, and
+///color, depth/stencil, and input attachments all read/write the layer of the
+///framebuffer corresponding to the view index.If the view mask is zero for all subpasses,
 /// multiview is considered to be
-/// disabled and all drawing commands execute normally, without this additional
-/// broadcasting.Some implementations  **may**  not support multiview in conjunction with
-/// [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview-gs) or
-/// [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview-tess).When multiview is enabled, the `VK_DEPENDENCY_VIEW_LOCAL_BIT` bit in a
-/// dependency  **can**  be used to express a view-local dependency, meaning that
-/// each view in the destination subpass depends on a single view in the source
-/// subpass.
-/// Unlike pipeline barriers, a subpass dependency  **can**  potentially have a
-/// different view mask in the source subpass and the destination subpass.
-/// If the dependency is view-local, then each view (dstView) in the
-/// destination subpass depends on the view dstView +
-/// [`view_offsets`][dependency] in the source subpass.
-/// If there is not such a view in the source subpass, then this dependency does
-/// not affect that view in the destination subpass.
-/// If the dependency is not view-local, then all views in the destination
-/// subpass depend on all views in the source subpass, and the view offset is
-/// ignored.
-/// A non-zero view offset is not allowed in a self-dependency.The elements of [`correlation_masks`]
+///disabled and all drawing commands execute normally, without this additional
+///broadcasting.Some implementations  **may**  not support multiview in conjunction with
+///[geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview-gs) or
+///[tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview-tess).When multiview is enabled, the `VK_DEPENDENCY_VIEW_LOCAL_BIT` bit in a
+///dependency  **can**  be used to express a view-local dependency, meaning that
+///each view in the destination subpass depends on a single view in the source
+///subpass.
+///Unlike pipeline barriers, a subpass dependency  **can**  potentially have a
+///different view mask in the source subpass and the destination subpass.
+///If the dependency is view-local, then each view (dstView) in the
+///destination subpass depends on the view dstView +
+///[`view_offsets`][dependency] in the source subpass.
+///If there is not such a view in the source subpass, then this dependency does
+///not affect that view in the destination subpass.
+///If the dependency is not view-local, then all views in the destination
+///subpass depend on all views in the source subpass, and the view offset is
+///ignored.
+///A non-zero view offset is not allowed in a self-dependency.The elements of [`correlation_masks`]
 /// are a set of masks of views
-/// indicating that views in the same mask  **may**  exhibit spatial coherency
-/// between the views, making it more efficient to render them concurrently.
-/// Correlation masks  **must**  not have a functional effect on the results of the
-/// multiview rendering.When multiview is enabled, at the beginning of each subpass all non-render
-/// pass state is undefined.
-/// In particular, each time [`cmd_begin_render_pass`] or
-/// [`cmd_next_subpass`] is called the graphics pipeline  **must**  be bound, any
-/// relevant descriptor sets or vertex/index buffers  **must**  be bound, and any
-/// relevant dynamic state or push constants  **must**  be set before they are used.A multiview
+///indicating that views in the same mask  **may**  exhibit spatial coherency
+///between the views, making it more efficient to render them concurrently.
+///Correlation masks  **must**  not have a functional effect on the results of the
+///multiview rendering.When multiview is enabled, at the beginning of each subpass all non-render
+///pass state is undefined.
+///In particular, each time [`cmd_begin_render_pass`] or
+///[`cmd_next_subpass`] is called the graphics pipeline  **must**  be bound, any
+///relevant descriptor sets or vertex/index buffers  **must**  be bound, and any
+///relevant dynamic state or push constants  **must**  be set before they are used.A multiview
 /// subpass  **can**  declare that its shaders will write per-view
-/// attributes for all views in a single invocation, by setting the
-/// `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` bit in the subpass
-/// description.
-/// The only supported per-view attributes are position and viewport mask, and
-/// per-view position and viewport masks are written to output array variables
-/// decorated with `PositionPerViewNV` and `ViewportMaskPerViewNV`,
-/// respectively.
-/// If `[`nv_viewport_array2`]` is not supported and enabled,
-/// `ViewportMaskPerViewNV` **must**  not be used.
-/// Values written to elements of `PositionPerViewNV` and
-/// `ViewportMaskPerViewNV` **must**  not depend on the `ViewIndex`.
-/// The shader  **must**  also write to an output variable decorated with
-/// `Position`, and the value written to `Position` **must**  equal the value
-/// written to `PositionPerViewNV`[`ViewIndex`].
-/// Similarly, if `ViewportMaskPerViewNV` is written to then the shader  **must**
-/// also write to an output variable decorated with `ViewportMaskNV`, and the
-/// value written to `ViewportMaskNV` **must**  equal the value written to
-/// `ViewportMaskPerViewNV`[`ViewIndex`].
-/// Implementations will either use values taken from `Position` and
-/// `ViewportMaskNV` and invoke the shader once for each view, or will use
-/// values taken from `PositionPerViewNV` and `ViewportMaskPerViewNV` and
-/// invoke the shader fewer times.
-/// The values written to `Position` and `ViewportMaskNV` **must**  not depend
-/// on the values written to `PositionPerViewNV` and
-/// `ViewportMaskPerViewNV`, or vice versa (to allow compilers to eliminate
-/// the unused outputs).
-/// All attributes that do not have `*PerViewNV` counterparts  **must**  not depend
-/// on `ViewIndex`.Per-view attributes are all-or-nothing for a subpass.
-/// That is, all pipelines compiled against a subpass that includes the
-/// `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` bit  **must**  write
-/// per-view attributes to the `*PerViewNV[]` shader outputs, in addition to the
-/// non-per-view (e.g. `Position`) outputs.
-/// Pipelines compiled against a subpass that does not include this bit  **must**
-/// not include the `*PerViewNV[]` outputs in their interfaces.
-/// ## Valid Usage
+///attributes for all views in a single invocation, by setting the
+///`VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` bit in the subpass
+///description.
+///The only supported per-view attributes are position and viewport mask, and
+///per-view position and viewport masks are written to output array variables
+///decorated with `PositionPerViewNV` and `ViewportMaskPerViewNV`,
+///respectively.
+///If `[`nv_viewport_array2`]` is not supported and enabled,
+///`ViewportMaskPerViewNV` **must**  not be used.
+///Values written to elements of `PositionPerViewNV` and
+///`ViewportMaskPerViewNV` **must**  not depend on the `ViewIndex`.
+///The shader  **must**  also write to an output variable decorated with
+///`Position`, and the value written to `Position` **must**  equal the value
+///written to `PositionPerViewNV`[`ViewIndex`].
+///Similarly, if `ViewportMaskPerViewNV` is written to then the shader  **must**
+///also write to an output variable decorated with `ViewportMaskNV`, and the
+///value written to `ViewportMaskNV` **must**  equal the value written to
+///`ViewportMaskPerViewNV`[`ViewIndex`].
+///Implementations will either use values taken from `Position` and
+///`ViewportMaskNV` and invoke the shader once for each view, or will use
+///values taken from `PositionPerViewNV` and `ViewportMaskPerViewNV` and
+///invoke the shader fewer times.
+///The values written to `Position` and `ViewportMaskNV` **must**  not depend
+///on the values written to `PositionPerViewNV` and
+///`ViewportMaskPerViewNV`, or vice versa (to allow compilers to eliminate
+///the unused outputs).
+///All attributes that do not have `*PerViewNV` counterparts  **must**  not depend
+///on `ViewIndex`.Per-view attributes are all-or-nothing for a subpass.
+///That is, all pipelines compiled against a subpass that includes the
+///`VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX` bit  **must**  write
+///per-view attributes to the `*PerViewNV[]` shader outputs, in addition to the
+///non-per-view (e.g. `Position`) outputs.
+///Pipelines compiled against a subpass that does not include this bit  **must**
+///not include the `*PerViewNV[]` outputs in their interfaces.
+///## Valid Usage
 /// - Each view index  **must**  not be set in more than one element of [`correlation_masks`]
 /// - If the [`multiview`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiview)
 ///   feature is not enabled, each element of [`view_masks`] **must**  be `0`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO`
 /// - If [`subpass_count`] is not `0`, [`view_masks`] **must**  be a valid pointer to an array of
 ///   [`subpass_count`]`uint32_t` values
@@ -16058,17 +16752,17 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 ///   of [`dependency_count`]`int32_t` values
 /// - If [`correlation_mask_count`] is not `0`, [`correlation_masks`] **must**  be a valid pointer
 ///   to an array of [`correlation_mask_count`]`uint32_t` values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassMultiviewCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16139,22 +16833,42 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
         self.correlation_masks
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::view_masks`]
-    pub fn set_view_masks_raw(mut self, value: *const u32) -> Self {
+    pub fn set_view_masks_raw(&mut self, value: *const u32) -> &mut Self {
         self.view_masks = value;
         self
     }
     ///Sets the raw value of [`Self::view_offsets`]
-    pub fn set_view_offsets_raw(mut self, value: *const i32) -> Self {
+    pub fn set_view_offsets_raw(&mut self, value: *const i32) -> &mut Self {
         self.view_offsets = value;
         self
     }
     ///Sets the raw value of [`Self::correlation_masks`]
-    pub fn set_correlation_masks_raw(mut self, value: *const u32) -> Self {
+    pub fn set_correlation_masks_raw(&mut self, value: *const u32) -> &mut Self {
+        self.correlation_masks = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_masks`]
+    pub fn with_view_masks_raw(mut self, value: *const u32) -> Self {
+        self.view_masks = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view_offsets`]
+    pub fn with_view_offsets_raw(mut self, value: *const i32) -> Self {
+        self.view_offsets = value;
+        self
+    }
+    ///Sets the raw value of [`Self::correlation_masks`]
+    pub fn with_correlation_masks_raw(mut self, value: *const u32) -> Self {
         self.correlation_masks = value;
         self
     }
@@ -16219,22 +16933,22 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
         &mut self.correlation_mask_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::subpass_count`]
-    pub fn set_subpass_count(mut self, value: u32) -> Self {
+    pub fn set_subpass_count(&mut self, value: u32) -> &mut Self {
         self.subpass_count = value;
         self
     }
     ///Sets the value of [`Self::view_masks`]
-    pub fn set_view_masks(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_view_masks(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.view_masks = value.as_ptr();
@@ -16242,12 +16956,12 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::dependency_count`]
-    pub fn set_dependency_count(mut self, value: u32) -> Self {
+    pub fn set_dependency_count(&mut self, value: u32) -> &mut Self {
         self.dependency_count = value;
         self
     }
     ///Sets the value of [`Self::view_offsets`]
-    pub fn set_view_offsets(mut self, value: &'lt [i32]) -> Self {
+    pub fn set_view_offsets(&mut self, value: &'lt [i32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.view_offsets = value.as_ptr();
@@ -16255,12 +16969,61 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::correlation_mask_count`]
-    pub fn set_correlation_mask_count(mut self, value: u32) -> Self {
+    pub fn set_correlation_mask_count(&mut self, value: u32) -> &mut Self {
         self.correlation_mask_count = value;
         self
     }
     ///Sets the value of [`Self::correlation_masks`]
-    pub fn set_correlation_masks(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_correlation_masks(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.correlation_masks = value.as_ptr();
+        self.correlation_mask_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::subpass_count`]
+    pub fn with_subpass_count(mut self, value: u32) -> Self {
+        self.subpass_count = value;
+        self
+    }
+    ///Sets the value of [`Self::view_masks`]
+    pub fn with_view_masks(mut self, value: &'lt [u32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.view_masks = value.as_ptr();
+        self.subpass_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::dependency_count`]
+    pub fn with_dependency_count(mut self, value: u32) -> Self {
+        self.dependency_count = value;
+        self
+    }
+    ///Sets the value of [`Self::view_offsets`]
+    pub fn with_view_offsets(mut self, value: &'lt [i32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.view_offsets = value.as_ptr();
+        self.dependency_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::correlation_mask_count`]
+    pub fn with_correlation_mask_count(mut self, value: u32) -> Self {
+        self.correlation_mask_count = value;
+        self
+    }
+    ///Sets the value of [`Self::correlation_masks`]
+    pub fn with_correlation_masks(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.correlation_masks = value.as_ptr();
@@ -16281,12 +17044,12 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 ///    VkBool32            subsetAllocation;
 ///} VkPhysicalDeviceGroupProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group_creation
 ///typedef VkPhysicalDeviceGroupProperties VkPhysicalDeviceGroupPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`physical_device_count`] is the number of physical devices in the group.
@@ -16298,11 +17061,11 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 ///   [`MemoryAllocateFlagsInfo`]. If this is [`FALSE`], then all device memory allocations are made
 ///   across all physical devices in the group. If [`physical_device_count`] is `1`, then
 ///   [`subset_allocation`] **must**  be [`FALSE`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`PhysicalDevice`]
@@ -16310,13 +17073,13 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 /// - [`enumerate_physical_device_groups`]
 /// - [`enumerate_physical_device_groups_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceGroupProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16366,12 +17129,22 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
         self.subset_allocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::subset_allocation`]
-    pub fn set_subset_allocation_raw(mut self, value: Bool32) -> Self {
+    pub fn set_subset_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+        self.subset_allocation = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subset_allocation`]
+    pub fn with_subset_allocation_raw(mut self, value: Bool32) -> Self {
         self.subset_allocation = value;
         self
     }
@@ -16436,22 +17209,50 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::physical_device_count`]
-    pub fn set_physical_device_count(mut self, value: u32) -> Self {
+    pub fn set_physical_device_count(&mut self, value: u32) -> &mut Self {
         self.physical_device_count = value;
         self
     }
     ///Sets the value of [`Self::physical_devices`]
     pub fn set_physical_devices(
+        &mut self,
+        value: [crate::vulkan1_0::PhysicalDevice; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize],
+    ) -> &mut Self {
+        self.physical_devices = value;
+        self
+    }
+    ///Sets the value of [`Self::subset_allocation`]
+    pub fn set_subset_allocation(&mut self, value: bool) -> &mut Self {
+        self.subset_allocation = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::physical_device_count`]
+    pub fn with_physical_device_count(mut self, value: u32) -> Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the value of [`Self::physical_devices`]
+    pub fn with_physical_devices(
         mut self,
         value: [crate::vulkan1_0::PhysicalDevice; crate::vulkan1_1::MAX_DEVICE_GROUP_SIZE as usize],
     ) -> Self {
@@ -16459,7 +17260,7 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
         self
     }
     ///Sets the value of [`Self::subset_allocation`]
-    pub fn set_subset_allocation(mut self, value: bool) -> Self {
+    pub fn with_subset_allocation(mut self, value: bool) -> Self {
         self.subset_allocation = value as u8 as u32;
         self
     }
@@ -16479,53 +17280,53 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
 ///    uint32_t                 deviceMask;
 ///} VkMemoryAllocateFlagsInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkMemoryAllocateFlagsInfo VkMemoryAllocateFlagsInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`MemoryAllocateFlagBits`] controlling the allocation.
 /// - [`device_mask`] is a mask of physical devices in the logical device, indicating that memory
 ///   **must**  be allocated on each device in the mask, if `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is
 ///   set in [`flags`].
-/// # Description
-/// If `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is not set, the number of
-/// instances allocated depends on whether
-/// `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is set in the memory heap.
-/// If `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is set, then memory is allocated
-/// for every physical device in the logical device (as if [`device_mask`] has
-/// bits set for all device indices).
-/// If `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is not set, then a single
-/// instance of memory is allocated (as if [`device_mask`] is set to one).On some implementations,
+///# Description
+///If `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is not set, the number of
+///instances allocated depends on whether
+///`VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is set in the memory heap.
+///If `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is set, then memory is allocated
+///for every physical device in the logical device (as if [`device_mask`] has
+///bits set for all device indices).
+///If `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` is not set, then a single
+///instance of memory is allocated (as if [`device_mask`] is set to one).On some implementations,
 /// allocations from a multi-instance heap  **may**  consume
-/// memory on all physical devices even if the [`device_mask`] excludes some
-/// devices.
-/// If [`PhysicalDeviceGroupProperties::subset_allocation`] is
-/// [`TRUE`], then memory is only consumed for the devices in the device
-/// mask.
-/// ## Valid Usage
+///memory on all physical devices even if the [`device_mask`] excludes some
+///devices.
+///If [`PhysicalDeviceGroupProperties::subset_allocation`] is
+///[`TRUE`], then memory is only consumed for the devices in the device
+///mask.
+///## Valid Usage
 /// - If `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is set, [`device_mask`] **must**  be a valid device
 ///   mask
 /// - If `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is set, [`device_mask`] **must**  not be zero
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO`
 /// - [`flags`] **must**  be a valid combination of [`MemoryAllocateFlagBits`] values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`MemoryAllocateFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlagsInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16562,7 +17363,12 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16598,22 +17404,42 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
         &mut self.device_mask
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::vulkan1_1::MemoryAllocateFlags) -> Self {
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::MemoryAllocateFlags) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::device_mask`]
-    pub fn set_device_mask(mut self, value: u32) -> Self {
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::vulkan1_1::MemoryAllocateFlags) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::device_mask`]
+    pub fn with_device_mask(mut self, value: u32) -> Self {
         self.device_mask = value;
         self
     }
@@ -16632,12 +17458,12 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 ///    VkDeviceSize       memoryOffset;
 ///} VkBindBufferMemoryInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_bind_memory2
 ///typedef VkBindBufferMemoryInfo VkBindBufferMemoryInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is the buffer to be attached to memory.
@@ -16645,8 +17471,8 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 /// - [`memory_offset`] is the start offset of the region of [`memory`] which is to be bound to the
 ///   buffer. The number of bytes returned in the [`MemoryRequirements::size`] member in [`memory`],
 ///   starting from [`memory_offset`] bytes, will be bound to the specified buffer.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`buffer`] **must**  not already be backed by a memory object
 /// - [`buffer`] **must**  not have been created with any sparse memory binding flags
 /// - [`memory_offset`] **must**  be less than the size of [`memory`]
@@ -16701,7 +17527,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 ///   instances of [`memory`] specified by [`BindBufferMemoryDeviceGroupInfo::device_indices`]
 ///   **must**  have been allocated
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`BindBufferMemoryDeviceGroupInfo`]
@@ -16710,7 +17536,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - Both of [`buffer`], and [`memory`] **must**  have been created, allocated, or retrieved from
 ///   the same [`Device`]
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Buffer`]
 /// - [`DeviceMemory`]
@@ -16719,13 +17545,13 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 /// - [`bind_buffer_memory2`]
 /// - [`bind_buffer_memory2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindBufferMemoryInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16767,7 +17593,12 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -16811,27 +17642,52 @@ impl<'lt> BindBufferMemoryInfo<'lt> {
         &mut self.memory_offset
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::buffer`]
-    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
         self.buffer = value;
         self
     }
     ///Sets the value of [`Self::memory`]
-    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
         self.memory = value;
         self
     }
     ///Sets the value of [`Self::memory_offset`]
-    pub fn set_memory_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.memory_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::buffer`]
+    pub fn with_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the value of [`Self::memory`]
+    pub fn with_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the value of [`Self::memory_offset`]
+    pub fn with_memory_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.memory_offset = value;
         self
     }
@@ -16864,52 +17720,52 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    const uint32_t*    pDeviceIndices;
 ///} VkBindBufferMemoryDeviceGroupInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_bind_memory2 with VK_KHR_device_group
 ///typedef VkBindBufferMemoryDeviceGroupInfo VkBindBufferMemoryDeviceGroupInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_index_count`] is the number of elements in [`device_indices`].
 /// - [`device_indices`] is a pointer to an array of device indices.
-/// # Description
-/// If the [`p_next`] chain of [`BindBufferMemoryInfo`] includes a
-/// [`BindBufferMemoryDeviceGroupInfo`] structure, then that structure
-/// determines how memory is bound to buffers across multiple devices in a
-/// device group.If [`device_index_count`] is greater than zero, then on device index i
-/// the buffer is attached to the instance of `memory` on the physical
-/// device with device index [`device_indices`][i].If [`device_index_count`] is zero and `memory`
+///# Description
+///If the [`p_next`] chain of [`BindBufferMemoryInfo`] includes a
+///[`BindBufferMemoryDeviceGroupInfo`] structure, then that structure
+///determines how memory is bound to buffers across multiple devices in a
+///device group.If [`device_index_count`] is greater than zero, then on device index i
+///the buffer is attached to the instance of `memory` on the physical
+///device with device index [`device_indices`][i].If [`device_index_count`] is zero and `memory`
 /// comes from a memory heap
-/// with the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-/// [`device_indices`] contains consecutive indices from zero to the number of
-/// physical devices in the logical device, minus one.
-/// In other words, by default each physical device attaches to its own instance
-/// of `memory`.If [`device_index_count`] is zero and `memory` comes from a memory heap
-/// without the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as
-/// if [`device_indices`] contains an array of zeros.
-/// In other words, by default each physical device attaches to instance zero.
-/// ## Valid Usage
+///with the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
+///[`device_indices`] contains consecutive indices from zero to the number of
+///physical devices in the logical device, minus one.
+///In other words, by default each physical device attaches to its own instance
+///of `memory`.If [`device_index_count`] is zero and `memory` comes from a memory heap
+///without the `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as
+///if [`device_indices`] contains an array of zeros.
+///In other words, by default each physical device attaches to instance zero.
+///## Valid Usage
 /// - [`device_index_count`] **must**  either be zero or equal to the number of physical devices in
 ///   the logical device
 /// - All elements of [`device_indices`] **must**  be valid device indices
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO`
 /// - If [`device_index_count`] is not `0`, [`device_indices`] **must**  be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindBufferMemoryDeviceGroupInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -16948,12 +17804,22 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
         self.device_indices
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_indices`]
-    pub fn set_device_indices_raw(mut self, value: *const u32) -> Self {
+    pub fn set_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn with_device_indices_raw(mut self, value: *const u32) -> Self {
         self.device_indices = value;
         self
     }
@@ -16988,22 +17854,45 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
         &mut self.device_index_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::device_index_count`]
-    pub fn set_device_index_count(mut self, value: u32) -> Self {
+    pub fn set_device_index_count(&mut self, value: u32) -> &mut Self {
         self.device_index_count = value;
         self
     }
     ///Sets the value of [`Self::device_indices`]
-    pub fn set_device_indices(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_indices = value.as_ptr();
+        self.device_index_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::device_index_count`]
+    pub fn with_device_index_count(mut self, value: u32) -> Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the value of [`Self::device_indices`]
+    pub fn with_device_indices(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.device_indices = value.as_ptr();
@@ -17025,12 +17914,12 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 ///    VkDeviceSize       memoryOffset;
 ///} VkBindImageMemoryInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_bind_memory2
 ///typedef VkBindImageMemoryInfo VkBindImageMemoryInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image`] is the image to be attached to memory.
@@ -17038,8 +17927,8 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// - [`memory_offset`] is the start offset of the region of [`memory`] which is to be bound to the
 ///   image. The number of bytes returned in the [`MemoryRequirements::size`] member in [`memory`],
 ///   starting from [`memory_offset`] bytes, will be bound to the specified image.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`image`] **must**  not already be backed by a memory object
 /// - [`image`] **must**  not have been created with any sparse memory binding flags
 /// - [`memory_offset`] **must**  be less than the size of [`memory`]
@@ -17140,7 +18029,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// - If the [`p_next`] chain does not include a [`BindImageMemorySwapchainInfoKHR`] structure,
 ///   [`memory`] **must**  be a valid [`DeviceMemory`] handle
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of [`BindImageMemoryDeviceGroupInfo`],
@@ -17149,7 +18038,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// - [`image`] **must**  be a valid [`Image`] handle
 /// - Both of [`image`], and [`memory`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceMemory`]
 /// - [`DeviceSize`]
@@ -17158,13 +18047,13 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// - [`bind_image_memory2`]
 /// - [`bind_image_memory2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemoryInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17206,7 +18095,12 @@ impl<'lt> BindImageMemoryInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -17250,27 +18144,52 @@ impl<'lt> BindImageMemoryInfo<'lt> {
         &mut self.memory_offset
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::image`]
-    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
         self.image = value;
         self
     }
     ///Sets the value of [`Self::memory`]
-    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
         self.memory = value;
         self
     }
     ///Sets the value of [`Self::memory_offset`]
-    pub fn set_memory_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_memory_offset(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.memory_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::image`]
+    pub fn with_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+        self.image = value;
+        self
+    }
+    ///Sets the value of [`Self::memory`]
+    pub fn with_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the value of [`Self::memory_offset`]
+    pub fn with_memory_offset(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.memory_offset = value;
         self
     }
@@ -17338,12 +18257,12 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    const VkRect2D*    pSplitInstanceBindRegions;
 ///} VkBindImageMemoryDeviceGroupInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_bind_memory2 with VK_KHR_device_group
 ///typedef VkBindImageMemoryDeviceGroupInfo VkBindImageMemoryDeviceGroupInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_index_count`] is the number of elements in [`device_indices`].
@@ -17352,38 +18271,38 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   [`split_instance_bind_regions`].
 /// - [`split_instance_bind_regions`] is a pointer to an array of [`Rect2D`] structures describing
 ///   which regions of the image are attached to each instance of memory.
-/// # Description
-/// If the [`p_next`] chain of [`BindImageMemoryInfo`] includes a
-/// [`BindImageMemoryDeviceGroupInfo`] structure, then that structure
-/// determines how memory is bound to images across multiple devices in a device
-/// group.If [`device_index_count`] is greater than zero, then on device index i`image` is attached
+///# Description
+///If the [`p_next`] chain of [`BindImageMemoryInfo`] includes a
+///[`BindImageMemoryDeviceGroupInfo`] structure, then that structure
+///determines how memory is bound to images across multiple devices in a device
+///group.If [`device_index_count`] is greater than zero, then on device index i`image` is attached
 /// to the instance of the memory on the physical device
-/// with device index pDeviceIndices[i].Let N be the number of physical devices in the logical
+///with device index pDeviceIndices[i].Let N be the number of physical devices in the logical
 /// device.
-/// If [`split_instance_bind_region_count`] is greater than zero, then
-/// [`split_instance_bind_regions`] is a pointer to an array of N<sup>2</sup>
-/// rectangles, where the image region specified by the rectangle at element
-/// i*N+j in resource instance i is bound to the memory instance
-/// j.
-/// The blocks of the memory that are bound to each sparse image block region
-/// use an offset in memory, relative to `memoryOffset`, computed as if the
-/// whole image was being bound to a contiguous range of memory.
-/// In other words, horizontally adjacent image blocks use consecutive blocks of
-/// memory, vertically adjacent image blocks are separated by the number of
-/// bytes per block multiplied by the width in blocks of `image`, and the
-/// block at (0,0) corresponds to memory starting at `memoryOffset`.If
+///If [`split_instance_bind_region_count`] is greater than zero, then
+///[`split_instance_bind_regions`] is a pointer to an array of N<sup>2</sup>
+///rectangles, where the image region specified by the rectangle at element
+///i*N+j in resource instance i is bound to the memory instance
+///j.
+///The blocks of the memory that are bound to each sparse image block region
+///use an offset in memory, relative to `memoryOffset`, computed as if the
+///whole image was being bound to a contiguous range of memory.
+///In other words, horizontally adjacent image blocks use consecutive blocks of
+///memory, vertically adjacent image blocks are separated by the number of
+///bytes per block multiplied by the width in blocks of `image`, and the
+///block at (0,0) corresponds to memory starting at `memoryOffset`.If
 /// [`split_instance_bind_region_count`] and [`device_index_count`] are zero
-/// and the memory comes from a memory heap with the
-/// `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-/// [`device_indices`] contains consecutive indices from zero to the number of
-/// physical devices in the logical device, minus one.
-/// In other words, by default each physical device attaches to its own instance
-/// of the memory.If [`split_instance_bind_region_count`] and [`device_index_count`] are zero
-/// and the memory comes from a memory heap without the
-/// `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
-/// [`device_indices`] contains an array of zeros.
-/// In other words, by default each physical device attaches to instance zero.
-/// ## Valid Usage
+///and the memory comes from a memory heap with the
+///`VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
+///[`device_indices`] contains consecutive indices from zero to the number of
+///physical devices in the logical device, minus one.
+///In other words, by default each physical device attaches to its own instance
+///of the memory.If [`split_instance_bind_region_count`] and [`device_index_count`] are zero
+///and the memory comes from a memory heap without the
+///`VK_MEMORY_HEAP_MULTI_INSTANCE_BIT` bit set, then it is as if
+///[`device_indices`] contains an array of zeros.
+///In other words, by default each physical device attaches to instance zero.
+///## Valid Usage
 /// - At least one of [`device_index_count`] and [`split_instance_bind_region_count`] **must**  be
 ///   zero
 /// - [`device_index_count`] **must**  either be zero or equal to the number of physical devices in
@@ -17408,24 +18327,24 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///   be a multiple of the sparse image block height of all non-metadata aspects of the image, or
 ///   else `extent.height` +  `offset.y` **must**  equal the height of the image subresource
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO`
 /// - If [`device_index_count`] is not `0`, [`device_indices`] **must**  be a valid pointer to an
 ///   array of [`device_index_count`]`uint32_t` values
 /// - If [`split_instance_bind_region_count`] is not `0`, [`split_instance_bind_regions`] **must**
 ///   be a valid pointer to an array of [`split_instance_bind_region_count`][`Rect2D`] structures
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemoryDeviceGroupInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17477,17 +18396,32 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
         self.split_instance_bind_regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_indices`]
-    pub fn set_device_indices_raw(mut self, value: *const u32) -> Self {
+    pub fn set_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
         self.device_indices = value;
         self
     }
     ///Sets the raw value of [`Self::split_instance_bind_regions`]
-    pub fn set_split_instance_bind_regions_raw(mut self, value: *const Rect2D) -> Self {
+    pub fn set_split_instance_bind_regions_raw(&mut self, value: *const Rect2D) -> &mut Self {
+        self.split_instance_bind_regions = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_indices`]
+    pub fn with_device_indices_raw(mut self, value: *const u32) -> Self {
+        self.device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::split_instance_bind_regions`]
+    pub fn with_split_instance_bind_regions_raw(mut self, value: *const Rect2D) -> Self {
         self.split_instance_bind_regions = value;
         self
     }
@@ -17540,22 +18474,22 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
         &mut self.split_instance_bind_region_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::device_index_count`]
-    pub fn set_device_index_count(mut self, value: u32) -> Self {
+    pub fn set_device_index_count(&mut self, value: u32) -> &mut Self {
         self.device_index_count = value;
         self
     }
     ///Sets the value of [`Self::device_indices`]
-    pub fn set_device_indices(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.device_indices = value.as_ptr();
@@ -17563,12 +18497,48 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::split_instance_bind_region_count`]
-    pub fn set_split_instance_bind_region_count(mut self, value: u32) -> Self {
+    pub fn set_split_instance_bind_region_count(&mut self, value: u32) -> &mut Self {
         self.split_instance_bind_region_count = value;
         self
     }
     ///Sets the value of [`Self::split_instance_bind_regions`]
-    pub fn set_split_instance_bind_regions(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
+    pub fn set_split_instance_bind_regions(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.split_instance_bind_regions = value.as_ptr();
+        self.split_instance_bind_region_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::device_index_count`]
+    pub fn with_device_index_count(mut self, value: u32) -> Self {
+        self.device_index_count = value;
+        self
+    }
+    ///Sets the value of [`Self::device_indices`]
+    pub fn with_device_indices(mut self, value: &'lt [u32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_indices = value.as_ptr();
+        self.device_index_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::split_instance_bind_region_count`]
+    pub fn with_split_instance_bind_region_count(mut self, value: u32) -> Self {
+        self.split_instance_bind_region_count = value;
+        self
+    }
+    ///Sets the value of [`Self::split_instance_bind_regions`]
+    pub fn with_split_instance_bind_regions(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.split_instance_bind_regions = value.as_ptr();
@@ -17593,42 +18563,42 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
 ///    const VkRect2D*    pDeviceRenderAreas;
 ///} VkDeviceGroupRenderPassBeginInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkDeviceGroupRenderPassBeginInfo VkDeviceGroupRenderPassBeginInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_mask`] is the device mask for the render pass instance.
 /// - [`device_render_area_count`] is the number of elements in the [`device_render_areas`] array.
 /// - [`device_render_areas`] is a pointer to an array of [`Rect2D`] structures defining the render
 ///   area for each physical device.
-/// # Description
-/// The [`device_mask`] serves several purposes.
-/// It is an upper bound on the set of physical devices that  **can**  be used during
-/// the render pass instance, and the initial device mask when the render pass
-/// instance begins.
-/// In addition, commands transitioning to the next subpass in a render pass
-/// instance and commands ending the render pass instance, and, accordingly
-/// render pass attachment load, store, and resolve operations and subpass
-/// dependencies corresponding to the render pass instance, are executed on the
-/// physical devices included in the device mask provided here.If [`device_render_area_count`] is
+///# Description
+///The [`device_mask`] serves several purposes.
+///It is an upper bound on the set of physical devices that  **can**  be used during
+///the render pass instance, and the initial device mask when the render pass
+///instance begins.
+///In addition, commands transitioning to the next subpass in a render pass
+///instance and commands ending the render pass instance, and, accordingly
+///render pass attachment load, store, and resolve operations and subpass
+///dependencies corresponding to the render pass instance, are executed on the
+///physical devices included in the device mask provided here.If [`device_render_area_count`] is
 /// not zero, then the elements of
-/// [`device_render_areas`] override the value of
-/// [`RenderPassBeginInfo::render_area`], and provide a render area
-/// specific to each physical device.
-/// These render areas serve the same purpose as
-/// [`RenderPassBeginInfo::render_area`], including controlling the
-/// region of attachments that are cleared by `VK_ATTACHMENT_LOAD_OP_CLEAR`
-/// and that are resolved into resolve attachments.If this structure is not present, the render pass
+///[`device_render_areas`] override the value of
+///[`RenderPassBeginInfo::render_area`], and provide a render area
+///specific to each physical device.
+///These render areas serve the same purpose as
+///[`RenderPassBeginInfo::render_area`], including controlling the
+///region of attachments that are cleared by `VK_ATTACHMENT_LOAD_OP_CLEAR`
+///and that are resolved into resolve attachments.If this structure is not present, the render pass
 /// instance’s device mask is
-/// the value of [`DeviceGroupCommandBufferBeginInfo`]::[`device_mask`].
-/// If this structure is not present or if [`device_render_area_count`] is zero,
-/// [`RenderPassBeginInfo::render_area`] is used for all physical
-/// devices.
-/// ## Valid Usage
+///the value of [`DeviceGroupCommandBufferBeginInfo`]::[`device_mask`].
+///If this structure is not present or if [`device_render_area_count`] is zero,
+///[`RenderPassBeginInfo::render_area`] is used for all physical
+///devices.
+///## Valid Usage
 /// - [`device_mask`] **must**  be a valid device mask value
 /// - [`device_mask`] **must**  not be zero
 /// - [`device_mask`] **must**  be a subset of the command buffer’s initial device mask
@@ -17642,22 +18612,22 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
 ///   **must**  be less than or equal to [`maxFramebufferWidth`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferWidth)
 /// -    The sum of the `offset.y` and `extent.height` members of any element of [`device_render_areas`] **must**  be less than or equal to [`maxFramebufferHeight`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxFramebufferHeight)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO`
 /// - If [`device_render_area_count`] is not `0`, [`device_render_areas`] **must**  be a valid
 ///   pointer to an array of [`device_render_area_count`][`Rect2D`] structures
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Rect2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupRenderPassBeginInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17700,12 +18670,22 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
         self.device_render_areas
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_render_areas`]
-    pub fn set_device_render_areas_raw(mut self, value: *const Rect2D) -> Self {
+    pub fn set_device_render_areas_raw(&mut self, value: *const Rect2D) -> &mut Self {
+        self.device_render_areas = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_render_areas`]
+    pub fn with_device_render_areas_raw(mut self, value: *const Rect2D) -> Self {
         self.device_render_areas = value;
         self
     }
@@ -17748,27 +18728,55 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
         &mut self.device_render_area_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::device_mask`]
-    pub fn set_device_mask(mut self, value: u32) -> Self {
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
         self.device_mask = value;
         self
     }
     ///Sets the value of [`Self::device_render_area_count`]
-    pub fn set_device_render_area_count(mut self, value: u32) -> Self {
+    pub fn set_device_render_area_count(&mut self, value: u32) -> &mut Self {
         self.device_render_area_count = value;
         self
     }
     ///Sets the value of [`Self::device_render_areas`]
-    pub fn set_device_render_areas(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
+    pub fn set_device_render_areas(&mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.device_render_areas = value.as_ptr();
+        self.device_render_area_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::device_mask`]
+    pub fn with_device_mask(mut self, value: u32) -> Self {
+        self.device_mask = value;
+        self
+    }
+    ///Sets the value of [`Self::device_render_area_count`]
+    pub fn with_device_render_area_count(mut self, value: u32) -> Self {
+        self.device_render_area_count = value;
+        self
+    }
+    ///Sets the value of [`Self::device_render_areas`]
+    pub fn with_device_render_areas(mut self, value: &'lt [crate::vulkan1_0::Rect2D]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.device_render_areas = value.as_ptr();
@@ -17790,38 +18798,38 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
 ///    uint32_t           deviceMask;
 ///} VkDeviceGroupCommandBufferBeginInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkDeviceGroupCommandBufferBeginInfo VkDeviceGroupCommandBufferBeginInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_mask`] is the initial value of the command buffer’s device mask.
-/// # Description
-/// The initial device mask also acts as an upper bound on the set of devices
-/// that  **can**  ever be in the device mask in the command buffer.If this structure is not
+///# Description
+///The initial device mask also acts as an upper bound on the set of devices
+///that  **can**  ever be in the device mask in the command buffer.If this structure is not
 /// present, the initial value of a command buffer’s
-/// device mask is set to include all physical devices in the logical device
-/// when the command buffer begins recording.
-/// ## Valid Usage
+///device mask is set to include all physical devices in the logical device
+///when the command buffer begins recording.
+///## Valid Usage
 /// - [`device_mask`] **must**  be a valid device mask value
 /// - [`device_mask`] **must**  not be zero
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupCommandBufferBeginInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -17853,7 +18861,12 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -17881,17 +18894,32 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
         &mut self.device_mask
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::device_mask`]
-    pub fn set_device_mask(mut self, value: u32) -> Self {
+    pub fn set_device_mask(&mut self, value: u32) -> &mut Self {
+        self.device_mask = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::device_mask`]
+    pub fn with_device_mask(mut self, value: u32) -> Self {
         self.device_mask = value;
         self
     }
@@ -17915,12 +18943,12 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 ///    const uint32_t*    pSignalSemaphoreDeviceIndices;
 ///} VkDeviceGroupSubmitInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkDeviceGroupSubmitInfo VkDeviceGroupSubmitInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`wait_semaphore_count`] is the number of elements in the [`wait_semaphore_device_indices`]
@@ -17939,10 +18967,10 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 /// - [`signal_semaphore_device_indices`] is a pointer to an array of [`signal_semaphore_count`]
 ///   device indices indicating which physical device executes the semaphore signal operation in the
 ///   corresponding element of [`SubmitInfo::signal_semaphores`].
-/// # Description
-/// If this structure is not present, semaphore operations and command buffers
-/// execute on device index zero.
-/// ## Valid Usage
+///# Description
+///If this structure is not present, semaphore operations and command buffers
+///execute on device index zero.
+///## Valid Usage
 /// - [`wait_semaphore_count`] **must**  equal [`SubmitInfo`]::[`wait_semaphore_count`]
 /// - [`command_buffer_count`] **must**  equal [`SubmitInfo`]::[`command_buffer_count`]
 /// - [`signal_semaphore_count`] **must**  equal [`SubmitInfo`]::[`signal_semaphore_count`]
@@ -17950,7 +18978,7 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 ///   **must**  be valid device indices
 /// - All elements of [`command_buffer_device_masks`] **must**  be valid device masks
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO`
 /// - If [`wait_semaphore_count`] is not `0`, [`wait_semaphore_device_indices`] **must**  be a valid
 ///   pointer to an array of [`wait_semaphore_count`]`uint32_t` values
@@ -17958,17 +18986,17 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 ///   pointer to an array of [`command_buffer_count`]`uint32_t` values
 /// - If [`signal_semaphore_count`] is not `0`, [`signal_semaphore_device_indices`] **must**  be a
 ///   valid pointer to an array of [`signal_semaphore_count`]`uint32_t` values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupSubmitInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18040,22 +19068,42 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
         self.signal_semaphore_device_indices
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::wait_semaphore_device_indices`]
-    pub fn set_wait_semaphore_device_indices_raw(mut self, value: *const u32) -> Self {
+    pub fn set_wait_semaphore_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
         self.wait_semaphore_device_indices = value;
         self
     }
     ///Sets the raw value of [`Self::command_buffer_device_masks`]
-    pub fn set_command_buffer_device_masks_raw(mut self, value: *const u32) -> Self {
+    pub fn set_command_buffer_device_masks_raw(&mut self, value: *const u32) -> &mut Self {
         self.command_buffer_device_masks = value;
         self
     }
     ///Sets the raw value of [`Self::signal_semaphore_device_indices`]
-    pub fn set_signal_semaphore_device_indices_raw(mut self, value: *const u32) -> Self {
+    pub fn set_signal_semaphore_device_indices_raw(&mut self, value: *const u32) -> &mut Self {
+        self.signal_semaphore_device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::wait_semaphore_device_indices`]
+    pub fn with_wait_semaphore_device_indices_raw(mut self, value: *const u32) -> Self {
+        self.wait_semaphore_device_indices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::command_buffer_device_masks`]
+    pub fn with_command_buffer_device_masks_raw(mut self, value: *const u32) -> Self {
+        self.command_buffer_device_masks = value;
+        self
+    }
+    ///Sets the raw value of [`Self::signal_semaphore_device_indices`]
+    pub fn with_signal_semaphore_device_indices_raw(mut self, value: *const u32) -> Self {
         self.signal_semaphore_device_indices = value;
         self
     }
@@ -18123,22 +19171,22 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
         &mut self.signal_semaphore_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::wait_semaphore_count`]
-    pub fn set_wait_semaphore_count(mut self, value: u32) -> Self {
+    pub fn set_wait_semaphore_count(&mut self, value: u32) -> &mut Self {
         self.wait_semaphore_count = value;
         self
     }
     ///Sets the value of [`Self::wait_semaphore_device_indices`]
-    pub fn set_wait_semaphore_device_indices(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_wait_semaphore_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.wait_semaphore_device_indices = value.as_ptr();
@@ -18146,12 +19194,12 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::command_buffer_count`]
-    pub fn set_command_buffer_count(mut self, value: u32) -> Self {
+    pub fn set_command_buffer_count(&mut self, value: u32) -> &mut Self {
         self.command_buffer_count = value;
         self
     }
     ///Sets the value of [`Self::command_buffer_device_masks`]
-    pub fn set_command_buffer_device_masks(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_command_buffer_device_masks(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.command_buffer_device_masks = value.as_ptr();
@@ -18159,12 +19207,61 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::signal_semaphore_count`]
-    pub fn set_signal_semaphore_count(mut self, value: u32) -> Self {
+    pub fn set_signal_semaphore_count(&mut self, value: u32) -> &mut Self {
         self.signal_semaphore_count = value;
         self
     }
     ///Sets the value of [`Self::signal_semaphore_device_indices`]
-    pub fn set_signal_semaphore_device_indices(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_signal_semaphore_device_indices(&mut self, value: &'lt [u32]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.signal_semaphore_device_indices = value.as_ptr();
+        self.signal_semaphore_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::wait_semaphore_count`]
+    pub fn with_wait_semaphore_count(mut self, value: u32) -> Self {
+        self.wait_semaphore_count = value;
+        self
+    }
+    ///Sets the value of [`Self::wait_semaphore_device_indices`]
+    pub fn with_wait_semaphore_device_indices(mut self, value: &'lt [u32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.wait_semaphore_device_indices = value.as_ptr();
+        self.wait_semaphore_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::command_buffer_count`]
+    pub fn with_command_buffer_count(mut self, value: u32) -> Self {
+        self.command_buffer_count = value;
+        self
+    }
+    ///Sets the value of [`Self::command_buffer_device_masks`]
+    pub fn with_command_buffer_device_masks(mut self, value: &'lt [u32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.command_buffer_device_masks = value.as_ptr();
+        self.command_buffer_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::signal_semaphore_count`]
+    pub fn with_signal_semaphore_count(mut self, value: u32) -> Self {
+        self.signal_semaphore_count = value;
+        self
+    }
+    ///Sets the value of [`Self::signal_semaphore_device_indices`]
+    pub fn with_signal_semaphore_device_indices(mut self, value: &'lt [u32]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.signal_semaphore_device_indices = value.as_ptr();
@@ -18187,43 +19284,43 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
 ///    uint32_t           memoryDeviceIndex;
 ///} VkDeviceGroupBindSparseInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group
 ///typedef VkDeviceGroupBindSparseInfo VkDeviceGroupBindSparseInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`resource_device_index`] is a device index indicating which instance of the resource is
 ///   bound.
 /// - [`memory_device_index`] is a device index indicating which instance of the memory the resource
 ///   instance is bound to.
-/// # Description
-/// These device indices apply to all buffer and image memory binds included in
-/// the batch pointing to this structure.
-/// The semaphore waits and signals for the batch are executed only by the
-/// physical device specified by the [`resource_device_index`].If this structure is not present,
+///# Description
+///These device indices apply to all buffer and image memory binds included in
+///the batch pointing to this structure.
+///The semaphore waits and signals for the batch are executed only by the
+///physical device specified by the [`resource_device_index`].If this structure is not present,
 /// [`resource_device_index`] and
-/// [`memory_device_index`] are assumed to be zero.
-/// ## Valid Usage
+///[`memory_device_index`] are assumed to be zero.
+///## Valid Usage
 /// - [`resource_device_index`] and [`memory_device_index`] **must**  both be valid device indices
 /// - Each memory allocation bound in this batch  **must**  have allocated an instance for
 ///   [`memory_device_index`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupBindSparseInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18259,7 +19356,12 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -18295,22 +19397,42 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
         &mut self.memory_device_index
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::resource_device_index`]
-    pub fn set_resource_device_index(mut self, value: u32) -> Self {
+    pub fn set_resource_device_index(&mut self, value: u32) -> &mut Self {
         self.resource_device_index = value;
         self
     }
     ///Sets the value of [`Self::memory_device_index`]
-    pub fn set_memory_device_index(mut self, value: u32) -> Self {
+    pub fn set_memory_device_index(&mut self, value: u32) -> &mut Self {
+        self.memory_device_index = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::resource_device_index`]
+    pub fn with_resource_device_index(mut self, value: u32) -> Self {
+        self.resource_device_index = value;
+        self
+    }
+    ///Sets the value of [`Self::memory_device_index`]
+    pub fn with_memory_device_index(mut self, value: u32) -> Self {
         self.memory_device_index = value;
         self
     }
@@ -18330,55 +19452,55 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
 ///    const VkPhysicalDevice*    pPhysicalDevices;
 ///} VkDeviceGroupDeviceCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_device_group_creation
 ///typedef VkDeviceGroupDeviceCreateInfo VkDeviceGroupDeviceCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`physical_device_count`] is the number of elements in the [`physical_devices`] array.
 /// - [`physical_devices`] is a pointer to an array of physical device handles belonging to the same
 ///   device group.
-/// # Description
-/// The elements of the [`physical_devices`] array are an ordered list of the
-/// physical devices that the logical device represents.
-/// These  **must**  be a subset of a single device group, and need not be in the
-/// same order as they were enumerated.
-/// The order of the physical devices in the [`physical_devices`] array
-/// determines the *device index* of each physical device, with element i
-/// being assigned a device index of i.
-/// Certain commands and structures refer to one or more physical devices by
-/// using device indices or *device masks* formed using device indices.A logical device created
+///# Description
+///The elements of the [`physical_devices`] array are an ordered list of the
+///physical devices that the logical device represents.
+///These  **must**  be a subset of a single device group, and need not be in the
+///same order as they were enumerated.
+///The order of the physical devices in the [`physical_devices`] array
+///determines the *device index* of each physical device, with element i
+///being assigned a device index of i.
+///Certain commands and structures refer to one or more physical devices by
+///using device indices or *device masks* formed using device indices.A logical device created
 /// without using [`DeviceGroupDeviceCreateInfo`],
-/// or with [`physical_device_count`] equal to zero, is equivalent to a
-/// [`physical_device_count`] of one and [`physical_devices`] pointing to the
-/// `physicalDevice` parameter to [`create_device`].
-/// In particular, the device index of that physical device is zero.
-/// ## Valid Usage
+///or with [`physical_device_count`] equal to zero, is equivalent to a
+///[`physical_device_count`] of one and [`physical_devices`] pointing to the
+///`physicalDevice` parameter to [`create_device`].
+///In particular, the device index of that physical device is zero.
+///## Valid Usage
 /// - Each element of [`physical_devices`] **must**  be unique
 /// - All elements of [`physical_devices`] **must**  be in the same device group as enumerated by
 ///   [`enumerate_physical_device_groups`]
 /// - If [`physical_device_count`] is not `0`, the `physicalDevice` parameter of [`create_device`]
 ///   **must**  be an element of [`physical_devices`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO`
 /// - If [`physical_device_count`] is not `0`, [`physical_devices`] **must**  be a valid pointer to
 ///   an array of [`physical_device_count`] valid [`PhysicalDevice`] handles
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PhysicalDevice`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupDeviceCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18418,12 +19540,22 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
         self.physical_devices
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::physical_devices`]
-    pub fn set_physical_devices_raw(mut self, value: *const PhysicalDevice) -> Self {
+    pub fn set_physical_devices_raw(&mut self, value: *const PhysicalDevice) -> &mut Self {
+        self.physical_devices = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::physical_devices`]
+    pub fn with_physical_devices_raw(mut self, value: *const PhysicalDevice) -> Self {
         self.physical_devices = value;
         self
     }
@@ -18458,22 +19590,45 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
         &mut self.physical_device_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::physical_device_count`]
-    pub fn set_physical_device_count(mut self, value: u32) -> Self {
+    pub fn set_physical_device_count(&mut self, value: u32) -> &mut Self {
         self.physical_device_count = value;
         self
     }
     ///Sets the value of [`Self::physical_devices`]
-    pub fn set_physical_devices(mut self, value: &'lt [crate::vulkan1_0::PhysicalDevice]) -> Self {
+    pub fn set_physical_devices(&mut self, value: &'lt [crate::vulkan1_0::PhysicalDevice]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.physical_devices = value.as_ptr();
+        self.physical_device_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::physical_device_count`]
+    pub fn with_physical_device_count(mut self, value: u32) -> Self {
+        self.physical_device_count = value;
+        self
+    }
+    ///Sets the value of [`Self::physical_devices`]
+    pub fn with_physical_devices(mut self, value: &'lt [crate::vulkan1_0::PhysicalDevice]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.physical_devices = value.as_ptr();
@@ -18495,12 +19650,12 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
 ///    size_t              stride;
 ///} VkDescriptorUpdateTemplateEntry;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///typedef VkDescriptorUpdateTemplateEntry VkDescriptorUpdateTemplateEntryKHR;
 ///```
-/// # Members
+///# Members
 /// - [`dst_binding`] is the descriptor binding to update when using this descriptor update
 ///   template.
 /// - [`dst_array_element`] is the starting element in the array belonging to [`dst_binding`]. If
@@ -18524,8 +19679,8 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
 ///   [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` then the value of [`stride`]
 ///   is ignored and the stride is assumed to be `1`, i.e. the descriptor update information for
 ///   them is always specified as a contiguous range.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`dst_binding`] **must**  be a valid binding in the descriptor set layout implicitly specified
 ///   when using a descriptor update template to update descriptors
 /// -  [`dst_array_element`] and [`descriptor_count`] **must**  be less than or equal to the number of array elements in the descriptor set binding implicitly specified when using a descriptor update template to update descriptors, and all applicable consecutive bindings, as described by [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-updates-consecutive](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-updates-consecutive)
@@ -18534,20 +19689,20 @@ impl<'lt> DeviceGroupDeviceCreateInfo<'lt> {
 /// - If `descriptor` type is `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK`, [`descriptor_count`]
 ///   **must**  be an integer multiple of `4`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`descriptor_type`] **must**  be a valid [`DescriptorType`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorType`]
 /// - [`DescriptorUpdateTemplateCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateEntry")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -18656,32 +19811,62 @@ impl DescriptorUpdateTemplateEntry {
         &mut self.stride
     }
     ///Sets the value of [`Self::dst_binding`]
-    pub fn set_dst_binding(mut self, value: u32) -> Self {
+    pub fn set_dst_binding(&mut self, value: u32) -> &mut Self {
         self.dst_binding = value;
         self
     }
     ///Sets the value of [`Self::dst_array_element`]
-    pub fn set_dst_array_element(mut self, value: u32) -> Self {
+    pub fn set_dst_array_element(&mut self, value: u32) -> &mut Self {
         self.dst_array_element = value;
         self
     }
     ///Sets the value of [`Self::descriptor_count`]
-    pub fn set_descriptor_count(mut self, value: u32) -> Self {
+    pub fn set_descriptor_count(&mut self, value: u32) -> &mut Self {
         self.descriptor_count = value;
         self
     }
     ///Sets the value of [`Self::descriptor_type`]
-    pub fn set_descriptor_type(mut self, value: crate::vulkan1_0::DescriptorType) -> Self {
+    pub fn set_descriptor_type(&mut self, value: crate::vulkan1_0::DescriptorType) -> &mut Self {
         self.descriptor_type = value;
         self
     }
     ///Sets the value of [`Self::offset`]
-    pub fn set_offset(mut self, value: usize) -> Self {
+    pub fn set_offset(&mut self, value: usize) -> &mut Self {
         self.offset = value;
         self
     }
     ///Sets the value of [`Self::stride`]
-    pub fn set_stride(mut self, value: usize) -> Self {
+    pub fn set_stride(&mut self, value: usize) -> &mut Self {
+        self.stride = value;
+        self
+    }
+    ///Sets the value of [`Self::dst_binding`]
+    pub fn with_dst_binding(mut self, value: u32) -> Self {
+        self.dst_binding = value;
+        self
+    }
+    ///Sets the value of [`Self::dst_array_element`]
+    pub fn with_dst_array_element(mut self, value: u32) -> Self {
+        self.dst_array_element = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_count`]
+    pub fn with_descriptor_count(mut self, value: u32) -> Self {
+        self.descriptor_count = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_type`]
+    pub fn with_descriptor_type(mut self, value: crate::vulkan1_0::DescriptorType) -> Self {
+        self.descriptor_type = value;
+        self
+    }
+    ///Sets the value of [`Self::offset`]
+    pub fn with_offset(mut self, value: usize) -> Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the value of [`Self::stride`]
+    pub fn with_stride(mut self, value: usize) -> Self {
         self.stride = value;
         self
     }
@@ -18704,12 +19889,12 @@ impl DescriptorUpdateTemplateEntry {
 ///    uint32_t                                  set;
 ///} VkDescriptorUpdateTemplateCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///typedef VkDescriptorUpdateTemplateCreateInfo VkDescriptorUpdateTemplateCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
@@ -18737,8 +19922,8 @@ impl DescriptorUpdateTemplateEntry {
 /// - [`set`] is the set number of the descriptor set in the pipeline layout that will be updated.
 ///   This parameter is ignored if [`template_type`] is not
 ///   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`template_type`] is `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET`,
 ///   [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
 /// - If [`template_type`] is `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`,
@@ -18752,7 +19937,7 @@ impl DescriptorUpdateTemplateEntry {
 ///   [`descriptor_set_layout`] **must**  not contain a binding with type
 ///   `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
@@ -18763,7 +19948,7 @@ impl DescriptorUpdateTemplateEntry {
 /// - Both of [`descriptor_set_layout`], and [`pipeline_layout`] that are valid handles of
 ///   non-ignored parameters  **must**  have been created, allocated, or retrieved from the same
 ///   [`Device`]
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DescriptorSetLayout`]
 /// - [`DescriptorUpdateTemplateCreateFlags`]
@@ -18775,13 +19960,13 @@ impl DescriptorUpdateTemplateEntry {
 /// - [`create_descriptor_update_template`]
 /// - [`create_descriptor_update_template_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -18861,12 +20046,22 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
         self.descriptor_update_entries
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::descriptor_update_entries`]
-    pub fn set_descriptor_update_entries_raw(mut self, value: *const DescriptorUpdateTemplateEntry) -> Self {
+    pub fn set_descriptor_update_entries_raw(&mut self, value: *const DescriptorUpdateTemplateEntry) -> &mut Self {
+        self.descriptor_update_entries = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_update_entries`]
+    pub fn with_descriptor_update_entries_raw(mut self, value: *const DescriptorUpdateTemplateEntry) -> Self {
         self.descriptor_update_entries = value;
         self
     }
@@ -18952,27 +20147,83 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
         &mut self.set
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateCreateFlags) -> Self {
+    pub fn set_flags(&mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateCreateFlags) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::descriptor_update_entry_count`]
-    pub fn set_descriptor_update_entry_count(mut self, value: u32) -> Self {
+    pub fn set_descriptor_update_entry_count(&mut self, value: u32) -> &mut Self {
         self.descriptor_update_entry_count = value;
         self
     }
     ///Sets the value of [`Self::descriptor_update_entries`]
     pub fn set_descriptor_update_entries(
+        &mut self,
+        value: &'lt [crate::vulkan1_1::DescriptorUpdateTemplateEntry],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.descriptor_update_entries = value.as_ptr();
+        self.descriptor_update_entry_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::template_type`]
+    pub fn set_template_type(&mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateType) -> &mut Self {
+        self.template_type = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_set_layout`]
+    pub fn set_descriptor_set_layout(&mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> &mut Self {
+        self.descriptor_set_layout = value;
+        self
+    }
+    ///Sets the value of [`Self::pipeline_bind_point`]
+    pub fn set_pipeline_bind_point(&mut self, value: crate::vulkan1_0::PipelineBindPoint) -> &mut Self {
+        self.pipeline_bind_point = value;
+        self
+    }
+    ///Sets the value of [`Self::pipeline_layout`]
+    pub fn set_pipeline_layout(&mut self, value: crate::vulkan1_0::PipelineLayout) -> &mut Self {
+        self.pipeline_layout = value;
+        self
+    }
+    ///Sets the value of [`Self::set`]
+    pub fn set_set(&mut self, value: u32) -> &mut Self {
+        self.set = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateCreateFlags) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_update_entry_count`]
+    pub fn with_descriptor_update_entry_count(mut self, value: u32) -> Self {
+        self.descriptor_update_entry_count = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_update_entries`]
+    pub fn with_descriptor_update_entries(
         mut self,
         value: &'lt [crate::vulkan1_1::DescriptorUpdateTemplateEntry],
     ) -> Self {
@@ -18983,27 +20234,27 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
         self
     }
     ///Sets the value of [`Self::template_type`]
-    pub fn set_template_type(mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateType) -> Self {
+    pub fn with_template_type(mut self, value: crate::vulkan1_1::DescriptorUpdateTemplateType) -> Self {
         self.template_type = value;
         self
     }
     ///Sets the value of [`Self::descriptor_set_layout`]
-    pub fn set_descriptor_set_layout(mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> Self {
+    pub fn with_descriptor_set_layout(mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> Self {
         self.descriptor_set_layout = value;
         self
     }
     ///Sets the value of [`Self::pipeline_bind_point`]
-    pub fn set_pipeline_bind_point(mut self, value: crate::vulkan1_0::PipelineBindPoint) -> Self {
+    pub fn with_pipeline_bind_point(mut self, value: crate::vulkan1_0::PipelineBindPoint) -> Self {
         self.pipeline_bind_point = value;
         self
     }
     ///Sets the value of [`Self::pipeline_layout`]
-    pub fn set_pipeline_layout(mut self, value: crate::vulkan1_0::PipelineLayout) -> Self {
+    pub fn with_pipeline_layout(mut self, value: crate::vulkan1_0::PipelineLayout) -> Self {
         self.pipeline_layout = value;
         self
     }
     ///Sets the value of [`Self::set`]
-    pub fn set_set(mut self, value: u32) -> Self {
+    pub fn with_set(mut self, value: u32) -> Self {
         self.set = value;
         self
     }
@@ -19019,45 +20270,45 @@ impl<'lt> DescriptorUpdateTemplateCreateInfo<'lt> {
 ///    VkImageAspectFlags    aspectMask;
 ///} VkInputAttachmentAspectReference;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkInputAttachmentAspectReference VkInputAttachmentAspectReferenceKHR;
 ///```
-/// # Members
+///# Members
 /// - [`subpass`] is an index into the `pSubpasses` array of the parent [`RenderPassCreateInfo`]
 ///   structure.
 /// - [`input_attachment_index`] is an index into the `pInputAttachments` of the specified subpass.
 /// - [`aspect_mask`] is a mask of which aspect(s)  **can**  be accessed within the specified
 ///   subpass.
-/// # Description
-/// This structure specifies an aspect mask for a specific input attachment of a
-/// specific subpass in the render pass.[`subpass`] and [`input_attachment_index`] index into the
+///# Description
+///This structure specifies an aspect mask for a specific input attachment of a
+///specific subpass in the render pass.[`subpass`] and [`input_attachment_index`] index into the
 /// render pass as:
-/// ```c
+///```c
 ///pCreateInfo->pSubpasses[subpass].pInputAttachments[inputAttachmentIndex]
 ///```
-/// 
-/// ## Valid Usage
+///
+///## Valid Usage
 /// - [`aspect_mask`] **must**  not include `VK_IMAGE_ASPECT_METADATA_BIT`
 /// - [`aspect_mask`] **must**  not include `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` for any index
 ///   *i*
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`aspect_mask`] **must**  be a valid combination of [`ImageAspectFlagBits`] values
 /// - [`aspect_mask`] **must**  not be `0`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageAspectFlags`]
 /// - [`RenderPassInputAttachmentAspectCreateInfo`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkInputAttachmentAspectReference")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -19108,17 +20359,32 @@ impl InputAttachmentAspectReference {
         &mut self.aspect_mask
     }
     ///Sets the value of [`Self::subpass`]
-    pub fn set_subpass(mut self, value: u32) -> Self {
+    pub fn set_subpass(&mut self, value: u32) -> &mut Self {
         self.subpass = value;
         self
     }
     ///Sets the value of [`Self::input_attachment_index`]
-    pub fn set_input_attachment_index(mut self, value: u32) -> Self {
+    pub fn set_input_attachment_index(&mut self, value: u32) -> &mut Self {
         self.input_attachment_index = value;
         self
     }
     ///Sets the value of [`Self::aspect_mask`]
-    pub fn set_aspect_mask(mut self, value: crate::vulkan1_0::ImageAspectFlags) -> Self {
+    pub fn set_aspect_mask(&mut self, value: crate::vulkan1_0::ImageAspectFlags) -> &mut Self {
+        self.aspect_mask = value;
+        self
+    }
+    ///Sets the value of [`Self::subpass`]
+    pub fn with_subpass(mut self, value: u32) -> Self {
+        self.subpass = value;
+        self
+    }
+    ///Sets the value of [`Self::input_attachment_index`]
+    pub fn with_input_attachment_index(mut self, value: u32) -> Self {
+        self.input_attachment_index = value;
+        self
+    }
+    ///Sets the value of [`Self::aspect_mask`]
+    pub fn with_aspect_mask(mut self, value: crate::vulkan1_0::ImageAspectFlags) -> Self {
         self.aspect_mask = value;
         self
     }
@@ -19136,13 +20402,13 @@ impl InputAttachmentAspectReference {
 ///    const VkInputAttachmentAspectReference*    pAspectReferences;
 ///} VkRenderPassInputAttachmentAspectCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkRenderPassInputAttachmentAspectCreateInfo
 /// VkRenderPassInputAttachmentAspectCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`aspect_reference_count`] is the number of elements in the [`aspect_references`] array.
@@ -19150,31 +20416,31 @@ impl InputAttachmentAspectReference {
 ///   [`aspect_reference_count`][`InputAttachmentAspectReference`] structures containing a mask
 ///   describing which aspect(s)  **can**  be accessed for a given input attachment within a given
 ///   subpass.
-/// # Description
-/// To specify which aspects of an input attachment  **can**  be read, add a
-/// [`RenderPassInputAttachmentAspectCreateInfo`] structure to the
-/// [`p_next`] chain of the [`RenderPassCreateInfo`] structure:An application  **can**  access any
+///# Description
+///To specify which aspects of an input attachment  **can**  be read, add a
+///[`RenderPassInputAttachmentAspectCreateInfo`] structure to the
+///[`p_next`] chain of the [`RenderPassCreateInfo`] structure:An application  **can**  access any
 /// aspect of an input attachment that does not
-/// have a specified aspect mask in the [`aspect_references`] array.
-/// Otherwise, an application  **must**  not access aspect(s) of an input attachment
-/// other than those in its specified aspect mask.
-/// ## Valid Usage (Implicit)
+///have a specified aspect mask in the [`aspect_references`] array.
+///Otherwise, an application  **must**  not access aspect(s) of an input attachment
+///other than those in its specified aspect mask.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO`
 /// - [`aspect_references`] **must**  be a valid pointer to an array of [`aspect_reference_count`]
 ///   valid [`InputAttachmentAspectReference`] structures
 /// - [`aspect_reference_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`InputAttachmentAspectReference`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassInputAttachmentAspectCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19216,12 +20482,22 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
         self.aspect_references
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::aspect_references`]
-    pub fn set_aspect_references_raw(mut self, value: *const InputAttachmentAspectReference) -> Self {
+    pub fn set_aspect_references_raw(&mut self, value: *const InputAttachmentAspectReference) -> &mut Self {
+        self.aspect_references = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::aspect_references`]
+    pub fn with_aspect_references_raw(mut self, value: *const InputAttachmentAspectReference) -> Self {
         self.aspect_references = value;
         self
     }
@@ -19256,22 +20532,48 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
         &mut self.aspect_reference_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::aspect_reference_count`]
-    pub fn set_aspect_reference_count(mut self, value: u32) -> Self {
+    pub fn set_aspect_reference_count(&mut self, value: u32) -> &mut Self {
         self.aspect_reference_count = value;
         self
     }
     ///Sets the value of [`Self::aspect_references`]
-    pub fn set_aspect_references(mut self, value: &'lt [crate::vulkan1_1::InputAttachmentAspectReference]) -> Self {
+    pub fn set_aspect_references(
+        &mut self,
+        value: &'lt [crate::vulkan1_1::InputAttachmentAspectReference],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.aspect_references = value.as_ptr();
+        self.aspect_reference_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::aspect_reference_count`]
+    pub fn with_aspect_reference_count(mut self, value: u32) -> Self {
+        self.aspect_reference_count = value;
+        self
+    }
+    ///Sets the value of [`Self::aspect_references`]
+    pub fn with_aspect_references(mut self, value: &'lt [crate::vulkan1_1::InputAttachmentAspectReference]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.aspect_references = value.as_ptr();
@@ -19293,14 +20595,14 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
 ///    VkBool32           storageInputOutput16;
 ///} VkPhysicalDevice16BitStorageFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_16bit_storage
 ///typedef VkPhysicalDevice16BitStorageFeatures VkPhysicalDevice16BitStorageFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -19325,27 +20627,27 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
 ///   not enabled, 16-bit integer or 16-bit floating-point members  **must**  not be used in such
 ///   objects. This also specifies whether shader modules  **can**  declare the
 ///   `StorageInputOutput16` capability.
-/// If the [`PhysicalDevice16BitStorageFeatures`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDevice16BitStorageFeatures`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevice16BitStorageFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevice16BitStorageFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice16BitStorageFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19428,27 +20730,52 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
         self.storage_input_output16
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::storage_buffer16_bit_access`]
-    pub fn set_storage_buffer16_bit_access_raw(mut self, value: Bool32) -> Self {
+    pub fn set_storage_buffer16_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
         self.storage_buffer16_bit_access = value;
         self
     }
     ///Sets the raw value of [`Self::uniform_and_storage_buffer16_bit_access`]
-    pub fn set_uniform_and_storage_buffer16_bit_access_raw(mut self, value: Bool32) -> Self {
+    pub fn set_uniform_and_storage_buffer16_bit_access_raw(&mut self, value: Bool32) -> &mut Self {
         self.uniform_and_storage_buffer16_bit_access = value;
         self
     }
     ///Sets the raw value of [`Self::storage_push_constant16`]
-    pub fn set_storage_push_constant16_raw(mut self, value: Bool32) -> Self {
+    pub fn set_storage_push_constant16_raw(&mut self, value: Bool32) -> &mut Self {
         self.storage_push_constant16 = value;
         self
     }
     ///Sets the raw value of [`Self::storage_input_output16`]
-    pub fn set_storage_input_output16_raw(mut self, value: Bool32) -> Self {
+    pub fn set_storage_input_output16_raw(&mut self, value: Bool32) -> &mut Self {
+        self.storage_input_output16 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_buffer16_bit_access`]
+    pub fn with_storage_buffer16_bit_access_raw(mut self, value: Bool32) -> Self {
+        self.storage_buffer16_bit_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::uniform_and_storage_buffer16_bit_access`]
+    pub fn with_uniform_and_storage_buffer16_bit_access_raw(mut self, value: Bool32) -> Self {
+        self.uniform_and_storage_buffer16_bit_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_push_constant16`]
+    pub fn with_storage_push_constant16_raw(mut self, value: Bool32) -> Self {
+        self.storage_push_constant16 = value;
+        self
+    }
+    ///Sets the raw value of [`Self::storage_input_output16`]
+    pub fn with_storage_input_output16_raw(mut self, value: Bool32) -> Self {
         self.storage_input_output16 = value;
         self
     }
@@ -19563,32 +20890,62 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::storage_buffer16_bit_access`]
-    pub fn set_storage_buffer16_bit_access(mut self, value: bool) -> Self {
+    pub fn set_storage_buffer16_bit_access(&mut self, value: bool) -> &mut Self {
         self.storage_buffer16_bit_access = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::uniform_and_storage_buffer16_bit_access`]
-    pub fn set_uniform_and_storage_buffer16_bit_access(mut self, value: bool) -> Self {
+    pub fn set_uniform_and_storage_buffer16_bit_access(&mut self, value: bool) -> &mut Self {
         self.uniform_and_storage_buffer16_bit_access = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::storage_push_constant16`]
-    pub fn set_storage_push_constant16(mut self, value: bool) -> Self {
+    pub fn set_storage_push_constant16(&mut self, value: bool) -> &mut Self {
         self.storage_push_constant16 = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::storage_input_output16`]
-    pub fn set_storage_input_output16(mut self, value: bool) -> Self {
+    pub fn set_storage_input_output16(&mut self, value: bool) -> &mut Self {
+        self.storage_input_output16 = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::storage_buffer16_bit_access`]
+    pub fn with_storage_buffer16_bit_access(mut self, value: bool) -> Self {
+        self.storage_buffer16_bit_access = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::uniform_and_storage_buffer16_bit_access`]
+    pub fn with_uniform_and_storage_buffer16_bit_access(mut self, value: bool) -> Self {
+        self.uniform_and_storage_buffer16_bit_access = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::storage_push_constant16`]
+    pub fn with_storage_push_constant16(mut self, value: bool) -> Self {
+        self.storage_push_constant16 = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::storage_input_output16`]
+    pub fn with_storage_input_output16(mut self, value: bool) -> Self {
         self.storage_input_output16 = value as u8 as u32;
         self
     }
@@ -19607,10 +20964,10 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
 ///    VkBool32                  quadOperationsInAllStages;
 ///} VkPhysicalDeviceSubgroupProperties;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`subgroup_size`] is the default number of invocations in each subgroup. [`subgroup_size`] is
 ///   at least 1 if any of the physical device’s queues support `VK_QUEUE_GRAPHICS_BIT` or
 ///   `VK_QUEUE_COMPUTE_BIT`. [`subgroup_size`] is a power-of-two.
@@ -19618,28 +20975,28 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
 /// - [`supported_operations`] is a bitmask of [`SubgroupFeatureFlagBits`] specifying the sets of [group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-group-operations) with [subgroup scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-subgroup) supported on this device. [`supported_operations`] will have the `VK_SUBGROUP_FEATURE_BASIC_BIT` bit set if any of the physical device’s queues support `VK_QUEUE_GRAPHICS_BIT` or `VK_QUEUE_COMPUTE_BIT`.
 /// - [`quad_operations_in_all_stages`] is a boolean specifying whether [quad group operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-quad-operations)
 ///   are available in all stages, or are restricted to fragment and compute stages.
-/// If the [`PhysicalDeviceSubgroupProperties`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.If [`supported_operations`] includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`,](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subgroup-quad)
-/// or [`shaderSubgroupUniformControlFlow`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderSubgroupUniformControlFlow) is enabled,
-/// [`subgroup_size`] **must**  be greater than or equal to 4.
-/// ## Valid Usage (Implicit)
+///If the [`PhysicalDeviceSubgroupProperties`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.If [`supported_operations`] includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`,](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-subgroup-quad)
+///or [`shaderSubgroupUniformControlFlow`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-shaderSubgroupUniformControlFlow) is enabled,
+///[`subgroup_size`] **must**  be greater than or equal to 4.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 /// - [`SubgroupFeatureFlags`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19683,12 +21040,22 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
         self.quad_operations_in_all_stages
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::quad_operations_in_all_stages`]
-    pub fn set_quad_operations_in_all_stages_raw(mut self, value: Bool32) -> Self {
+    pub fn set_quad_operations_in_all_stages_raw(&mut self, value: Bool32) -> &mut Self {
+        self.quad_operations_in_all_stages = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::quad_operations_in_all_stages`]
+    pub fn with_quad_operations_in_all_stages_raw(mut self, value: Bool32) -> Self {
         self.quad_operations_in_all_stages = value;
         self
     }
@@ -19761,32 +21128,62 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::subgroup_size`]
-    pub fn set_subgroup_size(mut self, value: u32) -> Self {
+    pub fn set_subgroup_size(&mut self, value: u32) -> &mut Self {
         self.subgroup_size = value;
         self
     }
     ///Sets the value of [`Self::supported_stages`]
-    pub fn set_supported_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
+    pub fn set_supported_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
         self.supported_stages = value;
         self
     }
     ///Sets the value of [`Self::supported_operations`]
-    pub fn set_supported_operations(mut self, value: crate::vulkan1_1::SubgroupFeatureFlags) -> Self {
+    pub fn set_supported_operations(&mut self, value: crate::vulkan1_1::SubgroupFeatureFlags) -> &mut Self {
         self.supported_operations = value;
         self
     }
     ///Sets the value of [`Self::quad_operations_in_all_stages`]
-    pub fn set_quad_operations_in_all_stages(mut self, value: bool) -> Self {
+    pub fn set_quad_operations_in_all_stages(&mut self, value: bool) -> &mut Self {
+        self.quad_operations_in_all_stages = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::subgroup_size`]
+    pub fn with_subgroup_size(mut self, value: u32) -> Self {
+        self.subgroup_size = value;
+        self
+    }
+    ///Sets the value of [`Self::supported_stages`]
+    pub fn with_supported_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
+        self.supported_stages = value;
+        self
+    }
+    ///Sets the value of [`Self::supported_operations`]
+    pub fn with_supported_operations(mut self, value: crate::vulkan1_1::SubgroupFeatureFlags) -> Self {
+        self.supported_operations = value;
+        self
+    }
+    ///Sets the value of [`Self::quad_operations_in_all_stages`]
+    pub fn with_quad_operations_in_all_stages(mut self, value: bool) -> Self {
         self.quad_operations_in_all_stages = value as u8 as u32;
         self
     }
@@ -19802,34 +21199,34 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
 ///    VkBuffer           buffer;
 ///} VkBufferMemoryRequirementsInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///typedef VkBufferMemoryRequirementsInfo2 VkBufferMemoryRequirementsInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is the buffer to query.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`buffer`] **must**  be a valid [`Buffer`] handle
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Buffer`]
 /// - [`StructureType`]
 /// - [`get_buffer_memory_requirements2`]
 /// - [`get_buffer_memory_requirements2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19860,7 +21257,12 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -19888,17 +21290,32 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
         &mut self.buffer
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::buffer`]
-    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::buffer`]
+    pub fn with_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }
@@ -19914,17 +21331,17 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 ///    VkImage            image;
 ///} VkImageMemoryRequirementsInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///typedef VkImageMemoryRequirementsInfo2 VkImageMemoryRequirementsInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image`] is the image to query.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`image`] was created with a *multi-planar* format and the `VK_IMAGE_CREATE_DISJOINT_BIT`
 ///   flag, there  **must**  be a [`ImagePlaneMemoryRequirementsInfo`] included in the [`p_next`]
 ///   chain of the [`ImageMemoryRequirementsInfo2`] structure
@@ -19943,26 +21360,26 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` external memory handle
 ///   type, then [`image`] **must**  be bound to memory
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`ImagePlaneMemoryRequirementsInfo`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 /// - [`image`] **must**  be a valid [`Image`] handle
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Image`]
 /// - [`StructureType`]
 /// - [`get_image_memory_requirements2`]
 /// - [`get_image_memory_requirements2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -19993,7 +21410,12 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20021,17 +21443,32 @@ impl<'lt> ImageMemoryRequirementsInfo2<'lt> {
         &mut self.image
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::image`]
-    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::image`]
+    pub fn with_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.image = value;
         self
     }
@@ -20063,34 +21500,34 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkImage            image;
 ///} VkImageSparseMemoryRequirementsInfo2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///typedef VkImageSparseMemoryRequirementsInfo2 VkImageSparseMemoryRequirementsInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image`] is the image to query.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`image`] **must**  be a valid [`Image`] handle
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Image`]
 /// - [`StructureType`]
 /// - [`get_image_sparse_memory_requirements2`]
 /// - [`get_image_sparse_memory_requirements2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageSparseMemoryRequirementsInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20121,7 +21558,12 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20149,17 +21591,32 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
         &mut self.image
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::image`]
-    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
+        self.image = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::image`]
+    pub fn with_image(mut self, value: crate::vulkan1_0::Image) -> Self {
         self.image = value;
         self
     }
@@ -20175,23 +21632,23 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 ///    VkMemoryRequirements    memoryRequirements;
 ///} VkMemoryRequirements2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2, VK_NV_ray_tracing
 ///typedef VkMemoryRequirements2 VkMemoryRequirements2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_requirements`] is a [`MemoryRequirements`] structure describing the memory
 ///   requirements of the resource.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`MemoryDedicatedRequirements`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`MemoryRequirements`]
 /// - [`StructureType`]
@@ -20206,13 +21663,13 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 /// - [`get_image_memory_requirements2`]
 /// - [`get_image_memory_requirements2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryRequirements2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20244,7 +21701,12 @@ impl<'lt> MemoryRequirements2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20279,17 +21741,32 @@ impl<'lt> MemoryRequirements2<'lt> {
         &mut self.memory_requirements
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::memory_requirements`]
-    pub fn set_memory_requirements(mut self, value: crate::vulkan1_0::MemoryRequirements) -> Self {
+    pub fn set_memory_requirements(&mut self, value: crate::vulkan1_0::MemoryRequirements) -> &mut Self {
+        self.memory_requirements = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::memory_requirements`]
+    pub fn with_memory_requirements(mut self, value: crate::vulkan1_0::MemoryRequirements) -> Self {
         self.memory_requirements = value;
         self
     }
@@ -20321,21 +21798,21 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkSparseImageMemoryRequirements    memoryRequirements;
 ///} VkSparseImageMemoryRequirements2;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_get_memory_requirements2
 ///typedef VkSparseImageMemoryRequirements2 VkSparseImageMemoryRequirements2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory_requirements`] is a [`SparseImageMemoryRequirements`] structure describing the memory
 ///   requirements of the sparse image.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SparseImageMemoryRequirements`]
 /// - [`StructureType`]
@@ -20344,13 +21821,13 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// - [`get_image_sparse_memory_requirements2`]
 /// - [`get_image_sparse_memory_requirements2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageMemoryRequirements2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20382,7 +21859,12 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20417,17 +21899,32 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
         &mut self.memory_requirements
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::memory_requirements`]
-    pub fn set_memory_requirements(mut self, value: crate::vulkan1_0::SparseImageMemoryRequirements) -> Self {
+    pub fn set_memory_requirements(&mut self, value: crate::vulkan1_0::SparseImageMemoryRequirements) -> &mut Self {
+        self.memory_requirements = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::memory_requirements`]
+    pub fn with_memory_requirements(mut self, value: crate::vulkan1_0::SparseImageMemoryRequirements) -> Self {
         self.memory_requirements = value;
         self
     }
@@ -20443,36 +21940,36 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
 ///    VkPointClippingBehavior    pointClippingBehavior;
 ///} VkPhysicalDevicePointClippingProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkPhysicalDevicePointClippingProperties VkPhysicalDevicePointClippingPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`point_clipping_behavior`] is a [`PointClippingBehavior`] value specifying the point clipping
 ///   behavior supported by the implementation.
-/// If the [`PhysicalDevicePointClippingProperties`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDevicePointClippingProperties`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`PointClippingBehavior`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePointClippingProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20503,7 +22000,12 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20538,17 +22040,32 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
         &mut self.point_clipping_behavior
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::point_clipping_behavior`]
-    pub fn set_point_clipping_behavior(mut self, value: crate::vulkan1_1::PointClippingBehavior) -> Self {
+    pub fn set_point_clipping_behavior(&mut self, value: crate::vulkan1_1::PointClippingBehavior) -> &mut Self {
+        self.point_clipping_behavior = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::point_clipping_behavior`]
+    pub fn with_point_clipping_behavior(mut self, value: crate::vulkan1_1::PointClippingBehavior) -> Self {
         self.point_clipping_behavior = value;
         self
     }
@@ -20565,12 +22082,12 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 ///    VkBool32           requiresDedicatedAllocation;
 ///} VkMemoryDedicatedRequirements;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dedicated_allocation
 ///typedef VkMemoryDedicatedRequirements VkMemoryDedicatedRequirementsKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`prefers_dedicated_allocation`] specifies that the implementation would prefer a dedicated
@@ -20578,12 +22095,12 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 ///   **may**  get better performance if a dedicated allocation is used.
 /// - [`requires_dedicated_allocation`] specifies that a dedicated allocation is required for this
 ///   resource.
-/// # Description
-/// To determine the dedicated allocation requirements of a buffer or image
-/// resource, add a [`MemoryDedicatedRequirements`] structure to the
-/// [`p_next`] chain of the [`MemoryRequirements2`] structure passed as the
-/// `pMemoryRequirements` parameter of [`get_buffer_memory_requirements2`]
-/// or [`get_image_memory_requirements2`], respectively.Constraints on the values returned for
+///# Description
+///To determine the dedicated allocation requirements of a buffer or image
+///resource, add a [`MemoryDedicatedRequirements`] structure to the
+///[`p_next`] chain of the [`MemoryRequirements2`] structure passed as the
+///`pMemoryRequirements` parameter of [`get_buffer_memory_requirements2`]
+///or [`get_image_memory_requirements2`], respectively.Constraints on the values returned for
 /// buffer resources are:
 /// - [`requires_dedicated_allocation`] **may**  be [`TRUE`] if the [`p_next`] chain of
 ///   [`BufferCreateInfo`] for the call to [`create_buffer`] used to create the buffer being queried
@@ -20597,7 +22114,7 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 /// - If `VK_BUFFER_CREATE_SPARSE_BINDING_BIT` was set in [`BufferCreateInfo::flags`] when `buffer`
 ///   was created, then both [`prefers_dedicated_allocation`] and [`requires_dedicated_allocation`]
 ///   will be [`FALSE`].
-/// Constraints on the values returned for image resources are:
+///Constraints on the values returned for image resources are:
 /// - [`requires_dedicated_allocation`] **may**  be [`TRUE`] if the [`p_next`] chain of
 ///   [`ImageCreateInfo`] for the call to [`create_image`] used to create the image being queried
 ///   included a [`ExternalMemoryImageCreateInfo`] structure, and any of the handle types specified
@@ -20609,20 +22126,20 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 ///   created, then both [`prefers_dedicated_allocation`] and [`requires_dedicated_allocation`] will
 ///   be [`FALSE`].
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryDedicatedRequirements")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20668,17 +22185,32 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
         self.requires_dedicated_allocation
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::prefers_dedicated_allocation`]
-    pub fn set_prefers_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
+    pub fn set_prefers_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
         self.prefers_dedicated_allocation = value;
         self
     }
     ///Sets the raw value of [`Self::requires_dedicated_allocation`]
-    pub fn set_requires_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
+    pub fn set_requires_dedicated_allocation_raw(&mut self, value: Bool32) -> &mut Self {
+        self.requires_dedicated_allocation = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::prefers_dedicated_allocation`]
+    pub fn with_prefers_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
+        self.prefers_dedicated_allocation = value;
+        self
+    }
+    ///Sets the raw value of [`Self::requires_dedicated_allocation`]
+    pub fn with_requires_dedicated_allocation_raw(mut self, value: Bool32) -> Self {
         self.requires_dedicated_allocation = value;
         self
     }
@@ -20749,22 +22281,42 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::prefers_dedicated_allocation`]
-    pub fn set_prefers_dedicated_allocation(mut self, value: bool) -> Self {
+    pub fn set_prefers_dedicated_allocation(&mut self, value: bool) -> &mut Self {
         self.prefers_dedicated_allocation = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::requires_dedicated_allocation`]
-    pub fn set_requires_dedicated_allocation(mut self, value: bool) -> Self {
+    pub fn set_requires_dedicated_allocation(&mut self, value: bool) -> &mut Self {
+        self.requires_dedicated_allocation = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::prefers_dedicated_allocation`]
+    pub fn with_prefers_dedicated_allocation(mut self, value: bool) -> Self {
+        self.prefers_dedicated_allocation = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::requires_dedicated_allocation`]
+    pub fn with_requires_dedicated_allocation(mut self, value: bool) -> Self {
         self.requires_dedicated_allocation = value as u8 as u32;
         self
     }
@@ -20784,20 +22336,20 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
 ///    VkBuffer           buffer;
 ///} VkMemoryDedicatedAllocateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_dedicated_allocation
 ///typedef VkMemoryDedicatedAllocateInfo VkMemoryDedicatedAllocateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image`] is [`crate::Handle::null`] or a handle of an image which this memory will be bound
 ///   to.
 /// - [`buffer`] is [`crate::Handle::null`] or a handle of a buffer which this memory will be bound
 ///   to.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - At least one of [`image`] and [`buffer`] **must**  be [`crate::Handle::null`]
 /// - If [`image`] is not [`crate::Handle::null`] and the memory is not an imported Android Hardware
 ///   Buffer, [`MemoryAllocateInfo::allocation_size`] **must**  equal the
@@ -20847,26 +22399,26 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
 ///   memory being imported  **must**  also be a dedicated buffer allocation and [`buffer`] **must**
 ///   be identical to the buffer associated with the imported memory
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO`
 /// - If [`image`] is not [`crate::Handle::null`], [`image`] **must**  be a valid [`Image`] handle
 /// - If [`buffer`] is not [`crate::Handle::null`], [`buffer`] **must**  be a valid [`Buffer`]
 ///   handle
 /// - Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters  **must**
 ///   have been created, allocated, or retrieved from the same [`Device`]
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Buffer`]
 /// - [`Image`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryDedicatedAllocateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -20902,7 +22454,12 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -20938,22 +22495,42 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
         &mut self.buffer
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::image`]
-    pub fn set_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+    pub fn set_image(&mut self, value: crate::vulkan1_0::Image) -> &mut Self {
         self.image = value;
         self
     }
     ///Sets the value of [`Self::buffer`]
-    pub fn set_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
+    pub fn set_buffer(&mut self, value: crate::vulkan1_0::Buffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::image`]
+    pub fn with_image(mut self, value: crate::vulkan1_0::Image) -> Self {
+        self.image = value;
+        self
+    }
+    ///Sets the value of [`Self::buffer`]
+    pub fn with_buffer(mut self, value: crate::vulkan1_0::Buffer) -> Self {
         self.buffer = value;
         self
     }
@@ -20972,36 +22549,36 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
 ///    VkImageUsageFlags    usage;
 ///} VkImageViewUsageCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkImageViewUsageCreateInfo VkImageViewUsageCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`usage`] is a bitmask of [`ImageUsageFlagBits`] specifying allowed usages of the image view.
-/// # Description
-/// When this structure is chained to [`ImageViewCreateInfo`] the
-/// [`usage`] field overrides the implicit [`usage`] parameter inherited
-/// from image creation time and its value is used instead for the purposes of
-/// determining the valid usage conditions of [`ImageViewCreateInfo`].
-/// ## Valid Usage (Implicit)
+///# Description
+///When this structure is chained to [`ImageViewCreateInfo`] the
+///[`usage`] field overrides the implicit [`usage`] parameter inherited
+///from image creation time and its value is used instead for the purposes of
+///determining the valid usage conditions of [`ImageViewCreateInfo`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO`
 /// - [`usage`] **must**  be a valid combination of [`ImageUsageFlagBits`] values
 /// - [`usage`] **must**  not be `0`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewUsageCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21033,7 +22610,12 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21061,17 +22643,32 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
         &mut self.usage
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::usage`]
-    pub fn set_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
+    pub fn set_usage(&mut self, value: crate::vulkan1_0::ImageUsageFlags) -> &mut Self {
+        self.usage = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::usage`]
+    pub fn with_usage(mut self, value: crate::vulkan1_0::ImageUsageFlags) -> Self {
         self.usage = value;
         self
     }
@@ -21088,40 +22685,40 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
 ///    VkTessellationDomainOrigin    domainOrigin;
 ///} VkPipelineTessellationDomainOriginStateCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance2
 ///typedef VkPipelineTessellationDomainOriginStateCreateInfo
 /// VkPipelineTessellationDomainOriginStateCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`domain_origin`] is a [`TessellationDomainOrigin`] value controlling the origin of the
 ///   tessellation domain space.
-/// # Description
-/// If the [`PipelineTessellationDomainOriginStateCreateInfo`] structure is
-/// included in the [`p_next`] chain of
-/// [`PipelineTessellationStateCreateInfo`], it controls the origin of the
-/// tessellation domain.
-/// If this structure is not present, it is as if [`domain_origin`] was
-/// `VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT`.
-/// ## Valid Usage (Implicit)
+///# Description
+///If the [`PipelineTessellationDomainOriginStateCreateInfo`] structure is
+///included in the [`p_next`] chain of
+///[`PipelineTessellationStateCreateInfo`], it controls the origin of the
+///tessellation domain.
+///If this structure is not present, it is as if [`domain_origin`] was
+///`VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT`.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO`
 /// - [`domain_origin`] **must**  be a valid [`TessellationDomainOrigin`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 /// - [`TessellationDomainOrigin`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineTessellationDomainOriginStateCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21153,7 +22750,12 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21181,17 +22783,32 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
         &mut self.domain_origin
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::domain_origin`]
-    pub fn set_domain_origin(mut self, value: crate::vulkan1_1::TessellationDomainOrigin) -> Self {
+    pub fn set_domain_origin(&mut self, value: crate::vulkan1_1::TessellationDomainOrigin) -> &mut Self {
+        self.domain_origin = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::domain_origin`]
+    pub fn with_domain_origin(mut self, value: crate::vulkan1_1::TessellationDomainOrigin) -> Self {
         self.domain_origin = value;
         self
     }
@@ -21221,32 +22838,32 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
 ///    VkSamplerYcbcrConversion    conversion;
 ///} VkSamplerYcbcrConversionInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrConversionInfo VkSamplerYcbcrConversionInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`conversion`] is a [`SamplerYcbcrConversion`] handle created with
 ///   [`create_sampler_ycbcr_conversion`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO`
 /// - [`conversion`] **must**  be a valid [`SamplerYcbcrConversion`] handle
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SamplerYcbcrConversion`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21278,7 +22895,12 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21306,17 +22928,32 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
         &mut self.conversion
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::conversion`]
-    pub fn set_conversion(mut self, value: crate::vulkan1_1::SamplerYcbcrConversion) -> Self {
+    pub fn set_conversion(&mut self, value: crate::vulkan1_1::SamplerYcbcrConversion) -> &mut Self {
+        self.conversion = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::conversion`]
+    pub fn with_conversion(mut self, value: crate::vulkan1_1::SamplerYcbcrConversion) -> Self {
         self.conversion = value;
         self
     }
@@ -21339,12 +22976,12 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 ///    VkBool32                         forceExplicitReconstruction;
 ///} VkSamplerYcbcrConversionCreateInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrConversionCreateInfo VkSamplerYcbcrConversionCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the format of the image from which color information will be retrieved.
@@ -21362,17 +22999,17 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 /// - [`chroma_filter`] is the filter for chroma reconstruction.
 /// - [`force_explicit_reconstruction`] **can**  be used to ensure that reconstruction is done
 ///   explicitly, if supported.
-/// # Description
-/// If the [`p_next`] chain includes a [`ExternalFormatANDROID`] structure
-/// with non-zero `externalFormat` member, the sampler Y′C<sub>B</sub>C<sub>R</sub> conversion
-/// object represents an *external format conversion*, and [`format`] **must**  be
-/// `VK_FORMAT_UNDEFINED`.
-/// Such conversions  **must**  only be used to sample image views with a matching
-/// [external
-/// format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-external-formats).
-/// When creating an external format conversion, the value of [`components`]
-/// is ignored.
-/// ## Valid Usage
+///# Description
+///If the [`p_next`] chain includes a [`ExternalFormatANDROID`] structure
+///with non-zero `externalFormat` member, the sampler Y′C<sub>B</sub>C<sub>R</sub> conversion
+///object represents an *external format conversion*, and [`format`] **must**  be
+///`VK_FORMAT_UNDEFINED`.
+///Such conversions  **must**  only be used to sample image views with a matching
+///[external
+///format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-external-formats).
+///When creating an external format conversion, the value of [`components`]
+///is ignored.
+///## Valid Usage
 /// - If an external format conversion is being created, [`format`] **must**  be
 ///   `VK_FORMAT_UNDEFINED`
 /// - If an external format conversion is not being created, [`format`] **must**  represent unsigned
@@ -21403,7 +23040,7 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 ///   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`, [`chroma_filter`]
 ///   **must**  not be `VK_FILTER_LINEAR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`ExternalFormatANDROID`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
@@ -21414,13 +23051,13 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 /// - [`x_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 /// - [`y_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 /// - [`chroma_filter`] **must**  be a valid [`Filter`] value
-/// If [`chroma_filter`] is `VK_FILTER_NEAREST`, chroma samples are
-/// reconstructed to luma component resolution using nearest-neighbour sampling.
-/// Otherwise, chroma samples are reconstructed using interpolation.
-/// More details can be found in [the
-/// description of sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image
-/// Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
-/// # Related
+///If [`chroma_filter`] is `VK_FILTER_NEAREST`, chroma samples are
+///reconstructed to luma component resolution using nearest-neighbour sampling.
+///Otherwise, chroma samples are reconstructed using interpolation.
+///More details can be found in [the
+///description of sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image
+///Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`ChromaLocation`]
@@ -21433,13 +23070,13 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 /// - [`create_sampler_ycbcr_conversion`]
 /// - [`create_sampler_ycbcr_conversion_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionCreateInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21508,12 +23145,22 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
         self.force_explicit_reconstruction
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::force_explicit_reconstruction`]
-    pub fn set_force_explicit_reconstruction_raw(mut self, value: Bool32) -> Self {
+    pub fn set_force_explicit_reconstruction_raw(&mut self, value: Bool32) -> &mut Self {
+        self.force_explicit_reconstruction = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::force_explicit_reconstruction`]
+    pub fn with_force_explicit_reconstruction_raw(mut self, value: Bool32) -> Self {
         self.force_explicit_reconstruction = value;
         self
     }
@@ -21611,52 +23258,102 @@ impl<'lt> SamplerYcbcrConversionCreateInfo<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::format`]
-    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
         self.format = value;
         self
     }
     ///Sets the value of [`Self::ycbcr_model`]
-    pub fn set_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+    pub fn set_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
         self.ycbcr_model = value;
         self
     }
     ///Sets the value of [`Self::ycbcr_range`]
-    pub fn set_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+    pub fn set_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
         self.ycbcr_range = value;
         self
     }
     ///Sets the value of [`Self::components`]
-    pub fn set_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+    pub fn set_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
         self.components = value;
         self
     }
     ///Sets the value of [`Self::x_chroma_offset`]
-    pub fn set_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
         self.x_chroma_offset = value;
         self
     }
     ///Sets the value of [`Self::y_chroma_offset`]
-    pub fn set_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
         self.y_chroma_offset = value;
         self
     }
     ///Sets the value of [`Self::chroma_filter`]
-    pub fn set_chroma_filter(mut self, value: crate::vulkan1_0::Filter) -> Self {
+    pub fn set_chroma_filter(&mut self, value: crate::vulkan1_0::Filter) -> &mut Self {
         self.chroma_filter = value;
         self
     }
     ///Sets the value of [`Self::force_explicit_reconstruction`]
-    pub fn set_force_explicit_reconstruction(mut self, value: bool) -> Self {
+    pub fn set_force_explicit_reconstruction(&mut self, value: bool) -> &mut Self {
+        self.force_explicit_reconstruction = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::format`]
+    pub fn with_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+        self.format = value;
+        self
+    }
+    ///Sets the value of [`Self::ycbcr_model`]
+    pub fn with_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+        self.ycbcr_model = value;
+        self
+    }
+    ///Sets the value of [`Self::ycbcr_range`]
+    pub fn with_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+        self.ycbcr_range = value;
+        self
+    }
+    ///Sets the value of [`Self::components`]
+    pub fn with_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+        self.components = value;
+        self
+    }
+    ///Sets the value of [`Self::x_chroma_offset`]
+    pub fn with_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+        self.x_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::y_chroma_offset`]
+    pub fn with_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+        self.y_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::chroma_filter`]
+    pub fn with_chroma_filter(mut self, value: crate::vulkan1_0::Filter) -> Self {
+        self.chroma_filter = value;
+        self
+    }
+    ///Sets the value of [`Self::force_explicit_reconstruction`]
+    pub fn with_force_explicit_reconstruction(mut self, value: bool) -> Self {
         self.force_explicit_reconstruction = value as u8 as u32;
         self
     }
@@ -21691,18 +23388,18 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'
 ///    VkImageAspectFlagBits    planeAspect;
 ///} VkBindImagePlaneMemoryInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkBindImagePlaneMemoryInfo VkBindImagePlaneMemoryInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the aspect of the disjoint
 ///   image plane to bind.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the image’s `tiling` is `VK_IMAGE_TILING_LINEAR` or `VK_IMAGE_TILING_OPTIMAL`, then
 ///   [`plane_aspect`] **must**  be a single valid *format plane* for the image (that is, for a
 ///   two-plane image [`plane_aspect`] **must**  be `VK_IMAGE_ASPECT_PLANE_0_BIT` or
@@ -21714,21 +23411,21 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'
 ///   [`DrmFormatModifierPropertiesEXT::drm_format_modifier_plane_count`] associated with the
 ///   image’s `format` and [`ImageDrmFormatModifierPropertiesEXT::drm_format_modifier`])
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO`
 /// - [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageAspectFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImagePlaneMemoryInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21760,7 +23457,12 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21788,17 +23490,32 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
         &mut self.plane_aspect
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::plane_aspect`]
-    pub fn set_plane_aspect(mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> Self {
+    pub fn set_plane_aspect(&mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> &mut Self {
+        self.plane_aspect = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::plane_aspect`]
+    pub fn with_plane_aspect(mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> Self {
         self.plane_aspect = value;
         self
     }
@@ -21817,18 +23534,18 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
 ///    VkImageAspectFlagBits    planeAspect;
 ///} VkImagePlaneMemoryRequirementsInfo;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkImagePlaneMemoryRequirementsInfo VkImagePlaneMemoryRequirementsInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`plane_aspect`] is a [`ImageAspectFlagBits`] value specifying the aspect corresponding to the
 ///   image plane to query.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the image’s `tiling` is `VK_IMAGE_TILING_LINEAR` or `VK_IMAGE_TILING_OPTIMAL`, then
 ///   [`plane_aspect`] **must**  be a single valid *format plane* for the image (that is, for a
 ///   two-plane image [`plane_aspect`] **must**  be `VK_IMAGE_ASPECT_PLANE_0_BIT` or
@@ -21840,21 +23557,21 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
 ///   [`DrmFormatModifierPropertiesEXT::drm_format_modifier_plane_count`] associated with the
 ///   image’s `format` and [`ImageDrmFormatModifierPropertiesEXT::drm_format_modifier`])
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO`
 /// - [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`] value
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`ImageAspectFlagBits`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImagePlaneMemoryRequirementsInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -21886,7 +23603,12 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -21914,17 +23636,32 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
         &mut self.plane_aspect
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::plane_aspect`]
-    pub fn set_plane_aspect(mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> Self {
+    pub fn set_plane_aspect(&mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> &mut Self {
+        self.plane_aspect = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::plane_aspect`]
+    pub fn with_plane_aspect(mut self, value: crate::vulkan1_0::ImageAspectFlagBits) -> Self {
         self.plane_aspect = value;
         self
     }
@@ -21941,42 +23678,42 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
 ///    VkBool32           samplerYcbcrConversion;
 ///} VkPhysicalDeviceSamplerYcbcrConversionFeatures;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkPhysicalDeviceSamplerYcbcrConversionFeatures
 /// VkPhysicalDeviceSamplerYcbcrConversionFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`sampler_ycbcr_conversion`] specifies whether the implementation supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion). If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub> conversion  **must**  not be used.
-/// If the [`PhysicalDeviceSamplerYcbcrConversionFeatures`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceSamplerYcbcrConversionFeatures`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceSamplerYcbcrConversionFeatures`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceSamplerYcbcrConversionFeatures`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES`
-/// # Related
+///# Related
 /// - [`khr_sampler_ycbcr_conversion`]
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSamplerYcbcrConversionFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22015,12 +23752,22 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
         self.sampler_ycbcr_conversion
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::sampler_ycbcr_conversion`]
-    pub fn set_sampler_ycbcr_conversion_raw(mut self, value: Bool32) -> Self {
+    pub fn set_sampler_ycbcr_conversion_raw(&mut self, value: Bool32) -> &mut Self {
+        self.sampler_ycbcr_conversion = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::sampler_ycbcr_conversion`]
+    pub fn with_sampler_ycbcr_conversion_raw(mut self, value: Bool32) -> Self {
         self.sampler_ycbcr_conversion = value;
         self
     }
@@ -22069,17 +23816,32 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::sampler_ycbcr_conversion`]
-    pub fn set_sampler_ycbcr_conversion(mut self, value: bool) -> Self {
+    pub fn set_sampler_ycbcr_conversion(&mut self, value: bool) -> &mut Self {
+        self.sampler_ycbcr_conversion = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::sampler_ycbcr_conversion`]
+    pub fn with_sampler_ycbcr_conversion(mut self, value: bool) -> Self {
         self.sampler_ycbcr_conversion = value as u8 as u32;
         self
     }
@@ -22100,31 +23862,31 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
 ///    uint32_t           combinedImageSamplerDescriptorCount;
 ///} VkSamplerYcbcrConversionImageFormatProperties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrConversionImageFormatProperties
 /// VkSamplerYcbcrConversionImageFormatPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`combined_image_sampler_descriptor_count`] is the number of combined image sampler
 ///   descriptors that the implementation uses to access the format.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionImageFormatProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22157,7 +23919,12 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -22192,17 +23959,32 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
         &mut self.combined_image_sampler_descriptor_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::combined_image_sampler_descriptor_count`]
-    pub fn set_combined_image_sampler_descriptor_count(mut self, value: u32) -> Self {
+    pub fn set_combined_image_sampler_descriptor_count(&mut self, value: u32) -> &mut Self {
+        self.combined_image_sampler_descriptor_count = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::combined_image_sampler_descriptor_count`]
+    pub fn with_combined_image_sampler_descriptor_count(mut self, value: u32) -> Self {
         self.combined_image_sampler_descriptor_count = value;
         self
     }
@@ -22221,26 +24003,26 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
 ///    VkBool32           protectedSubmit;
 ///} VkProtectedSubmitInfo;
 ///```
-/// # Members
+///# Members
 /// - [`protected_submit`] specifies whether the batch is protected. If [`protected_submit`] is
 ///   [`TRUE`], the batch is protected. If [`protected_submit`] is [`FALSE`], the batch is
 ///   unprotected. If the [`SubmitInfo`]::[`p_next`] chain does not include this structure, the
 ///   batch is unprotected.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkProtectedSubmitInfo")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22278,12 +24060,22 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
         self.protected_submit
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::protected_submit`]
-    pub fn set_protected_submit_raw(mut self, value: Bool32) -> Self {
+    pub fn set_protected_submit_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_submit = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_submit`]
+    pub fn with_protected_submit_raw(mut self, value: Bool32) -> Self {
         self.protected_submit = value;
         self
     }
@@ -22325,17 +24117,32 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::protected_submit`]
-    pub fn set_protected_submit(mut self, value: bool) -> Self {
+    pub fn set_protected_submit(&mut self, value: bool) -> &mut Self {
+        self.protected_submit = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::protected_submit`]
+    pub fn with_protected_submit(mut self, value: bool) -> Self {
         self.protected_submit = value as u8 as u32;
         self
     }
@@ -22351,34 +24158,34 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
 ///    VkBool32           protectedMemory;
 ///} VkPhysicalDeviceProtectedMemoryFeatures;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`protected_memory`] specifies whether protected memory is supported.
-/// If the [`PhysicalDeviceProtectedMemoryFeatures`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceProtectedMemoryFeatures`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceProtectedMemoryFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceProtectedMemoryFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22414,12 +24221,22 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
         self.protected_memory
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::protected_memory`]
-    pub fn set_protected_memory_raw(mut self, value: Bool32) -> Self {
+    pub fn set_protected_memory_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_memory`]
+    pub fn with_protected_memory_raw(mut self, value: Bool32) -> Self {
         self.protected_memory = value;
         self
     }
@@ -22468,17 +24285,32 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::protected_memory`]
-    pub fn set_protected_memory(mut self, value: bool) -> Self {
+    pub fn set_protected_memory(&mut self, value: bool) -> &mut Self {
+        self.protected_memory = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::protected_memory`]
+    pub fn with_protected_memory(mut self, value: bool) -> Self {
         self.protected_memory = value as u8 as u32;
         self
     }
@@ -22494,35 +24326,35 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
 ///    VkBool32           protectedNoFault;
 ///} VkPhysicalDeviceProtectedMemoryProperties;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`protected_no_fault`] specifies how an implementation behaves when an application attempts to
 ///   write to unprotected memory in a protected queue operation, read from protected memory in an unprotected
 ///   queue operation, or perform a query in a protected queue operation. If this limit is [`TRUE`],
 ///   such writes will be discarded or have undefined values written, reads and queries will return undefined
 ///   values. If this limit is [`FALSE`], applications  **must**  not perform these operations. See [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-protected-access-rules](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-protected-access-rules)
 ///   for more information.
-/// If the [`PhysicalDeviceProtectedMemoryProperties`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceProtectedMemoryProperties`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryProperties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22557,12 +24389,22 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
         self.protected_no_fault
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::protected_no_fault`]
-    pub fn set_protected_no_fault_raw(mut self, value: Bool32) -> Self {
+    pub fn set_protected_no_fault_raw(&mut self, value: Bool32) -> &mut Self {
+        self.protected_no_fault = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::protected_no_fault`]
+    pub fn with_protected_no_fault_raw(mut self, value: Bool32) -> Self {
         self.protected_no_fault = value;
         self
     }
@@ -22611,17 +24453,32 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::protected_no_fault`]
-    pub fn set_protected_no_fault(mut self, value: bool) -> Self {
+    pub fn set_protected_no_fault(&mut self, value: bool) -> &mut Self {
+        self.protected_no_fault = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::protected_no_fault`]
+    pub fn with_protected_no_fault(mut self, value: bool) -> Self {
         self.protected_no_fault = value as u8 as u32;
         self
     }
@@ -22639,7 +24496,7 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 ///    uint32_t                    queueIndex;
 ///} VkDeviceQueueInfo2;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure. The [`p_next`]
 ///   chain of [`DeviceQueueInfo2`] **can**  be used to provide additional device queue parameters
@@ -22648,13 +24505,13 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 ///   queue.
 /// - [`queue_family_index`] is the index of the queue family to which the queue belongs.
 /// - [`queue_index`] is the index within this queue family of the queue to retrieve.
-/// # Description
-/// The queue returned by [`get_device_queue2`] **must**  have the same
-/// [`flags`] value from this structure as that used at device creation time
-/// in a [`DeviceQueueCreateInfo`] structure.
-/// If no matching [`flags`] were specified at device creation time, then the
-/// handle returned in `pQueue` **must**  be `NULL`.
-/// ## Valid Usage
+///# Description
+///The queue returned by [`get_device_queue2`] **must**  have the same
+///[`flags`] value from this structure as that used at device creation time
+///in a [`DeviceQueueCreateInfo`] structure.
+///If no matching [`flags`] were specified at device creation time, then the
+///handle returned in `pQueue` **must**  be `NULL`.
+///## Valid Usage
 /// - [`queue_family_index`] **must**  be one of the queue family indices specified when `device`
 ///   was created, via the [`DeviceQueueCreateInfo`] structure
 /// - [`flags`] **must**  be equal to [`DeviceQueueCreateInfo`]::[`flags`] for a
@@ -22664,23 +24521,23 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 ///   corresponding queue family and flags indicated by [`queue_family_index`] and [`flags`] when
 ///   `device` was created
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be a valid combination of [`DeviceQueueCreateFlagBits`] values
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceQueueCreateFlags`]
 /// - [`StructureType`]
 /// - [`get_device_queue2`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceQueueInfo2")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22722,7 +24579,12 @@ impl<'lt> DeviceQueueInfo2<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -22766,27 +24628,52 @@ impl<'lt> DeviceQueueInfo2<'lt> {
         &mut self.queue_index
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::vulkan1_0::DeviceQueueCreateFlags) -> Self {
+    pub fn set_flags(&mut self, value: crate::vulkan1_0::DeviceQueueCreateFlags) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::queue_family_index`]
-    pub fn set_queue_family_index(mut self, value: u32) -> Self {
+    pub fn set_queue_family_index(&mut self, value: u32) -> &mut Self {
         self.queue_family_index = value;
         self
     }
     ///Sets the value of [`Self::queue_index`]
-    pub fn set_queue_index(mut self, value: u32) -> Self {
+    pub fn set_queue_index(&mut self, value: u32) -> &mut Self {
+        self.queue_index = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::vulkan1_0::DeviceQueueCreateFlags) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::queue_family_index`]
+    pub fn with_queue_family_index(mut self, value: u32) -> Self {
+        self.queue_family_index = value;
+        self
+    }
+    ///Sets the value of [`Self::queue_index`]
+    pub fn with_queue_index(mut self, value: u32) -> Self {
         self.queue_index = value;
         self
     }
@@ -22803,15 +24690,15 @@ impl<'lt> DeviceQueueInfo2<'lt> {
 ///    VkDeviceSize       maxMemoryAllocationSize;
 ///} VkPhysicalDeviceMaintenance3Properties;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance3
 ///typedef VkPhysicalDeviceMaintenance3Properties VkPhysicalDeviceMaintenance3PropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-/// # Description
+///# Description
 /// - [`max_per_set_descriptors`] is a maximum number of descriptors (summed over all descriptor
 ///   types) in a single descriptor set that is guaranteed to satisfy any implementation-dependent
 ///   constraints on the size of a descriptor set itself. Applications  **can**  query whether a
@@ -22819,25 +24706,25 @@ impl<'lt> DeviceQueueInfo2<'lt> {
 ///   [`get_descriptor_set_layout_support`].
 /// - [`max_memory_allocation_size`] is the maximum size of a memory allocation that  **can**  be
 ///   created, even if there is more space available in the heap.
-/// If the [`PhysicalDeviceMaintenance3Properties`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDeviceMaintenance3Properties`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance3Properties")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -22871,7 +24758,12 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -22914,22 +24806,42 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
         &mut self.max_memory_allocation_size
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::max_per_set_descriptors`]
-    pub fn set_max_per_set_descriptors(mut self, value: u32) -> Self {
+    pub fn set_max_per_set_descriptors(&mut self, value: u32) -> &mut Self {
         self.max_per_set_descriptors = value;
         self
     }
     ///Sets the value of [`Self::max_memory_allocation_size`]
-    pub fn set_max_memory_allocation_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_max_memory_allocation_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.max_memory_allocation_size = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::max_per_set_descriptors`]
+    pub fn with_max_per_set_descriptors(mut self, value: u32) -> Self {
+        self.max_per_set_descriptors = value;
+        self
+    }
+    ///Sets the value of [`Self::max_memory_allocation_size`]
+    pub fn with_max_memory_allocation_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.max_memory_allocation_size = value;
         self
     }
@@ -22946,37 +24858,37 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
 ///    VkBool32           supported;
 ///} VkDescriptorSetLayoutSupport;
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_maintenance3
 ///typedef VkDescriptorSetLayoutSupport VkDescriptorSetLayoutSupportKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supported`] specifies whether the descriptor set layout  **can**  be created.
-/// # Description
-/// [`supported`] is set to [`TRUE`] if the descriptor set  **can**  be
-/// created, or else is set to [`FALSE`].
-/// ## Valid Usage (Implicit)
+///# Description
+///[`supported`] is set to [`TRUE`] if the descriptor set  **can**  be
+///created, or else is set to [`FALSE`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT`
 /// - [`p_next`] **must**  be `NULL` or a pointer to a valid instance of
 ///   [`DescriptorSetVariableDescriptorCountLayoutSupport`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_support`]
 /// - [`get_descriptor_set_layout_support_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutSupport")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -23012,12 +24924,22 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
         self.supported
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supported`]
-    pub fn set_supported_raw(mut self, value: Bool32) -> Self {
+    pub fn set_supported_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supported = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supported`]
+    pub fn with_supported_raw(mut self, value: Bool32) -> Self {
         self.supported = value;
         self
     }
@@ -23066,17 +24988,32 @@ impl<'lt> DescriptorSetLayoutSupport<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::supported`]
-    pub fn set_supported(mut self, value: bool) -> Self {
+    pub fn set_supported(&mut self, value: bool) -> &mut Self {
+        self.supported = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::supported`]
+    pub fn with_supported(mut self, value: bool) -> Self {
         self.supported = value as u8 as u32;
         self
     }
@@ -23111,41 +25048,42 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkBool32           shaderDrawParameters;
 ///} VkPhysicalDeviceShaderDrawParametersFeatures;
 ///```
-/// ```c
+///
+///```c
 ///// Provided by VK_VERSION_1_1
 ///typedef VkPhysicalDeviceShaderDrawParametersFeatures
 /// VkPhysicalDeviceShaderDrawParameterFeatures;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
 /// - [`shader_draw_parameters`] specifies whether the implementation supports the SPIR-V
 ///   `DrawParameters` capability. When this feature is not enabled, shader modules  **must**  not
 ///   declare the `SPV_KHR_shader_draw_parameters` extension or the `DrawParameters` capability.
-/// If the [`PhysicalDeviceShaderDrawParametersFeatures`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderDrawParametersFeatures`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderDrawParametersFeatures`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderDrawParametersFeatures`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES`
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDrawParametersFeatures")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -23184,12 +25122,22 @@ impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
         self.shader_draw_parameters
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_draw_parameters`]
-    pub fn set_shader_draw_parameters_raw(mut self, value: Bool32) -> Self {
+    pub fn set_shader_draw_parameters_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shader_draw_parameters = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_draw_parameters`]
+    pub fn with_shader_draw_parameters_raw(mut self, value: Bool32) -> Self {
         self.shader_draw_parameters = value;
         self
     }
@@ -23238,17 +25186,32 @@ impl<'lt> PhysicalDeviceShaderDrawParametersFeatures<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_draw_parameters`]
-    pub fn set_shader_draw_parameters(mut self, value: bool) -> Self {
+    pub fn set_shader_draw_parameters(&mut self, value: bool) -> &mut Self {
+        self.shader_draw_parameters = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_draw_parameters`]
+    pub fn with_shader_draw_parameters(mut self, value: bool) -> Self {
         self.shader_draw_parameters = value as u8 as u32;
         self
     }
@@ -23264,34 +25227,34 @@ impl Instance {
     ///    uint32_t*                                   pPhysicalDeviceGroupCount,
     ///    VkPhysicalDeviceGroupProperties*            pPhysicalDeviceGroupProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_device_group_creation
     ///VkResult vkEnumeratePhysicalDeviceGroupsKHR(
     ///    VkInstance                                  instance,
     ///    uint32_t*                                   pPhysicalDeviceGroupCount,
     ///    VkPhysicalDeviceGroupProperties*            pPhysicalDeviceGroupProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is a handle to a Vulkan instance previously created with [`create_instance`].
     /// - [`p_physical_device_group_count`] is a pointer to an integer related to the number of
     ///   device groups available or queried, as described below.
     /// - [`p_physical_device_group_properties`] is either `NULL` or a pointer to an array of
     ///   [`PhysicalDeviceGroupProperties`] structures.
-    /// # Description
-    /// If [`p_physical_device_group_properties`] is `NULL`, then the number of device
-    /// groups available is returned in [`p_physical_device_group_count`].
-    /// Otherwise, [`p_physical_device_group_count`] **must**  point to a variable set by
-    /// the user to the number of elements in the
-    /// [`p_physical_device_group_properties`] array, and on return the variable is
-    /// overwritten with the number of structures actually written to
-    /// [`p_physical_device_group_properties`].
-    /// If [`p_physical_device_group_count`] is less than the number of device groups
-    /// available, at most [`p_physical_device_group_count`] structures will be
-    /// written, and `VK_INCOMPLETE` will be returned instead of
-    /// `VK_SUCCESS`, to indicate that not all the available device groups were
-    /// returned.Every physical device  **must**  be in exactly one device group.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///If [`p_physical_device_group_properties`] is `NULL`, then the number of device
+    ///groups available is returned in [`p_physical_device_group_count`].
+    ///Otherwise, [`p_physical_device_group_count`] **must**  point to a variable set by
+    ///the user to the number of elements in the
+    ///[`p_physical_device_group_properties`] array, and on return the variable is
+    ///overwritten with the number of structures actually written to
+    ///[`p_physical_device_group_properties`].
+    ///If [`p_physical_device_group_count`] is less than the number of device groups
+    ///available, at most [`p_physical_device_group_count`] structures will be
+    ///written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available device groups were
+    ///returned.Every physical device  **must**  be in exactly one device group.
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_physical_device_group_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_physical_device_group_count`] is not `0`, and
@@ -23299,22 +25262,22 @@ impl Instance {
     ///   [`p_physical_device_group_properties`] **must**  be a valid pointer to an array of
     ///   [`p_physical_device_group_count`][`PhysicalDeviceGroupProperties`] structures
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INITIALIZATION_FAILED`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Instance`]
     /// - [`PhysicalDeviceGroupProperties`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkEnumeratePhysicalDeviceGroups")]
     #[doc(alias = "vkEnumeratePhysicalDeviceGroupsKHR")]
@@ -23389,37 +25352,37 @@ impl PhysicalDevice {
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceFeatures2*                  pFeatures);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceFeatures2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceFeatures2*                  pFeatures);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the supported features.
     /// - [`p_features`] is a pointer to a [`PhysicalDeviceFeatures2`] structure in which the
     ///   physical device features are returned.
-    /// # Description
-    /// Each structure in [`p_features`] and its `pNext` chain contains members
-    /// corresponding to fine-grained features.
-    /// [`get_physical_device_features2`] writes each member to a boolean value
-    /// indicating whether that feature is supported.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///Each structure in [`p_features`] and its `pNext` chain contains members
+    ///corresponding to fine-grained features.
+    ///[`get_physical_device_features2`] writes each member to a boolean value
+    ///indicating whether that feature is supported.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_features`] **must**  be a valid pointer to a [`PhysicalDeviceFeatures2`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceFeatures2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceFeatures2")]
     #[doc(alias = "vkGetPhysicalDeviceFeatures2KHR")]
@@ -23481,38 +25444,38 @@ impl PhysicalDevice {
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceProperties2*                pProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceProperties2*                pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the handle to the physical device whose properties will be queried.
     /// - [`p_properties`] is a pointer to a [`PhysicalDeviceProperties2`] structure in which
     ///   properties are returned.
-    /// # Description
-    /// Each structure in [`p_properties`] and its `pNext` chain contains
-    /// members corresponding to implementation-dependent properties, behaviors, or
-    /// limits.
-    /// [`get_physical_device_properties2`] fills in each member to specify the
-    /// corresponding value for the implementation.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///Each structure in [`p_properties`] and its `pNext` chain contains
+    ///members corresponding to implementation-dependent properties, behaviors, or
+    ///limits.
+    ///[`get_physical_device_properties2`] fills in each member to specify the
+    ///corresponding value for the implementation.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_properties`] **must**  be a valid pointer to a [`PhysicalDeviceProperties2`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceProperties2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceProperties2KHR")]
@@ -23576,40 +25539,40 @@ impl PhysicalDevice {
     ///    VkFormat                                    format,
     ///    VkFormatProperties2*                        pFormatProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceFormatProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkFormat                                    format,
     ///    VkFormatProperties2*                        pFormatProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the format properties.
     /// - [`format`] is the format whose properties are queried.
     /// - [`p_format_properties`] is a pointer to a [`FormatProperties2`] structure in which
     ///   physical device properties for [`format`] are returned.
-    /// # Description
-    /// [`get_physical_device_format_properties2`] behaves similarly to
-    /// [`get_physical_device_format_properties`], with the ability to return
-    /// extended information in a `pNext` chain of output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_format_properties2`] behaves similarly to
+    ///[`get_physical_device_format_properties`], with the ability to return
+    ///extended information in a `pNext` chain of output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`format`] **must**  be a valid [`Format`] value
     /// - [`p_format_properties`] **must**  be a valid pointer to a [`FormatProperties2`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Format`]
     /// - [`FormatProperties2`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceFormatProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceFormatProperties2KHR")]
@@ -23673,55 +25636,55 @@ impl PhysicalDevice {
     ///    const VkPhysicalDeviceImageFormatInfo2*     pImageFormatInfo,
     ///    VkImageFormatProperties2*                   pImageFormatProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///VkResult vkGetPhysicalDeviceImageFormatProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    const VkPhysicalDeviceImageFormatInfo2*     pImageFormatInfo,
     ///    VkImageFormatProperties2*                   pImageFormatProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the image capabilities.
     /// - [`p_image_format_info`] is a pointer to a [`PhysicalDeviceImageFormatInfo2`] structure
     ///   describing the parameters that would be consumed by [`create_image`].
     /// - [`p_image_format_properties`] is a pointer to a [`ImageFormatProperties2`] structure in
     ///   which capabilities are returned.
-    /// # Description
-    /// [`get_physical_device_image_format_properties2`] behaves similarly to
-    /// [`get_physical_device_image_format_properties`], with the ability to return
-    /// extended information in a `pNext` chain of output structures.
-    /// ## Valid Usage
+    ///# Description
+    ///[`get_physical_device_image_format_properties2`] behaves similarly to
+    ///[`get_physical_device_image_format_properties`], with the ability to return
+    ///extended information in a `pNext` chain of output structures.
+    ///## Valid Usage
     /// - If the `pNext` chain of [`p_image_format_properties`] includes a
     ///   [`AndroidHardwareBufferUsageANDROID`] structure, the `pNext` chain of
     ///   [`p_image_format_info`] **must**  include a [`PhysicalDeviceExternalImageFormatInfo`]
     ///   structure with `handleType` set to
     ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_image_format_info`] **must**  be a valid pointer to a valid
     ///   [`PhysicalDeviceImageFormatInfo2`] structure
     /// - [`p_image_format_properties`] **must**  be a valid pointer to a [`ImageFormatProperties2`]
     ///   structure
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_FORMAT_NOT_SUPPORTED`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`ImageFormatProperties2`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceImageFormatInfo2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceImageFormatProperties2KHR")]
@@ -23792,44 +25755,44 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pQueueFamilyPropertyCount,
     ///    VkQueueFamilyProperties2*                   pQueueFamilyProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceQueueFamilyProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    uint32_t*                                   pQueueFamilyPropertyCount,
     ///    VkQueueFamilyProperties2*                   pQueueFamilyProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the handle to the physical device whose properties will be queried.
     /// - [`p_queue_family_property_count`] is a pointer to an integer related to the number of
     ///   queue families available or queried, as described in
     ///   [`get_physical_device_queue_family_properties`].
     /// - [`p_queue_family_properties`] is either `NULL` or a pointer to an array of
     ///   [`QueueFamilyProperties2`] structures.
-    /// # Description
-    /// [`get_physical_device_queue_family_properties2`] behaves similarly to
-    /// [`get_physical_device_queue_family_properties`], with the ability to return
-    /// extended information in a `pNext` chain of output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_queue_family_properties2`] behaves similarly to
+    ///[`get_physical_device_queue_family_properties`], with the ability to return
+    ///extended information in a `pNext` chain of output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_queue_family_property_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_queue_family_property_count`] is not `0`, and
     ///   [`p_queue_family_properties`] is not `NULL`, [`p_queue_family_properties`] **must**  be a
     ///   valid pointer to an array of [`p_queue_family_property_count`][`QueueFamilyProperties2`]
     ///   structures
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`QueueFamilyProperties2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceQueueFamilyProperties2KHR")]
@@ -23903,37 +25866,37 @@ impl PhysicalDevice {
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceMemoryProperties2*          pMemoryProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceMemoryProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    VkPhysicalDeviceMemoryProperties2*          pMemoryProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the handle to the device to query.
     /// - [`p_memory_properties`] is a pointer to a [`PhysicalDeviceMemoryProperties2`] structure in
     ///   which the properties are returned.
-    /// # Description
-    /// [`get_physical_device_memory_properties2`] behaves similarly to
-    /// [`get_physical_device_memory_properties`], with the ability to return
-    /// extended information in a `pNext` chain of output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_memory_properties2`] behaves similarly to
+    ///[`get_physical_device_memory_properties`], with the ability to return
+    ///extended information in a `pNext` chain of output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_memory_properties`] **must**  be a valid pointer to a
     ///   [`PhysicalDeviceMemoryProperties2`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceMemoryProperties2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceMemoryProperties2KHR")]
@@ -24003,8 +25966,8 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkSparseImageFormatProperties2*             pProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_physical_device_properties2
     ///void vkGetPhysicalDeviceSparseImageFormatProperties2KHR(
     ///    VkPhysicalDevice                            physicalDevice,
@@ -24012,7 +25975,7 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkSparseImageFormatProperties2*             pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the sparse image format
     ///   properties.
     /// - [`p_format_info`] is a pointer to a [`PhysicalDeviceSparseImageFormatInfo2`] structure
@@ -24021,12 +25984,12 @@ impl PhysicalDevice {
     ///   properties available or queried, as described below.
     /// - [`p_properties`] is either `NULL` or a pointer to an array of
     ///   [`SparseImageFormatProperties2`] structures.
-    /// # Description
-    /// [`get_physical_device_sparse_image_format_properties2`] behaves identically to
-    /// [`get_physical_device_sparse_image_format_properties`], with the ability to
-    /// return extended information by adding extending structures to the
-    /// `pNext` chain of its [`p_properties`] parameter.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_sparse_image_format_properties2`] behaves identically to
+    ///[`get_physical_device_sparse_image_format_properties`], with the ability to
+    ///return extended information by adding extending structures to the
+    ///`pNext` chain of its [`p_properties`] parameter.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_format_info`] **must**  be a valid pointer to a valid
     ///   [`PhysicalDeviceSparseImageFormatInfo2`] structure
@@ -24034,19 +25997,19 @@ impl PhysicalDevice {
     /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
     ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
     ///   [`p_property_count`][`SparseImageFormatProperties2`] structures
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceSparseImageFormatInfo2`]
     /// - [`SparseImageFormatProperties2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2")]
     #[doc(alias = "vkGetPhysicalDeviceSparseImageFormatProperties2KHR")]
@@ -24126,40 +26089,40 @@ impl PhysicalDevice {
     ///    const VkPhysicalDeviceExternalBufferInfo*   pExternalBufferInfo,
     ///    VkExternalBufferProperties*                 pExternalBufferProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_external_memory_capabilities
     ///void vkGetPhysicalDeviceExternalBufferPropertiesKHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    const VkPhysicalDeviceExternalBufferInfo*   pExternalBufferInfo,
     ///    VkExternalBufferProperties*                 pExternalBufferProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the buffer capabilities.
     /// - [`p_external_buffer_info`] is a pointer to a [`PhysicalDeviceExternalBufferInfo`]
     ///   structure describing the parameters that would be consumed by [`create_buffer`].
     /// - [`p_external_buffer_properties`] is a pointer to a [`ExternalBufferProperties`] structure
     ///   in which capabilities are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_external_buffer_info`] **must**  be a valid pointer to a valid
     ///   [`PhysicalDeviceExternalBufferInfo`] structure
     /// - [`p_external_buffer_properties`] **must**  be a valid pointer to a
     ///   [`ExternalBufferProperties`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`ExternalBufferProperties`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceExternalBufferInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalBufferProperties")]
     #[doc(alias = "vkGetPhysicalDeviceExternalBufferPropertiesKHR")]
@@ -24229,40 +26192,40 @@ impl PhysicalDevice {
     ///    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
     ///    VkExternalSemaphoreProperties*              pExternalSemaphoreProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_external_semaphore_capabilities
     ///void vkGetPhysicalDeviceExternalSemaphorePropertiesKHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    const VkPhysicalDeviceExternalSemaphoreInfo* pExternalSemaphoreInfo,
     ///    VkExternalSemaphoreProperties*              pExternalSemaphoreProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the semaphore capabilities.
     /// - [`p_external_semaphore_info`] is a pointer to a [`PhysicalDeviceExternalSemaphoreInfo`]
     ///   structure describing the parameters that would be consumed by [`create_semaphore`].
     /// - [`p_external_semaphore_properties`] is a pointer to a [`ExternalSemaphoreProperties`]
     ///   structure in which capabilities are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_external_semaphore_info`] **must**  be a valid pointer to a valid
     ///   [`PhysicalDeviceExternalSemaphoreInfo`] structure
     /// - [`p_external_semaphore_properties`] **must**  be a valid pointer to a
     ///   [`ExternalSemaphoreProperties`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`ExternalSemaphoreProperties`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceExternalSemaphoreInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalSemaphoreProperties")]
     #[doc(alias = "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR")]
@@ -24332,40 +26295,40 @@ impl PhysicalDevice {
     ///    const VkPhysicalDeviceExternalFenceInfo*    pExternalFenceInfo,
     ///    VkExternalFenceProperties*                  pExternalFenceProperties);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_external_fence_capabilities
     ///void vkGetPhysicalDeviceExternalFencePropertiesKHR(
     ///    VkPhysicalDevice                            physicalDevice,
     ///    const VkPhysicalDeviceExternalFenceInfo*    pExternalFenceInfo,
     ///    VkExternalFenceProperties*                  pExternalFenceProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device from which to query the fence capabilities.
     /// - [`p_external_fence_info`] is a pointer to a [`PhysicalDeviceExternalFenceInfo`] structure
     ///   describing the parameters that would be consumed by [`create_fence`].
     /// - [`p_external_fence_properties`] is a pointer to a [`ExternalFenceProperties`] structure in
     ///   which capabilities are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_external_fence_info`] **must**  be a valid pointer to a valid
     ///   [`PhysicalDeviceExternalFenceInfo`] structure
     /// - [`p_external_fence_properties`] **must**  be a valid pointer to a
     ///   [`ExternalFenceProperties`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`ExternalFenceProperties`]
     /// - [`PhysicalDevice`]
     /// - [`PhysicalDeviceExternalFenceInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceExternalFenceProperties")]
     #[doc(alias = "vkGetPhysicalDeviceExternalFencePropertiesKHR")]
@@ -24433,43 +26396,43 @@ impl Device {
     ///    VkCommandPool                               commandPool,
     ///    VkCommandPoolTrimFlags                      flags);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_maintenance1
     ///void vkTrimCommandPoolKHR(
     ///    VkDevice                                    device,
     ///    VkCommandPool                               commandPool,
     ///    VkCommandPoolTrimFlags                      flags);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the command pool.
     /// - [`command_pool`] is the command pool to trim.
     /// - [`flags`] is reserved for future use.
-    /// # Description
-    /// Trimming a command pool recycles unused memory from the command pool back to
-    /// the system.
-    /// Command buffers allocated from the pool are not affected by the command.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///Trimming a command pool recycles unused memory from the command pool back to
+    ///the system.
+    ///Command buffers allocated from the pool are not affected by the command.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`command_pool`] **must**  be a valid [`CommandPool`] handle
     /// - [`flags`] **must**  be `0`
     /// - [`command_pool`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_pool`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`CommandPool`]
     /// - [`CommandPoolTrimFlags`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkTrimCommandPool")]
     #[doc(alias = "vkTrimCommandPoolKHR")]
@@ -24531,8 +26494,8 @@ impl Device {
     ///    uint32_t                                    remoteDeviceIndex,
     ///    VkPeerMemoryFeatureFlags*                   pPeerMemoryFeatures);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_device_group
     ///void vkGetDeviceGroupPeerMemoryFeaturesKHR(
     ///    VkDevice                                    device,
@@ -24541,7 +26504,7 @@ impl Device {
     ///    uint32_t                                    remoteDeviceIndex,
     ///    VkPeerMemoryFeatureFlags*                   pPeerMemoryFeatures);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the memory.
     /// - [`heap_index`] is the index of the memory heap from which the memory is allocated.
     /// - [`local_device_index`] is the device index of the physical device that performs the memory
@@ -24551,29 +26514,29 @@ impl Device {
     /// - [`p_peer_memory_features`] is a pointer to a [`PeerMemoryFeatureFlags`] bitmask indicating
     ///   which types of memory accesses are supported for the combination of heap, local, and
     ///   remote devices.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`heap_index`] **must**  be less than `memoryHeapCount`
     /// - [`local_device_index`] **must**  be a valid device index
     /// - [`remote_device_index`] **must**  be a valid device index
     /// - [`local_device_index`] **must**  not equal [`remote_device_index`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_peer_memory_features`] **must**  be a valid pointer to a [`PeerMemoryFeatureFlags`]
     ///   value
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`PeerMemoryFeatureFlags`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceGroupPeerMemoryFeatures")]
     #[doc(alias = "vkGetDeviceGroupPeerMemoryFeaturesKHR")]
@@ -24637,44 +26600,44 @@ impl Device {
     ///    uint32_t                                    bindInfoCount,
     ///    const VkBindBufferMemoryInfo*               pBindInfos);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_bind_memory2
     ///VkResult vkBindBufferMemory2KHR(
     ///    VkDevice                                    device,
     ///    uint32_t                                    bindInfoCount,
     ///    const VkBindBufferMemoryInfo*               pBindInfos);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the buffers and memory.
     /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
     /// - [`p_bind_infos`] is a pointer to an array of [`bind_info_count`][`BindBufferMemoryInfo`]
     ///   structures describing buffers and memory to bind.
-    /// # Description
-    /// On some implementations, it  **may**  be more efficient to batch memory bindings
-    /// into a single command.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///On some implementations, it  **may**  be more efficient to batch memory bindings
+    ///into a single command.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
     ///   [`BindBufferMemoryInfo`] structures
     /// - [`bind_info_count`] **must**  be greater than `0`
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`BindBufferMemoryInfo`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkBindBufferMemory2")]
     #[doc(alias = "vkBindBufferMemory2KHR")]
@@ -24733,49 +26696,49 @@ impl Device {
     ///    uint32_t                                    bindInfoCount,
     ///    const VkBindImageMemoryInfo*                pBindInfos);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_bind_memory2
     ///VkResult vkBindImageMemory2KHR(
     ///    VkDevice                                    device,
     ///    uint32_t                                    bindInfoCount,
     ///    const VkBindImageMemoryInfo*                pBindInfos);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the images and memory.
     /// - [`bind_info_count`] is the number of elements in [`p_bind_infos`].
     /// - [`p_bind_infos`] is a pointer to an array of [`BindImageMemoryInfo`] structures,
     ///   describing images and memory to bind.
-    /// # Description
-    /// On some implementations, it  **may**  be more efficient to batch memory bindings
-    /// into a single command.
-    /// ## Valid Usage
+    ///# Description
+    ///On some implementations, it  **may**  be more efficient to batch memory bindings
+    ///into a single command.
+    ///## Valid Usage
     /// - If any [`BindImageMemoryInfo::image`] was created with `VK_IMAGE_CREATE_DISJOINT_BIT` then
     ///   all planes of [`BindImageMemoryInfo::image`] **must**  be bound individually in separate
     ///   [`p_bind_infos`]
     /// - [`p_bind_infos`] **must**  not refer to the same image subresource more than once
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_bind_infos`] **must**  be a valid pointer to an array of [`bind_info_count`] valid
     ///   [`BindImageMemoryInfo`] structures
     /// - [`bind_info_count`] **must**  be greater than `0`
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`BindImageMemoryInfo`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkBindImageMemory2")]
     #[doc(alias = "vkBindImageMemory2KHR")]
@@ -24859,8 +26822,8 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkDescriptorUpdateTemplate*                 pDescriptorUpdateTemplate);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_descriptor_update_template
     ///VkResult vkCreateDescriptorUpdateTemplateKHR(
     ///    VkDevice                                    device,
@@ -24868,7 +26831,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkDescriptorUpdateTemplate*                 pDescriptorUpdateTemplate);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the descriptor update template.
     /// - [`p_create_info`] is a pointer to a [`DescriptorUpdateTemplateCreateInfo`] structure
     ///   specifying the set of descriptors to update with a single call to
@@ -24877,8 +26840,8 @@ impl Device {
     ///   chapter.
     /// - [`p_descriptor_update_template`] is a pointer to a [`DescriptorUpdateTemplate`] handle in
     ///   which the resulting descriptor update template object is returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`DescriptorUpdateTemplateCreateInfo`] structure
@@ -24887,23 +26850,23 @@ impl Device {
     /// - [`p_descriptor_update_template`] **must**  be a valid pointer to a
     ///   [`DescriptorUpdateTemplate`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`AllocationCallbacks`]
     /// - [`DescriptorUpdateTemplate`]
     /// - [`DescriptorUpdateTemplateCreateInfo`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateDescriptorUpdateTemplate")]
     #[doc(alias = "vkCreateDescriptorUpdateTemplateKHR")]
@@ -24973,28 +26936,28 @@ impl Device {
     ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_descriptor_update_template
     ///void vkDestroyDescriptorUpdateTemplateKHR(
     ///    VkDevice                                    device,
     ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that has been used to create the descriptor update
     ///   template
     /// - [`descriptor_update_template`] is the descriptor update template to destroy.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - If [`AllocationCallbacks`] were provided when [`descriptor_update_template`] was created,
     ///   a compatible set of callbacks  **must**  be provided here
     /// - If no [`AllocationCallbacks`] were provided when [`descriptor_update_template`] was
     ///   created, [`p_allocator`] **must**  be `NULL`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`descriptor_update_template`] is not [`crate::Handle::null`],
     ///   [`descriptor_update_template`] **must**  be a valid [`DescriptorUpdateTemplate`] handle
@@ -25003,21 +26966,21 @@ impl Device {
     /// - If [`descriptor_update_template`] is a valid handle, it  **must**  have been created,
     ///   allocated, or retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`descriptor_update_template`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`AllocationCallbacks`]
     /// - [`DescriptorUpdateTemplate`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyDescriptorUpdateTemplate")]
     #[doc(alias = "vkDestroyDescriptorUpdateTemplateKHR")]
@@ -25081,8 +27044,8 @@ impl Device {
     ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
     ///    const void*                                 pData);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_descriptor_update_template
     ///void vkUpdateDescriptorSetWithTemplateKHR(
     ///    VkDevice                                    device,
@@ -25090,7 +27053,7 @@ impl Device {
     ///    VkDescriptorUpdateTemplate                  descriptorUpdateTemplate,
     ///    const void*                                 pData);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that updates the descriptor set.
     /// - [`descriptor_set`] is the descriptor set to update
     /// - [`descriptor_update_template`] is a [`DescriptorUpdateTemplate`] object specifying the
@@ -25098,25 +27061,25 @@ impl Device {
     /// - [`p_data`] is a pointer to memory containing one or more     [`DescriptorImageInfo`],
     ///   [`DescriptorBufferInfo`], or     [`BufferView`] structures or [`AccelerationStructureKHR`]
     ///   or [`AccelerationStructureNV`] handles     used to write the descriptors.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`p_data`] **must**  be a valid pointer to a memory containing one or more valid instances
     ///   of [`DescriptorImageInfo`], [`DescriptorBufferInfo`], or [`BufferView`] in a layout
     ///   defined by [`descriptor_update_template`] when it was created with
     ///   [`create_descriptor_update_template`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
     /// - [`descriptor_update_template`] **must**  be a valid [`DescriptorUpdateTemplate`] handle
     /// - [`descriptor_update_template`] **must**  have been created, allocated, or retrieved from
     ///   [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`descriptor_set`] **must**  be externally synchronized
     ///
-    /// ## API example
-    /// ```c
+    ///## API example
+    ///```c
     ///struct AppBufferView {
     ///    VkBufferView bufferView;
     ///    uint32_t     applicationRelatedInformation;
@@ -25167,6 +27130,7 @@ impl Device {
     /// compact
     ///    },
     ///};
+    ///
     ///// create a descriptor update template for descriptor set updates
     ///const VkDescriptorUpdateTemplateCreateInfo createInfo =
     ///{
@@ -25193,23 +27157,24 @@ impl Device {
     ///    &myDescriptorUpdateTemplate);
     ///
     ///AppDataStructure appData;
+    ///
     ///// fill appData here or cache it in your engine
     ///vkUpdateDescriptorSetWithTemplate(myDevice, myDescriptorSet, myDescriptorUpdateTemplate,
     /// &appData);
     ///```
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`DescriptorSet`]
     /// - [`DescriptorUpdateTemplate`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkUpdateDescriptorSetWithTemplate")]
     #[doc(alias = "vkUpdateDescriptorSetWithTemplateKHR")]
@@ -25266,40 +27231,40 @@ impl Device {
     ///    const VkBufferMemoryRequirementsInfo2*      pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_memory_requirements2
     ///void vkGetBufferMemoryRequirements2KHR(
     ///    VkDevice                                    device,
     ///    const VkBufferMemoryRequirementsInfo2*      pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the buffer.
     /// - [`p_info`] is a pointer to a [`BufferMemoryRequirementsInfo2`] structure containing
     ///   parameters required for the memory requirements query.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
     ///   memory requirements of the buffer object are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`BufferMemoryRequirementsInfo2`]
     ///   structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`BufferMemoryRequirementsInfo2`]
     /// - [`Device`]
     /// - [`MemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetBufferMemoryRequirements2")]
     #[doc(alias = "vkGetBufferMemoryRequirements2KHR")]
@@ -25363,40 +27328,40 @@ impl Device {
     ///    const VkImageMemoryRequirementsInfo2*       pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_memory_requirements2
     ///void vkGetImageMemoryRequirements2KHR(
     ///    VkDevice                                    device,
     ///    const VkImageMemoryRequirementsInfo2*       pInfo,
     ///    VkMemoryRequirements2*                      pMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the image.
     /// - [`p_info`] is a pointer to a [`ImageMemoryRequirementsInfo2`] structure containing
     ///   parameters required for the memory requirements query.
     /// - [`p_memory_requirements`] is a pointer to a [`MemoryRequirements2`] structure in which the
     ///   memory requirements of the image object are returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageMemoryRequirementsInfo2`]
     ///   structure
     /// - [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`]
     ///   structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`ImageMemoryRequirementsInfo2`]
     /// - [`MemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetImageMemoryRequirements2")]
     #[doc(alias = "vkGetImageMemoryRequirements2KHR")]
@@ -25461,8 +27426,8 @@ impl Device {
     ///    uint32_t*                                   pSparseMemoryRequirementCount,
     ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_get_memory_requirements2
     ///void vkGetImageSparseMemoryRequirements2KHR(
     ///    VkDevice                                    device,
@@ -25470,7 +27435,7 @@ impl Device {
     ///    uint32_t*                                   pSparseMemoryRequirementCount,
     ///    VkSparseImageMemoryRequirements2*           pSparseMemoryRequirements);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the image.
     /// - [`p_info`] is a pointer to a [`ImageSparseMemoryRequirementsInfo2`] structure containing
     ///   parameters required for the memory requirements query.
@@ -25478,8 +27443,8 @@ impl Device {
     ///   sparse memory requirements available or queried, as described below.
     /// - [`p_sparse_memory_requirements`] is either `NULL` or a pointer to an array of
     ///   [`SparseImageMemoryRequirements2`] structures.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid [`ImageSparseMemoryRequirementsInfo2`]
     ///   structure
@@ -25488,19 +27453,19 @@ impl Device {
     ///   [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**
     ///   be a valid pointer to an array of
     ///   [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`ImageSparseMemoryRequirementsInfo2`]
     /// - [`SparseImageMemoryRequirements2`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetImageSparseMemoryRequirements2")]
     #[doc(alias = "vkGetImageSparseMemoryRequirements2KHR")]
@@ -25579,8 +27544,8 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSamplerYcbcrConversion*                   pYcbcrConversion);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_sampler_ycbcr_conversion
     ///VkResult vkCreateSamplerYcbcrConversionKHR(
     ///    VkDevice                                    device,
@@ -25588,7 +27553,7 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSamplerYcbcrConversion*                   pYcbcrConversion);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that creates the sampler Y′C<sub>B</sub>C<sub>R</sub>
     ///   conversion.
     /// - [`p_create_info`] is a pointer to a [`SamplerYcbcrConversionCreateInfo`] structure
@@ -25597,16 +27562,16 @@ impl Device {
     ///   chapter.
     /// - [`p_ycbcr_conversion`] is a pointer to a [`SamplerYcbcrConversion`] handle in which the
     ///   resulting sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is returned.
-    /// # Description
-    /// The interpretation of the configured sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is
+    ///# Description
+    ///The interpretation of the configured sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is
     /// described
-    /// in more detail in [the description of
-    /// sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
-    /// ## Valid Usage
+    ///in more detail in [the description of
+    ///sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion) in the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.
+    ///## Valid Usage
     /// - The [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-samplerYcbcrConversion)
     ///   **must**  be enabled
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`SamplerYcbcrConversionCreateInfo`] structure
@@ -25614,23 +27579,23 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_ycbcr_conversion`] **must**  be a valid pointer to a [`SamplerYcbcrConversion`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SamplerYcbcrConversion`]
     /// - [`SamplerYcbcrConversionCreateInfo`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateSamplerYcbcrConversion")]
     #[doc(alias = "vkCreateSamplerYcbcrConversionKHR")]
@@ -25700,22 +27665,22 @@ impl Device {
     ///    VkSamplerYcbcrConversion                    ycbcrConversion,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_sampler_ycbcr_conversion
     ///void vkDestroySamplerYcbcrConversionKHR(
     ///    VkDevice                                    device,
     ///    VkSamplerYcbcrConversion                    ycbcrConversion,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that destroys the Y′C<sub>B</sub>C<sub>R</sub>
     ///   conversion.
     /// - [`ycbcr_conversion`] is the conversion to destroy.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - If [`ycbcr_conversion`] is not [`crate::Handle::null`], [`ycbcr_conversion`] **must**  be
     ///   a valid [`SamplerYcbcrConversion`] handle
@@ -25724,21 +27689,21 @@ impl Device {
     /// - If [`ycbcr_conversion`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`device`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`ycbcr_conversion`] **must**  be externally synchronized
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`AllocationCallbacks`]
     /// - [`Device`]
     /// - [`SamplerYcbcrConversion`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroySamplerYcbcrConversion")]
     #[doc(alias = "vkDestroySamplerYcbcrConversionKHR")]
@@ -25801,30 +27766,30 @@ impl Device {
     ///    const VkDeviceQueueInfo2*                   pQueueInfo,
     ///    VkQueue*                                    pQueue);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that owns the queue.
     /// - [`p_queue_info`] is a pointer to a [`DeviceQueueInfo2`] structure, describing parameters
     ///   of the device queue to be retrieved.
     /// - [`p_queue`] is a pointer to a [`Queue`] object that will be filled with the handle for the
     ///   requested queue.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_queue_info`] **must**  be a valid pointer to a valid [`DeviceQueueInfo2`] structure
     /// - [`p_queue`] **must**  be a valid pointer to a [`Queue`] handle
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`Device`]
     /// - [`DeviceQueueInfo2`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceQueue2")]
     #[track_caller]
@@ -25863,59 +27828,59 @@ impl Device {
     ///    const VkDescriptorSetLayoutCreateInfo*      pCreateInfo,
     ///    VkDescriptorSetLayoutSupport*               pSupport);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_maintenance3
     ///void vkGetDescriptorSetLayoutSupportKHR(
     ///    VkDevice                                    device,
     ///    const VkDescriptorSetLayoutCreateInfo*      pCreateInfo,
     ///    VkDescriptorSetLayoutSupport*               pSupport);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that would create the descriptor set layout.
     /// - [`p_create_info`] is a pointer to a [`DescriptorSetLayoutCreateInfo`] structure specifying
     ///   the state of the descriptor set layout object.
     /// - [`p_support`] is a pointer to a [`DescriptorSetLayoutSupport`] structure, in which
     ///   information about support for the descriptor set layout object is returned.
-    /// # Description
-    /// Some implementations have limitations on what fits in a descriptor set which
-    /// are not easily expressible in terms of existing limits like
-    /// `maxDescriptorSet`*, for example if all descriptor types share a limited
-    /// space in memory but each descriptor is a different size or alignment.
-    /// This command returns information about whether a descriptor set satisfies
-    /// this limit.
-    /// If the descriptor set layout satisfies the
-    /// [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
-    /// limit, this command is guaranteed to return [`TRUE`] in
-    /// [`DescriptorSetLayoutSupport::supported`].
-    /// If the descriptor set layout exceeds the
-    /// [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
-    /// limit, whether the descriptor set layout is supported is
-    /// implementation-dependent and  **may**  depend on whether the descriptor sizes and
-    /// alignments cause the layout to exceed an internal limit.This command does not consider other
+    ///# Description
+    ///Some implementations have limitations on what fits in a descriptor set which
+    ///are not easily expressible in terms of existing limits like
+    ///`maxDescriptorSet`*, for example if all descriptor types share a limited
+    ///space in memory but each descriptor is a different size or alignment.
+    ///This command returns information about whether a descriptor set satisfies
+    ///this limit.
+    ///If the descriptor set layout satisfies the
+    ///[`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
+    ///limit, this command is guaranteed to return [`TRUE`] in
+    ///[`DescriptorSetLayoutSupport::supported`].
+    ///If the descriptor set layout exceeds the
+    ///[`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
+    ///limit, whether the descriptor set layout is supported is
+    ///implementation-dependent and  **may**  depend on whether the descriptor sizes and
+    ///alignments cause the layout to exceed an internal limit.This command does not consider other
     /// limits such as
-    /// `maxPerStageDescriptor`*, and so a descriptor set layout that is
-    /// supported according to this command  **must**  still satisfy the pipeline layout
-    /// limits such as `maxPerStageDescriptor`* in order to be used in a
-    /// pipeline layout.
-    /// ## Valid Usage (Implicit)
+    ///`maxPerStageDescriptor`*, and so a descriptor set layout that is
+    ///supported according to this command  **must**  still satisfy the pipeline layout
+    ///limits such as `maxPerStageDescriptor`* in order to be used in a
+    ///pipeline layout.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`DescriptorSetLayoutCreateInfo`] structure
     /// - [`p_support`] **must**  be a valid pointer to a [`DescriptorSetLayoutSupport`] structure
-    /// # Related
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`DescriptorSetLayoutCreateInfo`]
     /// - [`DescriptorSetLayoutSupport`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetLayoutSupport")]
     #[doc(alias = "vkGetDescriptorSetLayoutSupportKHR")]
@@ -25978,26 +27943,26 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    uint32_t                                    deviceMask);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_device_group
     ///void vkCmdSetDeviceMaskKHR(
     ///    VkCommandBuffer                             commandBuffer,
     ///    uint32_t                                    deviceMask);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is command buffer whose current device mask is modified.
     /// - [`device_mask`] is the new value of the current device mask.
-    /// # Description
-    /// [`device_mask`] is used to filter out subsequent commands from executing on
-    /// all physical devices whose bit indices are not set in the mask, except
-    /// commands beginning a render pass instance, commands transitioning to the
-    /// next subpass in the render pass instance, and commands ending a render pass
-    /// instance, which always execute on the set of physical devices whose bit
-    /// indices are included in the [`device_mask`] member of the
-    /// [`DeviceGroupRenderPassBeginInfo`] structure passed to the command
-    /// beginning the corresponding render pass instance.
-    /// ## Valid Usage
+    ///# Description
+    ///[`device_mask`] is used to filter out subsequent commands from executing on
+    ///all physical devices whose bit indices are not set in the mask, except
+    ///commands beginning a render pass instance, commands transitioning to the
+    ///next subpass in the render pass instance, and commands ending a render pass
+    ///instance, which always execute on the set of physical devices whose bit
+    ///indices are included in the [`device_mask`] member of the
+    ///[`DeviceGroupRenderPassBeginInfo`] structure passed to the command
+    ///beginning the corresponding render pass instance.
+    ///## Valid Usage
     /// - [`device_mask`] **must**  be a valid device mask value
     /// - [`device_mask`] **must**  not be zero
     /// - [`device_mask`] **must**  not include any set bits that were not in the
@@ -26008,29 +27973,29 @@ impl CommandBuffer {
     ///   [`DeviceGroupRenderPassBeginInfo`]::[`device_mask`] value when the render pass instance
     ///   began recording
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, compute, or transfer operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetDeviceMask")]
     #[doc(alias = "vkCmdSetDeviceMaskKHR")]
@@ -26091,8 +28056,8 @@ impl CommandBuffer {
     ///    uint32_t                                    groupCountY,
     ///    uint32_t                                    groupCountZ);
     ///```
-    /// or the equivalent command
-    /// ```c
+    ///or the equivalent command
+    ///```c
     ///// Provided by VK_KHR_device_group
     ///void vkCmdDispatchBaseKHR(
     ///    VkCommandBuffer                             commandBuffer,
@@ -26103,7 +28068,7 @@ impl CommandBuffer {
     ///    uint32_t                                    groupCountY,
     ///    uint32_t                                    groupCountZ);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`base_group_x`] is the start value for the X component of `WorkgroupId`.
     /// - [`base_group_y`] is the start value for the Y component of `WorkgroupId`.
@@ -26111,15 +28076,15 @@ impl CommandBuffer {
     /// - [`group_count_x`] is the number of local workgroups to dispatch in the X dimension.
     /// - [`group_count_y`] is the number of local workgroups to dispatch in the Y dimension.
     /// - [`group_count_z`] is the number of local workgroups to dispatch in the Z dimension.
-    /// # Description
-    /// When the command is executed, a global workgroup consisting of
-    /// [`group_count_x`] × [`group_count_y`] × [`group_count_z`]
-    /// local workgroups is assembled, with `WorkgroupId` values ranging from
-    /// [`baseGroup*`, `baseGroup*` +  `groupCount*`) in each
-    /// component.
-    /// [`cmd_dispatch`] is equivalent to
-    /// `vkCmdDispatchBase(0,0,0,groupCountX,groupCountY,groupCountZ)`.
-    /// ## Valid Usage
+    ///# Description
+    ///When the command is executed, a global workgroup consisting of
+    ///[`group_count_x`] × [`group_count_y`] × [`group_count_z`]
+    ///local workgroups is assembled, with `WorkgroupId` values ranging from
+    ///[`baseGroup*`, `baseGroup*` +  `groupCount*`) in each
+    ///component.
+    ///[`cmd_dispatch`] is equivalent to
+    ///`vkCmdDispatchBase(0,0,0,groupCountX,groupCountY,groupCountZ)`.
+    ///## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -26261,30 +28226,30 @@ impl CommandBuffer {
     ///   bound compute pipeline  **must**  have been created with the
     ///   `VK_PIPELINE_CREATE_DISPATCH_BASE` flag
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support compute
     ///   operations
     /// - This command  **must**  only be called outside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`crate::vulkan1_1`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDispatchBase")]
     #[doc(alias = "vkCmdDispatchBaseKHR")]
@@ -26357,12 +28322,12 @@ impl CommandBuffer {
 ///// Provided by VK_VERSION_1_1
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDescriptorUpdateTemplate)
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_descriptor_update_template
 ///typedef VkDescriptorUpdateTemplate VkDescriptorUpdateTemplateKHR;
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`cmd_push_descriptor_set_with_template_khr`]
 /// - [`create_descriptor_update_template`]
@@ -26372,13 +28337,13 @@ impl CommandBuffer {
 /// - [`update_descriptor_set_with_template`]
 /// - [`update_descriptor_set_with_template_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplate")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
@@ -26466,12 +28431,12 @@ impl Unique<DescriptorUpdateTemplate> {
 ///// Provided by VK_VERSION_1_1
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSamplerYcbcrConversion)
 ///```
-/// or the equivalent
-/// ```c
+///or the equivalent
+///```c
 ///// Provided by VK_KHR_sampler_ycbcr_conversion
 ///typedef VkSamplerYcbcrConversion VkSamplerYcbcrConversionKHR;
 ///```
-/// # Related
+///# Related
 /// - [`crate::vulkan1_1`]
 /// - [`SamplerYcbcrConversionInfo`]
 /// - [`create_sampler_ycbcr_conversion`]
@@ -26479,13 +28444,13 @@ impl Unique<DescriptorUpdateTemplate> {
 /// - [`destroy_sampler_ycbcr_conversion`]
 /// - [`destroy_sampler_ycbcr_conversion_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversion")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]

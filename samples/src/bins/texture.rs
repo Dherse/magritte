@@ -204,15 +204,15 @@ impl Renderer {
         )?;
 
         let sampler_create_info = SamplerCreateInfo::default()
-            .set_mag_filter(Filter::LINEAR)
-            .set_min_filter(Filter::LINEAR)
-            .set_mipmap_mode(SamplerMipmapMode::NEAREST)
-            .set_address_mode_u(SamplerAddressMode::REPEAT)
-            .set_address_mode_v(SamplerAddressMode::REPEAT)
-            .set_address_mode_w(SamplerAddressMode::REPEAT)
-            .set_max_anisotropy(1.0)
-            .set_border_color(BorderColor::FLOAT_OPAQUE_BLACK)
-            .set_compare_op(CompareOp::NEVER);
+            .with_mag_filter(Filter::LINEAR)
+            .with_min_filter(Filter::LINEAR)
+            .with_mipmap_mode(SamplerMipmapMode::NEAREST)
+            .with_address_mode_u(SamplerAddressMode::REPEAT)
+            .with_address_mode_v(SamplerAddressMode::REPEAT)
+            .with_address_mode_w(SamplerAddressMode::REPEAT)
+            .with_max_anisotropy(1.0)
+            .with_border_color(BorderColor::FLOAT_OPAQUE_BLACK)
+            .with_compare_op(CompareOp::NEVER);
 
         let (sampler, _) = unsafe { vulkan.device().create_sampler(&sampler_create_info, None)? };
 

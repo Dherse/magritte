@@ -64,27 +64,27 @@ pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_f
 ///    GgpFrameToken      frameToken;
 ///} VkPresentFrameTokenGGP;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`frame_token`] is the Google Games Platform frame token.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`frame_token`] **must**  be a valid [`GgpFrameToken`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
-/// # Related
+///# Related
 /// - [`ggp_frame_token`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentFrameTokenGGP")]
 #[repr(C)]
 pub struct PresentFrameTokenGGP<'lt> {
@@ -118,12 +118,22 @@ impl<'lt> PresentFrameTokenGGP<'lt> {
         &self.frame_token
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::frame_token`]
-    pub fn set_frame_token_raw(mut self, value: GgpFrameToken) -> Self {
+    pub fn set_frame_token_raw(&mut self, value: GgpFrameToken) -> &mut Self {
+        self.frame_token = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::frame_token`]
+    pub fn with_frame_token_raw(mut self, value: GgpFrameToken) -> Self {
         self.frame_token = value;
         self
     }
@@ -151,17 +161,32 @@ impl<'lt> PresentFrameTokenGGP<'lt> {
         &mut self.frame_token
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::frame_token`]
-    pub fn set_frame_token(mut self, value: crate::native::GgpFrameToken) -> Self {
+    pub fn set_frame_token(&mut self, value: crate::native::GgpFrameToken) -> &mut Self {
+        self.frame_token = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::frame_token`]
+    pub fn with_frame_token(mut self, value: crate::native::GgpFrameToken) -> Self {
         self.frame_token = value;
         self
     }

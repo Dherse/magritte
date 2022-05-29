@@ -71,30 +71,30 @@ pub const NV_SHADER_SM_BUILTINS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    uint32_t           shaderWarpsPerSM;
 ///} VkPhysicalDeviceShaderSMBuiltinsPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_sm_count`] is the number of SMs on the device.
 /// - [`shader_warps_per_sm`] is the maximum number of simultaneously executing warps on an SM.
-/// # Description
-/// If the [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`nv_shader_sm_builtins`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsPropertiesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -130,7 +130,12 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -173,22 +178,42 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
         &mut self.shader_warps_per_sm
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_sm_count`]
-    pub fn set_shader_sm_count(mut self, value: u32) -> Self {
+    pub fn set_shader_sm_count(&mut self, value: u32) -> &mut Self {
         self.shader_sm_count = value;
         self
     }
     ///Sets the value of [`Self::shader_warps_per_sm`]
-    pub fn set_shader_warps_per_sm(mut self, value: u32) -> Self {
+    pub fn set_shader_warps_per_sm(&mut self, value: u32) -> &mut Self {
+        self.shader_warps_per_sm = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_sm_count`]
+    pub fn with_shader_sm_count(mut self, value: u32) -> Self {
+        self.shader_sm_count = value;
+        self
+    }
+    ///Sets the value of [`Self::shader_warps_per_sm`]
+    pub fn with_shader_warps_per_sm(mut self, value: u32) -> Self {
         self.shader_warps_per_sm = value;
         self
     }
@@ -205,34 +230,34 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsPropertiesNV<'lt> {
 ///    VkBool32           shaderSMBuiltins;
 ///} VkPhysicalDeviceShaderSMBuiltinsFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_sm_builtins`] indicates whether the implementation supports the SPIR-V
 ///   `ShaderSMBuiltinsNV` capability.
-/// If the [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderSmBuiltinsFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_shader_sm_builtins`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -269,12 +294,22 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
         self.shader_sm_builtins
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_sm_builtins`]
-    pub fn set_shader_sm_builtins_raw(mut self, value: Bool32) -> Self {
+    pub fn set_shader_sm_builtins_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shader_sm_builtins = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_sm_builtins`]
+    pub fn with_shader_sm_builtins_raw(mut self, value: Bool32) -> Self {
         self.shader_sm_builtins = value;
         self
     }
@@ -323,17 +358,32 @@ impl<'lt> PhysicalDeviceShaderSmBuiltinsFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_sm_builtins`]
-    pub fn set_shader_sm_builtins(mut self, value: bool) -> Self {
+    pub fn set_shader_sm_builtins(&mut self, value: bool) -> &mut Self {
+        self.shader_sm_builtins = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_sm_builtins`]
+    pub fn with_shader_sm_builtins(mut self, value: bool) -> Self {
         self.shader_sm_builtins = value as u8 as u32;
         self
     }

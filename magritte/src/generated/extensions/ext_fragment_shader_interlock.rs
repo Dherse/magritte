@@ -78,9 +78,9 @@ pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           fragmentShaderShadingRateInterlock;
 ///} VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_shader_sample_interlock`] indicates that the implementation supports the
@@ -89,29 +89,29 @@ pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &'static CStr =
 ///   `FragmentShaderPixelInterlockEXT` SPIR-V capability.
 /// - [`fragment_shader_shading_rate_interlock`] indicates that the implementation supports the
 ///   `FragmentShaderShadingRateInterlockEXT` SPIR-V capability.
-/// If the [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_fragment_shader_interlock`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -164,22 +164,42 @@ impl<'lt> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
         self.fragment_shader_shading_rate_interlock
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shader_sample_interlock`]
-    pub fn set_fragment_shader_sample_interlock_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_shader_sample_interlock_raw(&mut self, value: Bool32) -> &mut Self {
         self.fragment_shader_sample_interlock = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shader_pixel_interlock`]
-    pub fn set_fragment_shader_pixel_interlock_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_shader_pixel_interlock_raw(&mut self, value: Bool32) -> &mut Self {
         self.fragment_shader_pixel_interlock = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shader_shading_rate_interlock`]
-    pub fn set_fragment_shader_shading_rate_interlock_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_shader_shading_rate_interlock_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shader_shading_rate_interlock = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shader_sample_interlock`]
+    pub fn with_fragment_shader_sample_interlock_raw(mut self, value: Bool32) -> Self {
+        self.fragment_shader_sample_interlock = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shader_pixel_interlock`]
+    pub fn with_fragment_shader_pixel_interlock_raw(mut self, value: Bool32) -> Self {
+        self.fragment_shader_pixel_interlock = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shader_shading_rate_interlock`]
+    pub fn with_fragment_shader_shading_rate_interlock_raw(mut self, value: Bool32) -> Self {
         self.fragment_shader_shading_rate_interlock = value;
         self
     }
@@ -272,27 +292,52 @@ impl<'lt> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::fragment_shader_sample_interlock`]
-    pub fn set_fragment_shader_sample_interlock(mut self, value: bool) -> Self {
+    pub fn set_fragment_shader_sample_interlock(&mut self, value: bool) -> &mut Self {
         self.fragment_shader_sample_interlock = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::fragment_shader_pixel_interlock`]
-    pub fn set_fragment_shader_pixel_interlock(mut self, value: bool) -> Self {
+    pub fn set_fragment_shader_pixel_interlock(&mut self, value: bool) -> &mut Self {
         self.fragment_shader_pixel_interlock = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::fragment_shader_shading_rate_interlock`]
-    pub fn set_fragment_shader_shading_rate_interlock(mut self, value: bool) -> Self {
+    pub fn set_fragment_shader_shading_rate_interlock(&mut self, value: bool) -> &mut Self {
+        self.fragment_shader_shading_rate_interlock = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::fragment_shader_sample_interlock`]
+    pub fn with_fragment_shader_sample_interlock(mut self, value: bool) -> Self {
+        self.fragment_shader_sample_interlock = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::fragment_shader_pixel_interlock`]
+    pub fn with_fragment_shader_pixel_interlock(mut self, value: bool) -> Self {
+        self.fragment_shader_pixel_interlock = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::fragment_shader_shading_rate_interlock`]
+    pub fn with_fragment_shader_shading_rate_interlock(mut self, value: bool) -> Self {
         self.fragment_shader_shading_rate_interlock = value as u8 as u32;
         self
     }

@@ -67,37 +67,37 @@ pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VkBool32           texelBufferAlignment;
 ///} VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`texel_buffer_alignment`] indicates whether the implementation uses more specific alignment
 ///   requirements advertised in [`PhysicalDeviceTexelBufferAlignmentProperties`] rather than
 ///   [`PhysicalDeviceLimits::min_texel_buffer_offset_alignment`].
-/// If the [`PhysicalDeviceTexelBufferAlignmentFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceTexelBufferAlignmentFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceTexelBufferAlignmentFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceTexelBufferAlignmentFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_texel_buffer_alignment`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -136,12 +136,22 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt> {
         self.texel_buffer_alignment
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::texel_buffer_alignment`]
-    pub fn set_texel_buffer_alignment_raw(mut self, value: Bool32) -> Self {
+    pub fn set_texel_buffer_alignment_raw(&mut self, value: Bool32) -> &mut Self {
+        self.texel_buffer_alignment = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::texel_buffer_alignment`]
+    pub fn with_texel_buffer_alignment_raw(mut self, value: Bool32) -> Self {
         self.texel_buffer_alignment = value;
         self
     }
@@ -190,17 +200,32 @@ impl<'lt> PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::texel_buffer_alignment`]
-    pub fn set_texel_buffer_alignment(mut self, value: bool) -> Self {
+    pub fn set_texel_buffer_alignment(&mut self, value: bool) -> &mut Self {
+        self.texel_buffer_alignment = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::texel_buffer_alignment`]
+    pub fn with_texel_buffer_alignment(mut self, value: bool) -> Self {
         self.texel_buffer_alignment = value as u8 as u32;
         self
     }

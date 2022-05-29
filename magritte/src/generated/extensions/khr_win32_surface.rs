@@ -126,15 +126,15 @@ pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSurfaceKHR*                               pSurface);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is the instance to associate the surface with.
 /// - [`p_create_info`] is a pointer to a [`Win32SurfaceCreateInfoKHR`] structure containing
 ///   parameters affecting the creation of the surface object.
 /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
 /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
 ///   returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`Win32SurfaceCreateInfoKHR`]
 ///   structure
@@ -142,23 +142,23 @@ pub const KHR_WIN32_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR
 ///   [`AllocationCallbacks`] structure
 /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`khr_win32_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`SurfaceKHR`]
 /// - [`Win32SurfaceCreateInfoKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateWin32SurfaceKHR")]
 pub type FNCreateWin32SurfaceKhr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -178,28 +178,28 @@ pub type FNCreateWin32SurfaceKhr = Option<
 ///    VkPhysicalDevice                            physicalDevice,
 ///    uint32_t                                    queueFamilyIndex);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device.
 /// - [`queue_family_index`] is the queue family index.
-/// # Description
-/// This platform-specific function  **can**  be called prior to creating a surface.
-/// ## Valid Usage
+///# Description
+///This platform-specific function  **can**  be called prior to creating a surface.
+///## Valid Usage
 /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
 ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
-/// # Related
+///# Related
 /// - [`khr_win32_surface`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceWin32PresentationSupportKHR")]
 pub type FNGetPhysicalDeviceWin32PresentationSupportKhr =
     Option<unsafe extern "system" fn(physical_device: PhysicalDevice, queue_family_index: u32) -> Bool32>;
@@ -209,17 +209,17 @@ pub type FNGetPhysicalDeviceWin32PresentationSupportKhr =
 ///// Provided by VK_KHR_win32_surface
 ///typedef VkFlags VkWin32SurfaceCreateFlagsKHR;
 ///```
-/// # Related
+///# Related
 /// - [`khr_win32_surface`]
 /// - [`Win32SurfaceCreateInfoKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -249,34 +249,34 @@ impl std::fmt::Debug for Win32SurfaceCreateFlagsKHR {
 ///    HWND                            hwnd;
 ///} VkWin32SurfaceCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`hinstance`] is the Win32 [`HINSTANCE`] for the window to associate the surface with.
 /// - [`hwnd`] is the Win32 [`HWND`] for the window to associate the surface with.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`hinstance`] **must**  be a valid Win32 [`HINSTANCE`]
 /// - [`hwnd`] **must**  be a valid Win32 [`HWND`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`khr_win32_surface`]
 /// - [`StructureType`]
 /// - [`Win32SurfaceCreateFlagsKHR`]
 /// - [`create_win32_surface_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWin32SurfaceCreateInfoKHR")]
 #[repr(C)]
 pub struct Win32SurfaceCreateInfoKHR<'lt> {
@@ -322,17 +322,32 @@ impl<'lt> Win32SurfaceCreateInfoKHR<'lt> {
         &self.hwnd
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::hinstance`]
-    pub fn set_hinstance_raw(mut self, value: HINSTANCE) -> Self {
+    pub fn set_hinstance_raw(&mut self, value: HINSTANCE) -> &mut Self {
         self.hinstance = value;
         self
     }
     ///Sets the raw value of [`Self::hwnd`]
-    pub fn set_hwnd_raw(mut self, value: HWND) -> Self {
+    pub fn set_hwnd_raw(&mut self, value: HWND) -> &mut Self {
+        self.hwnd = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::hinstance`]
+    pub fn with_hinstance_raw(mut self, value: HINSTANCE) -> Self {
+        self.hinstance = value;
+        self
+    }
+    ///Sets the raw value of [`Self::hwnd`]
+    pub fn with_hwnd_raw(mut self, value: HWND) -> Self {
         self.hwnd = value;
         self
     }
@@ -376,27 +391,52 @@ impl<'lt> Win32SurfaceCreateInfoKHR<'lt> {
         &mut self.hwnd
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::extensions::khr_win32_surface::Win32SurfaceCreateFlagsKHR) -> Self {
+    pub fn set_flags(&mut self, value: crate::extensions::khr_win32_surface::Win32SurfaceCreateFlagsKHR) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::hinstance`]
-    pub fn set_hinstance(mut self, value: crate::native::HINSTANCE) -> Self {
+    pub fn set_hinstance(&mut self, value: crate::native::HINSTANCE) -> &mut Self {
         self.hinstance = value;
         self
     }
     ///Sets the value of [`Self::hwnd`]
-    pub fn set_hwnd(mut self, value: crate::native::HWND) -> Self {
+    pub fn set_hwnd(&mut self, value: crate::native::HWND) -> &mut Self {
+        self.hwnd = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::extensions::khr_win32_surface::Win32SurfaceCreateFlagsKHR) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::hinstance`]
+    pub fn with_hinstance(mut self, value: crate::native::HINSTANCE) -> Self {
+        self.hinstance = value;
+        self
+    }
+    ///Sets the value of [`Self::hwnd`]
+    pub fn with_hwnd(mut self, value: crate::native::HWND) -> Self {
         self.hwnd = value;
         self
     }
@@ -413,15 +453,15 @@ impl Instance {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSurfaceKHR*                               pSurface);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is the instance to associate the surface with.
     /// - [`p_create_info`] is a pointer to a [`Win32SurfaceCreateInfoKHR`] structure containing
     ///   parameters affecting the creation of the surface object.
     /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
     /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
     ///   is returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`Win32SurfaceCreateInfoKHR`]
     ///   structure
@@ -429,23 +469,23 @@ impl Instance {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`khr_win32_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`SurfaceKHR`]
     /// - [`Win32SurfaceCreateInfoKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateWin32SurfaceKHR")]
     #[track_caller]
@@ -496,28 +536,28 @@ impl PhysicalDevice {
     ///    VkPhysicalDevice                            physicalDevice,
     ///    uint32_t                                    queueFamilyIndex);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device.
     /// - [`queue_family_index`] is the queue family index.
-    /// # Description
-    /// This platform-specific function  **can**  be called prior to creating a surface.
-    /// ## Valid Usage
+    ///# Description
+    ///This platform-specific function  **can**  be called prior to creating a surface.
+    ///## Valid Usage
     /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
     ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
-    /// # Related
+    ///# Related
     /// - [`khr_win32_surface`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceWin32PresentationSupportKHR")]
     #[track_caller]

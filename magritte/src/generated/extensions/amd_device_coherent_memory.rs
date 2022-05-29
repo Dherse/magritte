@@ -62,34 +62,34 @@ pub const AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    VkBool32           deviceCoherentMemory;
 ///} VkPhysicalDeviceCoherentMemoryFeaturesAMD;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_coherent_memory`] indicates that the implementation supports
 ///   [`MemoryPropertyFlagBits`].
-/// If the [`PhysicalDeviceCoherentMemoryFeaturesAMD`] structure is included in the [`p_next`] chain
+///If the [`PhysicalDeviceCoherentMemoryFeaturesAMD`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceCoherentMemoryFeaturesAMD`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceCoherentMemoryFeaturesAMD`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
-/// # Related
+///# Related
 /// - [`amd_device_coherent_memory`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCoherentMemoryFeaturesAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -125,12 +125,22 @@ impl<'lt> PhysicalDeviceCoherentMemoryFeaturesAMD<'lt> {
         self.device_coherent_memory
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_coherent_memory`]
-    pub fn set_device_coherent_memory_raw(mut self, value: Bool32) -> Self {
+    pub fn set_device_coherent_memory_raw(&mut self, value: Bool32) -> &mut Self {
+        self.device_coherent_memory = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_coherent_memory`]
+    pub fn with_device_coherent_memory_raw(mut self, value: Bool32) -> Self {
         self.device_coherent_memory = value;
         self
     }
@@ -179,17 +189,32 @@ impl<'lt> PhysicalDeviceCoherentMemoryFeaturesAMD<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::device_coherent_memory`]
-    pub fn set_device_coherent_memory(mut self, value: bool) -> Self {
+    pub fn set_device_coherent_memory(&mut self, value: bool) -> &mut Self {
+        self.device_coherent_memory = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::device_coherent_memory`]
+    pub fn with_device_coherent_memory(mut self, value: bool) -> Self {
         self.device_coherent_memory = value as u8 as u32;
         self
     }

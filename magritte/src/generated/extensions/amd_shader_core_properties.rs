@@ -69,7 +69,7 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///    uint32_t           vgprAllocationGranularity;
 ///} VkPhysicalDeviceShaderCorePropertiesAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_engine_count`] is an unsigned integer value indicating the number of shader engines
@@ -102,25 +102,25 @@ pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = crate::cstr
 ///   allocated for a wave.
 /// - [`vgpr_allocation_granularity`] is an unsigned integer value indicating the granularity of
 ///   VGPR allocation for a wave.
-/// # Description
-/// If the [`PhysicalDeviceShaderCorePropertiesAMD`] structure is included in the [`p_next`] chain
+///# Description
+///If the [`PhysicalDeviceShaderCorePropertiesAMD`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
-/// # Related
+///# Related
 /// - [`amd_shader_core_properties`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -223,7 +223,12 @@ impl<'lt> PhysicalDeviceShaderCorePropertiesAMD<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -362,82 +367,162 @@ impl<'lt> PhysicalDeviceShaderCorePropertiesAMD<'lt> {
         &mut self.vgpr_allocation_granularity
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_engine_count`]
-    pub fn set_shader_engine_count(mut self, value: u32) -> Self {
+    pub fn set_shader_engine_count(&mut self, value: u32) -> &mut Self {
         self.shader_engine_count = value;
         self
     }
     ///Sets the value of [`Self::shader_arrays_per_engine_count`]
-    pub fn set_shader_arrays_per_engine_count(mut self, value: u32) -> Self {
+    pub fn set_shader_arrays_per_engine_count(&mut self, value: u32) -> &mut Self {
         self.shader_arrays_per_engine_count = value;
         self
     }
     ///Sets the value of [`Self::compute_units_per_shader_array`]
-    pub fn set_compute_units_per_shader_array(mut self, value: u32) -> Self {
+    pub fn set_compute_units_per_shader_array(&mut self, value: u32) -> &mut Self {
         self.compute_units_per_shader_array = value;
         self
     }
     ///Sets the value of [`Self::simd_per_compute_unit`]
-    pub fn set_simd_per_compute_unit(mut self, value: u32) -> Self {
+    pub fn set_simd_per_compute_unit(&mut self, value: u32) -> &mut Self {
         self.simd_per_compute_unit = value;
         self
     }
     ///Sets the value of [`Self::wavefronts_per_simd`]
-    pub fn set_wavefronts_per_simd(mut self, value: u32) -> Self {
+    pub fn set_wavefronts_per_simd(&mut self, value: u32) -> &mut Self {
         self.wavefronts_per_simd = value;
         self
     }
     ///Sets the value of [`Self::wavefront_size`]
-    pub fn set_wavefront_size(mut self, value: u32) -> Self {
+    pub fn set_wavefront_size(&mut self, value: u32) -> &mut Self {
         self.wavefront_size = value;
         self
     }
     ///Sets the value of [`Self::sgprs_per_simd`]
-    pub fn set_sgprs_per_simd(mut self, value: u32) -> Self {
+    pub fn set_sgprs_per_simd(&mut self, value: u32) -> &mut Self {
         self.sgprs_per_simd = value;
         self
     }
     ///Sets the value of [`Self::min_sgpr_allocation`]
-    pub fn set_min_sgpr_allocation(mut self, value: u32) -> Self {
+    pub fn set_min_sgpr_allocation(&mut self, value: u32) -> &mut Self {
         self.min_sgpr_allocation = value;
         self
     }
     ///Sets the value of [`Self::max_sgpr_allocation`]
-    pub fn set_max_sgpr_allocation(mut self, value: u32) -> Self {
+    pub fn set_max_sgpr_allocation(&mut self, value: u32) -> &mut Self {
         self.max_sgpr_allocation = value;
         self
     }
     ///Sets the value of [`Self::sgpr_allocation_granularity`]
-    pub fn set_sgpr_allocation_granularity(mut self, value: u32) -> Self {
+    pub fn set_sgpr_allocation_granularity(&mut self, value: u32) -> &mut Self {
         self.sgpr_allocation_granularity = value;
         self
     }
     ///Sets the value of [`Self::vgprs_per_simd`]
-    pub fn set_vgprs_per_simd(mut self, value: u32) -> Self {
+    pub fn set_vgprs_per_simd(&mut self, value: u32) -> &mut Self {
         self.vgprs_per_simd = value;
         self
     }
     ///Sets the value of [`Self::min_vgpr_allocation`]
-    pub fn set_min_vgpr_allocation(mut self, value: u32) -> Self {
+    pub fn set_min_vgpr_allocation(&mut self, value: u32) -> &mut Self {
         self.min_vgpr_allocation = value;
         self
     }
     ///Sets the value of [`Self::max_vgpr_allocation`]
-    pub fn set_max_vgpr_allocation(mut self, value: u32) -> Self {
+    pub fn set_max_vgpr_allocation(&mut self, value: u32) -> &mut Self {
         self.max_vgpr_allocation = value;
         self
     }
     ///Sets the value of [`Self::vgpr_allocation_granularity`]
-    pub fn set_vgpr_allocation_granularity(mut self, value: u32) -> Self {
+    pub fn set_vgpr_allocation_granularity(&mut self, value: u32) -> &mut Self {
+        self.vgpr_allocation_granularity = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_engine_count`]
+    pub fn with_shader_engine_count(mut self, value: u32) -> Self {
+        self.shader_engine_count = value;
+        self
+    }
+    ///Sets the value of [`Self::shader_arrays_per_engine_count`]
+    pub fn with_shader_arrays_per_engine_count(mut self, value: u32) -> Self {
+        self.shader_arrays_per_engine_count = value;
+        self
+    }
+    ///Sets the value of [`Self::compute_units_per_shader_array`]
+    pub fn with_compute_units_per_shader_array(mut self, value: u32) -> Self {
+        self.compute_units_per_shader_array = value;
+        self
+    }
+    ///Sets the value of [`Self::simd_per_compute_unit`]
+    pub fn with_simd_per_compute_unit(mut self, value: u32) -> Self {
+        self.simd_per_compute_unit = value;
+        self
+    }
+    ///Sets the value of [`Self::wavefronts_per_simd`]
+    pub fn with_wavefronts_per_simd(mut self, value: u32) -> Self {
+        self.wavefronts_per_simd = value;
+        self
+    }
+    ///Sets the value of [`Self::wavefront_size`]
+    pub fn with_wavefront_size(mut self, value: u32) -> Self {
+        self.wavefront_size = value;
+        self
+    }
+    ///Sets the value of [`Self::sgprs_per_simd`]
+    pub fn with_sgprs_per_simd(mut self, value: u32) -> Self {
+        self.sgprs_per_simd = value;
+        self
+    }
+    ///Sets the value of [`Self::min_sgpr_allocation`]
+    pub fn with_min_sgpr_allocation(mut self, value: u32) -> Self {
+        self.min_sgpr_allocation = value;
+        self
+    }
+    ///Sets the value of [`Self::max_sgpr_allocation`]
+    pub fn with_max_sgpr_allocation(mut self, value: u32) -> Self {
+        self.max_sgpr_allocation = value;
+        self
+    }
+    ///Sets the value of [`Self::sgpr_allocation_granularity`]
+    pub fn with_sgpr_allocation_granularity(mut self, value: u32) -> Self {
+        self.sgpr_allocation_granularity = value;
+        self
+    }
+    ///Sets the value of [`Self::vgprs_per_simd`]
+    pub fn with_vgprs_per_simd(mut self, value: u32) -> Self {
+        self.vgprs_per_simd = value;
+        self
+    }
+    ///Sets the value of [`Self::min_vgpr_allocation`]
+    pub fn with_min_vgpr_allocation(mut self, value: u32) -> Self {
+        self.min_vgpr_allocation = value;
+        self
+    }
+    ///Sets the value of [`Self::max_vgpr_allocation`]
+    pub fn with_max_vgpr_allocation(mut self, value: u32) -> Self {
+        self.max_vgpr_allocation = value;
+        self
+    }
+    ///Sets the value of [`Self::vgpr_allocation_granularity`]
+    pub fn with_vgpr_allocation_granularity(mut self, value: u32) -> Self {
         self.vgpr_allocation_granularity = value;
         self
     }

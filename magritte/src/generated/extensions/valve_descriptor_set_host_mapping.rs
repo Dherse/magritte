@@ -76,26 +76,26 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 ///    const VkDescriptorSetBindingReferenceVALVE* pBindingReference,
 ///    VkDescriptorSetLayoutHostMappingInfoVALVE*  pHostMapping);
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_binding_reference`] **must**  be a valid pointer to a valid
 ///   [`DescriptorSetBindingReferenceVALVE`] structure
 /// - [`p_host_mapping`] **must**  be a valid pointer to a
 ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetBindingReferenceVALVE`]
 /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
 pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
     for<'lt> unsafe extern "system" fn(
@@ -116,23 +116,23 @@ pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
 ///    VkDescriptorSet                             descriptorSet,
 ///    void**                                      ppData);
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
 /// - [`pp_data`] **must**  be a valid pointer to a pointer value
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSet`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
 pub type FNGetDescriptorSetHostMappingValve =
     Option<unsafe extern "system" fn(device: Device, descriptor_set: DescriptorSet, pp_data: *mut *mut c_void)>;
@@ -149,22 +149,22 @@ pub type FNGetDescriptorSetHostMappingValve =
 ///    VkBool32           descriptorSetHostMapping;
 ///} VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -199,12 +199,22 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
         self.descriptor_set_host_mapping
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::descriptor_set_host_mapping`]
-    pub fn set_descriptor_set_host_mapping_raw(mut self, value: Bool32) -> Self {
+    pub fn set_descriptor_set_host_mapping_raw(&mut self, value: Bool32) -> &mut Self {
+        self.descriptor_set_host_mapping = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::descriptor_set_host_mapping`]
+    pub fn with_descriptor_set_host_mapping_raw(mut self, value: Bool32) -> Self {
         self.descriptor_set_host_mapping = value;
         self
     }
@@ -253,17 +263,32 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::descriptor_set_host_mapping`]
-    pub fn set_descriptor_set_host_mapping(mut self, value: bool) -> Self {
+    pub fn set_descriptor_set_host_mapping(&mut self, value: bool) -> &mut Self {
+        self.descriptor_set_host_mapping = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_set_host_mapping`]
+    pub fn with_descriptor_set_host_mapping(mut self, value: bool) -> Self {
         self.descriptor_set_host_mapping = value as u8 as u32;
         self
     }
@@ -282,24 +307,24 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 ///    uint32_t                 binding;
 ///} VkDescriptorSetBindingReferenceVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetLayout`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetBindingReferenceVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -332,7 +357,12 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -368,22 +398,42 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
         &mut self.binding
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::descriptor_set_layout`]
-    pub fn set_descriptor_set_layout(mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> Self {
+    pub fn set_descriptor_set_layout(&mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> &mut Self {
         self.descriptor_set_layout = value;
         self
     }
     ///Sets the value of [`Self::binding`]
-    pub fn set_binding(mut self, value: u32) -> Self {
+    pub fn set_binding(&mut self, value: u32) -> &mut Self {
+        self.binding = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_set_layout`]
+    pub fn with_descriptor_set_layout(mut self, value: crate::vulkan1_0::DescriptorSetLayout) -> Self {
+        self.descriptor_set_layout = value;
+        self
+    }
+    ///Sets the value of [`Self::binding`]
+    pub fn with_binding(mut self, value: u32) -> Self {
         self.binding = value;
         self
     }
@@ -402,22 +452,22 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 ///    uint32_t           descriptorSize;
 ///} VkDescriptorSetLayoutHostMappingInfoVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutHostMappingInfoVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -450,7 +500,12 @@ impl<'lt> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -493,22 +548,42 @@ impl<'lt> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
         &mut self.descriptor_size
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::descriptor_offset`]
-    pub fn set_descriptor_offset(mut self, value: usize) -> Self {
+    pub fn set_descriptor_offset(&mut self, value: usize) -> &mut Self {
         self.descriptor_offset = value;
         self
     }
     ///Sets the value of [`Self::descriptor_size`]
-    pub fn set_descriptor_size(mut self, value: u32) -> Self {
+    pub fn set_descriptor_size(&mut self, value: u32) -> &mut Self {
+        self.descriptor_size = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_offset`]
+    pub fn with_descriptor_offset(mut self, value: usize) -> Self {
+        self.descriptor_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::descriptor_size`]
+    pub fn with_descriptor_size(mut self, value: u32) -> Self {
         self.descriptor_size = value;
         self
     }
@@ -526,26 +601,26 @@ impl Device {
     ///    const VkDescriptorSetBindingReferenceVALVE* pBindingReference,
     ///    VkDescriptorSetLayoutHostMappingInfoVALVE*  pHostMapping);
     ///```
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_binding_reference`] **must**  be a valid pointer to a valid
     ///   [`DescriptorSetBindingReferenceVALVE`] structure
     /// - [`p_host_mapping`] **must**  be a valid pointer to a
     ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
-    /// # Related
+    ///# Related
     /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSetBindingReferenceVALVE`]
     /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
     #[track_caller]
@@ -592,23 +667,23 @@ impl Device {
     ///    VkDescriptorSet                             descriptorSet,
     ///    void**                                      ppData);
     ///```
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
     /// - [`pp_data`] **must**  be a valid pointer to a pointer value
-    /// # Related
+    ///# Related
     /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSet`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
     #[track_caller]

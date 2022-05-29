@@ -109,38 +109,38 @@ pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           inheritedViewportScissor2D;
 ///} VkPhysicalDeviceInheritedViewportScissorFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`inherited_viewport_scissor2_d`] indicates whether secondary command buffers can inherit most
 ///   of the dynamic state affected by `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`,
 ///   `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT`, `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`,
 ///   `VK_DYNAMIC_STATE_VIEWPORT` or `VK_DYNAMIC_STATE_SCISSOR`, from a primary command buffer.
-/// If the [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] structure is included in the
+///If the [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceInheritedViewportScissorFeaturesNV`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceInheritedViewportScissorFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceInheritedViewportScissorFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -181,12 +181,22 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
         self.inherited_viewport_scissor2_d
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::inherited_viewport_scissor2_d`]
-    pub fn set_inherited_viewport_scissor2_d_raw(mut self, value: Bool32) -> Self {
+    pub fn set_inherited_viewport_scissor2_d_raw(&mut self, value: Bool32) -> &mut Self {
+        self.inherited_viewport_scissor2_d = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::inherited_viewport_scissor2_d`]
+    pub fn with_inherited_viewport_scissor2_d_raw(mut self, value: Bool32) -> Self {
         self.inherited_viewport_scissor2_d = value;
         self
     }
@@ -235,17 +245,32 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::inherited_viewport_scissor2_d`]
-    pub fn set_inherited_viewport_scissor2_d(mut self, value: bool) -> Self {
+    pub fn set_inherited_viewport_scissor2_d(&mut self, value: bool) -> &mut Self {
+        self.inherited_viewport_scissor2_d = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::inherited_viewport_scissor2_d`]
+    pub fn with_inherited_viewport_scissor2_d(mut self, value: bool) -> Self {
         self.inherited_viewport_scissor2_d = value as u8 as u32;
         self
     }
@@ -264,7 +289,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///    const VkViewport*    pViewportDepths;
 ///} VkCommandBufferInheritanceViewportScissorInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`viewport_scissor2_d`] specifies whether the listed dynamic state is inherited.
@@ -272,31 +297,31 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 ///   [`viewport_scissor2_d`] is [`FALSE`], the behavior is as if this value is zero.
 /// - [`viewport_depths`] is a pointer to a [`Viewport`] structure specifying the expected depth
 ///   range for each inherited viewport.
-/// # Description
-/// If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
-/// [`CommandBufferInheritanceViewportScissorInfoNV`] structure, then that
-/// structure controls whether a command buffer  **can**  inherit the following state
-/// from other command buffers:
+///# Description
+///If the [`p_next`] chain of [`CommandBufferInheritanceInfo`] includes a
+///[`CommandBufferInheritanceViewportScissorInfoNV`] structure, then that
+///structure controls whether a command buffer  **can**  inherit the following state
+///from other command buffers:
 /// - `VK_DYNAMIC_STATE_SCISSOR`
 /// - `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT`
 /// - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`
-/// as well as the following state, with restrictions on inherited depth values
-/// and viewport count:
+///as well as the following state, with restrictions on inherited depth values
+///and viewport count:
 /// - `VK_DYNAMIC_STATE_VIEWPORT`
 /// - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`
-/// If [`viewport_scissor2_d`] is [`FALSE`], then the command buffer does
-/// not inherit the listed dynamic state, and  **should**  set this state itself.
-/// If this structure is not present, the behavior is as if
-/// [`viewport_scissor2_d`] is [`FALSE`].If [`viewport_scissor2_d`] is [`TRUE`], then the listed
+///If [`viewport_scissor2_d`] is [`FALSE`], then the command buffer does
+///not inherit the listed dynamic state, and  **should**  set this state itself.
+///If this structure is not present, the behavior is as if
+///[`viewport_scissor2_d`] is [`FALSE`].If [`viewport_scissor2_d`] is [`TRUE`], then the listed
 /// dynamic state
-/// is inherited, and the command buffer  **must**  not set this
-/// state, except that the viewport and scissor count  **may**  be set by binding a
-/// graphics pipeline that does not specify this state as dynamic.When the command buffer is
+///is inherited, and the command buffer  **must**  not set this
+///state, except that the viewport and scissor count  **may**  be set by binding a
+///graphics pipeline that does not specify this state as dynamic.When the command buffer is
 /// executed as part of a the execution of a
-/// [`cmd_execute_commands`] command, the inherited state (if enabled) is
-/// determined by the following procedure, performed separately for each dynamic
-/// state, and separately for each value for dynamic state that consists of
-/// multiple values (e.g. multiple viewports).
+///[`cmd_execute_commands`] command, the inherited state (if enabled) is
+///determined by the following procedure, performed separately for each dynamic
+///state, and separately for each value for dynamic state that consists of
+///multiple values (e.g. multiple viewports).
 /// - With i being the index of the executed command buffer in the `pCommandBuffers` array of
 ///   [`cmd_execute_commands`], if i > 0 and any secondary command buffer from index 0 to i-1
 ///   modifies the state, the inherited state is provisionally set to the final value set by the
@@ -313,7 +338,7 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - If the provisional inherited state passes both checks, then it becomes the actual inherited
 ///   state.
 ///
-/// ## Valid Usage
+///## Valid Usage
 /// - If the [inherited viewport scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedViewportScissor2D)
 ///   feature is not enabled, [`viewport_scissor2_d`] **must**  be [`FALSE`]
 /// - If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport)
@@ -327,22 +352,22 @@ impl<'lt> PhysicalDeviceInheritedViewportScissorFeaturesNV<'lt> {
 /// - If [`viewport_scissor2_d`] is [`TRUE`], then the command buffer  **must**  be recorded with
 ///   the `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
-/// # Related
+///# Related
 /// - [`nv_inherited_viewport_scissor`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`Viewport`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCommandBufferInheritanceViewportScissorInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -392,17 +417,32 @@ impl<'lt> CommandBufferInheritanceViewportScissorInfoNV<'lt> {
         self.viewport_depths
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_scissor2_d`]
-    pub fn set_viewport_scissor2_d_raw(mut self, value: Bool32) -> Self {
+    pub fn set_viewport_scissor2_d_raw(&mut self, value: Bool32) -> &mut Self {
         self.viewport_scissor2_d = value;
         self
     }
     ///Sets the raw value of [`Self::viewport_depths`]
-    pub fn set_viewport_depths_raw(mut self, value: *const Viewport) -> Self {
+    pub fn set_viewport_depths_raw(&mut self, value: *const Viewport) -> &mut Self {
+        self.viewport_depths = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_scissor2_d`]
+    pub fn with_viewport_scissor2_d_raw(mut self, value: Bool32) -> Self {
+        self.viewport_scissor2_d = value;
+        self
+    }
+    ///Sets the raw value of [`Self::viewport_depths`]
+    pub fn with_viewport_depths_raw(mut self, value: *const Viewport) -> Self {
         self.viewport_depths = value;
         self
     }
@@ -459,27 +499,52 @@ impl<'lt> CommandBufferInheritanceViewportScissorInfoNV<'lt> {
         &mut self.viewport_depth_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::viewport_scissor2_d`]
-    pub fn set_viewport_scissor2_d(mut self, value: bool) -> Self {
+    pub fn set_viewport_scissor2_d(&mut self, value: bool) -> &mut Self {
         self.viewport_scissor2_d = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::viewport_depth_count`]
-    pub fn set_viewport_depth_count(mut self, value: u32) -> Self {
+    pub fn set_viewport_depth_count(&mut self, value: u32) -> &mut Self {
         self.viewport_depth_count = value;
         self
     }
     ///Sets the value of [`Self::viewport_depths`]
-    pub fn set_viewport_depths(mut self, value: &'lt crate::vulkan1_0::Viewport) -> Self {
+    pub fn set_viewport_depths(&mut self, value: &'lt crate::vulkan1_0::Viewport) -> &mut Self {
+        self.viewport_depths = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::viewport_scissor2_d`]
+    pub fn with_viewport_scissor2_d(mut self, value: bool) -> Self {
+        self.viewport_scissor2_d = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::viewport_depth_count`]
+    pub fn with_viewport_depth_count(mut self, value: u32) -> Self {
+        self.viewport_depth_count = value;
+        self
+    }
+    ///Sets the value of [`Self::viewport_depths`]
+    pub fn with_viewport_depths(mut self, value: &'lt crate::vulkan1_0::Viewport) -> Self {
         self.viewport_depths = value as *const _;
         self
     }

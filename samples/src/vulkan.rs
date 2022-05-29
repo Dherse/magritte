@@ -1,4 +1,4 @@
-use std::{error::Error, sync::Arc};
+use std::{error::Error, sync::Arc, io};
 
 use log::{debug, error, info, trace, Level};
 use magritte::{
@@ -51,6 +51,7 @@ impl Vulkan {
         instance_extensions: InstanceExtensions,
         device_extensions: DeviceExtensions,
         validation: bool,
+        device_index: usize,
     ) -> Result<(Self, Unique<SurfaceKHR>), Box<dyn Error>> {
         // First, we load the library
         let entry = Arc::new(Entry::new()?);
@@ -126,9 +127,9 @@ impl Vulkan {
         //   macros!
         // - The version of our game engine (if any)
         let app_info = ApplicationInfo::default()
-            .set_api_version(instance_extensions.version().into())
-            .set_application_name(cstr_ptr!("Magritte sample"))
-            .set_application_version(Version::from((1, 0, 0)).into());
+            .with_api_version(instance_extensions.version().into())
+            .with_application_name(cstr_ptr!("Magritte sample"))
+            .with_application_version(Version::from((1, 0, 0)).into());
 
         // Here we will create the list of layers we wish to enable
         let mut instance_layer_list = Vec::new();
@@ -141,9 +142,9 @@ impl Vulkan {
         // Here we group up all of the information for creating an instance.
         // This can be extended using pointer chains to contain **many** things.
         let instance_create_info = InstanceCreateInfo::default()
-            .set_application_info(&app_info)
-            .set_pp_enabled_extension_names(&instance_extension_list)
-            .set_pp_enabled_layer_names(&instance_layer_list);
+            .with_application_info(&app_info)
+            .with_pp_enabled_extension_names(&instance_extension_list)
+            .with_pp_enabled_layer_names(&instance_layer_list);
 
         // Here we create the instance.
         // We give it the extra parameter `extensions` as it will keep it as a "metadata".
@@ -178,32 +179,52 @@ impl Vulkan {
         let (physical_devices, _) = unsafe { instance.enumerate_physical_devices(None)? };
 
         info!("We have {} physical devices", physical_devices.len());
+        let mut family_indices = Vec::with_capacity(physical_devices.len());
+        for (i, device) in physical_devices.iter().enumerate() {
+            let families = unsafe {
+                device.get_physical_device_queue_family_properties(None)
+            };
 
-        // We want to try and find a device that:
-        // - Has a graphics submission queue (should be the case on most platforms)
-        // - Is capable of supporting our surface
-        // From this we get:
-        // - The physical device we actually want to use
-        // - The queue family index for graphics that we will layer use.
-        // For a real game, you will **need** to improve this most basic algorithm.
-        let (physical_device, queue_family_index) = physical_devices
-            .into_iter()
-            .find_map(|pdevice| unsafe {
-                let families = pdevice.get_physical_device_queue_family_properties(None);
-                families
-                    .iter()
-                    .enumerate()
-                    .find_map(|(index, info)| {
-                        let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::GRAPHICS)
-                            && pdevice
-                                .get_physical_device_surface_support_khr(Some(index as u32), surface.as_raw())
-                                .unwrap();
+            let family = families
+                .iter()
+                .enumerate()
+                .find_map(|(index, info)| {
+                    let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::GRAPHICS)
+                        && unsafe { device
+                            .get_physical_device_surface_support_khr(Some(index as u32), surface.as_raw()) }
+                            .unwrap();
 
-                        supports_graphics_and_surface.then(|| index)
-                    })
-                    .map(|index| (pdevice, index as u32))
-            })
-            .expect("couldn't find a suitable device");
+                    supports_graphics_and_surface.then(|| (index as u32, *info))
+                });
+
+            family_indices.push(family);
+
+            info!(
+                "{}. {}, supports surface? {}{}",
+                i,
+                unsafe {
+                    device.get_physical_device_properties().device_name().as_cstr().to_str().expect("invalid UTF-8 character")
+                },
+                if family.is_some() {
+                    "yes"
+                } else {
+                    "no"
+                },
+                if i == device_index { "(selected)" } else { ""}
+            );
+        }
+
+        if device_index >= physical_devices.len() {
+            error!("Index is higher than number of devices");
+            return Err(Box::new(io::Error::other("device index out of bounds")) as Box<dyn Error>);
+        }
+
+        let (physical_device, queue_family_index) = if let Some((family_index, _)) = family_indices.remove(device_index) {
+            (physical_devices[device_index].clone(), family_index)
+        } else {
+            error!("Device does not support surface");
+            return Err(Box::new(io::Error::other("unsupported surface")) as Box<dyn Error>);
+        };
 
         info!(
             "We have chosen a physical device and queue family: {:?} and {}",
@@ -233,8 +254,8 @@ impl Vulkan {
         // We need to tell Vulkan that we want a queue from a certain family.
         // We got the family from the previous step. We will get one queue with max priority (1.0)
         let queue_info = DeviceQueueCreateInfo::default()
-            .set_queue_family_index(queue_family_index)
-            .set_queue_priorities(&[1.0]);
+            .with_queue_family_index(queue_family_index)
+            .with_queue_priorities(&[1.0]);
 
         // We get the names of the device extensions (if any)
         let device_extension_names = device_extensions.extension_names();
@@ -245,9 +266,9 @@ impl Vulkan {
         // We group up all of the information about the creation of the device.
         // This can be extended using pointer chains to contain **many** things.
         let device_create_info = DeviceCreateInfo::default()
-            .set_queue_create_infos(std::slice::from_ref(&queue_info))
-            .set_pp_enabled_extension_names(&device_extension_names)
-            .set_enabled_features(&features);
+            .with_queue_create_infos(std::slice::from_ref(&queue_info))
+            .with_pp_enabled_extension_names(&device_extension_names)
+            .with_enabled_features(&features);
 
         // Finally, we create the device.
         // You can imagine this step as "connecting" to the device, we are now ready to talk to it

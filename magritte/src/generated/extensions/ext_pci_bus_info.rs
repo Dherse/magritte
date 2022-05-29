@@ -68,33 +68,33 @@ pub const EXT_PCI_BUS_INFO_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 ///    uint32_t           pciFunction;
 ///} VkPhysicalDevicePCIBusInfoPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`pci_domain`] is the PCI bus domain.
 /// - [`pci_bus`] is the PCI bus identifier.
 /// - [`pci_device`] is the PCI device identifier.
 /// - [`pci_function`] is the PCI device function identifier.
-/// # Description
-/// If the [`PhysicalDevicePciBusInfoPropertiesEXT`] structure is included in the [`p_next`] chain
+///# Description
+///If the [`PhysicalDevicePciBusInfoPropertiesEXT`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.These are properties of the PCI bus information
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.These are properties of the PCI bus information
 /// of a physical device.
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_pci_bus_info`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePCIBusInfoPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -134,7 +134,12 @@ impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -193,32 +198,62 @@ impl<'lt> PhysicalDevicePciBusInfoPropertiesEXT<'lt> {
         &mut self.pci_function
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::pci_domain`]
-    pub fn set_pci_domain(mut self, value: u32) -> Self {
+    pub fn set_pci_domain(&mut self, value: u32) -> &mut Self {
         self.pci_domain = value;
         self
     }
     ///Sets the value of [`Self::pci_bus`]
-    pub fn set_pci_bus(mut self, value: u32) -> Self {
+    pub fn set_pci_bus(&mut self, value: u32) -> &mut Self {
         self.pci_bus = value;
         self
     }
     ///Sets the value of [`Self::pci_device`]
-    pub fn set_pci_device(mut self, value: u32) -> Self {
+    pub fn set_pci_device(&mut self, value: u32) -> &mut Self {
         self.pci_device = value;
         self
     }
     ///Sets the value of [`Self::pci_function`]
-    pub fn set_pci_function(mut self, value: u32) -> Self {
+    pub fn set_pci_function(&mut self, value: u32) -> &mut Self {
+        self.pci_function = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::pci_domain`]
+    pub fn with_pci_domain(mut self, value: u32) -> Self {
+        self.pci_domain = value;
+        self
+    }
+    ///Sets the value of [`Self::pci_bus`]
+    pub fn with_pci_bus(mut self, value: u32) -> Self {
+        self.pci_bus = value;
+        self
+    }
+    ///Sets the value of [`Self::pci_device`]
+    pub fn with_pci_device(mut self, value: u32) -> Self {
+        self.pci_device = value;
+        self
+    }
+    ///Sets the value of [`Self::pci_function`]
+    pub fn with_pci_function(mut self, value: u32) -> Self {
         self.pci_function = value;
         self
     }

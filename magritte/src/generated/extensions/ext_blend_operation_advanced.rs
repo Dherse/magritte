@@ -167,24 +167,24 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VK_BLEND_OVERLAP_CONJOINT_EXT = 2,
 ///} VkBlendOverlapEXT;
 ///```
-/// # Description
+///# Description
 /// - [`UNCORRELATED`] specifies that there is no correlation between the source and destination
 ///   coverage.
 /// - [`CONJOINT`] specifies that the source and destination coverage are considered to have maximal
 ///   overlap.
 /// - [`DISJOINT`] specifies that the source and destination coverage are considered to have minimal
 ///   overlap.
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBlendOverlapEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -258,9 +258,9 @@ impl std::fmt::Debug for BlendOverlapEXT {
 ///    VkBool32           advancedBlendCoherentOperations;
 ///} VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`advanced_blend_coherent_operations`] specifies whether blending using [advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced)
@@ -270,29 +270,29 @@ impl std::fmt::Debug for BlendOverlapEXT {
 ///   synchronization over basic blending. If this is [`FALSE`], then memory dependencies are
 ///   required to guarantee order between two advanced blending operations that occur on the same
 ///   sample.
-/// If the [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -337,12 +337,22 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
         self.advanced_blend_coherent_operations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_coherent_operations`]
-    pub fn set_advanced_blend_coherent_operations_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_coherent_operations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.advanced_blend_coherent_operations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_coherent_operations`]
+    pub fn with_advanced_blend_coherent_operations_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_coherent_operations = value;
         self
     }
@@ -391,17 +401,32 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::advanced_blend_coherent_operations`]
-    pub fn set_advanced_blend_coherent_operations(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_coherent_operations(&mut self, value: bool) -> &mut Self {
+        self.advanced_blend_coherent_operations = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_coherent_operations`]
+    pub fn with_advanced_blend_coherent_operations(mut self, value: bool) -> Self {
         self.advanced_blend_coherent_operations = value as u8 as u32;
         self
     }
@@ -423,7 +448,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///    VkBool32           advancedBlendAllOperations;
 ///} VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`advanced_blend_max_color_attachments`] is one greater than the highest color attachment index that  **can**  be used in a subpass, for a pipeline that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
@@ -441,27 +466,27 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///   `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
 /// - [`advanced_blend_all_operations`] specifies whether all advanced blend operation enums are
 ///   supported. See the valid usage of [`PipelineColorBlendAttachmentState`].
-/// # Description
-/// If the [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`] structure is included in the
+///# Description
+///If the [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -541,32 +566,62 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
         self.advanced_blend_all_operations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_independent_blend`]
-    pub fn set_advanced_blend_independent_blend_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_independent_blend_raw(&mut self, value: Bool32) -> &mut Self {
         self.advanced_blend_independent_blend = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_src_color`]
-    pub fn set_advanced_blend_non_premultiplied_src_color_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_non_premultiplied_src_color_raw(&mut self, value: Bool32) -> &mut Self {
         self.advanced_blend_non_premultiplied_src_color = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_dst_color`]
-    pub fn set_advanced_blend_non_premultiplied_dst_color_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_non_premultiplied_dst_color_raw(&mut self, value: Bool32) -> &mut Self {
         self.advanced_blend_non_premultiplied_dst_color = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_correlated_overlap`]
-    pub fn set_advanced_blend_correlated_overlap_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_correlated_overlap_raw(&mut self, value: Bool32) -> &mut Self {
         self.advanced_blend_correlated_overlap = value;
         self
     }
     ///Sets the raw value of [`Self::advanced_blend_all_operations`]
-    pub fn set_advanced_blend_all_operations_raw(mut self, value: Bool32) -> Self {
+    pub fn set_advanced_blend_all_operations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.advanced_blend_all_operations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_independent_blend`]
+    pub fn with_advanced_blend_independent_blend_raw(mut self, value: Bool32) -> Self {
+        self.advanced_blend_independent_blend = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_src_color`]
+    pub fn with_advanced_blend_non_premultiplied_src_color_raw(mut self, value: Bool32) -> Self {
+        self.advanced_blend_non_premultiplied_src_color = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_non_premultiplied_dst_color`]
+    pub fn with_advanced_blend_non_premultiplied_dst_color_raw(mut self, value: Bool32) -> Self {
+        self.advanced_blend_non_premultiplied_dst_color = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_correlated_overlap`]
+    pub fn with_advanced_blend_correlated_overlap_raw(mut self, value: Bool32) -> Self {
+        self.advanced_blend_correlated_overlap = value;
+        self
+    }
+    ///Sets the raw value of [`Self::advanced_blend_all_operations`]
+    pub fn with_advanced_blend_all_operations_raw(mut self, value: Bool32) -> Self {
         self.advanced_blend_all_operations = value;
         self
     }
@@ -713,42 +768,82 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::advanced_blend_max_color_attachments`]
-    pub fn set_advanced_blend_max_color_attachments(mut self, value: u32) -> Self {
+    pub fn set_advanced_blend_max_color_attachments(&mut self, value: u32) -> &mut Self {
         self.advanced_blend_max_color_attachments = value;
         self
     }
     ///Sets the value of [`Self::advanced_blend_independent_blend`]
-    pub fn set_advanced_blend_independent_blend(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_independent_blend(&mut self, value: bool) -> &mut Self {
         self.advanced_blend_independent_blend = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::advanced_blend_non_premultiplied_src_color`]
-    pub fn set_advanced_blend_non_premultiplied_src_color(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_non_premultiplied_src_color(&mut self, value: bool) -> &mut Self {
         self.advanced_blend_non_premultiplied_src_color = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::advanced_blend_non_premultiplied_dst_color`]
-    pub fn set_advanced_blend_non_premultiplied_dst_color(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_non_premultiplied_dst_color(&mut self, value: bool) -> &mut Self {
         self.advanced_blend_non_premultiplied_dst_color = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::advanced_blend_correlated_overlap`]
-    pub fn set_advanced_blend_correlated_overlap(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_correlated_overlap(&mut self, value: bool) -> &mut Self {
         self.advanced_blend_correlated_overlap = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::advanced_blend_all_operations`]
-    pub fn set_advanced_blend_all_operations(mut self, value: bool) -> Self {
+    pub fn set_advanced_blend_all_operations(&mut self, value: bool) -> &mut Self {
+        self.advanced_blend_all_operations = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_max_color_attachments`]
+    pub fn with_advanced_blend_max_color_attachments(mut self, value: u32) -> Self {
+        self.advanced_blend_max_color_attachments = value;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_independent_blend`]
+    pub fn with_advanced_blend_independent_blend(mut self, value: bool) -> Self {
+        self.advanced_blend_independent_blend = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_non_premultiplied_src_color`]
+    pub fn with_advanced_blend_non_premultiplied_src_color(mut self, value: bool) -> Self {
+        self.advanced_blend_non_premultiplied_src_color = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_non_premultiplied_dst_color`]
+    pub fn with_advanced_blend_non_premultiplied_dst_color(mut self, value: bool) -> Self {
+        self.advanced_blend_non_premultiplied_dst_color = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_correlated_overlap`]
+    pub fn with_advanced_blend_correlated_overlap(mut self, value: bool) -> Self {
+        self.advanced_blend_correlated_overlap = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::advanced_blend_all_operations`]
+    pub fn with_advanced_blend_all_operations(mut self, value: bool) -> Self {
         self.advanced_blend_all_operations = value as u8 as u32;
         self
     }
@@ -770,7 +865,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///    VkBlendOverlapEXT    blendOverlap;
 ///} VkPipelineColorBlendAdvancedStateCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_premultiplied`] specifies whether the source color of the blend operation is treated as
@@ -779,12 +874,12 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///   treated as premultiplied.
 /// - [`blend_overlap`] is a [`BlendOverlapEXT`] value specifying how the source and destination
 ///   sample’s coverage is correlated.
-/// # Description
-/// If this structure is not present, [`src_premultiplied`] and
-/// [`dst_premultiplied`] are both considered to be [`TRUE`], and
-/// [`blend_overlap`] is considered to be
-/// `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
-/// ## Valid Usage
+///# Description
+///If this structure is not present, [`src_premultiplied`] and
+///[`dst_premultiplied`] are both considered to be [`TRUE`], and
+///[`blend_overlap`] is considered to be
+///`VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
+///## Valid Usage
 /// - If the [non-premultiplied source color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedSrcColor)
 ///   property is not supported, [`src_premultiplied`] **must**  be [`TRUE`]
 /// - If the [non-premultiplied destination color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedDstColor)
@@ -792,23 +887,23 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 /// - If the [correlated overlap](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendCorrelatedOverlap)
 ///   property is not supported, [`blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
 /// - [`blend_overlap`] **must**  be a valid [`BlendOverlapEXT`] value
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`BlendOverlapEXT`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorBlendAdvancedStateCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -856,17 +951,32 @@ impl<'lt> PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
         self.dst_premultiplied
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::src_premultiplied`]
-    pub fn set_src_premultiplied_raw(mut self, value: Bool32) -> Self {
+    pub fn set_src_premultiplied_raw(&mut self, value: Bool32) -> &mut Self {
         self.src_premultiplied = value;
         self
     }
     ///Sets the raw value of [`Self::dst_premultiplied`]
-    pub fn set_dst_premultiplied_raw(mut self, value: Bool32) -> Self {
+    pub fn set_dst_premultiplied_raw(&mut self, value: Bool32) -> &mut Self {
+        self.dst_premultiplied = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::src_premultiplied`]
+    pub fn with_src_premultiplied_raw(mut self, value: Bool32) -> Self {
+        self.src_premultiplied = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dst_premultiplied`]
+    pub fn with_dst_premultiplied_raw(mut self, value: Bool32) -> Self {
         self.dst_premultiplied = value;
         self
     }
@@ -938,27 +1048,55 @@ impl<'lt> PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
         &mut self.blend_overlap
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::src_premultiplied`]
-    pub fn set_src_premultiplied(mut self, value: bool) -> Self {
+    pub fn set_src_premultiplied(&mut self, value: bool) -> &mut Self {
         self.src_premultiplied = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::dst_premultiplied`]
-    pub fn set_dst_premultiplied(mut self, value: bool) -> Self {
+    pub fn set_dst_premultiplied(&mut self, value: bool) -> &mut Self {
         self.dst_premultiplied = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::blend_overlap`]
     pub fn set_blend_overlap(
+        &mut self,
+        value: crate::extensions::ext_blend_operation_advanced::BlendOverlapEXT,
+    ) -> &mut Self {
+        self.blend_overlap = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::src_premultiplied`]
+    pub fn with_src_premultiplied(mut self, value: bool) -> Self {
+        self.src_premultiplied = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::dst_premultiplied`]
+    pub fn with_dst_premultiplied(mut self, value: bool) -> Self {
+        self.dst_premultiplied = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::blend_overlap`]
+    pub fn with_blend_overlap(
         mut self,
         value: crate::extensions::ext_blend_operation_advanced::BlendOverlapEXT,
     ) -> Self {

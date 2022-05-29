@@ -196,16 +196,16 @@ pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &'stat
 ///// Provided by VK_ANDROID_external_memory_android_hardware_buffer
 ///struct AHardwareBuffer;
 ///```
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 pub type AHardwareBuffer = c_void;
 ///[vkGetAndroidHardwareBufferPropertiesANDROID](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetAndroidHardwareBufferPropertiesANDROID.html) - Get Properties of External Memory Android Hardware Buffers
 ///# C Specifications
@@ -218,37 +218,37 @@ pub type AHardwareBuffer = c_void;
 ///    const struct AHardwareBuffer*               buffer,
 ///    VkAndroidHardwareBufferPropertiesANDROID*   pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that will be importing [`buffer`].
 /// - [`buffer`] is the Android hardware buffer which will be imported.
 /// - [`p_properties`] is a pointer to a [`AndroidHardwareBufferPropertiesANDROID`] structure in
 ///   which the properties of [`buffer`] are returned.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`buffer`] **must**  be a valid Android hardware buffer object with at least one of the
 ///   `AHARDWAREBUFFER_USAGE_GPU_*` flags in its `AHardwareBuffer_Desc`::`usage`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`buffer`] **must**  be a valid pointer to a valid [`AHardwareBuffer`] value
 /// - [`p_properties`] **must**  be a valid pointer to a [`AndroidHardwareBufferPropertiesANDROID`]
 ///   structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`AndroidHardwareBufferPropertiesANDROID`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetAndroidHardwareBufferPropertiesANDROID")]
 pub type FNGetAndroidHardwareBufferPropertiesAndroid = Option<
     for<'lt> unsafe extern "system" fn(
@@ -268,46 +268,46 @@ pub type FNGetAndroidHardwareBufferPropertiesAndroid = Option<
 ///    const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo,
 ///    struct AHardwareBuffer**                    pBuffer);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that created the device memory being exported.
 /// - [`p_info`] is a pointer to a [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
 ///   containing parameters of the export operation.
 /// - [`p_buffer`] will return an Android hardware buffer referencing the payload of the device
 ///   memory object.
-/// # Description
-/// Each call to [`get_memory_android_hardware_buffer_android`] **must**  return an
-/// Android hardware buffer with a new reference acquired in addition to the
-/// reference held by the [`DeviceMemory`].
-/// To avoid leaking resources, the application  **must**  release the reference by
-/// calling `AHardwareBuffer_release` when it is no longer needed.
-/// When called with the same handle in
-/// [`MemoryGetAndroidHardwareBufferInfoANDROID::memory`],
-/// [`get_memory_android_hardware_buffer_android`] **must**  return the same Android
-/// hardware buffer object.
-/// If the device memory was created by importing an Android hardware buffer,
-/// [`get_memory_android_hardware_buffer_android`] **must**  return that same Android
-/// hardware buffer object.
-/// ## Valid Usage (Implicit)
+///# Description
+///Each call to [`get_memory_android_hardware_buffer_android`] **must**  return an
+///Android hardware buffer with a new reference acquired in addition to the
+///reference held by the [`DeviceMemory`].
+///To avoid leaking resources, the application  **must**  release the reference by
+///calling `AHardwareBuffer_release` when it is no longer needed.
+///When called with the same handle in
+///[`MemoryGetAndroidHardwareBufferInfoANDROID::memory`],
+///[`get_memory_android_hardware_buffer_android`] **must**  return the same Android
+///hardware buffer object.
+///If the device memory was created by importing an Android hardware buffer,
+///[`get_memory_android_hardware_buffer_android`] **must**  return that same Android
+///hardware buffer object.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_info`] **must**  be a valid pointer to a valid
 ///   [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
 /// - [`p_buffer`] **must**  be a valid pointer to a valid pointer to an [`AHardwareBuffer`] value
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`Device`]
 /// - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetMemoryAndroidHardwareBufferANDROID")]
 pub type FNGetMemoryAndroidHardwareBufferAndroid = Option<
     for<'lt> unsafe extern "system" fn(
@@ -331,34 +331,34 @@ pub type FNGetMemoryAndroidHardwareBufferAndroid = Option<
 ///    struct AHardwareBuffer*    buffer;
 ///} VkImportAndroidHardwareBufferInfoANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer`] is the Android hardware buffer to import.
-/// # Description
-/// If the [`allocate_memory`] command succeeds, the implementation  **must**
-/// acquire a reference to the imported hardware buffer, which it  **must**  release
-/// when the device memory object is freed.
-/// If the command fails, the implementation  **must**  not retain a reference.
-/// ## Valid Usage
+///# Description
+///If the [`allocate_memory`] command succeeds, the implementation  **must**
+///acquire a reference to the imported hardware buffer, which it  **must**  release
+///when the device memory object is freed.
+///If the command fails, the implementation  **must**  not retain a reference.
+///## Valid Usage
 /// - If [`buffer`] is not `NULL`, Android hardware buffers  **must**  be supported for import, as
 ///   reported by [`ExternalImageFormatProperties`] or [`ExternalBufferProperties`]
 /// -    If [`buffer`] is not `NULL`, it  **must**  be a valid Android hardware buffer object with `AHardwareBuffer_Desc`::`usage` compatible with Vulkan as described in [Android Hardware Buffers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer)
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
 /// - [`buffer`] **must**  be a valid pointer to an [`AHardwareBuffer`] value
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -393,12 +393,22 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
         self.buffer
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::buffer`]
-    pub fn set_buffer_raw(mut self, value: *mut AHardwareBuffer) -> Self {
+    pub fn set_buffer_raw(&mut self, value: *mut AHardwareBuffer) -> &mut Self {
+        self.buffer = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer`]
+    pub fn with_buffer_raw(mut self, value: *mut AHardwareBuffer) -> Self {
         self.buffer = value;
         self
     }
@@ -432,17 +442,35 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
         &mut *self.buffer
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::buffer`]
     pub fn set_buffer(
+        &mut self,
+        value: &'lt mut crate::extensions::android_external_memory_android_hardware_buffer::AHardwareBuffer,
+    ) -> &mut Self {
+        self.buffer = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::buffer`]
+    pub fn with_buffer(
         mut self,
         value: &'lt mut crate::extensions::android_external_memory_android_hardware_buffer::AHardwareBuffer,
     ) -> Self {
@@ -465,33 +493,33 @@ impl<'lt> ImportAndroidHardwareBufferInfoANDROID<'lt> {
 ///    uint64_t           androidHardwareBufferUsage;
 ///} VkAndroidHardwareBufferUsageANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`android_hardware_buffer_usage`] returns the Android hardware buffer usage flags.
-/// # Description
-/// The [`android_hardware_buffer_usage`] field  **must**  include Android hardware
-/// buffer usage flags listed in the
-/// [AHardwareBuffer Usage
-/// Equivalence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-usage) table when the corresponding Vulkan image usage or image
-/// creation flags are included in the `usage` or `flags` fields of
-/// [`PhysicalDeviceImageFormatInfo2`].
-/// It  **must**  include at least one GPU usage flag
-/// (`AHARDWAREBUFFER_USAGE_GPU_*`), even if none of the corresponding Vulkan
-/// usages or flags are requested.
-/// ## Valid Usage (Implicit)
+///# Description
+///The [`android_hardware_buffer_usage`] field  **must**  include Android hardware
+///buffer usage flags listed in the
+///[AHardwareBuffer Usage
+///Equivalence](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-usage) table when the corresponding Vulkan image usage or image
+///creation flags are included in the `usage` or `flags` fields of
+///[`PhysicalDeviceImageFormatInfo2`].
+///It  **must**  include at least one GPU usage flag
+///(`AHARDWAREBUFFER_USAGE_GPU_*`), even if none of the corresponding Vulkan
+///usages or flags are requested.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -523,7 +551,12 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -558,17 +591,32 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
         &mut self.android_hardware_buffer_usage
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::android_hardware_buffer_usage`]
-    pub fn set_android_hardware_buffer_usage(mut self, value: u64) -> Self {
+    pub fn set_android_hardware_buffer_usage(&mut self, value: u64) -> &mut Self {
+        self.android_hardware_buffer_usage = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::android_hardware_buffer_usage`]
+    pub fn with_android_hardware_buffer_usage(mut self, value: u64) -> Self {
         self.android_hardware_buffer_usage = value;
         self
     }
@@ -586,33 +634,33 @@ impl<'lt> AndroidHardwareBufferUsageANDROID<'lt> {
 ///    uint32_t           memoryTypeBits;
 ///} VkAndroidHardwareBufferPropertiesANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`allocation_size`] is the size of the external memory
 /// - [`memory_type_bits`] is a bitmask containing one bit set for every memory type which the
 ///   specified Android hardware buffer  **can**  be imported as.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`
 /// - Each [`p_next`] member of any structure (including this one) in the [`p_next`] chain  **must**
 ///   be either `NULL` or a pointer to a valid instance of
 ///   [`AndroidHardwareBufferFormatProperties2ANDROID`] or
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`]
 /// - The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 /// - [`get_android_hardware_buffer_properties_android`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -648,7 +696,12 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -691,22 +744,42 @@ impl<'lt> AndroidHardwareBufferPropertiesANDROID<'lt> {
         &mut self.memory_type_bits
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::allocation_size`]
-    pub fn set_allocation_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn set_allocation_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
         self.allocation_size = value;
         self
     }
     ///Sets the value of [`Self::memory_type_bits`]
-    pub fn set_memory_type_bits(mut self, value: u32) -> Self {
+    pub fn set_memory_type_bits(&mut self, value: u32) -> &mut Self {
+        self.memory_type_bits = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::allocation_size`]
+    pub fn with_allocation_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+        self.allocation_size = value;
+        self
+    }
+    ///Sets the value of [`Self::memory_type_bits`]
+    pub fn with_memory_type_bits(mut self, value: u32) -> Self {
         self.memory_type_bits = value;
         self
     }
@@ -757,35 +830,35 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 ///    VkDeviceMemory     memory;
 ///} VkMemoryGetAndroidHardwareBufferInfoANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] is the memory object from which the Android hardware buffer will be exported.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` **must**  have been
 ///   included in [`ExportMemoryAllocateInfo::handle_types`] when [`memory`] was created
 /// - If the [`p_next`] chain of the [`MemoryAllocateInfo`] used to allocate [`memory`] included a
 ///   [`MemoryDedicatedAllocateInfo`] with non-`NULL``image` member, then that `image` **must**
 ///   already be bound to [`memory`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 /// - [`get_memory_android_hardware_buffer_android`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetAndroidHardwareBufferInfoANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -817,7 +890,12 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -845,17 +923,32 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
         &mut self.memory
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::memory`]
-    pub fn set_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
+    pub fn set_memory(&mut self, value: crate::vulkan1_0::DeviceMemory) -> &mut Self {
+        self.memory = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::memory`]
+    pub fn with_memory(mut self, value: crate::vulkan1_0::DeviceMemory) -> Self {
         self.memory = value;
         self
     }
@@ -882,7 +975,7 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///    VkChromaLocation                 suggestedYChromaOffset;
 ///} VkAndroidHardwareBufferFormatPropertiesANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
@@ -901,53 +994,53 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
 ///   [`SamplerYcbcrConversionCreateInfo`].
-/// # Description
-/// If the Android hardware buffer has one of the formats listed in the
-/// [Format Equivalence
-/// table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`] **must**  have the equivalent Vulkan format listed in
-/// the table.
-/// Otherwise, [`format`] **may**  be `VK_FORMAT_UNDEFINED`, indicating the
-/// Android hardware buffer  **can**  only be used with an external format.The [`format_features`]
+///# Description
+///If the Android hardware buffer has one of the formats listed in the
+///[Format Equivalence
+///table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-external-android-hardware-buffer-formats), then [`format`] **must**  have the equivalent Vulkan format listed in
+///the table.
+///Otherwise, [`format`] **may**  be `VK_FORMAT_UNDEFINED`, indicating the
+///Android hardware buffer  **can**  only be used with an external format.The [`format_features`]
 /// member  **must**  include
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT` and at least one of
-/// `VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT` or
-/// `VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and  **should**  include
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` and
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`.Android hardware buffers
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT` and at least one of
+///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT` or
+///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`, and  **should**  include
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT` and
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`.Android hardware buffers
 /// with the same external format  **must**  have the same
-/// support for `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`,
-/// `VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`,
-/// `VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`,
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`,
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT`,
-/// and
-/// `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`.
-/// in [`format_features`].
-/// Other format features  **may**  differ between Android hardware buffers that have
-/// the same external format.
-/// This allows applications to use the same [`SamplerYcbcrConversion`]
-/// object (and samplers and pipelines created from them) for any Android
-/// hardware buffers that have the same external format.If [`format`] is not `VK_FORMAT_UNDEFINED`,
+///support for `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`,
+///`VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`,
+///`VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`,
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`,
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT`,
+///and
+///`VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`.
+///in [`format_features`].
+///Other format features  **may**  differ between Android hardware buffers that have
+///the same external format.
+///This allows applications to use the same [`SamplerYcbcrConversion`]
+///object (and samplers and pipelines created from them) for any Android
+///hardware buffers that have the same external format.If [`format`] is not `VK_FORMAT_UNDEFINED`,
 /// then the value of
-/// [`sampler_ycbcr_conversion_components`] **must**  be valid when used as the
-/// `components` member of [`SamplerYcbcrConversionCreateInfo`] with
-/// that format.
-/// If [`format`] is `VK_FORMAT_UNDEFINED`, all members of
-/// [`sampler_ycbcr_conversion_components`] **must**  be the
-/// [identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations  **may**  not always be able to determine the color model,
-/// numerical range, or chroma offsets of the image contents, so the values in
-/// [`AndroidHardwareBufferFormatPropertiesANDROID`] are only suggestions.
-/// Applications  **should**  treat these values as sensible defaults to use in the
-/// absence of more reliable information obtained through some other means.
-/// If the underlying physical device is also usable via OpenGL ES with the
-/// [`GL_OES_EGL_image_external`](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt)
-/// extension, the implementation  **should**  suggest values that will produce
-/// similar sampled values as would be obtained by sampling the same external
-/// image via `samplerExternalOES` in OpenGL ES using equivalent sampler
-/// parameters.
-/// ## Valid Usage (Implicit)
+///[`sampler_ycbcr_conversion_components`] **must**  be valid when used as the
+///`components` member of [`SamplerYcbcrConversionCreateInfo`] with
+///that format.
+///If [`format`] is `VK_FORMAT_UNDEFINED`, all members of
+///[`sampler_ycbcr_conversion_components`] **must**  be the
+///[identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).Implementations  **may**  not always be able to determine the color model,
+///numerical range, or chroma offsets of the image contents, so the values in
+///[`AndroidHardwareBufferFormatPropertiesANDROID`] are only suggestions.
+///Applications  **should**  treat these values as sensible defaults to use in the
+///absence of more reliable information obtained through some other means.
+///If the underlying physical device is also usable via OpenGL ES with the
+///[`GL_OES_EGL_image_external`](https://www.khronos.org/registry/OpenGL/extensions/OES/OES_EGL_image_external.txt)
+///extension, the implementation  **should**  suggest values that will produce
+///similar sampled values as would be obtained by sampling the same external
+///image via `samplerExternalOES` in OpenGL ES using equivalent sampler
+///parameters.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`ChromaLocation`]
 /// - [`ComponentMapping`]
@@ -957,13 +1050,13 @@ impl<'lt> MemoryGetAndroidHardwareBufferInfoANDROID<'lt> {
 /// - [`SamplerYcbcrRange`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1025,7 +1118,12 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1116,52 +1214,102 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
         &mut self.suggested_y_chroma_offset
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::format`]
-    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
         self.format = value;
         self
     }
     ///Sets the value of [`Self::external_format`]
-    pub fn set_external_format(mut self, value: u64) -> Self {
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
         self.external_format = value;
         self
     }
     ///Sets the value of [`Self::format_features`]
-    pub fn set_format_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
+    pub fn set_format_features(&mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> &mut Self {
         self.format_features = value;
         self
     }
     ///Sets the value of [`Self::sampler_ycbcr_conversion_components`]
-    pub fn set_sampler_ycbcr_conversion_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+    pub fn set_sampler_ycbcr_conversion_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
         self.sampler_ycbcr_conversion_components = value;
         self
     }
     ///Sets the value of [`Self::suggested_ycbcr_model`]
-    pub fn set_suggested_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+    pub fn set_suggested_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
         self.suggested_ycbcr_model = value;
         self
     }
     ///Sets the value of [`Self::suggested_ycbcr_range`]
-    pub fn set_suggested_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+    pub fn set_suggested_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
         self.suggested_ycbcr_range = value;
         self
     }
     ///Sets the value of [`Self::suggested_x_chroma_offset`]
-    pub fn set_suggested_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_suggested_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
         self.suggested_x_chroma_offset = value;
         self
     }
     ///Sets the value of [`Self::suggested_y_chroma_offset`]
-    pub fn set_suggested_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_y_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::format`]
+    pub fn with_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+        self.format = value;
+        self
+    }
+    ///Sets the value of [`Self::external_format`]
+    pub fn with_external_format(mut self, value: u64) -> Self {
+        self.external_format = value;
+        self
+    }
+    ///Sets the value of [`Self::format_features`]
+    pub fn with_format_features(mut self, value: crate::vulkan1_0::FormatFeatureFlags) -> Self {
+        self.format_features = value;
+        self
+    }
+    ///Sets the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn with_sampler_ycbcr_conversion_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+        self.sampler_ycbcr_conversion_components = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_ycbcr_model`]
+    pub fn with_suggested_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+        self.suggested_ycbcr_model = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_ycbcr_range`]
+    pub fn with_suggested_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+        self.suggested_ycbcr_range = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_x_chroma_offset`]
+    pub fn with_suggested_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+        self.suggested_x_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_y_chroma_offset`]
+    pub fn with_suggested_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
         self.suggested_y_chroma_offset = value;
         self
     }
@@ -1181,32 +1329,32 @@ impl<'lt> AndroidHardwareBufferFormatPropertiesANDROID<'lt> {
 ///    uint64_t           externalFormat;
 ///} VkExternalFormatANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`external_format`] is an implementation-defined identifier for the external format
-/// # Description
-/// If [`external_format`] is zero, the effect is as if the
-/// [`ExternalFormatANDROID`] structure was not present.
-/// Otherwise, the `image` will have the specified external format.
-/// ## Valid Usage
+///# Description
+///If [`external_format`] is zero, the effect is as if the
+///[`ExternalFormatANDROID`] structure was not present.
+///Otherwise, the `image` will have the specified external format.
+///## Valid Usage
 /// - [`external_format`] **must**  be `0` or a value returned in the [`external_format`] member of
 ///   [`AndroidHardwareBufferFormatPropertiesANDROID`] by an earlier call to
 ///   [`get_android_hardware_buffer_properties_android`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFormatANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1238,7 +1386,12 @@ impl<'lt> ExternalFormatANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1273,17 +1426,32 @@ impl<'lt> ExternalFormatANDROID<'lt> {
         &mut self.external_format
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::external_format`]
-    pub fn set_external_format(mut self, value: u64) -> Self {
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
+        self.external_format = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::external_format`]
+    pub fn with_external_format(mut self, value: u64) -> Self {
         self.external_format = value;
         self
     }
@@ -1312,7 +1480,7 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///    VkChromaLocation                 suggestedYChromaOffset;
 ///} VkAndroidHardwareBufferFormatProperties2ANDROID;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`format`] is the Vulkan format corresponding to the Android hardware buffer’s format, or
@@ -1331,14 +1499,14 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 ///   [`SamplerYcbcrConversionCreateInfo`].
 /// - [`suggested_y_chroma_offset`] is a suggested Y chroma offset to use in
 ///   [`SamplerYcbcrConversionCreateInfo`].
-/// # Description
-/// The bits reported in [`format_features`] **must**  include the bits reported in
-/// the corresponding fields of
-/// [`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].
-/// ## Valid Usage (Implicit)
+///# Description
+///The bits reported in [`format_features`] **must**  include the bits reported in
+///the corresponding fields of
+///[`AndroidHardwareBufferFormatPropertiesANDROID`]::[`format_features`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
-/// # Related
+///# Related
 /// - [`android_external_memory_android_hardware_buffer`]
 /// - [`khr_format_feature_flags2`]
 /// - [`ChromaLocation`]
@@ -1349,13 +1517,13 @@ impl<'lt> ExternalFormatANDROID<'lt> {
 /// - [`SamplerYcbcrRange`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1417,7 +1585,12 @@ impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -1508,52 +1681,102 @@ impl<'lt> AndroidHardwareBufferFormatProperties2ANDROID<'lt> {
         &mut self.suggested_y_chroma_offset
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::format`]
-    pub fn set_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+    pub fn set_format(&mut self, value: crate::vulkan1_0::Format) -> &mut Self {
         self.format = value;
         self
     }
     ///Sets the value of [`Self::external_format`]
-    pub fn set_external_format(mut self, value: u64) -> Self {
+    pub fn set_external_format(&mut self, value: u64) -> &mut Self {
         self.external_format = value;
         self
     }
     ///Sets the value of [`Self::format_features`]
-    pub fn set_format_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
+    pub fn set_format_features(&mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> &mut Self {
         self.format_features = value;
         self
     }
     ///Sets the value of [`Self::sampler_ycbcr_conversion_components`]
-    pub fn set_sampler_ycbcr_conversion_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+    pub fn set_sampler_ycbcr_conversion_components(&mut self, value: crate::vulkan1_0::ComponentMapping) -> &mut Self {
         self.sampler_ycbcr_conversion_components = value;
         self
     }
     ///Sets the value of [`Self::suggested_ycbcr_model`]
-    pub fn set_suggested_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+    pub fn set_suggested_ycbcr_model(&mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> &mut Self {
         self.suggested_ycbcr_model = value;
         self
     }
     ///Sets the value of [`Self::suggested_ycbcr_range`]
-    pub fn set_suggested_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+    pub fn set_suggested_ycbcr_range(&mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> &mut Self {
         self.suggested_ycbcr_range = value;
         self
     }
     ///Sets the value of [`Self::suggested_x_chroma_offset`]
-    pub fn set_suggested_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_suggested_x_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
         self.suggested_x_chroma_offset = value;
         self
     }
     ///Sets the value of [`Self::suggested_y_chroma_offset`]
-    pub fn set_suggested_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+    pub fn set_suggested_y_chroma_offset(&mut self, value: crate::vulkan1_1::ChromaLocation) -> &mut Self {
+        self.suggested_y_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::format`]
+    pub fn with_format(mut self, value: crate::vulkan1_0::Format) -> Self {
+        self.format = value;
+        self
+    }
+    ///Sets the value of [`Self::external_format`]
+    pub fn with_external_format(mut self, value: u64) -> Self {
+        self.external_format = value;
+        self
+    }
+    ///Sets the value of [`Self::format_features`]
+    pub fn with_format_features(mut self, value: crate::vulkan1_3::FormatFeatureFlags2) -> Self {
+        self.format_features = value;
+        self
+    }
+    ///Sets the value of [`Self::sampler_ycbcr_conversion_components`]
+    pub fn with_sampler_ycbcr_conversion_components(mut self, value: crate::vulkan1_0::ComponentMapping) -> Self {
+        self.sampler_ycbcr_conversion_components = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_ycbcr_model`]
+    pub fn with_suggested_ycbcr_model(mut self, value: crate::vulkan1_1::SamplerYcbcrModelConversion) -> Self {
+        self.suggested_ycbcr_model = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_ycbcr_range`]
+    pub fn with_suggested_ycbcr_range(mut self, value: crate::vulkan1_1::SamplerYcbcrRange) -> Self {
+        self.suggested_ycbcr_range = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_x_chroma_offset`]
+    pub fn with_suggested_x_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
+        self.suggested_x_chroma_offset = value;
+        self
+    }
+    ///Sets the value of [`Self::suggested_y_chroma_offset`]
+    pub fn with_suggested_y_chroma_offset(mut self, value: crate::vulkan1_1::ChromaLocation) -> Self {
         self.suggested_y_chroma_offset = value;
         self
     }
@@ -1570,37 +1793,37 @@ impl Device {
     ///    const struct AHardwareBuffer*               buffer,
     ///    VkAndroidHardwareBufferPropertiesANDROID*   pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that will be importing [`buffer`].
     /// - [`buffer`] is the Android hardware buffer which will be imported.
     /// - [`p_properties`] is a pointer to a [`AndroidHardwareBufferPropertiesANDROID`] structure in
     ///   which the properties of [`buffer`] are returned.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - [`buffer`] **must**  be a valid Android hardware buffer object with at least one of the
     ///   `AHARDWAREBUFFER_USAGE_GPU_*` flags in its `AHardwareBuffer_Desc`::`usage`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`buffer`] **must**  be a valid pointer to a valid [`AHardwareBuffer`] value
     /// - [`p_properties`] **must**  be a valid pointer to a
     ///   [`AndroidHardwareBufferPropertiesANDROID`] structure
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
-    /// # Related
+    ///# Related
     /// - [`android_external_memory_android_hardware_buffer`]
     /// - [`AndroidHardwareBufferPropertiesANDROID`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetAndroidHardwareBufferPropertiesANDROID")]
     #[track_caller]
@@ -1645,47 +1868,47 @@ impl Device {
     ///    const VkMemoryGetAndroidHardwareBufferInfoANDROID* pInfo,
     ///    struct AHardwareBuffer**                    pBuffer);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that created the device memory being exported.
     /// - [`p_info`] is a pointer to a [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
     ///   containing parameters of the export operation.
     /// - [`p_buffer`] will return an Android hardware buffer referencing the payload of the device
     ///   memory object.
-    /// # Description
-    /// Each call to [`get_memory_android_hardware_buffer_android`] **must**  return an
-    /// Android hardware buffer with a new reference acquired in addition to the
-    /// reference held by the [`DeviceMemory`].
-    /// To avoid leaking resources, the application  **must**  release the reference by
-    /// calling `AHardwareBuffer_release` when it is no longer needed.
-    /// When called with the same handle in
-    /// [`MemoryGetAndroidHardwareBufferInfoANDROID::memory`],
-    /// [`get_memory_android_hardware_buffer_android`] **must**  return the same Android
-    /// hardware buffer object.
-    /// If the device memory was created by importing an Android hardware buffer,
-    /// [`get_memory_android_hardware_buffer_android`] **must**  return that same Android
-    /// hardware buffer object.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///Each call to [`get_memory_android_hardware_buffer_android`] **must**  return an
+    ///Android hardware buffer with a new reference acquired in addition to the
+    ///reference held by the [`DeviceMemory`].
+    ///To avoid leaking resources, the application  **must**  release the reference by
+    ///calling `AHardwareBuffer_release` when it is no longer needed.
+    ///When called with the same handle in
+    ///[`MemoryGetAndroidHardwareBufferInfoANDROID::memory`],
+    ///[`get_memory_android_hardware_buffer_android`] **must**  return the same Android
+    ///hardware buffer object.
+    ///If the device memory was created by importing an Android hardware buffer,
+    ///[`get_memory_android_hardware_buffer_android`] **must**  return that same Android
+    ///hardware buffer object.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_info`] **must**  be a valid pointer to a valid
     ///   [`MemoryGetAndroidHardwareBufferInfoANDROID`] structure
     /// - [`p_buffer`] **must**  be a valid pointer to a valid pointer to an [`AHardwareBuffer`]
     ///   value
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`android_external_memory_android_hardware_buffer`]
     /// - [`Device`]
     /// - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetMemoryAndroidHardwareBufferANDROID")]
     #[track_caller]

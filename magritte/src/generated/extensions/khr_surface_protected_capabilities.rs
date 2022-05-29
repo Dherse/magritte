@@ -72,7 +72,7 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           supportsProtected;
 ///} VkSurfaceProtectedCapabilitiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supports_protected`] specifies whether a protected swapchain created from
@@ -80,30 +80,30 @@ pub const KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME: &'static CStr =
 ///   displayed on screen or not. If [`supports_protected`] is [`TRUE`], then creation of swapchains
 ///   with the `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR` flag set  **must**  be supported for
 ///   `surface`.
-/// # Description
-/// If the `[`google_surfaceless_query`]` extension is enabled, the value
-/// returned in [`supports_protected`] will be identical for every valid
-/// surface created on this physical device, and so in the
-/// [`get_physical_device_surface_capabilities2_khr`] call,
-/// [`PhysicalDeviceSurfaceInfo2KHR::surface`] **can**  be
-/// [`crate::Handle::null`].
-/// In that case, the contents of
-/// [`SurfaceCapabilities2KHR::surface_capabilities`] as well as any
-/// other struct chained to it will be undefined.
-/// ## Valid Usage (Implicit)
+///# Description
+///If the `[`google_surfaceless_query`]` extension is enabled, the value
+///returned in [`supports_protected`] will be identical for every valid
+///surface created on this physical device, and so in the
+///[`get_physical_device_surface_capabilities2_khr`] call,
+///[`PhysicalDeviceSurfaceInfo2KHR::surface`] **can**  be
+///[`crate::Handle::null`].
+///In that case, the contents of
+///[`SurfaceCapabilities2KHR::surface_capabilities`] as well as any
+///other struct chained to it will be undefined.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
-/// # Related
+///# Related
 /// - [`khr_surface_protected_capabilities`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceProtectedCapabilitiesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -143,12 +143,22 @@ impl<'lt> SurfaceProtectedCapabilitiesKHR<'lt> {
         self.supports_protected
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supports_protected`]
-    pub fn set_supports_protected_raw(mut self, value: Bool32) -> Self {
+    pub fn set_supports_protected_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supports_protected = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supports_protected`]
+    pub fn with_supports_protected_raw(mut self, value: Bool32) -> Self {
         self.supports_protected = value;
         self
     }
@@ -190,17 +200,32 @@ impl<'lt> SurfaceProtectedCapabilitiesKHR<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::supports_protected`]
-    pub fn set_supports_protected(mut self, value: bool) -> Self {
+    pub fn set_supports_protected(&mut self, value: bool) -> &mut Self {
+        self.supports_protected = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::supports_protected`]
+    pub fn with_supports_protected(mut self, value: bool) -> Self {
         self.supports_protected = value as u8 as u32;
         self
     }

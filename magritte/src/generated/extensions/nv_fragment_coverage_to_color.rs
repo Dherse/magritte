@@ -62,17 +62,17 @@ pub const NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME: &'static CStr =
 ///// Provided by VK_NV_fragment_coverage_to_color
 ///typedef VkFlags VkPipelineCoverageToColorStateCreateFlagsNV;
 ///```
-/// # Related
+///# Related
 /// - [`nv_fragment_coverage_to_color`]
 /// - [`PipelineCoverageToColorStateCreateInfoNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -103,54 +103,54 @@ impl std::fmt::Debug for PipelineCoverageToColorStateCreateFlagsNV {
 ///    uint32_t                                       coverageToColorLocation;
 ///} VkPipelineCoverageToColorStateCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`coverage_to_color_enable`] controls whether the fragment coverage value replaces a fragment
 ///   color output.
 /// - [`coverage_to_color_location`] controls which fragment shader color output value is replaced.
-/// # Description
-/// If the [`p_next`] chain of [`PipelineMultisampleStateCreateInfo`]
-/// includes a [`PipelineCoverageToColorStateCreateInfoNV`] structure, then
-/// that structure controls whether the fragment coverage is substituted for a
-/// fragment color output and, if so, which output is replaced.If [`coverage_to_color_enable`] is
+///# Description
+///If the [`p_next`] chain of [`PipelineMultisampleStateCreateInfo`]
+///includes a [`PipelineCoverageToColorStateCreateInfoNV`] structure, then
+///that structure controls whether the fragment coverage is substituted for a
+///fragment color output and, if so, which output is replaced.If [`coverage_to_color_enable`] is
 /// [`TRUE`], the
-/// [coverage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) replaces the first
-/// component of the color value corresponding to the fragment shader output
-/// location with `Location` equal to [`coverage_to_color_location`] and
-/// `Index` equal to zero.
-/// If the color attachment format has fewer bits than the coverage mask, the
-/// low bits of the sample coverage mask are taken without any clamping.
-/// If the color attachment format has more bits than the coverage mask, the
-/// high bits of the sample coverage mask are filled with zeros.If [`coverage_to_color_enable`] is
+///[coverage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) replaces the first
+///component of the color value corresponding to the fragment shader output
+///location with `Location` equal to [`coverage_to_color_location`] and
+///`Index` equal to zero.
+///If the color attachment format has fewer bits than the coverage mask, the
+///low bits of the sample coverage mask are taken without any clamping.
+///If the color attachment format has more bits than the coverage mask, the
+///high bits of the sample coverage mask are filled with zeros.If [`coverage_to_color_enable`] is
 /// [`FALSE`], these operations are
-/// skipped.
-/// If this structure is not included in the [`p_next`] chain, it is as if
-/// [`coverage_to_color_enable`] is [`FALSE`].
-/// ## Valid Usage
+///skipped.
+///If this structure is not included in the [`p_next`] chain, it is as if
+///[`coverage_to_color_enable`] is [`FALSE`].
+///## Valid Usage
 /// - If [`coverage_to_color_enable`] is [`TRUE`], then the render pass subpass indicated by
 ///   [`GraphicsPipelineCreateInfo::render_pass`] and [`GraphicsPipelineCreateInfo::subpass`]
 ///   **must**  have a color attachment at the location selected by [`coverage_to_color_location`],
 ///   with a [`Format`] of `VK_FORMAT_R8_UINT`, `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`,
 ///   `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or `VK_FORMAT_R32_SINT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`nv_fragment_coverage_to_color`]
 /// - [`Bool32`]
 /// - [`PipelineCoverageToColorStateCreateFlagsNV`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCoverageToColorStateCreateInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -193,12 +193,22 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
         self.coverage_to_color_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::coverage_to_color_enable`]
-    pub fn set_coverage_to_color_enable_raw(mut self, value: Bool32) -> Self {
+    pub fn set_coverage_to_color_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.coverage_to_color_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::coverage_to_color_enable`]
+    pub fn with_coverage_to_color_enable_raw(mut self, value: Bool32) -> Self {
         self.coverage_to_color_enable = value;
         self
     }
@@ -256,17 +266,45 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
         &mut self.coverage_to_color_location
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
     pub fn set_flags(
+        &mut self,
+        value: crate::extensions::nv_fragment_coverage_to_color::PipelineCoverageToColorStateCreateFlagsNV,
+    ) -> &mut Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::coverage_to_color_enable`]
+    pub fn set_coverage_to_color_enable(&mut self, value: bool) -> &mut Self {
+        self.coverage_to_color_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::coverage_to_color_location`]
+    pub fn set_coverage_to_color_location(&mut self, value: u32) -> &mut Self {
+        self.coverage_to_color_location = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(
         mut self,
         value: crate::extensions::nv_fragment_coverage_to_color::PipelineCoverageToColorStateCreateFlagsNV,
     ) -> Self {
@@ -274,12 +312,12 @@ impl<'lt> PipelineCoverageToColorStateCreateInfoNV<'lt> {
         self
     }
     ///Sets the value of [`Self::coverage_to_color_enable`]
-    pub fn set_coverage_to_color_enable(mut self, value: bool) -> Self {
+    pub fn with_coverage_to_color_enable(mut self, value: bool) -> Self {
         self.coverage_to_color_enable = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::coverage_to_color_location`]
-    pub fn set_coverage_to_color_location(mut self, value: u32) -> Self {
+    pub fn with_coverage_to_color_location(mut self, value: u32) -> Self {
         self.coverage_to_color_location = value;
         self
     }

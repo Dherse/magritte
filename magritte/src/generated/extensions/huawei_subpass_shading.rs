@@ -100,34 +100,34 @@ pub const HUAWEI_SUBPASS_SHADING_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkRenderPass                                renderpass,
 ///    VkExtent2D*                                 pMaxWorkgroupSize);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is a handle to a local device object that was used to create the given render pass.
 /// - `renderPass` is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
 /// - [`p_max_workgroup_size`] is a pointer to a [`Extent2D`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`renderpass`] **must**  be a valid [`RenderPass`] handle
 /// - [`p_max_workgroup_size`] **must**  be a valid pointer to a [`Extent2D`] structure
 /// - [`renderpass`] **must**  have been created, allocated, or retrieved from [`device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_SURFACE_LOST_KHR`
-/// # Related
+///# Related
 /// - [`huawei_subpass_shading`]
 /// - [`Device`]
 /// - [`Extent2D`]
 /// - [`RenderPass`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI")]
 pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
     unsafe extern "system" fn(
@@ -148,12 +148,12 @@ pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
 ///void vkCmdSubpassShadingHUAWEI(
 ///    VkCommandBuffer                             commandBuffer);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
-/// # Description
-/// When the command is executed, a global workgroup consisting of ceil (render
-/// area size / local workgroup size) local workgroups is assembled.
-/// ## Valid Usage
+///# Description
+///When the command is executed, a global workgroup consisting of ceil (render
+///area size / local workgroup size) local workgroups is assembled.
+///## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -271,30 +271,30 @@ pub type FNGetDeviceSubpassShadingMaxWorkgroupSizeHuawei = Option<
 ///   `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`. No draw commands can be called in the same
 ///   subpass. Only one [`cmd_subpass_shading_huawei`] command can be called in a subpass
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`huawei_subpass_shading`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSubpassShadingHUAWEI")]
 pub type FNCmdSubpassShadingHuawei = Option<unsafe extern "system" fn(command_buffer: CommandBuffer)>;
 ///[VkSubpassShadingPipelineCreateInfoHUAWEI](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkSubpassShadingPipelineCreateInfoHUAWEI.html) - Structure specifying parameters of a newly created subpass shading pipeline
@@ -317,30 +317,30 @@ pub type FNCmdSubpassShadingHuawei = Option<unsafe extern "system" fn(command_bu
 ///    uint32_t           subpass;
 ///} VkSubpassShadingPipelineCreateInfoHUAWEI;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`render_pass`] is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
 /// - [`subpass`] is the index of the subpass in the render pass where this pipeline will be used.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`subpass`] **must**  be created with `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI` bind
 ///   point
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
-/// # Related
+///# Related
 /// - [`huawei_subpass_shading`]
 /// - [`RenderPass`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassShadingPipelineCreateInfoHUAWEI")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -380,7 +380,12 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -423,22 +428,42 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
         &mut self.subpass
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::render_pass`]
-    pub fn set_render_pass(mut self, value: crate::vulkan1_0::RenderPass) -> Self {
+    pub fn set_render_pass(&mut self, value: crate::vulkan1_0::RenderPass) -> &mut Self {
         self.render_pass = value;
         self
     }
     ///Sets the value of [`Self::subpass`]
-    pub fn set_subpass(mut self, value: u32) -> Self {
+    pub fn set_subpass(&mut self, value: u32) -> &mut Self {
+        self.subpass = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::render_pass`]
+    pub fn with_render_pass(mut self, value: crate::vulkan1_0::RenderPass) -> Self {
+        self.render_pass = value;
+        self
+    }
+    ///Sets the value of [`Self::subpass`]
+    pub fn with_subpass(mut self, value: u32) -> Self {
         self.subpass = value;
         self
     }
@@ -455,7 +480,7 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///    uint32_t           maxSubpassShadingWorkgroupSizeAspectRatio;
 ///} VkPhysicalDeviceSubpassShadingPropertiesHUAWEI;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_subpass_shading_workgroup_size_aspect_ratio`] indicates the maximum ratio between the
@@ -463,25 +488,25 @@ impl<'lt> SubpassShadingPipelineCreateInfoHUAWEI<'lt> {
 ///   [`max_subpass_shading_workgroup_size_aspect_ratio`] **must**  be a power-of-two value, and
 ///   **must**  be less than or equal to max(`WorkgroupSize.x` / `WorkgroupSize.y`,
 ///   `WorkgroupSize.y` / `WorkgroupSize.x`).
-/// # Description
-/// If the [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`
-/// # Related
+///# Related
 /// - [`huawei_subpass_shading`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingPropertiesHUAWEI")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -517,7 +542,12 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -553,17 +583,32 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
         &mut self.max_subpass_shading_workgroup_size_aspect_ratio
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
-    pub fn set_max_subpass_shading_workgroup_size_aspect_ratio(mut self, value: u32) -> Self {
+    pub fn set_max_subpass_shading_workgroup_size_aspect_ratio(&mut self, value: u32) -> &mut Self {
+        self.max_subpass_shading_workgroup_size_aspect_ratio = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::max_subpass_shading_workgroup_size_aspect_ratio`]
+    pub fn with_max_subpass_shading_workgroup_size_aspect_ratio(mut self, value: u32) -> Self {
         self.max_subpass_shading_workgroup_size_aspect_ratio = value;
         self
     }
@@ -580,33 +625,33 @@ impl<'lt> PhysicalDeviceSubpassShadingPropertiesHUAWEI<'lt> {
 ///    VkBool32           subpassShading;
 ///} VkPhysicalDeviceSubpassShadingFeaturesHUAWEI;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`subpass_shading`] specifies whether subpass shading is supported.
-/// If the [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceSubpassShadingFeaturesHUAWEI`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`
-/// # Related
+///# Related
 /// - [`huawei_subpass_shading`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubpassShadingFeaturesHUAWEI")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -642,12 +687,22 @@ impl<'lt> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
         self.subpass_shading
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::subpass_shading`]
-    pub fn set_subpass_shading_raw(mut self, value: Bool32) -> Self {
+    pub fn set_subpass_shading_raw(&mut self, value: Bool32) -> &mut Self {
+        self.subpass_shading = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::subpass_shading`]
+    pub fn with_subpass_shading_raw(mut self, value: Bool32) -> Self {
         self.subpass_shading = value;
         self
     }
@@ -696,17 +751,32 @@ impl<'lt> PhysicalDeviceSubpassShadingFeaturesHUAWEI<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::subpass_shading`]
-    pub fn set_subpass_shading(mut self, value: bool) -> Self {
+    pub fn set_subpass_shading(&mut self, value: bool) -> &mut Self {
+        self.subpass_shading = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::subpass_shading`]
+    pub fn with_subpass_shading(mut self, value: bool) -> Self {
         self.subpass_shading = value as u8 as u32;
         self
     }
@@ -726,35 +796,35 @@ impl Device {
     ///    VkRenderPass                                renderpass,
     ///    VkExtent2D*                                 pMaxWorkgroupSize);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is a handle to a local device object that was used to create the given render
     ///   pass.
     /// - `renderPass` is a handle to a render pass object describing the environment in which the pipeline will be used. The pipeline  **must**  only be used with a render pass instance compatible with the one provided. See [Render Pass Compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) for more information.
     /// - [`p_max_workgroup_size`] is a pointer to a [`Extent2D`] structure.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`renderpass`] **must**  be a valid [`RenderPass`] handle
     /// - [`p_max_workgroup_size`] **must**  be a valid pointer to a [`Extent2D`] structure
     /// - [`renderpass`] **must**  have been created, allocated, or retrieved from [`device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_SURFACE_LOST_KHR`
-    /// # Related
+    ///# Related
     /// - [`huawei_subpass_shading`]
     /// - [`Device`]
     /// - [`Extent2D`]
     /// - [`RenderPass`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI")]
     #[track_caller]
@@ -798,12 +868,12 @@ impl CommandBuffer {
     ///void vkCmdSubpassShadingHUAWEI(
     ///    VkCommandBuffer                             commandBuffer);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
-    /// # Description
-    /// When the command is executed, a global workgroup consisting of ceil (render
-    /// area size / local workgroup size) local workgroups is assembled.
-    /// ## Valid Usage
+    ///# Description
+    ///When the command is executed, a global workgroup consisting of ceil (render
+    ///area size / local workgroup size) local workgroups is assembled.
+    ///## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -922,30 +992,30 @@ impl CommandBuffer {
     ///   `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`. No draw commands can be called in the
     ///   same subpass. Only one [`cmd_subpass_shading_huawei`] command can be called in a subpass
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     /// - This command  **must**  only be called inside of a render pass instance
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`huawei_subpass_shading`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSubpassShadingHUAWEI")]
     #[track_caller]

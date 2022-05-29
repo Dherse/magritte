@@ -26,8 +26,8 @@ pub unsafe fn create_surface(
         #[cfg(target_os = "windows")]
         RawWindowHandle::Win32(handle) => {
             let surface_desc = extensions::khr_win32_surface::Win32SurfaceCreateInfoKHR::default()
-                .set_hinstance(std::mem::transmute(handle.hinstance))
-                .set_hwnd(std::mem::transmute(handle.hwnd));
+                .with_hinstance(std::mem::transmute(handle.hinstance))
+                .with_hwnd(std::mem::transmute(handle.hwnd));
 
             instance.create_win32_surface_khr(&surface_desc, allocation_callbacks)
         },
@@ -41,8 +41,8 @@ pub unsafe fn create_surface(
         ))]
         RawWindowHandle::Wayland(handle) => {
             let surface_desc = extensions::khr_wayland_surface::WaylandSurfaceCreateInfoKHR::default()
-                .set_display(handle.display)
-                .set_surface(handle.surface);
+                .with_display(handle.display)
+                .with_surface(handle.surface);
 
             instance.create_wayland_surface_khr(&surface_desc, allocation_callbacks)
         },
@@ -56,8 +56,8 @@ pub unsafe fn create_surface(
         ))]
         RawWindowHandle::Xlib(handle) => {
             let surface_desc = extensions::khr_xlib_surface::XlibSurfaceCreateInfoKHR::default()
-                .set_dpy(handle.display)
-                .set_window(handle.window);
+                .with_dpy(handle.display)
+                .with_window(handle.window);
 
             instance.create_xlib_surface_khr(&surface_desc, allocation_callbacks)
         },
@@ -71,8 +71,8 @@ pub unsafe fn create_surface(
         ))]
         RawWindowHandle::Xcb(handle) => {
             let surface_desc = extensions::khr_xcb_surface::XcbSurfaceCreateInfoKHR::default()
-                .set_connection(handle.connection)
-                .set_window(handle.window);
+                .with_connection(handle.connection)
+                .with_window(handle.window);
 
             instance.create_xcb_surface_khr(&surface_desc, allocation_callbacks)
         },

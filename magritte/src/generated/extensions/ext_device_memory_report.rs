@@ -178,24 +178,24 @@ pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    const VkDeviceMemoryReportCallbackDataEXT*  pCallbackData,
 ///    void*                                       pUserData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`p_callback_data`] contains all the callback related data in the
 ///   [`DeviceMemoryReportCallbackDataEXT`] structure.
 /// - [`p_user_data`] is the user data provided when the [`DeviceDeviceMemoryReportCreateInfoEXT`]
 ///   was created.
-/// # Description
-/// The callback  **must**  not make calls to any Vulkan commands.
-/// # Related
+///# Description
+///The callback  **must**  not make calls to any Vulkan commands.
+///# Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "PFN_vkDeviceMemoryReportCallbackEXT")]
 pub type PFNDeviceMemoryReportCallbackEXT = Option<
     for<'lt> unsafe extern "system" fn(
@@ -218,7 +218,7 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 ///    VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT = 4,
 ///} VkDeviceMemoryReportEventTypeEXT;
 ///```
-/// # Description
+///# Description
 /// - [`ALLOCATE`] specifies this event corresponds to the allocation of an internal device memory
 ///   object or a [`DeviceMemory`].
 /// - [`FREE`] specifies this event corresponds to the deallocation of an internally-allocated
@@ -227,17 +227,17 @@ pub type PFNDeviceMemoryReportCallbackEXT = Option<
 /// - [`UNIMPORT`] specifies this event is the release of an imported external memory object.
 /// - [`ALLOCATION_FAILED`] specifies this event corresponds to the failed allocation of an internal
 ///   device memory object or a [`DeviceMemory`].
-/// # Related
+///# Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -318,18 +318,18 @@ impl std::fmt::Debug for DeviceMemoryReportEventTypeEXT {
 ///// Provided by VK_EXT_device_memory_report
 ///typedef VkFlags VkDeviceMemoryReportFlagsEXT;
 ///```
-/// # Related
+///# Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 /// - [`DeviceMemoryReportCallbackDataEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -358,34 +358,34 @@ impl std::fmt::Debug for DeviceMemoryReportFlagsEXT {
 ///    VkBool32           deviceMemoryReport;
 ///} VkPhysicalDeviceDeviceMemoryReportFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_memory_report`] indicates whether the implementation supports the ability to register
 ///   device memory report callbacks.
-/// If the [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDeviceMemoryReportFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_device_memory_report`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -422,12 +422,22 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
         self.device_memory_report
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::device_memory_report`]
-    pub fn set_device_memory_report_raw(mut self, value: Bool32) -> Self {
+    pub fn set_device_memory_report_raw(&mut self, value: Bool32) -> &mut Self {
+        self.device_memory_report = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::device_memory_report`]
+    pub fn with_device_memory_report_raw(mut self, value: Bool32) -> Self {
         self.device_memory_report = value;
         self
     }
@@ -476,17 +486,32 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::device_memory_report`]
-    pub fn set_device_memory_report(mut self, value: bool) -> Self {
+    pub fn set_device_memory_report(&mut self, value: bool) -> &mut Self {
+        self.device_memory_report = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::device_memory_report`]
+    pub fn with_device_memory_report(mut self, value: bool) -> Self {
         self.device_memory_report = value as u8 as u32;
         self
     }
@@ -507,34 +532,34 @@ impl<'lt> PhysicalDeviceDeviceMemoryReportFeaturesEXT<'lt> {
 ///    void*                                  pUserData;
 ///} VkDeviceDeviceMemoryReportCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is 0 and reserved for future use.
 /// - [`pfn_user_callback`] is the application callback function to call.
 /// - [`user_data`] is user data to be passed to the callback.
-/// # Description
-/// The callback  **may**  be called from multiple threads simultaneously.The callback  **must**  be
+///# Description
+///The callback  **may**  be called from multiple threads simultaneously.The callback  **must**  be
 /// called only once by the implementation when a
-/// [`DeviceMemoryReportEventTypeEXT`] event occurs.
-/// ## Valid Usage (Implicit)
+///[`DeviceMemoryReportEventTypeEXT`] event occurs.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 /// - [`pfn_user_callback`] **must**  be a valid [`PFNDeviceMemoryReportCallbackEXT`] value
 /// - [`user_data`] **must**  be a pointer value
-/// # Related
+///# Related
 /// - [`PFNDeviceMemoryReportCallbackEXT`]
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportFlagsEXT`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
 #[derive(Clone)]
 #[repr(C)]
@@ -575,12 +600,22 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         self.user_data
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::user_data`]
-    pub fn set_user_data_raw(mut self, value: *mut c_void) -> Self {
+    pub fn set_user_data_raw(&mut self, value: *mut c_void) -> &mut Self {
+        self.user_data = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::user_data`]
+    pub fn with_user_data_raw(mut self, value: *mut c_void) -> Self {
         self.user_data = value;
         self
     }
@@ -630,22 +665,56 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         &mut *self.user_data
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT) -> Self {
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
+    ) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::pfn_user_callback`]
     pub fn set_pfn_user_callback(
+        &mut self,
+        value: crate::extensions::ext_device_memory_report::PFNDeviceMemoryReportCallbackEXT,
+    ) -> &mut Self {
+        self.pfn_user_callback = value;
+        self
+    }
+    ///Sets the value of [`Self::user_data`]
+    pub fn set_user_data(&mut self, value: &'lt mut std::ffi::c_void) -> &mut Self {
+        self.user_data = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(
+        mut self,
+        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
+    ) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::pfn_user_callback`]
+    pub fn with_pfn_user_callback(
         mut self,
         value: crate::extensions::ext_device_memory_report::PFNDeviceMemoryReportCallbackEXT,
     ) -> Self {
@@ -653,7 +722,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
         self
     }
     ///Sets the value of [`Self::user_data`]
-    pub fn set_user_data(mut self, value: &'lt mut std::ffi::c_void) -> Self {
+    pub fn with_user_data(mut self, value: &'lt mut std::ffi::c_void) -> Self {
         self.user_data = value as *mut _;
         self
     }
@@ -675,7 +744,7 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///    uint32_t                            heapIndex;
 ///} VkDeviceMemoryReportCallbackDataEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is 0 and reserved for future use.
@@ -706,22 +775,22 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 ///   `VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT`, [`heap_index`] corresponds to one
 ///   of the valid heaps from the [`PhysicalDeviceMemoryProperties`] structure. Otherwise,
 ///   [`heap_index`] is undefined.
-/// # Description
-/// [`memory_object_id`] is used to avoid double-counting on the same memory
-/// object.If an internally-allocated device memory object or a [`DeviceMemory`] **cannot**  be
+///# Description
+///[`memory_object_id`] is used to avoid double-counting on the same memory
+///object.If an internally-allocated device memory object or a [`DeviceMemory`] **cannot**  be
 /// exported, [`memory_object_id`] **must**  be unique in the
-/// [`Device`].If an internally-allocated device memory object or a [`DeviceMemory`]
-/// supports being exported, [`memory_object_id`] **must**  be unique system wide.If an internal
+///[`Device`].If an internally-allocated device memory object or a [`DeviceMemory`]
+///supports being exported, [`memory_object_id`] **must**  be unique system wide.If an internal
 /// device memory object or a [`DeviceMemory`] is backed by
-/// an imported external memory object, [`memory_object_id`] **must**  be unique
-/// system wide.
-/// ## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be used to
-/// back [`DeviceMemory`], implementations  **can**  advertise that heap with no
-/// types.
-/// ## Valid Usage (Implicit)
+///an imported external memory object, [`memory_object_id`] **must**  be unique
+///system wide.
+///## Implementor’s NoteIf the heap backing an internally-allocated device memory  **cannot**  be used to
+///back [`DeviceMemory`], implementations  **can**  advertise that heap with no
+///types.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`ext_device_memory_report`]
 /// - [`DeviceMemoryReportEventTypeEXT`]
 /// - [`DeviceMemoryReportFlagsEXT`]
@@ -729,13 +798,13 @@ impl<'lt> DeviceDeviceMemoryReportCreateInfoEXT<'lt> {
 /// - [`ObjectType`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -814,7 +883,12 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -897,22 +971,76 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
         &mut self.heap_index
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT) -> Self {
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
+    ) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::type_`]
     pub fn set_type_(
+        &mut self,
+        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportEventTypeEXT,
+    ) -> &mut Self {
+        self.type_ = value;
+        self
+    }
+    ///Sets the value of [`Self::memory_object_id`]
+    pub fn set_memory_object_id(&mut self, value: u64) -> &mut Self {
+        self.memory_object_id = value;
+        self
+    }
+    ///Sets the value of [`Self::size`]
+    pub fn set_size(&mut self, value: crate::vulkan1_0::DeviceSize) -> &mut Self {
+        self.size = value;
+        self
+    }
+    ///Sets the value of [`Self::object_type`]
+    pub fn set_object_type(&mut self, value: crate::vulkan1_0::ObjectType) -> &mut Self {
+        self.object_type = value;
+        self
+    }
+    ///Sets the value of [`Self::object_handle`]
+    pub fn set_object_handle(&mut self, value: u64) -> &mut Self {
+        self.object_handle = value;
+        self
+    }
+    ///Sets the value of [`Self::heap_index`]
+    pub fn set_heap_index(&mut self, value: u32) -> &mut Self {
+        self.heap_index = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(
+        mut self,
+        value: crate::extensions::ext_device_memory_report::DeviceMemoryReportFlagsEXT,
+    ) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::type_`]
+    pub fn with_type_(
         mut self,
         value: crate::extensions::ext_device_memory_report::DeviceMemoryReportEventTypeEXT,
     ) -> Self {
@@ -920,27 +1048,27 @@ impl<'lt> DeviceMemoryReportCallbackDataEXT<'lt> {
         self
     }
     ///Sets the value of [`Self::memory_object_id`]
-    pub fn set_memory_object_id(mut self, value: u64) -> Self {
+    pub fn with_memory_object_id(mut self, value: u64) -> Self {
         self.memory_object_id = value;
         self
     }
     ///Sets the value of [`Self::size`]
-    pub fn set_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
+    pub fn with_size(mut self, value: crate::vulkan1_0::DeviceSize) -> Self {
         self.size = value;
         self
     }
     ///Sets the value of [`Self::object_type`]
-    pub fn set_object_type(mut self, value: crate::vulkan1_0::ObjectType) -> Self {
+    pub fn with_object_type(mut self, value: crate::vulkan1_0::ObjectType) -> Self {
         self.object_type = value;
         self
     }
     ///Sets the value of [`Self::object_handle`]
-    pub fn set_object_handle(mut self, value: u64) -> Self {
+    pub fn with_object_handle(mut self, value: u64) -> Self {
         self.object_handle = value;
         self
     }
     ///Sets the value of [`Self::heap_index`]
-    pub fn set_heap_index(mut self, value: u32) -> Self {
+    pub fn with_heap_index(mut self, value: u32) -> Self {
         self.heap_index = value;
         self
     }

@@ -88,19 +88,19 @@ impl Depth {
         // - The usage (as a depth buffer attachment)
         // - The sharing mode (exclusive because only one queue will access this image at a time)
         let image_create_info = ImageCreateInfo::default()
-            .set_image_type(ImageType::_2D)
-            .set_format(Format::D16_UNORM)
-            .set_extent(Extent3D {
+            .with_image_type(ImageType::_2D)
+            .with_format(Format::D16_UNORM)
+            .with_extent(Extent3D {
                 width: surface.extent().width(),
                 height: surface.extent().height(),
                 depth: 1,
             })
-            .set_mip_levels(1)
-            .set_array_layers(1)
-            .set_samples(msaa)
-            .set_tiling(ImageTiling::OPTIMAL)
-            .set_usage(ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
-            .set_sharing_mode(SharingMode::EXCLUSIVE);
+            .with_mip_levels(1)
+            .with_array_layers(1)
+            .with_samples(msaa)
+            .with_tiling(ImageTiling::OPTIMAL)
+            .with_usage(ImageUsageFlags::DEPTH_STENCIL_ATTACHMENT)
+            .with_sharing_mode(SharingMode::EXCLUSIVE);
 
         // Here we create the image
         let (image, _) = unsafe { vulkan.device().create_image(&image_create_info, None)? };
@@ -140,8 +140,8 @@ impl Depth {
         // Here, we prepare where and how much memory we want to allocate using the previously
         // obtained values
         let image_allocate_info = MemoryAllocateInfo::default()
-            .set_allocation_size(memory_requirements.size())
-            .set_memory_type_index(memory_index);
+            .with_allocation_size(memory_requirements.size())
+            .with_memory_type_index(memory_index);
 
         // Now, we allocate the memory
         let (image_memory, _) = unsafe { vulkan.device().allocate_memory(&image_allocate_info, None)? };
@@ -158,17 +158,17 @@ impl Depth {
         commands.record_and_submit_setup(&[], &[], &[], |cmd| {
             // Here we create a barrier to initialize our depth buffer.
             let layout_transition_barriers = ImageMemoryBarrier::default()
-                .set_image(image.as_raw())
-                .set_dst_access_mask(
+                .with_image(image.as_raw())
+                .with_dst_access_mask(
                     AccessFlags::DEPTH_STENCIL_ATTACHMENT_READ | AccessFlags::DEPTH_STENCIL_ATTACHMENT_WRITE,
                 )
-                .set_new_layout(ImageLayout::DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
-                .set_old_layout(ImageLayout::UNDEFINED)
-                .set_subresource_range(
+                .with_new_layout(ImageLayout::DEPTH_STENCIL_ATTACHMENT_OPTIMAL)
+                .with_old_layout(ImageLayout::UNDEFINED)
+                .with_subresource_range(
                     ImageSubresourceRange::default()
-                        .set_aspect_mask(ImageAspectFlags::DEPTH)
-                        .set_layer_count(1)
-                        .set_level_count(1),
+                        .with_aspect_mask(ImageAspectFlags::DEPTH)
+                        .with_layer_count(1)
+                        .with_level_count(1),
                 );
 
             // Here we record the barrier inside of the command buffer.
@@ -189,15 +189,15 @@ impl Depth {
         })?;
 
         let image_view_info = ImageViewCreateInfo::default()
-            .set_subresource_range(
+            .with_subresource_range(
                 ImageSubresourceRange::default()
-                    .set_aspect_mask(ImageAspectFlags::DEPTH)
-                    .set_level_count(1)
-                    .set_layer_count(1),
+                    .with_aspect_mask(ImageAspectFlags::DEPTH)
+                    .with_level_count(1)
+                    .with_layer_count(1),
             )
-            .set_image(image.as_raw())
-            .set_format(image_create_info.format())
-            .set_view_type(ImageViewType::_2D);
+            .with_image(image.as_raw())
+            .with_format(image_create_info.format())
+            .with_view_type(ImageViewType::_2D);
 
         let (image_view, _) = unsafe { image.create_image_view(&image_view_info, None)? };
 

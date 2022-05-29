@@ -94,18 +94,18 @@ impl Surface {
         // - Whether Vulkan can discard pixels outside of the rendering area
         // - The number of array layers (one in this case)
         let swapchain_create_info = SwapchainCreateInfoKHR::default()
-            .set_surface(self.surface().as_raw())
-            .set_min_image_count(desired_image_count)
-            .set_image_color_space(self.surface_format.color_space())
-            .set_image_format(self.surface_format.format())
-            .set_image_extent(surface_resolution)
-            .set_image_usage(ImageUsageFlags::COLOR_ATTACHMENT)
-            .set_image_sharing_mode(SharingMode::EXCLUSIVE)
-            .set_pre_transform(self.pre_transform)
-            .set_composite_alpha(CompositeAlphaFlagBitsKHR::OPAQUE)
-            .set_present_mode(self.present_mode)
-            .set_clipped(true)
-            .set_image_array_layers(1);
+            .with_surface(self.surface().as_raw())
+            .with_min_image_count(desired_image_count)
+            .with_image_color_space(self.surface_format.color_space())
+            .with_image_format(self.surface_format.format())
+            .with_image_extent(surface_resolution)
+            .with_image_usage(ImageUsageFlags::COLOR_ATTACHMENT)
+            .with_image_sharing_mode(SharingMode::EXCLUSIVE)
+            .with_pre_transform(self.pre_transform)
+            .with_composite_alpha(CompositeAlphaFlagBitsKHR::OPAQUE)
+            .with_present_mode(self.present_mode)
+            .with_clipped(true)
+            .with_image_array_layers(1);
 
         // Finally, we create the swapchain itself
         // ⚠ Note that here, things get a bit tricky, the swapchain **must** live longer than the
@@ -130,22 +130,22 @@ impl Surface {
             .iter()
             .map(|image| {
                 let create_view_info = ImageViewCreateInfo::default()
-                    .set_view_type(ImageViewType::_2D)
-                    .set_format(self.surface_format.format)
-                    .set_components(ComponentMapping {
+                    .with_view_type(ImageViewType::_2D)
+                    .with_format(self.surface_format.format)
+                    .with_components(ComponentMapping {
                         r: ComponentSwizzle::R,
                         g: ComponentSwizzle::G,
                         b: ComponentSwizzle::B,
                         a: ComponentSwizzle::A,
                     })
-                    .set_subresource_range(ImageSubresourceRange {
+                    .with_subresource_range(ImageSubresourceRange {
                         aspect_mask: ImageAspectFlags::COLOR,
                         base_mip_level: 0,
                         level_count: 1,
                         base_array_layer: 0,
                         layer_count: 1,
                     })
-                    .set_image(image.as_raw_image());
+                    .with_image(image.as_raw_image());
 
                 unsafe { image.create_swapchain_image_view(&create_view_info, None).result() }
             })

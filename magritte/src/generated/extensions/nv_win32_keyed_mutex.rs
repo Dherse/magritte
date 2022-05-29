@@ -79,7 +79,7 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    const uint64_t*          pReleaseKeys;
 ///} VkWin32KeyedMutexAcquireReleaseInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`acquire_count`] is the number of entries in the [`acquire_syncs`], [`acquire_keys`], and
 ///   [`acquire_timeout_milliseconds`] arrays.
 /// - [`acquire_syncs`] is a pointer to an array of [`DeviceMemory`] objects which were imported
@@ -96,8 +96,8 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - [`release_keys`] is a pointer to an array of mutex key values to set when the submitted work
 ///   has completed. Entries refer to the keyed mutex associated with the corresponding entries in
 ///   [`release_syncs`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
 /// - If [`acquire_count`] is not `0`, [`acquire_syncs`] **must**  be a valid pointer to an array of
 ///   [`acquire_count`] valid [`DeviceMemory`] handles
@@ -112,18 +112,18 @@ pub const NV_WIN32_KEYED_MUTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - Both of the elements of [`acquire_syncs`], and the elements of [`release_syncs`] that are
 ///   valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved
 ///   from the same [`Device`]
-/// # Related
+///# Related
 /// - [`nv_win32_keyed_mutex`]
 /// - [`DeviceMemory`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkWin32KeyedMutexAcquireReleaseInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -203,32 +203,62 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self.release_keys
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_syncs`]
-    pub fn set_acquire_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
+    pub fn set_acquire_syncs_raw(&mut self, value: *const DeviceMemory) -> &mut Self {
         self.acquire_syncs = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_keys`]
-    pub fn set_acquire_keys_raw(mut self, value: *const u64) -> Self {
+    pub fn set_acquire_keys_raw(&mut self, value: *const u64) -> &mut Self {
         self.acquire_keys = value;
         self
     }
     ///Sets the raw value of [`Self::acquire_timeout_milliseconds`]
-    pub fn set_acquire_timeout_milliseconds_raw(mut self, value: *const u32) -> Self {
+    pub fn set_acquire_timeout_milliseconds_raw(&mut self, value: *const u32) -> &mut Self {
         self.acquire_timeout_milliseconds = value;
         self
     }
     ///Sets the raw value of [`Self::release_syncs`]
-    pub fn set_release_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
+    pub fn set_release_syncs_raw(&mut self, value: *const DeviceMemory) -> &mut Self {
         self.release_syncs = value;
         self
     }
     ///Sets the raw value of [`Self::release_keys`]
-    pub fn set_release_keys_raw(mut self, value: *const u64) -> Self {
+    pub fn set_release_keys_raw(&mut self, value: *const u64) -> &mut Self {
+        self.release_keys = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acquire_syncs`]
+    pub fn with_acquire_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
+        self.acquire_syncs = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acquire_keys`]
+    pub fn with_acquire_keys_raw(mut self, value: *const u64) -> Self {
+        self.acquire_keys = value;
+        self
+    }
+    ///Sets the raw value of [`Self::acquire_timeout_milliseconds`]
+    pub fn with_acquire_timeout_milliseconds_raw(mut self, value: *const u32) -> Self {
+        self.acquire_timeout_milliseconds = value;
+        self
+    }
+    ///Sets the raw value of [`Self::release_syncs`]
+    pub fn with_release_syncs_raw(mut self, value: *const DeviceMemory) -> Self {
+        self.release_syncs = value;
+        self
+    }
+    ///Sets the raw value of [`Self::release_keys`]
+    pub fn with_release_keys_raw(mut self, value: *const u64) -> Self {
         self.release_keys = value;
         self
     }
@@ -299,22 +329,22 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         &mut self.release_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::acquire_count`]
-    pub fn set_acquire_count(mut self, value: u32) -> Self {
+    pub fn set_acquire_count(&mut self, value: u32) -> &mut Self {
         self.acquire_count = value;
         self
     }
     ///Sets the value of [`Self::acquire_syncs`]
-    pub fn set_acquire_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
+    pub fn set_acquire_syncs(&mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_syncs = value.as_ptr();
@@ -322,7 +352,7 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self
     }
     ///Sets the value of [`Self::acquire_keys`]
-    pub fn set_acquire_keys(mut self, value: &'lt [u64]) -> Self {
+    pub fn set_acquire_keys(&mut self, value: &'lt [u64]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_keys = value.as_ptr();
@@ -330,7 +360,7 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self
     }
     ///Sets the value of [`Self::acquire_timeout_milliseconds`]
-    pub fn set_acquire_timeout_milliseconds(mut self, value: &'lt [u32]) -> Self {
+    pub fn set_acquire_timeout_milliseconds(&mut self, value: &'lt [u32]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.acquire_timeout_milliseconds = value.as_ptr();
@@ -338,12 +368,12 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self
     }
     ///Sets the value of [`Self::release_count`]
-    pub fn set_release_count(mut self, value: u32) -> Self {
+    pub fn set_release_count(&mut self, value: u32) -> &mut Self {
         self.release_count = value;
         self
     }
     ///Sets the value of [`Self::release_syncs`]
-    pub fn set_release_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
+    pub fn set_release_syncs(&mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> &mut Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.release_syncs = value.as_ptr();
@@ -351,7 +381,67 @@ impl<'lt> Win32KeyedMutexAcquireReleaseInfoNV<'lt> {
         self
     }
     ///Sets the value of [`Self::release_keys`]
-    pub fn set_release_keys(mut self, value: &'lt [u64]) -> Self {
+    pub fn set_release_keys(&mut self, value: &'lt [u64]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.release_keys = value.as_ptr();
+        self.release_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::acquire_count`]
+    pub fn with_acquire_count(mut self, value: u32) -> Self {
+        self.acquire_count = value;
+        self
+    }
+    ///Sets the value of [`Self::acquire_syncs`]
+    pub fn with_acquire_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.acquire_syncs = value.as_ptr();
+        self.acquire_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::acquire_keys`]
+    pub fn with_acquire_keys(mut self, value: &'lt [u64]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.acquire_keys = value.as_ptr();
+        self.acquire_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::acquire_timeout_milliseconds`]
+    pub fn with_acquire_timeout_milliseconds(mut self, value: &'lt [u32]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.acquire_timeout_milliseconds = value.as_ptr();
+        self.acquire_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::release_count`]
+    pub fn with_release_count(mut self, value: u32) -> Self {
+        self.release_count = value;
+        self
+    }
+    ///Sets the value of [`Self::release_syncs`]
+    pub fn with_release_syncs(mut self, value: &'lt [crate::vulkan1_0::DeviceMemory]) -> Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.release_syncs = value.as_ptr();
+        self.release_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::release_keys`]
+    pub fn with_release_keys(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.release_keys = value.as_ptr();

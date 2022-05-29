@@ -61,36 +61,36 @@ pub const NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           dedicatedAllocationImageAliasing;
 ///} VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`dedicated_allocation_image_aliasing`] indicates that the implementation supports aliasing of
 ///   compatible image objects on a dedicated allocation.
-/// If the [`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`] structure is included in the
+///If the [`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`] **can**  also be used in the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`] **can**  also be used in the
 /// [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_dedicated_allocation_image_aliasing`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -126,12 +126,22 @@ impl<'lt> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'lt> {
         self.dedicated_allocation_image_aliasing
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::dedicated_allocation_image_aliasing`]
-    pub fn set_dedicated_allocation_image_aliasing_raw(mut self, value: Bool32) -> Self {
+    pub fn set_dedicated_allocation_image_aliasing_raw(&mut self, value: Bool32) -> &mut Self {
+        self.dedicated_allocation_image_aliasing = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::dedicated_allocation_image_aliasing`]
+    pub fn with_dedicated_allocation_image_aliasing_raw(mut self, value: Bool32) -> Self {
         self.dedicated_allocation_image_aliasing = value;
         self
     }
@@ -180,17 +190,32 @@ impl<'lt> PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::dedicated_allocation_image_aliasing`]
-    pub fn set_dedicated_allocation_image_aliasing(mut self, value: bool) -> Self {
+    pub fn set_dedicated_allocation_image_aliasing(&mut self, value: bool) -> &mut Self {
+        self.dedicated_allocation_image_aliasing = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::dedicated_allocation_image_aliasing`]
+    pub fn with_dedicated_allocation_image_aliasing(mut self, value: bool) -> Self {
         self.dedicated_allocation_image_aliasing = value as u8 as u32;
         self
     }

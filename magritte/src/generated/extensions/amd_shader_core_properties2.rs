@@ -68,18 +68,18 @@ pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///typedef enum VkShaderCorePropertiesFlagBitsAMD {
 ///} VkShaderCorePropertiesFlagBitsAMD;
 ///```
-/// # Related
+///# Related
 /// - [`amd_shader_core_properties2`]
 /// - [`PhysicalDeviceShaderCoreProperties2AMD`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderCorePropertiesFlagBitsAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -142,18 +142,18 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagBitsAMD {
 ///typedef enum VkShaderCorePropertiesFlagBitsAMD {
 ///} VkShaderCorePropertiesFlagBitsAMD;
 ///```
-/// # Related
+///# Related
 /// - [`amd_shader_core_properties2`]
 /// - [`PhysicalDeviceShaderCoreProperties2AMD`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderCorePropertiesFlagsAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -400,33 +400,33 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 ///    uint32_t                          activeComputeUnitCount;
 ///} VkPhysicalDeviceShaderCoreProperties2AMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shader_core_features`] is a bitmask of [`ShaderCorePropertiesFlagBitsAMD`] indicating the
 ///   set of features supported by the shader core.
 /// - [`active_compute_unit_count`] is an unsigned integer value indicating the number of compute
 ///   units that have been enabled.
-/// # Description
-/// If the [`PhysicalDeviceShaderCoreProperties2AMD`] structure is included in the [`p_next`] chain
+///# Description
+///If the [`PhysicalDeviceShaderCoreProperties2AMD`] structure is included in the [`p_next`] chain
 /// of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
-/// # Related
+///# Related
 /// - [`amd_shader_core_properties2`]
 /// - [`ShaderCorePropertiesFlagsAMD`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderCoreProperties2AMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -464,7 +464,12 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -507,17 +512,40 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
         &mut self.active_compute_unit_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_core_features`]
     pub fn set_shader_core_features(
+        &mut self,
+        value: crate::extensions::amd_shader_core_properties2::ShaderCorePropertiesFlagsAMD,
+    ) -> &mut Self {
+        self.shader_core_features = value;
+        self
+    }
+    ///Sets the value of [`Self::active_compute_unit_count`]
+    pub fn set_active_compute_unit_count(&mut self, value: u32) -> &mut Self {
+        self.active_compute_unit_count = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_core_features`]
+    pub fn with_shader_core_features(
         mut self,
         value: crate::extensions::amd_shader_core_properties2::ShaderCorePropertiesFlagsAMD,
     ) -> Self {
@@ -525,7 +553,7 @@ impl<'lt> PhysicalDeviceShaderCoreProperties2AMD<'lt> {
         self
     }
     ///Sets the value of [`Self::active_compute_unit_count`]
-    pub fn set_active_compute_unit_count(mut self, value: u32) -> Self {
+    pub fn with_active_compute_unit_count(mut self, value: u32) -> Self {
         self.active_compute_unit_count = value;
         self
     }

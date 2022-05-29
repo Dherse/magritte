@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, ops::Not};
 
 use ahash::AHashMap;
 use proc_macro2::{Ident, Span, TokenStream};
@@ -83,19 +83,31 @@ impl<'a> Struct<'a> {
             .fields()
             .iter()
             .filter_map(|field| field.generate_raw_getter(source, imports));
+
         let raw_setters = self
             .fields()
             .iter()
-            .filter_map(|field| field.generate_raw_setter(source, imports));
+            .filter_map(|field| field.generate_raw_setter(source, imports, false));
+
+        let raw_setter_builders = self
+            .fields()
+            .iter()
+            .filter_map(|field| field.generate_raw_setter(source, imports, true));
+
         let pretty_getters = self
             .fields()
             .iter()
             .map(|field| field.generate_getter(self, source, imports));
+
         let pretty_mut_getters = self
             .fields()
             .iter()
             .filter_map(|field| field.generate_mut_getter(source, imports, self));
-        let pretty_setters = self.fields().iter().map(|field| field.generate_setter(source, self));
+
+        let pretty_setters = self.fields().iter().map(|field| field.generate_setter(source, self, false));
+
+        let pretty_setter_builders  = self.fields().iter().map(|field| field.generate_setter(source, self, true));
+
         let field_defaults = self
             .fields()
             .iter()
@@ -169,9 +181,11 @@ impl<'a> Struct<'a> {
             impl #lifetime #name #lifetime {
                 #(#raw_getters)*
                 #(#raw_setters)*
+                #(#raw_setter_builders)*
                 #(#pretty_getters)*
                 #(#pretty_mut_getters)*
                 #(#pretty_setters)*
+                #(#pretty_setter_builders)*
             }
 
             #(
@@ -452,7 +466,7 @@ impl<'a> Field<'a> {
     }
 
     /// Generates the code for a getter that returns the raw C-compatible value
-    pub(super) fn generate_raw_setter(&self, source: &Source<'a>, imports: &Imports) -> Option<TokenStream> {
+    pub(super) fn generate_raw_setter(&self, source: &Source<'a>, imports: &Imports, builder: bool) -> Option<TokenStream> {
         // if we don't require conversion, there is no need to have a `raw` function
         if !self.ty().requires_conversion(source) {
             return None;
@@ -462,7 +476,12 @@ impl<'a> Field<'a> {
         let name = self.as_ident();
 
         // create the function name
-        let setter_name = format!("set_{}_raw", self.name()).replace("__", "_");
+        let setter_name = if builder {
+            format!("with_{}_raw", self.name()).replace("__", "_")
+        } else {
+            format!("set_{}_raw", self.name()).replace("__", "_")
+        };
+
         let ident = Ident::new(&setter_name, Span::call_site());
 
         // get the type of the field
@@ -471,9 +490,12 @@ impl<'a> Field<'a> {
         // generate the documentation
         let doc = format!("Sets the raw value of [`Self::{}`]", self.name());
 
+        let ref_ = builder.not().then(|| quote! { & });
+        let ref_out = builder.not().then(|| quote! { &mut });
+
         Some(quote! {
             #[doc = #doc]
-            pub fn #ident(mut self, value: #ty) -> Self {
+            pub fn #ident(#ref_ mut self, value: #ty) -> #ref_out Self {
                 self.#name = value;
 
                 self
@@ -482,13 +504,21 @@ impl<'a> Field<'a> {
     }
 
     /// Generates the code for a getter that returns the raw C-compatible value
-    pub(super) fn generate_setter(&self, source: &Source<'a>, owner: &Struct<'a>) -> Option<TokenStream> {
+    pub(super) fn generate_setter(&self, source: &Source<'a>, owner: &Struct<'a>, builder: bool) -> Option<TokenStream> {
         // create the function name
-        let setter_name = format!("set_{}", self.name());
+        let setter_name = if builder {
+            format!("with_{}", self.name())
+        } else {
+            format!("set_{}", self.name())
+        };
+
         let ident = Ident::new(&setter_name, Span::call_site());
 
         // generate the documentation
         let doc = format!("Sets the value of [`Self::{}`]", self.name());
+
+        let ref_ = builder.not().then(|| quote! { & });
+        let ref_out = builder.not().then(|| quote! { &mut });
 
         if self.ty().is_opaque(source) {
             let (ty, _) = self.ty().as_raw_ty(source, None, false);
@@ -496,7 +526,7 @@ impl<'a> Field<'a> {
 
             return Some(quote! {
                 #[doc = #doc]
-                pub fn #ident(mut self, value: #ty) -> Self {
+                pub fn #ident(#ref_ mut self, value: #ty) -> #ref_out Self {
                     self.#name = value;
 
                     self
@@ -526,7 +556,7 @@ impl<'a> Field<'a> {
 
         Some(quote! {
             #[doc = #doc]
-            pub fn #ident(mut self, #(#fields),*) -> Self {
+            pub fn #ident(#ref_ mut self, #(#fields),*) -> #ref_out Self {
                 #tokens
 
                 self

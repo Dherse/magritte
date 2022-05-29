@@ -59,35 +59,35 @@ pub const KHR_PIPELINE_LIBRARY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    const VkPipeline*    pLibraries;
 ///} VkPipelineLibraryCreateInfoKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`library_count`] is the number of pipeline libraries in [`libraries`].
 /// - [`libraries`] is a pointer to an array of [`Pipeline`] structures specifying pipeline
 ///   libraries to use when creating a pipeline.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - Each element of [`libraries`] **must**  have been created with
 ///   `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`library_count`] is not `0`, [`libraries`] **must**  be a valid pointer to an array of
 ///   [`library_count`] valid [`Pipeline`] handles
-/// # Related
+///# Related
 /// - [`khr_pipeline_library`]
 /// - [`Pipeline`]
 /// - [`RayTracingPipelineCreateInfoKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineLibraryCreateInfoKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -127,12 +127,22 @@ impl<'lt> PipelineLibraryCreateInfoKHR<'lt> {
         self.libraries
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::libraries`]
-    pub fn set_libraries_raw(mut self, value: *const Pipeline) -> Self {
+    pub fn set_libraries_raw(&mut self, value: *const Pipeline) -> &mut Self {
+        self.libraries = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::libraries`]
+    pub fn with_libraries_raw(mut self, value: *const Pipeline) -> Self {
         self.libraries = value;
         self
     }
@@ -167,22 +177,45 @@ impl<'lt> PipelineLibraryCreateInfoKHR<'lt> {
         &mut self.library_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::library_count`]
-    pub fn set_library_count(mut self, value: u32) -> Self {
+    pub fn set_library_count(&mut self, value: u32) -> &mut Self {
         self.library_count = value;
         self
     }
     ///Sets the value of [`Self::libraries`]
-    pub fn set_libraries(mut self, value: &'lt [crate::vulkan1_0::Pipeline]) -> Self {
+    pub fn set_libraries(&mut self, value: &'lt [crate::vulkan1_0::Pipeline]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.libraries = value.as_ptr();
+        self.library_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::library_count`]
+    pub fn with_library_count(mut self, value: u32) -> Self {
+        self.library_count = value;
+        self
+    }
+    ///Sets the value of [`Self::libraries`]
+    pub fn with_libraries(mut self, value: &'lt [crate::vulkan1_0::Pipeline]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.libraries = value.as_ptr();

@@ -81,11 +81,11 @@ impl RenderPass {
                 };
 
                 let frame_buffer_create_info = FramebufferCreateInfo::default()
-                    .set_render_pass(renderpass.as_raw())
-                    .set_attachments(&attachments)
-                    .set_width(surface.extent().width)
-                    .set_height(surface.extent().height)
-                    .set_layers(1);
+                    .with_render_pass(renderpass.as_raw())
+                    .with_attachments(&attachments)
+                    .with_width(surface.extent().width)
+                    .with_height(surface.extent().height)
+                    .with_layers(1);
 
                 unsafe {
                     depth
@@ -171,18 +171,18 @@ impl RenderPass {
         };
 
         let mut subpass = SubpassDescription::default()
-            .set_color_attachments(from_ref(&color_attachment_ref))
-            .set_depth_stencil_attachment(&depth_attachment_ref)
-            .set_pipeline_bind_point(PipelineBindPoint::GRAPHICS);
+            .with_color_attachments(from_ref(&color_attachment_ref))
+            .with_depth_stencil_attachment(&depth_attachment_ref)
+            .with_pipeline_bind_point(PipelineBindPoint::GRAPHICS);
 
         if msaa.bits() > 1 {
-            subpass = subpass.set_resolve_attachments(from_ref(&resolve_attachment_ref));
+            subpass = subpass.with_resolve_attachments(from_ref(&resolve_attachment_ref));
         }
 
         let renderpass_create_info = RenderPassCreateInfo::default()
-            .set_attachments(&renderpass_attachments[..])
-            .set_subpasses(from_ref(&subpass))
-            .set_dependencies(from_ref(&dependency));
+            .with_attachments(&renderpass_attachments[..])
+            .with_subpasses(from_ref(&subpass))
+            .with_dependencies(from_ref(&dependency));
 
         unsafe {
             vulkan

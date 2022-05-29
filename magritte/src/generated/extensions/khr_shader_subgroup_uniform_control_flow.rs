@@ -66,34 +66,34 @@ pub const KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME: &'static CStr
 ///    VkBool32           shaderSubgroupUniformControlFlow;
 ///} VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`shader_subgroup_uniform_control_flow`] specifies whether the implementation supports the
 ///   shader execution mode `SubgroupUniformControlFlowKHR`
-/// If the [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] structure is included in
+///If the [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] structure is included in
 /// the [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] **can**  also be used in the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`] **can**  also be used in the
 /// [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`khr_shader_subgroup_uniform_control_flow`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -130,12 +130,22 @@ impl<'lt> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
         self.shader_subgroup_uniform_control_flow
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::shader_subgroup_uniform_control_flow`]
-    pub fn set_shader_subgroup_uniform_control_flow_raw(mut self, value: Bool32) -> Self {
+    pub fn set_shader_subgroup_uniform_control_flow_raw(&mut self, value: Bool32) -> &mut Self {
+        self.shader_subgroup_uniform_control_flow = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::shader_subgroup_uniform_control_flow`]
+    pub fn with_shader_subgroup_uniform_control_flow_raw(mut self, value: Bool32) -> Self {
         self.shader_subgroup_uniform_control_flow = value;
         self
     }
@@ -184,17 +194,32 @@ impl<'lt> PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::shader_subgroup_uniform_control_flow`]
-    pub fn set_shader_subgroup_uniform_control_flow(mut self, value: bool) -> Self {
+    pub fn set_shader_subgroup_uniform_control_flow(&mut self, value: bool) -> &mut Self {
+        self.shader_subgroup_uniform_control_flow = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::shader_subgroup_uniform_control_flow`]
+    pub fn with_shader_subgroup_uniform_control_flow(mut self, value: bool) -> Self {
         self.shader_subgroup_uniform_control_flow = value as u8 as u32;
         self
     }

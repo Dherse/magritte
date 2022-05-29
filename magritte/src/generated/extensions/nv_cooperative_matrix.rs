@@ -92,46 +92,46 @@ pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    uint32_t*                                   pPropertyCount,
 ///    VkCooperativeMatrixPropertiesNV*            pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device.
 /// - [`p_property_count`] is a pointer to an integer related to the number of cooperative matrix
 ///   properties available or queried.
 /// - [`p_properties`] is either `NULL` or a pointer to an array of
 ///   [`CooperativeMatrixPropertiesNV`] structures.
-/// # Description
-/// If [`p_properties`] is `NULL`, then the number of cooperative matrix
-/// properties available is returned in [`p_property_count`].
-/// Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
-/// the number of elements in the [`p_properties`] array, and on return the
-/// variable is overwritten with the number of structures actually written to
-/// [`p_properties`].
-/// If [`p_property_count`] is less than the number of cooperative matrix
-/// properties available, at most [`p_property_count`] structures will be
-/// written, and `VK_INCOMPLETE` will be returned instead of
-/// `VK_SUCCESS`, to indicate that not all the available cooperative matrix
-/// properties were returned.
-/// ## Valid Usage (Implicit)
+///# Description
+///If [`p_properties`] is `NULL`, then the number of cooperative matrix
+///properties available is returned in [`p_property_count`].
+///Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
+///the number of elements in the [`p_properties`] array, and on return the
+///variable is overwritten with the number of structures actually written to
+///[`p_properties`].
+///If [`p_property_count`] is less than the number of cooperative matrix
+///properties available, at most [`p_property_count`] structures will be
+///written, and `VK_INCOMPLETE` will be returned instead of
+///`VK_SUCCESS`, to indicate that not all the available cooperative matrix
+///properties were returned.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
 ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
 ///   [`p_property_count`][`CooperativeMatrixPropertiesNV`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV")]
 pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -152,23 +152,23 @@ pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = Option<
 ///    VK_SCOPE_QUEUE_FAMILY_NV = 5,
 ///} VkScopeNV;
 ///```
-/// # Description
+///# Description
 /// - [`DEVICE`] corresponds to SPIR-V [`Device`] scope.
 /// - [`WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
 /// - [`SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
 /// - [`QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily` scope.
-/// All enum values match the corresponding SPIR-V value.
-/// # Related
+///All enum values match the corresponding SPIR-V value.
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkScopeNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -250,7 +250,7 @@ impl std::fmt::Debug for ScopeNV {
 ///    VK_COMPONENT_TYPE_UINT64_NV = 10,
 ///} VkComponentTypeNV;
 ///```
-/// # Description
+///# Description
 /// - [`FLOAT16`] corresponds to SPIR-V `OpTypeFloat` 16.
 /// - [`FLOAT32`] corresponds to SPIR-V `OpTypeFloat` 32.
 /// - [`FLOAT64`] corresponds to SPIR-V `OpTypeFloat` 64.
@@ -262,17 +262,17 @@ impl std::fmt::Debug for ScopeNV {
 /// - [`UINT16`] corresponds to SPIR-V `OpTypeInt` 16 0.
 /// - [`UINT32`] corresponds to SPIR-V `OpTypeInt` 32 0.
 /// - [`UINT64`] corresponds to SPIR-V `OpTypeInt` 64 0.
-/// # Related
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`CooperativeMatrixPropertiesNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkComponentTypeNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -377,9 +377,9 @@ impl std::fmt::Debug for ComponentTypeNV {
 ///    VkBool32           cooperativeMatrixRobustBufferAccess;
 ///} VkPhysicalDeviceCooperativeMatrixFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`cooperative_matrix`] indicates that the implementation supports the `CooperativeMatrixNV`
@@ -387,27 +387,27 @@ impl std::fmt::Debug for ComponentTypeNV {
 /// - [`cooperative_matrix_robust_buffer_access`] indicates that the implementation supports robust
 ///   buffer access for SPIR-V `OpCooperativeMatrixLoadNV` and `OpCooperativeMatrixStoreNV`
 ///   instructions.
-/// If the [`PhysicalDeviceCooperativeMatrixFeaturesNV`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceCooperativeMatrixFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceCooperativeMatrixFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceCooperativeMatrixFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -454,17 +454,32 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
         self.cooperative_matrix_robust_buffer_access
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::cooperative_matrix`]
-    pub fn set_cooperative_matrix_raw(mut self, value: Bool32) -> Self {
+    pub fn set_cooperative_matrix_raw(&mut self, value: Bool32) -> &mut Self {
         self.cooperative_matrix = value;
         self
     }
     ///Sets the raw value of [`Self::cooperative_matrix_robust_buffer_access`]
-    pub fn set_cooperative_matrix_robust_buffer_access_raw(mut self, value: Bool32) -> Self {
+    pub fn set_cooperative_matrix_robust_buffer_access_raw(&mut self, value: Bool32) -> &mut Self {
+        self.cooperative_matrix_robust_buffer_access = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix`]
+    pub fn with_cooperative_matrix_raw(mut self, value: Bool32) -> Self {
+        self.cooperative_matrix = value;
+        self
+    }
+    ///Sets the raw value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn with_cooperative_matrix_robust_buffer_access_raw(mut self, value: Bool32) -> Self {
         self.cooperative_matrix_robust_buffer_access = value;
         self
     }
@@ -535,22 +550,42 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::cooperative_matrix`]
-    pub fn set_cooperative_matrix(mut self, value: bool) -> Self {
+    pub fn set_cooperative_matrix(&mut self, value: bool) -> &mut Self {
         self.cooperative_matrix = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::cooperative_matrix_robust_buffer_access`]
-    pub fn set_cooperative_matrix_robust_buffer_access(mut self, value: bool) -> Self {
+    pub fn set_cooperative_matrix_robust_buffer_access(&mut self, value: bool) -> &mut Self {
+        self.cooperative_matrix_robust_buffer_access = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::cooperative_matrix`]
+    pub fn with_cooperative_matrix(mut self, value: bool) -> Self {
+        self.cooperative_matrix = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::cooperative_matrix_robust_buffer_access`]
+    pub fn with_cooperative_matrix_robust_buffer_access(mut self, value: bool) -> Self {
         self.cooperative_matrix_robust_buffer_access = value as u8 as u32;
         self
     }
@@ -567,33 +602,33 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 ///    VkShaderStageFlags    cooperativeMatrixSupportedStages;
 ///} VkPhysicalDeviceCooperativeMatrixPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`cooperative_matrix_supported_stages`] is a bitfield of [`ShaderStageFlagBits`] describing
 ///   the shader stages that cooperative matrix instructions are supported in.
 ///   [`cooperative_matrix_supported_stages`] will have the `VK_SHADER_STAGE_COMPUTE_BIT` bit set if
 ///   any of the physical device’s queues support `VK_QUEUE_COMPUTE_BIT`.
-/// # Description
-/// If the [`PhysicalDeviceCooperativeMatrixPropertiesNV`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceCooperativeMatrixPropertiesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
-/// # Related
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`ShaderStageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixPropertiesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -629,7 +664,12 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -664,17 +704,32 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
         &mut self.cooperative_matrix_supported_stages
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::cooperative_matrix_supported_stages`]
-    pub fn set_cooperative_matrix_supported_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
+    pub fn set_cooperative_matrix_supported_stages(&mut self, value: crate::vulkan1_0::ShaderStageFlags) -> &mut Self {
+        self.cooperative_matrix_supported_stages = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::cooperative_matrix_supported_stages`]
+    pub fn with_cooperative_matrix_supported_stages(mut self, value: crate::vulkan1_0::ShaderStageFlags) -> Self {
         self.cooperative_matrix_supported_stages = value;
         self
     }
@@ -693,7 +748,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 ///    %D is of type OpTypeCooperativeMatrixNV %DType %scope %MSize %NSize
 ///
 ///    %D = %A * %B + %C // using OpCooperativeMatrixMulAddNV
-/// ```
+///```
 ///A matrix multiply with these dimensions is known as an *MxNxK* matrix
 ///multiply.The [`CooperativeMatrixPropertiesNV`] structure is defined as:
 ///```c
@@ -711,7 +766,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 ///    VkScopeNV            scope;
 ///} VkCooperativeMatrixPropertiesNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`m_size`] is the number of rows in matrices A, C, and D.
@@ -722,13 +777,13 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// - [`c_type`] is the component type of matrix C, of type [`ComponentTypeNV`].
 /// - [`d_type`] is the component type of matrix D, of type [`ComponentTypeNV`].
 /// - [`scope`] is the scope of all the matrix types, of type [`ScopeNV`].
-/// # Description
-/// If some types are preferred over other types (e.g. for performance), they
+///# Description
+///If some types are preferred over other types (e.g. for performance), they
 /// **should**  appear earlier in the list enumerated by
-/// [`get_physical_device_cooperative_matrix_properties_nv`].At least one entry in the list
+///[`get_physical_device_cooperative_matrix_properties_nv`].At least one entry in the list
 /// **must**  have power of two values for all of
-/// [`m_size`], [`k_size`], and [`n_size`].
-/// ## Valid Usage (Implicit)
+///[`m_size`], [`k_size`], and [`n_size`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`a_type`] **must**  be a valid [`ComponentTypeNV`] value
@@ -736,20 +791,20 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// - [`c_type`] **must**  be a valid [`ComponentTypeNV`] value
 /// - [`d_type`] **must**  be a valid [`ComponentTypeNV`] value
 /// - [`scope`] **must**  be a valid [`ScopeNV`] value
-/// # Related
+///# Related
 /// - [`nv_cooperative_matrix`]
 /// - [`ComponentTypeNV`]
 /// - [`ScopeNV`]
 /// - [`StructureType`]
 /// - [`get_physical_device_cooperative_matrix_properties_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCooperativeMatrixPropertiesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -806,7 +861,12 @@ impl<'lt> CooperativeMatrixPropertiesNV<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -897,52 +957,102 @@ impl<'lt> CooperativeMatrixPropertiesNV<'lt> {
         &mut self.scope
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::m_size`]
-    pub fn set_m_size(mut self, value: u32) -> Self {
+    pub fn set_m_size(&mut self, value: u32) -> &mut Self {
         self.m_size = value;
         self
     }
     ///Sets the value of [`Self::n_size`]
-    pub fn set_n_size(mut self, value: u32) -> Self {
+    pub fn set_n_size(&mut self, value: u32) -> &mut Self {
         self.n_size = value;
         self
     }
     ///Sets the value of [`Self::k_size`]
-    pub fn set_k_size(mut self, value: u32) -> Self {
+    pub fn set_k_size(&mut self, value: u32) -> &mut Self {
         self.k_size = value;
         self
     }
     ///Sets the value of [`Self::a_type`]
-    pub fn set_a_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+    pub fn set_a_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
         self.a_type = value;
         self
     }
     ///Sets the value of [`Self::b_type`]
-    pub fn set_b_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+    pub fn set_b_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
         self.b_type = value;
         self
     }
     ///Sets the value of [`Self::c_type`]
-    pub fn set_c_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+    pub fn set_c_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
         self.c_type = value;
         self
     }
     ///Sets the value of [`Self::d_type`]
-    pub fn set_d_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+    pub fn set_d_type(&mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> &mut Self {
         self.d_type = value;
         self
     }
     ///Sets the value of [`Self::scope`]
-    pub fn set_scope(mut self, value: crate::extensions::nv_cooperative_matrix::ScopeNV) -> Self {
+    pub fn set_scope(&mut self, value: crate::extensions::nv_cooperative_matrix::ScopeNV) -> &mut Self {
+        self.scope = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::m_size`]
+    pub fn with_m_size(mut self, value: u32) -> Self {
+        self.m_size = value;
+        self
+    }
+    ///Sets the value of [`Self::n_size`]
+    pub fn with_n_size(mut self, value: u32) -> Self {
+        self.n_size = value;
+        self
+    }
+    ///Sets the value of [`Self::k_size`]
+    pub fn with_k_size(mut self, value: u32) -> Self {
+        self.k_size = value;
+        self
+    }
+    ///Sets the value of [`Self::a_type`]
+    pub fn with_a_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+        self.a_type = value;
+        self
+    }
+    ///Sets the value of [`Self::b_type`]
+    pub fn with_b_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+        self.b_type = value;
+        self
+    }
+    ///Sets the value of [`Self::c_type`]
+    pub fn with_c_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+        self.c_type = value;
+        self
+    }
+    ///Sets the value of [`Self::d_type`]
+    pub fn with_d_type(mut self, value: crate::extensions::nv_cooperative_matrix::ComponentTypeNV) -> Self {
+        self.d_type = value;
+        self
+    }
+    ///Sets the value of [`Self::scope`]
+    pub fn with_scope(mut self, value: crate::extensions::nv_cooperative_matrix::ScopeNV) -> Self {
         self.scope = value;
         self
     }
@@ -958,46 +1068,46 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkCooperativeMatrixPropertiesNV*            pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device.
     /// - [`p_property_count`] is a pointer to an integer related to the number of cooperative
     ///   matrix properties available or queried.
     /// - [`p_properties`] is either `NULL` or a pointer to an array of
     ///   [`CooperativeMatrixPropertiesNV`] structures.
-    /// # Description
-    /// If [`p_properties`] is `NULL`, then the number of cooperative matrix
-    /// properties available is returned in [`p_property_count`].
-    /// Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
-    /// the number of elements in the [`p_properties`] array, and on return the
-    /// variable is overwritten with the number of structures actually written to
-    /// [`p_properties`].
-    /// If [`p_property_count`] is less than the number of cooperative matrix
-    /// properties available, at most [`p_property_count`] structures will be
-    /// written, and `VK_INCOMPLETE` will be returned instead of
-    /// `VK_SUCCESS`, to indicate that not all the available cooperative matrix
-    /// properties were returned.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///If [`p_properties`] is `NULL`, then the number of cooperative matrix
+    ///properties available is returned in [`p_property_count`].
+    ///Otherwise, [`p_property_count`] **must**  point to a variable set by the user to
+    ///the number of elements in the [`p_properties`] array, and on return the
+    ///variable is overwritten with the number of structures actually written to
+    ///[`p_properties`].
+    ///If [`p_property_count`] is less than the number of cooperative matrix
+    ///properties available, at most [`p_property_count`] structures will be
+    ///written, and `VK_INCOMPLETE` will be returned instead of
+    ///`VK_SUCCESS`, to indicate that not all the available cooperative matrix
+    ///properties were returned.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
     ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
     ///   [`p_property_count`][`CooperativeMatrixPropertiesNV`] structures
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`nv_cooperative_matrix`]
     /// - [`CooperativeMatrixPropertiesNV`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV")]
     #[track_caller]

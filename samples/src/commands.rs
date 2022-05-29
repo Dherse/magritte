@@ -104,8 +104,8 @@ impl Commands {
         // As with most structures in Vulkan, you can extend it using its pointer chain, something that
         // is not covered in this simple sample.
         let pool_create_info = CommandPoolCreateInfo::default()
-            .set_queue_family_index(queue.queue_family_index())
-            .set_flags(CommandPoolCreateFlags::RESET_COMMAND_BUFFER);
+            .with_queue_family_index(queue.queue_family_index())
+            .with_flags(CommandPoolCreateFlags::RESET_COMMAND_BUFFER);
 
         // Here we will create a command pool.
         // A command pool allows use to allocate command buffers with which we will
@@ -120,9 +120,9 @@ impl Commands {
         // - We tell it the level of the command buffer, primary means that we can submit it directly to the
         //   GPU, otherwise we would need to call it from a primary command buffer.
         let command_buffer_allocate_info = CommandBufferAllocateInfo::default()
-            .set_command_buffer_count(1 + frame_count as u32)
-            .set_command_pool(command_pool.as_raw())
-            .set_level(CommandBufferLevel::PRIMARY);
+            .with_command_buffer_count(1 + frame_count as u32)
+            .with_command_pool(command_pool.as_raw())
+            .with_level(CommandBufferLevel::PRIMARY);
 
         // We can now allocate the command buffers using the previously gathered information.
         // We will allocate more than one draw command buffer and more than one fence, the goal is
@@ -138,7 +138,7 @@ impl Commands {
         info!("Allocated {} command buffers", frame_count + 1);
 
         // Now we will allocate all of the fences we need
-        let fence_create_info = FenceCreateInfo::default().set_flags(FenceCreateFlags::SIGNALED);
+        let fence_create_info = FenceCreateInfo::default().with_flags(FenceCreateFlags::SIGNALED);
 
         let (setup_reuse_fence, _) = unsafe { queue.device().create_fence(&fence_create_info, None)? };
 
@@ -291,7 +291,7 @@ impl Commands {
             // We tell Vulkan that we will begin recording commands for a one time submission, we
             // will not be reusing the commands
             let command_buffer_begin_info =
-                CommandBufferBeginInfo::default().set_flags(CommandBufferUsageFlags::ONE_TIME_SUBMIT);
+                CommandBufferBeginInfo::default().with_flags(CommandBufferUsageFlags::ONE_TIME_SUBMIT);
 
             // We begin a new command buffer, i.e we set it in a mode where it can record commands
             command_buffer.begin_command_buffer(&command_buffer_begin_info)?;
@@ -309,10 +309,10 @@ impl Commands {
 
             let raw = command_buffer.as_raw();
             let submit_info = SubmitInfo::default()
-                .set_wait_semaphores(wait_semaphores)
-                .set_wait_dst_stage_mask(wait_mask)
-                .set_command_buffers(std::slice::from_ref(&raw))
-                .set_signal_semaphores(signal_semaphores);
+                .with_wait_semaphores(wait_semaphores)
+                .with_wait_dst_stage_mask(wait_mask)
+                .with_command_buffers(std::slice::from_ref(&raw))
+                .with_signal_semaphores(signal_semaphores);
 
             queue.submit(&[submit_info], wait_fence)?;
         }

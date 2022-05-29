@@ -63,34 +63,34 @@ pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_pr
 ///    VkBool32           presentId;
 ///} VkPhysicalDevicePresentIdFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`present_id`] indicates that the implementation supports specifying present ID values in the
 ///   [`PresentIdKHR`] extension to the [`PresentInfoKHR`] struct.
-/// If the [`PhysicalDevicePresentIdFeaturesKHR`] structure is included in the [`p_next`] chain of
+///If the [`PhysicalDevicePresentIdFeaturesKHR`] structure is included in the [`p_next`] chain of
 /// the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePresentIdFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePresentIdFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`khr_present_id`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePresentIdFeaturesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -127,12 +127,22 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
         self.present_id
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::present_id`]
-    pub fn set_present_id_raw(mut self, value: Bool32) -> Self {
+    pub fn set_present_id_raw(&mut self, value: Bool32) -> &mut Self {
+        self.present_id = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::present_id`]
+    pub fn with_present_id_raw(mut self, value: Bool32) -> Self {
         self.present_id = value;
         self
     }
@@ -181,17 +191,32 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::present_id`]
-    pub fn set_present_id(mut self, value: bool) -> Self {
+    pub fn set_present_id(&mut self, value: bool) -> &mut Self {
+        self.present_id = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::present_id`]
+    pub fn with_present_id(mut self, value: bool) -> Self {
         self.present_id = value as u8 as u32;
         self
     }
@@ -208,7 +233,7 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///    const uint64_t*    pPresentIds;
 ///} VkPresentIdKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to the [`queue_present_khr`]
@@ -217,52 +242,52 @@ impl<'lt> PhysicalDevicePresentIdFeaturesKHR<'lt> {
 ///   entries. If not `NULL`, each non-zero value in [`present_ids`] specifies the present id to be
 ///   associated with the presentation of the swapchain with the same index in the
 ///   [`queue_present_khr`] call.
-/// # Description
-/// For applications to be able to reference specific presentation events queued
-/// by a call to [`queue_present_khr`], an identifier needs to be associated
-/// with them.
-/// When the [`presentId`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentId) feature is enabled,
-/// applications  **can**  include the [`PresentIdKHR`] structure in the
-/// [`p_next`] chain of the [`PresentInfoKHR`] structure to supply
-/// identifiers.Each [`SwapchainKHR`] has a presentId associated with it.
-/// This value is initially set to zero when the [`SwapchainKHR`] is
-/// created.When a [`PresentIdKHR`] structure with a non-NULL [`present_ids`] is
-/// included in the [`p_next`] chain of a [`PresentInfoKHR`] structure,
-/// each `pSwapchains` entry has a presentId associated in the
-/// [`present_ids`] array at the same index as the swapchain in the
-/// `pSwapchains` array.
-/// If this presentId is non-zero, then the application  **can**  later use this
-/// value to refer to that image presentation.
-/// A value of zero indicates that this presentation has no associated
-/// presentId.
-/// A non-zero presentId  **must**  be greater than any non-zero presentId passed
-/// previously by the application for the same swapchain.There is no requirement for any precise
+///# Description
+///For applications to be able to reference specific presentation events queued
+///by a call to [`queue_present_khr`], an identifier needs to be associated
+///with them.
+///When the [`presentId`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-presentId) feature is enabled,
+///applications  **can**  include the [`PresentIdKHR`] structure in the
+///[`p_next`] chain of the [`PresentInfoKHR`] structure to supply
+///identifiers.Each [`SwapchainKHR`] has a presentId associated with it.
+///This value is initially set to zero when the [`SwapchainKHR`] is
+///created.When a [`PresentIdKHR`] structure with a non-NULL [`present_ids`] is
+///included in the [`p_next`] chain of a [`PresentInfoKHR`] structure,
+///each `pSwapchains` entry has a presentId associated in the
+///[`present_ids`] array at the same index as the swapchain in the
+///`pSwapchains` array.
+///If this presentId is non-zero, then the application  **can**  later use this
+///value to refer to that image presentation.
+///A value of zero indicates that this presentation has no associated
+///presentId.
+///A non-zero presentId  **must**  be greater than any non-zero presentId passed
+///previously by the application for the same swapchain.There is no requirement for any precise
 /// timing relationship between the
-/// presentation of the image to the user and the update of the presentId value,
-/// but implementations  **should**  make this as close as possible to the
-/// presentation of the first pixel in the new image to the user.
-/// ## Valid Usage
+///presentation of the image to the user and the update of the presentId value,
+///but implementations  **should**  make this as close as possible to the
+///presentation of the first pixel in the new image to the user.
+///## Valid Usage
 /// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where this [`PresentIdKHR`] is in the [`p_next`] chain of the [`PresentInfoKHR`] structure
 /// - Each `presentIds` entry  **must**  be greater than any previous `presentIds` entry passed for
 ///   the associated `pSwapchains` entry
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
 /// - If [`present_ids`] is not `NULL`, [`present_ids`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`]`uint64_t` values
 /// - [`swapchain_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`khr_present_id`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentIdKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -305,12 +330,22 @@ impl<'lt> PresentIdKHR<'lt> {
         self.present_ids
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::present_ids`]
-    pub fn set_present_ids_raw(mut self, value: *const u64) -> Self {
+    pub fn set_present_ids_raw(&mut self, value: *const u64) -> &mut Self {
+        self.present_ids = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::present_ids`]
+    pub fn with_present_ids_raw(mut self, value: *const u64) -> Self {
         self.present_ids = value;
         self
     }
@@ -345,22 +380,45 @@ impl<'lt> PresentIdKHR<'lt> {
         &mut self.swapchain_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(mut self, value: u32) -> Self {
+    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
         self.swapchain_count = value;
         self
     }
     ///Sets the value of [`Self::present_ids`]
-    pub fn set_present_ids(mut self, value: &'lt [u64]) -> Self {
+    pub fn set_present_ids(&mut self, value: &'lt [u64]) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.present_ids = value.as_ptr();
+        self.swapchain_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn with_swapchain_count(mut self, value: u32) -> Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the value of [`Self::present_ids`]
+    pub fn with_present_ids(mut self, value: &'lt [u64]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.present_ids = value.as_ptr();

@@ -121,7 +121,7 @@
 //!    | -- -- -- -- -- -- -- -- | -- -- -- -- -- -- -- -- |
 //!    | -- -- -- -- -- -- -- -- | -- -- -- -- -- -- -- -- |
 //!    +-------------------------+-------------------------+
-//! ```
+//!```
 //!To accumulate coverage for each of the four footprint image texels, a shader
 //!can AND the returned mask with simple masks derived from the x and y offset
 //!values and then atomically OR the updated mask bits into the contents of the
@@ -134,7 +134,7 @@
 //!    uint64_t bottomLeft   = returnedMask & bottomMask & (~rightMask);
 //!    uint64_t topRight     = returnedMask & (~bottomMask) & rightMask;
 //!    uint64_t topLeft      = returnedMask & (~bottomMask) & (~rightMask);
-//! ```
+//!```
 //!(2) What should an application do to ensure maximum performance when
 //!accumulating footprints into an aggregate footprint image? **RESOLVED** : We expect that the
 //! most common usage of this feature will be to
@@ -207,34 +207,34 @@ pub const NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VkBool32           imageFootprint;
 ///} VkPhysicalDeviceShaderImageFootprintFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`image_footprint`] specifies whether the implementation supports the `ImageFootprintNV`
 ///   SPIR-V capability.
-/// See [Texel Footprint Evaluation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-footprint) for more information.If the [`PhysicalDeviceShaderImageFootprintFeaturesNV`] structure is included in the [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderImageFootprintFeaturesNV`] **can**  also be used in the [`p_next`] chain
+///See [Texel Footprint Evaluation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-footprint) for more information.If the [`PhysicalDeviceShaderImageFootprintFeaturesNV`] structure is included in the [`p_next`] chain of the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderImageFootprintFeaturesNV`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_shader_image_footprint`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderImageFootprintFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -270,12 +270,22 @@ impl<'lt> PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
         self.image_footprint
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::image_footprint`]
-    pub fn set_image_footprint_raw(mut self, value: Bool32) -> Self {
+    pub fn set_image_footprint_raw(&mut self, value: Bool32) -> &mut Self {
+        self.image_footprint = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::image_footprint`]
+    pub fn with_image_footprint_raw(mut self, value: Bool32) -> Self {
         self.image_footprint = value;
         self
     }
@@ -324,17 +334,32 @@ impl<'lt> PhysicalDeviceShaderImageFootprintFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::image_footprint`]
-    pub fn set_image_footprint(mut self, value: bool) -> Self {
+    pub fn set_image_footprint(&mut self, value: bool) -> &mut Self {
+        self.image_footprint = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::image_footprint`]
+    pub fn with_image_footprint(mut self, value: bool) -> Self {
         self.image_footprint = value as u8 as u32;
         self
     }

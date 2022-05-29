@@ -79,7 +79,7 @@ pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSurfaceKHR*                               pSurface);
 ///```
-/// # Description
+///# Description
 /// - [`instance`] is the instance with which to associate the surface.
 /// - [`p_create_info`] is a pointer to a [`MacOsSurfaceCreateInfoMVK`] structure containing
 ///   parameters affecting the creation of the surface object.
@@ -87,7 +87,7 @@ pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK
 /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
 ///   returned.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`MacOsSurfaceCreateInfoMVK`]
 ///   structure
@@ -95,24 +95,24 @@ pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_MVK
 ///   [`AllocationCallbacks`] structure
 /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
 ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
-/// # Related
+///# Related
 /// - [`mvk_macos_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`MacOsSurfaceCreateInfoMVK`]
 /// - [`SurfaceKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateMacOSSurfaceMVK")]
 pub type FNCreateMacOsSurfaceMvk = Option<
     for<'lt> unsafe extern "system" fn(
@@ -128,17 +128,17 @@ pub type FNCreateMacOsSurfaceMvk = Option<
 ///// Provided by VK_MVK_macos_surface
 ///typedef VkFlags VkMacOSSurfaceCreateFlagsMVK;
 ///```
-/// # Related
+///# Related
 /// - [`mvk_macos_surface`]
 /// - [`MacOsSurfaceCreateInfoMVK`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -167,35 +167,35 @@ impl std::fmt::Debug for MacOsSurfaceCreateFlagsMVK {
 ///    const void*                     pView;
 ///} VkMacOSSurfaceCreateInfoMVK;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`view`] is a reference to either a [`CaMetalLayer`] object or an `NSView` object.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`view`] is a [`CaMetalLayer`] object, it  **must**  be a valid [`CaMetalLayer`]
 /// - If [`view`] is an `NSView` object, it  **must**  be a valid `NSView`,  **must**  be backed by
 ///   a `CALayer` object of type [`CaMetalLayer`], and [`create_mac_os_surface_mvk`] **must**  be
 ///   called on the main thread
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`mvk_macos_surface`]
 /// - [`MacOsSurfaceCreateFlagsMVK`]
 /// - [`StructureType`]
 /// - [`create_mac_os_surface_mvk`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMacOSSurfaceCreateInfoMVK")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -234,12 +234,22 @@ impl<'lt> MacOsSurfaceCreateInfoMVK<'lt> {
         self.view
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::view`]
-    pub fn set_view_raw(mut self, value: *const c_void) -> Self {
+    pub fn set_view_raw(&mut self, value: *const c_void) -> &mut Self {
+        self.view = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::view`]
+    pub fn with_view_raw(mut self, value: *const c_void) -> Self {
         self.view = value;
         self
     }
@@ -274,22 +284,42 @@ impl<'lt> MacOsSurfaceCreateInfoMVK<'lt> {
         &mut self.flags
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::extensions::mvk_macos_surface::MacOsSurfaceCreateFlagsMVK) -> Self {
+    pub fn set_flags(&mut self, value: crate::extensions::mvk_macos_surface::MacOsSurfaceCreateFlagsMVK) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::view`]
-    pub fn set_view(mut self, value: &'lt std::ffi::c_void) -> Self {
+    pub fn set_view(&mut self, value: &'lt std::ffi::c_void) -> &mut Self {
+        self.view = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::extensions::mvk_macos_surface::MacOsSurfaceCreateFlagsMVK) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::view`]
+    pub fn with_view(mut self, value: &'lt std::ffi::c_void) -> Self {
         self.view = value as *const _;
         self
     }
@@ -307,7 +337,7 @@ impl Instance {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSurfaceKHR*                               pSurface);
     ///```
-    /// # Description
+    ///# Description
     /// - [`instance`] is the instance with which to associate the surface.
     /// - [`p_create_info`] is a pointer to a [`MacOsSurfaceCreateInfoMVK`] structure containing
     ///   parameters affecting the creation of the surface object.
@@ -315,7 +345,7 @@ impl Instance {
     /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
     ///   is returned.
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`MacOsSurfaceCreateInfoMVK`]
     ///   structure
@@ -323,24 +353,24 @@ impl Instance {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
-    /// # Related
+    ///# Related
     /// - [`mvk_macos_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`MacOsSurfaceCreateInfoMVK`]
     /// - [`SurfaceKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateMacOSSurfaceMVK")]
     #[track_caller]

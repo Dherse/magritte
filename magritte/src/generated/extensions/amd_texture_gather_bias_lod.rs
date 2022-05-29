@@ -66,27 +66,27 @@ pub const AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME: &'static CStr = crate::cst
 ///    VkBool32           supportsTextureGatherLODBiasAMD;
 ///} VkTextureLODGatherFormatPropertiesAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`supports_texture_gather_lod_bias_amd`] tells if the image format can be used with texture
 ///   gather bias/LOD functions, as introduced by the `[`amd_texture_gather_bias_lod`]` extension.
 ///   This field is set by the implementation. User-specified value is ignored.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
-/// # Related
+///# Related
 /// - [`amd_texture_gather_bias_lod`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkTextureLODGatherFormatPropertiesAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -125,12 +125,22 @@ impl<'lt> TextureLodGatherFormatPropertiesAMD<'lt> {
         self.supports_texture_gather_lod_bias_amd
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::supports_texture_gather_lod_bias_amd`]
-    pub fn set_supports_texture_gather_lod_bias_amd_raw(mut self, value: Bool32) -> Self {
+    pub fn set_supports_texture_gather_lod_bias_amd_raw(&mut self, value: Bool32) -> &mut Self {
+        self.supports_texture_gather_lod_bias_amd = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::supports_texture_gather_lod_bias_amd`]
+    pub fn with_supports_texture_gather_lod_bias_amd_raw(mut self, value: Bool32) -> Self {
         self.supports_texture_gather_lod_bias_amd = value;
         self
     }
@@ -179,17 +189,32 @@ impl<'lt> TextureLodGatherFormatPropertiesAMD<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::supports_texture_gather_lod_bias_amd`]
-    pub fn set_supports_texture_gather_lod_bias_amd(mut self, value: bool) -> Self {
+    pub fn set_supports_texture_gather_lod_bias_amd(&mut self, value: bool) -> &mut Self {
+        self.supports_texture_gather_lod_bias_amd = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::supports_texture_gather_lod_bias_amd`]
+    pub fn with_supports_texture_gather_lod_bias_amd(mut self, value: bool) -> Self {
         self.supports_texture_gather_lod_bias_amd = value as u8 as u32;
         self
     }

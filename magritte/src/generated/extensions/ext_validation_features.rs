@@ -77,7 +77,7 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VK_VALIDATION_FEATURE_ENABLE_SYNCHRONIZATION_VALIDATION_EXT = 4,
 ///} VkValidationFeatureEnableEXT;
 ///```
-/// # Description
+///# Description
 /// - [`GPU_ASSISTED`] specifies that GPU-assisted validation is enabled. Activating this feature
 ///   instruments shader programs to generate additional diagnostic data. This feature is disabled
 ///   by default.
@@ -95,17 +95,17 @@ pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   This feature reports resource access conflicts due to missing or incorrect synchronization
 ///   operations between actions (Draw, Copy, Dispatch, Blit) reading or writing the same regions of
 ///   memory. This feature is disabled by default.
-/// # Related
+///# Related
 /// - [`ext_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureEnableEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -219,7 +219,7 @@ impl std::fmt::Debug for ValidationFeatureEnableEXT {
 ///    VK_VALIDATION_FEATURE_DISABLE_SHADER_VALIDATION_CACHE_EXT = 7,
 ///} VkValidationFeatureDisableEXT;
 ///```
-/// # Description
+///# Description
 /// - [`ALL`] specifies that all validation checks are disabled.
 /// - [`SHADERS`] specifies that shader validation is disabled. This feature is enabled by default.
 /// - [`THREAD_SAFETY`] specifies that thread safety validation is disabled. This feature is enabled
@@ -236,17 +236,17 @@ impl std::fmt::Debug for ValidationFeatureEnableEXT {
 /// - [`SHADER_VALIDATION_CACHE`] specifies that there will be no caching of shader validation
 ///   results and every shader will be validated on every application execution. Shader validation
 ///   caching is enabled by default.
-/// # Related
+///# Related
 /// - [`ext_validation_features`]
 /// - [`ValidationFeaturesEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeatureDisableEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -360,7 +360,7 @@ impl std::fmt::Debug for ValidationFeatureDisableEXT {
 ///    const VkValidationFeatureDisableEXT*    pDisabledValidationFeatures;
 ///} VkValidationFeaturesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`enabled_validation_feature_count`] is the number of features to enable.
@@ -369,8 +369,8 @@ impl std::fmt::Debug for ValidationFeatureDisableEXT {
 /// - [`disabled_validation_feature_count`] is the number of features to disable.
 /// - [`disabled_validation_features`] is a pointer to an array of [`ValidationFeatureDisableEXT`]
 ///   values specifying the validation features to be disabled.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If the [`enabled_validation_features`] array contains
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_RESERVE_BINDING_SLOT_EXT`, then it  **must**  also
 ///   contain `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
@@ -378,7 +378,7 @@ impl std::fmt::Debug for ValidationFeatureDisableEXT {
 ///   `VK_VALIDATION_FEATURE_ENABLE_DEBUG_PRINTF_EXT`, then it  **must**  not contain
 ///   `VK_VALIDATION_FEATURE_ENABLE_GPU_ASSISTED_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
 /// - If [`enabled_validation_feature_count`] is not `0`, [`enabled_validation_features`] **must**
 ///   be a valid pointer to an array of [`enabled_validation_feature_count`] valid
@@ -386,19 +386,19 @@ impl std::fmt::Debug for ValidationFeatureDisableEXT {
 /// - If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`] **must**
 ///   be a valid pointer to an array of [`disabled_validation_feature_count`] valid
 ///   [`ValidationFeatureDisableEXT`] values
-/// # Related
+///# Related
 /// - [`ext_validation_features`]
 /// - [`StructureType`]
 /// - [`ValidationFeatureDisableEXT`]
 /// - [`ValidationFeatureEnableEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -451,17 +451,32 @@ impl<'lt> ValidationFeaturesEXT<'lt> {
         self.disabled_validation_features
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::enabled_validation_features`]
-    pub fn set_enabled_validation_features_raw(mut self, value: *const ValidationFeatureEnableEXT) -> Self {
+    pub fn set_enabled_validation_features_raw(&mut self, value: *const ValidationFeatureEnableEXT) -> &mut Self {
         self.enabled_validation_features = value;
         self
     }
     ///Sets the raw value of [`Self::disabled_validation_features`]
-    pub fn set_disabled_validation_features_raw(mut self, value: *const ValidationFeatureDisableEXT) -> Self {
+    pub fn set_disabled_validation_features_raw(&mut self, value: *const ValidationFeatureDisableEXT) -> &mut Self {
+        self.disabled_validation_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::enabled_validation_features`]
+    pub fn with_enabled_validation_features_raw(mut self, value: *const ValidationFeatureEnableEXT) -> Self {
+        self.enabled_validation_features = value;
+        self
+    }
+    ///Sets the raw value of [`Self::disabled_validation_features`]
+    pub fn with_disabled_validation_features_raw(mut self, value: *const ValidationFeatureDisableEXT) -> Self {
         self.disabled_validation_features = value;
         self
     }
@@ -517,22 +532,64 @@ impl<'lt> ValidationFeaturesEXT<'lt> {
         &mut self.disabled_validation_feature_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::enabled_validation_feature_count`]
-    pub fn set_enabled_validation_feature_count(mut self, value: u32) -> Self {
+    pub fn set_enabled_validation_feature_count(&mut self, value: u32) -> &mut Self {
         self.enabled_validation_feature_count = value;
         self
     }
     ///Sets the value of [`Self::enabled_validation_features`]
     pub fn set_enabled_validation_features(
+        &mut self,
+        value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureEnableEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.enabled_validation_features = value.as_ptr();
+        self.enabled_validation_feature_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::disabled_validation_feature_count`]
+    pub fn set_disabled_validation_feature_count(&mut self, value: u32) -> &mut Self {
+        self.disabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the value of [`Self::disabled_validation_features`]
+    pub fn set_disabled_validation_features(
+        &mut self,
+        value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureDisableEXT],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.disabled_validation_features = value.as_ptr();
+        self.disabled_validation_feature_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::enabled_validation_feature_count`]
+    pub fn with_enabled_validation_feature_count(mut self, value: u32) -> Self {
+        self.enabled_validation_feature_count = value;
+        self
+    }
+    ///Sets the value of [`Self::enabled_validation_features`]
+    pub fn with_enabled_validation_features(
         mut self,
         value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureEnableEXT],
     ) -> Self {
@@ -543,12 +600,12 @@ impl<'lt> ValidationFeaturesEXT<'lt> {
         self
     }
     ///Sets the value of [`Self::disabled_validation_feature_count`]
-    pub fn set_disabled_validation_feature_count(mut self, value: u32) -> Self {
+    pub fn with_disabled_validation_feature_count(mut self, value: u32) -> Self {
         self.disabled_validation_feature_count = value;
         self
     }
     ///Sets the value of [`Self::disabled_validation_features`]
-    pub fn set_disabled_validation_features(
+    pub fn with_disabled_validation_features(
         mut self,
         value: &'lt [crate::extensions::ext_validation_features::ValidationFeatureDisableEXT],
     ) -> Self {

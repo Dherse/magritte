@@ -4,8 +4,8 @@
 ///an array containing a physical device name string, as returned in
 ///[`PhysicalDeviceProperties`]::deviceName.
 ///```c
-/// #define VK_MAX_PHYSICAL_DEVICE_NAME_SIZE  256U
-/// ```
+///#define VK_MAX_PHYSICAL_DEVICE_NAME_SIZE  256U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
@@ -22,8 +22,8 @@ pub const MAX_PHYSICAL_DEVICE_NAME_SIZE: u32 = 256;
 ///returned in [`PhysicalDeviceIdProperties`]::deviceUUID and
 ///[`PhysicalDeviceIdProperties`]::driverUUID.
 ///```c
-/// #define VK_UUID_SIZE                      16U
-/// ```
+///#define VK_UUID_SIZE                      16U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
@@ -40,8 +40,8 @@ pub const UUID_SIZE: u32 = 16;
 ///[`LayerProperties`]::layerName,
 ///[`ExtensionProperties`]::extensionName, and other queries.
 ///```c
-/// #define VK_MAX_EXTENSION_NAME_SIZE        256U
-/// ```
+///#define VK_MAX_EXTENSION_NAME_SIZE        256U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
@@ -57,8 +57,8 @@ pub const MAX_EXTENSION_NAME_SIZE: u32 = 256;
 ///containing a string with additional descriptive information about a query,
 ///as returned in [`LayerProperties`]::description and other queries.
 ///```c
-/// #define VK_MAX_DESCRIPTION_SIZE           256U
-/// ```
+///#define VK_MAX_DESCRIPTION_SIZE           256U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
@@ -74,8 +74,8 @@ pub const MAX_DESCRIPTION_SIZE: u32 = 256;
 ///structures describing memory types, as returned in
 ///[`PhysicalDeviceMemoryProperties`]::memoryTypes.
 ///```c
-/// #define VK_MAX_MEMORY_TYPES               32U
-/// ```
+///#define VK_MAX_MEMORY_TYPES               32U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
@@ -91,8 +91,8 @@ pub const MAX_MEMORY_TYPES: u32 = 32;
 ///structures describing memory heaps, as returned in
 ///[`PhysicalDeviceMemoryProperties`]::memoryHeaps.
 ///```c
-/// #define VK_MAX_MEMORY_HEAPS               16U
-/// ```
+///#define VK_MAX_MEMORY_HEAPS               16U
+///```
 ///# Notes and documentation
 ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///

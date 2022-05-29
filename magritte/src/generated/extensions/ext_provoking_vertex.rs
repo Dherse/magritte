@@ -104,24 +104,24 @@ pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT = 1,
 ///} VkProvokingVertexModeEXT;
 ///```
-/// # Description
+///# Description
 /// - [`FIRST_VERTEX`] specifies that the provoking vertex is the first non-adjacency vertex in the
 ///   list of vertices used by a primitive.
 /// - [`LAST_VERTEX`] specifies that the provoking vertex is the last non-adjacency vertex in the
 ///   list of vertices used by a primitive.
-/// These modes are described more precisely in
-/// [Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
-/// # Related
+///These modes are described more precisely in
+///[Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
+///# Related
 /// - [`ext_provoking_vertex`]
 /// - [`PipelineRasterizationProvokingVertexStateCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkProvokingVertexModeEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -196,39 +196,39 @@ impl std::fmt::Debug for ProvokingVertexModeEXT {
 ///    VkBool32           transformFeedbackPreservesProvokingVertex;
 ///} VkPhysicalDeviceProvokingVertexFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`provoking_vertex_last`] indicates whether the implementation supports the
 ///   `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`[`ProvokingVertexModeEXT`] for flat shading.
 /// - [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`] when the [`ext_transform_feedback`] extension is not supported.
-/// If the [`PhysicalDeviceProvokingVertexFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceProvokingVertexFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceProvokingVertexFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.When
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceProvokingVertexFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.When
 /// [`PhysicalDeviceProvokingVertexFeaturesEXT`] is in the [`p_next`]
-/// chain of [`DeviceCreateInfo`] but the
-/// [transform feedback feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-transformFeedback) is not enabled,
-/// the value of [`transform_feedback_preserves_provoking_vertex`] is ignored.
-/// ## Valid Usage (Implicit)
+///chain of [`DeviceCreateInfo`] but the
+///[transform feedback feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-transformFeedback) is not enabled,
+///the value of [`transform_feedback_preserves_provoking_vertex`] is ignored.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_provoking_vertex`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProvokingVertexFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -279,17 +279,32 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
         self.transform_feedback_preserves_provoking_vertex
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::provoking_vertex_last`]
-    pub fn set_provoking_vertex_last_raw(mut self, value: Bool32) -> Self {
+    pub fn set_provoking_vertex_last_raw(&mut self, value: Bool32) -> &mut Self {
         self.provoking_vertex_last = value;
         self
     }
     ///Sets the raw value of [`Self::transform_feedback_preserves_provoking_vertex`]
-    pub fn set_transform_feedback_preserves_provoking_vertex_raw(mut self, value: Bool32) -> Self {
+    pub fn set_transform_feedback_preserves_provoking_vertex_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_preserves_provoking_vertex = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::provoking_vertex_last`]
+    pub fn with_provoking_vertex_last_raw(mut self, value: Bool32) -> Self {
+        self.provoking_vertex_last = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_preserves_provoking_vertex`]
+    pub fn with_transform_feedback_preserves_provoking_vertex_raw(mut self, value: Bool32) -> Self {
         self.transform_feedback_preserves_provoking_vertex = value;
         self
     }
@@ -361,22 +376,42 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::provoking_vertex_last`]
-    pub fn set_provoking_vertex_last(mut self, value: bool) -> Self {
+    pub fn set_provoking_vertex_last(&mut self, value: bool) -> &mut Self {
         self.provoking_vertex_last = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::transform_feedback_preserves_provoking_vertex`]
-    pub fn set_transform_feedback_preserves_provoking_vertex(mut self, value: bool) -> Self {
+    pub fn set_transform_feedback_preserves_provoking_vertex(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_preserves_provoking_vertex = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::provoking_vertex_last`]
+    pub fn with_provoking_vertex_last(mut self, value: bool) -> Self {
+        self.provoking_vertex_last = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::transform_feedback_preserves_provoking_vertex`]
+    pub fn with_transform_feedback_preserves_provoking_vertex(mut self, value: bool) -> Self {
         self.transform_feedback_preserves_provoking_vertex = value as u8 as u32;
         self
     }
@@ -394,7 +429,7 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 ///    VkBool32           transformFeedbackPreservesTriangleFanProvokingVertex;
 ///} VkPhysicalDeviceProvokingVertexPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`provoking_vertex_mode_per_pipeline`] indicates whether the implementation supports graphics
@@ -402,26 +437,26 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 /// - [`transform_feedback_preserves_triangle_fan_provoking_vertex`] indicates whether the
 ///   implementation can preserve the provoking vertex order when writing triangle fan vertices to
 ///   transform feedback.
-/// # Description
-/// If the [`PhysicalDeviceProvokingVertexPropertiesEXT`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceProvokingVertexPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_provoking_vertex`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProvokingVertexPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -467,17 +502,32 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
         self.transform_feedback_preserves_triangle_fan_provoking_vertex
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::provoking_vertex_mode_per_pipeline`]
-    pub fn set_provoking_vertex_mode_per_pipeline_raw(mut self, value: Bool32) -> Self {
+    pub fn set_provoking_vertex_mode_per_pipeline_raw(&mut self, value: Bool32) -> &mut Self {
         self.provoking_vertex_mode_per_pipeline = value;
         self
     }
     ///Sets the raw value of [`Self::transform_feedback_preserves_triangle_fan_provoking_vertex`]
-    pub fn set_transform_feedback_preserves_triangle_fan_provoking_vertex_raw(mut self, value: Bool32) -> Self {
+    pub fn set_transform_feedback_preserves_triangle_fan_provoking_vertex_raw(&mut self, value: Bool32) -> &mut Self {
+        self.transform_feedback_preserves_triangle_fan_provoking_vertex = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::provoking_vertex_mode_per_pipeline`]
+    pub fn with_provoking_vertex_mode_per_pipeline_raw(mut self, value: Bool32) -> Self {
+        self.provoking_vertex_mode_per_pipeline = value;
+        self
+    }
+    ///Sets the raw value of [`Self::transform_feedback_preserves_triangle_fan_provoking_vertex`]
+    pub fn with_transform_feedback_preserves_triangle_fan_provoking_vertex_raw(mut self, value: Bool32) -> Self {
         self.transform_feedback_preserves_triangle_fan_provoking_vertex = value;
         self
     }
@@ -549,22 +599,42 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::provoking_vertex_mode_per_pipeline`]
-    pub fn set_provoking_vertex_mode_per_pipeline(mut self, value: bool) -> Self {
+    pub fn set_provoking_vertex_mode_per_pipeline(&mut self, value: bool) -> &mut Self {
         self.provoking_vertex_mode_per_pipeline = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::transform_feedback_preserves_triangle_fan_provoking_vertex`]
-    pub fn set_transform_feedback_preserves_triangle_fan_provoking_vertex(mut self, value: bool) -> Self {
+    pub fn set_transform_feedback_preserves_triangle_fan_provoking_vertex(&mut self, value: bool) -> &mut Self {
+        self.transform_feedback_preserves_triangle_fan_provoking_vertex = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::provoking_vertex_mode_per_pipeline`]
+    pub fn with_provoking_vertex_mode_per_pipeline(mut self, value: bool) -> Self {
+        self.provoking_vertex_mode_per_pipeline = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::transform_feedback_preserves_triangle_fan_provoking_vertex`]
+    pub fn with_transform_feedback_preserves_triangle_fan_provoking_vertex(mut self, value: bool) -> Self {
         self.transform_feedback_preserves_triangle_fan_provoking_vertex = value as u8 as u32;
         self
     }
@@ -586,37 +656,37 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
 ///    VkProvokingVertexModeEXT    provokingVertexMode;
 ///} VkPipelineRasterizationProvokingVertexStateCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`provoking_vertex_mode`] is a [`ProvokingVertexModeEXT`] value selecting the provoking vertex
 ///   mode.
-/// # Description
-/// If this struct is not provided when creating the pipeline, the pipeline will
-/// use the `VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT` mode.If the
-/// [provokingVertexModePerPipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-provokingVertexModePerPipeline)
-/// limit is [`FALSE`], then all pipelines bound within a render pass
-/// instance  **must**  have the same [`provoking_vertex_mode`].
-/// ## Valid Usage
+///# Description
+///If this struct is not provided when creating the pipeline, the pipeline will
+///use the `VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT` mode.If the
+///[provokingVertexModePerPipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-provokingVertexModePerPipeline)
+///limit is [`FALSE`], then all pipelines bound within a render pass
+///instance  **must**  have the same [`provoking_vertex_mode`].
+///## Valid Usage
 /// - If [`provoking_vertex_mode`] is `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`, then the [provokingVertexLast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-provokingVertexLast)
 ///   feature  **must**  be enabled
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT`
 /// - [`provoking_vertex_mode`] **must**  be a valid [`ProvokingVertexModeEXT`] value
-/// # Related
+///# Related
 /// - [`ext_provoking_vertex`]
 /// - [`ProvokingVertexModeEXT`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationProvokingVertexStateCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -648,7 +718,12 @@ impl<'lt> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -676,17 +751,35 @@ impl<'lt> PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt> {
         &mut self.provoking_vertex_mode
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::provoking_vertex_mode`]
     pub fn set_provoking_vertex_mode(
+        &mut self,
+        value: crate::extensions::ext_provoking_vertex::ProvokingVertexModeEXT,
+    ) -> &mut Self {
+        self.provoking_vertex_mode = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::provoking_vertex_mode`]
+    pub fn with_provoking_vertex_mode(
         mut self,
         value: crate::extensions::ext_provoking_vertex::ProvokingVertexModeEXT,
     ) -> Self {

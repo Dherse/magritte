@@ -81,7 +81,7 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 ///    VkDeviceSize       heapUsage[VK_MAX_MEMORY_HEAPS];
 ///} VkPhysicalDeviceMemoryBudgetPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`heap_budget`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory
@@ -92,29 +92,29 @@ pub const EXT_MEMORY_BUDGET_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT
 /// - [`heap_usage`] is an array of [`MAX_MEMORY_HEAPS`][`DeviceSize`] values in which memory usages
 ///   are returned, with one element for each memory heap. A heap’s usage is an estimate of how much
 ///   memory the process is currently using in that heap.
-/// # Description
-/// The values returned in this structure are not invariant.
-/// The [`heap_budget`] and [`heap_usage`] values  **must**  be zero for array
-/// elements greater than or equal to
-/// [`PhysicalDeviceMemoryProperties::memory_heap_count`].
-/// The [`heap_budget`] value  **must**  be non-zero for array elements less than
-/// [`PhysicalDeviceMemoryProperties::memory_heap_count`].
-/// The [`heap_budget`] value  **must**  be less than or equal to
-/// [`MemoryHeap::size`] for each heap.
-/// ## Valid Usage (Implicit)
+///# Description
+///The values returned in this structure are not invariant.
+///The [`heap_budget`] and [`heap_usage`] values  **must**  be zero for array
+///elements greater than or equal to
+///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
+///The [`heap_budget`] value  **must**  be non-zero for array elements less than
+///[`PhysicalDeviceMemoryProperties::memory_heap_count`].
+///The [`heap_budget`] value  **must**  be less than or equal to
+///[`MemoryHeap::size`] for each heap.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_memory_budget`]
 /// - [`DeviceSize`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryBudgetPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -156,7 +156,12 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -199,17 +204,43 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
         &mut self.heap_usage
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::heap_budget`]
     pub fn set_heap_budget(
+        &mut self,
+        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
+    ) -> &mut Self {
+        self.heap_budget = value;
+        self
+    }
+    ///Sets the value of [`Self::heap_usage`]
+    pub fn set_heap_usage(
+        &mut self,
+        value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
+    ) -> &mut Self {
+        self.heap_usage = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::heap_budget`]
+    pub fn with_heap_budget(
         mut self,
         value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
     ) -> Self {
@@ -217,7 +248,7 @@ impl<'lt> PhysicalDeviceMemoryBudgetPropertiesEXT<'lt> {
         self
     }
     ///Sets the value of [`Self::heap_usage`]
-    pub fn set_heap_usage(
+    pub fn with_heap_usage(
         mut self,
         value: [crate::vulkan1_0::DeviceSize; crate::core::MAX_MEMORY_HEAPS as usize],
     ) -> Self {

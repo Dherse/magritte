@@ -27,7 +27,7 @@ impl Shader {
 
         // We add the code into a `ShaderModuleCreateInfo`.
         // This structure can be extended using the pointer chain.
-        let module_create_info = ShaderModuleCreateInfo::default().set_code(&code);
+        let module_create_info = ShaderModuleCreateInfo::default().with_code(&code);
 
         let (module, _) = unsafe { vulkan.device().create_shader_module(&module_create_info, None)? };
 
@@ -48,8 +48,8 @@ impl Shader {
 
     pub fn as_shader_stage_create_info(&self) -> PipelineShaderStageCreateInfo<'_> {
         PipelineShaderStageCreateInfo::default()
-            .set_module(self.module().as_raw())
-            .set_name(cstr_ptr!("main"))
-            .set_stage(self.stage())
+            .with_module(self.module().as_raw())
+            .with_name(cstr_ptr!("main"))
+            .with_stage(self.stage())
     }
 }

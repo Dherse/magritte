@@ -50,6 +50,10 @@ struct Opts {
     /// Some platforms even support very high MSAA such as 32 or 64 but that is rarer.
     #[clap(short = 'm', long, default_value_t = 1)]
     pub msaa: u32,
+
+    /// The index of the physical device to use
+    #[clap(short = 'g', long, default_value_t = 0)]
+    pub gpu: u32,
 }
 
 pub fn main() -> Result<(), Box<dyn Error>> {
@@ -83,6 +87,7 @@ pub fn main() -> Result<(), Box<dyn Error>> {
         InstanceExtensions::vulkan1_0(),
         DeviceExtensions::vulkan1_0(),
         opts.validation_layers,
+        opts.gpu as usize,
     )?;
 
     // Now that we have the basic state and the surface, we will create all additional
@@ -147,13 +152,13 @@ pub fn main() -> Result<(), Box<dyn Error>> {
                     ];
 
                     let render_pass_begin_info = RenderPassBeginInfo::default()
-                        .set_render_pass(renderer.renderpass().renderpass().as_raw())
-                        .set_framebuffer(renderer.renderpass().framebuffers[swap_frame].as_raw())
-                        .set_render_area(Rect2D {
+                        .with_render_pass(renderer.renderpass().renderpass().as_raw())
+                        .with_framebuffer(renderer.renderpass().framebuffers[swap_frame].as_raw())
+                        .with_render_area(Rect2D {
                             offset: Offset2D { x: 0, y: 0 },
                             extent: renderer.surface().extent(),
                         })
-                        .set_clear_values(&clear_values);
+                        .with_clear_values(&clear_values);
 
                     if let Err(e) = renderer.commands().record_and_submit_draw(
                         &[PipelineStageFlags::COLOR_ATTACHMENT_OUTPUT],
@@ -198,9 +203,9 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
                     if let Err(e) = renderer.commands().queue().present(
                         PresentInfoKHR::default()
-                            .set_wait_semaphores(std::slice::from_ref(&wait_semaphore))
-                            .set_swapchains(std::slice::from_ref(&swapchain))
-                            .set_image_indices(std::slice::from_ref(&image_index)),
+                            .with_wait_semaphores(std::slice::from_ref(&wait_semaphore))
+                            .with_swapchains(std::slice::from_ref(&swapchain))
+                            .with_image_indices(std::slice::from_ref(&image_index)),
                     ) {
                         error!("Failed to present: {:?}", e);
                         return;

@@ -118,7 +118,7 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    const VkPresentRegionKHR*    pRegions;
 ///} VkPresentRegionsKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`swapchain_count`] is the number of swapchains being presented to by this command.
@@ -126,29 +126,29 @@ pub const KHR_INCREMENTAL_PRESENT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   [`swapchain_count`] entries. If not `NULL`, each element of [`regions`] contains the region
 ///   that has changed since the last present to the swapchain in the corresponding entry in the
 ///   [`PresentInfoKHR::swapchains`] array.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`swapchain_count`] **must**  be the same value as [`PresentInfoKHR`]::[`swapchain_count`],
 ///   where [`PresentInfoKHR`] is included in the [`p_next`] chain of this [`PresentRegionsKHR`]
 ///   structure
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
 /// - If [`regions`] is not `NULL`, [`regions`] **must**  be a valid pointer to an array of
 ///   [`swapchain_count`] valid [`PresentRegionKHR`] structures
 /// - [`swapchain_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`khr_incremental_present`]
 /// - [`PresentRegionKHR`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentRegionsKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -191,12 +191,22 @@ impl<'lt> PresentRegionsKHR<'lt> {
         self.regions
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::regions`]
-    pub fn set_regions_raw(mut self, value: *const PresentRegionKHR<'lt>) -> Self {
+    pub fn set_regions_raw(&mut self, value: *const PresentRegionKHR<'lt>) -> &mut Self {
+        self.regions = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::regions`]
+    pub fn with_regions_raw(mut self, value: *const PresentRegionKHR<'lt>) -> Self {
         self.regions = value;
         self
     }
@@ -231,22 +241,48 @@ impl<'lt> PresentRegionsKHR<'lt> {
         &mut self.swapchain_count
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::swapchain_count`]
-    pub fn set_swapchain_count(mut self, value: u32) -> Self {
+    pub fn set_swapchain_count(&mut self, value: u32) -> &mut Self {
         self.swapchain_count = value;
         self
     }
     ///Sets the value of [`Self::regions`]
     pub fn set_regions(
+        &mut self,
+        value: &'lt [crate::extensions::khr_incremental_present::PresentRegionKHR<'lt>],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.regions = value.as_ptr();
+        self.swapchain_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::swapchain_count`]
+    pub fn with_swapchain_count(mut self, value: u32) -> Self {
+        self.swapchain_count = value;
+        self
+    }
+    ///Sets the value of [`Self::regions`]
+    pub fn with_regions(
         mut self,
         value: &'lt [crate::extensions::khr_incremental_present::PresentRegionKHR<'lt>],
     ) -> Self {
@@ -268,7 +304,7 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///    const VkRectLayerKHR*    pRectangles;
 ///} VkPresentRegionKHR;
 ///```
-/// # Members
+///# Members
 /// - [`rectangle_count`] is the number of rectangles in [`rectangles`], or zero if the entire image
 ///   has changed and should be presented.
 /// - [`rectangles`] is either `NULL` or a pointer to an array of [`RectLayerKHR`] structures. The
@@ -279,22 +315,22 @@ impl<'lt> PresentRegionsKHR<'lt> {
 ///   [`SurfaceCapabilitiesKHR::current_transform`], regardless of the swapchain’s `preTransform`.
 ///   The presentation engine will apply the `preTransform` transformation to the rectangles, along
 ///   with any further transformation it applies to the image content.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`] **must**
 ///   be a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
-/// # Related
+///# Related
 /// - [`khr_incremental_present`]
 /// - [`PresentRegionsKHR`]
 /// - [`RectLayerKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentRegionKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -335,7 +371,12 @@ impl<'lt> PresentRegionKHR<'lt> {
         self.rectangles
     }
     ///Sets the raw value of [`Self::rectangles`]
-    pub fn set_rectangles_raw(mut self, value: *const RectLayerKHR) -> Self {
+    pub fn set_rectangles_raw(&mut self, value: *const RectLayerKHR) -> &mut Self {
+        self.rectangles = value;
+        self
+    }
+    ///Sets the raw value of [`Self::rectangles`]
+    pub fn with_rectangles_raw(mut self, value: *const RectLayerKHR) -> Self {
         self.rectangles = value;
         self
     }
@@ -355,12 +396,28 @@ impl<'lt> PresentRegionKHR<'lt> {
         &mut self.rectangle_count
     }
     ///Sets the value of [`Self::rectangle_count`]
-    pub fn set_rectangle_count(mut self, value: u32) -> Self {
+    pub fn set_rectangle_count(&mut self, value: u32) -> &mut Self {
         self.rectangle_count = value;
         self
     }
     ///Sets the value of [`Self::rectangles`]
-    pub fn set_rectangles(mut self, value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR]) -> Self {
+    pub fn set_rectangles(
+        &mut self,
+        value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR],
+    ) -> &mut Self {
+        let len_ = value.len() as u32;
+        let len_ = len_;
+        self.rectangles = value.as_ptr();
+        self.rectangle_count = len_;
+        self
+    }
+    ///Sets the value of [`Self::rectangle_count`]
+    pub fn with_rectangle_count(mut self, value: u32) -> Self {
+        self.rectangle_count = value;
+        self
+    }
+    ///Sets the value of [`Self::rectangles`]
+    pub fn with_rectangles(mut self, value: &'lt [crate::extensions::khr_incremental_present::RectLayerKHR]) -> Self {
         let len_ = value.len() as u32;
         let len_ = len_;
         self.rectangles = value.as_ptr();
@@ -379,36 +436,36 @@ impl<'lt> PresentRegionKHR<'lt> {
 ///    uint32_t      layer;
 ///} VkRectLayerKHR;
 ///```
-/// # Members
+///# Members
 /// - [`offset`] is the origin of the rectangle, in pixels.
 /// - [`extent`] is the size of the rectangle, in pixels.
 /// - [`layer`] is the layer of the image. For images with only one layer, the value of [`layer`]
 ///   **must**  be 0.
-/// # Description
-/// Some platforms allow the size of a surface to change, and then scale the
-/// pixels of the image to fit the surface.
-/// [`RectLayerKHR`] specifies pixels of the swapchain’s image(s), which
-/// will be constant for the life of the swapchain.
-/// ## Valid Usage
+///# Description
+///Some platforms allow the size of a surface to change, and then scale the
+///pixels of the image to fit the surface.
+///[`RectLayerKHR`] specifies pixels of the swapchain’s image(s), which
+///will be constant for the life of the swapchain.
+///## Valid Usage
 /// - The sum of [`offset`] and [`extent`], after being transformed according to the `preTransform`
 ///   member of the [`SwapchainCreateInfoKHR`] structure,  **must**  be no greater than the
 ///   `imageExtent` member of the [`SwapchainCreateInfoKHR`] structure passed to
 ///   [`create_swapchain_khr`]
 /// - [`layer`] **must**  be less than the `imageArrayLayers` member of the
 ///   [`SwapchainCreateInfoKHR`] structure passed to [`create_swapchain_khr`]
-/// # Related
+///# Related
 /// - [`khr_incremental_present`]
 /// - [`Extent2D`]
 /// - [`Offset2D`]
 /// - [`PresentRegionKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRectLayerKHR")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -457,17 +514,32 @@ impl RectLayerKHR {
         &mut self.layer
     }
     ///Sets the value of [`Self::offset`]
-    pub fn set_offset(mut self, value: crate::vulkan1_0::Offset2D) -> Self {
+    pub fn set_offset(&mut self, value: crate::vulkan1_0::Offset2D) -> &mut Self {
         self.offset = value;
         self
     }
     ///Sets the value of [`Self::extent`]
-    pub fn set_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+    pub fn set_extent(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
         self.extent = value;
         self
     }
     ///Sets the value of [`Self::layer`]
-    pub fn set_layer(mut self, value: u32) -> Self {
+    pub fn set_layer(&mut self, value: u32) -> &mut Self {
+        self.layer = value;
+        self
+    }
+    ///Sets the value of [`Self::offset`]
+    pub fn with_offset(mut self, value: crate::vulkan1_0::Offset2D) -> Self {
+        self.offset = value;
+        self
+    }
+    ///Sets the value of [`Self::extent`]
+    pub fn with_extent(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+        self.extent = value;
+        self
+    }
+    ///Sets the value of [`Self::layer`]
+    pub fn with_layer(mut self, value: u32) -> Self {
         self.layer = value;
         self
     }

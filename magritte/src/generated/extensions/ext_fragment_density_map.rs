@@ -89,9 +89,9 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///    VkBool32           fragmentDensityMapNonSubsampledImages;
 ///} VkPhysicalDeviceFragmentDensityMapFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_map`] specifies whether the implementation supports render passes with a
@@ -103,27 +103,27 @@ pub const EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME: &'static CStr = crate::cstr!(
 ///   `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` **must**  not be included in
 ///   [`ImageViewCreateInfo::flags`].
 /// - [`fragment_density_map_non_subsampled_images`] specifies whether the implementation supports regular non-subsampled image attachments with fragment density map render passes. If this feature is not enabled, render passes with a [fragment density map attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapattachment) **must**  only have [subsampled attachments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-subsamplesampler) bound.
-/// If the [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceFragmentDensityMapFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceFragmentDensityMapFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_fragment_density_map`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -189,22 +189,42 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
         self.fragment_density_map_non_subsampled_images
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map`]
-    pub fn set_fragment_density_map_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_density_map_raw(&mut self, value: Bool32) -> &mut Self {
         self.fragment_density_map = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
-    pub fn set_fragment_density_map_dynamic_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_density_map_dynamic_raw(&mut self, value: Bool32) -> &mut Self {
         self.fragment_density_map_dynamic = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
-    pub fn set_fragment_density_map_non_subsampled_images_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_density_map_non_subsampled_images_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_map_non_subsampled_images = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map`]
+    pub fn with_fragment_density_map_raw(mut self, value: Bool32) -> Self {
+        self.fragment_density_map = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_dynamic`]
+    pub fn with_fragment_density_map_dynamic_raw(mut self, value: Bool32) -> Self {
+        self.fragment_density_map_dynamic = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn with_fragment_density_map_non_subsampled_images_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_map_non_subsampled_images = value;
         self
     }
@@ -298,27 +318,52 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::fragment_density_map`]
-    pub fn set_fragment_density_map(mut self, value: bool) -> Self {
+    pub fn set_fragment_density_map(&mut self, value: bool) -> &mut Self {
         self.fragment_density_map = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::fragment_density_map_dynamic`]
-    pub fn set_fragment_density_map_dynamic(mut self, value: bool) -> Self {
+    pub fn set_fragment_density_map_dynamic(&mut self, value: bool) -> &mut Self {
         self.fragment_density_map_dynamic = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::fragment_density_map_non_subsampled_images`]
-    pub fn set_fragment_density_map_non_subsampled_images(mut self, value: bool) -> Self {
+    pub fn set_fragment_density_map_non_subsampled_images(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_map_non_subsampled_images = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::fragment_density_map`]
+    pub fn with_fragment_density_map(mut self, value: bool) -> Self {
+        self.fragment_density_map = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::fragment_density_map_dynamic`]
+    pub fn with_fragment_density_map_dynamic(mut self, value: bool) -> Self {
+        self.fragment_density_map_dynamic = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::fragment_density_map_non_subsampled_images`]
+    pub fn with_fragment_density_map_non_subsampled_images(mut self, value: bool) -> Self {
         self.fragment_density_map_non_subsampled_images = value as u8 as u32;
         self
     }
@@ -337,35 +382,35 @@ impl<'lt> PhysicalDeviceFragmentDensityMapFeaturesEXT<'lt> {
 ///    VkBool32           fragmentDensityInvocations;
 ///} VkPhysicalDeviceFragmentDensityMapPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_fragment_density_texel_size`] is the minimum [fragment density texel size](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-fragment-density-texel-size).
 /// - [`max_fragment_density_texel_size`] is the maximum fragment density texel size.
 /// - [`fragment_density_invocations`] specifies whether the implementation  **may**  invoke
 ///   additional fragment shader invocations for each covered sample.
-/// # Description
-/// If the [`PhysicalDeviceFragmentDensityMapPropertiesEXT`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDeviceFragmentDensityMapPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_fragment_density_map`]
 /// - [`Bool32`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -411,12 +456,22 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
         self.fragment_density_invocations
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_density_invocations`]
-    pub fn set_fragment_density_invocations_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_density_invocations_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_density_invocations = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_density_invocations`]
+    pub fn with_fragment_density_invocations_raw(mut self, value: Bool32) -> Self {
         self.fragment_density_invocations = value;
         self
     }
@@ -481,27 +536,52 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::min_fragment_density_texel_size`]
-    pub fn set_min_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+    pub fn set_min_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
         self.min_fragment_density_texel_size = value;
         self
     }
     ///Sets the value of [`Self::max_fragment_density_texel_size`]
-    pub fn set_max_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+    pub fn set_max_fragment_density_texel_size(&mut self, value: crate::vulkan1_0::Extent2D) -> &mut Self {
         self.max_fragment_density_texel_size = value;
         self
     }
     ///Sets the value of [`Self::fragment_density_invocations`]
-    pub fn set_fragment_density_invocations(mut self, value: bool) -> Self {
+    pub fn set_fragment_density_invocations(&mut self, value: bool) -> &mut Self {
+        self.fragment_density_invocations = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::min_fragment_density_texel_size`]
+    pub fn with_min_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+        self.min_fragment_density_texel_size = value;
+        self
+    }
+    ///Sets the value of [`Self::max_fragment_density_texel_size`]
+    pub fn with_max_fragment_density_texel_size(mut self, value: crate::vulkan1_0::Extent2D) -> Self {
+        self.max_fragment_density_texel_size = value;
+        self
+    }
+    ///Sets the value of [`Self::fragment_density_invocations`]
+    pub fn with_fragment_density_invocations(mut self, value: bool) -> Self {
         self.fragment_density_invocations = value as u8 as u32;
         self
     }
@@ -521,14 +601,14 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///    VkAttachmentReference    fragmentDensityMapAttachment;
 ///} VkRenderPassFragmentDensityMapCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_map_attachment`] is the fragment density map to use for the render pass.
-/// # Description
-/// The fragment density map is read at an implementation-dependent time with
-/// the following constraints determined by the attachment’s image view
-/// `flags`:
+///# Description
+///The fragment density map is read at an implementation-dependent time with
+///the following constraints determined by the attachment’s image view
+///`flags`:
 /// - `VK_IMAGE_VIEW_CREATE_FRAGMENT_DENSITY_MAP_DYNAMIC_BIT_EXT` specifies that the fragment
 ///   density map will be read by the device during
 ///   `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT`
@@ -536,11 +616,11 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///   density map will be read by the host during [`end_command_buffer`] of the primary command
 ///   buffer that the render pass is recorded into
 /// - Otherwise the fragment density map will be read by the host during [`cmd_begin_render_pass`]
-/// The fragment density map  **may**  additionally be read by the device during
-/// `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not
+///The fragment density map  **may**  additionally be read by the device during
+///`VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not
 /// present, it is as if
-/// [`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
-/// ## Valid Usage
+///[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
+///## Valid Usage
 /// - If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`],
 ///   [`fragment_density_map_attachment`] **must**  not be an element of
 ///   [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`],
@@ -555,21 +635,21 @@ impl<'lt> PhysicalDeviceFragmentDensityMapPropertiesEXT<'lt> {
 ///   [`fragment_density_map_attachment`] **must**  reference an attachment with a `storeOp` equal
 ///   to `VK_ATTACHMENT_STORE_OP_DONT_CARE`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
 /// - [`fragment_density_map_attachment`] **must**  be a valid [`AttachmentReference`] structure
-/// # Related
+///# Related
 /// - [`ext_fragment_density_map`]
 /// - [`AttachmentReference`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassFragmentDensityMapCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -601,7 +681,12 @@ impl<'lt> RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -629,17 +714,32 @@ impl<'lt> RenderPassFragmentDensityMapCreateInfoEXT<'lt> {
         &mut self.fragment_density_map_attachment
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::fragment_density_map_attachment`]
-    pub fn set_fragment_density_map_attachment(mut self, value: crate::vulkan1_0::AttachmentReference) -> Self {
+    pub fn set_fragment_density_map_attachment(&mut self, value: crate::vulkan1_0::AttachmentReference) -> &mut Self {
+        self.fragment_density_map_attachment = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::fragment_density_map_attachment`]
+    pub fn with_fragment_density_map_attachment(mut self, value: crate::vulkan1_0::AttachmentReference) -> Self {
         self.fragment_density_map_attachment = value;
         self
     }

@@ -48,16 +48,16 @@
 //!In some cases, it may be more efficient to explicitly interpolate an
 //!attribute via:
 //!```c
-//! float value = (baryCoordNV.x * v[0].attrib +
+//!float value = (baryCoordNV.x * v[0].attrib +
 //!               baryCoordNV.y * v[1].attrib +
 //!               baryCoordNV.z * v[2].attrib);
-//! ```
+//!```
 //!instead of
 //!```c
-//! float value = (baryCoordSmoothAMD.x * (v[0].attrib - v[2].attrib) +
+//!float value = (baryCoordSmoothAMD.x * (v[0].attrib - v[2].attrib) +
 //!               baryCoordSmoothAMD.y * (v[1].attrib - v[2].attrib) +
 //!               v[2].attrib);
-//! ```
+//!```
 //!Additionally, the semantics of the decoration `BaryCoordPullModelAMD` do
 //!not appear to map to anything supported by the initial hardware
 //!implementation of this extension.This extension provides a smaller number of decorations than
@@ -116,38 +116,38 @@ pub const NV_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           fragmentShaderBarycentric;
 ///} VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_shader_barycentric`] indicates that the implementation supports the `BaryCoordNV`
 ///   and `BaryCoordNoPerspNV` SPIR-V fragment shader built-ins and supports the `PerVertexNV`
 ///   SPIR-V decoration on fragment shader input variables.
-/// See [Barycentric Interpolation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-barycentric) for more
-/// information.If the [`PhysicalDeviceFragmentShaderBarycentricFeaturesNV`] structure is included
+///See [Barycentric Interpolation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-barycentric) for more
+///information.If the [`PhysicalDeviceFragmentShaderBarycentricFeaturesNV`] structure is included
 /// in the [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceFragmentShaderBarycentricFeaturesNV`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceFragmentShaderBarycentricFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_fragment_shader_barycentric`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShaderBarycentricFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -186,12 +186,22 @@ impl<'lt> PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt> {
         self.fragment_shader_barycentric
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::fragment_shader_barycentric`]
-    pub fn set_fragment_shader_barycentric_raw(mut self, value: Bool32) -> Self {
+    pub fn set_fragment_shader_barycentric_raw(&mut self, value: Bool32) -> &mut Self {
+        self.fragment_shader_barycentric = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::fragment_shader_barycentric`]
+    pub fn with_fragment_shader_barycentric_raw(mut self, value: Bool32) -> Self {
         self.fragment_shader_barycentric = value;
         self
     }
@@ -240,17 +250,32 @@ impl<'lt> PhysicalDeviceFragmentShaderBarycentricFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::fragment_shader_barycentric`]
-    pub fn set_fragment_shader_barycentric(mut self, value: bool) -> Self {
+    pub fn set_fragment_shader_barycentric(&mut self, value: bool) -> &mut Self {
+        self.fragment_shader_barycentric = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::fragment_shader_barycentric`]
+    pub fn with_fragment_shader_barycentric(mut self, value: bool) -> Self {
         self.fragment_shader_barycentric = value as u8 as u32;
         self
     }

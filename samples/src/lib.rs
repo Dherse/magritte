@@ -1,3 +1,5 @@
+#![feature(io_error_other)]
+
 use std::ffi::CStr;
 
 pub mod buffer;
@@ -12,7 +14,7 @@ pub mod surface;
 pub mod vulkan;
 
 pub trait AsCStr {
-    fn as_cstr(&self) -> &CStr;
+    fn as_cstr(&'_ self) -> &'_ CStr;
 }
 
 impl AsCStr for &[i8] {

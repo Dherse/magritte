@@ -97,13 +97,14 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VkBool32           bufferDeviceAddressMultiDevice;
 ///} VkPhysicalDeviceBufferDeviceAddressFeaturesEXT;
 ///```
-/// ```c
+///
+///```c
 ///// Provided by VK_EXT_buffer_device_address
 ///typedef VkPhysicalDeviceBufferDeviceAddressFeaturesEXT VkPhysicalDeviceBufferAddressFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`buffer_device_address`] indicates that the implementation supports accessing buffer memory
@@ -114,28 +115,28 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   [`buffer_device_address`] feature for logical devices created with multiple physical devices.
 ///   If this feature is not supported, buffer addresses  **must**  not be queried on a logical
 ///   device created with more than one physical device.
-/// If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] **can**  also be used in the [`p_next`] chain
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceBufferDeviceAddressFeaturesEXT`] **can**  also be used in the [`p_next`] chain
 /// of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_buffer_device_address`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -193,22 +194,42 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
         self.buffer_device_address_multi_device
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::buffer_device_address`]
-    pub fn set_buffer_device_address_raw(mut self, value: Bool32) -> Self {
+    pub fn set_buffer_device_address_raw(&mut self, value: Bool32) -> &mut Self {
         self.buffer_device_address = value;
         self
     }
     ///Sets the raw value of [`Self::buffer_device_address_capture_replay`]
-    pub fn set_buffer_device_address_capture_replay_raw(mut self, value: Bool32) -> Self {
+    pub fn set_buffer_device_address_capture_replay_raw(&mut self, value: Bool32) -> &mut Self {
         self.buffer_device_address_capture_replay = value;
         self
     }
     ///Sets the raw value of [`Self::buffer_device_address_multi_device`]
-    pub fn set_buffer_device_address_multi_device_raw(mut self, value: Bool32) -> Self {
+    pub fn set_buffer_device_address_multi_device_raw(&mut self, value: Bool32) -> &mut Self {
+        self.buffer_device_address_multi_device = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer_device_address`]
+    pub fn with_buffer_device_address_raw(mut self, value: Bool32) -> Self {
+        self.buffer_device_address = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer_device_address_capture_replay`]
+    pub fn with_buffer_device_address_capture_replay_raw(mut self, value: Bool32) -> Self {
+        self.buffer_device_address_capture_replay = value;
+        self
+    }
+    ///Sets the raw value of [`Self::buffer_device_address_multi_device`]
+    pub fn with_buffer_device_address_multi_device_raw(mut self, value: Bool32) -> Self {
         self.buffer_device_address_multi_device = value;
         self
     }
@@ -301,27 +322,52 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::buffer_device_address`]
-    pub fn set_buffer_device_address(mut self, value: bool) -> Self {
+    pub fn set_buffer_device_address(&mut self, value: bool) -> &mut Self {
         self.buffer_device_address = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::buffer_device_address_capture_replay`]
-    pub fn set_buffer_device_address_capture_replay(mut self, value: bool) -> Self {
+    pub fn set_buffer_device_address_capture_replay(&mut self, value: bool) -> &mut Self {
         self.buffer_device_address_capture_replay = value as u8 as u32;
         self
     }
     ///Sets the value of [`Self::buffer_device_address_multi_device`]
-    pub fn set_buffer_device_address_multi_device(mut self, value: bool) -> Self {
+    pub fn set_buffer_device_address_multi_device(&mut self, value: bool) -> &mut Self {
+        self.buffer_device_address_multi_device = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::buffer_device_address`]
+    pub fn with_buffer_device_address(mut self, value: bool) -> Self {
+        self.buffer_device_address = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::buffer_device_address_capture_replay`]
+    pub fn with_buffer_device_address_capture_replay(mut self, value: bool) -> Self {
+        self.buffer_device_address_capture_replay = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::buffer_device_address_multi_device`]
+    pub fn with_buffer_device_address_multi_device(mut self, value: bool) -> Self {
         self.buffer_device_address_multi_device = value as u8 as u32;
         self
     }
@@ -341,33 +387,33 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 ///    VkDeviceAddress    deviceAddress;
 ///} VkBufferDeviceAddressCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`device_address`] is the device address requested for the buffer.
-/// # Description
-/// If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
+///# Description
+///If [`device_address`] is zero, no specific address is requested.If [`device_address`] is not
 /// zero, then it  **must**  be an address retrieved
-/// from an identically created buffer on the same implementation.
-/// The buffer  **must**  also be bound to an identically created
-/// [`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
+///from an identically created buffer on the same implementation.
+///The buffer  **must**  also be bound to an identically created
+///[`DeviceMemory`] object.If this structure is not present, it is as if [`device_address`] is
 /// zero.Apps  **should**  avoid creating buffers with app-provided addresses and
-/// implementation-provided addresses in the same process, to reduce the
-/// likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
-/// ## Valid Usage (Implicit)
+///implementation-provided addresses in the same process, to reduce the
+///likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
-/// # Related
+///# Related
 /// - [`ext_buffer_device_address`]
 /// - [`DeviceAddress`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferDeviceAddressCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -398,7 +444,12 @@ impl<'lt> BufferDeviceAddressCreateInfoEXT<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -426,17 +477,32 @@ impl<'lt> BufferDeviceAddressCreateInfoEXT<'lt> {
         &mut self.device_address
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::device_address`]
-    pub fn set_device_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
+    pub fn set_device_address(&mut self, value: crate::vulkan1_0::DeviceAddress) -> &mut Self {
+        self.device_address = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::device_address`]
+    pub fn with_device_address(mut self, value: crate::vulkan1_0::DeviceAddress) -> Self {
         self.device_address = value;
         self
     }

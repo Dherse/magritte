@@ -115,35 +115,35 @@ pub const NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           representativeFragmentTest;
 ///} VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`representative_fragment_test`] indicates whether the implementation supports the representative fragment test. See [Representative Fragment Test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-rep-frag-test).
-/// If the [`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`] structure is included in the
+///If the [`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_representative_fragment_test`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -181,12 +181,22 @@ impl<'lt> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
         self.representative_fragment_test
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *mut BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::representative_fragment_test`]
-    pub fn set_representative_fragment_test_raw(mut self, value: Bool32) -> Self {
+    pub fn set_representative_fragment_test_raw(&mut self, value: Bool32) -> &mut Self {
+        self.representative_fragment_test = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *mut BaseOutStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::representative_fragment_test`]
+    pub fn with_representative_fragment_test_raw(mut self, value: Bool32) -> Self {
         self.representative_fragment_test = value;
         self
     }
@@ -235,17 +245,32 @@ impl<'lt> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> &mut Self {
         self.p_next = value as *mut _;
         self
     }
     ///Sets the value of [`Self::representative_fragment_test`]
-    pub fn set_representative_fragment_test(mut self, value: bool) -> Self {
+    pub fn set_representative_fragment_test(&mut self, value: bool) -> &mut Self {
+        self.representative_fragment_test = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt mut crate::vulkan1_0::BaseOutStructure<'lt>) -> Self {
+        self.p_next = value as *mut _;
+        self
+    }
+    ///Sets the value of [`Self::representative_fragment_test`]
+    pub fn with_representative_fragment_test(mut self, value: bool) -> Self {
         self.representative_fragment_test = value as u8 as u32;
         self
     }
@@ -265,33 +290,33 @@ impl<'lt> PhysicalDeviceRepresentativeFragmentTestFeaturesNV<'lt> {
 ///    VkBool32           representativeFragmentTestEnable;
 ///} VkPipelineRepresentativeFragmentTestStateCreateInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`representative_fragment_test_enable`] controls whether the representative fragment test is
 ///   enabled.
-/// # Description
-/// If this structure is not included in the [`p_next`] chain,
-/// [`representative_fragment_test_enable`] is considered to be [`FALSE`],
-/// and the representative fragment test is disabled.If the active fragment shader does not specify
+///# Description
+///If this structure is not included in the [`p_next`] chain,
+///[`representative_fragment_test_enable`] is considered to be [`FALSE`],
+///and the representative fragment test is disabled.If the active fragment shader does not specify
 /// the `EarlyFragmentTests`
-/// execution mode, the representative fragment shader test has no effect, even
-/// if enabled.
-/// ## Valid Usage (Implicit)
+///execution mode, the representative fragment shader test has no effect, even
+///if enabled.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV`
-/// # Related
+///# Related
 /// - [`nv_representative_fragment_test`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRepresentativeFragmentTestStateCreateInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -327,12 +352,22 @@ impl<'lt> PipelineRepresentativeFragmentTestStateCreateInfoNV<'lt> {
         self.representative_fragment_test_enable
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value;
         self
     }
     ///Sets the raw value of [`Self::representative_fragment_test_enable`]
-    pub fn set_representative_fragment_test_enable_raw(mut self, value: Bool32) -> Self {
+    pub fn set_representative_fragment_test_enable_raw(&mut self, value: Bool32) -> &mut Self {
+        self.representative_fragment_test_enable = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::representative_fragment_test_enable`]
+    pub fn with_representative_fragment_test_enable_raw(mut self, value: Bool32) -> Self {
         self.representative_fragment_test_enable = value;
         self
     }
@@ -374,17 +409,32 @@ impl<'lt> PipelineRepresentativeFragmentTestStateCreateInfoNV<'lt> {
         }
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::representative_fragment_test_enable`]
-    pub fn set_representative_fragment_test_enable(mut self, value: bool) -> Self {
+    pub fn set_representative_fragment_test_enable(&mut self, value: bool) -> &mut Self {
+        self.representative_fragment_test_enable = value as u8 as u32;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::representative_fragment_test_enable`]
+    pub fn with_representative_fragment_test_enable(mut self, value: bool) -> Self {
         self.representative_fragment_test_enable = value as u8 as u32;
         self
     }

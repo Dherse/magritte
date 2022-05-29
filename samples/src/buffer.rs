@@ -28,9 +28,9 @@ where
         //  - the usage
         //  - the fact that this buffer will only get accessed from a single queue
         let buffer_info = BufferCreateInfo::default()
-            .set_size(size)
-            .set_usage(usage)
-            .set_sharing_mode(SharingMode::EXCLUSIVE);
+            .with_size(size)
+            .with_usage(usage)
+            .with_sharing_mode(SharingMode::EXCLUSIVE);
 
         let buffer = vulkan.allocator().create_buffer(
             &buffer_info,

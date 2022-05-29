@@ -61,7 +61,7 @@ impl PipelineCache {
         if path.exists() {
             let data = std::fs::read(path)?;
 
-            info = info.set_initial_data(unsafe { std::slice::from_raw_parts(data.as_ptr().cast(), data.len()) });
+            info = info.with_initial_data(unsafe { std::slice::from_raw_parts(data.as_ptr().cast(), data.len()) });
         }
 
         let (cache, _) = unsafe { vulkan.device().create_pipeline_cache(&info, None)? };

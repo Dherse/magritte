@@ -72,15 +72,15 @@ pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_QN
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkSurfaceKHR*                               pSurface);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is the instance to associate the surface with.
 /// - [`p_create_info`] is a pointer to a [`ScreenSurfaceCreateInfoQNX`] structure containing
 ///   parameters affecting the creation of the surface object.
 /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
 /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object is
 ///   returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ScreenSurfaceCreateInfoQNX`]
 ///   structure
@@ -88,23 +88,23 @@ pub const QNX_SCREEN_SURFACE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_QN
 ///   [`AllocationCallbacks`] structure
 /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`qnx_screen_surface`]
 /// - [`AllocationCallbacks`]
 /// - [`Instance`]
 /// - [`ScreenSurfaceCreateInfoQNX`]
 /// - [`SurfaceKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateScreenSurfaceQNX")]
 pub type FNCreateScreenSurfaceQnx = Option<
     for<'lt> unsafe extern "system" fn(
@@ -125,30 +125,30 @@ pub type FNCreateScreenSurfaceQnx = Option<
 ///    uint32_t                                    queueFamilyIndex,
 ///    struct _screen_window*                      window);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device.
 /// - [`queue_family_index`] is the queue family index.
 /// - [`window`] is the QNX Screen [`window`] object.
-/// # Description
-/// This platform-specific function  **can**  be called prior to creating a surface.
-/// ## Valid Usage
+///# Description
+///This platform-specific function  **can**  be called prior to creating a surface.
+///## Valid Usage
 /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
 ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`window`] **must**  be a valid pointer to a [`_screen_window`] value
-/// # Related
+///# Related
 /// - [`qnx_screen_surface`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceScreenPresentationSupportQNX")]
 pub type FNGetPhysicalDeviceScreenPresentationSupportQnx = Option<
     unsafe extern "system" fn(
@@ -163,17 +163,17 @@ pub type FNGetPhysicalDeviceScreenPresentationSupportQnx = Option<
 ///// Provided by VK_QNX_screen_surface
 ///typedef VkFlags VkScreenSurfaceCreateFlagsQNX;
 ///```
-/// # Related
+///# Related
 /// - [`qnx_screen_surface`]
 /// - [`ScreenSurfaceCreateInfoQNX`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -203,34 +203,34 @@ impl std::fmt::Debug for ScreenSurfaceCreateFlagsQNX {
 ///    struct _screen_window*           window;
 ///} VkScreenSurfaceCreateInfoQNX;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`context`] and [`window`] are QNX Screen [`context`] and [`window`] to associate the surface
 ///   with.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`context`] **must**  point to a valid QNX Screen `struct` _screen_context
 /// - [`window`] **must**  point to a valid QNX Screen `struct` _screen_window
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`qnx_screen_surface`]
 /// - [`ScreenSurfaceCreateFlagsQNX`]
 /// - [`StructureType`]
 /// - [`create_screen_surface_qnx`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkScreenSurfaceCreateInfoQNX")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -268,7 +268,12 @@ impl<'lt> ScreenSurfaceCreateInfoQNX<'lt> {
         self.p_next
     }
     ///Sets the raw value of [`Self::p_next`]
-    pub fn set_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next_raw(&mut self, value: *const BaseInStructure<'lt>) -> &mut Self {
+        self.p_next = value;
+        self
+    }
+    ///Sets the raw value of [`Self::p_next`]
+    pub fn with_p_next_raw(mut self, value: *const BaseInStructure<'lt>) -> Self {
         self.p_next = value;
         self
     }
@@ -318,27 +323,55 @@ impl<'lt> ScreenSurfaceCreateInfoQNX<'lt> {
         &mut *self.window
     }
     ///Sets the value of [`Self::s_type`]
-    pub fn set_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+    pub fn set_s_type(&mut self, value: crate::vulkan1_0::StructureType) -> &mut Self {
         self.s_type = value;
         self
     }
     ///Sets the value of [`Self::p_next`]
-    pub fn set_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+    pub fn set_p_next(&mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> &mut Self {
         self.p_next = value as *const _;
         self
     }
     ///Sets the value of [`Self::flags`]
-    pub fn set_flags(mut self, value: crate::extensions::qnx_screen_surface::ScreenSurfaceCreateFlagsQNX) -> Self {
+    pub fn set_flags(
+        &mut self,
+        value: crate::extensions::qnx_screen_surface::ScreenSurfaceCreateFlagsQNX,
+    ) -> &mut Self {
         self.flags = value;
         self
     }
     ///Sets the value of [`Self::context`]
-    pub fn set_context(mut self, value: *mut crate::native::_screen_context) -> Self {
+    pub fn set_context(&mut self, value: *mut crate::native::_screen_context) -> &mut Self {
         self.context = value;
         self
     }
     ///Sets the value of [`Self::window`]
-    pub fn set_window(mut self, value: *mut crate::native::_screen_window) -> Self {
+    pub fn set_window(&mut self, value: *mut crate::native::_screen_window) -> &mut Self {
+        self.window = value;
+        self
+    }
+    ///Sets the value of [`Self::s_type`]
+    pub fn with_s_type(mut self, value: crate::vulkan1_0::StructureType) -> Self {
+        self.s_type = value;
+        self
+    }
+    ///Sets the value of [`Self::p_next`]
+    pub fn with_p_next(mut self, value: &'lt crate::vulkan1_0::BaseInStructure<'lt>) -> Self {
+        self.p_next = value as *const _;
+        self
+    }
+    ///Sets the value of [`Self::flags`]
+    pub fn with_flags(mut self, value: crate::extensions::qnx_screen_surface::ScreenSurfaceCreateFlagsQNX) -> Self {
+        self.flags = value;
+        self
+    }
+    ///Sets the value of [`Self::context`]
+    pub fn with_context(mut self, value: *mut crate::native::_screen_context) -> Self {
+        self.context = value;
+        self
+    }
+    ///Sets the value of [`Self::window`]
+    pub fn with_window(mut self, value: *mut crate::native::_screen_window) -> Self {
         self.window = value;
         self
     }
@@ -355,15 +388,15 @@ impl Instance {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkSurfaceKHR*                               pSurface);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is the instance to associate the surface with.
     /// - [`p_create_info`] is a pointer to a [`ScreenSurfaceCreateInfoQNX`] structure containing
     ///   parameters affecting the creation of the surface object.
     /// - [`p_allocator`] is the allocator used for host memory allocated for the surface object when there is no more specific allocator available (see [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)).
     /// - [`p_surface`] is a pointer to a [`SurfaceKHR`] handle in which the created surface object
     ///   is returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`ScreenSurfaceCreateInfoQNX`]
     ///   structure
@@ -371,23 +404,23 @@ impl Instance {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_surface`] **must**  be a valid pointer to a [`SurfaceKHR`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`qnx_screen_surface`]
     /// - [`AllocationCallbacks`]
     /// - [`Instance`]
     /// - [`ScreenSurfaceCreateInfoQNX`]
     /// - [`SurfaceKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateScreenSurfaceQNX")]
     #[track_caller]
@@ -439,30 +472,30 @@ impl PhysicalDevice {
     ///    uint32_t                                    queueFamilyIndex,
     ///    struct _screen_window*                      window);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device.
     /// - [`queue_family_index`] is the queue family index.
     /// - [`window`] is the QNX Screen [`window`] object.
-    /// # Description
-    /// This platform-specific function  **can**  be called prior to creating a surface.
-    /// ## Valid Usage
+    ///# Description
+    ///This platform-specific function  **can**  be called prior to creating a surface.
+    ///## Valid Usage
     /// - [`queue_family_index`] **must**  be less than `pQueueFamilyPropertyCount` returned by
     ///   [`get_physical_device_queue_family_properties`] for the given [`physical_device`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`window`] **must**  be a valid pointer to a [`_screen_window`] value
-    /// # Related
+    ///# Related
     /// - [`qnx_screen_surface`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceScreenPresentationSupportQNX")]
     #[track_caller]
