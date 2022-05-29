@@ -1,6 +1,6 @@
 use std::slice::from_ref;
 
-use crate::{depth::Depth, surface::Surface, vulkan::Vulkan, render_target::RenderTarget};
+use crate::{depth::Depth, render_target::RenderTarget, surface::Surface, vulkan::Vulkan};
 use log::info;
 use magritte::{
     vulkan1_0::{
@@ -30,7 +30,13 @@ impl Drop for RenderPass {
 
 impl RenderPass {
     /// Creates the renderpass we will use in this demo
-    pub fn new(vulkan: &Vulkan, surface: &Surface, depth: &Depth, msaa: SampleCountFlagBits, msaa_images: Option<&SmallVec<RenderTarget>>) -> Result<Self, VulkanResultCodes> {
+    pub fn new(
+        vulkan: &Vulkan,
+        surface: &Surface,
+        depth: &Depth,
+        msaa: SampleCountFlagBits,
+        msaa_images: Option<&SmallVec<RenderTarget>>,
+    ) -> Result<Self, VulkanResultCodes> {
         let renderpass = Self::create_renderpass(vulkan, surface, msaa)?;
 
         info!("Created the renderpass: {:?}", renderpass.as_raw());
@@ -45,7 +51,12 @@ impl RenderPass {
         })
     }
 
-    pub fn resize(&mut self, surface: &Surface, depth: &Depth, msaa_images: Option<&SmallVec<RenderTarget>>) -> Result<(), VulkanResultCodes> {
+    pub fn resize(
+        &mut self,
+        surface: &Surface,
+        depth: &Depth,
+        msaa_images: Option<&SmallVec<RenderTarget>>,
+    ) -> Result<(), VulkanResultCodes> {
         self.framebuffers = Self::create_framebuffers(surface, depth, self.renderpass(), msaa_images)?;
 
         info!("Created {} framebuffers", self.framebuffers.len());
@@ -57,7 +68,7 @@ impl RenderPass {
         surface: &Surface,
         depth: &Depth,
         renderpass: &Unique<VkRenderPass>,
-        msaa_images: Option<&SmallVec<RenderTarget>>
+        msaa_images: Option<&SmallVec<RenderTarget>>,
     ) -> Result<SmallVec<Unique<Framebuffer>>, VulkanResultCodes> {
         surface
             .swapchain_image_views()
@@ -74,10 +85,7 @@ impl RenderPass {
                         view.as_raw_image_view(),
                     ]
                 } else {
-                    smallvec::smallvec![
-                        view.as_raw_image_view(), 
-                        depth.image_view().as_raw()
-                    ]
+                    smallvec::smallvec![view.as_raw_image_view(), depth.image_view().as_raw()]
                 };
 
                 let frame_buffer_create_info = FramebufferCreateInfo::default()
@@ -98,7 +106,11 @@ impl RenderPass {
             .collect::<Result<SmallVec<_>, _>>()
     }
 
-    fn create_renderpass(vulkan: &Vulkan, surface: &Surface, msaa: SampleCountFlagBits) -> Result<Unique<VkRenderPass>, VulkanResultCodes> {
+    fn create_renderpass(
+        vulkan: &Vulkan,
+        surface: &Surface,
+        msaa: SampleCountFlagBits,
+    ) -> Result<Unique<VkRenderPass>, VulkanResultCodes> {
         let renderpass_attachments: SmallVec<AttachmentDescription> = if msaa.bits() > 1 {
             smallvec::smallvec![
                 AttachmentDescription {

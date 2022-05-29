@@ -216,17 +216,17 @@ pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///// Provided by VK_KHR_synchronization2
 ///typedef uint64_t VkFlags64;
 ///```
-///# Related
+/// # Related
 /// - [`khr_synchronization2`]
 /// - [`Flags`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFlags64")]
 pub type Flags64 = u64;
 ///[vkGetQueueCheckpointData2NV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetQueueCheckpointData2NV.html) - Retrieve diagnostic checkpoint data
@@ -244,43 +244,43 @@ pub type Flags64 = u64;
 ///    uint32_t*                                   pCheckpointDataCount,
 ///    VkCheckpointData2NV*                        pCheckpointData);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
 /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
 ///   markers available or queried, as described below.
 /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointData2NV`]
 ///   structures.
-///# Description
-///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
-///available is returned in [`p_checkpoint_data_count`].
-///Otherwise, [`p_checkpoint_data_count`] **must**  point to a variable set by the
-///user to the number of elements in the [`p_checkpoint_data`] array, and on
-///return the variable is overwritten with the number of structures actually
-///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+/// # Description
+/// If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+/// available is returned in [`p_checkpoint_data_count`].
+/// Otherwise, [`p_checkpoint_data_count`] **must**  point to a variable set by the
+/// user to the number of elements in the [`p_checkpoint_data`] array, and on
+/// return the variable is overwritten with the number of structures actually
+/// written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
 /// checkpoint markers
-///available, at most [`p_checkpoint_data_count`] structures will be written.
-///## Valid Usage
+/// available, at most [`p_checkpoint_data_count`] structures will be written.
+/// ## Valid Usage
 /// - The device that [`queue`] belongs to  **must**  be in the lost state
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and [`p_checkpoint_data`]
 ///   is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of
 ///   [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
-///# Related
+/// # Related
 /// - [`khr_synchronization2`]
 /// - [`nv_device_diagnostic_checkpoints`]
 /// - [`CheckpointData2NV`]
 /// - [`Queue`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetQueueCheckpointData2NV")]
 pub type FNGetQueueCheckpointData2Nv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -301,28 +301,28 @@ pub type FNGetQueueCheckpointData2Nv = Option<
 ///    VkDeviceSize                                dstOffset,
 ///    uint32_t                                    marker);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`stage`] specifies the pipeline stage whose completion triggers the marker write.
 /// - [`dst_buffer`] is the buffer where the marker will be written.
 /// - [`dst_offset`] is the byte offset into the buffer where the marker will be written.
 /// - [`marker`] is the 32-bit value of the marker.
-///# Description
-///The command will write the 32-bit marker value into the buffer only after
-///all preceding commands have finished executing up to at least the specified
-///pipeline stage.
-///This includes the completion of other preceding
-///[`cmd_write_buffer_marker2_amd`] commands so long as their specified
-///pipeline stages occur either at the same time or earlier than this command’s
-///specified [`stage`].While consecutive buffer marker writes with the same [`stage`] parameter
-///implicitly complete in submission order, memory and execution dependencies
-///between buffer marker writes and other operations  **must**  still be explicitly
-///ordered using synchronization commands.
-///The access scope for buffer marker writes falls under the
-///`VK_ACCESS_TRANSFER_WRITE_BIT`, and the pipeline stages for identifying
-///the synchronization scope  **must**  include both [`stage`] and
-///`VK_PIPELINE_STAGE_TRANSFER_BIT`.
-///## Valid Usage
+/// # Description
+/// The command will write the 32-bit marker value into the buffer only after
+/// all preceding commands have finished executing up to at least the specified
+/// pipeline stage.
+/// This includes the completion of other preceding
+/// [`cmd_write_buffer_marker2_amd`] commands so long as their specified
+/// pipeline stages occur either at the same time or earlier than this command’s
+/// specified [`stage`].While consecutive buffer marker writes with the same [`stage`] parameter
+/// implicitly complete in submission order, memory and execution dependencies
+/// between buffer marker writes and other operations  **must**  still be explicitly
+/// ordered using synchronization commands.
+/// The access scope for buffer marker writes falls under the
+/// `VK_ACCESS_TRANSFER_WRITE_BIT`, and the pipeline stages for identifying
+/// the synchronization scope  **must**  include both [`stage`] and
+/// `VK_PIPELINE_STAGE_TRANSFER_BIT`.
+/// ## Valid Usage
 /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
 ///   feature is not enabled, [`stage`] **must**  not contain
 ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -366,7 +366,7 @@ pub type FNGetQueueCheckpointData2Nv = Option<
 ///   single [`DeviceMemory`] object
 /// - [`dst_offset`] **must**  be a multiple of `4`
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 /// - [`dst_buffer`] **must**  be a valid [`Buffer`] handle
@@ -376,13 +376,13 @@ pub type FNGetQueueCheckpointData2Nv = Option<
 /// - Both of [`command_buffer`], and [`dst_buffer`] **must**  have been created, allocated, or
 ///   retrieved from the same [`Device`]
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`amd_buffer_marker`]
 /// - [`khr_synchronization2`]
 /// - [`Buffer`]
@@ -390,13 +390,13 @@ pub type FNGetQueueCheckpointData2Nv = Option<
 /// - [`DeviceSize`]
 /// - [`PipelineStageFlags2`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdWriteBufferMarker2AMD")]
 pub type FNCmdWriteBufferMarker2Amd = Option<
     unsafe extern "system" fn(
@@ -418,30 +418,30 @@ pub type FNCmdWriteBufferMarker2Amd = Option<
 ///    VkPipelineStageFlags2    checkpointExecutionStageMask;
 ///} VkQueueFamilyCheckpointProperties2NV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`checkpoint_execution_stage_mask`] is a mask indicating which pipeline stages the
 ///   implementation can execute checkpoint markers in.
-///# Description
-///Additional queue family information can be queried by setting
-///[`QueueFamilyProperties2`]::[`p_next`] to point to a
-///[`QueueFamilyCheckpointProperties2NV`] structure.
-///## Valid Usage (Implicit)
+/// # Description
+/// Additional queue family information can be queried by setting
+/// [`QueueFamilyProperties2`]::[`p_next`] to point to a
+/// [`QueueFamilyCheckpointProperties2NV`] structure.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
-///# Related
+/// # Related
 /// - [`khr_synchronization2`]
 /// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointProperties2NV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -555,33 +555,33 @@ impl<'lt> QueueFamilyCheckpointProperties2NV<'lt> {
 ///    void*                    pCheckpointMarker;
 ///} VkCheckpointData2NV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`stage`] indicates a single pipeline stage which the checkpoint marker data refers to.
 /// - [`checkpoint_marker`] contains the value of the last checkpoint marker executed in the stage
 ///   that [`stage`] refers to.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_2_NV`
 /// - [`p_next`] **must**  be `NULL`
-///The stages at which a checkpoint marker  **can**  be executed are
-///implementation-defined and  **can**  be queried by calling
-///[`get_physical_device_queue_family_properties2`].
-///# Related
+/// The stages at which a checkpoint marker  **can**  be executed are
+/// implementation-defined and  **can**  be queried by calling
+/// [`get_physical_device_queue_family_properties2`].
+/// # Related
 /// - [`khr_synchronization2`]
 /// - [`nv_device_diagnostic_checkpoints`]
 /// - [`PipelineStageFlags2`]
 /// - [`StructureType`]
 /// - [`get_queue_checkpoint_data2_nv`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointData2NV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -741,43 +741,43 @@ impl Queue {
     ///    uint32_t*                                   pCheckpointDataCount,
     ///    VkCheckpointData2NV*                        pCheckpointData);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`queue`] is the [`Queue`] object the caller would like to retrieve checkpoint data for
     /// - [`p_checkpoint_data_count`] is a pointer to an integer related to the number of checkpoint
     ///   markers available or queried, as described below.
     /// - [`p_checkpoint_data`] is either `NULL` or a pointer to an array of [`CheckpointData2NV`]
     ///   structures.
-    ///# Description
-    ///If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
-    ///available is returned in [`p_checkpoint_data_count`].
-    ///Otherwise, [`p_checkpoint_data_count`] **must**  point to a variable set by the
-    ///user to the number of elements in the [`p_checkpoint_data`] array, and on
-    ///return the variable is overwritten with the number of structures actually
-    ///written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
+    /// # Description
+    /// If [`p_checkpoint_data`] is `NULL`, then the number of checkpoint markers
+    /// available is returned in [`p_checkpoint_data_count`].
+    /// Otherwise, [`p_checkpoint_data_count`] **must**  point to a variable set by the
+    /// user to the number of elements in the [`p_checkpoint_data`] array, and on
+    /// return the variable is overwritten with the number of structures actually
+    /// written to [`p_checkpoint_data`].If [`p_checkpoint_data_count`] is less than the number of
     /// checkpoint markers
-    ///available, at most [`p_checkpoint_data_count`] structures will be written.
-    ///## Valid Usage
+    /// available, at most [`p_checkpoint_data_count`] structures will be written.
+    /// ## Valid Usage
     /// - The device that [`queue`] belongs to  **must**  be in the lost state
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`p_checkpoint_data_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_checkpoint_data_count`] is not `0`, and
     ///   [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to
     ///   an array of [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
-    ///# Related
+    /// # Related
     /// - [`khr_synchronization2`]
     /// - [`nv_device_diagnostic_checkpoints`]
     /// - [`CheckpointData2NV`]
     /// - [`Queue`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetQueueCheckpointData2NV")]
     #[track_caller]
@@ -831,28 +831,28 @@ impl CommandBuffer {
     ///    VkDeviceSize                                dstOffset,
     ///    uint32_t                                    marker);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`stage`] specifies the pipeline stage whose completion triggers the marker write.
     /// - [`dst_buffer`] is the buffer where the marker will be written.
     /// - [`dst_offset`] is the byte offset into the buffer where the marker will be written.
     /// - [`marker`] is the 32-bit value of the marker.
-    ///# Description
-    ///The command will write the 32-bit marker value into the buffer only after
-    ///all preceding commands have finished executing up to at least the specified
-    ///pipeline stage.
-    ///This includes the completion of other preceding
-    ///[`cmd_write_buffer_marker2_amd`] commands so long as their specified
-    ///pipeline stages occur either at the same time or earlier than this command’s
-    ///specified [`stage`].While consecutive buffer marker writes with the same [`stage`] parameter
-    ///implicitly complete in submission order, memory and execution dependencies
-    ///between buffer marker writes and other operations  **must**  still be explicitly
-    ///ordered using synchronization commands.
-    ///The access scope for buffer marker writes falls under the
-    ///`VK_ACCESS_TRANSFER_WRITE_BIT`, and the pipeline stages for identifying
-    ///the synchronization scope  **must**  include both [`stage`] and
-    ///`VK_PIPELINE_STAGE_TRANSFER_BIT`.
-    ///## Valid Usage
+    /// # Description
+    /// The command will write the 32-bit marker value into the buffer only after
+    /// all preceding commands have finished executing up to at least the specified
+    /// pipeline stage.
+    /// This includes the completion of other preceding
+    /// [`cmd_write_buffer_marker2_amd`] commands so long as their specified
+    /// pipeline stages occur either at the same time or earlier than this command’s
+    /// specified [`stage`].While consecutive buffer marker writes with the same [`stage`] parameter
+    /// implicitly complete in submission order, memory and execution dependencies
+    /// between buffer marker writes and other operations  **must**  still be explicitly
+    /// ordered using synchronization commands.
+    /// The access scope for buffer marker writes falls under the
+    /// `VK_ACCESS_TRANSFER_WRITE_BIT`, and the pipeline stages for identifying
+    /// the synchronization scope  **must**  include both [`stage`] and
+    /// `VK_PIPELINE_STAGE_TRANSFER_BIT`.
+    /// ## Valid Usage
     /// - If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-geometryShader)
     ///   feature is not enabled, [`stage`] **must**  not contain
     ///   `VK_PIPELINE_STAGE_2_GEOMETRY_SHADER_BIT`
@@ -896,7 +896,7 @@ impl CommandBuffer {
     ///   a single [`DeviceMemory`] object
     /// - [`dst_offset`] **must**  be a multiple of `4`
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`stage`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
     /// - [`dst_buffer`] **must**  be a valid [`Buffer`] handle
@@ -906,13 +906,13 @@ impl CommandBuffer {
     /// - Both of [`command_buffer`], and [`dst_buffer`] **must**  have been created, allocated, or
     ///   retrieved from the same [`Device`]
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`amd_buffer_marker`]
     /// - [`khr_synchronization2`]
     /// - [`Buffer`]
@@ -920,13 +920,13 @@ impl CommandBuffer {
     /// - [`DeviceSize`]
     /// - [`PipelineStageFlags2`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdWriteBufferMarker2AMD")]
     #[track_caller]

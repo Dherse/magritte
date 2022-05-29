@@ -1,4 +1,4 @@
-use std::{error::Error, sync::Arc, io};
+use std::{error::Error, io, sync::Arc};
 
 use log::{debug, error, info, trace, Level};
 use magritte::{
@@ -181,21 +181,15 @@ impl Vulkan {
         info!("We have {} physical devices", physical_devices.len());
         let mut family_indices = Vec::with_capacity(physical_devices.len());
         for (i, device) in physical_devices.iter().enumerate() {
-            let families = unsafe {
-                device.get_physical_device_queue_family_properties(None)
-            };
+            let families = unsafe { device.get_physical_device_queue_family_properties(None) };
 
-            let family = families
-                .iter()
-                .enumerate()
-                .find_map(|(index, info)| {
-                    let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::GRAPHICS)
-                        && unsafe { device
-                            .get_physical_device_surface_support_khr(Some(index as u32), surface.as_raw()) }
-                            .unwrap();
+            let family = families.iter().enumerate().find_map(|(index, info)| {
+                let supports_graphics_and_surface = info.queue_flags().contains(QueueFlags::GRAPHICS)
+                    && unsafe { device.get_physical_device_surface_support_khr(Some(index as u32), surface.as_raw()) }
+                        .unwrap();
 
-                    supports_graphics_and_surface.then(|| (index as u32, *info))
-                });
+                supports_graphics_and_surface.then(|| (index as u32, *info))
+            });
 
             family_indices.push(family);
 
@@ -203,14 +197,15 @@ impl Vulkan {
                 "{}. {}, supports surface? {}{}",
                 i,
                 unsafe {
-                    device.get_physical_device_properties().device_name().as_cstr().to_str().expect("invalid UTF-8 character")
+                    device
+                        .get_physical_device_properties()
+                        .device_name()
+                        .as_cstr()
+                        .to_str()
+                        .expect("invalid UTF-8 character")
                 },
-                if family.is_some() {
-                    "yes"
-                } else {
-                    "no"
-                },
-                if i == device_index { "(selected)" } else { ""}
+                if family.is_some() { "yes" } else { "no" },
+                if i == device_index { "(selected)" } else { "" }
             );
         }
 
@@ -219,7 +214,8 @@ impl Vulkan {
             return Err(Box::new(io::Error::other("device index out of bounds")) as Box<dyn Error>);
         }
 
-        let (physical_device, queue_family_index) = if let Some((family_index, _)) = family_indices.remove(device_index) {
+        let (physical_device, queue_family_index) = if let Some((family_index, _)) = family_indices.remove(device_index)
+        {
             (physical_devices[device_index].clone(), family_index)
         } else {
             error!("Device does not support surface");

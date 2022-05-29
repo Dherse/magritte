@@ -141,9 +141,7 @@ impl Pipeline {
             .with_polygon_mode(PolygonMode::FILL);
 
         // We don't do multisampling
-        let multisample_state_info =
-            PipelineMultisampleStateCreateInfo::default()
-                .with_rasterization_samples(msaa);
+        let multisample_state_info = PipelineMultisampleStateCreateInfo::default().with_rasterization_samples(msaa);
 
         // We don't care about the stencil, we create a NOOP stencil state.
         let depth_stencil_state = StencilOpState::default()

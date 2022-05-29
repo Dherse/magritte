@@ -58,16 +58,16 @@
 //!With unextended Vulkan, one could have a conventional instanced geometry
 //!shader that looks something like the following:
 //!```c
-//!layout(invocations = 6) in;     // separate invocation per face
-//!layout(triangles) in;
-//!layout(triangle_strip) out;
-//!layout(max_vertices = 3) out;
+//! layout(invocations = 6) in;     // separate invocation per face
+//! layout(triangles) in;
+//! layout(triangle_strip) out;
+//! layout(max_vertices = 3) out;
 //!
-//!in Inputs {
-//!vec2 texcoord;
-//!vec3 normal;
-//!vec4 baseColor;
-//!} v[];
+//! in Inputs {
+//! vec2 texcoord;
+//! vec3 normal;
+//! vec4 baseColor;
+//! } v[];
 //!
 //!    out Outputs {
 //!    vec2 texcoord;
@@ -100,24 +100,24 @@
 //!        baseColor = v[i].baseColor;
 //!        EmitVertex();
 //!    }
-//!}
-//!```
+//! }
+//! ```
 //!With passthrough geometry shaders, this can be done using a much simpler
 //!shader:
 //!```c
-//!layout(triangles) in;
-//!layout(passthrough) in Inputs {
+//! layout(triangles) in;
+//! layout(passthrough) in Inputs {
 //!    vec2 texcoord;
 //!    vec3 normal;
 //!    vec4 baseColor;
-//!}
-//!layout(passthrough) in gl_PerVertex {
+//! }
+//! layout(passthrough) in gl_PerVertex {
 //!    vec4 gl_Position;
-//!} gl_in[];
-//!layout(viewport_relative) out int gl_Layer;
+//! } gl_in[];
+//! layout(viewport_relative) out int gl_Layer;
 //!
-//!void main()
-//!{
+//! void main()
+//! {
 //!    // Figure out which faces the primitive projects onto and
 //!    // generate a corresponding viewport mask.
 //!    uint mask = 0;
@@ -128,8 +128,8 @@
 //!    }
 //!    gl_ViewportMask = mask;
 //!    gl_Layer = 0;
-//!}
-//!```
+//! }
+//! ```
 //!The application code is set up so that each of the six cube faces has a
 //!separate viewport (numbered 0 to 5).
 //!Each face also has a separate swizzle, programmed via the
@@ -224,19 +224,19 @@ pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_N
 ///    VK_VIEWPORT_COORDINATE_SWIZZLE_NEGATIVE_W_NV = 7,
 ///} VkViewportCoordinateSwizzleNV;
 ///```
-///# Description
-///These values are described in detail in [Viewport Swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport-swizzle).
-///# Related
+/// # Description
+/// These values are described in detail in [Viewport Swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport-swizzle).
+/// # Related
 /// - [`nv_viewport_swizzle`]
 /// - [`ViewportSwizzleNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkViewportCoordinateSwizzleNV")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -318,17 +318,17 @@ impl std::fmt::Debug for ViewportCoordinateSwizzleNV {
 ///// Provided by VK_NV_viewport_swizzle
 ///typedef VkFlags VkPipelineViewportSwizzleStateCreateFlagsNV;
 ///```
-///# Related
+/// # Related
 /// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateInfoNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -357,7 +357,7 @@ impl std::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
 ///    VkViewportCoordinateSwizzleNV    w;
 ///} VkViewportSwizzleNV;
 ///```
-///# Members
+/// # Members
 /// - [`x`] is a [`ViewportCoordinateSwizzleNV`] value specifying the swizzle operation to apply to
 ///   the x component of the primitive
 /// - [`y`] is a [`ViewportCoordinateSwizzleNV`] value specifying the swizzle operation to apply to
@@ -366,24 +366,24 @@ impl std::fmt::Debug for PipelineViewportSwizzleStateCreateFlagsNV {
 ///   the z component of the primitive
 /// - [`w`] is a [`ViewportCoordinateSwizzleNV`] value specifying the swizzle operation to apply to
 ///   the w component of the primitive
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`x`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 /// - [`y`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 /// - [`z`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 /// - [`w`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
-///# Related
+/// # Related
 /// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateInfoNV`]
 /// - [`ViewportCoordinateSwizzleNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkViewportSwizzleNV")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -502,37 +502,37 @@ impl ViewportSwizzleNV {
 ///    const VkViewportSwizzleNV*                     pViewportSwizzles;
 ///} VkPipelineViewportSwizzleStateCreateInfoNV;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is reserved for future use.
 /// - [`viewport_count`] is the number of viewport swizzles used by the pipeline.
 /// - [`viewport_swizzles`] is a pointer to an array of [`ViewportSwizzleNV`] structures, defining
 ///   the viewport swizzles.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`viewport_count`] **must**  be greater than or equal to the [`viewport_count`] set in
 ///   [`PipelineViewportStateCreateInfo`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
 /// - [`flags`] **must**  be `0`
 /// - [`viewport_swizzles`] **must**  be a valid pointer to an array of [`viewport_count`] valid
 ///   [`ViewportSwizzleNV`] structures
 /// - [`viewport_count`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`nv_viewport_swizzle`]
 /// - [`PipelineViewportSwizzleStateCreateFlagsNV`]
 /// - [`StructureType`]
 /// - [`ViewportSwizzleNV`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportSwizzleStateCreateInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

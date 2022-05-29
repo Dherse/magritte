@@ -80,7 +80,7 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///    uint32_t                                    firstInstance,
 ///    uint32_t                                    stride);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`draw_count`] is the number of draws to execute, and  **can**  be zero.
 /// - [`p_vertex_info`] is a pointer to an array of [`MultiDrawInfoEXT`] with vertex information to
@@ -88,13 +88,13 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 /// - [`instance_count`] is the number of instances to draw.
 /// - [`first_instance`] is the instance ID of the first instance to draw.
 /// - [`stride`] is the byte stride between consecutive elements of [`p_vertex_info`].
-///# Description
-///[`draw_count`] draws are executed with parameters taken from
-///[`p_vertex_info`].
-///The number of draw commands recorded is [`draw_count`], with each command
-///reading, sequentially, a `firstVertex` and a `vertexCount` from
-///[`p_vertex_info`].
-///## Valid Usage
+/// # Description
+/// [`draw_count`] draws are executed with parameters taken from
+/// [`p_vertex_info`].
+/// The number of draw commands recorded is [`draw_count`], with each command
+/// reading, sequentially, a `firstVertex` and a `vertexCount` from
+/// [`p_vertex_info`].
+/// ## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -481,31 +481,31 @@ pub const EXT_MULTI_DRAW_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_mu
 ///   memory containing one or more valid instances of [`MultiDrawInfoEXT`] structures
 /// - [`stride`] must be a multiple of 4
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`CommandBuffer`]
 /// - [`MultiDrawInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawMultiEXT")]
 pub type FNCmdDrawMultiExt = Option<
     unsafe extern "system" fn(
@@ -532,7 +532,7 @@ pub type FNCmdDrawMultiExt = Option<
 ///    uint32_t                                    stride,
 ///    const int32_t*                              pVertexOffset);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`draw_count`] is the number of draws to execute, and  **can**  be zero.
 /// - [`p_index_info`] is a pointer to an array of [`MultiDrawIndexedInfoEXT`] with index
@@ -543,16 +543,16 @@ pub type FNCmdDrawMultiExt = Option<
 /// - [`p_vertex_offset`] is `NULL` or a pointer to the value added to the vertex index before
 ///   indexing into the vertex buffer. When specified, [`MultiDrawIndexedInfoEXT`]`::offset` is
 ///   ignored.
-///# Description
-///[`draw_count`] indexed draws are executed with parameters taken from
-///[`p_index_info`].
-///The number of draw commands recorded is [`draw_count`], with each command
-///reading, sequentially, a `firstIndex` and an `indexCount` from
-///[`p_index_info`].
-///If [`p_vertex_offset`] is `NULL`, a `vertexOffset` is also read from
-///[`p_index_info`], otherwise the value from dereferencing [`p_vertex_offset`]
-///is used.
-///## Valid Usage
+/// # Description
+/// [`draw_count`] indexed draws are executed with parameters taken from
+/// [`p_index_info`].
+/// The number of draw commands recorded is [`draw_count`], with each command
+/// reading, sequentially, a `firstIndex` and an `indexCount` from
+/// [`p_index_info`].
+/// If [`p_vertex_offset`] is `NULL`, a `vertexOffset` is also read from
+/// [`p_index_info`], otherwise the value from dereferencing [`p_vertex_offset`]
+/// is used.
+/// ## Valid Usage
 /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
 ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
 ///   command, then the image view’s [format features]() **must**  contain
@@ -943,7 +943,7 @@ pub type FNCmdDrawMultiExt = Option<
 ///   memory containing one or more valid instances of [`MultiDrawIndexedInfoEXT`] structures
 /// - [`stride`] must be a multiple of 4
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - If [`p_vertex_offset`] is not `NULL`, [`p_vertex_offset`] **must**  be a valid pointer to a
 ///   valid `int32_t` value
@@ -952,24 +952,24 @@ pub type FNCmdDrawMultiExt = Option<
 ///   operations
 /// - This command  **must**  only be called inside of a render pass instance
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`CommandBuffer`]
 /// - [`MultiDrawIndexedInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdDrawMultiIndexedEXT")]
 pub type FNCmdDrawMultiIndexedExt = Option<
     unsafe extern "system" fn(
@@ -992,23 +992,23 @@ pub type FNCmdDrawMultiIndexedExt = Option<
 ///    uint32_t    vertexCount;
 ///} VkMultiDrawInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`first_vertex`] is the first vertex to draw.
 /// - [`vertex_count`] is the number of vertices to draw.
-///# Description
-///The members of [`MultiDrawInfoEXT`] have the same meaning as the
-///[`first_vertex`] and [`vertex_count`] parameters in [`cmd_draw`].
-///# Related
+/// # Description
+/// The members of [`MultiDrawInfoEXT`] have the same meaning as the
+/// [`first_vertex`] and [`vertex_count`] parameters in [`cmd_draw`].
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`cmd_draw_multi_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultiDrawInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1076,27 +1076,27 @@ impl MultiDrawInfoEXT {
 ///    int32_t     vertexOffset;
 ///} VkMultiDrawIndexedInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`first_index`] is the first index to draw.
 /// - [`index_count`] is the number of vertices to draw.
 /// - [`vertex_offset`] is the value added to the vertex index before indexing into the vertex
 ///   buffer for indexed multidraws.
-///# Description
-///The [`first_index`], [`index_count`], and [`vertex_offset`] members of
-///[`MultiDrawIndexedInfoEXT`] have the same meaning as the
-///[`first_index`], [`index_count`], and [`vertex_offset`] parameters,
-///respectively, of [`cmd_draw_indexed`].
-///# Related
+/// # Description
+/// The [`first_index`], [`index_count`], and [`vertex_offset`] members of
+/// [`MultiDrawIndexedInfoEXT`] have the same meaning as the
+/// [`first_index`], [`index_count`], and [`vertex_offset`] parameters,
+/// respectively, of [`cmd_draw_indexed`].
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`cmd_draw_multi_indexed_ext`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultiDrawIndexedInfoEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1186,30 +1186,30 @@ impl MultiDrawIndexedInfoEXT {
 ///    uint32_t           maxMultiDrawCount;
 ///} VkPhysicalDeviceMultiDrawPropertiesEXT;
 ///```
-///# Members
-///The members of the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure
-///describe the following features:
-///# Description
+/// # Members
+/// The members of the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure
+/// describe the following features:
+/// # Description
 /// - [`max_multi_draw_count`] indicates the maximum number of draw calls which  **can**  be batched
 ///   into a single multidraw.
-///If the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure is included in the [`p_next`] chain of
+/// If the [`PhysicalDeviceMultiDrawPropertiesEXT`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiDrawPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1322,35 +1322,35 @@ impl<'lt> PhysicalDeviceMultiDrawPropertiesEXT<'lt> {
 ///    VkBool32           multiDraw;
 ///} VkPhysicalDeviceMultiDrawFeaturesEXT;
 ///```
-///# Members
-///The members of the [`PhysicalDeviceMultiDrawFeaturesEXT`] structure
-///describe the following features:
-///# Description
+/// # Members
+/// The members of the [`PhysicalDeviceMultiDrawFeaturesEXT`] structure
+/// describe the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`multi_draw`] indicates that the implementation supports [`cmd_draw_multi_ext`] and
 ///   [`cmd_draw_multi_indexed_ext`].
-///If the [`PhysicalDeviceMultiDrawFeaturesEXT`] structure is included in the [`p_next`] chain of
+/// If the [`PhysicalDeviceMultiDrawFeaturesEXT`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceMultiDrawFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceMultiDrawFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`ext_multi_draw`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiDrawFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1495,7 +1495,7 @@ impl CommandBuffer {
     ///    uint32_t                                    firstInstance,
     ///    uint32_t                                    stride);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`draw_count`] is the number of draws to execute, and  **can**  be zero.
     /// - [`p_vertex_info`] is a pointer to an array of [`MultiDrawInfoEXT`] with vertex information
@@ -1503,13 +1503,13 @@ impl CommandBuffer {
     /// - [`instance_count`] is the number of instances to draw.
     /// - [`first_instance`] is the instance ID of the first instance to draw.
     /// - [`stride`] is the byte stride between consecutive elements of [`p_vertex_info`].
-    ///# Description
-    ///[`draw_count`] draws are executed with parameters taken from
-    ///[`p_vertex_info`].
-    ///The number of draw commands recorded is [`draw_count`], with each command
-    ///reading, sequentially, a `firstVertex` and a `vertexCount` from
-    ///[`p_vertex_info`].
-    ///## Valid Usage
+    /// # Description
+    /// [`draw_count`] draws are executed with parameters taken from
+    /// [`p_vertex_info`].
+    /// The number of draw commands recorded is [`draw_count`], with each command
+    /// reading, sequentially, a `firstVertex` and a `vertexCount` from
+    /// [`p_vertex_info`].
+    /// ## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -1910,31 +1910,31 @@ impl CommandBuffer {
     ///   memory containing one or more valid instances of [`MultiDrawInfoEXT`] structures
     /// - [`stride`] must be a multiple of 4
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     /// - This command  **must**  only be called inside of a render pass instance
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`ext_multi_draw`]
     /// - [`CommandBuffer`]
     /// - [`MultiDrawInfoEXT`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDrawMultiEXT")]
     #[track_caller]
@@ -1988,7 +1988,7 @@ impl CommandBuffer {
     ///    uint32_t                                    stride,
     ///    const int32_t*                              pVertexOffset);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`draw_count`] is the number of draws to execute, and  **can**  be zero.
     /// - [`p_index_info`] is a pointer to an array of [`MultiDrawIndexedInfoEXT`] with index
@@ -1999,16 +1999,16 @@ impl CommandBuffer {
     /// - [`p_vertex_offset`] is `NULL` or a pointer to the value added to the vertex index before
     ///   indexing into the vertex buffer. When specified, [`MultiDrawIndexedInfoEXT`]`::offset` is
     ///   ignored.
-    ///# Description
-    ///[`draw_count`] indexed draws are executed with parameters taken from
-    ///[`p_index_info`].
-    ///The number of draw commands recorded is [`draw_count`], with each command
-    ///reading, sequentially, a `firstIndex` and an `indexCount` from
-    ///[`p_index_info`].
-    ///If [`p_vertex_offset`] is `NULL`, a `vertexOffset` is also read from
-    ///[`p_index_info`], otherwise the value from dereferencing [`p_vertex_offset`]
-    ///is used.
-    ///## Valid Usage
+    /// # Description
+    /// [`draw_count`] indexed draws are executed with parameters taken from
+    /// [`p_index_info`].
+    /// The number of draw commands recorded is [`draw_count`], with each command
+    /// reading, sequentially, a `firstIndex` and an `indexCount` from
+    /// [`p_index_info`].
+    /// If [`p_vertex_offset`] is `NULL`, a `vertexOffset` is also read from
+    /// [`p_index_info`], otherwise the value from dereferencing [`p_vertex_offset`]
+    /// is used.
+    /// ## Valid Usage
     /// - If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and
     ///   `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this
     ///   command, then the image view’s [format features]() **must**  contain
@@ -2413,7 +2413,7 @@ impl CommandBuffer {
     ///   memory containing one or more valid instances of [`MultiDrawIndexedInfoEXT`] structures
     /// - [`stride`] must be a multiple of 4
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - If [`p_vertex_offset`] is not `NULL`, [`p_vertex_offset`] **must**  be a valid pointer to
     ///   a valid `int32_t` value
@@ -2422,24 +2422,24 @@ impl CommandBuffer {
     ///   operations
     /// - This command  **must**  only be called inside of a render pass instance
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`ext_multi_draw`]
     /// - [`CommandBuffer`]
     /// - [`MultiDrawIndexedInfoEXT`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdDrawMultiIndexedEXT")]
     #[track_caller]

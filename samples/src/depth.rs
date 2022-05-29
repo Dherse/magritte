@@ -28,7 +28,12 @@ pub struct Depth {
 impl Depth {
     /// Creates a new depth buffer
     #[inline]
-    pub fn new(vulkan: &Vulkan, commands: &Commands, surface: &Surface, msaa: SampleCountFlagBits) -> Result<Self, VulkanResultCodes> {
+    pub fn new(
+        vulkan: &Vulkan,
+        commands: &Commands,
+        surface: &Surface,
+        msaa: SampleCountFlagBits,
+    ) -> Result<Self, VulkanResultCodes> {
         let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface, msaa)?;
 
         Ok(Self {
@@ -40,7 +45,13 @@ impl Depth {
 
     /// Sizes the depth image
     #[inline]
-    pub fn resize(&mut self, vulkan: &Vulkan, commands: &Commands, surface: &Surface, msaa: SampleCountFlagBits) -> Result<(), VulkanResultCodes> {
+    pub fn resize(
+        &mut self,
+        vulkan: &Vulkan,
+        commands: &Commands,
+        surface: &Surface,
+        msaa: SampleCountFlagBits,
+    ) -> Result<(), VulkanResultCodes> {
         let (image, image_view, image_memory) = Self::create_new_image_view_memory(vulkan, commands, surface, msaa)?;
 
         self.image_view = image_view;
@@ -72,7 +83,7 @@ impl Depth {
         vulkan: &Vulkan,
         commands: &Commands,
         surface: &Surface,
-        msaa: SampleCountFlagBits
+        msaa: SampleCountFlagBits,
     ) -> Result<(Unique<Image>, Unique<ImageView>, Unique<DeviceMemory>), VulkanResultCodes> {
         // First we get the memory properties, we will use this when allocating our image
         let memory_properties = unsafe { vulkan.physical_device().get_physical_device_memory_properties() };

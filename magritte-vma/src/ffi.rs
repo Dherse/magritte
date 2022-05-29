@@ -667,7 +667,7 @@ pub struct AllocationInfo {
     ///
     /// It never changes.
     pub memory_type: u32,
-    
+
     /// Handle to Vulkan memory object.
     ///
     /// Same memory object can be shared by multiple allocations.

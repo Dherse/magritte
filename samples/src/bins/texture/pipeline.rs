@@ -88,7 +88,7 @@ impl Pipeline {
         // We define the topology of our primitives, in this case a list of triangles.
         // This structure is very powerful and can be use for a lot more.
         let vertex_input_assembly_state_info =
-            PipelineInputAssemblyStateCreateInfo::default()with_topology(PrimitiveTopology::TRIANGLE_LIST);
+            PipelineInputAssemblyStateCreateInfo::default().with_topology(PrimitiveTopology::TRIANGLE_LIST);
 
         // We define the viewport we will use.
         let viewport = Viewport {
@@ -122,7 +122,7 @@ impl Pipeline {
 
         // We don't do multisampling
         let multisample_state_info =
-            PipelineMultisampleStateCreateInfo::default()with_rasterization_samples(SampleCountFlagBits::_1);
+            PipelineMultisampleStateCreateInfo::default().with_rasterization_samples(SampleCountFlagBits::_1);
 
         // We don't care about the stencil, we create a NOOP stencil state.
         let depth_stencil_state = StencilOpState::default()
@@ -161,7 +161,7 @@ impl Pipeline {
         // to avoid having to recreated the pipeline when resizing the window.
         let dynamic_state = [];
 
-        let dynamic_state_info = PipelineDynamicStateCreateInfo::default()with_dynamic_states(&dynamic_state);
+        let dynamic_state_info = PipelineDynamicStateCreateInfo::default().with_dynamic_states(&dynamic_state);
 
         // Gather all of the information for creating the pipeline
         let graphics_pipeline_info = GraphicsPipelineCreateInfo::default()

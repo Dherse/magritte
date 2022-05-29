@@ -10,6 +10,7 @@ mod expr;
 mod extensions;
 mod funcpointers;
 mod functions;
+mod handle_enum;
 mod handles;
 mod opaques;
 mod structs;
@@ -20,14 +21,14 @@ use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
-use quote::{quote, quote_each_token};
+use quote::{quote, quote_each_token, ToTokens};
 use tracing::warn;
 
 use crate::{
     doc::Documentation,
     imports::Imports,
     origin::Origin,
-    source::{Extension, ExtensionType, Source},
+    source::{Extension, ExtensionType, Handle, Source},
 };
 
 use self::handles::loader::HandleFunction;
@@ -313,6 +314,21 @@ impl<'a> Source<'a> {
 
         Extension::generate_extensions(self, ExtensionType::Instance, &mut out_ts);
 
+        out.push_str(&out_ts.to_string());
+
+        out
+    }
+
+    /// Generate the handles module file
+    pub fn generate_handles_mod(&self) -> String {
+        let mut out = String::with_capacity(1 << 20);
+
+        let mut out_ts = quote! {};
+        let imports = Imports::new(&Origin::Unknown);
+
+        Handle::generate_handle_enum_code(&self.handles[..], &imports, &mut out_ts);
+
+        out.push_str(&imports.to_token_stream().to_string());
         out.push_str(&out_ts.to_string());
 
         out

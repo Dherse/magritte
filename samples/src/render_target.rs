@@ -1,14 +1,13 @@
 use log::{info, trace};
 use magritte::{
     vulkan1_0::{
-         DependencyFlags, Extent3D, Format, Image, ImageAspectFlags, ImageCreateInfo,
-        ImageLayout, ImageMemoryBarrier, ImageSubresourceRange, ImageTiling, ImageType, ImageUsageFlags, ImageView,
-        ImageViewCreateInfo, ImageViewType, PipelineStageFlags,
-        SampleCountFlagBits, SharingMode, VulkanResultCodes,
+        DependencyFlags, Extent3D, Format, Image, ImageAspectFlags, ImageCreateInfo, ImageLayout, ImageMemoryBarrier,
+        ImageSubresourceRange, ImageTiling, ImageType, ImageUsageFlags, ImageView, ImageViewCreateInfo, ImageViewType,
+        PipelineStageFlags, SampleCountFlagBits, SharingMode, VulkanResultCodes,
     },
     AsRaw, Unique,
 };
-use magritte_vma::{Allocator, AllocationCreateFlags, ImageUsage, VmaImage};
+use magritte_vma::{AllocationCreateFlags, Allocator, ImageUsage, VmaImage};
 
 use crate::{commands::Commands, surface::Surface, vulkan::Vulkan};
 
@@ -35,8 +34,7 @@ impl RenderTarget {
         format: Format,
         msaa: SampleCountFlagBits,
     ) -> Result<Self, VulkanResultCodes> {
-        let (image, image_view) =
-            Self::create_new_image_view(vulkan, commands, surface, allocator, format, msaa)?;
+        let (image, image_view) = Self::create_new_image_view(vulkan, commands, surface, allocator, format, msaa)?;
 
         Ok(Self {
             image,
@@ -89,7 +87,7 @@ impl RenderTarget {
     }
 
     fn create_new_image_view(
-        vulkan: &Vulkan,
+        _vulkan: &Vulkan,
         commands: &Commands,
         surface: &Surface,
         allocator: &Unique<Allocator>,
@@ -122,12 +120,12 @@ impl RenderTarget {
             .with_sharing_mode(SharingMode::EXCLUSIVE);
 
         let image = allocator.create_image(
-            &image_create_info, 
-            AllocationCreateFlags::empty(), 
-            ImageUsage::Auto, 
-            None, 
-            None, 
-            None
+            &image_create_info,
+            AllocationCreateFlags::empty(),
+            ImageUsage::Auto,
+            None,
+            None,
+            None,
         )?;
 
         info!("Created the render target image: {:?}", image.as_raw());

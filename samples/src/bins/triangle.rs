@@ -4,20 +4,21 @@ mod pipeline;
 use std::{error::Error, mem::ManuallyDrop, time::Instant};
 
 use bytemuck::{Pod, Zeroable};
-use log::{error, info, trace, LevelFilter};
 use clap::Parser;
+use log::{error, info, trace, LevelFilter};
 use magritte::{
     extensions::khr_swapchain::PresentInfoKHR,
     vulkan1_0::{
         BufferUsageFlags, ClearColorValue, ClearDepthStencilValue, ClearValue, IndexType, Offset2D, PipelineBindPoint,
-        PipelineStageFlags, Rect2D, RenderPassBeginInfo, Semaphore, SemaphoreCreateInfo, SubpassContents, SampleCountFlagBits,
+        PipelineStageFlags, Rect2D, RenderPassBeginInfo, SampleCountFlagBits, Semaphore, SemaphoreCreateInfo,
+        SubpassContents,
     },
     AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique,
 };
 
 use magritte_samples::{
-    buffer::Buffer, commands::Commands, depth::Depth, queue::Queue, renderpass::RenderPass, surface::Surface,
-    vulkan::Vulkan, cache::PipelineCache, render_target::RenderTarget,
+    buffer::Buffer, cache::PipelineCache, commands::Commands, depth::Depth, queue::Queue, render_target::RenderTarget,
+    renderpass::RenderPass, surface::Surface, vulkan::Vulkan,
 };
 use pipeline::Pipeline;
 use winit::{
@@ -58,10 +59,8 @@ struct Opts {
 
 pub fn main() -> Result<(), Box<dyn Error>> {
     let opts = Opts::parse();
-    
-    let msaa = unsafe {
-        SampleCountFlagBits::from_bits_unchecked(opts.msaa)
-    };
+
+    let msaa = unsafe { SampleCountFlagBits::from_bits_unchecked(opts.msaa) };
 
     // Initialization of logging
     pretty_env_logger::formatted_builder()
@@ -277,17 +276,30 @@ impl Drop for Renderer {
 
 impl Renderer {
     /// Creates a new renderer
-    pub fn new(vulkan: Vulkan, surface: Surface, commands: Commands, depth: Depth, msaa: SampleCountFlagBits) -> Result<Self, Box<dyn Error>> {
+    pub fn new(
+        vulkan: Vulkan,
+        surface: Surface,
+        commands: Commands,
+        depth: Depth,
+        msaa: SampleCountFlagBits,
+    ) -> Result<Self, Box<dyn Error>> {
         let msaa_images = if msaa.bits() <= 1 {
             None
         } else {
             let mut out = SmallVec::default();
             for _ in 0..surface.image_count() {
-                out.push(RenderTarget::new(&vulkan, &commands, &surface, vulkan.allocator(), surface.format(), msaa)?);
+                out.push(RenderTarget::new(
+                    &vulkan,
+                    &commands,
+                    &surface,
+                    vulkan.allocator(),
+                    surface.format(),
+                    msaa,
+                )?);
             }
             Some(out)
         };
-        
+
         let mut present_complete_semaphores = SmallVec::with_capacity(surface.image_count());
         let mut rendering_complete_semaphores = SmallVec::with_capacity(surface.image_count());
 
@@ -400,7 +412,14 @@ impl Renderer {
         } else {
             let mut out = SmallVec::default();
             for _ in 0..self.surface().image_count() {
-                out.push(RenderTarget::new(self.vulkan(), self.commands(), self.surface(), self.vulkan().allocator(), self.surface().format(), self.msaa())?);
+                out.push(RenderTarget::new(
+                    self.vulkan(),
+                    self.commands(),
+                    self.surface(),
+                    self.vulkan().allocator(),
+                    self.surface().format(),
+                    self.msaa(),
+                )?);
             }
 
             info!("Recreated MSAA textures at {:?}", start.elapsed());
@@ -408,14 +427,21 @@ impl Renderer {
             Some(out)
         };
 
-
         // We update the framebuffers
-        self.renderpass.resize(&self.surface, &self.depth, self.msaa_images.as_ref())?;
+        self.renderpass
+            .resize(&self.surface, &self.depth, self.msaa_images.as_ref())?;
 
         info!("Recreated renderpass at {:?}", start.elapsed());
 
         // We recreate the pipeline
-        self.pipeline = Pipeline::new(self.vulkan(), self.renderpass(), self.surface(), self.shaders(), Some(self.cache()), self.msaa())?;
+        self.pipeline = Pipeline::new(
+            self.vulkan(),
+            self.renderpass(),
+            self.surface(),
+            self.shaders(),
+            Some(self.cache()),
+            self.msaa(),
+        )?;
 
         info!("Recreated pipeline at {:?}", start.elapsed());
 

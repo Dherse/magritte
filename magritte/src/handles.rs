@@ -256,3 +256,5 @@ pub trait AsRaw {
 
     fn as_raw(&self) -> Self::Raw;
 }
+
+include!("generated/handles.rs");

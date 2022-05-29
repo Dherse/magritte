@@ -36,6 +36,13 @@ It is clear when looking at the generated output that it would be almost impossi
 - `futures`: Adds [futures](https://docs.rs/futures/latest/futures/) as a dependency ;
 - `async`: Enables asynchronous code, enables the `tokio` and `futures` features ;
 - `render-graph`: Enables the render graph, enables the `async` feature ;
+- `libloading`: Enables automatic run-time loading of the Vulkan lib ;
+- `log`: Enables logging in some areas ;
+- `smallvec`: Enables `smallvec` avoiding most allocations inside of Magritte ;
+- `window`: Enables surface easier creation ;
+- `validation`: Enables helpers for Vulkan validation layers ;
+- `all`: Enables **all** Vulkan features ;
+- `VK_**`: Enables a given Vulkan feature.
 
 ## State of the art
 
@@ -93,6 +100,40 @@ Those are [OpenGL](https://www.opengl.org//) bindings and not *Vulkan* bindings.
 ### Memory management
 
 Magritte handles memory management by using the [*Vulkan Memory Allocator* (*VMA*)](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator) using a set of custom bindings. *VMA* makes it easier to manage memory and handle allocations *properly*.
+
+```rust
+    // Assuming you have created an allocator, it is as simple as:
+    let allocator = Allocator::new(&device, None, None)?;
+
+    // Then, we need to gather the information for creating the buffer,
+    // in our case:
+    //  - the size in bytes
+    //  - the usage
+    //  - the fact that this buffer will only get accessed from a single queue
+    let buffer_info = BufferCreateInfo::default()
+        .with_size(1024)
+        .with_usage(BufferUsageFlags::INDEX_BUFFER)
+        .with_sharing_mode(SharingMode::EXCLUSIVE);
+
+    // Then, we create the buffer with the following information:
+    //  - the buffer create info
+    //  - the creation flags (empty in most cases)
+    //  - the usage
+    //  - the memory type or `None` to let VMA decide
+    //  - the priority or `None` to use the default value
+    //  - the user data as a void pointer or `None` for no user data
+    let buffer = vulkan.allocator().create_buffer(
+        &buffer_info,
+        magritte_vma::AllocationCreateFlags::empty(),
+        magritte_vma::BufferUsage::Flags {
+            required: MemoryPropertyFlags::HOST_VISIBLE,
+            preferred: MemoryPropertyFlags::DEVICE_LOCAL | MemoryPropertyFlags::HOST_COHERENT,
+        },
+        None,
+        None,
+        None,
+    )?;
+```
 
 ### Render graph (**WIP**)
 

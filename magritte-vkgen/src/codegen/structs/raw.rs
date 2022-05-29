@@ -104,9 +104,15 @@ impl<'a> Struct<'a> {
             .iter()
             .filter_map(|field| field.generate_mut_getter(source, imports, self));
 
-        let pretty_setters = self.fields().iter().map(|field| field.generate_setter(source, self, false));
+        let pretty_setters = self
+            .fields()
+            .iter()
+            .map(|field| field.generate_setter(source, self, false));
 
-        let pretty_setter_builders  = self.fields().iter().map(|field| field.generate_setter(source, self, true));
+        let pretty_setter_builders = self
+            .fields()
+            .iter()
+            .map(|field| field.generate_setter(source, self, true));
 
         let field_defaults = self
             .fields()
@@ -466,7 +472,12 @@ impl<'a> Field<'a> {
     }
 
     /// Generates the code for a getter that returns the raw C-compatible value
-    pub(super) fn generate_raw_setter(&self, source: &Source<'a>, imports: &Imports, builder: bool) -> Option<TokenStream> {
+    pub(super) fn generate_raw_setter(
+        &self,
+        source: &Source<'a>,
+        imports: &Imports,
+        builder: bool,
+    ) -> Option<TokenStream> {
         // if we don't require conversion, there is no need to have a `raw` function
         if !self.ty().requires_conversion(source) {
             return None;
@@ -504,7 +515,12 @@ impl<'a> Field<'a> {
     }
 
     /// Generates the code for a getter that returns the raw C-compatible value
-    pub(super) fn generate_setter(&self, source: &Source<'a>, owner: &Struct<'a>, builder: bool) -> Option<TokenStream> {
+    pub(super) fn generate_setter(
+        &self,
+        source: &Source<'a>,
+        owner: &Struct<'a>,
+        builder: bool,
+    ) -> Option<TokenStream> {
         // create the function name
         let setter_name = if builder {
             format!("with_{}", self.name())

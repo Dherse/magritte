@@ -119,6 +119,14 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     }
 
     {
+        let mut path = path.clone();
+        path.push("handles.rs");
+
+        let code = run_rustfmt(source.generate_handles_mod()).unwrap();
+        std::fs::write(&path, &code).unwrap();
+    }
+
+    {
         let contents = std::fs::read(CARGO_TOML_PATH).unwrap();
         let mut manifest = Manifest::from_slice(&contents).unwrap();
 
