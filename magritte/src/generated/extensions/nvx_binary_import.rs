@@ -98,31 +98,31 @@ pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_NVX
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkCuModuleNVX*                              pModule);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuModuleCreateInfoNVX`] structure
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`p_module`] **must**  be a valid pointer to a [`CuModuleNVX`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuModuleCreateInfoNVX`]
 /// - [`CuModuleNVX`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateCuModuleNVX")]
 pub type FNCreateCuModuleNvx = Option<
     for<'lt> unsafe extern "system" fn(
@@ -145,8 +145,8 @@ pub type FNCreateCuModuleNvx = Option<
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkCuFunctionNVX*                            pFunction);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuFunctionCreateInfoNVX`]
 ///   structure
@@ -154,23 +154,23 @@ pub type FNCreateCuModuleNvx = Option<
 ///   [`AllocationCallbacks`] structure
 /// - [`p_function`] **must**  be a valid pointer to a [`CuFunctionNVX`] handle
 ///
-///## Return Codes
+/// ## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuFunctionCreateInfoNVX`]
 /// - [`CuFunctionNVX`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateCuFunctionNVX")]
 pub type FNCreateCuFunctionNvx = Option<
     for<'lt> unsafe extern "system" fn(
@@ -192,26 +192,26 @@ pub type FNCreateCuFunctionNvx = Option<
 ///    VkCuModuleNVX                               module,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`module`] **must**  have been created, allocated, or retrieved from [`device`]
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuModuleNVX`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyCuModuleNVX")]
 pub type FNDestroyCuModuleNvx = Option<
     for<'lt> unsafe extern "system" fn(
@@ -232,26 +232,26 @@ pub type FNDestroyCuModuleNvx = Option<
 ///    VkCuFunctionNVX                             function,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`function`] **must**  be a valid [`CuFunctionNVX`] handle
 /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
 ///   [`AllocationCallbacks`] structure
 /// - [`function`] **must**  have been created, allocated, or retrieved from [`device`]
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`AllocationCallbacks`]
 /// - [`CuFunctionNVX`]
 /// - [`Device`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyCuFunctionNVX")]
 pub type FNDestroyCuFunctionNvx = Option<
     for<'lt> unsafe extern "system" fn(
@@ -271,31 +271,31 @@ pub type FNDestroyCuFunctionNvx = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkCuLaunchInfoNVX*                    pLaunchInfo);
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_launch_info`] **must**  be a valid pointer to a valid [`CuLaunchInfoNVX`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`CommandBuffer`]
 /// - [`CuLaunchInfoNVX`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdCuLaunchKernelNVX")]
 pub type FNCmdCuLaunchKernelNvx = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_launch_info: *const CuLaunchInfoNVX<'lt>),
@@ -314,24 +314,24 @@ pub type FNCmdCuLaunchKernelNvx = Option<
 ///    const void*        pData;
 ///} VkCuModuleCreateInfoNVX;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`data`] **must**  be a valid pointer to an array of [`data_size`] bytes
 /// - [`data_size`] **must**  be greater than `0`
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`StructureType`]
 /// - [`create_cu_module_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuModuleCreateInfoNVX")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -478,25 +478,25 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 ///    const char*        pName;
 ///} VkCuFunctionCreateInfoNVX;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
 /// - [`name`] **must**  be a null-terminated UTF-8 string
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`CuModuleNVX`]
 /// - [`StructureType`]
 /// - [`create_cu_function_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuFunctionCreateInfoNVX")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -647,8 +647,8 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 ///    const void* const *    pExtras;
 ///} VkCuLaunchInfoNVX;
 ///```
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`function`] **must**  be a valid [`CuFunctionNVX`] handle
@@ -656,19 +656,19 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 ///   [`param_count`] bytes
 /// - If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of
 ///   [`extra_count`] bytes
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`CuFunctionNVX`]
 /// - [`StructureType`]
 /// - [`cmd_cu_launch_kernel_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuLaunchInfoNVX")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1046,8 +1046,8 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkCuModuleNVX*                              pModule);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuModuleCreateInfoNVX`]
     ///   structure
@@ -1055,23 +1055,23 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_module`] **must**  be a valid pointer to a [`CuModuleNVX`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-    ///# Related
+    /// # Related
     /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuModuleCreateInfoNVX`]
     /// - [`CuModuleNVX`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateCuModuleNVX")]
     #[track_caller]
@@ -1125,8 +1125,8 @@ impl Device {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkCuFunctionNVX*                            pFunction);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid [`CuFunctionCreateInfoNVX`]
     ///   structure
@@ -1134,23 +1134,23 @@ impl Device {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_function`] **must**  be a valid pointer to a [`CuFunctionNVX`] handle
     ///
-    ///## Return Codes
+    /// ## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
-    ///# Related
+    /// # Related
     /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuFunctionCreateInfoNVX`]
     /// - [`CuFunctionNVX`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateCuFunctionNVX")]
     #[track_caller]
@@ -1203,26 +1203,26 @@ impl Device {
     ///    VkCuModuleNVX                               module,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`module`] **must**  be a valid [`CuModuleNVX`] handle
     /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
     ///   [`AllocationCallbacks`] structure
     /// - [`module`] **must**  have been created, allocated, or retrieved from [`device`]
-    ///# Related
+    /// # Related
     /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuModuleNVX`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyCuModuleNVX")]
     #[track_caller]
@@ -1267,26 +1267,26 @@ impl Device {
     ///    VkCuFunctionNVX                             function,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`function`] **must**  be a valid [`CuFunctionNVX`] handle
     /// - If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid
     ///   [`AllocationCallbacks`] structure
     /// - [`function`] **must**  have been created, allocated, or retrieved from [`device`]
-    ///# Related
+    /// # Related
     /// - [`nvx_binary_import`]
     /// - [`AllocationCallbacks`]
     /// - [`CuFunctionNVX`]
     /// - [`Device`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyCuFunctionNVX")]
     #[track_caller]
@@ -1330,31 +1330,31 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkCuLaunchInfoNVX*                    pLaunchInfo);
     ///```
-    ///# Description
-    ///## Valid Usage (Implicit)
+    /// # Description
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_launch_info`] **must**  be a valid pointer to a valid [`CuLaunchInfoNVX`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, or compute operations
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`nvx_binary_import`]
     /// - [`CommandBuffer`]
     /// - [`CuLaunchInfoNVX`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdCuLaunchKernelNVX")]
     #[track_caller]
@@ -1390,19 +1390,19 @@ impl CommandBuffer {
 ///// Provided by VK_NVX_binary_import
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuModuleNVX)
 ///```
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`CuFunctionCreateInfoNVX`]
 /// - [`create_cu_module_nvx`]
 /// - [`destroy_cu_module_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuModuleNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
@@ -1480,6 +1480,51 @@ impl Unique<CuModuleNVX> {
         self.metadata().store(true, Ordering::Relaxed);
     }
 }
+#[cfg(feature = "VK_EXT_debug_marker")]
+impl CuModuleNVX {
+    ///Give a user-friendly name to an object
+    pub fn set_name(self: Unique<Self>, name: &'static std::ffi::CStr) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().metadata().ext_debug_marker() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::CU_MODULE_NVX)
+            .with_object(self.as_stored() as u64)
+            .with_object_name(name.as_ptr());
+        unsafe {
+            self.device().debug_marker_set_object_name_ext(&info).unwrap();
+        }
+    }
+    ///Attach arbitrary data to an object
+    ///In addition to setting a name for an object, debugging and validation layers may have uses
+    /// for additional
+    ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
+    /// VkShaderModule
+    ///could have additional debugging data attached to it to aid in offline shader tracing. To
+    /// attach data to an object
+    pub fn set_tag(self: Unique<Self>, tag: u64, data: &'static [u8]) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().metadata().ext_debug_marker() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::CU_MODULE_NVX)
+            .with_object(self.as_stored() as u64)
+            .with_tag_name(tag)
+            .with_tag_size(data.len() as _)
+            .with_tag_raw(data.as_ptr().cast());
+        unsafe {
+            self.device().debug_marker_set_object_tag_ext(&info).unwrap();
+        }
+    }
+}
 ///[VkCuFunctionNVX](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html) - Stub description of VkCuFunctionNVX
 ///# C Specifications
 ///There is currently no specification language written for this type.
@@ -1489,19 +1534,19 @@ impl Unique<CuModuleNVX> {
 ///// Provided by VK_NVX_binary_import
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuFunctionNVX)
 ///```
-///# Related
+/// # Related
 /// - [`nvx_binary_import`]
 /// - [`CuLaunchInfoNVX`]
 /// - [`create_cu_function_nvx`]
 /// - [`destroy_cu_function_nvx`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuFunctionNVX")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]
@@ -1577,6 +1622,51 @@ impl Unique<CuFunctionNVX> {
     #[inline]
     pub fn disable_drop(&self) {
         self.metadata().store(true, Ordering::Relaxed);
+    }
+}
+#[cfg(feature = "VK_EXT_debug_marker")]
+impl CuFunctionNVX {
+    ///Give a user-friendly name to an object
+    pub fn set_name(self: Unique<Self>, name: &'static std::ffi::CStr) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().metadata().ext_debug_marker() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::CU_FUNCTION_NVX)
+            .with_object(self.as_stored() as u64)
+            .with_object_name(name.as_ptr());
+        unsafe {
+            self.device().debug_marker_set_object_name_ext(&info).unwrap();
+        }
+    }
+    ///Attach arbitrary data to an object
+    ///In addition to setting a name for an object, debugging and validation layers may have uses
+    /// for additional
+    ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
+    /// VkShaderModule
+    ///could have additional debugging data attached to it to aid in offline shader tracing. To
+    /// attach data to an object
+    pub fn set_tag(self: Unique<Self>, tag: u64, data: &'static [u8]) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().metadata().ext_debug_marker() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::CU_FUNCTION_NVX)
+            .with_object(self.as_stored() as u64)
+            .with_tag_name(tag)
+            .with_tag_size(data.len() as _)
+            .with_tag_raw(data.as_ptr().cast());
+        unsafe {
+            self.device().debug_marker_set_object_tag_ext(&info).unwrap();
+        }
     }
 }
 ///The V-table of [`Device`] for functions from `VK_NVX_binary_import`

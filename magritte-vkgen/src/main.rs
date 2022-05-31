@@ -44,7 +44,6 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
         .build_global()
         .unwrap();
 
-
     let args = Args::parse();
 
     tracing_subscriber::fmt()

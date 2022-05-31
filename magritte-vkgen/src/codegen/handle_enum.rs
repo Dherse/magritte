@@ -59,6 +59,7 @@ impl<'a> Handle<'a> {
             .enums
             .get_by_name("VkDebugReportObjectTypeEXT")
             .expect("VkDebugReportObjectTypeEXT missing");
+
         let variants = handles.iter().map(|h| {
             let shouty_name = if h.rename.is_some() {
                 source

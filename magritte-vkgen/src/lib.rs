@@ -32,7 +32,7 @@ pub mod source;
 pub mod symbols;
 pub mod ty;
 
-use std::{error::Error, fs::try_exists, io::Cursor, collections::HashMap};
+use std::{collections::HashMap, error::Error, fs::try_exists, io::Cursor};
 
 use doc::Documentation;
 use rayon::iter::{ParallelBridge, ParallelIterator};
@@ -112,29 +112,30 @@ pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + 
     }
 
     let read_dir = std::fs::read_dir(root)?;
-    let files = read_dir.par_bridge().filter_map(|entry| {
-        let entry = entry.unwrap();
-        if !entry.file_type().unwrap().is_file() {
-            return None;
-        }
+    let files = read_dir
+        .par_bridge()
+        .filter_map(|entry| {
+            let entry = entry.unwrap();
+            if !entry.file_type().unwrap().is_file() {
+                return None;
+            }
 
-        let name = entry
-            .file_name()
-            .to_string_lossy()
-            .trim_end_matches(".html")
-            .to_string();
+            let name = entry
+                .file_name()
+                .to_string_lossy()
+                .trim_end_matches(".html")
+                .to_string();
 
-        let bytes = std::fs::read(entry.path()).unwrap();
-        let string = String::from_utf8(bytes).unwrap();
+            let bytes = std::fs::read(entry.path()).unwrap();
+            let string = String::from_utf8(bytes).unwrap();
 
-        let html = Html::parse_document(&string);
+            let html = Html::parse_document(&string);
 
-        info!(name = %name, "Parse HTML man page");
+            info!(name = %name, "Parse HTML man page");
 
-        Some((name, SafeHtml(html)))
-    }).collect::<HashMap<String, SafeHtml>>();
+            Some((name, SafeHtml(html)))
+        })
+        .collect::<HashMap<String, SafeHtml>>();
 
-    Ok(Documentation(unsafe {
-        std::mem::transmute(files)
-    }))
+    Ok(Documentation(unsafe { std::mem::transmute(files) }))
 }

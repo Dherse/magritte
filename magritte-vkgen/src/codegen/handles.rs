@@ -1,6 +1,6 @@
 pub mod loader;
 
-use heck::ToSnakeCase;
+use heck::{ToShoutySnakeCase, ToSnakeCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token, ToTokens};
 use tracing::warn;
@@ -9,7 +9,7 @@ use crate::{
     codegen::alias_of,
     doc::Documentation,
     imports::Imports,
-    source::{Function, Handle, Source},
+    source::{Alias, Bit, Function, Handle, Source},
 };
 
 impl<'a> Handle<'a> {
@@ -400,6 +400,92 @@ impl<'a> Handle<'a> {
 
             impl Unique<#name> {
                 #(#ancestors)*
+            }
+        }
+
+        self.generate_debug_marker_code(source, out);
+    }
+
+    fn generate_debug_marker_code(&self, source: &Source<'a>, mut out: &mut TokenStream) {
+        if self.find_device_ancestors(source).is_none() {
+            return;
+        }
+
+        let shouty_name = if self.rename.is_some() {
+            source
+                .handles
+                .get_by_name(&self.original_name)
+                .expect("unknown alias")
+                .name()
+                .to_shouty_snake_case()
+        } else {
+            self.name().to_shouty_snake_case()
+        };
+
+        let enum_ = source
+            .enums
+            .get_by_name("VkDebugReportObjectTypeEXT")
+            .expect("VkDebugReportObjectTypeEXT missing");
+
+        if let Some(variant) = enum_
+            .variants()
+            .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+            .map(Bit::as_ident)
+            .or_else(|| {
+                enum_
+                    .aliases()
+                    .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+                    .map(Alias::as_ident)
+            })
+        {
+            let name = self.as_ident();
+
+            let device_access = (self.original_name() != "VkDevice").then(|| quote! { .device() });
+
+            quote_each_token! {
+                out
+
+                #[cfg(feature = "VK_EXT_debug_marker")]
+                impl #name {
+                    #[doc = "Give a user-friendly name to an object"]
+                    pub fn set_name(self: Unique<Self>, name: &'static std::ffi::CStr) {
+                        assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
+                        if !self #device_access .metadata().ext_debug_marker() {
+                            return;
+                        }
+
+                        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
+                            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::#variant)
+                            .with_object(self.as_stored() as u64)
+                            .with_object_name(name.as_ptr());
+
+                        unsafe {
+                            self #device_access .debug_marker_set_object_name_ext(&info).unwrap();
+                        }
+                    }
+
+                    #[doc = "Attach arbitrary data to an object"]
+                    #[doc = "In addition to setting a name for an object, debugging and validation layers may have uses for additional"]
+                    #[doc = "binary data on a per-object basis that has no other place in the Vulkan API. For example, a VkShaderModule"]
+                    #[doc = "could have additional debugging data attached to it to aid in offline shader tracing. To attach data to an object"]
+                    pub fn set_tag(self: Unique<Self>, tag: u64, data: &'static [u8]) {
+                        assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
+                        if !self #device_access .metadata().ext_debug_marker() {
+                            return;
+                        }
+
+                        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
+                            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::#variant)
+                            .with_object(self.as_stored() as u64)
+                            .with_tag_name(tag)
+                            .with_tag_size(data.len() as _)
+                            .with_tag_raw(data.as_ptr().cast());
+
+                        unsafe {
+                            self #device_access .debug_marker_set_object_tag_ext(&info).unwrap();
+                        }
+                    }
+                }
             }
         }
     }

@@ -3,7 +3,7 @@
 
 mod html;
 
-use std::{borrow::Cow, ops::Deref, collections::HashMap};
+use std::{borrow::Cow, collections::HashMap, ops::Deref};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
