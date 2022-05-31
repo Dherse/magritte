@@ -39,6 +39,12 @@ struct Args {
 }
 
 fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
+    rayon::ThreadPoolBuilder::new()
+        .stack_size(64 << 20)
+        .build_global()
+        .unwrap();
+
+
     let args = Args::parse();
 
     tracing_subscriber::fmt()
@@ -76,12 +82,6 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     };
 
     info!("Got documentation");
-
-    rayon::ThreadPoolBuilder::new()
-        .stack_size(64 << 20)
-        .build_global()
-        .unwrap();
-
     info!("Built the thread pool");
 
     let path = PathBuf::from(BINDING_OUT_PATH);

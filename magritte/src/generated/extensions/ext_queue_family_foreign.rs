@@ -57,8 +57,8 @@ use std::ffi::CStr;
 ///physical device, and the same driver version as the resource’s
 ///[`Device`].
 ///```c
-/// #define VK_QUEUE_FAMILY_FOREIGN_EXT       (~2U)
-/// ```
+///#define VK_QUEUE_FAMILY_FOREIGN_EXT       (~2U)
+///```
 ///# Related
 /// - [`ext_queue_family_foreign`]
 ///

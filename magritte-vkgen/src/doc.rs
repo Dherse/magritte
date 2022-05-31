@@ -3,7 +3,7 @@
 
 mod html;
 
-use std::{borrow::Cow, ops::Deref};
+use std::{borrow::Cow, ops::Deref, collections::HashMap};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
@@ -45,7 +45,7 @@ lazy_static::lazy_static! {
 
 /// Documentation files for the *Vulkan* docs.
 #[derive(Default, Debug, Clone)]
-pub struct Documentation(pub(crate) AHashMap<String, Html>);
+pub struct Documentation(pub(crate) HashMap<String, Html>);
 
 // [`Html`] contains a ton of [`std::rc::Rc`] which are not thread safe.
 // But in this case, the entire bunch of `Rc`s is sent to the main thread all at once
@@ -70,7 +70,7 @@ impl Documentation {
 }
 
 impl Deref for Documentation {
-    type Target = AHashMap<String, Html>;
+    type Target = HashMap<String, Html>;
 
     #[inline]
     fn deref(&self) -> &Self::Target {

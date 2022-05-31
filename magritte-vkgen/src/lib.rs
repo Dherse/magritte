@@ -32,10 +32,10 @@ pub mod source;
 pub mod symbols;
 pub mod ty;
 
-use std::{error::Error, fs::try_exists, io::Cursor};
+use std::{error::Error, fs::try_exists, io::Cursor, collections::HashMap};
 
-use ahash::AHashMap;
 use doc::Documentation;
+use rayon::iter::{ParallelBridge, ParallelIterator};
 use scraper::Html;
 use source::Source;
 use tracing::{error, info, span, warn, Level};
@@ -101,6 +101,10 @@ pub fn parse_registry(code: &str) -> Result<Registry, String> {
 
 /// Parses the documentation from a root folder.
 pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + Send + Sync + 'static>> {
+    #[repr(transparent)]
+    struct SafeHtml(Html);
+    unsafe impl Send for SafeHtml {}
+
     if !try_exists(root)? {
         error!("The built documentation doesn't exist");
         error!("Did you build the Vulkan documentation?");
@@ -108,13 +112,10 @@ pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + 
     }
 
     let read_dir = std::fs::read_dir(root)?;
-    let (min, max) = read_dir.size_hint();
-    let mut files = AHashMap::with_capacity(max.unwrap_or(min));
-
-    for entry in read_dir {
-        let entry = entry?;
-        if !entry.file_type()?.is_file() {
-            continue;
+    let files = read_dir.par_bridge().filter_map(|entry| {
+        let entry = entry.unwrap();
+        if !entry.file_type().unwrap().is_file() {
+            return None;
         }
 
         let name = entry
@@ -123,15 +124,17 @@ pub fn parse_documentation(root: &str) -> Result<Documentation, Box<dyn Error + 
             .trim_end_matches(".html")
             .to_string();
 
-        let bytes = std::fs::read(entry.path())?;
-        let string = String::from_utf8(bytes)?;
+        let bytes = std::fs::read(entry.path()).unwrap();
+        let string = String::from_utf8(bytes).unwrap();
 
         let html = Html::parse_document(&string);
 
         info!(name = %name, "Parse HTML man page");
 
-        files.insert(name, html);
-    }
+        Some((name, SafeHtml(html)))
+    }).collect::<HashMap<String, SafeHtml>>();
 
-    Ok(Documentation(files))
+    Ok(Documentation(unsafe {
+        std::mem::transmute(files)
+    }))
 }

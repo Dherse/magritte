@@ -104,7 +104,6 @@ impl<'a> Handle<'a> {
         quote_each_token! {
             out
 
-
             #[derive(Clone)]
             pub enum Handles {
                 #(
