@@ -326,7 +326,7 @@ impl<'a> Source<'a> {
         let mut out_ts = quote! {};
         let imports = Imports::new(&Origin::Unknown);
 
-        Handle::generate_handle_enum_code(&self.handles[..], &imports, &mut out_ts);
+        Handle::generate_handle_enum_code(&self.handles[..], self, &imports, &mut out_ts);
 
         out.push_str(&imports.to_token_stream().to_string());
         out.push_str(&out_ts.to_string());

@@ -8432,10 +8432,10 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
 ///   aria-hidden="true" class="katex-html"><span class="base"><span class="strut"
 ///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 ///   class="mbin">×</span><span class="mspace"
 ///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
-///   class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span
+///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
 ///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
 ///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
 ///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span

@@ -28,7 +28,10 @@ macro_rules! acquire {
     };
 }
 
-use crate::entry::{Entry, EntryVTable};
+use crate::{
+    entry::{Entry, EntryVTable},
+    vulkan1_0::StructureType,
+};
 
 pub struct Inner<T: Handle> {
     pub parent: T::Parent,

@@ -9,7 +9,8 @@
     arbitrary_self_types,
     try_trait_v2,
     cfg_sanitize,
-    generic_associated_types
+    generic_associated_types,
+    untagged_unions
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![allow(unreachable_code)]

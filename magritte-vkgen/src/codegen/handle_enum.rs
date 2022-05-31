@@ -1,14 +1,20 @@
-use heck::ToSnakeCase;
+use heck::{ToShoutySnakeCase, ToSnakeCase};
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote_each_token};
 
-use crate::{imports::Imports, source::Handle};
+use crate::{
+    imports::Imports,
+    source::{Handle, Source},
+};
 
 impl<'a> Handle<'a> {
     /// Generates the code required to create a single enum containing all of the handles as uniques
-    pub fn generate_handle_enum_code<'b>(handles: &[Handle<'a>], imports: &Imports, mut out: &mut TokenStream) {
-        // imports.push("crate::handles::Unique");
-
+    pub fn generate_handle_enum_code<'b>(
+        handles: &[Handle<'a>],
+        source: &Source<'a>,
+        imports: &Imports,
+        mut out: &mut TokenStream,
+    ) {
         let handles = handles
             .into_iter()
             .filter(|h| !h.origin().is_disabled())
@@ -49,6 +55,37 @@ impl<'a> Handle<'a> {
             .map(|o| o.condition())
             .collect::<Vec<_>>();
 
+        let enum_ = source
+            .enums
+            .get_by_name("VkDebugReportObjectTypeEXT")
+            .expect("VkDebugReportObjectTypeEXT missing");
+        let variants = handles.iter().map(|h| {
+            let shouty_name = if h.rename.is_some() {
+                source
+                    .handles
+                    .get_by_name(&h.original_name)
+                    .expect("unknown alias")
+                    .name()
+                    .to_shouty_snake_case()
+            } else {
+                h.name().to_shouty_snake_case()
+            };
+
+            if let Some(variant) = enum_
+                .variants()
+                .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+            {
+                variant.as_ident()
+            } else if let Some(variant) = enum_
+                .aliases()
+                .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+            {
+                variant.as_ident()
+            } else {
+                format_ident!("UNKNOWN")
+            }
+        });
+
         for handle in &handles {
             if let Some(cond) = handle.origin().feature_gate() {
                 imports.push_str(&format!(
@@ -62,6 +99,8 @@ impl<'a> Handle<'a> {
             }
         }
 
+        imports.push_str("#[cfg(feature = \"VK_EXT_debug_marker\")] use crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT;");
+
         quote_each_token! {
             out
 
@@ -72,6 +111,18 @@ impl<'a> Handle<'a> {
                     #conds
                     #handle_idents(Unique<#handle_idents>)
                 ),*
+            }
+
+            #[cfg(feature = "VK_EXT_debug_marker")]
+            impl Handles {
+                pub fn as_debug_report_object_type_ext(&self) -> DebugReportObjectTypeEXT {
+                    match self {
+                        #(
+                            #conds
+                            Self::#handle_idents(_) => DebugReportObjectTypeEXT::#variants,
+                        )*
+                    }
+                }
             }
 
             #(

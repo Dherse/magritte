@@ -36,6 +36,8 @@ use crate::extensions::nv_ray_tracing::AccelerationStructureNV;
 use crate::extensions::nvx_binary_import::CuFunctionNVX;
 #[cfg(feature = "VK_NVX_binary_import")]
 use crate::extensions::nvx_binary_import::CuModuleNVX;
+#[cfg(feature = "VK_EXT_debug_marker")]
+use crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT;
 use crate::{
     vulkan1_0::{
         Buffer, BufferView, CommandBuffer, CommandPool, DescriptorPool, DescriptorSet, DescriptorSetLayout, Device,
@@ -113,6 +115,79 @@ pub enum Handles {
     SwapchainImage(Unique<SwapchainImage>),
     #[cfg(feature = "VK_KHR_swapchain")]
     SwapchainImageView(Unique<SwapchainImageView>),
+}
+#[cfg(feature = "VK_EXT_debug_marker")]
+impl Handles {
+    pub fn as_debug_report_object_type_ext(&self) -> DebugReportObjectTypeEXT {
+        match self {
+            Self::Instance(_) => DebugReportObjectTypeEXT::INSTANCE,
+            Self::PhysicalDevice(_) => DebugReportObjectTypeEXT::PHYSICAL_DEVICE,
+            Self::Device(_) => DebugReportObjectTypeEXT::DEVICE,
+            Self::Queue(_) => DebugReportObjectTypeEXT::QUEUE,
+            Self::CommandBuffer(_) => DebugReportObjectTypeEXT::COMMAND_BUFFER,
+            Self::DeviceMemory(_) => DebugReportObjectTypeEXT::DEVICE_MEMORY,
+            Self::CommandPool(_) => DebugReportObjectTypeEXT::COMMAND_POOL,
+            Self::Buffer(_) => DebugReportObjectTypeEXT::BUFFER,
+            Self::BufferView(_) => DebugReportObjectTypeEXT::BUFFER_VIEW,
+            Self::Image(_) => DebugReportObjectTypeEXT::IMAGE,
+            Self::ImageView(_) => DebugReportObjectTypeEXT::IMAGE_VIEW,
+            Self::ShaderModule(_) => DebugReportObjectTypeEXT::SHADER_MODULE,
+            Self::Pipeline(_) => DebugReportObjectTypeEXT::PIPELINE,
+            Self::PipelineLayout(_) => DebugReportObjectTypeEXT::PIPELINE_LAYOUT,
+            Self::Sampler(_) => DebugReportObjectTypeEXT::SAMPLER,
+            Self::DescriptorSet(_) => DebugReportObjectTypeEXT::DESCRIPTOR_SET,
+            Self::DescriptorSetLayout(_) => DebugReportObjectTypeEXT::DESCRIPTOR_SET_LAYOUT,
+            Self::DescriptorPool(_) => DebugReportObjectTypeEXT::DESCRIPTOR_POOL,
+            Self::Fence(_) => DebugReportObjectTypeEXT::FENCE,
+            Self::Semaphore(_) => DebugReportObjectTypeEXT::SEMAPHORE,
+            Self::Event(_) => DebugReportObjectTypeEXT::EVENT,
+            Self::QueryPool(_) => DebugReportObjectTypeEXT::QUERY_POOL,
+            Self::Framebuffer(_) => DebugReportObjectTypeEXT::FRAMEBUFFER,
+            Self::RenderPass(_) => DebugReportObjectTypeEXT::RENDER_PASS,
+            Self::PipelineCache(_) => DebugReportObjectTypeEXT::PIPELINE_CACHE,
+            #[cfg(feature = "VK_NV_device_generated_commands")]
+            Self::IndirectCommandsLayoutNV(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            Self::DescriptorUpdateTemplate(_) => DebugReportObjectTypeEXT::DESCRIPTOR_UPDATE_TEMPLATE,
+            Self::SamplerYcbcrConversion(_) => DebugReportObjectTypeEXT::SAMPLER_YCBCR_CONVERSION,
+            #[cfg(feature = "VK_EXT_validation_cache")]
+            Self::ValidationCacheEXT(_) => DebugReportObjectTypeEXT::VALIDATION_CACHE,
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            Self::AccelerationStructureKHR(_) => DebugReportObjectTypeEXT::ACCELERATION_STRUCTURE_KHR,
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            Self::AccelerationStructureNV(_) => DebugReportObjectTypeEXT::ACCELERATION_STRUCTURE_NV,
+            #[cfg(feature = "VK_INTEL_performance_query")]
+            Self::PerformanceConfigurationINTEL(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            Self::BufferCollectionFUCHSIA(_) => DebugReportObjectTypeEXT::BUFFER_COLLECTION_FUCHSIA,
+            #[cfg(feature = "VK_KHR_deferred_host_operations")]
+            Self::DeferredOperationKHR(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            Self::PrivateDataSlot(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuModuleNVX(_) => DebugReportObjectTypeEXT::CU_MODULE_NVX,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuFunctionNVX(_) => DebugReportObjectTypeEXT::CU_FUNCTION_NVX,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayKHR(_) => DebugReportObjectTypeEXT::DISPLAY_KHR,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayModeKHR(_) => DebugReportObjectTypeEXT::DISPLAY_MODE_KHR,
+            #[cfg(feature = "VK_KHR_surface")]
+            Self::SurfaceKHR(_) => DebugReportObjectTypeEXT::SURFACE_KHR,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainKHR(_) => DebugReportObjectTypeEXT::SWAPCHAIN_KHR,
+            #[cfg(feature = "VK_EXT_debug_report")]
+            Self::DebugReportCallbackEXT(_) => DebugReportObjectTypeEXT::DEBUG_REPORT_CALLBACK,
+            #[cfg(feature = "VK_EXT_debug_utils")]
+            Self::DebugUtilsMessengerEXT(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionKHR(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionParametersKHR(_) => DebugReportObjectTypeEXT::UNKNOWN,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImage(_) => DebugReportObjectTypeEXT::IMAGE,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImageView(_) => DebugReportObjectTypeEXT::IMAGE_VIEW,
+        }
+    }
 }
 impl Handles {
     ///Checks if the handle is a `Instance`
