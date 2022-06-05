@@ -13,7 +13,7 @@ use magritte::{
         PipelineStageFlags, Rect2D, RenderPassBeginInfo, SampleCountFlagBits, Semaphore, SemaphoreCreateInfo,
         SubpassContents,
     },
-    AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique,
+    AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique, cstr,
 };
 
 use magritte_samples::{
@@ -327,6 +327,7 @@ impl Renderer {
 
         // Create the index buffer
         let index_buffer = Buffer::new(&vulkan, BufferUsageFlags::INDEX_BUFFER, &[0u32, 1, 2])?;
+        index_buffer.buffer().buffer().set_name(cstr!("Index buffer"));
 
         // Create the vertex buffer
         let vertex_buffer = Buffer::new(

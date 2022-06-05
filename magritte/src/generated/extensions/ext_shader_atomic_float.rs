@@ -75,9 +75,9 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///    VkBool32           sparseImageFloat32AtomicAdd;
 ///} VkPhysicalDeviceShaderAtomicFloatFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -105,27 +105,27 @@ pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = crate::cstr!("
 ///   exchange atomic operations  **can**  be used on sparse images.
 /// - [`sparse_image_float32_atomic_add`] indicates whether 32-bit floating-point add atomic
 ///   operations  **can**  be used on sparse images.
-/// If the [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderAtomicFloatFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_shader_atomic_float`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

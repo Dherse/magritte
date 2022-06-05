@@ -241,6 +241,11 @@ impl Vulkan {
         // Enable the swapchain extension
         let mut device_extensions = device_extensions.enable_khr_swapchain();
 
+        #[allow(deprecated)]
+        if validation {
+            device_extensions = device_extensions.enable_ext_debug_marker();
+        }
+
         // Here we fetch the supported extensions that will be used to allocate memory
         // in a easier and more performant way using the Vulkan Memory Allocator.
         // Note that both the use of VMA and raw Vulkan allocations are covered in this

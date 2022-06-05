@@ -66,20 +66,20 @@ pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    VK_VALIDATION_CHECK_SHADERS_EXT = 1,
 ///} VkValidationCheckEXT;
 ///```
-/// # Description
+///# Description
 /// - [`ALL`] specifies that all validation checks are disabled.
 /// - [`SHADERS`] specifies that shader validation is disabled.
-/// # Related
+///# Related
 /// - [`ext_validation_flags`]
 /// - [`ValidationFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationCheckEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -154,30 +154,30 @@ impl std::fmt::Debug for ValidationCheckEXT {
 ///    const VkValidationCheckEXT*    pDisabledValidationChecks;
 ///} VkValidationFlagsEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`disabled_validation_check_count`] is the number of checks to disable.
 /// - [`disabled_validation_checks`] is a pointer to an array of [`ValidationCheckEXT`] values
 ///   specifying the validation checks to be disabled.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
 /// - [`disabled_validation_checks`] **must**  be a valid pointer to an array of
 ///   [`disabled_validation_check_count`] valid [`ValidationCheckEXT`] values
 /// - [`disabled_validation_check_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`ext_validation_flags`]
 /// - [`StructureType`]
 /// - [`ValidationCheckEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationFlagsEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

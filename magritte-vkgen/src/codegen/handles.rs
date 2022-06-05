@@ -448,7 +448,7 @@ impl<'a> Handle<'a> {
                 #[cfg(feature = "VK_EXT_debug_marker")]
                 impl #name {
                     #[doc = "Give a user-friendly name to an object"]
-                    pub fn set_name(self: Unique<Self>, name: &'static std::ffi::CStr) {
+                    pub fn set_name(self: &Unique<Self>, name: &'static std::ffi::CStr) {
                         assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
                         if !self #device_access .metadata().ext_debug_marker() {
                             return;
@@ -467,8 +467,8 @@ impl<'a> Handle<'a> {
                     #[doc = "Attach arbitrary data to an object"]
                     #[doc = "In addition to setting a name for an object, debugging and validation layers may have uses for additional"]
                     #[doc = "binary data on a per-object basis that has no other place in the Vulkan API. For example, a VkShaderModule"]
-                    #[doc = "could have additional debugging data attached to it to aid in offline shader tracing. To attach data to an object"]
-                    pub fn set_tag(self: Unique<Self>, tag: u64, data: &'static [u8]) {
+                    #[doc = "could have additional debugging data attached to it to aid in offline shader tracing."]
+                    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &'static [u8]) {
                         assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
                         if !self #device_access .metadata().ext_debug_marker() {
                             return;

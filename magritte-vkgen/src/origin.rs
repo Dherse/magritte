@@ -75,7 +75,7 @@ impl<'a> Origin<'a> {
     pub const fn is_vulkan(&self) -> bool {
         matches!(
             self,
-            Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3
+            Self::Core | Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3
         )
     }
 

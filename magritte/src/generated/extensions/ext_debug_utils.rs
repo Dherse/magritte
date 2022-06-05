@@ -192,7 +192,7 @@ pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_d
 ///    const VkDebugUtilsMessengerCallbackDataEXT*      pCallbackData,
 ///    void*                                            pUserData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`message_severity`] specifies the [`DebugUtilsMessageSeverityFlagBitsEXT`] that triggered
 ///   this callback.
 /// - [`message_types`] is a bitmask of [`DebugUtilsMessageTypeFlagBitsEXT`] specifying which type
@@ -200,24 +200,24 @@ pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_d
 /// - [`p_callback_data`] contains all the callback related data in the
 ///   [`DebugUtilsMessengerCallbackDataEXT`] structure.
 /// - [`p_user_data`] is the user data provided when the [`DebugUtilsMessengerEXT`] was created.
-/// # Description
-/// The callback returns a [`Bool32`], which is interpreted in a
-/// layer-specified manner.
-/// The application  **should**  always return [`FALSE`].
-/// The [`TRUE`] value is reserved for use in layer development.
-/// ## Valid Usage
+///# Description
+///The callback returns a [`Bool32`], which is interpreted in a
+///layer-specified manner.
+///The application  **should**  always return [`FALSE`].
+///The [`TRUE`] value is reserved for use in layer development.
+///## Valid Usage
 /// - The callback  **must**  not make calls to any Vulkan commands
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "PFN_vkDebugUtilsMessengerCallbackEXT")]
 pub type PFNDebugUtilsMessengerCallbackEXT = Option<
     for<'lt> unsafe extern "system" fn(
@@ -235,38 +235,38 @@ pub type PFNDebugUtilsMessengerCallbackEXT = Option<
 ///    VkDevice                                    device,
 ///    const VkDebugUtilsObjectNameInfoEXT*        pNameInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device that created the object.
 /// - [`p_name_info`] is a pointer to a [`DebugUtilsObjectNameInfoEXT`] structure specifying
 ///   parameters of the name to set on the object.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - `pNameInfo->objectType` **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
 /// - `pNameInfo->objectHandle` **must**  not be [`crate::Handle::null`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_name_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectNameInfoEXT`]
 ///   structure
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to `pNameInfo->objectHandle` **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsObjectNameInfoEXT`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetDebugUtilsObjectNameEXT")]
 pub type FNSetDebugUtilsObjectNameExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -282,34 +282,34 @@ pub type FNSetDebugUtilsObjectNameExt = Option<
 ///    VkDevice                                    device,
 ///    const VkDebugUtilsObjectTagInfoEXT*         pTagInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device that created the object.
 /// - [`p_tag_info`] is a pointer to a [`DebugUtilsObjectTagInfoEXT`] structure specifying
 ///   parameters of the tag to attach to the object.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_tag_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectTagInfoEXT`]
 ///   structure
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to `pTagInfo->objectHandle` **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsObjectTagInfoEXT`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSetDebugUtilsObjectTagEXT")]
 pub type FNSetDebugUtilsObjectTagExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -326,28 +326,28 @@ pub type FNSetDebugUtilsObjectTagExt = Option<
 ///    VkQueue                                     queue,
 ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is the queue in which to start a debug label region.
 /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of
 ///   the label region to open.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
 pub type FNQueueBeginDebugUtilsLabelExt =
     Option<for<'lt> unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT<'lt>)>;
@@ -359,30 +359,30 @@ pub type FNQueueBeginDebugUtilsLabelExt =
 ///void vkQueueEndDebugUtilsLabelEXT(
 ///    VkQueue                                     queue);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is the queue in which a debug label region should be closed.
-/// # Description
-/// The calls to [`queue_begin_debug_utils_label_ext`] and
-/// [`queue_end_debug_utils_label_ext`] **must**  be matched and balanced.
-/// ## Valid Usage
+///# Description
+///The calls to [`queue_begin_debug_utils_label_ext`] and
+///[`queue_end_debug_utils_label_ext`] **must**  be matched and balanced.
+///## Valid Usage
 /// - There  **must**  be an outstanding [`queue_begin_debug_utils_label_ext`] command prior to the
 ///   [`queue_end_debug_utils_label_ext`] on the queue
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
 pub type FNQueueEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(queue: Queue)>;
 ///[vkQueueInsertDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html) - Insert a label into a queue
@@ -394,28 +394,28 @@ pub type FNQueueEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(queue: 
 ///    VkQueue                                     queue,
 ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`queue`] is the queue into which a debug label will be inserted.
 /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of
 ///   the label to insert.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`queue`] **must**  be a valid [`Queue`] handle
 /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`Queue`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
 pub type FNQueueInsertDebugUtilsLabelExt =
     Option<for<'lt> unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT<'lt>)>;
@@ -432,7 +432,7 @@ pub type FNQueueInsertDebugUtilsLabelExt =
 ///    const VkAllocationCallbacks*                pAllocator,
 ///    VkDebugUtilsMessengerEXT*                   pMessenger);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is the instance the messenger will be used with.
 /// - [`p_create_info`] is a pointer to a [`DebugUtilsMessengerCreateInfoEXT`] structure containing
 ///   the callback pointer, as well as defining conditions under which this messenger will trigger
@@ -441,8 +441,8 @@ pub type FNQueueInsertDebugUtilsLabelExt =
 ///   chapter.
 /// - [`p_messenger`] is a pointer to a [`DebugUtilsMessengerEXT`] handle in which the created
 ///   object is returned.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`p_create_info`] **must**  be a valid pointer to a valid [`DebugUtilsMessengerCreateInfoEXT`]
 ///   structure
@@ -450,26 +450,26 @@ pub type FNQueueInsertDebugUtilsLabelExt =
 ///   [`AllocationCallbacks`] structure
 /// - [`p_messenger`] **must**  be a valid pointer to a [`DebugUtilsMessengerEXT`] handle
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-/// The application  **must**  ensure that [`create_debug_utils_messenger_ext`] is
-/// not executed in parallel with any Vulkan command that is also called with
-/// [`instance`] or child of [`instance`] as the dispatchable argument.
-/// # Related
+///The application  **must**  ensure that [`create_debug_utils_messenger_ext`] is
+///not executed in parallel with any Vulkan command that is also called with
+///[`instance`] or child of [`instance`] as the dispatchable argument.
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 /// - [`DebugUtilsMessengerEXT`]
 /// - [`Instance`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCreateDebugUtilsMessengerEXT")]
 pub type FNCreateDebugUtilsMessengerExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -489,7 +489,7 @@ pub type FNCreateDebugUtilsMessengerExt = Option<
 ///    VkDebugUtilsMessengerEXT                    messenger,
 ///    const VkAllocationCallbacks*                pAllocator);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is the instance where the callback was created.
 /// - [`messenger`] is the [`DebugUtilsMessengerEXT`] object to destroy. [`messenger`] is an
 ///   externally synchronized object and  **must**  not be used on more than one thread at a time.
@@ -497,14 +497,14 @@ pub type FNCreateDebugUtilsMessengerExt = Option<
 ///   is active.
 /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
 ///   chapter.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [`AllocationCallbacks`] were provided when [`messenger`] was created, a compatible set of
 ///   callbacks  **must**  be provided here
 /// - If no [`AllocationCallbacks`] were provided when [`messenger`] was created, [`p_allocator`]
 ///   **must**  be `NULL`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - If [`messenger`] is not [`crate::Handle::null`], [`messenger`] **must**  be a valid
 ///   [`DebugUtilsMessengerEXT`] handle
@@ -513,24 +513,24 @@ pub type FNCreateDebugUtilsMessengerExt = Option<
 /// - If [`messenger`] is a valid handle, it  **must**  have been created, allocated, or retrieved
 ///   from [`instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`messenger`] **must**  be externally synchronized
-/// The application  **must**  ensure that [`destroy_debug_utils_messenger_ext`] is
-/// not executed in parallel with any Vulkan command that is also called with
-/// [`instance`] or child of [`instance`] as the dispatchable argument.
-/// # Related
+///The application  **must**  ensure that [`destroy_debug_utils_messenger_ext`] is
+///not executed in parallel with any Vulkan command that is also called with
+///[`instance`] or child of [`instance`] as the dispatchable argument.
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`AllocationCallbacks`]
 /// - [`DebugUtilsMessengerEXT`]
 /// - [`Instance`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkDestroyDebugUtilsMessengerEXT")]
 pub type FNDestroyDebugUtilsMessengerExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -552,7 +552,7 @@ pub type FNDestroyDebugUtilsMessengerExt = Option<
 ///    VkDebugUtilsMessageTypeFlagsEXT             messageTypes,
 ///    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`instance`] is the debug stream’s [`Instance`].
 /// - [`message_severity`] is a [`DebugUtilsMessageSeverityFlagBitsEXT`] value specifying the
 ///   severity of this event/message.
@@ -560,17 +560,17 @@ pub type FNDestroyDebugUtilsMessengerExt = Option<
 ///   of event(s) to identify with this message.
 /// - [`p_callback_data`] contains all the callback related data in the
 ///   [`DebugUtilsMessengerCallbackDataEXT`] structure.
-/// # Description
-/// The call will propagate through the layers and generate callback(s) as
-/// indicated by the message’s flags.
-/// The parameters are passed on to the callback in addition to the
-/// `pUserData` value that was defined at the time the messenger was
-/// registered.
-/// ## Valid Usage
+///# Description
+///The call will propagate through the layers and generate callback(s) as
+///indicated by the message’s flags.
+///The parameters are passed on to the callback in addition to the
+///`pUserData` value that was defined at the time the messenger was
+///registered.
+///## Valid Usage
 /// - The `objectType` member of each element of `pCallbackData->pObjects` **must**  not be
 ///   `VK_OBJECT_TYPE_UNKNOWN`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`instance`] **must**  be a valid [`Instance`] handle
 /// - [`message_severity`] **must**  be a valid [`DebugUtilsMessageSeverityFlagBitsEXT`] value
 /// - [`message_types`] **must**  be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`]
@@ -578,20 +578,20 @@ pub type FNDestroyDebugUtilsMessengerExt = Option<
 /// - [`message_types`] **must**  not be `0`
 /// - [`p_callback_data`] **must**  be a valid pointer to a valid
 ///   [`DebugUtilsMessengerCallbackDataEXT`] structure
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagBitsEXT`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 /// - [`Instance`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkSubmitDebugUtilsMessageEXT")]
 pub type FNSubmitDebugUtilsMessageExt = Option<
     for<'lt> unsafe extern "system" fn(
@@ -610,36 +610,36 @@ pub type FNSubmitDebugUtilsMessageExt = Option<
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of
 ///   the label region to open.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 /// - [`DebugUtilsLabelEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
 pub type FNCmdBeginDebugUtilsLabelExt = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_label_info: *const DebugUtilsLabelEXT<'lt>),
@@ -652,55 +652,55 @@ pub type FNCmdBeginDebugUtilsLabelExt = Option<
 ///void vkCmdEndDebugUtilsLabelEXT(
 ///    VkCommandBuffer                             commandBuffer);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
-/// # Description
-/// An application  **may**  open a debug label region in one command buffer and
-/// close it in another, or otherwise split debug label regions across multiple
-/// command buffers or multiple queue submissions.
-/// When viewed from the linear series of submissions to a single queue, the
-/// calls to [`cmd_begin_debug_utils_label_ext`] and
-/// [`cmd_end_debug_utils_label_ext`] **must**  be matched and balanced.There  **can**  be problems
+///# Description
+///An application  **may**  open a debug label region in one command buffer and
+///close it in another, or otherwise split debug label regions across multiple
+///command buffers or multiple queue submissions.
+///When viewed from the linear series of submissions to a single queue, the
+///calls to [`cmd_begin_debug_utils_label_ext`] and
+///[`cmd_end_debug_utils_label_ext`] **must**  be matched and balanced.There  **can**  be problems
 /// reporting command buffer debug labels during the
-/// recording process because command buffers  **may**  be recorded out of sequence
-/// with the resulting execution order.
-/// Since the recording order  **may**  be different, a solitary command buffer  **may**
-/// have an inconsistent view of the debug label regions by itself.
-/// Therefore, if an issue occurs during the recording of a command buffer, and
-/// the environment requires returning debug labels, the implementation  **may**
-/// return only those labels it is aware of.
-/// This is true even if the implementation is aware of only the debug labels
-/// within the command buffer being actively recorded.
-/// ## Valid Usage
+///recording process because command buffers  **may**  be recorded out of sequence
+///with the resulting execution order.
+///Since the recording order  **may**  be different, a solitary command buffer  **may**
+///have an inconsistent view of the debug label regions by itself.
+///Therefore, if an issue occurs during the recording of a command buffer, and
+///the environment requires returning debug labels, the implementation  **may**
+///return only those labels it is aware of.
+///This is true even if the implementation is aware of only the debug labels
+///within the command buffer being actively recorded.
+///## Valid Usage
 /// - There  **must**  be an outstanding [`cmd_begin_debug_utils_label_ext`] command prior to the
 ///   [`cmd_end_debug_utils_label_ext`] on the queue that [`command_buffer`] is submitted to
 /// - If [`command_buffer`] is a secondary command buffer, there  **must**  be an outstanding
 ///   [`cmd_begin_debug_utils_label_ext`] command recorded to [`command_buffer`] that has not
 ///   previously been ended by a call to [`cmd_end_debug_utils_label_ext`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdEndDebugUtilsLabelEXT")]
 pub type FNCmdEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(command_buffer: CommandBuffer)>;
 ///[vkCmdInsertDebugUtilsLabelEXT](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html) - Insert a label into a command buffer
@@ -712,36 +712,36 @@ pub type FNCmdEndDebugUtilsLabelExt = Option<unsafe extern "system" fn(command_b
 ///    VkCommandBuffer                             commandBuffer,
 ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`command_buffer`] is the command buffer into which the command is recorded.
 /// - `pInfo` is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of the label
 ///   to insert.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or
 ///   compute operations
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-/// ## Command Properties
-/// # Related
+///## Command Properties
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`CommandBuffer`]
 /// - [`DebugUtilsLabelEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdInsertDebugUtilsLabelEXT")]
 pub type FNCmdInsertDebugUtilsLabelExt = Option<
     for<'lt> unsafe extern "system" fn(command_buffer: CommandBuffer, p_label_info: *const DebugUtilsLabelEXT<'lt>),
@@ -760,7 +760,7 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 ///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0x00001000,
 ///} VkDebugUtilsMessageSeverityFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VERBOSE`] specifies the most verbose output indicating all diagnostic messages from the
 ///   Vulkan loader, layers, and drivers should be captured.
 /// - [`INFO`] specifies an informational message such as resource details that may be handy when
@@ -772,18 +772,18 @@ pub type FNCmdInsertDebugUtilsLabelExt = Option<
 ///   that the behavior is intended/desired, then simply ignore the warning.
 /// - [`ERROR`] specifies that the application has violated a valid usage condition of the
 ///   specification.
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
 /// - [`submit_debug_utils_message_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -872,7 +872,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
 ///    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0x00000004,
 ///} VkDebugUtilsMessageTypeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`GENERAL`] specifies that some general event has occurred. This is typically a
 ///   non-specification, non-performance event.
 /// - [`VALIDATION`] specifies that something has occurred during validation against the Vulkan
@@ -880,17 +880,17 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagBitsEXT {
 /// - [`PERFORMANCE`] specifies a potentially non-optimal use of Vulkan, e.g. using
 ///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageTypeFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -973,7 +973,7 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
 ///    VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT = 0x00001000,
 ///} VkDebugUtilsMessageSeverityFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`VERBOSE`] specifies the most verbose output indicating all diagnostic messages from the
 ///   Vulkan loader, layers, and drivers should be captured.
 /// - [`INFO`] specifies an informational message such as resource details that may be handy when
@@ -985,18 +985,18 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagBitsEXT {
 ///   that the behavior is intended/desired, then simply ignore the warning.
 /// - [`ERROR`] specifies that the application has violated a valid usage condition of the
 ///   specification.
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
 /// - [`submit_debug_utils_message_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1309,7 +1309,7 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 ///    VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT = 0x00000004,
 ///} VkDebugUtilsMessageTypeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`GENERAL`] specifies that some general event has occurred. This is typically a
 ///   non-specification, non-performance event.
 /// - [`VALIDATION`] specifies that something has occurred during validation against the Vulkan
@@ -1317,17 +1317,17 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
 /// - [`PERFORMANCE`] specifies a potentially non-optimal use of Vulkan, e.g. using
 ///   [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to
 ///   `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageTypeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessageTypeFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1615,17 +1615,17 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
 ///// Provided by VK_EXT_debug_utils
 ///typedef VkFlags VkDebugUtilsMessengerCreateFlagsEXT;
 ///```
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1648,17 +1648,17 @@ impl std::fmt::Debug for DebugUtilsMessengerCreateFlagsEXT {
 ///// Provided by VK_EXT_debug_utils
 ///typedef VkFlags VkDebugUtilsMessengerCallbackDataFlagsEXT;
 ///```
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[repr(transparent)]
@@ -1688,42 +1688,42 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 ///    const char*        pObjectName;
 ///} VkDebugUtilsObjectNameInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`object_type`] is a [`ObjectType`] specifying the type of the object to be named.
 /// - [`object_handle`] is the object to be named.
 /// - [`object_name`] is either `NULL` or a null-terminated UTF-8 string specifying the name to
 ///   apply to [`object_handle`].
-/// # Description
-/// Applications **may**  change the name associated with an object simply by
-/// calling [`set_debug_utils_object_name_ext`] again with a new string.
-/// If [`object_name`] is either `NULL` or an empty string, then any
-/// previously set name is removed.
-/// ## Valid Usage
+///# Description
+///Applications **may**  change the name associated with an object simply by
+///calling [`set_debug_utils_object_name_ext`] again with a new string.
+///If [`object_name`] is either `NULL` or an empty string, then any
+///previously set name is removed.
+///## Valid Usage
 /// - If [`object_type`] is `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  not be
 ///   [`crate::Handle::null`]
 /// -    If [`object_type`] is not `VK_OBJECT_TYPE_UNKNOWN`, [`object_handle`] **must**  be [`crate::Handle::null`] or a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`object_type`] **must**  be a valid [`ObjectType`] value
 /// - If [`object_name`] is not `NULL`, [`object_name`] **must**  be a null-terminated UTF-8 string
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 /// - [`ObjectType`]
 /// - [`StructureType`]
 /// - [`set_debug_utils_object_name_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsObjectNameInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1889,7 +1889,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 ///    const void*        pTag;
 ///} VkDebugUtilsObjectTagInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`object_type`] is a [`ObjectType`] specifying the type of the object to be named.
@@ -1898,34 +1898,34 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 /// - [`tag_size`] is the number of bytes of data to attach to the object.
 /// - [`tag`] is a pointer to an array of [`tag_size`] bytes containing the data to be associated
 ///   with the object.
-/// # Description
-/// The [`tag_name`] parameter gives a name or identifier to the type of data
-/// being tagged.
-/// This can be used by debugging layers to easily filter for only data that can
-/// be used by that implementation.
-/// ## Valid Usage
+///# Description
+///The [`tag_name`] parameter gives a name or identifier to the type of data
+///being tagged.
+///This can be used by debugging layers to easily filter for only data that can
+///be used by that implementation.
+///## Valid Usage
 /// - [`object_type`] **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
 /// -  [`object_handle`] **must**  be a valid Vulkan handle of the type associated with [`object_type`] as defined in the [[`ObjectType`] and Vulkan Handle Relationship](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-types) table
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`object_type`] **must**  be a valid [`ObjectType`] value
 /// - [`tag`] **must**  be a valid pointer to an array of [`tag_size`] bytes
 /// - [`tag_size`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`ObjectType`]
 /// - [`StructureType`]
 /// - [`set_debug_utils_object_tag_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsObjectTagInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2136,7 +2136,7 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 ///    float              color[4];
 ///} VkDebugUtilsLabelEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`label_name`] is a pointer to a null-terminated UTF-8 string containing the name of the
@@ -2145,12 +2145,12 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 ///   implementation  **may**  choose to ignore this color value. The values contain RGBA values in
 ///   order, in the range 0.0 to 1.0. If all elements in [`color`] are set to 0.0 then it is
 ///   ignored.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_LABEL_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`label_name`] **must**  be a null-terminated UTF-8 string
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessengerCallbackDataEXT`]
 /// - [`StructureType`]
@@ -2159,13 +2159,13 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 /// - [`queue_begin_debug_utils_label_ext`]
 /// - [`queue_insert_debug_utils_label_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsLabelEXT")]
 #[derive(Debug, Clone, PartialEq, PartialOrd)]
 #[repr(C)]
@@ -2313,7 +2313,7 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 ///    void*                                   pUserData;
 ///} VkDebugUtilsMessengerCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is `0` and is reserved for future use.
@@ -2323,33 +2323,33 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 ///   event(s) will cause this callback to be called.
 /// - [`pfn_user_callback`] is the application callback function to call.
 /// - [`user_data`] is user data to be passed to the callback.
-/// # Description
-/// For each [`DebugUtilsMessengerEXT`] that is created the
-/// [`DebugUtilsMessengerCreateInfoEXT`]::[`message_severity`] and
-/// [`DebugUtilsMessengerCreateInfoEXT`]::[`message_type`] determine when
-/// that [`DebugUtilsMessengerCreateInfoEXT`]::[`pfn_user_callback`] is
-/// called.
-/// The process to determine if the user’s [`pfn_user_callback`] is triggered
-/// when an event occurs is as follows:
-/// 0. The implementation will perform a bitwise AND of the event’s
+///# Description
+///For each [`DebugUtilsMessengerEXT`] that is created the
+///[`DebugUtilsMessengerCreateInfoEXT`]::[`message_severity`] and
+///[`DebugUtilsMessengerCreateInfoEXT`]::[`message_type`] determine when
+///that [`DebugUtilsMessengerCreateInfoEXT`]::[`pfn_user_callback`] is
+///called.
+///The process to determine if the user’s [`pfn_user_callback`] is triggered
+///when an event occurs is as follows:
+///0. The implementation will perform a bitwise AND of the event’s
 /// [`DebugUtilsMessageSeverityFlagBitsEXT`] with the [`message_severity`] provided during creation
 /// of the [`DebugUtilsMessengerEXT`] object.  0. If the value is 0, the message is skipped.
-/// 2. The implementation will perform bitwise AND of the event’s
+///2. The implementation will perform bitwise AND of the event’s
 /// [`DebugUtilsMessageTypeFlagBitsEXT`] with the [`message_type`] provided during the creation of
 /// the [`DebugUtilsMessengerEXT`] object.  0. If the value is 0, the message is skipped.
-/// 4. The callback will trigger a debug message for the current event
-/// The callback will come directly from the component that detected the event,
-/// unless some other layer intercepts the calls for its own purposes (filter
-/// them in a different way, log to a system error log, etc.).An application  **can**  receive
+///4. The callback will trigger a debug message for the current event
+///The callback will come directly from the component that detected the event,
+///unless some other layer intercepts the calls for its own purposes (filter
+///them in a different way, log to a system error log, etc.).An application  **can**  receive
 /// multiple callbacks if multiple
-/// [`DebugUtilsMessengerEXT`] objects are created.
-/// A callback will always be executed in the same thread as the originating
-/// Vulkan call.A callback  **can**  be called from multiple threads simultaneously (if the
-/// application is making Vulkan calls from multiple threads).
-/// ## Valid Usage
+///[`DebugUtilsMessengerEXT`] objects are created.
+///A callback will always be executed in the same thread as the originating
+///Vulkan call.A callback  **can**  be called from multiple threads simultaneously (if the
+///application is making Vulkan calls from multiple threads).
+///## Valid Usage
 /// - [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`
 /// - [`flags`] **must**  be `0`
 /// - [`message_severity`] **must**  be a valid combination of
@@ -2359,7 +2359,7 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 ///   values
 /// - [`message_type`] **must**  not be `0`
 /// - [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`] value
-/// # Related
+///# Related
 /// - [`PFNDebugUtilsMessengerCallbackEXT`]
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsMessageSeverityFlagsEXT`]
@@ -2368,13 +2368,13 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 /// - [`StructureType`]
 /// - [`create_debug_utils_messenger_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
 #[derive(Clone)]
 #[repr(C)]
@@ -2617,7 +2617,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 ///    const VkDebugUtilsObjectNameInfoEXT*         pObjects;
 ///} VkDebugUtilsMessengerCallbackDataEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is `0` and is reserved for future use.
@@ -2637,14 +2637,14 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 /// - [`objects`] is a pointer to an array of [`DebugUtilsObjectNameInfoEXT`] objects related to the
 ///   detected issue. The array is roughly in order or importance, but the 0th element is always
 ///   guaranteed to be the most important object for this message.
-/// # Description
-/// Since adding queue and command buffer labels behaves like pushing and
-/// popping onto a stack, the order of both [`queue_labels`] and
-/// [`cmd_buf_labels`] is based on the order the labels were defined.
-/// The result is that the first label in either [`queue_labels`] or
-/// [`cmd_buf_labels`] will be the first defined (and therefore the oldest)
-/// while the last label in each list will be the most recent.
-/// ## Valid Usage (Implicit)
+///# Description
+///Since adding queue and command buffer labels behaves like pushing and
+///popping onto a stack, the order of both [`queue_labels`] and
+///[`cmd_buf_labels`] is based on the order the labels were defined.
+///The result is that the first label in either [`queue_labels`] or
+///[`cmd_buf_labels`] will be the first defined (and therefore the oldest)
+///while the last label in each list will be the most recent.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CALLBACK_DATA_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`flags`] **must**  be `0`
@@ -2657,7 +2657,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 ///   array of [`cmd_buf_label_count`] valid [`DebugUtilsLabelEXT`] structures
 /// - If [`object_count`] is not `0`, [`objects`] **must**  be a valid pointer to an array of
 ///   [`object_count`] valid [`DebugUtilsObjectNameInfoEXT`] structures
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`DebugUtilsLabelEXT`]
 /// - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
@@ -2665,13 +2665,13 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 /// - [`StructureType`]
 /// - [`submit_debug_utils_message_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCallbackDataEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3097,7 +3097,7 @@ impl Instance {
     ///    const VkAllocationCallbacks*                pAllocator,
     ///    VkDebugUtilsMessengerEXT*                   pMessenger);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is the instance the messenger will be used with.
     /// - [`p_create_info`] is a pointer to a [`DebugUtilsMessengerCreateInfoEXT`] structure
     ///   containing the callback pointer, as well as defining conditions under which this messenger
@@ -3106,8 +3106,8 @@ impl Instance {
     ///   chapter.
     /// - [`p_messenger`] is a pointer to a [`DebugUtilsMessengerEXT`] handle in which the created
     ///   object is returned.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`p_create_info`] **must**  be a valid pointer to a valid
     ///   [`DebugUtilsMessengerCreateInfoEXT`] structure
@@ -3115,26 +3115,26 @@ impl Instance {
     ///   [`AllocationCallbacks`] structure
     /// - [`p_messenger`] **must**  be a valid pointer to a [`DebugUtilsMessengerEXT`] handle
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`
-    /// The application  **must**  ensure that [`create_debug_utils_messenger_ext`] is
-    /// not executed in parallel with any Vulkan command that is also called with
-    /// [`instance`] or child of [`instance`] as the dispatchable argument.
-    /// # Related
+    ///The application  **must**  ensure that [`create_debug_utils_messenger_ext`] is
+    ///not executed in parallel with any Vulkan command that is also called with
+    ///[`instance`] or child of [`instance`] as the dispatchable argument.
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugUtilsMessengerCreateInfoEXT`]
     /// - [`DebugUtilsMessengerEXT`]
     /// - [`Instance`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCreateDebugUtilsMessengerEXT")]
     #[track_caller]
@@ -3185,7 +3185,7 @@ impl Instance {
     ///    VkDebugUtilsMessengerEXT                    messenger,
     ///    const VkAllocationCallbacks*                pAllocator);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is the instance where the callback was created.
     /// - [`messenger`] is the [`DebugUtilsMessengerEXT`] object to destroy. [`messenger`] is an
     ///   externally synchronized object and  **must**  not be used on more than one thread at a
@@ -3193,14 +3193,14 @@ impl Instance {
     ///   callback is active.
     /// - [`p_allocator`] controls host memory allocation as described in the [Memory Allocation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-allocation)
     ///   chapter.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - If [`AllocationCallbacks`] were provided when [`messenger`] was created, a compatible set
     ///   of callbacks  **must**  be provided here
     /// - If no [`AllocationCallbacks`] were provided when [`messenger`] was created,
     ///   [`p_allocator`] **must**  be `NULL`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - If [`messenger`] is not [`crate::Handle::null`], [`messenger`] **must**  be a valid
     ///   [`DebugUtilsMessengerEXT`] handle
@@ -3209,24 +3209,24 @@ impl Instance {
     /// - If [`messenger`] is a valid handle, it  **must**  have been created, allocated, or
     ///   retrieved from [`instance`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`messenger`] **must**  be externally synchronized
-    /// The application  **must**  ensure that [`destroy_debug_utils_messenger_ext`] is
-    /// not executed in parallel with any Vulkan command that is also called with
-    /// [`instance`] or child of [`instance`] as the dispatchable argument.
-    /// # Related
+    ///The application  **must**  ensure that [`destroy_debug_utils_messenger_ext`] is
+    ///not executed in parallel with any Vulkan command that is also called with
+    ///[`instance`] or child of [`instance`] as the dispatchable argument.
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`AllocationCallbacks`]
     /// - [`DebugUtilsMessengerEXT`]
     /// - [`Instance`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkDestroyDebugUtilsMessengerEXT")]
     #[track_caller]
@@ -3272,7 +3272,7 @@ impl Instance {
     ///    VkDebugUtilsMessageTypeFlagsEXT             messageTypes,
     ///    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`instance`] is the debug stream’s [`Instance`].
     /// - [`message_severity`] is a [`DebugUtilsMessageSeverityFlagBitsEXT`] value specifying the
     ///   severity of this event/message.
@@ -3280,17 +3280,17 @@ impl Instance {
     ///   type of event(s) to identify with this message.
     /// - [`p_callback_data`] contains all the callback related data in the
     ///   [`DebugUtilsMessengerCallbackDataEXT`] structure.
-    /// # Description
-    /// The call will propagate through the layers and generate callback(s) as
-    /// indicated by the message’s flags.
-    /// The parameters are passed on to the callback in addition to the
-    /// `pUserData` value that was defined at the time the messenger was
-    /// registered.
-    /// ## Valid Usage
+    ///# Description
+    ///The call will propagate through the layers and generate callback(s) as
+    ///indicated by the message’s flags.
+    ///The parameters are passed on to the callback in addition to the
+    ///`pUserData` value that was defined at the time the messenger was
+    ///registered.
+    ///## Valid Usage
     /// - The `objectType` member of each element of `pCallbackData->pObjects` **must**  not be
     ///   `VK_OBJECT_TYPE_UNKNOWN`
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`instance`] **must**  be a valid [`Instance`] handle
     /// - [`message_severity`] **must**  be a valid [`DebugUtilsMessageSeverityFlagBitsEXT`] value
     /// - [`message_types`] **must**  be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`]
@@ -3298,20 +3298,20 @@ impl Instance {
     /// - [`message_types`] **must**  not be `0`
     /// - [`p_callback_data`] **must**  be a valid pointer to a valid
     ///   [`DebugUtilsMessengerCallbackDataEXT`] structure
-    /// # Related
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`DebugUtilsMessageSeverityFlagBitsEXT`]
     /// - [`DebugUtilsMessageTypeFlagsEXT`]
     /// - [`DebugUtilsMessengerCallbackDataEXT`]
     /// - [`Instance`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSubmitDebugUtilsMessageEXT")]
     #[track_caller]
@@ -3352,38 +3352,38 @@ impl Device {
     ///    VkDevice                                    device,
     ///    const VkDebugUtilsObjectNameInfoEXT*        pNameInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device that created the object.
     /// - [`p_name_info`] is a pointer to a [`DebugUtilsObjectNameInfoEXT`] structure specifying
     ///   parameters of the name to set on the object.
-    /// # Description
-    /// ## Valid Usage
+    ///# Description
+    ///## Valid Usage
     /// - `pNameInfo->objectType` **must**  not be `VK_OBJECT_TYPE_UNKNOWN`
     /// - `pNameInfo->objectHandle` **must**  not be [`crate::Handle::null`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_name_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectNameInfoEXT`]
     ///   structure
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to `pNameInfo->objectHandle` **must**  be externally synchronized
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`DebugUtilsObjectNameInfoEXT`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetDebugUtilsObjectNameEXT")]
     #[track_caller]
@@ -3420,34 +3420,34 @@ impl Device {
     ///    VkDevice                                    device,
     ///    const VkDebugUtilsObjectTagInfoEXT*         pTagInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device that created the object.
     /// - [`p_tag_info`] is a pointer to a [`DebugUtilsObjectTagInfoEXT`] structure specifying
     ///   parameters of the tag to attach to the object.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_tag_info`] **must**  be a valid pointer to a valid [`DebugUtilsObjectTagInfoEXT`]
     ///   structure
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to `pTagInfo->objectHandle` **must**  be externally synchronized
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`DebugUtilsObjectTagInfoEXT`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkSetDebugUtilsObjectTagEXT")]
     #[track_caller]
@@ -3485,28 +3485,28 @@ impl Queue {
     ///    VkQueue                                     queue,
     ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is the queue in which to start a debug label region.
     /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
     ///   of the label region to open.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`DebugUtilsLabelEXT`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3542,30 +3542,30 @@ impl Queue {
     ///void vkQueueEndDebugUtilsLabelEXT(
     ///    VkQueue                                     queue);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is the queue in which a debug label region should be closed.
-    /// # Description
-    /// The calls to [`queue_begin_debug_utils_label_ext`] and
-    /// [`queue_end_debug_utils_label_ext`] **must**  be matched and balanced.
-    /// ## Valid Usage
+    ///# Description
+    ///The calls to [`queue_begin_debug_utils_label_ext`] and
+    ///[`queue_end_debug_utils_label_ext`] **must**  be matched and balanced.
+    ///## Valid Usage
     /// - There  **must**  be an outstanding [`queue_begin_debug_utils_label_ext`] command prior to
     ///   the [`queue_end_debug_utils_label_ext`] on the queue
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3599,28 +3599,28 @@ impl Queue {
     ///    VkQueue                                     queue,
     ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`queue`] is the queue into which a debug label will be inserted.
     /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
     ///   of the label to insert.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`queue`] **must**  be a valid [`Queue`] handle
     /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`DebugUtilsLabelEXT`]
     /// - [`Queue`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3657,36 +3657,36 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - [`p_label_info`] is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters
     ///   of the label region to open.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, or compute operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     /// - [`DebugUtilsLabelEXT`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3722,55 +3722,55 @@ impl CommandBuffer {
     ///void vkCmdEndDebugUtilsLabelEXT(
     ///    VkCommandBuffer                             commandBuffer);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
-    /// # Description
-    /// An application  **may**  open a debug label region in one command buffer and
-    /// close it in another, or otherwise split debug label regions across multiple
-    /// command buffers or multiple queue submissions.
-    /// When viewed from the linear series of submissions to a single queue, the
-    /// calls to [`cmd_begin_debug_utils_label_ext`] and
-    /// [`cmd_end_debug_utils_label_ext`] **must**  be matched and balanced.There  **can**  be
+    ///# Description
+    ///An application  **may**  open a debug label region in one command buffer and
+    ///close it in another, or otherwise split debug label regions across multiple
+    ///command buffers or multiple queue submissions.
+    ///When viewed from the linear series of submissions to a single queue, the
+    ///calls to [`cmd_begin_debug_utils_label_ext`] and
+    ///[`cmd_end_debug_utils_label_ext`] **must**  be matched and balanced.There  **can**  be
     /// problems reporting command buffer debug labels during the
-    /// recording process because command buffers  **may**  be recorded out of sequence
-    /// with the resulting execution order.
-    /// Since the recording order  **may**  be different, a solitary command buffer  **may**
-    /// have an inconsistent view of the debug label regions by itself.
-    /// Therefore, if an issue occurs during the recording of a command buffer, and
-    /// the environment requires returning debug labels, the implementation  **may**
-    /// return only those labels it is aware of.
-    /// This is true even if the implementation is aware of only the debug labels
-    /// within the command buffer being actively recorded.
-    /// ## Valid Usage
+    ///recording process because command buffers  **may**  be recorded out of sequence
+    ///with the resulting execution order.
+    ///Since the recording order  **may**  be different, a solitary command buffer  **may**
+    ///have an inconsistent view of the debug label regions by itself.
+    ///Therefore, if an issue occurs during the recording of a command buffer, and
+    ///the environment requires returning debug labels, the implementation  **may**
+    ///return only those labels it is aware of.
+    ///This is true even if the implementation is aware of only the debug labels
+    ///within the command buffer being actively recorded.
+    ///## Valid Usage
     /// - There  **must**  be an outstanding [`cmd_begin_debug_utils_label_ext`] command prior to
     ///   the [`cmd_end_debug_utils_label_ext`] on the queue that [`command_buffer`] is submitted to
     /// - If [`command_buffer`] is a secondary command buffer, there  **must**  be an outstanding
     ///   [`cmd_begin_debug_utils_label_ext`] command recorded to [`command_buffer`] that has not
     ///   previously been ended by a call to [`cmd_end_debug_utils_label_ext`]
     ///
-    /// ## Valid Usage (Implicit)
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, or compute operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdEndDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3804,36 +3804,36 @@ impl CommandBuffer {
     ///    VkCommandBuffer                             commandBuffer,
     ///    const VkDebugUtilsLabelEXT*                 pLabelInfo);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`command_buffer`] is the command buffer into which the command is recorded.
     /// - `pInfo` is a pointer to a [`DebugUtilsLabelEXT`] structure specifying parameters of the
     ///   label to insert.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`p_label_info`] **must**  be a valid pointer to a valid [`DebugUtilsLabelEXT`] structure
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support
     ///   graphics, or compute operations
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    /// ## Command Properties
-    /// # Related
+    ///## Command Properties
+    ///# Related
     /// - [`ext_debug_utils`]
     /// - [`CommandBuffer`]
     /// - [`DebugUtilsLabelEXT`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdInsertDebugUtilsLabelEXT")]
     #[track_caller]
@@ -3868,18 +3868,18 @@ impl CommandBuffer {
 ///// Provided by VK_EXT_debug_utils
 ///VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugUtilsMessengerEXT)
 ///```
-/// # Related
+///# Related
 /// - [`ext_debug_utils`]
 /// - [`create_debug_utils_messenger_ext`]
 /// - [`destroy_debug_utils_messenger_ext`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(transparent)]

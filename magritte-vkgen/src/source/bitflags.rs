@@ -89,6 +89,11 @@ impl<'a> BitFlag<'a> {
 
     /// Set the bit flags's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
+        // Gate that ensures that we don't "downgrade" origins
+        if self.origin.is_vulkan() {
+            return;
+        }
+
         self.origin = origin;
     }
 
@@ -206,6 +211,11 @@ impl<'a> Bit<'a> {
 
     /// Set the bit's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
+        // Gate that ensures that we don't "downgrade" origins
+        if self.origin.is_vulkan() {
+            return;
+        }
+
         self.origin = origin;
     }
 

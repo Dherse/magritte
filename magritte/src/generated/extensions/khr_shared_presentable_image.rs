@@ -122,36 +122,36 @@ pub const KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VkDevice                                    device,
 ///    VkSwapchainKHR                              swapchain);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the device associated with [`swapchain`].
 /// - [`swapchain`] is the swapchain to query.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
 ///   from the same [`Instance`]
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`swapchain`] **must**  be externally synchronized
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 ///   - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
 ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-/// # Related
+///# Related
 /// - [`khr_shared_presentable_image`]
 /// - [`Device`]
 /// - [`SwapchainKHR`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetSwapchainStatusKHR")]
 pub type FNGetSwapchainStatusKhr =
     Option<unsafe extern "system" fn(device: Device, swapchain: SwapchainKHR) -> VulkanResultCodes>;
@@ -166,7 +166,7 @@ pub type FNGetSwapchainStatusKhr =
 ///    VkImageUsageFlags    sharedPresentSupportedUsageFlags;
 ///} VkSharedPresentSurfaceCapabilitiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`shared_present_supported_usage_flags`] is a bitmask of [`ImageUsageFlagBits`] representing
@@ -175,21 +175,21 @@ pub type FNGetSwapchainStatusKhr =
 ///   `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR` for the surface on the specified device.
 ///   `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT` **must**  be included in the set but implementations
 ///   **may**  support additional usages.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
-/// # Related
+///# Related
 /// - [`khr_shared_presentable_image`]
 /// - [`ImageUsageFlags`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSharedPresentSurfaceCapabilitiesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -309,36 +309,36 @@ impl Device {
     ///    VkDevice                                    device,
     ///    VkSwapchainKHR                              swapchain);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the device associated with [`swapchain`].
     /// - [`swapchain`] is the swapchain to query.
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
     /// - Both of [`device`], and [`swapchain`] **must**  have been created, allocated, or retrieved
     ///   from the same [`Instance`]
     ///
-    /// ## Host Synchronization
+    ///## Host Synchronization
     /// - Host access to [`swapchain`] **must**  be externally synchronized
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_SUBOPTIMAL_KHR`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  -
     ///   `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  -
     ///   `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
-    /// # Related
+    ///# Related
     /// - [`khr_shared_presentable_image`]
     /// - [`Device`]
     /// - [`SwapchainKHR`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetSwapchainStatusKHR")]
     #[track_caller]

@@ -7,8 +7,9 @@ use magritte::{
         AccessFlags, AttachmentDescription, AttachmentLoadOp, AttachmentReference, AttachmentStoreOp, Format,
         Framebuffer, FramebufferCreateInfo, ImageLayout, PipelineBindPoint, PipelineStageFlags,
         RenderPass as VkRenderPass, RenderPassCreateInfo, SampleCountFlagBits, SubpassDependency, SubpassDescription,
-        VulkanResultCodes, SUBPASS_EXTERNAL,
+        VulkanResultCodes,
     },
+    core::SUBPASS_EXTERNAL,
     AsRaw, SmallVec, Unique,
 };
 

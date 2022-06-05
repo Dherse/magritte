@@ -7,7 +7,8 @@ use crate::{
         DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageSeverityFlagsEXT, DebugUtilsMessageTypeFlagsEXT,
         DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT,
     },
-    vulkan1_0::{Bool32, Instance, VulkanResultCodes, FALSE},
+    vulkan1_0::{Bool32, Instance, VulkanResultCodes},
+    core::FALSE,
     InstanceExtensions, Unique,
 };
 pub use log::Level;

@@ -168,7 +168,7 @@ pub const EXT_VIDEO_ENCODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///    VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_EXT = 0x00400000,
 ///} VkVideoEncodeH264CapabilityFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`DIRECT8X8_INFERENCE`] reports if enabling direct_8x8_inference_flag in StdVideoH264SpsFlags
 ///   is supported.
 /// - [`SEPARATE_COLOUR_PLANE`] reports if enabling separate_colour_plane_flag in
@@ -227,17 +227,17 @@ pub const EXT_VIDEO_ENCODE_H264_EXTENSION_NAME: &'static CStr = crate::cstr!("VK
 ///   different [`StdVideoEncodeH264SliceHeader`]::slice_type. If not supported, all slices of the
 ///   frame  **must**  be encoded with the same `slice_type` which corresponds to the picture type
 ///   of the frame. For example, all slices of a P-frame would be encoded as P-slices.
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264CapabilityFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -463,7 +463,7 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagBitsEXT {
 ///    VK_VIDEO_ENCODE_H264_INPUT_MODE_NON_VCL_BIT_EXT = 0x00000004,
 ///} VkVideoEncodeH264InputModeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`FRAME`] indicates that a single command buffer  **must**  at least encode an entire frame.
 ///   Any non-VCL NALUs  **must**  be encoded using the same command buffer as the frame if
 ///   [`NON_VCL`] is not supported.
@@ -471,27 +471,27 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagBitsEXT {
 ///   Any non-VCL NALUs  **must**  be encoded using the same command buffer as the first slice of
 ///   the frame if [`NON_VCL`] is not supported.
 /// - [`NON_VCL`] indicates that a single command buffer  **may**  encode a non-VCL NALU by itself.
-/// An implementation  **must**  support at least one of
-/// [`FRAME`] or
-/// [`SLICE`].If [`SLICE`] is not supported, the
-/// following two additional restrictions apply for frames encoded with multiple
-/// slices.
-/// First, all frame slices  **must**  have the same pRefList0ModOperations and the
-/// same pRefList1ModOperations.
-/// Second, the order in which slices appear in
-/// [`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
-/// command buffer  **must**  match the placement order of the slices in the frame.
-/// # Related
+///An implementation  **must**  support at least one of
+///[`FRAME`] or
+///[`SLICE`].If [`SLICE`] is not supported, the
+///following two additional restrictions apply for frames encoded with multiple
+///slices.
+///First, all frame slices  **must**  have the same pRefList0ModOperations and the
+///same pRefList1ModOperations.
+///Second, the order in which slices appear in
+///[`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
+///command buffer  **must**  match the placement order of the slices in the frame.
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264InputModeFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -576,7 +576,7 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagBitsEXT {
 ///    VK_VIDEO_ENCODE_H264_OUTPUT_MODE_NON_VCL_BIT_EXT = 0x00000004,
 ///} VkVideoEncodeH264OutputModeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`FRAME`] indicates that calls to generate all NALUs of a frame  **must**  be included within
 ///   a single begin/end pair. Any non-VCL NALUs  **must**  be encoded within the same begin/end
 ///   pair if [`NON_VCL`] is not supported.
@@ -585,15 +585,15 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagBitsEXT {
 ///   [`NON_VCL`] is not supported.
 /// - [`NON_VCL`] indicates that each begin/end pair  **may**  encode only a non-VCL NALU by itself.
 ///   An implementation  **must**  support at least one of [`FRAME`] or [`SLICE`].
-/// A single begin/end pair  **must**  not encode more than a single frame.The bitstreams of NALUs
+///A single begin/end pair  **must**  not encode more than a single frame.The bitstreams of NALUs
 /// generated within a single begin/end pair are written
-/// continuously into the same bitstream buffer (any padding between the NALUs
+///continuously into the same bitstream buffer (any padding between the NALUs
 /// **must**  be compliant to the H.264 standard).The supported input modes  **must**  be coarser or
 /// equal to the supported output
-/// modes.
-/// For example, it is illegal to report slice input is supported but only frame
-/// output is supported.An implementation  **must**  report one of the following combinations of
-/// input/output modes:
+///modes.
+///For example, it is illegal to report slice input is supported but only frame
+///output is supported.An implementation  **must**  report one of the following combinations of
+///input/output modes:
 /// - Input: Frame, Output: Frame
 /// - Input: Frame, Output: Frame and Non-VCL
 /// - Input: Frame, Output: Slice
@@ -603,17 +603,17 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagBitsEXT {
 /// - Input: Frame and Non-VCL, Output: Frame and Non-VCL
 /// - Input: Frame and Non-VCL, Output: Slice and Non-VCL
 /// - Input: Slice and Non-VCL, Output: Slice and Non-VCL
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264OutputModeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264OutputModeFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -699,21 +699,21 @@ impl std::fmt::Debug for VideoEncodeH264OutputModeFlagBitsEXT {
 ///    VK_VIDEO_ENCODE_H264_RATE_CONTROL_STRUCTURE_DYADIC_BIT_EXT = 0x00000002,
 ///} VkVideoEncodeH264RateControlStructureFlagBitsEXT;
 ///```
-/// # Description
-/// ```c specifies a dyadic reference structure.
+///# Description
+///```c specifies a dyadic reference structure.
 ///```
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlInfoEXT`]
 /// - [`VideoEncodeH264RateControlStructureFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlStructureFlagBitsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -807,7 +807,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagBitsEXT {
 ///    VK_VIDEO_ENCODE_H264_CAPABILITY_DIFFERENT_SLICE_TYPE_BIT_EXT = 0x00400000,
 ///} VkVideoEncodeH264CapabilityFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`DIRECT8X8_INFERENCE`] reports if enabling direct_8x8_inference_flag in StdVideoH264SpsFlags
 ///   is supported.
 /// - [`SEPARATE_COLOUR_PLANE`] reports if enabling separate_colour_plane_flag in
@@ -866,17 +866,17 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagBitsEXT {
 ///   different [`StdVideoEncodeH264SliceHeader`]::slice_type. If not supported, all slices of the
 ///   frame  **must**  be encoded with the same `slice_type` which corresponds to the picture type
 ///   of the frame. For example, all slices of a P-frame would be encoded as P-slices.
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264CapabilityFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264CapabilityFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1500,7 +1500,7 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagsEXT {
 ///    VK_VIDEO_ENCODE_H264_INPUT_MODE_NON_VCL_BIT_EXT = 0x00000004,
 ///} VkVideoEncodeH264InputModeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`FRAME`] indicates that a single command buffer  **must**  at least encode an entire frame.
 ///   Any non-VCL NALUs  **must**  be encoded using the same command buffer as the frame if
 ///   [`NON_VCL`] is not supported.
@@ -1508,27 +1508,27 @@ impl std::fmt::Debug for VideoEncodeH264CapabilityFlagsEXT {
 ///   Any non-VCL NALUs  **must**  be encoded using the same command buffer as the first slice of
 ///   the frame if [`NON_VCL`] is not supported.
 /// - [`NON_VCL`] indicates that a single command buffer  **may**  encode a non-VCL NALU by itself.
-/// An implementation  **must**  support at least one of
-/// [`FRAME`] or
-/// [`SLICE`].If [`SLICE`] is not supported, the
-/// following two additional restrictions apply for frames encoded with multiple
-/// slices.
-/// First, all frame slices  **must**  have the same pRefList0ModOperations and the
-/// same pRefList1ModOperations.
-/// Second, the order in which slices appear in
-/// [`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
-/// command buffer  **must**  match the placement order of the slices in the frame.
-/// # Related
+///An implementation  **must**  support at least one of
+///[`FRAME`] or
+///[`SLICE`].If [`SLICE`] is not supported, the
+///following two additional restrictions apply for frames encoded with multiple
+///slices.
+///First, all frame slices  **must**  have the same pRefList0ModOperations and the
+///same pRefList1ModOperations.
+///Second, the order in which slices appear in
+///[`VideoEncodeH264VclFrameInfoEXT::nalu_slice_entries`] or in the
+///command buffer  **must**  match the placement order of the slices in the frame.
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264InputModeFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -1828,7 +1828,7 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagsEXT {
 ///    VK_VIDEO_ENCODE_H264_OUTPUT_MODE_NON_VCL_BIT_EXT = 0x00000004,
 ///} VkVideoEncodeH264OutputModeFlagBitsEXT;
 ///```
-/// # Description
+///# Description
 /// - [`FRAME`] indicates that calls to generate all NALUs of a frame  **must**  be included within
 ///   a single begin/end pair. Any non-VCL NALUs  **must**  be encoded within the same begin/end
 ///   pair if [`NON_VCL`] is not supported.
@@ -1837,15 +1837,15 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagsEXT {
 ///   [`NON_VCL`] is not supported.
 /// - [`NON_VCL`] indicates that each begin/end pair  **may**  encode only a non-VCL NALU by itself.
 ///   An implementation  **must**  support at least one of [`FRAME`] or [`SLICE`].
-/// A single begin/end pair  **must**  not encode more than a single frame.The bitstreams of NALUs
+///A single begin/end pair  **must**  not encode more than a single frame.The bitstreams of NALUs
 /// generated within a single begin/end pair are written
-/// continuously into the same bitstream buffer (any padding between the NALUs
+///continuously into the same bitstream buffer (any padding between the NALUs
 /// **must**  be compliant to the H.264 standard).The supported input modes  **must**  be coarser or
 /// equal to the supported output
-/// modes.
-/// For example, it is illegal to report slice input is supported but only frame
-/// output is supported.An implementation  **must**  report one of the following combinations of
-/// input/output modes:
+///modes.
+///For example, it is illegal to report slice input is supported but only frame
+///output is supported.An implementation  **must**  report one of the following combinations of
+///input/output modes:
 /// - Input: Frame, Output: Frame
 /// - Input: Frame, Output: Frame and Non-VCL
 /// - Input: Frame, Output: Slice
@@ -1855,17 +1855,17 @@ impl std::fmt::Debug for VideoEncodeH264InputModeFlagsEXT {
 /// - Input: Frame and Non-VCL, Output: Frame and Non-VCL
 /// - Input: Frame and Non-VCL, Output: Slice and Non-VCL
 /// - Input: Slice and Non-VCL, Output: Slice and Non-VCL
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264OutputModeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264OutputModeFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2166,21 +2166,21 @@ impl std::fmt::Debug for VideoEncodeH264OutputModeFlagsEXT {
 ///    VK_VIDEO_ENCODE_H264_RATE_CONTROL_STRUCTURE_DYADIC_BIT_EXT = 0x00000002,
 ///} VkVideoEncodeH264RateControlStructureFlagBitsEXT;
 ///```
-/// # Description
-/// ```c specifies a dyadic reference structure.
+///# Description
+///```c specifies a dyadic reference structure.
 ///```
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlInfoEXT`]
 /// - [`VideoEncodeH264RateControlStructureFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlStructureFlagsEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -2486,7 +2486,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 ///    uint32_t                               log2MaxMvLengthVertical;
 ///} VkVideoEncodeH264CapabilitiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`flags`] is a bitmask of [`VideoEncodeH264CapabilityFlagBitsEXT`] describing supported
@@ -2516,14 +2516,14 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// - [`log2_max_mv_length_vertical`] reports the value that will be used for
 ///   log2_max_mv_length_vertical if bitstream_restriction_flag is enabled in
 ///   StdVideoH264SpsVuiFlags.
-/// # Description
-/// When [`get_physical_device_video_capabilities_khr`] is called to query the
-/// capabilities with parameter `videoCodecOperation` specified as
-/// `VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`, a
-/// [`VideoEncodeH264CapabilitiesEXT`] structure  **can**  be chained to
-/// [`VideoCapabilitiesKHR`] to retrieve H.264 extension specific
-/// capabilities.
-/// ## Valid Usage (Implicit)
+///# Description
+///When [`get_physical_device_video_capabilities_khr`] is called to query the
+///capabilities with parameter `videoCodecOperation` specified as
+///`VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`, a
+///[`VideoEncodeH264CapabilitiesEXT`] structure  **can**  be chained to
+///[`VideoCapabilitiesKHR`] to retrieve H.264 extension specific
+///capabilities.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_EXT`
 /// - [`input_mode_flags`] **must**  be a valid combination of
 ///   [`VideoEncodeH264InputModeFlagBitsEXT`] values
@@ -2531,7 +2531,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// - [`output_mode_flags`] **must**  be a valid combination of
 ///   [`VideoEncodeH264OutputModeFlagBitsEXT`] values
 /// - [`output_mode_flags`] **must**  not be `0`
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
@@ -2539,13 +2539,13 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// - [`VideoEncodeH264InputModeFlagsEXT`]
 /// - [`VideoEncodeH264OutputModeFlagsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264CapabilitiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -2933,7 +2933,7 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 ///    const StdVideoH264PictureParameterSet*     pPpsStd;
 ///} VkVideoEncodeH264SessionParametersAddInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sps_std_count`] is the number of SPS elements in the [`sps_std`]. Its value  **must**  be
@@ -2946,8 +2946,8 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 /// - [`pps_std`] is a pointer to an array of [`StdVideoH264PictureParameterSet`] structures
 ///   representing H.264 picture parameter sets. Each element of the array  **must**  have a unique
 ///   H.264 SPS-PPS ID pair.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - The values of [`sps_std_count`] and [`pps_std_count`] **must**  be less than or equal to the
 ///   values of `maxSpsStdCount` and `maxPpsStdCount`, respectively
 /// - When the `maxSpsStdCount` number of parameters of type StdVideoH264SequenceParameterSet in the
@@ -2968,7 +2968,7 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 /// - SPS/PPS parameters  **must**  comply with the limits specified in
 ///   [`VideoSessionCreateInfoKHR`] during Video Session creation
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_ADD_INFO_EXT`
 /// - If [`sps_std`] is not `NULL`, [`sps_std`] **must**  be a valid pointer to an array of
 ///   [`sps_std_count`][`StdVideoH264SequenceParameterSet`] values
@@ -2976,18 +2976,18 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 ///   [`pps_std_count`][`StdVideoH264PictureParameterSet`] values
 /// - [`sps_std_count`] **must**  be greater than `0`
 /// - [`pps_std_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264SessionParametersCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264SessionParametersAddInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3160,7 +3160,7 @@ impl<'lt> VideoEncodeH264SessionParametersAddInfoEXT<'lt> {
 ///    const VkVideoEncodeH264SessionParametersAddInfoEXT*    pParametersAddInfo;
 ///} VkVideoEncodeH264SessionParametersCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`max_sps_std_count`] is the maximum number of SPS parameters that the
@@ -3170,32 +3170,32 @@ impl<'lt> VideoEncodeH264SessionParametersAddInfoEXT<'lt> {
 /// - [`parameters_add_info`] is `NULL` or a pointer to a
 ///   [`VideoEncodeH264SessionParametersAddInfoEXT`] structure specifying H.264 parameters to add
 ///   upon object creation.
-/// # Description
-/// A [`VideoEncodeH264SessionParametersCreateInfoEXT`] structure holding
-/// one H.264 SPS and at least one H.264 PPS paramater set  **must**  be chained to
-/// [`VideoSessionParametersCreateInfoKHR`] when calling
-/// [`create_video_session_parameters_khr`] to store these parameter set(s) with
-/// the encoder parameter set object for later reference.
-/// The provided H.264 SPS/PPS parameters  **must**  be within the limits specified
-/// during encoder creation for the encoder specified in
-/// [`VideoSessionParametersCreateInfoKHR`].
-/// ## Valid Usage (Implicit)
+///# Description
+///A [`VideoEncodeH264SessionParametersCreateInfoEXT`] structure holding
+///one H.264 SPS and at least one H.264 PPS paramater set  **must**  be chained to
+///[`VideoSessionParametersCreateInfoKHR`] when calling
+///[`create_video_session_parameters_khr`] to store these parameter set(s) with
+///the encoder parameter set object for later reference.
+///The provided H.264 SPS/PPS parameters  **must**  be within the limits specified
+///during encoder creation for the encoder specified in
+///[`VideoSessionParametersCreateInfoKHR`].
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
 /// - If [`parameters_add_info`] is not `NULL`, [`parameters_add_info`] **must**  be a valid pointer
 ///   to a valid [`VideoEncodeH264SessionParametersAddInfoEXT`] structure
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264SessionParametersAddInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264SessionParametersCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3374,7 +3374,7 @@ impl<'lt> VideoEncodeH264SessionParametersCreateInfoEXT<'lt> {
 ///    const StdVideoEncodeH264ReferenceInfo*    pStdReferenceInfo;
 ///} VkVideoEncodeH264DpbSlotInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`slot_index`] is the [DPB Slot](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb-slot)
@@ -3384,24 +3384,24 @@ impl<'lt> VideoEncodeH264SessionParametersCreateInfoEXT<'lt> {
 /// - [`std_reference_info`] is a pointer to a [`StdVideoEncodeH264ReferenceInfo`] structure
 ///   specifying the syntax and other codec-specific information from the H.264 specification
 ///   associated with this reference picture.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_DPB_SLOT_INFO_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`std_reference_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH264ReferenceInfo`] value
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264DpbSlotInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3536,7 +3536,7 @@ impl<'lt> VideoEncodeH264DpbSlotInfoEXT<'lt> {
 ///    const StdVideoEncodeH264PictureInfo*         pCurrentPictureInfo;
 ///} VkVideoEncodeH264VclFrameInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`reference_final_lists`] is `NULL` or a pointer to a [`VideoEncodeH264ReferenceListsEXT`]
@@ -3551,8 +3551,8 @@ impl<'lt> VideoEncodeH264DpbSlotInfoEXT<'lt> {
 ///   specifying the syntax and other codec-specific information from the H.264 specification
 ///   associated with this picture. The information provided  **must**  reflect the decoded picture
 ///   marking operations that are applicable to this frame.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT`
 /// - If [`reference_final_lists`] is not `NULL`, [`reference_final_lists`] **must**  be a valid
 ///   pointer to a valid [`VideoEncodeH264ReferenceListsEXT`] structure
@@ -3561,19 +3561,19 @@ impl<'lt> VideoEncodeH264DpbSlotInfoEXT<'lt> {
 /// - [`current_picture_info`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH264PictureInfo`] value
 /// - [`nalu_slice_entry_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264NaluSliceEXT`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264VclFrameInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -3802,7 +3802,7 @@ impl<'lt> VideoEncodeH264VclFrameInfoEXT<'lt> {
 ///    const StdVideoEncodeH264RefMemMgmtCtrlOperations*    pMemMgmtCtrlOperations;
 ///} VkVideoEncodeH264ReferenceListsEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`reference_list0_entry_count`] is the number of reference pictures in reference list L0 and
@@ -3827,8 +3827,8 @@ impl<'lt> VideoEncodeH264VclFrameInfoEXT<'lt> {
 ///   provided in the `pReferenceSlots` of the parent [`VideoEncodeInfoKHR`] structure.
 /// - [`mem_mgmt_ctrl_operations`] is a pointer to a [`StdVideoEncodeH264RefMemMgmtCtrlOperations`]
 ///   structure specifying reference lists modifications and decoded picture marking operations.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_REFERENCE_LISTS_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`reference_list0_entry_count`] is not `0`, [`reference_list0_entries`] **must**  be a
@@ -3839,20 +3839,20 @@ impl<'lt> VideoEncodeH264VclFrameInfoEXT<'lt> {
 ///   [`VideoEncodeH264DpbSlotInfoEXT`] structures
 /// - [`mem_mgmt_ctrl_operations`] **must**  be a valid pointer to a valid
 ///   [`StdVideoEncodeH264RefMemMgmtCtrlOperations`] value
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264DpbSlotInfoEXT`]
 /// - [`VideoEncodeH264NaluSliceEXT`]
 /// - [`VideoEncodeH264VclFrameInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264ReferenceListsEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4124,7 +4124,7 @@ impl<'lt> VideoEncodeH264ReferenceListsEXT<'lt> {
 ///    const uint8_t*     ppsIdEntries;
 ///} VkVideoEncodeH264EmitPictureParametersEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`sps_id`] is the H.264 SPS ID for the H.264 SPS to insert in the bitstream. The SPS ID
@@ -4139,24 +4139,24 @@ impl<'lt> VideoEncodeH264ReferenceListsEXT<'lt> {
 ///   of [`VideoEncodeH264SessionParametersCreateInfoEXT`] to identify the PPS parameter set to
 ///   insert in the bitstream. This is retrieved from the [`VideoSessionParametersKHR`] object
 ///   provided in [`VideoBeginCodingInfoKHR`].
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_EMIT_PICTURE_PARAMETERS_EXT`
 /// - [`pps_id_entries`] **must**  be a valid pointer to an array of [`pps_id_entry_count`]`uint8_t`
 ///   values
 /// - [`pps_id_entry_count`] **must**  be greater than `0`
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264EmitPictureParametersEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4386,30 +4386,30 @@ impl<'lt> VideoEncodeH264EmitPictureParametersEXT<'lt> {
 ///    StdVideoH264ProfileIdc    stdProfileIdc;
 ///} VkVideoEncodeH264ProfileEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`std_profile_idc`] is a [`StdVideoH264ProfileIdc`] value specifying the H.264 codec profile
 ///   IDC.
-/// # Description
-/// An H.264 encode profile is specified by including a
-/// [`VideoEncodeH264ProfileEXT`] structure in the [`p_next`] chain of the
-/// [`VideoProfileKHR`] structure when
-/// [`VideoProfileKHR::video_codec_operation`] is
-/// `VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`.
-/// ## Valid Usage (Implicit)
+///# Description
+///An H.264 encode profile is specified by including a
+///[`VideoEncodeH264ProfileEXT`] structure in the [`p_next`] chain of the
+///[`VideoProfileKHR`] structure when
+///[`VideoProfileKHR::video_codec_operation`] is
+///`VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_PROFILE_EXT`
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264ProfileEXT")]
 #[repr(C)]
 pub struct VideoEncodeH264ProfileEXT<'lt> {
@@ -4531,7 +4531,7 @@ impl<'lt> VideoEncodeH264ProfileEXT<'lt> {
 ///    const StdVideoEncodeH264SliceHeader*         pSliceHeaderStd;
 ///} VkVideoEncodeH264NaluSliceEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`mb_count`] is the number of macroblocks in this slice.
@@ -4541,27 +4541,27 @@ impl<'lt> VideoEncodeH264ProfileEXT<'lt> {
 ///   provided in [`VideoEncodeH264VclFrameInfoEXT`]::[`reference_final_lists`].
 /// - [`slice_header_std`] is a pointer to a [`StdVideoEncodeH264SliceHeader`] structure specifying
 ///   the slice header for the current slice.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_NALU_SLICE_EXT`
 /// - [`p_next`] **must**  be `NULL`
 /// - If [`reference_final_lists`] is not `NULL`, [`reference_final_lists`] **must**  be a valid
 ///   pointer to a valid [`VideoEncodeH264ReferenceListsEXT`] structure
 /// - [`slice_header_std`] **must**  be a valid pointer to a valid [`StdVideoEncodeH264SliceHeader`]
 ///   value
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264ReferenceListsEXT`]
 /// - [`VideoEncodeH264VclFrameInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264NaluSliceEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4734,7 +4734,7 @@ impl<'lt> VideoEncodeH264NaluSliceEXT<'lt> {
 ///    uint8_t                                             temporalLayerCount;
 ///} VkVideoEncodeH264RateControlInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`gop_frame_count`] is the number of frames contained within the group of pictures (GOP),
@@ -4750,37 +4750,37 @@ impl<'lt> VideoEncodeH264NaluSliceEXT<'lt> {
 ///   specifying the expected encode stream reference structure, to aid in rate control
 ///   calculations.
 /// - [`temporal_layer_count`] specifies the number of temporal layers enabled in the stream.
-/// # Description
-/// In order to provide H.264-specific stream rate control parameters, add a
-/// [`VideoEncodeH264RateControlInfoEXT`] structure to the [`p_next`] chain
-/// of the [`VideoEncodeRateControlInfoKHR`] structure in the [`p_next`]
-/// chain of the [`VideoCodingControlInfoKHR`] structure passed to the
-/// [`cmd_control_video_coding_khr`] command.The parameters from this structure act as a guidance
+///# Description
+///In order to provide H.264-specific stream rate control parameters, add a
+///[`VideoEncodeH264RateControlInfoEXT`] structure to the [`p_next`] chain
+///of the [`VideoEncodeRateControlInfoKHR`] structure in the [`p_next`]
+///chain of the [`VideoCodingControlInfoKHR`] structure passed to the
+///[`cmd_control_video_coding_khr`] command.The parameters from this structure act as a guidance
 /// for implementations to
-/// apply various rate control heuristics.It is possible to infer the picture type to be used when
+///apply various rate control heuristics.It is possible to infer the picture type to be used when
 /// encoding a frame,
-/// on the basis of the values provided for [`consecutive_b_frame_count`],
-/// [`idr_period`], and [`gop_frame_count`], but this inferred picture type
-/// will not be used by implementations to override the picture type provided in
-/// [`cmd_encode_video_khr`].
-/// Additionally, it is not required for the video session to be reset if the
-/// inferred picture type does not match the actual picture type.
-/// ## Valid Usage (Implicit)
+///on the basis of the values provided for [`consecutive_b_frame_count`],
+///[`idr_period`], and [`gop_frame_count`], but this inferred picture type
+///will not be used by implementations to override the picture type provided in
+///[`cmd_encode_video_khr`].
+///Additionally, it is not required for the video session to be reset if the
+///inferred picture type does not match the actual picture type.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_INFO_EXT`
 /// - [`rate_control_structure`] **must**  be a valid
 ///   [`VideoEncodeH264RateControlStructureFlagBitsEXT`] value
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264RateControlStructureFlagBitsEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -4987,21 +4987,21 @@ impl<'lt> VideoEncodeH264RateControlInfoEXT<'lt> {
 ///    int32_t    qpB;
 ///} VkVideoEncodeH264QpEXT;
 ///```
-/// # Members
+///# Members
 /// - [`qp_i`] is the QP to be used for I-frames.
 /// - [`qp_p`] is the QP to be used for P-frames.
 /// - [`qp_b`] is the QP to be used for B-frames.
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlLayerInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264QpEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5090,21 +5090,21 @@ impl VideoEncodeH264QpEXT {
 ///    uint32_t    frameBSize;
 ///} VkVideoEncodeH264FrameSizeEXT;
 ///```
-/// # Members
+///# Members
 /// - [`frame_i_size`] is the size in bytes to be used for I-frames.
 /// - [`frame_p_size`] is the size in bytes to be used for P-frames.
 /// - [`frame_b_size`] is the size in bytes to be used for B-frames.
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`VideoEncodeH264RateControlLayerInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264FrameSizeEXT")]
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -5201,7 +5201,7 @@ impl VideoEncodeH264FrameSizeEXT {
 ///    VkVideoEncodeH264FrameSizeEXT    maxFrameSize;
 ///} VkVideoEncodeH264RateControlLayerInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`temporal_layer_id`] specifies the H.264 temporal layer ID of the video coding layer that
@@ -5231,13 +5231,13 @@ impl VideoEncodeH264FrameSizeEXT {
 ///   limits, however these limits  **may**  be used as a guide in rate control calculations. If
 ///   enabled and not set properly, the [`max_qp`] limit may prevent the implementation from
 ///   respecting the [`max_frame_size`] limit.
-/// # Description
-/// H.264-specific per-layer rate control parameters  **must**  be specified by
-/// adding a [`VideoEncodeH264RateControlLayerInfoEXT`] structure to the
-/// [`p_next`] chain of each [`VideoEncodeRateControlLayerInfoKHR`]
-/// structure in a call to [`cmd_control_video_coding_khr`] command, when the
-/// command buffer context has an active video encode H.264 session.
-/// ## Valid Usage
+///# Description
+///H.264-specific per-layer rate control parameters  **must**  be specified by
+///adding a [`VideoEncodeH264RateControlLayerInfoEXT`] structure to the
+///[`p_next`] chain of each [`VideoEncodeRateControlLayerInfoKHR`]
+///structure in a call to [`cmd_control_video_coding_khr`] command, when the
+///command buffer context has an active video encode H.264 session.
+///## Valid Usage
 /// - When [`VideoEncodeRateControlInfoKHR::rate_control_mode`] is
 ///   `VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`, both [`use_min_qp`] and [`use_max_qp`] must
 ///   be set to [`TRUE`].
@@ -5245,26 +5245,26 @@ impl VideoEncodeH264FrameSizeEXT {
 ///   `VK_VIDEO_ENCODE_RATE_CONTROL_MODE_NONE_BIT_KHR`, the values provided in `minQP` must be
 ///   identical to those provided in [`max_qp`].
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_RATE_CONTROL_LAYER_INFO_EXT`
 /// - [`initial_rc_qp`] **must**  be a valid [`VideoEncodeH264QpEXT`] structure
 /// - [`min_qp`] **must**  be a valid [`VideoEncodeH264QpEXT`] structure
 /// - [`max_qp`] **must**  be a valid [`VideoEncodeH264QpEXT`] structure
 /// - [`max_frame_size`] **must**  be a valid [`VideoEncodeH264FrameSizeEXT`] structure
-/// # Related
+///# Related
 /// - [`ext_video_encode_h264`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 /// - [`VideoEncodeH264FrameSizeEXT`]
 /// - [`VideoEncodeH264QpEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlLayerInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

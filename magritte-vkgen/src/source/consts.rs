@@ -67,6 +67,11 @@ impl<'a> Const<'a> {
 
     /// Set the constant's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
+        // Gate that ensures that we don't "downgrade" origins
+        if self.origin.is_vulkan() {
+            return;
+        }
+
         self.origin = origin;
     }
 
@@ -154,6 +159,11 @@ impl<'a> ConstAlias<'a> {
 
     /// Set the alias's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
+        // Gate that ensures that we don't "downgrade" origins
+        if self.origin.is_vulkan() {
+            return;
+        }
+
         self.origin = origin;
     }
 
