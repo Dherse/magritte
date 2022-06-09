@@ -41,8 +41,8 @@ use crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT;
 use crate::{
     vulkan1_0::{
         Buffer, BufferView, CommandBuffer, CommandPool, DescriptorPool, DescriptorSet, DescriptorSetLayout, Device,
-        DeviceMemory, Event, Fence, Framebuffer, Image, ImageView, Instance, PhysicalDevice, Pipeline, PipelineCache,
-        PipelineLayout, QueryPool, Queue, RenderPass, Sampler, Semaphore, ShaderModule,
+        DeviceMemory, Event, Fence, Framebuffer, Image, ImageView, Instance, ObjectType, PhysicalDevice, Pipeline,
+        PipelineCache, PipelineLayout, QueryPool, Queue, RenderPass, Sampler, Semaphore, ShaderModule,
     },
     vulkan1_1::{DescriptorUpdateTemplate, SamplerYcbcrConversion},
     vulkan1_3::PrivateDataSlot,
@@ -116,8 +116,82 @@ pub enum Handles {
     #[cfg(feature = "VK_KHR_swapchain")]
     SwapchainImageView(Unique<SwapchainImageView>),
 }
+impl Handles {
+    ///Gets the [`ObjectType`] from the handle
+    pub fn as_object_type(&self) -> ObjectType {
+        match self {
+            Self::Instance(_) => ObjectType::INSTANCE,
+            Self::PhysicalDevice(_) => ObjectType::PHYSICAL_DEVICE,
+            Self::Device(_) => ObjectType::DEVICE,
+            Self::Queue(_) => ObjectType::QUEUE,
+            Self::CommandBuffer(_) => ObjectType::COMMAND_BUFFER,
+            Self::DeviceMemory(_) => ObjectType::DEVICE_MEMORY,
+            Self::CommandPool(_) => ObjectType::COMMAND_POOL,
+            Self::Buffer(_) => ObjectType::BUFFER,
+            Self::BufferView(_) => ObjectType::BUFFER_VIEW,
+            Self::Image(_) => ObjectType::IMAGE,
+            Self::ImageView(_) => ObjectType::IMAGE_VIEW,
+            Self::ShaderModule(_) => ObjectType::SHADER_MODULE,
+            Self::Pipeline(_) => ObjectType::PIPELINE,
+            Self::PipelineLayout(_) => ObjectType::PIPELINE_LAYOUT,
+            Self::Sampler(_) => ObjectType::SAMPLER,
+            Self::DescriptorSet(_) => ObjectType::DESCRIPTOR_SET,
+            Self::DescriptorSetLayout(_) => ObjectType::DESCRIPTOR_SET_LAYOUT,
+            Self::DescriptorPool(_) => ObjectType::DESCRIPTOR_POOL,
+            Self::Fence(_) => ObjectType::FENCE,
+            Self::Semaphore(_) => ObjectType::SEMAPHORE,
+            Self::Event(_) => ObjectType::EVENT,
+            Self::QueryPool(_) => ObjectType::QUERY_POOL,
+            Self::Framebuffer(_) => ObjectType::FRAMEBUFFER,
+            Self::RenderPass(_) => ObjectType::RENDER_PASS,
+            Self::PipelineCache(_) => ObjectType::PIPELINE_CACHE,
+            #[cfg(feature = "VK_NV_device_generated_commands")]
+            Self::IndirectCommandsLayoutNV(_) => ObjectType::INDIRECT_COMMANDS_LAYOUT_NV,
+            Self::DescriptorUpdateTemplate(_) => ObjectType::DESCRIPTOR_UPDATE_TEMPLATE,
+            Self::SamplerYcbcrConversion(_) => ObjectType::SAMPLER_YCBCR_CONVERSION,
+            #[cfg(feature = "VK_EXT_validation_cache")]
+            Self::ValidationCacheEXT(_) => ObjectType::VALIDATION_CACHE_EXT,
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            Self::AccelerationStructureKHR(_) => ObjectType::ACCELERATION_STRUCTURE_KHR,
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            Self::AccelerationStructureNV(_) => ObjectType::ACCELERATION_STRUCTURE_NV,
+            #[cfg(feature = "VK_INTEL_performance_query")]
+            Self::PerformanceConfigurationINTEL(_) => ObjectType::PERFORMANCE_CONFIGURATION_INTEL,
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            Self::BufferCollectionFUCHSIA(_) => ObjectType::BUFFER_COLLECTION_FUCHSIA,
+            #[cfg(feature = "VK_KHR_deferred_host_operations")]
+            Self::DeferredOperationKHR(_) => ObjectType::DEFERRED_OPERATION_KHR,
+            Self::PrivateDataSlot(_) => ObjectType::PRIVATE_DATA_SLOT,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuModuleNVX(_) => ObjectType::CU_MODULE_NVX,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuFunctionNVX(_) => ObjectType::CU_FUNCTION_NVX,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayKHR(_) => ObjectType::DISPLAY_KHR,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayModeKHR(_) => ObjectType::DISPLAY_MODE_KHR,
+            #[cfg(feature = "VK_KHR_surface")]
+            Self::SurfaceKHR(_) => ObjectType::SURFACE_KHR,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainKHR(_) => ObjectType::SWAPCHAIN_KHR,
+            #[cfg(feature = "VK_EXT_debug_report")]
+            Self::DebugReportCallbackEXT(_) => ObjectType::DEBUG_REPORT_CALLBACK_EXT,
+            #[cfg(feature = "VK_EXT_debug_utils")]
+            Self::DebugUtilsMessengerEXT(_) => ObjectType::DEBUG_UTILS_MESSENGER_EXT,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionKHR(_) => ObjectType::VIDEO_SESSION_KHR,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionParametersKHR(_) => ObjectType::VIDEO_SESSION_PARAMETERS_KHR,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImage(_) => ObjectType::IMAGE,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImageView(_) => ObjectType::IMAGE_VIEW,
+        }
+    }
+}
 #[cfg(feature = "VK_EXT_debug_marker")]
 impl Handles {
+    ///Gets the [`DebugReportObjectTypeEXT`] from the handle
     pub fn as_debug_report_object_type_ext(&self) -> DebugReportObjectTypeEXT {
         match self {
             Self::Instance(_) => DebugReportObjectTypeEXT::INSTANCE,

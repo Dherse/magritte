@@ -4,7 +4,7 @@ use quote::{format_ident, quote_each_token};
 
 use crate::{
     imports::Imports,
-    source::{Handle, Source},
+    source::{Handle, Source}, origin::Origin,
 };
 
 impl<'a> Handle<'a> {
@@ -87,6 +87,39 @@ impl<'a> Handle<'a> {
             }
         });
 
+
+        let enum_ = source
+            .enums
+            .get_by_name("VkObjectType")
+            .expect("VkObjectType missing");
+        
+        let object_type_variants = handles.iter().map(|h| {
+            let shouty_name = if h.rename.is_some() {
+                source
+                    .handles
+                    .get_by_name(&h.original_name)
+                    .expect("unknown alias")
+                    .name()
+                    .to_shouty_snake_case()
+            } else {
+                h.name().to_shouty_snake_case()
+            };
+
+            if let Some(variant) = enum_
+                .variants()
+                .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
+            {
+                variant.as_ident()
+            } else if let Some(variant) = enum_
+                .aliases()
+                .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
+            {
+                variant.as_ident()
+            } else {
+                format_ident!("UNKNOWN")
+            }
+        });
+
         for handle in &handles {
             if let Some(cond) = handle.origin().feature_gate(source) {
                 imports.push_str(&format!(
@@ -101,6 +134,7 @@ impl<'a> Handle<'a> {
         }
 
         imports.push_str("#[cfg(feature = \"VK_EXT_debug_marker\")] use crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT;");
+        imports.push_origin(&Origin::Vulkan1_0, "ObjectType");
 
         quote_each_token! {
             out
@@ -113,8 +147,21 @@ impl<'a> Handle<'a> {
                 ),*
             }
 
+            impl Handles {
+                #[doc = "Gets the [`ObjectType`] from the handle"]
+                pub fn as_object_type(&self) -> ObjectType {
+                    match self {
+                        #(
+                            #conds
+                            Self::#handle_idents(_) => ObjectType::#object_type_variants,
+                        )*
+                    }
+                }
+            }
+
             #[cfg(feature = "VK_EXT_debug_marker")]
             impl Handles {
+                #[doc = "Gets the [`DebugReportObjectTypeEXT`] from the handle"]
                 pub fn as_debug_report_object_type_ext(&self) -> DebugReportObjectTypeEXT {
                     match self {
                         #(
