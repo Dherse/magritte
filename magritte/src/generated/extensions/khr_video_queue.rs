@@ -1988,41 +1988,41 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoCodecOperationFlagsKHR::INVALID) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INVALID))?;
                     }
                     #[cfg(feature = "VK_EXT_video_encode_h264")]
                     if self.0.contains(VideoCodecOperationFlagsKHR::ENCODE_H264_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENCODE_H264_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_encode_h265")]
                     if self.0.contains(VideoCodecOperationFlagsKHR::ENCODE_H265_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENCODE_H265_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_decode_h264")]
                     if self.0.contains(VideoCodecOperationFlagsKHR::DECODE_H264_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DECODE_H264_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_video_decode_h265")]
                     if self.0.contains(VideoCodecOperationFlagsKHR::DECODE_H265_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DECODE_H265_EXT))?;
                     }
                 }
@@ -2305,16 +2305,16 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoCapabilityFlagsKHR::PROTECTED_CONTENT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PROTECTED_CONTENT))?;
                     }
                     if self.0.contains(VideoCapabilityFlagsKHR::SEPARATE_REFERENCE_IMAGES) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SEPARATE_REFERENCE_IMAGES))?;
                     }
                 }
@@ -2589,16 +2589,16 @@ impl std::fmt::Debug for VideoSessionCreateFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoSessionCreateFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoSessionCreateFlagsKHR::PROTECTED_CONTENT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PROTECTED_CONTENT))?;
                     }
                 }
@@ -2952,23 +2952,23 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoCodingQualityPresetFlagsKHR::NORMAL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(NORMAL))?;
                     }
                     if self.0.contains(VideoCodingQualityPresetFlagsKHR::POWER) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(POWER))?;
                     }
                     if self.0.contains(VideoCodingQualityPresetFlagsKHR::QUALITY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(QUALITY))?;
                     }
                 }
@@ -3260,16 +3260,16 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoCodingControlFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoCodingControlFlagsKHR::RESET) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(RESET))?;
                     }
                 }
@@ -3580,37 +3580,37 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoChromaSubsamplingFlagsKHR::INVALID) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INVALID))?;
                     }
                     if self.0.contains(VideoChromaSubsamplingFlagsKHR::MONOCHROME) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MONOCHROME))?;
                     }
                     if self.0.contains(VideoChromaSubsamplingFlagsKHR::_420) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_420))?;
                     }
                     if self.0.contains(VideoChromaSubsamplingFlagsKHR::_422) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_422))?;
                     }
                     if self.0.contains(VideoChromaSubsamplingFlagsKHR::_444) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_444))?;
                     }
                 }
@@ -3907,30 +3907,30 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
                         .contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH_INVALID)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VIDEO_COMPONENT_DEPTH_INVALID))?;
                     }
                     if self.0.contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH8) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VIDEO_COMPONENT_DEPTH8))?;
                     }
                     if self.0.contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH10) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VIDEO_COMPONENT_DEPTH10))?;
                     }
                     if self.0.contains(VideoComponentBitDepthFlagsKHR::VIDEO_COMPONENT_DEPTH12) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VIDEO_COMPONENT_DEPTH12))?;
                     }
                 }

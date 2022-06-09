@@ -451,9 +451,9 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
                         .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_SHADER_DEBUG_INFO)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENABLE_SHADER_DEBUG_INFO))?;
                     }
                     if self
@@ -461,9 +461,9 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
                         .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_RESOURCE_TRACKING)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENABLE_RESOURCE_TRACKING))?;
                     }
                     if self
@@ -471,9 +471,9 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
                         .contains(DeviceDiagnosticsConfigFlagsNV::ENABLE_AUTOMATIC_CHECKPOINTS)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENABLE_AUTOMATIC_CHECKPOINTS))?;
                     }
                 }

@@ -1621,23 +1621,23 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
                     let mut first = true;
                     if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::EXPLICIT_PREPROCESS) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(EXPLICIT_PREPROCESS))?;
                     }
                     if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::INDEXED_SEQUENCES) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INDEXED_SEQUENCES))?;
                     }
                     if self.0.contains(IndirectCommandsLayoutUsageFlagsNV::UNORDERED_SEQUENCES) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(UNORDERED_SEQUENCES))?;
                     }
                 }
@@ -1907,9 +1907,9 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
                     let mut first = true;
                     if self.0.contains(IndirectStateFlagsNV::FLAG_FRONTFACE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FLAG_FRONTFACE))?;
                     }
                 }

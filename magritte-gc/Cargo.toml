@@ -1,0 +1,9 @@
+[package]
+name = "magritte-gc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+magritte = { path = "../magritte" }
+
+magritte-vma = { path = "../magritte-vma" }

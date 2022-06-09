@@ -672,30 +672,30 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
                     let mut first = true;
                     if self.0.contains(ExternalMemoryHandleTypeFlagsNV::OPAQUE_WIN32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlagsNV::OPAQUE_WIN32_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32_KMT))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlagsNV::D3D11_IMAGE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D11_IMAGE))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlagsNV::D3D11_IMAGE_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D11_IMAGE_KMT))?;
                     }
                 }
@@ -987,23 +987,23 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
                     let mut first = true;
                     if self.0.contains(ExternalMemoryFeatureFlagsNV::DEDICATED_ONLY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEDICATED_ONLY))?;
                     }
                     if self.0.contains(ExternalMemoryFeatureFlagsNV::EXPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(EXPORTABLE))?;
                     }
                     if self.0.contains(ExternalMemoryFeatureFlagsNV::IMPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(IMPORTABLE))?;
                     }
                 }

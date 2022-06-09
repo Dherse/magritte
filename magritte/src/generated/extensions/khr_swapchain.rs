@@ -1487,24 +1487,24 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
                     #[cfg(feature = "VK_KHR_device_group")]
                     if self.0.contains(SwapchainCreateFlagsKHR::SPLIT_INSTANCE_BIND_REGIONS) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SPLIT_INSTANCE_BIND_REGIONS))?;
                     }
                     if self.0.contains(SwapchainCreateFlagsKHR::PROTECTED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PROTECTED))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
                     if self.0.contains(SwapchainCreateFlagsKHR::MUTABLE_FORMAT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MUTABLE_FORMAT))?;
                     }
                 }

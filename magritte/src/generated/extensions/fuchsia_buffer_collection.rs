@@ -877,37 +877,37 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
                     let mut first = true;
                     if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_READ_RARELY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CPU_READ_RARELY))?;
                     }
                     if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_READ_OFTEN) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CPU_READ_OFTEN))?;
                     }
                     if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_WRITE_RARELY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CPU_WRITE_RARELY))?;
                     }
                     if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::CPU_WRITE_OFTEN) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CPU_WRITE_OFTEN))?;
                     }
                     if self.0.contains(ImageConstraintsInfoFlagsFUCHSIA::PROTECTED_OPTIONAL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PROTECTED_OPTIONAL))?;
                     }
                 }

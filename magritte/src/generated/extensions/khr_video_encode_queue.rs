@@ -775,16 +775,16 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoEncodeFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoEncodeFlagsKHR::RESERVED0) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(RESERVED0))?;
                     }
                 }
@@ -1063,9 +1063,9 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoEncodeCapabilityFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self
@@ -1073,9 +1073,9 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
                         .contains(VideoEncodeCapabilityFlagsKHR::PRECEDING_EXTERNALLY_ENCODED_BYTES)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PRECEDING_EXTERNALLY_ENCODED_BYTES))?;
                     }
                 }
@@ -1352,16 +1352,16 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoEncodeRateControlFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoEncodeRateControlFlagsKHR::RESERVED0) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(RESERVED0))?;
                     }
                 }
@@ -1650,23 +1650,23 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoEncodeRateControlModeFlagsKHR::NONE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(NONE))?;
                     }
                     if self.0.contains(VideoEncodeRateControlModeFlagsKHR::CBR) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CBR))?;
                     }
                     if self.0.contains(VideoEncodeRateControlModeFlagsKHR::VBR) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VBR))?;
                     }
                 }

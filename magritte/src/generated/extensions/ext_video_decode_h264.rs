@@ -489,9 +489,9 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoDecodeH264PictureLayoutFlagsEXT::PROGRESSIVE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PROGRESSIVE))?;
                     }
                     if self
@@ -499,9 +499,9 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
                         .contains(VideoDecodeH264PictureLayoutFlagsEXT::INTERLACED_INTERLEAVED_LINES)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INTERLACED_INTERLEAVED_LINES))?;
                     }
                     if self
@@ -509,9 +509,9 @@ impl std::fmt::Debug for VideoDecodeH264PictureLayoutFlagsEXT {
                         .contains(VideoDecodeH264PictureLayoutFlagsEXT::INTERLACED_SEPARATE_PLANES)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INTERLACED_SEPARATE_PLANES))?;
                     }
                 }

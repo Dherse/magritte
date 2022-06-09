@@ -477,9 +477,9 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
                     let mut first = true;
                     if self.0.contains(SurfaceCounterFlagsEXT::VBLANK) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VBLANK))?;
                     }
                 }

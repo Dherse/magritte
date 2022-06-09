@@ -832,37 +832,37 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
                     let mut first = true;
                     if self.0.contains(DebugReportFlagsEXT::INFORMATION) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INFORMATION))?;
                     }
                     if self.0.contains(DebugReportFlagsEXT::WARNING) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(WARNING))?;
                     }
                     if self.0.contains(DebugReportFlagsEXT::PERFORMANCE_WARNING) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PERFORMANCE_WARNING))?;
                     }
                     if self.0.contains(DebugReportFlagsEXT::ERROR) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ERROR))?;
                     }
                     if self.0.contains(DebugReportFlagsEXT::DEBUG) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEBUG))?;
                     }
                 }

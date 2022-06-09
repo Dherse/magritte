@@ -3845,16 +3845,16 @@ impl std::fmt::Debug for GeometryFlagsKHR {
                     let mut first = true;
                     if self.0.contains(GeometryFlagsKHR::OPAQUE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE))?;
                     }
                     if self.0.contains(GeometryFlagsKHR::NO_DUPLICATE_ANY_HIT_INVOCATION) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(NO_DUPLICATE_ANY_HIT_INVOCATION))?;
                     }
                 }
@@ -4182,30 +4182,30 @@ impl std::fmt::Debug for GeometryInstanceFlagsKHR {
                     let mut first = true;
                     if self.0.contains(GeometryInstanceFlagsKHR::TRIANGLE_FACING_CULL_DISABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TRIANGLE_FACING_CULL_DISABLE))?;
                     }
                     if self.0.contains(GeometryInstanceFlagsKHR::TRIANGLE_FLIP_FACING) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TRIANGLE_FLIP_FACING))?;
                     }
                     if self.0.contains(GeometryInstanceFlagsKHR::FORCE_OPAQUE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FORCE_OPAQUE))?;
                     }
                     if self.0.contains(GeometryInstanceFlagsKHR::FORCE_NO_OPAQUE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FORCE_NO_OPAQUE))?;
                     }
                 }
@@ -4568,45 +4568,45 @@ impl std::fmt::Debug for BuildAccelerationStructureFlagsKHR {
                     let mut first = true;
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::ALLOW_UPDATE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ALLOW_UPDATE))?;
                     }
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::ALLOW_COMPACTION) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ALLOW_COMPACTION))?;
                     }
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::PREFER_FAST_TRACE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PREFER_FAST_TRACE))?;
                     }
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::PREFER_FAST_BUILD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PREFER_FAST_BUILD))?;
                     }
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::LOW_MEMORY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(LOW_MEMORY))?;
                     }
                     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
                     if self.0.contains(BuildAccelerationStructureFlagsKHR::MOTION_NV) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MOTION_NV))?;
                     }
                 }
@@ -4896,17 +4896,17 @@ impl std::fmt::Debug for AccelerationStructureCreateFlagsKHR {
                         .contains(AccelerationStructureCreateFlagsKHR::DEVICE_ADDRESS_CAPTURE_REPLAY)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEVICE_ADDRESS_CAPTURE_REPLAY))?;
                     }
                     #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
                     if self.0.contains(AccelerationStructureCreateFlagsKHR::MOTION_NV) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MOTION_NV))?;
                     }
                 }
@@ -8430,11 +8430,12 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+///   class="base"><span class="strut"
 ///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
 ///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
 ///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span

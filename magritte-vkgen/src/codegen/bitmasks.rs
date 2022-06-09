@@ -464,10 +464,10 @@ impl<'a> Bitmask<'a> {
                                     #conds
                                     if self.0.contains(#name::#bit_idents) {
                                         if !first {
-                                            first = false;
                                             f.write_str(" | ")?;
                                         }
 
+                                        first = false;
                                         f.write_str(stringify!(#bit_idents))?;
                                     }
                                 )*

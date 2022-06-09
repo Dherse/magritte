@@ -1541,16 +1541,16 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::SEPARATE_COLOUR_PLANE)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SEPARATE_COLOUR_PLANE))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::SCALING_LISTS) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SCALING_LISTS))?;
                     }
                     if self
@@ -1558,16 +1558,16 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::SAMPLE_ADAPTIVE_OFFSET_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SAMPLE_ADAPTIVE_OFFSET_ENABLED))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::PCM_ENABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PCM_ENABLE))?;
                     }
                     if self
@@ -1575,23 +1575,23 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::SPS_TEMPORAL_MVP_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SPS_TEMPORAL_MVP_ENABLED))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::HRD_COMPLIANCE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HRD_COMPLIANCE))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::INIT_QP_MINUS26) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INIT_QP_MINUS26))?;
                     }
                     if self
@@ -1599,9 +1599,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::LOG2_PARALLEL_MERGE_LEVEL_MINUS2)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(LOG2_PARALLEL_MERGE_LEVEL_MINUS2))?;
                     }
                     if self
@@ -1609,9 +1609,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::SIGN_DATA_HIDING_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SIGN_DATA_HIDING_ENABLED))?;
                     }
                     if self
@@ -1619,9 +1619,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::TRANSFORM_SKIP_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TRANSFORM_SKIP_ENABLED))?;
                     }
                     if self
@@ -1629,23 +1629,23 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PPS_SLICE_CHROMA_QP_OFFSETS_PRESENT))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::WEIGHTED_PRED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(WEIGHTED_PRED))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::WEIGHTED_BIPRED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(WEIGHTED_BIPRED))?;
                     }
                     if self
@@ -1653,9 +1653,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::WEIGHTED_PRED_NO_TABLE)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(WEIGHTED_PRED_NO_TABLE))?;
                     }
                     if self
@@ -1663,9 +1663,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::TRANSQUANT_BYPASS_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TRANSQUANT_BYPASS_ENABLED))?;
                     }
                     if self
@@ -1673,9 +1673,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::ENTROPY_CODING_SYNC_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ENTROPY_CODING_SYNC_ENABLED))?;
                     }
                     if self
@@ -1683,9 +1683,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::DEBLOCKING_FILTER_OVERRIDE_ENABLED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEBLOCKING_FILTER_OVERRIDE_ENABLED))?;
                     }
                     if self
@@ -1693,9 +1693,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::MULTIPLE_TILE_PER_FRAME)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MULTIPLE_TILE_PER_FRAME))?;
                     }
                     if self
@@ -1703,9 +1703,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::MULTIPLE_SLICE_PER_TILE)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MULTIPLE_SLICE_PER_TILE))?;
                     }
                     if self
@@ -1713,9 +1713,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::MULTIPLE_TILE_PER_SLICE)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(MULTIPLE_TILE_PER_SLICE))?;
                     }
                     if self
@@ -1723,9 +1723,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::SLICE_SEGMENT_CTB_COUNT)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SLICE_SEGMENT_CTB_COUNT))?;
                     }
                     if self
@@ -1733,9 +1733,9 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::ROW_UNALIGNED_SLICE_SEGMENT)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ROW_UNALIGNED_SLICE_SEGMENT))?;
                     }
                     if self
@@ -1743,16 +1743,16 @@ impl std::fmt::Debug for VideoEncodeH265CapabilityFlagsEXT {
                         .contains(VideoEncodeH265CapabilityFlagsEXT::DEPENDENT_SLICE_SEGMENT)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEPENDENT_SLICE_SEGMENT))?;
                     }
                     if self.0.contains(VideoEncodeH265CapabilityFlagsEXT::DIFFERENT_SLICE_TYPE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DIFFERENT_SLICE_TYPE))?;
                     }
                 }
@@ -2063,23 +2063,23 @@ impl std::fmt::Debug for VideoEncodeH265InputModeFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoEncodeH265InputModeFlagsEXT::FRAME) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FRAME))?;
                     }
                     if self.0.contains(VideoEncodeH265InputModeFlagsEXT::SLICE_SEGMENT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SLICE_SEGMENT))?;
                     }
                     if self.0.contains(VideoEncodeH265InputModeFlagsEXT::NON_VCL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(NON_VCL))?;
                     }
                 }
@@ -2404,23 +2404,23 @@ impl std::fmt::Debug for VideoEncodeH265OutputModeFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoEncodeH265OutputModeFlagsEXT::FRAME) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FRAME))?;
                     }
                     if self.0.contains(VideoEncodeH265OutputModeFlagsEXT::SLICE_SEGMENT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SLICE_SEGMENT))?;
                     }
                     if self.0.contains(VideoEncodeH265OutputModeFlagsEXT::NON_VCL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(NON_VCL))?;
                     }
                 }
@@ -2717,23 +2717,23 @@ impl std::fmt::Debug for VideoEncodeH265RateControlStructureFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoEncodeH265RateControlStructureFlagsEXT::UNKNOWN) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(UNKNOWN))?;
                     }
                     if self.0.contains(VideoEncodeH265RateControlStructureFlagsEXT::FLAT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(FLAT))?;
                     }
                     if self.0.contains(VideoEncodeH265RateControlStructureFlagsEXT::DYADIC) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DYADIC))?;
                     }
                 }
@@ -3023,23 +3023,23 @@ impl std::fmt::Debug for VideoEncodeH265CtbSizeFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoEncodeH265CtbSizeFlagsEXT::_16) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_16))?;
                     }
                     if self.0.contains(VideoEncodeH265CtbSizeFlagsEXT::_32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_32))?;
                     }
                     if self.0.contains(VideoEncodeH265CtbSizeFlagsEXT::_64) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_64))?;
                     }
                 }
@@ -3340,30 +3340,30 @@ impl std::fmt::Debug for VideoEncodeH265TransformBlockSizeFlagsEXT {
                     let mut first = true;
                     if self.0.contains(VideoEncodeH265TransformBlockSizeFlagsEXT::_4) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_4))?;
                     }
                     if self.0.contains(VideoEncodeH265TransformBlockSizeFlagsEXT::_8) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_8))?;
                     }
                     if self.0.contains(VideoEncodeH265TransformBlockSizeFlagsEXT::_16) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_16))?;
                     }
                     if self.0.contains(VideoEncodeH265TransformBlockSizeFlagsEXT::_32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(_32))?;
                     }
                 }

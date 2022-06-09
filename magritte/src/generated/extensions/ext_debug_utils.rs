@@ -1261,30 +1261,30 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
                     let mut first = true;
                     if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::VERBOSE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VERBOSE))?;
                     }
                     if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::INFO) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INFO))?;
                     }
                     if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::WARNING) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(WARNING))?;
                     }
                     if self.0.contains(DebugUtilsMessageSeverityFlagsEXT::ERROR) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ERROR))?;
                     }
                 }
@@ -1581,23 +1581,23 @@ impl std::fmt::Debug for DebugUtilsMessageTypeFlagsEXT {
                     let mut first = true;
                     if self.0.contains(DebugUtilsMessageTypeFlagsEXT::GENERAL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(GENERAL))?;
                     }
                     if self.0.contains(DebugUtilsMessageTypeFlagsEXT::VALIDATION) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VALIDATION))?;
                     }
                     if self.0.contains(DebugUtilsMessageTypeFlagsEXT::PERFORMANCE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PERFORMANCE))?;
                     }
                 }

@@ -836,33 +836,33 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
                     #[cfg(feature = "VK_KHR_swapchain")]
                     if self.0.contains(DeviceGroupPresentModeFlagsKHR::LOCAL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(LOCAL))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
                     if self.0.contains(DeviceGroupPresentModeFlagsKHR::REMOTE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(REMOTE))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
                     if self.0.contains(DeviceGroupPresentModeFlagsKHR::SUM) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SUM))?;
                     }
                     #[cfg(feature = "VK_KHR_swapchain")]
                     if self.0.contains(DeviceGroupPresentModeFlagsKHR::LOCAL_MULTI_DEVICE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(LOCAL_MULTI_DEVICE))?;
                     }
                 }

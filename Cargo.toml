@@ -4,6 +4,7 @@ members = [
     "magritte-vkgen",
     "magritte-vma",
     "magritte-shaders",
+    "magritte-gc",
     "samples",
 ]
 

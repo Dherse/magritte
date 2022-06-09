@@ -1141,9 +1141,9 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
                         .contains(PerformanceCounterDescriptionFlagsKHR::PERFORMANCE_IMPACTING)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PERFORMANCE_IMPACTING))?;
                     }
                     if self
@@ -1151,9 +1151,9 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
                         .contains(PerformanceCounterDescriptionFlagsKHR::CONCURRENTLY_IMPACTED)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CONCURRENTLY_IMPACTED))?;
                     }
                 }

@@ -608,23 +608,23 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoDecodeCapabilityFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoDecodeCapabilityFlagsKHR::DPB_AND_OUTPUT_COINCIDE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DPB_AND_OUTPUT_COINCIDE))?;
                     }
                     if self.0.contains(VideoDecodeCapabilityFlagsKHR::DPB_AND_OUTPUT_DISTINCT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DPB_AND_OUTPUT_DISTINCT))?;
                     }
                 }
@@ -899,16 +899,16 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
                     let mut first = true;
                     if self.0.contains(VideoDecodeFlagsKHR::DEFAULT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEFAULT))?;
                     }
                     if self.0.contains(VideoDecodeFlagsKHR::RESERVED0) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(RESERVED0))?;
                     }
                 }

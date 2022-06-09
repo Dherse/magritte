@@ -532,9 +532,9 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
                     let mut first = true;
                     if self.0.contains(ConditionalRenderingFlagsEXT::INVERTED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INVERTED))?;
                     }
                 }

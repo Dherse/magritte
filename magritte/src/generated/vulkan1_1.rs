@@ -4818,66 +4818,66 @@ impl std::fmt::Debug for SubgroupFeatureFlags {
                     let mut first = true;
                     if self.0.contains(SubgroupFeatureFlags::BASIC) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(BASIC))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::VOTE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(VOTE))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::ARITHMETIC) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ARITHMETIC))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::BALLOT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(BALLOT))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::SHUFFLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SHUFFLE))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::SHUFFLE_RELATIVE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SHUFFLE_RELATIVE))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::CLUSTERED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(CLUSTERED))?;
                     }
                     if self.0.contains(SubgroupFeatureFlags::QUAD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(QUAD))?;
                     }
                     #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
                     if self.0.contains(SubgroupFeatureFlags::PARTITIONED_NV) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PARTITIONED_NV))?;
                     }
                 }
@@ -5235,30 +5235,30 @@ impl std::fmt::Debug for PeerMemoryFeatureFlags {
                     let mut first = true;
                     if self.0.contains(PeerMemoryFeatureFlags::COPY_SRC) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(COPY_SRC))?;
                     }
                     if self.0.contains(PeerMemoryFeatureFlags::COPY_DST) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(COPY_DST))?;
                     }
                     if self.0.contains(PeerMemoryFeatureFlags::GENERIC_SRC) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(GENERIC_SRC))?;
                     }
                     if self.0.contains(PeerMemoryFeatureFlags::GENERIC_DST) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(GENERIC_DST))?;
                     }
                 }
@@ -5573,23 +5573,23 @@ impl std::fmt::Debug for MemoryAllocateFlags {
                     let mut first = true;
                     if self.0.contains(MemoryAllocateFlags::DEVICE_MASK) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEVICE_MASK))?;
                     }
                     if self.0.contains(MemoryAllocateFlags::DEVICE_ADDRESS) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEVICE_ADDRESS))?;
                     }
                     if self.0.contains(MemoryAllocateFlags::DEVICE_ADDRESS_CAPTURE_REPLAY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEVICE_ADDRESS_CAPTURE_REPLAY))?;
                     }
                 }
@@ -6131,59 +6131,59 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                     let mut first = true;
                     if self.0.contains(ExternalMemoryHandleTypeFlags::OPAQUE_FD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_FD))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::OPAQUE_WIN32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::OPAQUE_WIN32_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32_KMT))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::D3D11_TEXTURE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D11_TEXTURE))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::D3D11_TEXTURE_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D11_TEXTURE_KMT))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::D3D12_HEAP) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D12_HEAP))?;
                     }
                     if self.0.contains(ExternalMemoryHandleTypeFlags::D3D12_RESOURCE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D12_RESOURCE))?;
                     }
                     #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::DMA_BUF_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DMA_BUF_EXT))?;
                     }
                     #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
@@ -6192,17 +6192,17 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         .contains(ExternalMemoryHandleTypeFlags::ANDROID_HARDWARE_BUFFER_ANDROID)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ANDROID_HARDWARE_BUFFER_ANDROID))?;
                     }
                     #[cfg(feature = "VK_EXT_external_memory_host")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::HOST_ALLOCATION_EXT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HOST_ALLOCATION_EXT))?;
                     }
                     #[cfg(feature = "VK_EXT_external_memory_host")]
@@ -6211,25 +6211,25 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlags {
                         .contains(ExternalMemoryHandleTypeFlags::HOST_MAPPED_FOREIGN_MEMORY_EXT)
                     {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HOST_MAPPED_FOREIGN_MEMORY_EXT))?;
                     }
                     #[cfg(feature = "VK_FUCHSIA_external_memory")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::ZIRCON_VMO_FUCHSIA) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ZIRCON_VMO_FUCHSIA))?;
                     }
                     #[cfg(feature = "VK_NV_external_memory_rdma")]
                     if self.0.contains(ExternalMemoryHandleTypeFlags::RDMA_ADDRESS_NV) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(RDMA_ADDRESS_NV))?;
                     }
                 }
@@ -6552,23 +6552,23 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlags {
                     let mut first = true;
                     if self.0.contains(ExternalMemoryFeatureFlags::DEDICATED_ONLY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(DEDICATED_ONLY))?;
                     }
                     if self.0.contains(ExternalMemoryFeatureFlags::EXPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(EXPORTABLE))?;
                     }
                     if self.0.contains(ExternalMemoryFeatureFlags::IMPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(IMPORTABLE))?;
                     }
                 }
@@ -6979,45 +6979,45 @@ impl std::fmt::Debug for ExternalSemaphoreHandleTypeFlags {
                     let mut first = true;
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::OPAQUE_FD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_FD))?;
                     }
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::OPAQUE_WIN32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32))?;
                     }
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::OPAQUE_WIN32_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32_KMT))?;
                     }
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::D3D12_FENCE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(D3D12_FENCE))?;
                     }
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::SYNC_FD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SYNC_FD))?;
                     }
                     #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
                     if self.0.contains(ExternalSemaphoreHandleTypeFlags::ZIRCON_EVENT_FUCHSIA) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ZIRCON_EVENT_FUCHSIA))?;
                     }
                 }
@@ -7310,16 +7310,16 @@ impl std::fmt::Debug for ExternalSemaphoreFeatureFlags {
                     let mut first = true;
                     if self.0.contains(ExternalSemaphoreFeatureFlags::EXPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(EXPORTABLE))?;
                     }
                     if self.0.contains(ExternalSemaphoreFeatureFlags::IMPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(IMPORTABLE))?;
                     }
                 }
@@ -7601,9 +7601,9 @@ impl std::fmt::Debug for SemaphoreImportFlags {
                     let mut first = true;
                     if self.0.contains(SemaphoreImportFlags::TEMPORARY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TEMPORARY))?;
                     }
                 }
@@ -7964,30 +7964,30 @@ impl std::fmt::Debug for ExternalFenceHandleTypeFlags {
                     let mut first = true;
                     if self.0.contains(ExternalFenceHandleTypeFlags::OPAQUE_FD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_FD))?;
                     }
                     if self.0.contains(ExternalFenceHandleTypeFlags::OPAQUE_WIN32) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32))?;
                     }
                     if self.0.contains(ExternalFenceHandleTypeFlags::OPAQUE_WIN32_KMT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE_WIN32_KMT))?;
                     }
                     if self.0.contains(ExternalFenceHandleTypeFlags::SYNC_FD) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(SYNC_FD))?;
                     }
                 }
@@ -8274,16 +8274,16 @@ impl std::fmt::Debug for ExternalFenceFeatureFlags {
                     let mut first = true;
                     if self.0.contains(ExternalFenceFeatureFlags::EXPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(EXPORTABLE))?;
                     }
                     if self.0.contains(ExternalFenceFeatureFlags::IMPORTABLE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(IMPORTABLE))?;
                     }
                 }
@@ -8565,9 +8565,9 @@ impl std::fmt::Debug for FenceImportFlags {
                     let mut first = true;
                     if self.0.contains(FenceImportFlags::TEMPORARY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(TEMPORARY))?;
                     }
                 }

@@ -1126,30 +1126,30 @@ impl std::fmt::Debug for DisplayPlaneAlphaFlagsKHR {
                     let mut first = true;
                     if self.0.contains(DisplayPlaneAlphaFlagsKHR::OPAQUE) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(OPAQUE))?;
                     }
                     if self.0.contains(DisplayPlaneAlphaFlagsKHR::GLOBAL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(GLOBAL))?;
                     }
                     if self.0.contains(DisplayPlaneAlphaFlagsKHR::PER_PIXEL) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PER_PIXEL))?;
                     }
                     if self.0.contains(DisplayPlaneAlphaFlagsKHR::PER_PIXEL_PREMULTIPLIED) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(PER_PIXEL_PREMULTIPLIED))?;
                     }
                 }
@@ -1520,65 +1520,65 @@ impl std::fmt::Debug for SurfaceTransformFlagsKHR {
                     let mut first = true;
                     if self.0.contains(SurfaceTransformFlagsKHR::IDENTITY) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(IDENTITY))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::ROTATE90) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ROTATE90))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::ROTATE180) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ROTATE180))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::ROTATE270) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(ROTATE270))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HORIZONTAL_MIRROR))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE90) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE90))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE180) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE180))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::HORIZONTAL_MIRROR_ROTATE270) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(HORIZONTAL_MIRROR_ROTATE270))?;
                     }
                     if self.0.contains(SurfaceTransformFlagsKHR::INHERIT) {
                         if !first {
-                            first = false;
                             f.write_str(" | ")?;
                         }
+                        first = false;
                         f.write_str(stringify!(INHERIT))?;
                     }
                 }
