@@ -7,13 +7,14 @@ use bytemuck::{Pod, Zeroable};
 use clap::Parser;
 use log::{error, info, trace, LevelFilter};
 use magritte::{
+    cstr,
     extensions::khr_swapchain::PresentInfoKHR,
     vulkan1_0::{
         BufferUsageFlags, ClearColorValue, ClearDepthStencilValue, ClearValue, IndexType, Offset2D, PipelineBindPoint,
         PipelineStageFlags, Rect2D, RenderPassBeginInfo, SampleCountFlagBits, Semaphore, SemaphoreCreateInfo,
         SubpassContents,
     },
-    AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique, cstr,
+    AsRaw, DeviceExtensions, InstanceExtensions, SmallVec, Unique,
 };
 
 use magritte_samples::{

@@ -10,7 +10,7 @@ pub mod amd_buffer_marker;
 pub mod amd_device_coherent_memory;
 #[cfg(feature = "VK_AMD_display_native_hdr")]
 pub mod amd_display_native_hdr;
-#[cfg(feature = "VK_AMD_draw_indirect_count")]
+#[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
 pub mod amd_draw_indirect_count;
 #[cfg(feature = "VK_AMD_gcn_shader")]
 pub mod amd_gcn_shader;
@@ -74,7 +74,7 @@ pub mod ext_conditional_rendering;
 pub mod ext_conservative_rasterization;
 #[cfg(feature = "VK_EXT_custom_border_color")]
 pub mod ext_custom_border_color;
-#[cfg(feature = "VK_EXT_debug_marker")]
+#[cfg(any(feature = "VK_EXT_debug_marker", feature = "VK_EXT_debug_utils"))]
 pub mod ext_debug_marker;
 #[cfg(feature = "VK_EXT_debug_report")]
 pub mod ext_debug_report;
@@ -118,9 +118,9 @@ pub mod ext_fragment_density_map2;
 pub mod ext_fragment_shader_interlock;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
 pub mod ext_full_screen_exclusive;
-#[cfg(feature = "VK_EXT_global_priority")]
+#[cfg(any(feature = "VK_EXT_global_priority", feature = "VK_KHR_global_priority"))]
 pub mod ext_global_priority;
-#[cfg(feature = "VK_EXT_global_priority_query")]
+#[cfg(any(feature = "VK_EXT_global_priority_query", feature = "VK_KHR_global_priority"))]
 pub mod ext_global_priority_query;
 #[cfg(feature = "VK_EXT_hdr_metadata")]
 pub mod ext_hdr_metadata;
@@ -528,7 +528,7 @@ pub mod nv_shading_rate_image;
 pub mod nv_viewport_array2;
 #[cfg(feature = "VK_NV_viewport_swizzle")]
 pub mod nv_viewport_swizzle;
-#[cfg(feature = "VK_NV_win32_keyed_mutex")]
+#[cfg(any(feature = "VK_NV_win32_keyed_mutex", feature = "VK_KHR_win32_keyed_mutex"))]
 pub mod nv_win32_keyed_mutex;
 #[cfg(feature = "VK_NVX_binary_import")]
 pub mod nvx_binary_import;
@@ -576,7 +576,7 @@ pub struct DeviceExtensions {
     pub amd_shader_trinary_minmax: bool,
     #[cfg(feature = "VK_AMD_shader_explicit_vertex_parameter")]
     pub amd_shader_explicit_vertex_parameter: bool,
-    #[cfg(feature = "VK_EXT_debug_marker")]
+    #[cfg(any(feature = "VK_EXT_debug_marker", feature = "VK_EXT_debug_utils"))]
     pub ext_debug_marker: bool,
     #[cfg(feature = "VK_KHR_video_queue")]
     pub khr_video_queue: bool,
@@ -592,7 +592,7 @@ pub struct DeviceExtensions {
     pub nvx_binary_import: bool,
     #[cfg(feature = "VK_NVX_image_view_handle")]
     pub nvx_image_view_handle: bool,
-    #[cfg(feature = "VK_AMD_draw_indirect_count")]
+    #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
     pub amd_draw_indirect_count: bool,
     #[cfg(feature = "VK_AMD_negative_viewport_height")]
     pub amd_negative_viewport_height: bool,
@@ -624,7 +624,7 @@ pub struct DeviceExtensions {
     pub nv_external_memory: bool,
     #[cfg(feature = "VK_NV_external_memory_win32")]
     pub nv_external_memory_win32: bool,
-    #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+    #[cfg(any(feature = "VK_NV_win32_keyed_mutex", feature = "VK_KHR_win32_keyed_mutex"))]
     pub nv_win32_keyed_mutex: bool,
     #[cfg(feature = "VK_KHR_device_group")]
     pub khr_device_group: bool,
@@ -784,7 +784,7 @@ pub struct DeviceExtensions {
     pub ext_filter_cubic: bool,
     #[cfg(feature = "VK_QCOM_render_pass_shader_resolve")]
     pub qcom_render_pass_shader_resolve: bool,
-    #[cfg(feature = "VK_EXT_global_priority")]
+    #[cfg(any(feature = "VK_EXT_global_priority", feature = "VK_KHR_global_priority"))]
     pub ext_global_priority: bool,
     #[cfg(feature = "VK_KHR_shader_subgroup_extended_types")]
     pub khr_shader_subgroup_extended_types: bool,
@@ -1014,7 +1014,7 @@ pub struct DeviceExtensions {
     pub ext_extended_dynamic_state2: bool,
     #[cfg(feature = "VK_EXT_color_write_enable")]
     pub ext_color_write_enable: bool,
-    #[cfg(feature = "VK_EXT_global_priority_query")]
+    #[cfg(any(feature = "VK_EXT_global_priority_query", feature = "VK_KHR_global_priority"))]
     pub ext_global_priority_query: bool,
     #[cfg(feature = "VK_EXT_image_view_min_lod")]
     pub ext_image_view_min_lod: bool,
@@ -1058,7 +1058,7 @@ impl const Default for DeviceExtensions {
             amd_shader_trinary_minmax: false,
             #[cfg(feature = "VK_AMD_shader_explicit_vertex_parameter")]
             amd_shader_explicit_vertex_parameter: false,
-            #[cfg(feature = "VK_EXT_debug_marker")]
+            #[cfg(any(feature = "VK_EXT_debug_marker", feature = "VK_EXT_debug_utils"))]
             ext_debug_marker: false,
             #[cfg(feature = "VK_KHR_video_queue")]
             khr_video_queue: false,
@@ -1074,7 +1074,7 @@ impl const Default for DeviceExtensions {
             nvx_binary_import: false,
             #[cfg(feature = "VK_NVX_image_view_handle")]
             nvx_image_view_handle: false,
-            #[cfg(feature = "VK_AMD_draw_indirect_count")]
+            #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
             amd_draw_indirect_count: false,
             #[cfg(feature = "VK_AMD_negative_viewport_height")]
             amd_negative_viewport_height: false,
@@ -1106,7 +1106,7 @@ impl const Default for DeviceExtensions {
             nv_external_memory: false,
             #[cfg(feature = "VK_NV_external_memory_win32")]
             nv_external_memory_win32: false,
-            #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+            #[cfg(any(feature = "VK_NV_win32_keyed_mutex", feature = "VK_KHR_win32_keyed_mutex"))]
             nv_win32_keyed_mutex: false,
             #[cfg(feature = "VK_KHR_device_group")]
             khr_device_group: false,
@@ -1266,7 +1266,7 @@ impl const Default for DeviceExtensions {
             ext_filter_cubic: false,
             #[cfg(feature = "VK_QCOM_render_pass_shader_resolve")]
             qcom_render_pass_shader_resolve: false,
-            #[cfg(feature = "VK_EXT_global_priority")]
+            #[cfg(any(feature = "VK_EXT_global_priority", feature = "VK_KHR_global_priority"))]
             ext_global_priority: false,
             #[cfg(feature = "VK_KHR_shader_subgroup_extended_types")]
             khr_shader_subgroup_extended_types: false,
@@ -1496,7 +1496,7 @@ impl const Default for DeviceExtensions {
             ext_extended_dynamic_state2: false,
             #[cfg(feature = "VK_EXT_color_write_enable")]
             ext_color_write_enable: false,
-            #[cfg(feature = "VK_EXT_global_priority_query")]
+            #[cfg(any(feature = "VK_EXT_global_priority_query", feature = "VK_KHR_global_priority"))]
             ext_global_priority_query: false,
             #[cfg(feature = "VK_EXT_image_view_min_lod")]
             ext_image_view_min_lod: false,
@@ -1674,12 +1674,12 @@ impl DeviceExtensions {
         self.amd_shader_explicit_vertex_parameter = true;
         self
     }
-    #[cfg(feature = "VK_EXT_debug_marker")]
+    #[cfg(any(feature = "VK_EXT_debug_marker", feature = "VK_EXT_debug_utils"))]
     #[inline]
     pub const fn ext_debug_marker(&self) -> bool {
         self.ext_debug_marker
     }
-    #[cfg(feature = "VK_EXT_debug_marker")]
+    #[cfg(any(feature = "VK_EXT_debug_marker", feature = "VK_EXT_debug_utils"))]
     #[inline]
     #[deprecated = "This extensions was promoted as part of `VK_EXT_debug_utils`"]
     pub fn enable_ext_debug_marker(mut self) -> Self {
@@ -1775,12 +1775,12 @@ impl DeviceExtensions {
         self.nvx_image_view_handle = true;
         self
     }
-    #[cfg(feature = "VK_AMD_draw_indirect_count")]
+    #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
     #[inline]
     pub const fn amd_draw_indirect_count(&self) -> bool {
         self.amd_draw_indirect_count
     }
-    #[cfg(feature = "VK_AMD_draw_indirect_count")]
+    #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
     #[inline]
     #[deprecated = "This extensions was promoted as part of `VK_KHR_draw_indirect_count`"]
     pub fn enable_amd_draw_indirect_count(mut self) -> Self {
@@ -1982,12 +1982,12 @@ impl DeviceExtensions {
         self.nv_external_memory_win32 = true;
         self
     }
-    #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+    #[cfg(any(feature = "VK_NV_win32_keyed_mutex", feature = "VK_KHR_win32_keyed_mutex"))]
     #[inline]
     pub const fn nv_win32_keyed_mutex(&self) -> bool {
         self.nv_win32_keyed_mutex
     }
-    #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+    #[cfg(any(feature = "VK_NV_win32_keyed_mutex", feature = "VK_KHR_win32_keyed_mutex"))]
     #[inline]
     #[deprecated = "This extensions was promoted as part of `VK_KHR_win32_keyed_mutex`"]
     pub fn enable_nv_win32_keyed_mutex(mut self) -> Self {
@@ -3078,12 +3078,12 @@ impl DeviceExtensions {
         self.qcom_render_pass_shader_resolve = true;
         self
     }
-    #[cfg(feature = "VK_EXT_global_priority")]
+    #[cfg(any(feature = "VK_EXT_global_priority", feature = "VK_KHR_global_priority"))]
     #[inline]
     pub const fn ext_global_priority(&self) -> bool {
         self.ext_global_priority
     }
-    #[cfg(feature = "VK_EXT_global_priority")]
+    #[cfg(any(feature = "VK_EXT_global_priority", feature = "VK_KHR_global_priority"))]
     #[inline]
     #[deprecated = "This extensions was promoted as part of `VK_KHR_global_priority`"]
     pub fn enable_ext_global_priority(mut self) -> Self {
@@ -4610,12 +4610,12 @@ impl DeviceExtensions {
         self.ext_color_write_enable = true;
         self
     }
-    #[cfg(feature = "VK_EXT_global_priority_query")]
+    #[cfg(any(feature = "VK_EXT_global_priority_query", feature = "VK_KHR_global_priority"))]
     #[inline]
     pub const fn ext_global_priority_query(&self) -> bool {
         self.ext_global_priority_query
     }
-    #[cfg(feature = "VK_EXT_global_priority_query")]
+    #[cfg(any(feature = "VK_EXT_global_priority_query", feature = "VK_KHR_global_priority"))]
     #[inline]
     #[deprecated = "This extensions was promoted as part of `VK_KHR_global_priority`"]
     pub fn enable_ext_global_priority_query(mut self) -> Self {

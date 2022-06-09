@@ -3,13 +3,13 @@ use std::slice::from_ref;
 use crate::{depth::Depth, render_target::RenderTarget, surface::Surface, vulkan::Vulkan};
 use log::info;
 use magritte::{
+    core::SUBPASS_EXTERNAL,
     vulkan1_0::{
         AccessFlags, AttachmentDescription, AttachmentLoadOp, AttachmentReference, AttachmentStoreOp, Format,
         Framebuffer, FramebufferCreateInfo, ImageLayout, PipelineBindPoint, PipelineStageFlags,
         RenderPass as VkRenderPass, RenderPassCreateInfo, SampleCountFlagBits, SubpassDependency, SubpassDescription,
         VulkanResultCodes,
     },
-    core::SUBPASS_EXTERNAL,
     AsRaw, SmallVec, Unique,
 };
 

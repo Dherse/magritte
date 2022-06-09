@@ -1,6 +1,7 @@
 use std::{borrow::Cow, ffi::CStr, os::raw::c_char};
 
 use crate::{
+    core::FALSE,
     cstr_ptr,
     entry::Entry,
     extensions::ext_debug_utils::{
@@ -8,7 +9,6 @@ use crate::{
         DebugUtilsMessengerCallbackDataEXT, DebugUtilsMessengerCreateInfoEXT, DebugUtilsMessengerEXT,
     },
     vulkan1_0::{Bool32, Instance, VulkanResultCodes},
-    core::FALSE,
     InstanceExtensions, Unique,
 };
 pub use log::Level;

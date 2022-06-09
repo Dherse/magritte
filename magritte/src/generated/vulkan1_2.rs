@@ -5168,9 +5168,9 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 /// - [`rounding_mode_independence`] is a [`ShaderFloatControlsIndependence`] value indicating
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float16`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
@@ -5182,7 +5182,7 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
 ///   class="base"><span class="strut"
 ///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
@@ -21401,7 +21401,7 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float32`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
 ///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
 ///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 32-bit floating-point
@@ -25356,13 +25356,13 @@ impl CommandBuffer {
                 return None;
             })
             .or_else(|| {
-                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
                 return self
                     .device()
                     .vtable()
                     .amd_draw_indirect_count()
                     .and_then(|vtable| vtable.cmd_draw_indirect_count_amd());
-                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                #[cfg(not(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count")))]
                 return None;
             })
             .expect("function not loaded");
@@ -25383,13 +25383,13 @@ impl CommandBuffer {
                 return None;
             })
             .or_else(|| {
-                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
                 return self
                     .device()
                     .vtable()
                     .amd_draw_indirect_count()
                     .and_then(|vtable| vtable.cmd_draw_indirect_count_amd());
-                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                #[cfg(not(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count")))]
                 return None;
             })
             .unwrap_unchecked();
@@ -25938,13 +25938,13 @@ impl CommandBuffer {
                 return None;
             })
             .or_else(|| {
-                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
                 return self
                     .device()
                     .vtable()
                     .amd_draw_indirect_count()
                     .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_amd());
-                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                #[cfg(not(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count")))]
                 return None;
             })
             .expect("function not loaded");
@@ -25965,13 +25965,13 @@ impl CommandBuffer {
                 return None;
             })
             .or_else(|| {
-                #[cfg(feature = "VK_AMD_draw_indirect_count")]
+                #[cfg(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count"))]
                 return self
                     .device()
                     .vtable()
                     .amd_draw_indirect_count()
                     .and_then(|vtable| vtable.cmd_draw_indexed_indirect_count_amd());
-                #[cfg(not(feature = "VK_AMD_draw_indirect_count"))]
+                #[cfg(not(any(feature = "VK_AMD_draw_indirect_count", feature = "VK_KHR_draw_indirect_count")))]
                 return None;
             })
             .unwrap_unchecked();

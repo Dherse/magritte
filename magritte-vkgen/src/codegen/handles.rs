@@ -422,19 +422,16 @@ impl<'a> Handle<'a> {
             self.name().to_shouty_snake_case()
         };
 
-        let enum_ = source
-            .enums
-            .get_by_name("VkDebugReportObjectTypeEXT")
-            .expect("VkDebugReportObjectTypeEXT missing");
+        let enum_ = source.enums.get_by_name("VkObjectType").expect("VkObjectType missing");
 
         if let Some(variant) = enum_
             .variants()
-            .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+            .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
             .map(Bit::as_ident)
             .or_else(|| {
                 enum_
                     .aliases()
-                    .get_by_name(&format!("VK_DEBUG_REPORT_OBJECT_TYPE_{}_EXT", shouty_name))
+                    .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
                     .map(Alias::as_ident)
             })
         {
@@ -445,22 +442,22 @@ impl<'a> Handle<'a> {
             quote_each_token! {
                 out
 
-                #[cfg(feature = "VK_EXT_debug_marker")]
+                #[cfg(feature = "VK_EXT_debug_utils")]
                 impl #name {
                     #[doc = "Give a user-friendly name to an object"]
-                    pub fn set_name(self: &Unique<Self>, name: &'static std::ffi::CStr) {
+                    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
                         assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
-                        if !self #device_access .metadata().ext_debug_marker() {
+                        if !self #device_access .instance().metadata().ext_debug_utils() {
                             return;
                         }
 
-                        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
-                            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::#variant)
-                            .with_object(self.as_stored() as u64)
+                        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+                            .with_object_type(crate::generated::vulkan1_0::ObjectType::#variant)
+                            .with_object_handle(self.as_stored() as u64)
                             .with_object_name(name.as_ptr());
 
                         unsafe {
-                            self #device_access .debug_marker_set_object_name_ext(&info).unwrap();
+                            self #device_access .set_debug_utils_object_name_ext(&info).unwrap();
                         }
                     }
 
@@ -468,21 +465,21 @@ impl<'a> Handle<'a> {
                     #[doc = "In addition to setting a name for an object, debugging and validation layers may have uses for additional"]
                     #[doc = "binary data on a per-object basis that has no other place in the Vulkan API. For example, a VkShaderModule"]
                     #[doc = "could have additional debugging data attached to it to aid in offline shader tracing."]
-                    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &'static [u8]) {
+                    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
                         assert!(self.strong_count() == 1, "`set_name` requires that the object be synchronized");
-                        if !self #device_access .metadata().ext_debug_marker() {
+                        if !self #device_access .instance().metadata().ext_debug_utils() {
                             return;
                         }
 
-                        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
-                            .with_object_type(crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::#variant)
-                            .with_object(self.as_stored() as u64)
+                        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+                            .with_object_type(crate::generated::vulkan1_0::ObjectType::#variant)
+                            .with_object_handle(self.as_stored() as u64)
                             .with_tag_name(tag)
                             .with_tag_size(data.len() as _)
                             .with_tag_raw(data.as_ptr().cast());
 
                         unsafe {
-                            self #device_access .debug_marker_set_object_tag_ext(&info).unwrap();
+                            self #device_access .set_debug_utils_object_tag_ext(&info).unwrap();
                         }
                     }
                 }

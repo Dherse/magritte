@@ -120,7 +120,7 @@ impl<'a> Handle<'a> {
         out
     }
 
-    /// Generates the V-Table code for a laoder
+    /// Generates the V-Table code for a loader
     pub fn generate_vtable_code<'b>(
         &self,
         source: &Source<'a>,
@@ -145,7 +145,7 @@ impl<'a> Handle<'a> {
 
         for origin in &origins {
             if *origin != self.origin() && !self.origin().requires(source, *origin) {
-                if let Some(condition) = origin.feature_gate() {
+                if let Some(condition) = origin.feature_gate(source) {
                     imports.push_str(&format!(
                         r##"
                             {}
@@ -163,7 +163,7 @@ impl<'a> Handle<'a> {
             }
         }
 
-        let conditional_compilations = origins.iter().map(|o| o.condition()).collect::<Vec<_>>();
+        let conditional_compilations = origins.iter().map(|o| o.condition(source)).collect::<Vec<_>>();
 
         let idents = origins
             .iter()

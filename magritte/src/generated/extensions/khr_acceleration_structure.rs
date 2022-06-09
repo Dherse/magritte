@@ -8430,17 +8430,18 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span></span><span class="base"><span
-///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
-///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
-///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
-///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
-///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
+///   aria-hidden="true" class="katex-html"><span class="base"><span
+///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+///   class="base"><span class="strut"
+///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
+///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
+///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
+///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
+///   class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`khr_acceleration_structure`]
@@ -11973,25 +11974,23 @@ impl Unique<AccelerationStructureKHR> {
         self.metadata().store(true, Ordering::Relaxed);
     }
 }
-#[cfg(feature = "VK_EXT_debug_marker")]
+#[cfg(feature = "VK_EXT_debug_utils")]
 impl AccelerationStructureKHR {
     ///Give a user-friendly name to an object
-    pub fn set_name(self: &Unique<Self>, name: &'static std::ffi::CStr) {
+    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::ACCELERATION_STRUCTURE_KHR,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::ACCELERATION_STRUCTURE_KHR)
+            .with_object_handle(self.as_stored() as u64)
             .with_object_name(name.as_ptr());
         unsafe {
-            self.device().debug_marker_set_object_name_ext(&info).unwrap();
+            self.device().set_debug_utils_object_name_ext(&info).unwrap();
         }
     }
     ///Attach arbitrary data to an object
@@ -12000,24 +11999,22 @@ impl AccelerationStructureKHR {
     ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
     /// VkShaderModule
     ///could have additional debugging data attached to it to aid in offline shader tracing.
-    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &'static [u8]) {
+    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::ACCELERATION_STRUCTURE_KHR,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::ACCELERATION_STRUCTURE_KHR)
+            .with_object_handle(self.as_stored() as u64)
             .with_tag_name(tag)
             .with_tag_size(data.len() as _)
             .with_tag_raw(data.as_ptr().cast());
         unsafe {
-            self.device().debug_marker_set_object_tag_ext(&info).unwrap();
+            self.device().set_debug_utils_object_tag_ext(&info).unwrap();
         }
     }
 }

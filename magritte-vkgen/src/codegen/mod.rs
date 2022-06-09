@@ -269,7 +269,7 @@ impl<'a> Source<'a> {
                 writeln!(
                     out,
                     "{}pub mod {};",
-                    origin.feature_gate().unwrap_or_default(),
+                    origin.feature_gate(self).unwrap_or_default(),
                     origin.as_name()
                 )
                 .unwrap();
@@ -298,7 +298,7 @@ impl<'a> Source<'a> {
                 writeln!(
                     out,
                     "{}pub mod {};",
-                    origin.feature_gate().unwrap_or_default(),
+                    origin.feature_gate(self).unwrap_or_default(),
                     origin.as_name()
                 )
                 .unwrap();

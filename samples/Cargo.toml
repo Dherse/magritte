@@ -45,8 +45,6 @@ features = [
     "window",
     "VK_KHR_swapchain",
     "VK_EXT_debug_utils",
-    "VK_EXT_debug_marker",
-    "VK_KHR_sampler_ycbcr_conversion",
 ]
 
 [dependencies.magritte-vma]

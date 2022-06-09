@@ -28339,25 +28339,23 @@ impl Unique<DescriptorUpdateTemplate> {
         self.metadata().store(true, Ordering::Relaxed);
     }
 }
-#[cfg(feature = "VK_EXT_debug_marker")]
+#[cfg(feature = "VK_EXT_debug_utils")]
 impl DescriptorUpdateTemplate {
     ///Give a user-friendly name to an object
-    pub fn set_name(self: &Unique<Self>, name: &'static std::ffi::CStr) {
+    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::DESCRIPTOR_UPDATE_TEMPLATE,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::DESCRIPTOR_UPDATE_TEMPLATE)
+            .with_object_handle(self.as_stored() as u64)
             .with_object_name(name.as_ptr());
         unsafe {
-            self.device().debug_marker_set_object_name_ext(&info).unwrap();
+            self.device().set_debug_utils_object_name_ext(&info).unwrap();
         }
     }
     ///Attach arbitrary data to an object
@@ -28366,24 +28364,22 @@ impl DescriptorUpdateTemplate {
     ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
     /// VkShaderModule
     ///could have additional debugging data attached to it to aid in offline shader tracing.
-    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &'static [u8]) {
+    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::DESCRIPTOR_UPDATE_TEMPLATE,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::DESCRIPTOR_UPDATE_TEMPLATE)
+            .with_object_handle(self.as_stored() as u64)
             .with_tag_name(tag)
             .with_tag_size(data.len() as _)
             .with_tag_raw(data.as_ptr().cast());
         unsafe {
-            self.device().debug_marker_set_object_tag_ext(&info).unwrap();
+            self.device().set_debug_utils_object_tag_ext(&info).unwrap();
         }
     }
 }
@@ -28494,25 +28490,23 @@ impl Unique<SamplerYcbcrConversion> {
         self.metadata().store(true, Ordering::Relaxed);
     }
 }
-#[cfg(feature = "VK_EXT_debug_marker")]
+#[cfg(feature = "VK_EXT_debug_utils")]
 impl SamplerYcbcrConversion {
     ///Give a user-friendly name to an object
-    pub fn set_name(self: &Unique<Self>, name: &'static std::ffi::CStr) {
+    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectNameInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::SAMPLER_YCBCR_CONVERSION,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::SAMPLER_YCBCR_CONVERSION)
+            .with_object_handle(self.as_stored() as u64)
             .with_object_name(name.as_ptr());
         unsafe {
-            self.device().debug_marker_set_object_name_ext(&info).unwrap();
+            self.device().set_debug_utils_object_name_ext(&info).unwrap();
         }
     }
     ///Attach arbitrary data to an object
@@ -28521,24 +28515,22 @@ impl SamplerYcbcrConversion {
     ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
     /// VkShaderModule
     ///could have additional debugging data attached to it to aid in offline shader tracing.
-    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &'static [u8]) {
+    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
         assert!(
             self.strong_count() == 1,
             "`set_name` requires that the object be synchronized"
         );
-        if !self.device().metadata().ext_debug_marker() {
+        if !self.device().instance().metadata().ext_debug_utils() {
             return;
         }
-        let info = crate::generated::extensions::ext_debug_marker::DebugMarkerObjectTagInfoEXT::default()
-            .with_object_type(
-                crate::generated::extensions::ext_debug_marker::DebugReportObjectTypeEXT::SAMPLER_YCBCR_CONVERSION,
-            )
-            .with_object(self.as_stored() as u64)
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::SAMPLER_YCBCR_CONVERSION)
+            .with_object_handle(self.as_stored() as u64)
             .with_tag_name(tag)
             .with_tag_size(data.len() as _)
             .with_tag_raw(data.as_ptr().cast());
         unsafe {
-            self.device().debug_marker_set_object_tag_ext(&info).unwrap();
+            self.device().set_debug_utils_object_tag_ext(&info).unwrap();
         }
     }
 }

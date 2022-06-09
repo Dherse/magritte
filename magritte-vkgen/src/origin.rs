@@ -11,7 +11,11 @@ use heck::{ToLowerCamelCase, ToSnakeCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 
-use crate::{imports::Imports, source::Source, symbols::SymbolName};
+use crate::{
+    imports::Imports,
+    source::{DeprecationStatus, Source},
+    symbols::SymbolName,
+};
 
 /// The origin of an element of the Vulkan spec
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
@@ -298,13 +302,26 @@ impl<'a> Origin<'a> {
     }
 
     /// Generate the feature gate (if any) for this origin
-    pub fn condition(&self) -> Option<TokenStream> {
+    pub fn condition<'b>(&self, source: &Source<'b>) -> Option<TokenStream> {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => Some(quote! {
-                #[cfg(feature = #ext)]
-            }),
+            Origin::Extension(ext, _, _) => {
+                let extension = source.extensions.get_by_name(ext).expect("unknown extension");
+                match extension.deprecation_status() {
+                    DeprecationStatus::Current
+                    | DeprecationStatus::Obsoleted(_)
+                    | DeprecationStatus::ObsoletedVersion(_)
+                    | DeprecationStatus::DeprecatedVersion(_)
+                    | DeprecationStatus::Deprecated(_)
+                    | DeprecationStatus::PromotedVersion(_) => Some(quote! {
+                        #[cfg(feature = #ext)]
+                    }),
+                    DeprecationStatus::Promoted(by) => Some(quote! {
+                        #[cfg(any(feature = #ext, feature = #by))]
+                    }),
+                }
+            },
             Origin::Core
             | Origin::Opaque
             | Origin::Vulkan1_0
@@ -315,13 +332,26 @@ impl<'a> Origin<'a> {
     }
 
     /// Generate the feature gate (if any) for this origin
-    pub fn condition_not(&self) -> Option<TokenStream> {
+    pub fn condition_not<'b>(&self, source: &Source<'b>) -> Option<TokenStream> {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => Some(quote! {
-                #[cfg(not(feature = #ext))]
-            }),
+            Origin::Extension(ext, _, _) => {
+                let extension = source.extensions.get_by_name(ext).expect("unknown extension");
+                match extension.deprecation_status() {
+                    DeprecationStatus::Current
+                    | DeprecationStatus::Obsoleted(_)
+                    | DeprecationStatus::ObsoletedVersion(_)
+                    | DeprecationStatus::DeprecatedVersion(_)
+                    | DeprecationStatus::Deprecated(_)
+                    | DeprecationStatus::PromotedVersion(_) => Some(quote! {
+                        #[cfg(not(feature = #ext))]
+                    }),
+                    DeprecationStatus::Promoted(by) => Some(quote! {
+                        #[cfg(not(any(feature = #ext, feature = #by)))]
+                    }),
+                }
+            },
             Origin::Core
             | Origin::Opaque
             | Origin::Vulkan1_0
@@ -332,11 +362,24 @@ impl<'a> Origin<'a> {
     }
 
     /// Generate the feature gate (if any) for this origin
-    pub fn feature_gate(&self) -> Option<String> {
+    pub fn feature_gate<'b>(&self, source: &Source<'b>) -> Option<String> {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+            Origin::Extension(ext, _, _) => {
+                let extension = source.extensions.get_by_name(ext).expect("unknown extension");
+                match extension.deprecation_status() {
+                    DeprecationStatus::Current
+                    | DeprecationStatus::Obsoleted(_)
+                    | DeprecationStatus::ObsoletedVersion(_)
+                    | DeprecationStatus::DeprecatedVersion(_)
+                    | DeprecationStatus::Deprecated(_)
+                    | DeprecationStatus::PromotedVersion(_) => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+                    DeprecationStatus::Promoted(by) => {
+                        Some(format!("#[cfg(any(feature = \"{}\", feature = \"{}\"))]\n", ext, by))
+                    },
+                }
+            },
             Origin::Core
             | Origin::Opaque
             | Origin::Vulkan1_0

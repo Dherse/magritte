@@ -15,7 +15,7 @@ impl<'a> Function<'a> {
         if self.origin() == parent || parent.requires(source, self.origin()) {
             None
         } else if self.aliases().is_empty() {
-            self.origin().condition()
+            self.origin().condition(source)
         } else {
             Origin::or(
                 std::iter::once(self.origin()).chain(
@@ -173,7 +173,7 @@ impl<'a> CommandAlias<'a> {
         if self.origin() == parent || parent.requires(source, self.origin()) {
             None
         } else {
-            self.origin().condition()
+            self.origin().condition(source)
         }
     }
 
@@ -182,7 +182,7 @@ impl<'a> CommandAlias<'a> {
         if self.origin() == parent || parent.requires(source, self.origin()) {
             None
         } else {
-            self.origin().condition_not()
+            self.origin().condition_not(source)
         }
     }
 

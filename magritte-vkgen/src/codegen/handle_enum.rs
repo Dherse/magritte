@@ -52,7 +52,7 @@ impl<'a> Handle<'a> {
         let conds = handles
             .iter()
             .map(|h| h.origin())
-            .map(|o| o.condition())
+            .map(|o| o.condition(source))
             .collect::<Vec<_>>();
 
         let enum_ = source
@@ -88,7 +88,7 @@ impl<'a> Handle<'a> {
         });
 
         for handle in &handles {
-            if let Some(cond) = handle.origin().feature_gate() {
+            if let Some(cond) = handle.origin().feature_gate(source) {
                 imports.push_str(&format!(
                     "{} use {}::{};",
                     cond,

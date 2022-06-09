@@ -125,7 +125,7 @@ impl<'a> Struct<'a> {
             .map(|name| source.structs.get_by_name(name).unwrap())
             .map(|struct_| {
                 if struct_.origin() != self.origin() && !self.origin().requires(source, struct_.origin()) {
-                    if let Some(cond) = struct_.origin().feature_gate() {
+                    if let Some(cond) = struct_.origin().feature_gate(source) {
                         imports.push_str(&format!(
                             r##"
                                 {}
@@ -139,7 +139,7 @@ impl<'a> Struct<'a> {
                         imports.push_origin(struct_.origin(), struct_.name());
                     }
 
-                    struct_.origin().condition()
+                    struct_.origin().condition(source)
                 } else {
                     imports.push_origin(struct_.origin(), struct_.name());
 

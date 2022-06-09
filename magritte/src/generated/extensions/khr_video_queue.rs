@@ -8844,6 +8844,50 @@ impl Unique<VideoSessionKHR> {
         self.metadata().store(true, Ordering::Relaxed);
     }
 }
+#[cfg(feature = "VK_EXT_debug_utils")]
+impl VideoSessionKHR {
+    ///Give a user-friendly name to an object
+    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().instance().metadata().ext_debug_utils() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::VIDEO_SESSION_KHR)
+            .with_object_handle(self.as_stored() as u64)
+            .with_object_name(name.as_ptr());
+        unsafe {
+            self.device().set_debug_utils_object_name_ext(&info).unwrap();
+        }
+    }
+    ///Attach arbitrary data to an object
+    ///In addition to setting a name for an object, debugging and validation layers may have uses
+    /// for additional
+    ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
+    /// VkShaderModule
+    ///could have additional debugging data attached to it to aid in offline shader tracing.
+    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().instance().metadata().ext_debug_utils() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::VIDEO_SESSION_KHR)
+            .with_object_handle(self.as_stored() as u64)
+            .with_tag_name(tag)
+            .with_tag_size(data.len() as _)
+            .with_tag_raw(data.as_ptr().cast());
+        unsafe {
+            self.device().set_debug_utils_object_tag_ext(&info).unwrap();
+        }
+    }
+}
 ///[VkVideoSessionParametersKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html) - Opaque handle to a video video session parameters object
 ///# C Specifications
 ///Video session parameter objects are represented by
@@ -8948,6 +8992,50 @@ impl Unique<VideoSessionParametersKHR> {
     #[inline]
     pub fn disable_drop(&self) {
         self.metadata().store(true, Ordering::Relaxed);
+    }
+}
+#[cfg(feature = "VK_EXT_debug_utils")]
+impl VideoSessionParametersKHR {
+    ///Give a user-friendly name to an object
+    pub fn set_name(self: &Unique<Self>, name: &std::ffi::CStr) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().instance().metadata().ext_debug_utils() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectNameInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::VIDEO_SESSION_PARAMETERS_KHR)
+            .with_object_handle(self.as_stored() as u64)
+            .with_object_name(name.as_ptr());
+        unsafe {
+            self.device().set_debug_utils_object_name_ext(&info).unwrap();
+        }
+    }
+    ///Attach arbitrary data to an object
+    ///In addition to setting a name for an object, debugging and validation layers may have uses
+    /// for additional
+    ///binary data on a per-object basis that has no other place in the Vulkan API. For example, a
+    /// VkShaderModule
+    ///could have additional debugging data attached to it to aid in offline shader tracing.
+    pub fn set_tag(self: &Unique<Self>, tag: u64, data: &[u8]) {
+        assert!(
+            self.strong_count() == 1,
+            "`set_name` requires that the object be synchronized"
+        );
+        if !self.device().instance().metadata().ext_debug_utils() {
+            return;
+        }
+        let info = crate::generated::extensions::ext_debug_utils::DebugUtilsObjectTagInfoEXT::default()
+            .with_object_type(crate::generated::vulkan1_0::ObjectType::VIDEO_SESSION_PARAMETERS_KHR)
+            .with_object_handle(self.as_stored() as u64)
+            .with_tag_name(tag)
+            .with_tag_size(data.len() as _)
+            .with_tag_raw(data.as_ptr().cast());
+        unsafe {
+            self.device().set_debug_utils_object_tag_ext(&info).unwrap();
+        }
     }
 }
 ///The V-table of [`Instance`] for functions from `VK_KHR_video_queue`

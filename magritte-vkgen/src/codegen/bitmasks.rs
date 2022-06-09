@@ -29,7 +29,7 @@ impl<'a> Bit<'a> {
     /// Generate the conditional compilation tokens
     pub fn condition(&self, source: &Source<'a>, parent: &Origin<'a>) -> Option<TokenStream> {
         if parent != self.origin() && !parent.requires(source, self.origin()) {
-            self.origin().condition()
+            self.origin().condition(source)
         } else {
             None
         }
@@ -154,13 +154,13 @@ impl<'a> Bitmask<'a> {
         // dealing with conditional compilation of flag bits
         let bits_conditional_compilation =
             if bit_flag.origin() != self.origin() && !self.origin().requires(source, bit_flag.origin()) {
-                if let Some(condition) = bit_flag.origin().condition() {
+                if let Some(condition) = bit_flag.origin().condition(source) {
                     imports.push_str(&format!(
                         r##"
                             {}
                             pub use {}::{};
                         "##,
-                        bit_flag.origin().feature_gate().unwrap_or_default(),
+                        bit_flag.origin().feature_gate(source).unwrap_or_default(),
                         bit_flag.origin().as_path_str(),
                         bit_flag.name()
                     ));

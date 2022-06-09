@@ -63,32 +63,32 @@ impl<'a> Extension<'a> {
         }
     }
 
-    fn generate_field_code(&self) -> TokenStream {
+    fn generate_field_code(&self, source: &Source<'a>) -> TokenStream {
         let ident = self.as_ident();
-        let name = self.name();
+        let cond = self.origin().condition(source);
 
         quote! {
-            #[cfg(feature = #name)]
+            #cond
             pub #ident: bool
         }
     }
 
-    fn generate_initialization(&self) -> TokenStream {
+    fn generate_initialization(&self, source: &Source<'a>) -> TokenStream {
         let ident = self.as_ident();
-        let name = self.name();
+        let cond = self.origin().condition(source);
 
         quote! {
-            #[cfg(feature = #name)]
+            #cond
             #ident: false
         }
     }
 
-    fn generate_getter_function(&self) -> TokenStream {
+    fn generate_getter_function(&self, source: &Source<'a>) -> TokenStream {
         let ident = self.as_ident();
-        let name = self.name();
+        let cond = self.origin().condition(source);
 
         quote! {
-            #[cfg(feature = #name)]
+            #cond
             #[inline]
             pub const fn #ident(&self) -> bool {
                 self.#ident
@@ -99,7 +99,7 @@ impl<'a> Extension<'a> {
     fn generate_setter_function(&self, source: &Source<'a>) -> TokenStream {
         let ident = self.as_ident();
         let enable_ident = self.as_enable_ident();
-        let name = self.name();
+        let cond = self.origin().condition(source);
 
         let deprecation = self.generate_deprecation();
 
@@ -141,7 +141,7 @@ impl<'a> Extension<'a> {
             .map(|other| other.as_enable_ident());
 
         quote! {
-            #[cfg(feature = #name)]
+            #cond
             #[inline]
             #deprecation
             pub fn #enable_ident(mut self) -> Self {
@@ -190,9 +190,9 @@ impl<'a> Extension<'a> {
             ExtensionType::Instance => Ident::new("InstanceExtensions", Span::call_site()),
         };
 
-        let fields = exts.iter().map(|ext| ext.generate_field_code());
-        let inits = exts.iter().map(|ext| ext.generate_initialization());
-        let getters = exts.iter().map(|ext| ext.generate_getter_function());
+        let fields = exts.iter().map(|ext| ext.generate_field_code(source));
+        let inits = exts.iter().map(|ext| ext.generate_initialization(source));
+        let getters = exts.iter().map(|ext| ext.generate_getter_function(source));
         let setters = exts.iter().map(|ext| ext.generate_setter_function(source));
         let extension_names = exts.iter().map(|ext| ext.generate_name_code());
 
