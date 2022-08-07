@@ -5182,9 +5182,9 @@ impl<'lt> PhysicalDeviceShaderFloat16Int8Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.
@@ -8647,47 +8647,18 @@ impl<'lt> PhysicalDeviceDescriptorIndexingProperties<'lt> {
 /// - If an element of [`binding_flags`] includes
 ///   `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT`, then all other elements of
 ///   [`DescriptorSetLayoutCreateInfo::bindings`] **must**  have a smaller value of `binding`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_uniform_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_sampled_image_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_SAMPLER`, `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or
-///   `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_storage_image_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_storage_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_uniform_texel_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_storage_texel_buffer_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceInlineUniformBlockFeatures::
-///   descriptor_binding_inline_uniform_block_update_after_bind`] is not enabled, all bindings with
-///   descriptor type `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceAccelerationStructureFeaturesKHR::
-///   descriptor_binding_acceleration_structure_update_after_bind`] is not enabled, all bindings
-///   with descriptor type `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` or
-///   `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV` **must**  not use
-///   `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_uniform_buffer_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_sampled_image_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_SAMPLER`, `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, or `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_storage_image_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_storage_buffer_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_uniform_texel_buffer_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_storage_texel_buffer_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceInlineUniformBlockFeatures::descriptor_binding_inline_uniform_block_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
+/// -    If [`PhysicalDeviceAccelerationStructureFeaturesKHR::descriptor_binding_acceleration_structure_update_after_bind`] is not enabled, all bindings with descriptor type `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_KHR` or `VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV` **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
 /// - All bindings with descriptor type `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`,
 ///   `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`
 ///   **must**  not use `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT`
-/// - If [`PhysicalDeviceDescriptorIndexingFeatures::
-///   descriptor_binding_update_unused_while_pending`] is not enabled, all elements of
-///   [`binding_flags`] **must**  not include
-///   `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`
+/// -    If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_update_unused_while_pending`] is not enabled, all elements of [`binding_flags`] **must**  not include `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT`
 /// - If [`PhysicalDeviceDescriptorIndexingFeatures::descriptor_binding_partially_bound`] is not
 ///   enabled, all elements of [`binding_flags`] **must**  not include
 ///   `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT`
@@ -21395,8 +21366,8 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   whether, and how, rounding modes can be set independently for different bit widths.
 /// - [`shader_signed_zero_inf_nan_preserve_float16`] is a boolean value indicating whether sign of
 ///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 16-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 16-bit floating-point types.
@@ -21408,9 +21379,9 @@ impl<'lt> PhysicalDeviceVulkan12Features<'lt> {
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 32-bit floating-point types.
 /// - [`shader_signed_zero_inf_nan_preserve_float64`] is a boolean value indicating whether sign of
-///   a zero, Nans and <span class="katex"><span aria-hidden="true" class="katex-html"><span
-///   class="base"><span class="strut"
-///   style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span
+///   a zero, Nans and <span class="katex"><span class="katex-html" aria-hidden="true"><span
+///   class="base"><span style="height:0.66666em;vertical-align:-0.08333em;"
+///   class="strut"></span><span class="mord">±</span><span
 ///   class="mord">∞</span></span></span></span> **can**  be preserved in 64-bit floating-point
 ///   computations. It also indicates whether the `SignedZeroInfNanPreserve` execution mode  **can**
 ///   be used for 64-bit floating-point types.

@@ -2,7 +2,7 @@
 //! Vulkan bindings generator for the Magritte multi-backend system.
 
 #![feature(
-    path_try_exists,
+    fs_try_exists,
     if_let_guard,
     box_syntax,
     box_patterns,

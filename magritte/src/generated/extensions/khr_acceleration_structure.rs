@@ -518,7 +518,7 @@ use std::{
     ffi::{c_void, CStr},
     iter::{Extend, FromIterator, IntoIterator},
     marker::PhantomData,
-    mem::MaybeUninit,
+    mem::{ManuallyDrop, MaybeUninit},
     sync::{
         atomic::{AtomicBool, Ordering},
         Arc,
@@ -1997,8 +1997,7 @@ pub type FNCmdWriteAccelerationStructuresPropertiesKhr = Option<
 ///   object
 /// - For each element of [`p_infos`], its `scratchData.deviceAddress` member  **must**  be a
 ///   multiple of
-///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::
-///   min_acceleration_structure_scratch_offset_alignment`]
+///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::min_acceleration_structure_scratch_offset_alignment`]
 /// - For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a
 ///   `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR`,
 ///   `geometry.triangles.vertexData.deviceAddress` **must**  be a valid device address obtained
@@ -2324,8 +2323,7 @@ pub type FNCmdBuildAccelerationStructuresKhr = Option<
 ///   object
 /// - For each element of [`p_infos`], its `scratchData.deviceAddress` member  **must**  be a
 ///   multiple of
-///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::
-///   min_acceleration_structure_scratch_offset_alignment`]
+///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::min_acceleration_structure_scratch_offset_alignment`]
 /// - For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a
 ///   `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR`,
 ///   `geometry.triangles.vertexData.deviceAddress` **must**  be a valid device address obtained
@@ -8432,16 +8430,15 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
 ///   class="katex-html" aria-hidden="true"><span class="base"><span
 ///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
-///   class="mord">2</span><span class="mspace"
-///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
-///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
-///   class="base"><span class="strut"
-///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
-///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
-///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span
-///   class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord
-///   mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span
-///   class="mord mathtt">Z</span><span class="mord
+///   class="mord">2</span><span style="margin-right:0.2222222222222222em;"
+///   class="mspace"></span><span class="mbin">×</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span
+///   style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span
+///   class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord
+///   mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span
+///   class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord
+///   mathtt">I</span><span class="mord mathtt">Z</span><span class="mord
 ///   mathtt">E</span></span></span></span></span>`uint8_t` values
 ///# Related
 /// - [`khr_acceleration_structure`]
@@ -9470,13 +9467,13 @@ impl Default for DeviceOrHostAddressConstKHR {
 pub union AccelerationStructureGeometryDataKHR<'lt> {
     ///[`triangles`] is a
     ///[`AccelerationStructureGeometryTrianglesDataKHR`] structure.
-    pub triangles: AccelerationStructureGeometryTrianglesDataKHR<'lt>,
+    pub triangles: ManuallyDrop<AccelerationStructureGeometryTrianglesDataKHR<'lt>>,
     ///[`aabbs`] is a [`AccelerationStructureGeometryAabbsDataKHR`]
     ///struture.
-    pub aabbs: AccelerationStructureGeometryAabbsDataKHR<'lt>,
+    pub aabbs: ManuallyDrop<AccelerationStructureGeometryAabbsDataKHR<'lt>>,
     ///[`instances`] is a
     ///[`AccelerationStructureGeometryInstancesDataKHR`] structure.
-    pub instances: AccelerationStructureGeometryInstancesDataKHR<'lt>,
+    pub instances: ManuallyDrop<AccelerationStructureGeometryInstancesDataKHR<'lt>>,
 }
 impl<'lt> Default for AccelerationStructureGeometryDataKHR<'lt> {
     fn default() -> Self {
@@ -11324,8 +11321,7 @@ impl CommandBuffer {
     ///   [`DeviceMemory`] object
     /// - For each element of [`p_infos`], its `scratchData.deviceAddress` member  **must**  be a
     ///   multiple of
-    ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::
-    ///   min_acceleration_structure_scratch_offset_alignment`]
+    ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::min_acceleration_structure_scratch_offset_alignment`]
     /// - For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a
     ///   `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR`,
     ///   `geometry.triangles.vertexData.deviceAddress` **must**  be a valid device address obtained
@@ -11683,8 +11679,7 @@ impl CommandBuffer {
     ///   [`DeviceMemory`] object
     /// - For each element of [`p_infos`], its `scratchData.deviceAddress` member  **must**  be a
     ///   multiple of
-    ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::
-    ///   min_acceleration_structure_scratch_offset_alignment`]
+    ///   [`PhysicalDeviceAccelerationStructurePropertiesKHR::min_acceleration_structure_scratch_offset_alignment`]
     /// - For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a
     ///   `geometryType` of `VK_GEOMETRY_TYPE_TRIANGLES_KHR`,
     ///   `geometry.triangles.vertexData.deviceAddress` **must**  be a valid device address obtained

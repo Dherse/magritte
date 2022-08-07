@@ -9,8 +9,7 @@
     arbitrary_self_types,
     try_trait_v2,
     cfg_sanitize,
-    generic_associated_types,
-    untagged_unions
+    generic_associated_types
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![allow(unreachable_code)]
@@ -35,6 +34,7 @@ pub mod spv;
 pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
+pub mod commands;
 
 pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;

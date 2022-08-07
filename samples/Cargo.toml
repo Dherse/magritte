@@ -7,10 +7,6 @@ edition = "2021"
 name = "triangle"
 path = "src/bins/triangle.rs"
 
-[[bin]]
-name = "texture"
-path = "src/bins/texture.rs"
-
 [dependencies]
 winit = "0.26.1"
 log = "0.4.16"

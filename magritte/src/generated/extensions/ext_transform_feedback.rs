@@ -1882,8 +1882,8 @@ impl<'lt> PhysicalDeviceTransformFeedbackPropertiesEXT<'lt> {
 /// - [`rasterization_stream`] **must**  be less than
 ///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_streams`]
 /// - [`rasterization_stream`] **must**  be zero if
-///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::
-///   transform_feedback_rasterization_stream_select`] is [`FALSE`]
+///   [`PhysicalDeviceTransformFeedbackPropertiesEXT::transform_feedback_rasterization_stream_select`]
+///   is [`FALSE`]
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be

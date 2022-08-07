@@ -110,10 +110,6 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     // Here we create a depth buffer we will later use.
     let depth = Depth::new(&vulkan, &commands, &surface, msaa)?;
 
-    println!("{:#?}", unsafe {
-        vulkan.physical_device().get_physical_device_memory_properties()
-    });
-
     let mut renderer = Renderer::new(vulkan, surface, commands, depth, msaa)?;
 
     event_loop.run(move |event, _, control_flow| {
@@ -237,6 +233,7 @@ pub struct Renderer {
     /// The depth buffer
     depth: Depth,
 
+    /// The number of samples of each pixel
     msaa: SampleCountFlagBits,
 
     /// The optional multisampled image to be used as a render target

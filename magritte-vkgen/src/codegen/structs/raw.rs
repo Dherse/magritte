@@ -285,6 +285,39 @@ impl<'a> Field<'a> {
         }
     }
 
+    /// Generates the code for the raw C-compatible struct
+    pub fn generate_raw_union_code(
+        &self,
+        source: &Source<'a>,
+        imports: &Imports,
+        doc: &AHashMap<String, String>,
+    ) -> TokenStream {
+        // get the name as an identifier of the field
+        let name = self.as_ident();
+
+        // get the type of the field
+        let ty = self.ty().as_raw_ty(source, Some(imports), true).0;
+
+        // get the doc of the field
+        let doc = doc.get(self.name()).map_or_else(
+            || quote! { #[doc = "No documentation found"]},
+            |t| quote! { #[doc = #t] },
+        );
+
+        if self.is_copy(source) {
+            quote! {
+                #doc
+                pub #name: #ty
+            }
+        } else {
+            imports.push("std::mem::ManuallyDrop");
+            quote! {
+                #doc
+                pub #name: ManuallyDrop<#ty>
+            }
+        }
+    }
+
     /// Generates the code for a getter that returns the raw C-compatible value
     pub(super) fn generate_raw_getter(&self, source: &Source<'a>, imports: &Imports) -> Option<TokenStream> {
         // if we don't require conversion, there is no need to have a `raw` function

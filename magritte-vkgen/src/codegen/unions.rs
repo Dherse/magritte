@@ -36,7 +36,7 @@ impl<'a> Union<'a> {
         let fields = self
             .fields()
             .iter()
-            .map(|field| field.generate_raw_code(source, imports, &field_doc));
+            .map(|field| field.generate_raw_union_code(source, imports, &field_doc));
 
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);

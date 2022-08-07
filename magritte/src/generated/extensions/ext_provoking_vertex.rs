@@ -52,9 +52,9 @@
 //!more than one mode).
 //!# Version History
 //! - Revision 1, (1c) 2021-02-22 (Jesse Hall)  - Added
-//!   VkPhysicalDeviceProvokingVertexPropertiesEXT::
-//!   transformFeedbackPreservesTriangleFanProvokingVertex to accommodate implementations that
-//!   cannot change the transform feedback vertex order for triangle fans.
+//!   VkPhysicalDeviceProvokingVertexPropertiesEXT::transformFeedbackPreservesTriangleFanProvokingVertex
+//!   to accommodate implementations that cannot change the transform feedback vertex order for
+//!   triangle fans.
 //! - Revision 1, (1b) 2020-06-14 (Jesse Hall)  - Added
 //!   VkPhysicalDeviceProvokingVertexFeaturesEXT::transformFeedbackPreservesProvokingVertex and
 //!   required that transform feedback write vertices so as to preserve the provoking vertex of each

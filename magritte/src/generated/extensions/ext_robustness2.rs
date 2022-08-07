@@ -31,9 +31,7 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
 //!# Known issues & F.A.Q
-//!0. Why do [`PhysicalDeviceRobustness2PropertiesEXT::
-//! robust_uniform_buffer_access_size_alignment`] and
-//! [`PhysicalDeviceRobustness2PropertiesEXT::robust_storage_buffer_access_size_alignment`] exist?
+//!0. Why do [`PhysicalDeviceRobustness2PropertiesEXT::robust_uniform_buffer_access_size_alignment`] and [`PhysicalDeviceRobustness2PropertiesEXT::robust_storage_buffer_access_size_alignment`] exist?
 //! **RESOLVED** : Some implementations cannot efficiently tightly bounds-check all
 //!buffer accesses.
 //!Rather, the size of the bound range is padded to some power of two multiple,

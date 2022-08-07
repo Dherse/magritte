@@ -7,3 +7,5 @@ edition = "2021"
 magritte = { path = "../magritte" }
 
 magritte-vma = { path = "../magritte-vma" }
+
+magritte-hl = { path = "../magritte-hl" }

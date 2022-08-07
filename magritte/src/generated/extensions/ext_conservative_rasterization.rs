@@ -798,8 +798,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///graphics pipeline.
 ///Enabling these modes also affects line and point rasterization if the
 ///implementation sets
-///[`PhysicalDeviceConservativeRasterizationPropertiesEXT::
-/// conservative_point_and_line_rasterization`]
+///[`PhysicalDeviceConservativeRasterizationPropertiesEXT::conservative_point_and_line_rasterization`]
 ///to [`TRUE`].[`PipelineRasterizationConservativeStateCreateInfoEXT`] is defined as:
 ///```c
 ///// Provided by VK_EXT_conservative_rasterization
@@ -823,8 +822,8 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 ///# Description
 ///## Valid Usage
 /// - [`extra_primitive_overestimation_size`] **must**  be in the range of `0.0` to
-///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::
-///   max_extra_primitive_overestimation_size`] inclusive
+///   [`PhysicalDeviceConservativeRasterizationPropertiesEXT::max_extra_primitive_overestimation_size`]
+///   inclusive
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be

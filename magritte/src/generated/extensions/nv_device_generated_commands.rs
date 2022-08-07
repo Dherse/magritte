@@ -3383,8 +3383,7 @@ impl SetStateFlagsIndirectCommandNV {
 ///## Valid Usage
 /// - The [`buffer`]’s usage flag  **must**  have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - The [`offset`] **must**  be aligned to
-///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
-///   min_indirect_commands_buffer_offset_alignment`]
+///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::min_indirect_commands_buffer_offset_alignment`]
 /// - If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a
 ///   single [`DeviceMemory`] object
 ///
@@ -4429,8 +4428,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 /// - [`preprocess_buffer`] **must**  have the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set in its
 ///   usage flag
 /// - [`preprocess_offset`] **must**  be aligned to
-///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
-///   min_indirect_commands_buffer_offset_alignment`]
+///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::min_indirect_commands_buffer_offset_alignment`]
 /// - If [`preprocess_buffer`] is non-sparse then it  **must**  be bound completely and contiguously
 ///   to a single [`DeviceMemory`] object
 /// - [`preprocess_size`] **must**  be at least equal to the memory requirement`s size returned by
@@ -4442,8 +4440,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - If [`sequences_count_buffer`] is not [`crate::Handle::null`], [`sequences_count_offset`]
 ///   **must**  be aligned to
-///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
-///   min_sequences_count_buffer_offset_alignment`]
+///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::min_sequences_count_buffer_offset_alignment`]
 /// - If [`sequences_count_buffer`] is not [`crate::Handle::null`] and is non-sparse then it
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 /// - If [`indirect_commands_layout`]’s `VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NV`
@@ -4453,8 +4450,7 @@ impl<'lt> IndirectCommandsLayoutCreateInfoNV<'lt> {
 ///   the `VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT` bit set
 /// - If [`sequences_index_buffer`] is not [`crate::Handle::null`], [`sequences_index_offset`]
 ///   **must**  be aligned to
-///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::
-///   min_sequences_index_buffer_offset_alignment`]
+///   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV::min_sequences_index_buffer_offset_alignment`]
 /// - If [`sequences_index_buffer`] is not [`crate::Handle::null`] and is non-sparse then it
 ///   **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 ///

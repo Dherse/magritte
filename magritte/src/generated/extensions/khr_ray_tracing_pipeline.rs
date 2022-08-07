@@ -390,9 +390,7 @@ pub type FNGetRayTracingShaderGroupHandlesKhr = Option<
 /// - [`data_size`] **must**  be at least
 ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_capture_replay_size`] ×
 ///   [`group_count`]
-/// - [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-///   ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  be enabled to call this
-///   function
+/// -  [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  be enabled to call this function
 /// - [`pipeline`] **must**  have been created with a `flags` that included
 ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 ///
@@ -458,8 +456,7 @@ pub type FNGetRayTracingCaptureReplayShaderGroupHandlesKhr = Option<
 ///implementation is unable to re-use the shader group handles provided in
 ///[`RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle`]
 ///when
-///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-/// ray_tracing_pipeline_shader_group_handle_capture_replay`]
+///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`]
 ///is enabled.
 ///## Valid Usage
 /// - If the `flags` member of any element of [`p_create_infos`] contains the
@@ -1087,9 +1084,7 @@ pub type FNCmdTraceRaysKhr = Option<
 ///   of the same buffer
 /// - The [[`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_trace_rays_indirect`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineTraceRaysIndirect)
 ///   feature  **must**  be enabled
-/// - If the bound ray tracing pipeline was created with
-///   `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV:
-///   :ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
+/// -    If the bound ray tracing pipeline was created with `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV::ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
 ///
 ///## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
@@ -1444,8 +1439,8 @@ impl std::fmt::Debug for ShaderGroupShaderKHR {
 ///   otherwise.
 /// - [`shader_group_capture_replay_handle`] is `NULL` or a pointer to replay information for this
 ///   shader group. Ignored if
-///   [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-///   ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`FALSE`].
+///   [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`]
+///   is [`FALSE`].
 ///# Description
 ///## Valid Usage
 /// - If [`type_`] is `VK_RAY_TRACING_SHADER_GROUP_TYPE_GENERAL_KHR` then [`general_shader`]
@@ -1466,15 +1461,8 @@ impl std::fmt::Debug for ShaderGroupShaderKHR {
 /// - [`any_hit_shader`] **must**  be either [`SHADER_UNUSED_KHR`] or a valid index into
 ///   [`RayTracingPipelineCreateInfoKHR::stages`] referring to a shader of
 ///   `VK_SHADER_STAGE_ANY_HIT_BIT_KHR`
-/// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-///   ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then
-///   [`shader_group_capture_replay_handle`] **must**  not be provided if it has not been provided
-///   on a previous call to ray tracing pipeline creation
-/// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-///   ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then the caller
-///   **must**  guarantee that no ray tracing pipeline creation commands with
-///   [`shader_group_capture_replay_handle`] provided execute simultaneously with ray tracing
-///   pipeline creation commands without [`shader_group_capture_replay_handle`] provided
+/// -    If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then [`shader_group_capture_replay_handle`] **must**  not be provided if it has not been provided on a previous call to ray tracing pipeline creation
+/// -    If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay_mixed`] is [`FALSE`] then the caller  **must**  guarantee that no ray tracing pipeline creation commands with [`shader_group_capture_replay_handle`] provided execute simultaneously with ray tracing pipeline creation commands without [`shader_group_capture_replay_handle`] provided
 ///
 ///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR`
@@ -1888,10 +1876,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// - [`flags`] **must**  not include both `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`
 ///   and `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
 /// -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`, [`rayTracingPipelineShaderGroupHandleCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineShaderGroupHandleCaptureReplay) **must**  be enabled
-/// - If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-///   ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`TRUE`] and the
-///   `pShaderGroupCaptureReplayHandle` member of any element of [`groups`] is not `NULL`, [`flags`]
-///   **must**  include `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
+/// -    If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`TRUE`] and the `pShaderGroupCaptureReplayHandle` member of any element of [`groups`] is not `NULL`, [`flags`] **must**  include `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 /// - If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`stage_count`] **must**  not
 ///   be `0`
 /// - If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`group_count`] **must**  not
@@ -3667,9 +3652,7 @@ impl Device {
     /// - [`data_size`] **must**  be at least
     ///   [`PhysicalDeviceRayTracingPipelinePropertiesKHR::shader_group_handle_capture_replay_size`]
     ///   × [`group_count`]
-    /// - [`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-    ///   ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  be enabled to call
-    ///   this function
+    /// -  [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`] **must**  be enabled to call this function
     /// - [`pipeline`] **must**  have been created with a `flags` that included
     ///   `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
     ///
@@ -3764,8 +3747,7 @@ impl Device {
     ///implementation is unable to re-use the shader group handles provided in
     ///[`RayTracingShaderGroupCreateInfoKHR::shader_group_capture_replay_handle`]
     ///when
-    ///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::
-    /// ray_tracing_pipeline_shader_group_handle_capture_replay`]
+    ///[`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`]
     ///is enabled.
     ///## Valid Usage
     /// - If the `flags` member of any element of [`p_create_infos`] contains the
@@ -4491,9 +4473,7 @@ impl CommandBuffer {
     ///   range of the same buffer
     /// - The [[`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_trace_rays_indirect`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineTraceRaysIndirect)
     ///   feature  **must**  be enabled
-    /// - If the bound ray tracing pipeline was created with
-    ///   `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV:
-    ///   :ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
+    /// -    If the bound ray tracing pipeline was created with `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV`[`PhysicalDeviceRayTracingMotionBlurFeaturesNV::ray_tracing_motion_blur_pipeline_trace_rays_indirect`] feature  **must**  be enabled
     ///
     ///## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
