@@ -11,19 +11,19 @@
 //!behavior, letting the implementation decide, or managing this mode of
 //!operation directly using the new [`acquire_full_screen_exclusive_mode_ext`]
 //!and [`release_full_screen_exclusive_mode_ext`] commands.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_surface`]`
 //! - Requires `[`khr_get_surface_capabilities2`]`
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_full_screen_exclusive]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_full_screen_exclusive extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`acquire_full_screen_exclusive_mode_ext`]
 //! - [`get_physical_device_surface_present_modes2_ext`]
 //! - [`release_full_screen_exclusive_mode_ext`]
@@ -31,16 +31,16 @@
 //! - [`get_device_group_surface_present_modes2_ext`]
 //!If [Version 1.1]() is supported:
 //! - [`get_device_group_surface_present_modes2_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  -
 //!   [`SurfaceFullScreenExclusiveInfoEXT`]
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`SurfaceCapabilitiesFullScreenExclusiveEXT`]
 //!If [`khr_win32_surface`] is supported:
 //! - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  -
 //!   [`SurfaceFullScreenExclusiveWin32InfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`FullScreenExclusiveEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME`]
 //! - [`EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
@@ -50,7 +50,7 @@
 //!If [`khr_win32_surface`] is supported:
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What should the extension & flag be called? **RESOLVED** : VK_EXT_full_screen_exclusive.Other
 //! options considered (prior to the app-controlled mode) were:
 //! - VK_EXT_smooth_fullscreen_transition
@@ -86,7 +86,7 @@
 //!SetFullscreenState method in the DXGI swapchain object.
 //!Given this inconclusive external guidance, it is best to adhere to the
 //!Vulkan style guidelines and avoid inventing new compound words.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 4, 2019-03-12 (Tobias Hector)  - Added application-controlled mode, and related
 //!   functions  - Tidied up appendix
 //! - Revision 3, 2019-01-03 (James Jones)  - Renamed to VK_EXT_full_screen_exclusive  - Made

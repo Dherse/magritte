@@ -5,30 +5,30 @@
 //!the `[`khr_surface`]` extension) that refers to a Wayland
 //![`wl_surface`], as well as a query to determine support for rendering to a
 //!Wayland compositor.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!6
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_wayland_surface
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_wayland_surface extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_wayland_surface_khr`]
 //! - [`get_physical_device_wayland_presentation_support_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`WaylandSurfaceCreateInfoKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`WaylandSurfaceCreateFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_WAYLAND_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_WAYLAND_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does Wayland need a way to query for compatibility between a particular
 //!physical device and a specific Wayland display? This would be a more general
 //!query than [`get_physical_device_surface_support_khr`]: if the
@@ -45,7 +45,7 @@
 //!deadlock and requiring all Wayland applications to be able to support
 //!implementations which only support `VK_PRESENT_MODE_FIFO_KHR` would be
 //!an onerous restriction on application developers.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft, based on the previous contents of
 //!   VK_EXT_KHR_swapchain (later renamed VK_EXT_KHR_surface).
 //! - Revision 2, 2015-10-02 (James Jones)  - Added

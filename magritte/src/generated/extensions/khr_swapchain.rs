@@ -4,21 +4,21 @@
 //!`[`khr_surface`]` extension.
 //!It introduces [`SwapchainKHR`] objects, which provide the ability to
 //!present rendering results to a surface.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!70
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_swapchain
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_swapchain
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`SwapchainKHR`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`acquire_next_image_khr`]
 //! - [`create_swapchain_khr`]
 //! - [`destroy_swapchain_khr`]
@@ -29,7 +29,7 @@
 //! - [`get_device_group_present_capabilities_khr`]
 //! - [`get_device_group_surface_present_modes_khr`]
 //! - [`get_physical_device_present_rectangles_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PresentInfoKHR`]
 //! - [`SwapchainCreateInfoKHR`]
 //!If [Version 1.1]() is supported:
@@ -39,15 +39,15 @@
 //! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`DeviceGroupPresentInfoKHR`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`DeviceGroupSwapchainCreateInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`SwapchainCreateFlagBitsKHR`]
 //!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`SwapchainCreateFlagsKHR`]
 //!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SWAPCHAIN_EXTENSION_NAME`]
 //! - [`KHR_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
@@ -64,7 +64,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:  - `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR`  -
 //!   `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does this extension allow the application to specify the memory backing
 //!of the presentable images? **RESOLVED** : No.
 //!Unlike standard images, the implementation will allocate the memory backing
@@ -333,7 +333,7 @@
 //![`SurfaceKHR`] objects that may be created for the same native window if
 //!such a requirement makes sense on a particular platform, but a global
 //!requirement is only sensible at the swapchain level.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-05-20 (James Jones)  - Initial draft, based on LunarG KHR spec, other KHR
 //!   specs, patches attached to bugs.
 //! - Revision 2, 2015-05-22 (Ian Elliott)  - Made many agreed-upon changes from 2015-05-21 KHR TSG
@@ -538,27 +538,27 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_AMD_display_native_hdr")]
-pub use crate::extensions::amd_display_native_hdr::SwapchainDisplayNativeHdrCreateInfoAMD;
+use crate::extensions::amd_display_native_hdr::SwapchainDisplayNativeHdrCreateInfoAMD;
 #[cfg(feature = "VK_EXT_display_control")]
-pub use crate::extensions::ext_display_control::SwapchainCounterCreateInfoEXT;
+use crate::extensions::ext_display_control::SwapchainCounterCreateInfoEXT;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
+use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
+use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
 #[cfg(feature = "VK_GGP_frame_token")]
-pub use crate::extensions::ggp_frame_token::PresentFrameTokenGGP;
+use crate::extensions::ggp_frame_token::PresentFrameTokenGGP;
 #[cfg(feature = "VK_GOOGLE_display_timing")]
-pub use crate::extensions::google_display_timing::PresentTimesInfoGOOGLE;
+use crate::extensions::google_display_timing::PresentTimesInfoGOOGLE;
 #[cfg(feature = "VK_KHR_device_group")]
-pub use crate::extensions::khr_device_group::DeviceGroupPresentInfoKHR;
+use crate::extensions::khr_device_group::DeviceGroupPresentInfoKHR;
 #[cfg(feature = "VK_KHR_device_group")]
-pub use crate::extensions::khr_device_group::DeviceGroupSwapchainCreateInfoKHR;
+use crate::extensions::khr_device_group::DeviceGroupSwapchainCreateInfoKHR;
 #[cfg(feature = "VK_KHR_display_swapchain")]
-pub use crate::extensions::khr_display_swapchain::DisplayPresentInfoKHR;
+use crate::extensions::khr_display_swapchain::DisplayPresentInfoKHR;
 #[cfg(feature = "VK_KHR_incremental_present")]
-pub use crate::extensions::khr_incremental_present::PresentRegionsKHR;
+use crate::extensions::khr_incremental_present::PresentRegionsKHR;
 #[cfg(feature = "VK_KHR_present_id")]
-pub use crate::extensions::khr_present_id::PresentIdKHR;
+use crate::extensions::khr_present_id::PresentIdKHR;
 use crate::{
     entry::Entry,
     extensions::khr_surface::{

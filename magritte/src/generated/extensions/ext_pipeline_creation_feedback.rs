@@ -4,30 +4,30 @@
 //!pipeline creation, with the specific goal of allowing a feedback loop
 //!between build systems and in-the-field application executions to ensure
 //!effective pipeline caches are shipped to customers.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pipeline_creation_feedback]
 //!   @jfroy%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_pipeline_creation_feedback extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PipelineCreationFeedbackEXT`]
 //! - Extending [`GraphicsPipelineCreateInfo`], [`ComputePipelineCreateInfo`],
 //!   [`RayTracingPipelineCreateInfoNV`], [`RayTracingPipelineCreateInfoKHR`]:  -
 //!   [`PipelineCreationFeedbackCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`PipelineCreationFeedbackFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineCreationFeedbackFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME`]
 //! - [`EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_CREATION_FEEDBACK_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-03-12 (Jean-Francois Roy)  - Initial revision
 //!# Other info
 //! * 2019-03-12

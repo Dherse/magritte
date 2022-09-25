@@ -4,26 +4,26 @@
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
 //!the `[`khr_surface`]` extension) that refers to a Fuchsia
 //!`imagePipeHandle`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Craig Stout [cdotstout](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_imagepipe_surface]
 //!   @cdotstout%0A<<Here describe the issue or question you have about the
 //!   VK_FUCHSIA_imagepipe_surface extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_image_pipe_surface_fuchsia`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME`]
 //! - [`FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-27 (Craig Stout)  - Initial draft.
 //!# Other info
 //! * 2018-07-27

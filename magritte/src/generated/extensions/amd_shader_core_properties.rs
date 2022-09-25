@@ -3,22 +3,22 @@
 //!This extension exposes shader core properties for a target physical device
 //!through the `[`khr_get_physical_device_properties2`]` extension.
 //!Please refer to the example below for proper usage.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Martin Dinkov [mdinkov](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_core_properties]
 //!   @mdinkov%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_core_properties extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceShaderCorePropertiesAMD`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME`]
 //! - [`AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2019-06-25 (Matthaeus G. Chajdas)  - Clarified the meaning of a few fields.
 //! - Revision 1, 2018-02-15 (Martin Dinkov)  - Initial draft.
 //!# Other info

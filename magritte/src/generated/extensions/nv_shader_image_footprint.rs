@@ -50,24 +50,24 @@
 //!instruction will be generated from code using the new
 //!`textureFootprint*NV` built-in functions from the
 //!`GL_NV_shader_texture_footprint` shading language extension.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_image_footprint]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the
 //!   VK_NV_shader_image_footprint extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderImageFootprintFeaturesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_SHADER_IMAGE_FOOTPRINT_EXTENSION_NAME`]
 //! - [`NV_SHADER_IMAGE_FOOTPRINT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!(1) The footprint returned by the SPIR-V instruction is a structure that
 //!    includes an anchor, an offset, and a mask that represents a 8x8 or 4x4x4
 //!    neighborhood of texel groups.
@@ -166,7 +166,7 @@
 //!   x and y values instead of left/right or top/bottom, the “odd/odd” mask for all invocations in
 //!   the subgroup hold coverage for footprint image texel (11,11), which can be updated by a single
 //!   atomic operation for the entire subgroup.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2018-09-13 (Pat Brown)  - Add issue (2) with performance tips.
 //! - Revision 1, 2018-08-12 (Pat Brown)  - Initial draft
 //!# Other info

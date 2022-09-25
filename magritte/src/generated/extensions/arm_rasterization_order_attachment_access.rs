@@ -12,22 +12,22 @@
 //!attachments from one fragment to the next, in rasterization order, without
 //!explicit synchronization.See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more
 //!information.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ARM_rasterization_order_attachment_access]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
 //!   VK_ARM_rasterization_order_attachment_access extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`PipelineColorBlendStateCreateFlagBits`]
 //! - [`PipelineDepthStencilStateCreateFlagBits`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME`]
 //! - [`ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION`]
 //! - Extending [`PipelineColorBlendStateCreateFlagBits`]:  -
@@ -41,14 +41,14 @@
 //!   `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_BIT_ARM`  -
 //!   `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM`  -
 //!   `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Is there any interaction with the `[`khr_dynamic_rendering`]`
 //!extension?No.
 //!This extension only affects reads from input attachments.
 //!Render pass instances begun with [`cmd_begin_rendering_khr`] do not have
 //!input attachments and a different mechanism will be needed to provide
 //!similar functionality in this case.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-11-12 (Jan-Harald Fredriksen)  - Initial draft
 //!# Other info
 //! * 2021-11-12

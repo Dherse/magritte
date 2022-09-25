@@ -6,24 +6,24 @@
 //!This extension provides a way for an application to access the keyed mutex
 //!associated with an imported Vulkan memory object when submitting command
 //!buffers to a queue.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Promoted* to `[`khr_win32_keyed_mutex`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`nv_external_memory_win32`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to `[`khr_win32_keyed_mutex`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_win32_keyed_mutex]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_NV_win32_keyed_mutex
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`Win32KeyedMutexAcquireReleaseInfoNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_WIN32_KEYED_MUTEX_EXTENSION_NAME`]
 //! - [`NV_WIN32_KEYED_MUTEX_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2016-08-11 (James Jones)  - Updated sample code based on the NV external memory
 //!   extensions.  - Renamed from NVX to NV extension.  - Added Overview and Description sections.
 //!   - Updated sample code to use the NV external memory extensions.

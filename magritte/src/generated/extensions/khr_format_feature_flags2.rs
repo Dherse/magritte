@@ -18,28 +18,28 @@
 //!   Previously the result of executing a `OpImage*Dref*` instruction on an image view, where the
 //!   `format` was not one of the depth/stencil formats with a depth component, was undefined. This
 //!   bit clarifies on which formats such instructions can be used.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Lionel Landwerlin [llandwerlin](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_format_feature_flags2]
 //!   @llandwerlin%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_format_feature_flags2 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`FormatProperties2`]:  - [`FormatProperties3KHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`FormatFeatureFlagBits2KHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`FormatFeatureFlags2KHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME`]
 //! - [`KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-07-21 (Lionel Landwerlin)  - Initial draft
 //!# Other info
 //! * 2021-07-01

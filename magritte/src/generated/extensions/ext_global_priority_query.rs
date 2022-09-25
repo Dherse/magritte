@@ -9,30 +9,30 @@
 //!supported.
 //!It is intended primarily for use by system integration along with certain
 //!platform-specific priority enforcement rules.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to `[`khr_global_priority`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_global_priority`]`
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to `[`khr_global_priority`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Yiwei Zhang [zhangyiwei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_global_priority_query]
 //!   @zhangyiwei%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_global_priority_query extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceGlobalPriorityQueryFeaturesEXT`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyGlobalPriorityPropertiesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME`]
 //! - [`EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION`]
 //! - [`MAX_GLOBAL_PRIORITY_SIZE_EXT`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Can we additionally query whether a caller is permitted to acquire a
 //!specific global queue priority in this extension? **RESOLVED** : No.
 //!Whether a caller has enough privilege goes with the OS, and the Vulkan
@@ -46,7 +46,7 @@
 //!Queue creation can fail because of runtime constraints like insufficient
 //!privilege or lack of resource, and the failure is not necessarily tied to
 //!that particular queue configuration requested.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-03-29 (Yiwei Zhang)
 //!# Other info
 //! * 2021-03-29

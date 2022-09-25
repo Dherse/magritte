@@ -5,28 +5,28 @@
 //!the `[`khr_surface`]` extension) based on a `UIView`, the native
 //!surface type of iOS, which is underpinned by a [`CaMetalLayer`], to
 //!support rendering to the surface using Apple’s Metal framework.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
-//! - *Deprecated* by `[`ext_metal_surface`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`ext_metal_surface`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Bill Hollings [billhollings](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_MVK_ios_surface]
 //!   @billhollings%0A<<Here describe the issue or question you have about the VK_MVK_ios_surface
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_ios_surface_mvk`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`IosSurfaceCreateInfoMVK`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`IosSurfaceCreateFlagsMVK`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`MVK_IOS_SURFACE_EXTENSION_NAME`]
 //! - [`MVK_IOS_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IOS_SURFACE_CREATE_INFO_MVK`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-15 (Bill Hollings)  - Initial draft.
 //! - Revision 2, 2017-02-24 (Bill Hollings)  - Minor syntax fix to emphasize firm requirement for
 //!   `UIView` to be backed by a [`CaMetalLayer`].

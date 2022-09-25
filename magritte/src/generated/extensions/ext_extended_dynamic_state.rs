@@ -2,18 +2,18 @@
 //!# Description
 //!This extension adds some more dynamic state to support applications that
 //!need to reduce the number of pipeline state objects they compile and bind.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_extended_dynamic_state]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_extended_dynamic_state extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_bind_vertex_buffers2_ext`]
 //! - [`cmd_set_cull_mode_ext`]
 //! - [`cmd_set_depth_bounds_test_enable_ext`]
@@ -26,10 +26,10 @@
 //! - [`cmd_set_stencil_op_ext`]
 //! - [`cmd_set_stencil_test_enable_ext`]
 //! - [`cmd_set_viewport_with_count_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME`]
 //! - [`EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_CULL_MODE_EXT`  -
@@ -42,7 +42,7 @@
 //!   `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-12-09 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2019-12-09

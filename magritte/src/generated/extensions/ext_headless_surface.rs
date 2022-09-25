@@ -17,26 +17,26 @@
 //!wide range of presentation engines where the actual target presentation
 //!engines might be scarce, unavailable or otherwise undesirable or
 //!inconvenient to use for general Vulkan application development.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Lisa Wu [chengtianww](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_headless_surface]
 //!   @chengtianww%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_headless_surface extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_headless_surface_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`HeadlessSurfaceCreateInfoEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`HeadlessSurfaceCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_HEADLESS_SURFACE_EXTENSION_NAME`]
 //! - [`EXT_HEADLESS_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-03-21 (Ray Smith)  - Initial draft
 //!# Other info
 //! * 2019-03-21

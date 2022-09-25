@@ -6,33 +6,33 @@
 //!This extension provides a set of capability queries and handle definitions
 //!that allow an application to determine what types of “external” memory
 //!handles an implementation supports for a given set of use cases.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_memory_capabilities extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_external_buffer_properties_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ExternalBufferPropertiesKHR`]
 //! - [`ExternalMemoryPropertiesKHR`]
 //! - [`PhysicalDeviceExternalBufferInfoKHR`]
 //! - Extending [`ImageFormatProperties2`]:  - [`ExternalImageFormatPropertiesKHR`]
 //! - Extending [`PhysicalDeviceImageFormatInfo2`]:  - [`PhysicalDeviceExternalImageFormatInfoKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceIdPropertiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ExternalMemoryFeatureFlagBitsKHR`]
 //! - [`ExternalMemoryHandleTypeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ExternalMemoryFeatureFlagsKHR`]
 //! - [`ExternalMemoryHandleTypeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
 //! - [`LUID_SIZE_KHR`]
@@ -53,7 +53,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Why do so many external memory capabilities need to be queried on a
 //!per-memory-handle-type basis? **PROPOSED RESOLUTION** : This is because some handle types are
 //! based on
@@ -99,7 +99,7 @@
 //!Should support for such configurations be introduced at the OS level,
 //!further Vulkan extensions would be needed to correlate userspace component
 //!builds.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-17 (James Jones)  - Initial version
 //!# Other info
 //! * 2016-10-17

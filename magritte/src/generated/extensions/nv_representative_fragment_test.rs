@@ -24,26 +24,26 @@
 //!implementation-dependent and may vary from frame to frame.
 //!In some cases, the representative fragment test may not discard any
 //!fragments for a given primitive.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_representative_fragment_test]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
 //!   VK_NV_representative_fragment_test extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`GraphicsPipelineCreateInfo`]:  -
 //!   [`PipelineRepresentativeFragmentTestStateCreateInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRepresentativeFragmentTestFeaturesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_REPRESENTATIVE_FRAGMENT_TEST_EXTENSION_NAME`]
 //! - [`NV_REPRESENTATIVE_FRAGMENT_TEST_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!(1) Is the representative fragment test guaranteed to have any effect? **RESOLVED** : No.
 //!As specified, we only guarantee that each primitive with at least one
 //!fragment that passes prior tests will have one fragment passing the
@@ -74,7 +74,7 @@
 //!enabled.
 //!For the use cases intended for this feature, we do not expect the use of
 //!derivatives in the fragment shader.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2018-09-13 (pbrown)  - Add issues.
 //! - Revision 1, 2018-08-22 (Kedarnath Thangudu)  - Internal Revisions
 //!# Other info

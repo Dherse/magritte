@@ -2,18 +2,18 @@
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - [`SPV_AMD_shader_explicit_vertex_parameter`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_explicit_vertex_parameter.html)
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Qun Lin [linqun](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_explicit_vertex_parameter]
 //!   @linqun%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_explicit_vertex_parameter extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_SHADER_EXPLICIT_VERTEX_PARAMETER_EXTENSION_NAME`]
 //! - [`AMD_SHADER_EXPLICIT_VERTEX_PARAMETER_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-05-10 (Daniel Rakos)  - Initial draft
 //!# Other info
 //! * 2016-05-10

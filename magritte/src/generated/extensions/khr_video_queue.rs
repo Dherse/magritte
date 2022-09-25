@@ -1,20 +1,20 @@
 //![VK_KHR_video_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_queue.html) - device extension
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tony Zlatinski [tzlatinski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_queue]
 //!   @tzlatinski%0A<<Here describe the issue or question you have about the VK_KHR_video_queue
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`VideoSessionKHR`]
 //! - [`VideoSessionParametersKHR`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`bind_video_session_memory_khr`]
 //! - [`cmd_begin_video_coding_khr`]
 //! - [`cmd_control_video_coding_khr`]
@@ -27,7 +27,7 @@
 //! - [`get_physical_device_video_format_properties_khr`]
 //! - [`get_video_session_memory_requirements_khr`]
 //! - [`update_video_session_parameters_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PhysicalDeviceVideoFormatInfoKHR`]
 //! - [`VideoBeginCodingInfoKHR`]
 //! - [`VideoBindMemoryKHR`]
@@ -47,7 +47,7 @@
 //!   [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  - [`VideoProfileKHR`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyQueryResultStatusProperties2KHR`]  -
 //!   [`VideoQueueFamilyProperties2KHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`QueryResultStatusKHR`]
 //! - [`VideoCapabilityFlagBitsKHR`]
 //! - [`VideoChromaSubsamplingFlagBitsKHR`]
@@ -56,7 +56,7 @@
 //! - [`VideoCodingQualityPresetFlagBitsKHR`]
 //! - [`VideoComponentBitDepthFlagBitsKHR`]
 //! - [`VideoSessionCreateFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoBeginCodingFlagsKHR`]
 //! - [`VideoCapabilityFlagsKHR`]
 //! - [`VideoChromaSubsamplingFlagsKHR`]
@@ -66,7 +66,7 @@
 //! - [`VideoComponentBitDepthFlagsKHR`]
 //! - [`VideoEndCodingFlagsKHR`]
 //! - [`VideoSessionCreateFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_VIDEO_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_QUEUE_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_VIDEO_SESSION_KHR`  -
@@ -88,7 +88,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 0.1, 2019-11-21 (Tony Zlatinski)  - Initial draft
 //! - Revision 0.2, 2019-11-27 (Tony Zlatinski)  - Make vulkan video core common between decode and
 //!   encode
@@ -163,41 +163,41 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264DpbSlotInfoEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264DpbSlotInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264ProfileEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264ProfileEXT;
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264SessionParametersAddInfoEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264SessionParametersAddInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264SessionParametersCreateInfoEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264SessionParametersCreateInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265DpbSlotInfoEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265DpbSlotInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265ProfileEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265ProfileEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265SessionParametersAddInfoEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265SessionParametersAddInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265SessionParametersCreateInfoEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265SessionParametersCreateInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264ProfileEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264ProfileEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264SessionParametersAddInfoEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264SessionParametersAddInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264SessionParametersCreateInfoEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264SessionParametersCreateInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265ProfileEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265ProfileEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265SessionParametersAddInfoEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265SessionParametersAddInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265SessionParametersCreateInfoEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265SessionParametersCreateInfoEXT;
 #[cfg(feature = "VK_KHR_video_decode_queue")]
-pub use crate::extensions::khr_video_decode_queue::VideoDecodeCapabilitiesKHR;
+use crate::extensions::khr_video_decode_queue::VideoDecodeCapabilitiesKHR;
 #[cfg(feature = "VK_KHR_video_encode_queue")]
-pub use crate::extensions::khr_video_encode_queue::VideoEncodeCapabilitiesKHR;
+use crate::extensions::khr_video_encode_queue::VideoEncodeCapabilitiesKHR;
 #[cfg(feature = "VK_KHR_video_encode_queue")]
-pub use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlInfoKHR;
+use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlInfoKHR;
 #[cfg(feature = "VK_KHR_video_encode_queue")]
-pub use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlLayerInfoKHR;
+use crate::extensions::khr_video_encode_queue::VideoEncodeRateControlLayerInfoKHR;
 use crate::{
     entry::Entry,
     vulkan1_0::{

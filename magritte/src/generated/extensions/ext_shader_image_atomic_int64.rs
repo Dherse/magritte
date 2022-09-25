@@ -9,24 +9,24 @@
 //!manner to quickly improve performance with only relatively minor code
 //!changes.64-bit integer atomic support is guaranteed for optimally tiled images with
 //!the `VK_FORMAT_R64_UINT` and `VK_FORMAT_R64_SINT` formats.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_image_atomic_int64]
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_image_atomic_int64 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderImageAtomicInt64FeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME`]
 //! - [`EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-07-14 (Tobias Hector)  - Initial draft
 //!# Other info
 //! * 2020-07-14

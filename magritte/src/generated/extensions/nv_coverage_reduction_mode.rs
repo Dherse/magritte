@@ -20,34 +20,34 @@
 //!This extension would allow an implementation to support the behavior of both
 //![`VK_NV_framebuffer_mixed_samples`] and [`VK_AMD_mixed_attachment_samples`]
 //!extensions simultaneously.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`nv_framebuffer_mixed_samples`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_coverage_reduction_mode]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
 //!   VK_NV_coverage_reduction_mode extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`FramebufferMixedSamplesCombinationNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineCoverageReductionStateCreateInfoNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`CoverageReductionModeNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineCoverageReductionStateCreateFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME`]
 //! - [`NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-01-29 (Kedarnath Thangudu)  - Internal revisions
 //!# Other info
 //! * 2019-01-29

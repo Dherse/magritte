@@ -5,30 +5,30 @@
 //!This extension provides a set of capability queries that allow applications
 //!determine what types of win32 memory handles an implementation supports for
 //!a given set of use cases.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Deprecated* by `[`khr_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`khr_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_NV_external_memory_capabilities extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_external_image_format_properties_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ExternalImageFormatPropertiesNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ExternalMemoryFeatureFlagBitsNV`]
 //! - [`ExternalMemoryHandleTypeFlagBitsNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ExternalMemoryFeatureFlagsNV`]
 //! - [`ExternalMemoryHandleTypeFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
 //! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Why do so many external memory capabilities need to be queried on a
 //!per-memory-handle-type basis? **RESOLVED** : This is because some handle types are based on
 //! OS-native objects
@@ -51,7 +51,7 @@
 //!Presumably more handle types could be added by separate extensions though,
 //!and it would be midly weird to have some platform-specific ones defined in
 //!the core spec and some in extensions
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-08-19 (James Jones)  - Initial version
 //!# Other info
 //! * 2016-08-19

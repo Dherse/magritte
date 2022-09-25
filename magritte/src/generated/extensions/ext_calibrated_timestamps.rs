@@ -2,27 +2,27 @@
 //!# Description
 //!This extension provides an interface to query calibrated timestamps obtained
 //!quasi simultaneously from two time domains.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_calibrated_timestamps]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_calibrated_timestamps extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_calibrated_timestamps_ext`]
 //! - [`get_physical_device_calibrateable_time_domains_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`CalibratedTimestampInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`TimeDomainEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME`]
 //! - [`EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Is the device timestamp value returned in the same time domain as the
 //!timestamp values written by [`cmd_write_timestamp`]? **RESOLVED** : Yes.2) What time domain is
 //! the host timestamp returned in? **RESOLVED** : A query is provided to determine the
@@ -76,7 +76,7 @@
 //!by convention the maximum deviation is always at least the maximum of the
 //!length of the ticks of the set of time domains calibrated and thus can never
 //!be zero.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2021-03-16 (Lionel Landwerlin)  - Specify requirement on device timestamps
 //! - Revision 1, 2018-10-04 (Daniel Rakos)  - Internal revisions.
 //!# Other info

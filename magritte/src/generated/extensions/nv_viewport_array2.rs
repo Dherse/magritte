@@ -24,20 +24,20 @@
 //!`ViewportRelativeNV` decorations, respectively.
 //!Behaviour is described in the `GL_NV_viewport_array2` extension
 //!specificiation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_viewport_array2]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_viewport_array2
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_VIEWPORT_ARRAY2_EXTENSION_NAME`]
 //! - [`NV_VIEWPORT_ARRAY2_SPEC_VERSION`]
 //! - [`NV_VIEWPORT_ARRAY_2_EXTENSION_NAME`]
 //! - [`NV_VIEWPORT_ARRAY_2_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-15 (Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2017-02-15

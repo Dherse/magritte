@@ -1,26 +1,26 @@
 //![VK_KHR_video_decode_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_decode_queue.html) - device extension
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_queue`]`
 //! - Requires `[`khr_synchronization2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - [jake.beju@amd.com]()
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_decode_video_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`VideoDecodeInfoKHR`]
 //! - Extending [`VideoCapabilitiesKHR`]:  - [`VideoDecodeCapabilitiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`VideoDecodeCapabilityFlagBitsKHR`]
 //! - [`VideoDecodeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoDecodeCapabilityFlagsKHR`]
 //! - [`VideoDecodeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`  -
@@ -40,7 +40,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR`  -
 //!   `VK_FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 1.5, Nov 09 2018 (Tony Zlatinski)  - API Updates
 //! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)  - API unify with the video_encode_queue spec
@@ -72,13 +72,13 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264CapabilitiesEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264CapabilitiesEXT;
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264PictureInfoEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264PictureInfoEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265CapabilitiesEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265CapabilitiesEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265PictureInfoEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265PictureInfoEXT;
 use crate::{
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{

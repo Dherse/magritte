@@ -9,38 +9,38 @@
 //!Private data slots can be reserved at device creation time, and limiting use
 //!to the amount reserved will allow the extension to exhibit better
 //!performance characteristics.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Matthew Rusch [mattruschnv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_private_data]
 //!   @mattruschnv%0A<<Here describe the issue or question you have about the VK_EXT_private_data
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`PrivateDataSlotEXT`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_private_data_slot_ext`]
 //! - [`destroy_private_data_slot_ext`]
 //! - [`get_private_data_ext`]
 //! - [`set_private_data_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PrivateDataSlotCreateInfoEXT`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DevicePrivateDataCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePrivateDataFeaturesEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PrivateDataSlotCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_PRIVATE_DATA_EXTENSION_NAME`]
 //! - [`EXT_PRIVATE_DATA_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-01-15 (Matthew Rusch)  - Initial draft
 //!# Other info
 //! * 2020-03-25

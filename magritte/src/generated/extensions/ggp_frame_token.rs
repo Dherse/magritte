@@ -4,23 +4,23 @@
 //!extension in combination with a Google Games Platform surface provided by
 //!the `[`ggp_stream_descriptor_surface`]` extension to associate a
 //!Google Games Platform frame token with a present operation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`ggp_stream_descriptor_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GGP_frame_token]
 //!   @jfroy%0A<<Here describe the issue or question you have about the VK_GGP_frame_token
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PresentInfoKHR`]:  - [`PresentFrameTokenGGP`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GGP_FRAME_TOKEN_EXTENSION_NAME`]
 //! - [`GGP_FRAME_TOKEN_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-11-26 (Jean-Francois Roy)  - Initial revision.
 //!# Other info
 //! * 2019-01-28

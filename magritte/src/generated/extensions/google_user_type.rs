@@ -2,18 +2,18 @@
 //!# Description
 //!The [`VK_GOOGLE_user_type`] extension allows use of the `SPV_GOOGLE_user_type`
 //!extension in SPIR-V shader modules.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Kaye Mason [chaleur](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_user_type]
 //!   @chaleur%0A<<Here describe the issue or question you have about the VK_GOOGLE_user_type
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GOOGLE_USER_TYPE_EXTENSION_NAME`]
 //! - [`GOOGLE_USER_TYPE_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-09-07 (Kaye Mason)  - Initial draft
 //!# Other info
 //! * 2019-07-09

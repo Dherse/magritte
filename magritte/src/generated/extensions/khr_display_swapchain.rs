@@ -2,26 +2,26 @@
 //!# Description
 //!This extension provides an API to create a swapchain directly on a device’s
 //!display without any underlying window system.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!10
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_display`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display_swapchain
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_shared_swapchains_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PresentInfoKHR`]:  - [`DisplayPresentInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME`]
 //! - [`KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should swapchains sharing images each hold a reference to the images, or
 //!should it be up to the application to destroy the swapchains and images in
 //!an order that avoids the need for reference counting? **RESOLVED** : Take a reference.
@@ -54,7 +54,7 @@
 //!This was deemed unusable because drivers need to know all of the displays an
 //!image will be used on when determining which internal formats and layouts to
 //!use for that image.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-07-29 (James Jones)  - Initial draft
 //! - Revision 2, 2015-08-21 (Ian Elliott)  - Renamed this extension and all of its enumerations,
 //!   types, functions, etc. This makes it compliant with the proposed standard for Vulkan

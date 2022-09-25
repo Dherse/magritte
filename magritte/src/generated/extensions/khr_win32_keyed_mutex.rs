@@ -6,22 +6,22 @@
 //!This extension provides a way for an application to access the keyed mutex
 //!associated with an imported Vulkan memory object when submitting command
 //!buffers to a queue.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory_win32`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_keyed_mutex]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_KHR_win32_keyed_mutex
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`Win32KeyedMutexAcquireReleaseInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME`]
 //! - [`KHR_WIN32_KEYED_MUTEX_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
 //!# Other info
 //! * 2016-10-21

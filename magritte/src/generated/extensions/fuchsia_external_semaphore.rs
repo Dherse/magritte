@@ -4,23 +4,23 @@
 //!memory using semaphores.
 //!This extension enables an application to export semaphore payload to and
 //!import semaphore payload from Zircon event handles.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_semaphore_capabilities`]`
 //! - Requires `[`khr_external_semaphore`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_semaphore]
 //!   @rosasco%0A<<Here describe the issue or question you have about the
 //!   VK_FUCHSIA_external_semaphore extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_semaphore_zircon_handle_fuchsia`]
 //! - [`import_semaphore_zircon_handle_fuchsia`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
 //! - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME`]
 //! - [`FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION`]
 //! - Extending [`ExternalSemaphoreHandleTypeFlagBits`]:  -
@@ -28,7 +28,7 @@
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA`  -
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does the application need to close the Zircon event handle returned by
 //![`get_semaphore_zircon_handle_fuchsia`]? **RESOLVED** : Yes, unless it is passed back in to a
 //! driver instance to import
@@ -38,7 +38,7 @@
 //!Destroying the original semaphore object will not close the Zircon event
 //!handle nor remove its reference to the underlying semaphore resource
 //!associated with it.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-03-08 (John Rosasco)  - Initial revision
 //!# Other info
 //! * 2021-03-08

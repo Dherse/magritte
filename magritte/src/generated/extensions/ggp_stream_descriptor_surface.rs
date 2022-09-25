@@ -4,26 +4,26 @@
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
 //!the `[`khr_surface`]` extension) that refers to a Google Games
 //!Platform [`GgpStreamDescriptor`].
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GGP_stream_descriptor_surface]
 //!   @jfroy%0A<<Here describe the issue or question you have about the
 //!   VK_GGP_stream_descriptor_surface extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_stream_descriptor_surface_ggp`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`StreamDescriptorSurfaceCreateInfoGGP`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`StreamDescriptorSurfaceCreateFlagsGGP`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GGP_STREAM_DESCRIPTOR_SURFACE_EXTENSION_NAME`]
 //! - [`GGP_STREAM_DESCRIPTOR_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_STREAM_DESCRIPTOR_SURFACE_CREATE_INFO_GGP`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-11-26 (Jean-Francois Roy)  - Initial revision.
 //!# Other info
 //! * 2019-01-28

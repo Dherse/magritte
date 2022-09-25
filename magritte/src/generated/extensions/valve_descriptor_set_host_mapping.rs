@@ -5,29 +5,29 @@
 //!descriptor sets without the use of an API command.
 //!Memory offsets and sizes for descriptors  **can**  be queried from a
 //![`DescriptorSetLayout`] as well.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Hans-Kristian Arntzen [HansKristian-Work](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_VALVE_descriptor_set_host_mapping]
 //!   @HansKristian-Work%0A<<Here describe the issue or question you have about the
 //!   VK_VALVE_descriptor_set_host_mapping extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_descriptor_set_host_mapping_valve`]
 //! - [`get_descriptor_set_layout_host_mapping_info_valve`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DescriptorSetBindingReferenceVALVE`]
 //! - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME`]
 //! - [`VALVE_DESCRIPTOR_SET_HOST_MAPPING_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`  -
 //!   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2022-02-22 (Hans-Kristian Arntzen)  - Initial specification
 //!# Other info
 //! * 2022-02-22

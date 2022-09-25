@@ -7,30 +7,30 @@
 //!application’s use of Vulkan.
 //!This extension defines a way for layers and the implementation to call back
 //!to the application for events of interest to the application.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!10
-//!# Dependencies
-//! - *Deprecated* by `[`ext_debug_utils`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`ext_debug_utils`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_report]
 //!   @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_debug_report
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`DebugReportCallbackEXT`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_debug_report_callback_ext`]
 //! - [`debug_report_message_ext`]
 //! - [`destroy_debug_report_callback_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`InstanceCreateInfo`]:  - [`DebugReportCallbackCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DebugReportFlagBitsEXT`]
 //! - [`DebugReportObjectTypeEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`DebugReportFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_DEBUG_REPORT_EXTENSION_NAME`]
 //! - [`EXT_DEBUG_REPORT_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT`
@@ -41,7 +41,7 @@
 //! - Extending [`DebugReportObjectTypeEXT`]:  -
 //!   `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_EXT`  -
 //!   `VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What is the hierarchy / seriousness of the message flags? E.g.
 //!`ERROR` > `WARN` > `PERF_WARN` …​ **RESOLVED** : There is no specific hierarchy.
 //!Each bit is independent and should be checked via bitwise AND.
@@ -85,7 +85,7 @@
 //!+
 //!This does require that the app treat dispatchable and nondispatchable
 //!handles differently.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-05-20 (Courtney Goetzenleuchter)  - Initial draft, based on LunarG KHR spec,
 //!   other KHR specs
 //! - Revision 2, 2016-02-16 (Courtney Goetzenleuchter)  - Update usage, documentation

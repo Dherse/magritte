@@ -31,27 +31,27 @@
 //!   The coverage reduction step also includes an optional coverage modulation step, multiplying
 //!   color values by a fractional opacity corresponding to the number of associated
 //!   raster/depth/stencil samples covered.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_framebuffer_mixed_samples]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_framebuffer_mixed_samples extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineCoverageModulationStateCreateInfoNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`CoverageModulationModeNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineCoverageModulationStateCreateFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME`]
 //! - [`NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-06-04 (Jeff Bolz)  - Internal revisions
 //!# Other info
 //! * 2017-06-04

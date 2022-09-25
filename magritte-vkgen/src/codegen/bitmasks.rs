@@ -158,7 +158,7 @@ impl<'a> Bitmask<'a> {
                     imports.push_str(&format!(
                         r##"
                             {}
-                            pub use {}::{};
+                            use {}::{};
                         "##,
                         bit_flag.origin().feature_gate(source).unwrap_or_default(),
                         bit_flag.origin().as_path_str(),

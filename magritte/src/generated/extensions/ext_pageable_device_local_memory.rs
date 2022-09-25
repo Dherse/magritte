@@ -42,26 +42,26 @@
 //!The Vulkan implementation will also ensure that host-local memory
 //!allocations will never be promoted to device-local memory by the operating
 //!system, or consume device-local memory.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_memory_priority`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pageable_device_local_memory]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_pageable_device_local_memory extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`set_device_memory_priority_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME`]
 //! - [`EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-08-24 (Piers Daniell)  - Initial revision
 //!# Other info
 //! * 2021-08-24

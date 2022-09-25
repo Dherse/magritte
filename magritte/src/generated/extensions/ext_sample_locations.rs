@@ -29,19 +29,19 @@
 //![`RenderPassSampleLocationsBeginInfoEXT`] **can**  be chained from
 //![`RenderPassBeginInfo`] to provide sample locations for layout
 //!transitions performed implicitly by a render pass instance.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_sample_locations]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_sample_locations
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_sample_locations_ext`]
 //! - [`get_physical_device_multisample_properties_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`AttachmentSampleLocationsEXT`]
 //! - [`MultisamplePropertiesEXT`]
 //! - [`SampleLocationEXT`]
@@ -51,7 +51,7 @@
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineSampleLocationsStateCreateInfoEXT`]
 //! - Extending [`RenderPassBeginInfo`]:  - [`RenderPassSampleLocationsBeginInfoEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SAMPLE_LOCATIONS_EXTENSION_NAME`]
 //! - [`EXT_SAMPLE_LOCATIONS_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`
@@ -62,7 +62,7 @@
 //!   `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-08-02 (Daniel Rakos)  - Internal revisions
 //!# Other info
 //! * 2017-08-02

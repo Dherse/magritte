@@ -13,21 +13,21 @@
 //!support can be queried using
 //![`PhysicalDeviceFloatControlsPropertiesKHR`] from the
 //!`[`khr_shader_float_controls`]` extension.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_shader_float_controls`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_spirv_1_4]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_spirv_1_4
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SPIRV_1_4_EXTENSION_NAME`]
 //! - [`KHR_SPIRV_1_4_SPEC_VERSION`]
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1.
 //!Should we have an extension specific to this SPIR-V version, or add a
 //!version-generic query for SPIR-V version? SPIR-V 1.4 does not need any other
@@ -73,7 +73,7 @@
 //!However, if it does not have this knowledge and has to query for support at
 //!runtime, it must enable `[`khr_shader_float_controls`]` in order to
 //!use [`PhysicalDeviceFloatControlsPropertiesKHR`].
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-04-01 (Jesse Hall)  - Internal draft versions
 //!# Other info
 //! * 2019-04-01

@@ -8,28 +8,28 @@
 //!Vulkan memory objects such that the underlying resources can be referenced
 //!outside the Vulkan instance that created them, and import win32 handles
 //!created in the Direct3D API to Vulkan memory objects.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Deprecated* by `[`khr_external_memory_win32`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`nv_external_memory`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`khr_external_memory_win32`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_NV_external_memory_win32 extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_memory_win32_handle_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryWin32HandleInfoNV`]  -
 //!   [`ImportMemoryWin32HandleInfoNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`]
 //! - [`NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) If memory objects are shared between processes and APIs, is this
 //!considered aliasing according to the rules outlined in the
 //![Memory Aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing) section? **RESOLVED** : Yes, but strict exceptions to the rules are added to allow some
@@ -61,7 +61,7 @@
 //!while an import transfers ownership to the associated driver.
 //!Destroying the memory object will not destroy the handle or the handle’s
 //!reference to the underlying memory resource.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-08-11 (James Jones)  - Initial draft
 //!# Other info
 //! * 2016-08-19

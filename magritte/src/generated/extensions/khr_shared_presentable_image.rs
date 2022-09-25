@@ -5,29 +5,29 @@
 //!This allows the application to use the image while the presention engine is
 //!accessing it, in order to reduce the latency between rendering and
 //!presentation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_get_surface_capabilities2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shared_presentable_image]
 //!   @alonorbach%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shared_presentable_image extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_swapchain_status_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`SharedPresentSurfaceCapabilitiesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME`]
 //! - [`KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION`]
 //! - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
 //! - Extending [`PresentModeKHR`]:  - `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR`  -
 //!   `VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should we allow a Vulkan WSI swapchain to toggle between normal usage and
 //!shared presentation usage? **RESOLVED** : No.
 //!WSI swapchains are typically recreated with new properties instead of having
@@ -77,7 +77,7 @@
 //! enable
 //!beam chasing? **RESOLVED** : This could be achieved via use of render passes to ensure strip
 //!rendering.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-03-20 (Alon Or-bach)  - Internal revisions
 //!# Other info
 //! * 2017-03-20

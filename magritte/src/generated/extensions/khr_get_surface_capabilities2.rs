@@ -5,28 +5,28 @@
 //!without introducing any further entry points.
 //!This extension can be considered the `[`khr_surface`]` equivalent of
 //!the `[`khr_get_physical_device_properties2`]` extension.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_surface_capabilities2]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_surface_capabilities2 extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_surface_capabilities2_khr`]
 //! - [`get_physical_device_surface_formats2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PhysicalDeviceSurfaceInfo2KHR`]
 //! - [`SurfaceCapabilities2KHR`]
 //! - [`SurfaceFormat2KHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME`]
 //! - [`KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR`  - `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What should this extension be named? **RESOLVED** : [`VK_KHR_get_surface_capabilities2`].
 //!Other alternatives:
 //! - `VK_KHR_surface2`
@@ -44,7 +44,7 @@
 //! - [`get_physical_device_xcb_presentation_support_khr`]: Not in this extension.
 //! - [`get_physical_device_wayland_presentation_support_khr`]: Not in this extension.
 //! - [`get_physical_device_win32_presentation_support_khr`]: Not in this extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-27 (James Jones)  - Initial draft.
 //!# Other info
 //! * 2017-02-27
@@ -65,17 +65,17 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_AMD_display_native_hdr")]
-pub use crate::extensions::amd_display_native_hdr::DisplayNativeHdrSurfaceCapabilitiesAMD;
+use crate::extensions::amd_display_native_hdr::DisplayNativeHdrSurfaceCapabilitiesAMD;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-pub use crate::extensions::ext_full_screen_exclusive::SurfaceCapabilitiesFullScreenExclusiveEXT;
+use crate::extensions::ext_full_screen_exclusive::SurfaceCapabilitiesFullScreenExclusiveEXT;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
+use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveInfoEXT;
 #[cfg(feature = "VK_EXT_full_screen_exclusive")]
-pub use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
+use crate::extensions::ext_full_screen_exclusive::SurfaceFullScreenExclusiveWin32InfoEXT;
 #[cfg(feature = "VK_KHR_shared_presentable_image")]
-pub use crate::extensions::khr_shared_presentable_image::SharedPresentSurfaceCapabilitiesKHR;
+use crate::extensions::khr_shared_presentable_image::SharedPresentSurfaceCapabilitiesKHR;
 #[cfg(feature = "VK_KHR_surface_protected_capabilities")]
-pub use crate::extensions::khr_surface_protected_capabilities::SurfaceProtectedCapabilitiesKHR;
+use crate::extensions::khr_surface_protected_capabilities::SurfaceProtectedCapabilitiesKHR;
 use crate::{
     extensions::khr_surface::{SurfaceCapabilitiesKHR, SurfaceFormatKHR, SurfaceKHR},
     vulkan1_0::{BaseInStructure, BaseOutStructure, Instance, PhysicalDevice, StructureType, VulkanResultCodes},

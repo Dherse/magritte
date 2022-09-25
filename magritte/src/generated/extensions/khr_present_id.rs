@@ -5,27 +5,27 @@
 //!operations on a swapchain.
 //!An application  **can**  use this to reference specific present operations in
 //!other extensions.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_id]
 //!   @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_id
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePresentIdFeaturesKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`PresentIdKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_PRESENT_ID_EXTENSION_NAME`]
 //! - [`KHR_PRESENT_ID_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!None.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-05-15 (Keith Packard)  - Initial version
 //!# Other info
 //! * 2019-05-15

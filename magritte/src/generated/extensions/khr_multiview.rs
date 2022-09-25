@@ -17,30 +17,30 @@
 //![`GL_EXT_multiview`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_multiview.txt) extension that
 //!introduces a `highp int gl_ViewIndex;` built-in variable for vertex,
 //!tessellation, geometry, and fragment shaders.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_multiview]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_multiview
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMultiviewFeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMultiviewPropertiesKHR`]
 //! - Extending [`RenderPassCreateInfo`]:  - [`RenderPassMultiviewCreateInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_MULTIVIEW_EXTENSION_NAME`]
 //! - [`KHR_MULTIVIEW_SPEC_VERSION`]
 //! - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_VIEW_LOCAL_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-28 (Jeff Bolz)  - Internal revisions
 //!# Other info
 //! * 2016-10-28

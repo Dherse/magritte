@@ -22,31 +22,31 @@
 //!be promoted to a KHR extension or to core Vulkan.
 //!Unless this is needed for translation, it is recommended that developers use
 //!alternative techniques of using the GPU to process and capture vertex data.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_transform_feedback]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_transform_feedback extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_begin_query_indexed_ext`]
 //! - [`cmd_begin_transform_feedback_ext`]
 //! - [`cmd_bind_transform_feedback_buffers_ext`]
 //! - [`cmd_draw_indirect_byte_count_ext`]
 //! - [`cmd_end_query_indexed_ext`]
 //! - [`cmd_end_transform_feedback_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceTransformFeedbackFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceTransformFeedbackPropertiesEXT`]
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationStateStreamCreateInfoEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME`]
 //! - [`EXT_TRANSFORM_FEEDBACK_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`  -
@@ -60,7 +60,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should we include pause/resume functionality? **RESOLVED** : Yes, this is needed to ease
 //! layering other APIs which have this
 //!functionality.
@@ -87,7 +87,7 @@
 //!The vertex stream output queried is zero by default, but can be specified
 //!with the new [`cmd_begin_query_indexed_ext`] and
 //![`cmd_end_query_indexed_ext`] commands.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-10-09 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2018-10-09

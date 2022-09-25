@@ -3,28 +3,28 @@
 //!This extension introduces [`PipelineCompilerControlCreateInfoAMD`]
 //!structure that can be chained to a pipeline’s creation information to
 //!specify additional flags that affect pipeline compilation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_pipeline_compiler_control]
 //!   @anteru%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_pipeline_compiler_control extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`GraphicsPipelineCreateInfo`], [`ComputePipelineCreateInfo`]:  -
 //!   [`PipelineCompilerControlCreateInfoAMD`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`PipelineCompilerControlFlagBitsAMD`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineCompilerControlFlagsAMD`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME`]
 //! - [`AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!None.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-07-26 (Tobias Hector)  - Initial revision.
 //!# Other info
 //! * 2019-07-26

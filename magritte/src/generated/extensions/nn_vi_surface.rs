@@ -4,24 +4,24 @@
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
 //!the `[`khr_surface`]` extension) associated with an
 //!`nn`::`vi`::`Layer`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Mathias Heyer mheyer
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_vi_surface_nn`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ViSurfaceCreateInfoNN`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ViSurfaceCreateFlagsNN`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NN_VI_SURFACE_EXTENSION_NAME`]
 //! - [`NN_VI_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does VI need a way to query for compatibility between a particular
 //!physical device (and queue family?) and a specific VI display? **RESOLVED** : No.
 //!It is currently always assumed that the device and display will always be
@@ -34,7 +34,7 @@
 //!This prevents its use in C source files.
 //!`nn`::`vi`::`NativeWindowHandle` is always defined to be
 //!`void*`, so this extension uses `void*` to match.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-2 (Michael Chock)  - Initial draft.
 //!# Other info
 //! * 2016-12-02

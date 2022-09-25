@@ -129,7 +129,7 @@ impl<'a> Struct<'a> {
                         imports.push_str(&format!(
                             r##"
                                 {}
-                                pub use {}::{};
+                                use {}::{};
                             "##,
                             cond,
                             struct_.origin().as_path_str(),

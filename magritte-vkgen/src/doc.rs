@@ -30,6 +30,8 @@ lazy_static::lazy_static! {
     static ref SELECTOR_OTHER_EXT_METADATA_H2: Selector = Selector::parse("h2#_other_extension_metadata").unwrap();
     static ref SELECTOR_NEW_OBJ_H2: Selector = Selector::parse("h2#_new_object_types").unwrap();
     static ref SELECTOR_NEW_COMMANDS_H2: Selector = Selector::parse("h2#_new_commands").unwrap();
+    static ref SELECTOR_NEW_MACROS_H2: Selector = Selector::parse("h2#_new_macros").unwrap();
+    
     static ref SELECTOR_NEW_STRUCTURES_H2: Selector = Selector::parse("h2#_new_structures").unwrap();
     static ref SELECTOR_NEW_ENUMS_H2: Selector = Selector::parse("h2#_new_enums").unwrap();
     static ref SELECTOR_NEW_BITMASKS_H2: Selector = Selector::parse("h2#_new_bitmasks").unwrap();
@@ -41,6 +43,31 @@ lazy_static::lazy_static! {
     static ref SELECTOR_SECTIONBODY: Selector = Selector::parse("div.sectionbody").unwrap();
     static ref SELECTOR_SECTIONBODY_P: Selector = Selector::parse("div.sectionbody > p").unwrap();
     static ref SELECTOR_SECTIONBODY_DIV_PARAGRAPH_P: Selector = Selector::parse("div.sectionbody > div.paragraph > p").unwrap();
+}
+
+macro_rules! subsection {
+    ($out:ident; $self:expr; $source:expr; $this:expr; $id:ident -> $title:expr) => {
+        {
+            lazy_static::lazy_static! {
+                static ref SELECTOR: Selector = Selector::parse(concat!("h2#", stringify!($id))).unwrap();
+            }
+
+            if let Some(text) = $self.visit_selectable($source, $this, None, &SELECTOR, &SELECTOR_SECTIONBODY) {
+                let lines = text.split('\n');
+                quote::quote_each_token! {
+                    $out
+    
+                    #![doc = concat!("# ", $title)]
+                    #(#![doc = #lines])*
+                }
+            }
+        }
+    };
+    ($out:ident; $self:expr; $source:expr; $this:expr; $($id:ident -> $title:expr),*) => {
+        $(
+            subsection!{ $out; $self; $source; $this; $id -> $title }
+        )*
+    };
 }
 
 /// Documentation files for the *Vulkan* docs.
@@ -410,130 +437,29 @@ impl<'a> DocRef<'a> {
     /// Processes the new object types, commands, structures, enums, bitmasks, constants, issues and
     /// version history
     pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) {
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_REVISION_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Revision"]
-                #(#![doc = #lines])*
-            }
+        subsection!{
+            out;
+            self;
+            source;
+            this;
+            _revision -> "Revision",
+            _extension_and_version_dependencies -> "Dependencies",
+            _deprecation_state -> "Deprecation State",
+            _contact -> "Contacts",
+            _new_macros -> "New macros",
+            _new_base_types -> "New base types",
+            _new_object_types -> "New object types",
+            _new_handles -> "New handles",
+            _new_commands -> "New commands",
+            _new_structures -> "New structures",
+            _new_unions -> "New unions",
+            _new_enums -> "New enums",
+            _new_bitmasks -> "New bitmasks",
+            _new_enum_constants -> "New constants",
+            _issues -> "Known issues & F.A.Q.",
+            _version_history -> "Version history"
         }
 
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_DEPRECATION_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Dependencies"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_DEPENDENCIES_H2, &SELECTOR_SECTIONBODY)
-        {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Dependencies"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_CONTACT_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Contacts"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_NEW_OBJ_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New handles"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_NEW_COMMANDS_H2, &SELECTOR_SECTIONBODY)
-        {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New functions & commands"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) =
-            self.visit_selectable(source, this, None, &SELECTOR_NEW_STRUCTURES_H2, &SELECTOR_SECTIONBODY)
-        {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New structures"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_NEW_ENUMS_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New enums"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_NEW_BITMASKS_H2, &SELECTOR_SECTIONBODY)
-        {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New bitmasks"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_NEW_CONSTS_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# New constants"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_ISSUES_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Known issues & F.A.Q"]
-                #(#![doc = #lines])*
-            }
-        }
-
-        if let Some(text) = self.visit_selectable(source, this, None, &SELECTOR_HISTORY_H2, &SELECTOR_SECTIONBODY) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Version History"]
-                #(#![doc = #lines])*
-            }
-        }
         if let Some(text) = self.visit_selectable(
             source,
             this,

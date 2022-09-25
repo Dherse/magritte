@@ -5,29 +5,29 @@
 //!once, and are extensible.This extension also introduces `VK_IMAGE_CREATE_ALIAS_BIT_KHR`, which
 //!allows “identical” images that alias the same memory to interpret the
 //!contents consistently, even across image layout changes.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_bind_memory2]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_bind_memory2
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`bind_buffer_memory2_khr`]
 //! - [`bind_image_memory2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`BindBufferMemoryInfoKHR`]
 //! - [`BindImageMemoryInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_BIND_MEMORY_2_EXTENSION_NAME`]
 //! - [`KHR_BIND_MEMORY_2_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_ALIAS_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-05-19 (Tobias Hector)  - Pulled bind memory functions into their own
 //!   extension
 //!# Other info

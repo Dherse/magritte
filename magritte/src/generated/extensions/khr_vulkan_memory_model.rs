@@ -4,25 +4,25 @@
 //![Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model), which formally defines how to
 //!synchronize memory accesses to the same memory locations performed by
 //!multiple shader invocations.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_vulkan_memory_model]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_vulkan_memory_model extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_VULKAN_MEMORY_MODEL_EXTENSION_NAME`]
 //! - [`KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-06-24 (Jeff Bolz)  - Initial draft
 //! - Revision 3, 2018-12-10 (Jeff Bolz)  - Add vulkanMemoryModelAvailabilityVisibilityChains member
 //!   to the VkPhysicalDeviceVulkanMemoryModelFeaturesKHR structure.

@@ -16,18 +16,18 @@
 //!layout qualifier from GL_ARB_post_depth_coverage or
 //!GL_EXT_post_depth_coverage maps to the `PostDepthCoverage` execution
 //!mode.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_post_depth_coverage]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_post_depth_coverage
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_POST_DEPTH_COVERAGE_EXTENSION_NAME`]
 //! - [`EXT_POST_DEPTH_COVERAGE_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-07-17 (Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2017-07-17

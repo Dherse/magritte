@@ -14,27 +14,27 @@
 //!If a perspective projection and depth buffering is required, 1/W
 //!buffering should be used, as described in the single-pass cube map rendering
 //!example in the “Issues” section below.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_viewport_swizzle]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_NV_viewport_swizzle
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ViewportSwizzleNV`]
 //! - Extending [`PipelineViewportStateCreateInfo`]:  - [`PipelineViewportSwizzleStateCreateInfoNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ViewportCoordinateSwizzleNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineViewportSwizzleStateCreateFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_VIEWPORT_SWIZZLE_EXTENSION_NAME`]
 //! - [`NV_VIEWPORT_SWIZZLE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Where does viewport swizzling occur in the pipeline? **RESOLVED** : Despite being associated
 //! with the viewport, viewport swizzling
 //!must happen prior to the viewport transform.
@@ -175,7 +175,7 @@
 //!2. Adjust depth testing to reflect the fact that 1/W values are large near the eye and small
 //! away from the eye. Clear the depth buffer to zero (infinitely far away) and use a depth test of
 //! `VK_COMPARE_OP_GREATER` instead of `VK_COMPARE_OP_LESS`.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-22 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2016-12-22

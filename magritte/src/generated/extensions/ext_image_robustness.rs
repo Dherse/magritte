@@ -6,26 +6,26 @@
 //!G, and B values of zero and alpha values of either zero or one.
 //!Components not present in the image format may be set to zero or to values
 //!based on the format as described in [Conversion to RGBA](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-conversion-to-rgba).
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Graeme Leese [gnl21](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_robustness]
 //!   @gnl21%0A<<Here describe the issue or question you have about the VK_EXT_image_robustness
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceImageRobustnessFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME`]
 //! - [`EXT_IMAGE_ROBUSTNESS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!0. How does this extension differ from VK_EXT_robustness2?
 //!The guarantees provided by this extension are a subset of those provided by
 //!the robustImageAccess2 feature of VK_EXT_robustness2.
@@ -34,7 +34,7 @@
 //!format be returned.
 //!This extension provides no guarantees about the values returned for an
 //!access to an invalid Lod.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-04-27 (Graeme Leese)  - Initial draft
 //!# Other info
 //! * 2020-04-27

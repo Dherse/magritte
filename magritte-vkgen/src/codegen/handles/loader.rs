@@ -149,7 +149,7 @@ impl<'a> Handle<'a> {
                     imports.push_str(&format!(
                         r##"
                             {}
-                            pub use {}::{};
+                            use {}::{};
                         "##,
                         condition,
                         origin.as_path_str(),

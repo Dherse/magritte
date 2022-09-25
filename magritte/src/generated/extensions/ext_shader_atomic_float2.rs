@@ -10,24 +10,24 @@
 //!maximum operations on floating-point numbers.
 //!The supported operations include `OpAtomicFAddEXT`, `OpAtomicFMinEXT`
 //!and `OpAtomicFMaxEXT`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_shader_atomic_float`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_atomic_float2]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_atomic_float2 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME`]
 //! - [`EXT_SHADER_ATOMIC_FLOAT_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should this extension add support for 16-bit image atomics? **RESOLVED** : No.
 //!While Vulkan supports creating storage images with
 //!`VK_FORMAT_R16_SFLOAT` and doing load and store on them, the data in the
@@ -36,7 +36,7 @@
 //!images using 16-bit float values in the shader.
 //!Adding such functionality would be required before 16-bit image atomics
 //!would make sense and is outside the scope of this extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-08-14 (Jason Ekstrand)  - Internal revisions
 //!# Other info
 //! * 2020-08-14

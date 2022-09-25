@@ -11,20 +11,20 @@
 //!`VK_BORDER_COLOR_INT_CUSTOM_EXT` is used, applications must provide a
 //![`SamplerCustomBorderColorCreateInfoEXT`] in the `pNext` chain for
 //![`SamplerCreateInfo`].
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!12
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Liam Middlebrook [liam-middlebrook](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_custom_border_color]
 //!   @liam-middlebrook%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_custom_border_color extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCustomBorderColorFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceCustomBorderColorPropertiesEXT`]
 //! - Extending [`SamplerCreateInfo`]:  - [`SamplerCustomBorderColorCreateInfoEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME`]
 //! - [`EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION`]
 //! - Extending [`BorderColor`]:  - `VK_BORDER_COLOR_FLOAT_CUSTOM_EXT`  -
@@ -33,7 +33,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLER_CUSTOM_BORDER_COLOR_CREATE_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should VkClearColorValue be used for the border color value, or should we
 //!have our own struct/union? Do we need to specify the type of the input
 //!values for the components? This is more of a concern if VkClearColorValue is
@@ -62,7 +62,7 @@
 //!hardware to do so.
 //!This separation would also create unnecessary work and considerations for
 //!the application.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-10-10 (Joshua Ashton)  - Internal revisions.
 //! - Revision 2, 2019-10-11 (Liam Middlebrook)  - Remove VkCustomBorderColor object and associated
 //!   functions  - Add issues concerning HW limitations for custom border color count

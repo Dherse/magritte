@@ -21,30 +21,30 @@
 //!better color reproduction, it is not in the scope of this extension to
 //!define how exactly the metadata should be used in such a process.
 //!It is up to the implementation to determine how to make use of the metadata.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_hdr_metadata]
 //!   @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_hdr_metadata
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`set_hdr_metadata_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`HdrMetadataEXT`]
 //! - [`XyColorEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_HDR_METADATA_EXTENSION_NAME`]
 //! - [`EXT_HDR_METADATA_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Do we need a query function? **PROPOSED** : No, Vulkan does not provide queries for state
 //! that the
 //!application can track on its own.2) Should we specify default if not specified by the
 //! application? **PROPOSED** : No, that leaves the default up to the display.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-27 (Courtney Goeltzenleuchter)  - Initial version
 //! - Revision 2, 2018-12-19 (Courtney Goeltzenleuchter)  - Correct implicit validity for
 //!   VkHdrMetadataEXT structure

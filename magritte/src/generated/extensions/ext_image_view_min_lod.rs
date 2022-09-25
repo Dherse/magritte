@@ -9,25 +9,25 @@
 //!which have been uploaded, and the use of fractional `minLod` can be
 //!useful for smoothly introducing new mip levels when using linear mipmap
 //!filtering.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_view_min_lod]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_image_view_min_lod extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ImageViewCreateInfo`]:  - [`ImageViewMinLodCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceImageViewMinLodFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME`]
 //! - [`EXT_IMAGE_VIEW_MIN_LOD_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-07-06 (Joshua Ashton)  - Initial version
 //!# Other info
 //! * 2021-11-09

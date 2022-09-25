@@ -2,18 +2,18 @@
 //!# Description
 //!The [`VK_GOOGLE_decorate_string`] extension allows use of the
 //!`SPV_GOOGLE_decorate_string` extension in SPIR-V shader modules.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Hai Nguyen [chaoticbob](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_decorate_string]
 //!   @chaoticbob%0A<<Here describe the issue or question you have about the
 //!   VK_GOOGLE_decorate_string extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GOOGLE_DECORATE_STRING_EXTENSION_NAME`]
 //! - [`GOOGLE_DECORATE_STRING_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-09 (Neil Henning)  - Initial draft
 //!# Other info
 //! * 2018-07-09

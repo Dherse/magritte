@@ -7,27 +7,27 @@
 //!This extension enables applications to create exportable Vulkan memory
 //!objects such that the underlying resources can be referenced outside the
 //!Vulkan instance that created them.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Deprecated* by `[`khr_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan
-//!   1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`nv_external_memory_capabilities`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`khr_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan
+//!   1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_NV_external_memory
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ImageCreateInfo`]:  - [`ExternalMemoryImageCreateInfoNV`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryAllocateInfoNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_EXTERNAL_MEMORY_EXTENSION_NAME`]
 //! - [`NV_EXTERNAL_MEMORY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) If memory objects are shared between processes and APIs, is this
 //!considered aliasing according to the rules outlined in the
 //![Memory Aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing) section? **RESOLVED** : Yes, but strict exceptions to the rules are added to allow some
@@ -50,7 +50,7 @@
 //!transitions to engines on the same device which are not visible within the
 //!Vulkan API.
 //!Both of these are beyond the scope of this extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-08-19 (James Jones)  - Initial draft
 //!# Other info
 //! * 2016-08-19

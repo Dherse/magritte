@@ -22,23 +22,23 @@
 //!mipmap levels, etc).
 //!This extension is designed to be used in concert with
 //!`[`ext_memory_priority`]` to help with this part of memory management.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_budget]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_budget
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceMemoryProperties2`]:  - [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_MEMORY_BUDGET_EXTENSION_NAME`]
 //! - [`EXT_MEMORY_BUDGET_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-10-08 (Jeff Bolz)  - Initial revision
 //!# Other info
 //! * 2018-10-08

@@ -7,24 +7,24 @@
 //![`SPV_INTEL_shader_integer_functions2`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/INTEL/SPV_INTEL_shader_integer_functions2.html)
 //!SPIR-V extension and can be used with the GL_INTEL_shader_integer_functions2
 //!GLSL extension.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Ian Romanick [ianromanick](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_INTEL_shader_integer_functions2]
 //!   @ianromanick%0A<<Here describe the issue or question you have about the
 //!   VK_INTEL_shader_integer_functions2 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME`]
 //! - [`INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-04-30 (Ian Romanick)  - Initial draft
 //!# Other info
 //! * 2019-04-30

@@ -2,18 +2,18 @@
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - [`SPV_AMD_gcn_shader`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_gcn_shader.html)
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_gcn_shader]
 //!   @dominikwitczakamd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_gcn_shader extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_GCN_SHADER_EXTENSION_NAME`]
 //! - [`AMD_GCN_SHADER_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-05-30 (Dominik Witczak)  - Initial draft
 //!# Other info
 //! * 2016-05-30

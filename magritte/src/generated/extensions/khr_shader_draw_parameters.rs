@@ -15,20 +15,20 @@
 //! - `in int gl_BaseInstanceARB;` → `BaseInstance`,
 //! - `in int gl_BaseVertexARB;` → `BaseVertex`, and
 //! - `in int gl_DrawIDARB;` → `DrawIndex`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_draw_parameters]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_draw_parameters extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHADER_DRAW_PARAMETERS_EXTENSION_NAME`]
 //! - [`KHR_SHADER_DRAW_PARAMETERS_SPEC_VERSION`]
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Is this the same functionality as `GL_ARB_shader_draw_parameters`? **RESOLVED** : It is
 //! actually a superset, as it also adds in support for
 //!arrayed drawing commands.In GL for `GL_ARB_shader_draw_parameters`, `gl_BaseVertexARB` holds the
@@ -42,7 +42,7 @@
 //!`baseVertex` parameter.Now in Vulkan, we have `BaseVertex` = `vertexOffset` (for indexed
 //!drawing commands) or `firstVertex` (for arrayed drawing commands), and
 //!so Vulkan’s version is really a superset of GL functionality.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-05 (Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2017-09-05

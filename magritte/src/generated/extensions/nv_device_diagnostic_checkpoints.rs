@@ -6,27 +6,27 @@
 //!implementation for the last markers to cross specific implementation-defined
 //!pipeline stages, in order to narrow down which commands were executing at
 //!the time and might have caused the failure.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostic_checkpoints]
 //!   @nsubtil%0A<<Here describe the issue or question you have about the
 //!   VK_NV_device_diagnostic_checkpoints extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_checkpoint_nv`]
 //! - [`get_queue_checkpoint_data_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`CheckpointDataNV`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyCheckpointPropertiesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME`]
 //! - [`NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-16 (Nuno Subtil)  - Internal revisions
 //! - Revision 2, 2018-07-16 (Nuno Subtil)  - ???
 //!# Other info

@@ -5,30 +5,30 @@
 //!the `[`khr_surface`]` extension) that refers to an X11 [`Window`],
 //!using the XCB client-side library, as well as a query to determine support
 //!for rendering via XCB.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!6
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xcb_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_xcb_surface
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xcb_surface]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_xcb_surface
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_xcb_surface_khr`]
 //! - [`get_physical_device_xcb_presentation_support_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`XcbSurfaceCreateInfoKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`XcbSurfaceCreateFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_XCB_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_XCB_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does XCB need a way to query for compatibility between a particular
 //!physical device and a specific screen? This would be a more general query
 //!than [`get_physical_device_surface_support_khr`]: If it returned
@@ -38,7 +38,7 @@
 //![`Device`] before creating a window.
 //!To ensure the query is reliable, it must be made against a particular X
 //!visual rather than the screen in general.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft, based on the previous contents of
 //!   VK_EXT_KHR_swapchain (later renamed VK_EXT_KHR_surface).
 //! - Revision 2, 2015-10-02 (James Jones)  - Added presentation support query for an

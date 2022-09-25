@@ -16,25 +16,25 @@
 //!application is providing debug markers, but the implementation is not
 //!actually doing anything with that information, this can quickly point that
 //!out.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_tooling_info]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_EXT_tooling_info
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_tool_properties_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PhysicalDeviceToolPropertiesEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ToolPurposeFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ToolPurposeFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_TOOLING_INFO_EXTENSION_NAME`]
 //! - [`EXT_TOOLING_INFO_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT`
@@ -45,12 +45,12 @@
 //!If [`ext_debug_utils`] is supported:
 //! - Extending [`ToolPurposeFlagBits`]:  - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`  -
 //!   `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Why is this information separate from the layer mechanism?Some tooling may be built into a
 //! driver, or be part of the Vulkan loader
 //!etc.
 //!Tying this information directly to layers would have been awkward at best.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-11-05 (Tobias Hector)  - Initial draft
 //!# Other info
 //! * 2018-11-05

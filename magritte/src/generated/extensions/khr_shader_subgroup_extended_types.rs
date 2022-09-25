@@ -3,25 +3,25 @@
 //!This extension enables the Non Uniform Group Operations in SPIR-V to support
 //!8-bit integer, 16-bit integer, 64-bit integer, 16-bit floating-point, and
 //!vectors of these types.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Neil Henning [sheredom](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_subgroup_extended_types]
 //!   @sheredom%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_subgroup_extended_types extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHADER_SUBGROUP_EXTENDED_TYPES_EXTENSION_NAME`]
 //! - [`KHR_SHADER_SUBGROUP_EXTENDED_TYPES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-01-08 (Neil Henning)  - Initial draft
 //!# Other info
 //! * 2019-01-08

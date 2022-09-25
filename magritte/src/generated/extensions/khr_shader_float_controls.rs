@@ -4,22 +4,22 @@
 //!floating-point computations through the ability to query and override the
 //!implementation’s default behavior for rounding modes, denormals, signed
 //!zero, and infinity.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Alexander Galazin [alegal-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_float_controls]
 //!   @alegal-arm%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_float_controls extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceFloatControlsPropertiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ShaderFloatControlsIndependenceKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME`]
 //! - [`KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION`]
 //! - Extending [`ShaderFloatControlsIndependence`]:  -
@@ -28,7 +28,7 @@
 //!   `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Which instructions must flush denorms? **RESOLVED** : Only floating-point conversion,
 //! floating-point arithmetic,
 //!floating-point relational (except `OpIsNaN`, `OpIsInf`), and
@@ -52,7 +52,7 @@
 //!instructions.6) When using inf/nan-ignore mode, what is expected of `OpIsNan` and
 //!`OpIsInf`? **RESOLVED** : These instructions must always accurately detect inf/nan if it
 //!is passed to them.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 4, 2019-06-18 (Tobias Hector)  - Modified settings restrictions, see [Version 4 API
 //!   incompatibility]()
 //! - Revision 3, 2018-09-11 (Alexander Galazin)  - Minor restructuring

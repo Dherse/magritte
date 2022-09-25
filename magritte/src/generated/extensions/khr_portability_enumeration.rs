@@ -10,19 +10,19 @@
 //!from accidentally using them, as any device which supports the
 //!`[`khr_portability_subset`]` extension mandates that the extension
 //!must be enabled if that device is used.This extension is implemented in the loader.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Charles Giessen [charles-lunarg](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_portability_enumeration]
 //!   @charles-lunarg%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_portability_enumeration extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME`]
 //! - [`KHR_PORTABILITY_ENUMERATION_SPEC_VERSION`]
 //! - Extending [`InstanceCreateFlagBits`]:  - `VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-06-02 (Lenny Komow)  - Initial version
 //!# Other info
 //! * 2021-06-02

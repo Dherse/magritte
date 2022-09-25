@@ -1,20 +1,20 @@
 //![VK_AMD_gpu_shader_int16](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_AMD_gpu_shader_int16.html) - device extension
 //!# Description
 //!This extension adds support for using 16-bit integer variables in shaders.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Deprecated* by `[`khr_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`khr_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Qun Lin [linqun](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_gpu_shader_int16]
 //!   @linqun%0A<<Here describe the issue or question you have about the VK_AMD_gpu_shader_int16
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_GPU_SHADER_INT16_EXTENSION_NAME`]
 //! - [`AMD_GPU_SHADER_INT16_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2019-04-11 (Tobias Hector)  - Marked as deprecated
 //! - Revision 1, 2017-06-18 (Dominik Witczak)  - First version
 //!# Other info

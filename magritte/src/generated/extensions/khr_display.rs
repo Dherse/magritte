@@ -2,22 +2,22 @@
 //!# Description
 //!This extension provides the API to enumerate displays and available modes on
 //!a given device.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!23
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display
 //!   extension>>)
 //! - Norbert Nopper [FslNopper](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display]
 //!   @FslNopper%0A<<Here describe the issue or question you have about the VK_KHR_display
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`DisplayKHR`]
 //! - [`DisplayModeKHR`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_display_mode_khr`]
 //! - [`create_display_plane_surface_khr`]
 //! - [`get_display_mode_properties_khr`]
@@ -25,7 +25,7 @@
 //! - [`get_display_plane_supported_displays_khr`]
 //! - [`get_physical_device_display_plane_properties_khr`]
 //! - [`get_physical_device_display_properties_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DisplayModeCreateInfoKHR`]
 //! - [`DisplayModeParametersKHR`]
 //! - [`DisplayModePropertiesKHR`]
@@ -33,20 +33,20 @@
 //! - [`DisplayPlanePropertiesKHR`]
 //! - [`DisplayPropertiesKHR`]
 //! - [`DisplaySurfaceCreateInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DisplayPlaneAlphaFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`DisplayModeCreateFlagsKHR`]
 //! - [`DisplayPlaneAlphaFlagsKHR`]
 //! - [`DisplaySurfaceCreateFlagsKHR`]
 //! - [`SurfaceTransformFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DISPLAY_EXTENSION_NAME`]
 //! - [`KHR_DISPLAY_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DISPLAY_KHR`  - `VK_OBJECT_TYPE_DISPLAY_MODE_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Which properties of a mode should be fixed in the mode information vs.
 //!settable in some other function when setting the mode? E.g., do we need to
 //!double the size of the mode pool to include both stereo and non-stereo
@@ -151,7 +151,7 @@
 //!and/or support display hotplug.19) Should persistent mode for smart panels be enabled/disabled
 //! at swapchain
 //!creation time, or on a per-present basis. **RESOLVED** : On a per-present basis.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-02-24 (James Jones)  - Initial draft
 //! - Revision 2, 2015-03-12 (Norbert Nopper)  - Added overlay enumeration for a display.
 //! - Revision 3, 2015-03-17 (Norbert Nopper)  - Fixed typos and namings as discussed in Bugzilla.

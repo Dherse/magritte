@@ -4,29 +4,29 @@
 //!memory using fences.
 //!This extension enables an application to export fence payload to and import
 //!fence payload from Windows handles.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_fence`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_win32]
 //!   @critsec%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_fence_win32 extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_fence_win32_handle_khr`]
 //! - [`import_fence_win32_handle_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`FenceGetWin32HandleInfoKHR`]
 //! - [`ImportFenceWin32HandleInfoKHR`]
 //! - Extending [`FenceCreateInfo`]:  - [`ExportFenceWin32HandleInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_FENCE_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_FENCE_GET_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_FENCE_WIN32_HANDLE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!This extension borrows concepts, semantics, and language from
 //!`[`khr_external_semaphore_win32`]`.
 //!That extension’s issues apply equally to this extension.1) Should D3D12 fence handle types be
@@ -40,7 +40,7 @@
 //!D3D12 fence using non-Vulkan APIs.
 //!The convenience of being able to do these operations on [`Fence`]
 //!objects does not justify the extra API complexity.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-05-08 (Jesse Hall)  - Initial revision
 //!# Other info
 //! * 2017-05-08

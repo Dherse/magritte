@@ -5,32 +5,32 @@
 //! - A new [`ColorSpaceKHR`] enum for setting the native display colorspace. For example, this
 //!   color space would be set by the swapchain to use the native color space in Freesync2 displays.
 //! - Local dimming control
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_get_surface_capabilities2`]`
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_display_native_hdr]
 //!   @anteru%0A<<Here describe the issue or question you have about the VK_AMD_display_native_hdr
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`set_local_dimming_amd`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`DisplayNativeHdrSurfaceCapabilitiesAMD`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`SwapchainDisplayNativeHdrCreateInfoAMD`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME`]
 //! - [`AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION`]
 //! - Extending [`ColorSpaceKHR`]:  - `VK_COLOR_SPACE_DISPLAY_NATIVE_AMD`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`  -
 //!   `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!None.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-12-18 (Daniel Rakos)  - Initial revision
 //!# Other info
 //! * 2018-12-18

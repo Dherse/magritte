@@ -14,20 +14,20 @@
 //!   [`QUEUE_FAMILY_FOREIGN_EXT`] is more restrictive.
 //! - Applications should expect transitions to/from [`QUEUE_FAMILY_FOREIGN_EXT`] to be more
 //!   expensive than transitions to/from [`QUEUE_FAMILY_EXTERNAL_KHR`].
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_queue_family_foreign]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_queue_family_foreign extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_QUEUE_FAMILY_FOREIGN_EXTENSION_NAME`]
 //! - [`EXT_QUEUE_FAMILY_FOREIGN_SPEC_VERSION`]
 //! - [`QUEUE_FAMILY_FOREIGN_EXT`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-11-01 (Chad Versace)  - Squashed internal revisions
 //!# Other info
 //! * 2017-11-01

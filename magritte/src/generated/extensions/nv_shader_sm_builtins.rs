@@ -8,29 +8,29 @@
 //!executing on.This extension enables support for the SPIR-V `ShaderSMBuiltinsNV`
 //!capability.These properties and built-ins  **should**  typically only be used for debugging
 //!purposes.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_sm_builtins]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_shader_sm_builtins
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_SHADER_SM_BUILTINS_EXTENSION_NAME`]
 //! - [`NV_SHADER_SM_BUILTINS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!0. What should we call this extension? **RESOLVED** : `NV_shader_sm_builtins`. Other options
 //! considered included:  - `NV_shader_smid` - but SMID is really easy to typo/confuse as SIMD.  -
 //! `NV_shader_sm_info` - but  **Info**  is typically reserved for input structures
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-05-28 (Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2019-05-28

@@ -22,24 +22,24 @@
 //! - [`InputAttachmentAspectReference::aspect_mask`] is now specified in the relevant input
 //!   attachment description in [`AttachmentDescription2KHR`]`::aspectMask`
 //!The details of these mappings are explained fully in the new structures.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_multiview`]`
 //! - Requires `[`khr_maintenance2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobias](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_create_renderpass2]
 //!   @tobias%0A<<Here describe the issue or question you have about the VK_KHR_create_renderpass2
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_begin_render_pass2_khr`]
 //! - [`cmd_end_render_pass2_khr`]
 //! - [`cmd_next_subpass2_khr`]
 //! - [`create_render_pass2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`AttachmentDescription2KHR`]
 //! - [`AttachmentReference2KHR`]
 //! - [`RenderPassCreateInfo2KHR`]
@@ -47,7 +47,7 @@
 //! - [`SubpassDependency2KHR`]
 //! - [`SubpassDescription2KHR`]
 //! - [`SubpassEndInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_CREATE_RENDERPASS_2_EXTENSION_NAME`]
 //! - [`KHR_CREATE_RENDERPASS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR`  -
@@ -55,7 +55,7 @@
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_END_INFO_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-02-07 (Tobias Hector)  - Internal revisions
 //!# Other info
 //! * 2018-02-07

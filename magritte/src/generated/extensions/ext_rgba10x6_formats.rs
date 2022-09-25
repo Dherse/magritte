@@ -3,24 +3,24 @@
 //!This extension enables the
 //!`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16` format to be used without
 //!a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#samplers-YCbCr-conversion) enabled.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_rgba10x6_formats]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_rgba10x6_formats extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRgba10x6FormatsFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_RGBA10X6_FORMATS_EXTENSION_NAME`]
 //! - [`EXT_RGBA10X6_FORMATS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should we reuse the existing format enumeration or introduce a new one? **RESOLVED** : We
 //! reuse an existing format enumeration,
 //!`VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16`, that was previously
@@ -33,7 +33,7 @@
 //!variations? **RESOLVED** : Only the 4-component format is introduced because the 1- and 2-
 //!component variations are already not exclusive to YCbCr, and the 3-component
 //!variation is not a good match for hardware capabilities.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-09-29 (Jan-Harald Fredriksen)  - Initial EXT version
 //!# Other info
 //! * 2021-09-29

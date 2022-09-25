@@ -18,25 +18,25 @@
 //!Additionally, using the modified mipmapping logic along with texture
 //!dimensions of the form 2<sup>n</sup>+1 allows continuity across shared edges
 //!even if the adjacent patches use different level-of-detail values.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_corner_sampled_image]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_corner_sampled_image
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCornerSampledImageFeaturesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME`]
 //! - [`NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!0. What should this extension be named? **DISCUSSION** : While naming this extension, we chose
 //! the most distinctive aspect of the image organization and referred to such images as
 //! “corner-sampled images”. As a result, we decided to name the extension NV_corner_sampled_image.
@@ -51,7 +51,7 @@
 //! corner-sample usage.
 //!4. Should we have a diagram in the “Image Operations” chapter demonstrating different texel
 //! sampling locations? **UNRESOLVED** : Probaby, but later.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-08-14 (Daniel Koch)  - Internal revisions
 //! - Revision 2, 2018-08-14 (Daniel Koch)  - ???
 //!# Other info

@@ -8,25 +8,25 @@
 //![`SPV_EXT_physical_storage_buffer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_physical_storage_buffer.html)
 //!SPIR-V extension.It also allows buffer device addresses to be provided by a trace replay
 //!tool, so that it matches the address used when the trace was captured.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Deprecated* by `[`khr_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`khr_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_buffer_device_address]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_buffer_device_address extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_buffer_device_address_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`BufferDeviceAddressInfoEXT`]
 //! - Extending [`BufferCreateInfo`]:  - [`BufferDeviceAddressCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceBufferAddressFeaturesEXT`]  - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`]
 //! - [`EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 //! - Extending [`BufferCreateFlagBits`]:  -
@@ -37,7 +37,7 @@
 //!   `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Where is VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_ADDRESS_FEATURES_EXT
 //!and VkPhysicalDeviceBufferAddressFeaturesEXT? **RESOLVED** : They were renamed as
 //!`VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
@@ -45,7 +45,7 @@
 //!consistency.
 //!Even though, the old names can still be found in the generated header files
 //!for compatibility.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-11-01 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2019-01-06 (Jon Leech)  - Minor updates to appendix for publication
 //!# Other info

@@ -1,34 +1,34 @@
 //![VK_KHR_video_encode_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_encode_queue.html) - device extension
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_queue`]`
 //! - Requires `[`khr_synchronization2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Ahmed Abdelkhalek [aabdelkh](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_encode_queue]
 //!   @aabdelkh%0A<<Here describe the issue or question you have about the VK_KHR_video_encode_queue
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_encode_video_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`VideoEncodeInfoKHR`]
 //! - Extending [`VideoCapabilitiesKHR`]:  - [`VideoEncodeCapabilitiesKHR`]
 //! - Extending [`VideoCodingControlInfoKHR`]:  - [`VideoEncodeRateControlInfoKHR`]  -
 //!   [`VideoEncodeRateControlLayerInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`VideoEncodeCapabilityFlagBitsKHR`]
 //! - [`VideoEncodeFlagBitsKHR`]
 //! - [`VideoEncodeRateControlFlagBitsKHR`]
 //! - [`VideoEncodeRateControlModeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoEncodeCapabilityFlagsKHR`]
 //! - [`VideoEncodeFlagsKHR`]
 //! - [`VideoEncodeRateControlFlagsKHR`]
 //! - [`VideoEncodeRateControlModeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`  -
@@ -51,7 +51,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR`  -
 //!   `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-23 (Ahmed Abdelkhalek)  - Initial draft
 //! - Revision 1.1, 10/29/2019 (Tony Zlatinski)  - Updated the reserved spec tokens and renamed
 //!   VkVideoEncoderKHR to VkVideoSessionKHR
@@ -89,25 +89,25 @@
 //! Commons Attribution 4.0 International*.
 //!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264CapabilitiesEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264CapabilitiesEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264EmitPictureParametersEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264EmitPictureParametersEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264RateControlInfoEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264RateControlInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264RateControlLayerInfoEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264RateControlLayerInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264VclFrameInfoEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264VclFrameInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265CapabilitiesEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265CapabilitiesEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265EmitPictureParametersEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265EmitPictureParametersEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265RateControlInfoEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265RateControlInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265RateControlLayerInfoEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265RateControlLayerInfoEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265VclFrameInfoEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265VclFrameInfoEXT;
 use crate::{
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{

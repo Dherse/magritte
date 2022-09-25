@@ -15,25 +15,25 @@
 //! SPIR-V extension in
 //!Vulkan:
 //! - [`SPV_NV_mesh_shader`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_mesh_shader.html)
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_mesh_shader]
 //!   @pixeljetstream%0A<<Here describe the issue or question you have about the VK_NV_mesh_shader
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_draw_mesh_tasks_indirect_count_nv`]
 //! - [`cmd_draw_mesh_tasks_indirect_nv`]
 //! - [`cmd_draw_mesh_tasks_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DrawMeshTasksIndirectCommandNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMeshShaderFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMeshShaderPropertiesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_MESH_SHADER_EXTENSION_NAME`]
 //! - [`NV_MESH_SHADER_SPEC_VERSION`]
 //! - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV`  -
@@ -42,7 +42,7 @@
 //!   `VK_SHADER_STAGE_TASK_BIT_NV`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!0. How to name this extension? **RESOLVED** : VK_NV_mesh_shaderOther options considered:  -
 //! VK_NV_mesh_shading  - VK_NV_programmable_mesh_shading  - VK_NV_primitive_group_shading  -
 //! VK_NV_grouped_drawing
@@ -62,7 +62,7 @@
 //! backwards compatible. It is too bad VkShaderStageFlagBits does not have a dedicated “all
 //! supported graphics stages” bit like VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT, which would have avoided
 //! this problem.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-19 (Christoph Kubisch, Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2018-07-19

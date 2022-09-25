@@ -9,21 +9,21 @@
 //!Unlike the EGL extensions, this extension does not require the use of a
 //!specific handle type (such as a dma_buf) for external memory and provides
 //!more explicit control of image creation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_bind_memory2`]`
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_image_format_list`]`
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_drm_format_modifier]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_image_drm_format_modifier extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_image_drm_format_modifier_properties_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DrmFormatModifierPropertiesEXT`]
 //! - [`ImageDrmFormatModifierPropertiesEXT`]
 //! - Extending [`FormatProperties2`]:  - [`DrmFormatModifierPropertiesListEXT`]
@@ -34,7 +34,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - [`DrmFormatModifierProperties2EXT`]
 //! - Extending [`FormatProperties2`]:  - [`DrmFormatModifierPropertiesList2EXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME`]
 //! - [`EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION`]
 //! - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT`  -
@@ -49,7 +49,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT`
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should this extension define a single DRM format modifier per
 //![`Image`]? Or define one per plane?+ **RESOLVED** : There exists a single DRM format modifier
 //! per [`Image`]. **DISCUSSION** : Prior art, such as

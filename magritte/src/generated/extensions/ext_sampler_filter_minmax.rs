@@ -12,23 +12,23 @@
 //!The filter parameters are used to identify the set of texels used to produce
 //!a final filtered value; the reduction mode identifies how these texels are
 //!combined.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_sampler_filter_minmax]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_sampler_filter_minmax extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceSamplerFilterMinmaxPropertiesEXT`]
 //! - Extending [`SamplerCreateInfo`]:  - [`SamplerReductionModeCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`SamplerReductionModeEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME`]
 //! - [`EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION`]
 //! - Extending [`FormatFeatureFlagBits`]:  -
@@ -38,7 +38,7 @@
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2017-05-19 (Piers Daniell)  - Renamed to EXT
 //! - Revision 1, 2017-03-25 (Jeff Bolz)  - Internal revisions
 //!# Other info

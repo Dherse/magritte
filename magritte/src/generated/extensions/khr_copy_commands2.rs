@@ -13,24 +13,24 @@
 //!`sType`/`pNext` members.
 //!Lower level structures describing each region to be copied are also extended
 //!with `sType`/`pNext` members.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Leger [jackohound](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_copy_commands2]
 //!   @jackohound%0A<<Here describe the issue or question you have about the VK_KHR_copy_commands2
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_blit_image2_khr`]
 //! - [`cmd_copy_buffer2_khr`]
 //! - [`cmd_copy_buffer_to_image2_khr`]
 //! - [`cmd_copy_image2_khr`]
 //! - [`cmd_copy_image_to_buffer2_khr`]
 //! - [`cmd_resolve_image2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`BlitImageInfo2KHR`]
 //! - [`BufferCopy2KHR`]
 //! - [`BufferImageCopy2KHR`]
@@ -42,7 +42,7 @@
 //! - [`ImageCopy2KHR`]
 //! - [`ImageResolve2KHR`]
 //! - [`ResolveImageInfo2KHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_COPY_COMMANDS_2_EXTENSION_NAME`]
 //! - [`KHR_COPY_COMMANDS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BLIT_IMAGE_INFO_2_KHR`  -
@@ -53,7 +53,7 @@
 //!   `VK_STRUCTURE_TYPE_COPY_IMAGE_TO_BUFFER_INFO_2_KHR`  - `VK_STRUCTURE_TYPE_IMAGE_BLIT_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_IMAGE_COPY_2_KHR`  - `VK_STRUCTURE_TYPE_IMAGE_RESOLVE_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RESOLVE_IMAGE_INFO_2_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-07-06 (Jeff Leger)  - Internal revisions
 //!# Other info
 //! * 2020-07-06

@@ -9,32 +9,34 @@
 //!Common consumer endpoints for `ANativeWindows` are the system window
 //!compositor, video encoders, and application-specific compositors importing
 //!the images through a `SurfaceTexture`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!6
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_android_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_android_surface
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New base types")]
+//! - [`ANativeWindow`]
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_android_surface_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`AndroidSurfaceCreateInfoKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`AndroidSurfaceCreateFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_ANDROID_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_ANDROID_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does Android need a way to query for compatibility between a particular
 //!physical device (and queue family?) and a specific Android display? **RESOLVED** : No.
 //!Currently on Android, any physical device is expected to be able to present
 //!to the system compositor, and all queue families must support the necessary
 //!image layout transitions and synchronization operations.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft.
 //! - Revision 2, 2015-10-26 (Ian Elliott)  - Renamed from VK_EXT_KHR_android_surface to
 //!   VK_KHR_android_surface.

@@ -10,25 +10,25 @@
 //! information types are optionally supported, and users
 //!should not assume every implementation supports querying every type of
 //!information.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jaakko Konttinen [jaakkoamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_info]
 //!   @jaakkoamd%0A<<Here describe the issue or question you have about the VK_AMD_shader_info
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_shader_info_amd`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ShaderResourceUsageAMD`]
 //! - [`ShaderStatisticsInfoAMD`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ShaderInfoTypeAMD`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_SHADER_INFO_EXTENSION_NAME`]
 //! - [`AMD_SHADER_INFO_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-10-09 (Jaakko Konttinen)  - Initial revision
 //!# Other info
 //! * 2017-10-09

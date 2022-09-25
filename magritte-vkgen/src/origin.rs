@@ -65,6 +65,34 @@ impl<'a> Origin<'a> {
         }
     }
 
+    /// Gets the major part of the version from an origin.
+    /// 
+    /// # Panics
+    /// Panics if the origin is not a Vulkan version
+    pub fn major(&self) -> u32 {
+        match self {
+            Self::Vulkan1_0 => 1,
+            Self::Vulkan1_1 => 1,
+            Self::Vulkan1_2 => 1,
+            Self::Vulkan1_3 => 1,
+            _ => unreachable!("unknown vulkan version"),
+        }
+    }
+
+    /// Gets the minor part of the version from an origin.
+    /// 
+    /// # Panics
+    /// Panics if the origin is not a Vulkan version
+    pub fn minor(&self) -> u32 {
+        match self {
+            Self::Vulkan1_0 => 0,
+            Self::Vulkan1_1 => 1,
+            Self::Vulkan1_2 => 2,
+            Self::Vulkan1_3 => 3,
+            _ => unreachable!("unknown vulkan version"),
+        }
+    }
+
     /// Is the origin unknown
     pub const fn is_unknown(&self) -> bool {
         matches!(self, Self::Unknown)

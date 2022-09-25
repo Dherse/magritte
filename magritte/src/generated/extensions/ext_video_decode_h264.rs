@@ -1,14 +1,14 @@
 //![VK_EXT_video_decode_h264](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h264.html) - device extension
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_decode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - [peter.fang@amd.com]()
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`VideoDecodeCapabilitiesKHR`]:  - [`VideoDecodeH264CapabilitiesEXT`]
 //! - Extending [`VideoDecodeH264PictureInfoEXT`]:  - [`VideoDecodeH264MvcEXT`]
 //! - Extending [`VideoDecodeInfoKHR`]:  - [`VideoDecodeH264PictureInfoEXT`]
@@ -20,11 +20,11 @@
 //!   [`VideoDecodeH264SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoDecodeH264SessionParametersAddInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`VideoDecodeH264PictureLayoutFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoDecodeH264PictureLayoutFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_VIDEO_DECODE_H264_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_DECODE_H264_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_CAPABILITIES_EXT`  -
@@ -36,7 +36,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H264_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
 //!   `VK_VIDEO_CODEC_OPERATION_DECODE_H264_BIT_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 2, March 29 2021 (Tony Zlatinski)  - Spec and API Updates
 //! - Revision 3, August 1 2021 (Srinath Kumarapuram)  - Rename

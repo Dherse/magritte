@@ -1,16 +1,16 @@
 //![VK_EXT_swapchain_colorspace](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_swapchain_colorspace.html) - instance extension
 //!# Description
 //!To be done.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_swapchain_colorspace]
 //!   @courtney-g%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_swapchain_colorspace extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SWAPCHAIN_COLOR_SPACE_EXTENSION_NAME`]
 //! - [`EXT_SWAPCHAIN_COLOR_SPACE_SPEC_VERSION`]
 //! - Extending [`ColorSpaceKHR`]:  - `VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT`  -
@@ -21,7 +21,7 @@
 //!   `VK_COLOR_SPACE_DOLBYVISION_EXT`  - `VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT`  -
 //!   `VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT`  - `VK_COLOR_SPACE_HDR10_HLG_EXT`  -
 //!   `VK_COLOR_SPACE_HDR10_ST2084_EXT`  - `VK_COLOR_SPACE_PASS_THROUGH_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does the spec need to specify which kinds of image formats support the
 //!color spaces? **RESOLVED** : Pixel format is independent of color space (though some color
 //!spaces really want / need floating point color components to be useful).
@@ -36,7 +36,7 @@
 //!That responsibility falls to the application shaders.
 //!Any other native OETF / EOTF functions supported by an implementation can be
 //!described by separate extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-27 (Courtney Goeltzenleuchter)  - Initial version
 //! - Revision 2, 2017-01-19 (Courtney Goeltzenleuchter)  - Add pass through and multiple options
 //!   for BT2020.  - Clean up some issues with equations not displaying properly.

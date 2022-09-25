@@ -3,23 +3,23 @@
 //!This extension allows an application to specify offsets to a fragment
 //!density map attachment, changing the framebuffer location where density
 //!values are applied to without having to regenerate the fragment density map.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`ext_fragment_density_map`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_fragment_density_map_offset]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
 //!   VK_QCOM_fragment_density_map_offset extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM`]
 //! - Extending [`SubpassEndInfo`]:  - [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME`]
 //! - [`QCOM_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`
@@ -27,7 +27,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-09-03 (Matthew Netsch)  - Initial version
 //!# Other info
 //! * 2021-09-03

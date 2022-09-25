@@ -2,37 +2,37 @@
 //!# Description
 //!This extension defines a set of utility functions for use with the
 //!`[`khr_display`]` and `[`khr_display_swapchain`]` extensions.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_display_surface_counter`]`
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_control]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_display_control
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`display_power_control_ext`]
 //! - [`get_swapchain_counter_ext`]
 //! - [`register_device_event_ext`]
 //! - [`register_display_event_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DeviceEventInfoEXT`]
 //! - [`DisplayEventInfoEXT`]
 //! - [`DisplayPowerInfoEXT`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`SwapchainCounterCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DeviceEventTypeEXT`]
 //! - [`DisplayEventTypeEXT`]
 //! - [`DisplayPowerStateEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_DISPLAY_CONTROL_EXTENSION_NAME`]
 //! - [`EXT_DISPLAY_CONTROL_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT`  - `VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should this extension add an explicit “WaitForVsync” API or a fence
 //!signaled at vsync that the application can wait on? **RESOLVED** : A fence.
 //!A separate API could later be provided that allows exporting the fence to a
@@ -49,7 +49,7 @@
 //!processing an interrupt and waking up a userspace event is high enough that
 //!the accuracy of a scanline event would be rather low.
 //!Further, per-scanline interrupts are not supported by all hardware.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-13 (James Jones)  - Initial draft
 //!# Other info
 //! * 2016-12-13

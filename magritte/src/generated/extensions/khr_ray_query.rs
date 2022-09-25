@@ -13,24 +13,24 @@
 //!traversal results to the calling shader.This extension adds support for the following SPIR-V
 //! extension in Vulkan:
 //! - `SPV_KHR_ray_query`
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_spirv_1_4`]`
 //! - Requires `[`khr_acceleration_structure`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_query]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_query
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRayQueryFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_RAY_QUERY_EXTENSION_NAME`]
 //! - [`KHR_RAY_QUERY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!(1) What are the changes between the public provisional (VK_KHR_ray_tracing
 //!v8) release and the final (VK_KHR_acceleration_structure v11 /
 //!VK_KHR_ray_query v1) release?
@@ -40,7 +40,7 @@
 //!   and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages)
 //! - Update SPIRV capabilities to use `RayQueryKHR`
 //! - extension is no longer provisional
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-11-12 (Mathieu Robart, Daniel Koch, Andrew Garrard)  - Decomposition of the
 //!   specification, from VK_KHR_ray_tracing to VK_KHR_ray_query (#1918,!3912)  - update to use
 //!   `RayQueryKHR` SPIR-V capability  - add numerical limits for ray parameters (#2235,!3960)  -

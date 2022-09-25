@@ -6,18 +6,18 @@
 //![`PhysicalDeviceImageFormatInfo2`] and [`ImageFormatProperties2`]
 //!that  **can**  be used to determine which image types and which image view types
 //!support cubic filtering.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Bill Licea-Kane [wwlk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_filter_cubic]
 //!   @wwlk%0A<<Here describe the issue or question you have about the VK_EXT_filter_cubic
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ImageFormatProperties2`]:  - [`FilterCubicImageViewImageFormatPropertiesEXT`]
 //! - Extending [`PhysicalDeviceImageFormatInfo2`]:  - [`PhysicalDeviceImageViewImageFormatInfoEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_FILTER_CUBIC_EXTENSION_NAME`]
 //! - [`EXT_FILTER_CUBIC_SPEC_VERSION`]
 //! - Extending [`Filter`]:  - `VK_FILTER_CUBIC_EXT`
@@ -25,7 +25,7 @@
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_FILTER_CUBIC_IMAGE_VIEW_IMAGE_FORMAT_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_IMAGE_FORMAT_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 3, 2019-12-13 (wwlk)  - Delete requirement to cubic filter the formats
 //!   USCALED_PACKED32, SSCALED_PACKED32, UINT_PACK32, and SINT_PACK32 (cut/paste error)
 //! - Revision 2, 2019-06-05 (wwlk)  - Clarify 1D optional

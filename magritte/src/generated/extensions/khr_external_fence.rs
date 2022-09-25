@@ -5,33 +5,33 @@
 //!This extension enables an application to create fences from which non-Vulkan
 //!handles that reference the underlying synchronization primitive can be
 //!exported.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_fence_capabilities`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`FenceCreateInfo`]:  - [`ExportFenceCreateInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`FenceImportFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`FenceImportFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_EXTERNAL_FENCE_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_FENCE_SPEC_VERSION`]
 //! - Extending [`FenceImportFlagBits`]:  - `VK_FENCE_IMPORT_TEMPORARY_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!This extension borrows concepts, semantics, and language from
 //!`[`khr_external_semaphore`]`.
 //!That extension’s issues apply equally to this extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-05-08 (Jesse Hall)  - Initial revision
 //!# Other info
 //! * 2017-05-08

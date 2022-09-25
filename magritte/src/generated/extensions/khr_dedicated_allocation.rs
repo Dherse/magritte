@@ -20,26 +20,26 @@
 //!and memory allocation: a new structure that flags whether an image/buffer
 //!should have a dedicated allocation, and a structure indicating the image or
 //!buffer that an allocation will be bound to.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_memory_requirements2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_dedicated_allocation]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_dedicated_allocation extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryDedicatedAllocateInfoKHR`]
 //! - Extending [`MemoryRequirements2`]:  - [`MemoryDedicatedRequirementsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DEDICATED_ALLOCATION_EXTENSION_NAME`]
 //! - [`KHR_DEDICATED_ALLOCATION_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-27 (James Jones)  - Copy content from VK_NV_dedicated_allocation  - Add
 //!   some references to external object interactions to the overview.
 //! - Revision 2, 2017-03-27 (Jason Ekstrand)  - Rework the extension to be query-based

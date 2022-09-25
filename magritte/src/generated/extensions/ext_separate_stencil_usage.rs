@@ -2,24 +2,24 @@
 //!# Description
 //!This extension allows specifying separate usage flags for the stencil aspect
 //!of images with a depth-stencil format at image creation time.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_separate_stencil_usage]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_separate_stencil_usage extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ImageCreateInfo`], [`PhysicalDeviceImageFormatInfo2`]:  -
 //!   [`ImageStencilUsageCreateInfoEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SEPARATE_STENCIL_USAGE_EXTENSION_NAME`]
 //! - [`EXT_SEPARATE_STENCIL_USAGE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-11-08 (Daniel Rakos)  - Internal revisions.
 //!# Other info
 //! * 2018-11-08

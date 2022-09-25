@@ -21,27 +21,27 @@
 //!   input vector, with additional values being discarded.
 //! - Add a guarantee for buffer memory requirement that the size memory requirement is never
 //!   greater than the result of aligning create size with the alignment memory requirement.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_maintenance4]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance4
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_device_buffer_memory_requirements_khr`]
 //! - [`get_device_image_memory_requirements_khr`]
 //! - [`get_device_image_sparse_memory_requirements_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DeviceBufferMemoryRequirementsKHR`]
 //! - [`DeviceImageMemoryRequirementsKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMaintenance4FeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMaintenance4PropertiesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_MAINTENANCE_4_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE_4_SPEC_VERSION`]
 //! - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_NONE_KHR`
@@ -49,9 +49,9 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!None.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-08-18 (Piers Daniell)  - Internal revisions
 //! - Revision 2, 2021-10-25 (Yiwei Zhang)  - More guarantees on buffer memory requirements
 //!# Other info

@@ -13,22 +13,24 @@
 //!Sampler Y′C<sub>B</sub>C<sub>R</sub> conversion  **can**  be used to sample from these images
 //! and
 //!convert them to a known color space.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!5
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //! - Requires `[`khr_external_memory`]`
 //! - Requires `[`ext_queue_family_foreign`]`
 //! - Requires `[`khr_dedicated_allocation`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ANDROID_external_memory_android_hardware_buffer]
 //!   @critsec%0A<<Here describe the issue or question you have about the
 //!   VK_ANDROID_external_memory_android_hardware_buffer extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New base types")]
+//! - [`AHardwareBuffer`]
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_android_hardware_buffer_properties_android`]
 //! - [`get_memory_android_hardware_buffer_android`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`AndroidHardwareBufferPropertiesANDROID`]
 //! - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
 //! - Extending [`AndroidHardwareBufferPropertiesANDROID`]:  -
@@ -40,7 +42,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`AndroidHardwareBufferPropertiesANDROID`]:  -
 //!   [`AndroidHardwareBufferFormatProperties2ANDROID`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME`]
 //! - [`ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:  -
@@ -55,7 +57,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Other external memory objects are represented as weakly-typed handles
 //!(e.g. Win32 [`HANDLE`] or POSIX file descriptor), and require a handle type
 //!parameter along with handles.
@@ -134,7 +136,7 @@
 //!than new Vulkan features.
 //!The extension will only document how existing Vulkan features map to that
 //!new Android feature.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 5, 2022-02-04 (Chris Forbes)  - Describe mapping of flags for storage image support
 //! - Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
 //!   `vk.xml`

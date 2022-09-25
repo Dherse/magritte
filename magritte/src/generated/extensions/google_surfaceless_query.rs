@@ -12,19 +12,19 @@
 //! **This can only be supported on platforms where the results of these queries
 //!are surface-agnostic and a single presentation engine is the implicit target
 //!of all present operations** .
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_surfaceless_query]
 //!   @syoussefi%0A<<Here describe the issue or question you have about the
 //!   VK_GOOGLE_surfaceless_query extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GOOGLE_SURFACELESS_QUERY_EXTENSION_NAME`]
 //! - [`GOOGLE_SURFACELESS_QUERY_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-12-14 (Shahbaz Youssefi)  - Internal revisions
 //!# Other info
 //! * 2021-12-14

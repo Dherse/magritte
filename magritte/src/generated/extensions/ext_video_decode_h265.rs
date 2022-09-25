@@ -1,14 +1,14 @@
 //![VK_EXT_video_decode_h265](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h265.html) - device extension
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_decode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - [peter.fang@amd.com]()
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`VideoDecodeCapabilitiesKHR`]:  - [`VideoDecodeH265CapabilitiesEXT`]
 //! - Extending [`VideoDecodeInfoKHR`]:  - [`VideoDecodeH265PictureInfoEXT`]
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
@@ -19,7 +19,7 @@
 //!   [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoDecodeH265SessionParametersAddInfoEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_VIDEO_DECODE_H265_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_DECODE_H265_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`  -
@@ -30,7 +30,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
 //!   `VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 1.6, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
 //! - Revision 2, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting

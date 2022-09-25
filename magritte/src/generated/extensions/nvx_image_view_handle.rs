@@ -3,26 +3,26 @@
 //!This extension allows applications to query an opaque handle from an image
 //!view for use as a sampled image or storage image.
 //!This provides no direct functionality itself.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_image_view_handle]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the
 //!   VK_NVX_image_view_handle extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_image_view_address_nvx`]
 //! - [`get_image_view_handle_nvx`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ImageViewAddressPropertiesNVX`]
 //! - [`ImageViewHandleInfoNVX`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NVX_IMAGE_VIEW_HANDLE_EXTENSION_NAME`]
 //! - [`NVX_IMAGE_VIEW_HANDLE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_VIEW_ADDRESS_PROPERTIES_NVX`  -
 //!   `VK_STRUCTURE_TYPE_IMAGE_VIEW_HANDLE_INFO_NVX`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2020-04-03 (Piers Daniell)  - Add [`get_image_view_address_nvx`]
 //! - Revision 1, 2018-12-07 (Eric Werness)  - Internal revisions
 //!# Other info

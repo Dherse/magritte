@@ -8,27 +8,27 @@
 //!to swizzles.When VK_EXT_custom_border_color is used, these formats are not subject to
 //!the same restrictions for border color without format as with
 //!VK_FORMAT_B4G4R4A4_UNORM_PACK16.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_4444_formats]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the VK_EXT_4444_formats
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevice4444FormatsFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_4444_FORMATS_EXTENSION_NAME`]
 //! - [`EXT_4444_FORMATS_SPEC_VERSION`]
 //! - Extending [`Format`]:  - `VK_FORMAT_A4B4G4R4_UNORM_PACK16_EXT`  -
 //!   `VK_FORMAT_A4R4G4B4_UNORM_PACK16_EXT`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-07-04 (Joshua Ashton)  - Initial draft
 //!# Other info
 //! * 2020-07-28

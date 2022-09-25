@@ -15,25 +15,25 @@
 //!bound.These features together allow much more efficient emulation of the raw D3D12
 //!binding model.
 //!This extension is primarily intended to be useful for API layering efforts.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_maintenance3`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_VALVE_mutable_descriptor_type]
 //!   @Joshua-Ashton%0A<<Here describe the issue or question you have about the
 //!   VK_VALVE_mutable_descriptor_type extension>>)
 //! - Hans-Kristian Arntzen [HansKristian-Work](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_VALVE_mutable_descriptor_type]
 //!   @HansKristian-Work%0A<<Here describe the issue or question you have about the
 //!   VK_VALVE_mutable_descriptor_type extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`MutableDescriptorTypeListVALVE`]
 //! - Extending [`DescriptorSetLayoutCreateInfo`], [`DescriptorPoolCreateInfo`]:  -
 //!   [`MutableDescriptorTypeCreateInfoVALVE`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME`]
 //! - [`VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION`]
 //! - Extending [`DescriptorPoolCreateFlagBits`]:  - `VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE`
@@ -42,7 +42,7 @@
 //! - Extending [`DescriptorType`]:  - `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MUTABLE_DESCRIPTOR_TYPE_CREATE_INFO_VALVE`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-12-01 (Joshua Ashton, Hans-Kristian Arntzen)  - Initial specification,
 //!   squashed from public draft.
 //!# Other info

@@ -6,30 +6,30 @@
 //!This extension provides a set of capability queries and handle definitions
 //!that allow an application to determine what types of “external” semaphore
 //!handles an implementation supports for a given set of use cases.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_capabilities extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_external_semaphore_properties_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ExternalSemaphorePropertiesKHR`]
 //! - [`PhysicalDeviceExternalSemaphoreInfoKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceIdPropertiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ExternalSemaphoreFeatureFlagBitsKHR`]
 //! - [`ExternalSemaphoreHandleTypeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ExternalSemaphoreFeatureFlagsKHR`]
 //! - [`ExternalSemaphoreHandleTypeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION`]
 //! - [`LUID_SIZE_KHR`]
@@ -45,7 +45,7 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-20 (James Jones)  - Initial revision
 //!# Other info
 //! * 2016-10-20

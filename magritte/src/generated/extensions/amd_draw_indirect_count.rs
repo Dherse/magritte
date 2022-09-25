@@ -4,23 +4,23 @@
 //!indirect drawing commands from a buffer.
 //!This enables applications to generate an arbitrary number of drawing
 //!commands and execute them without host intervention.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Promoted* to `[`khr_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to `[`khr_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_draw_indirect_count]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_draw_indirect_count extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_draw_indexed_indirect_count_amd`]
 //! - [`cmd_draw_indirect_count_amd`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME`]
 //! - [`AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2016-08-23 (Dominik Witczak)  - Minor fixes
 //! - Revision 1, 2016-07-21 (Matthaeus Chajdas)  - Initial draft
 //!# Other info

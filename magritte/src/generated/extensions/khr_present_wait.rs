@@ -6,26 +6,26 @@
 //!An application can use this to monitor and control the pacing of the
 //!application by managing the number of outstanding images yet to be
 //!presented.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_present_id`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_wait]
 //!   @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_wait
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`wait_for_present_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePresentWaitFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_PRESENT_WAIT_EXTENSION_NAME`]
 //! - [`KHR_PRESENT_WAIT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) When does the wait finish? **RESOLVED** .
 //!The wait will finish when the present is visible to the user.
 //!There is no requirement for any precise timing relationship between the
@@ -57,7 +57,7 @@
 //!requirement for when the presentId value is updated.
 //!This requires slightly more complexity in the driver as it will need to
 //!track all outstanding presentId values.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-02-19 (Keith Packard)  - Initial version
 //!# Other info
 //! * 2019-05-15

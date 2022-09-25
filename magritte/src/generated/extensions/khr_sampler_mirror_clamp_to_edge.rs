@@ -9,22 +9,22 @@
 //!by using the original image to generate a matching “mirror image”.
 //!This mode allows the texture to be mirrored only once in the negative s, t,
 //!and r directions.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_sampler_mirror_clamp_to_edge]
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_sampler_mirror_clamp_to_edge extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME`]
 //! - [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION`]
 //! - Extending [`SamplerAddressMode`]:  - `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE`  -
 //!   `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Why are both KHR and core versions of the
 //!`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` token present? **RESOLVED** : This functionality
 //! was intended to be required in Vulkan 1.0.
@@ -36,7 +36,7 @@
 //!hardwiring into the spec Makefile so it was always included with the
 //!Specification, even in the core-only versions.
 //!This has now been reverted, and it is treated as any other extension.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-02-16 (Tobias Hector)  - Initial draft
 //! - Revision 2, 2019-08-14 (Jon Leech)  - Add KHR-suffixed alias of non-suffixed enum.
 //! - Revision 3, 2019-08-17 (Jon Leech)  - Add an issue explaining the reason for the extension API

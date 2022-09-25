@@ -21,25 +21,25 @@
 //!`LocalInvocationId` and the [`Rect2D`] of the
 //![`RenderPassBeginInfo::render_area`].This extension allows a subpass’s pipeline bind point to be
 //!`VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_create_renderpass2`]`
 //! - Requires `[`khr_synchronization2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Hueilong Wang [wyvernathuawei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_subpass_shading]
 //!   @wyvernathuawei%0A<<Here describe the issue or question you have about the
 //!   VK_HUAWEI_subpass_shading extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_subpass_shading_huawei`]
 //! - [`get_device_subpass_shading_max_workgroup_size_huawei`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ComputePipelineCreateInfo`]:  - [`SubpassShadingPipelineCreateInfoHUAWEI`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`HUAWEI_SUBPASS_SHADING_EXTENSION_NAME`]
 //! - [`HUAWEI_SUBPASS_SHADING_SPEC_VERSION`]
 //! - Extending [`PipelineBindPoint`]:  - `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
@@ -49,7 +49,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2021-06-28 (Hueilong Wang)  - Change vkGetSubpassShadingMaxWorkgroupSizeHUAWEI to vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI to resolve issue [`pub1564`](https://github.com/KhronosGroup/Vulkan-Docs/issues/1564)
 //! - Revision 1, 2020-12-15 (Hueilong Wang)  - Initial draft.
 //!# Other info

@@ -10,23 +10,23 @@
 //! commands:
 //!vkCmdBlitImage2KHR, vkCmdCopyImageToBuffer2KHR and
 //!vkCmdCopyBufferToImage2KHR
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_copy_commands2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Leger [jackohound](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_rotated_copy_commands]
 //!   @jackohound%0A<<Here describe the issue or question you have about the
 //!   VK_QCOM_rotated_copy_commands extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`BufferImageCopy2`], [`ImageBlit2`]:  - [`CopyCommandTransformInfoQCOM`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`QCOM_ROTATED_COPY_COMMANDS_EXTENSION_NAME`]
 //! - [`QCOM_ROTATED_COPY_COMMANDS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_COPY_COMMAND_TRANSFORM_INFO_QCOM`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What is an appropriate name for the added extension structure? The style
 //!guide says “Structures which extend other structures through the
 //!`pNext` chain should reflect the name of the base structure they
@@ -43,7 +43,7 @@
 //!vkRenderPass is the strongly preferred approach.
 //!Therefore, we choose not to introduce a rotation capability to
 //!vkCmdResolveImage2KHR.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-09-19 (Jeff Leger)
 //!# Other info
 //! * 2020-09-18

@@ -3,29 +3,29 @@
 //!Applications using Nvidia Nsight<sup>™</sup> Aftermath SDK for Vulkan to integrate
 //!device crash dumps into their error reporting mechanisms,  **may**  use this
 //!extension to configure options related to device crash dump creation.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostics_config]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
 //!   VK_NV_device_diagnostics_config extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`DeviceCreateInfo`]:  - [`DeviceDiagnosticsConfigCreateInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDiagnosticsConfigFeaturesNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DeviceDiagnosticsConfigFlagBitsNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`DeviceDiagnosticsConfigFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME`]
 //! - [`NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-11-21 (Kedarnath Thangudu)  - Internal revisions
 //!# Other info
 //! * 2019-12-15

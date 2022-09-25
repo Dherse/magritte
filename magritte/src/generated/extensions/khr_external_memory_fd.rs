@@ -7,28 +7,28 @@
 //!handles from Vulkan memory objects and to import Vulkan memory objects from
 //!POSIX file descriptor handles exported from other Vulkan memory objects or
 //!from similar resources in other APIs.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_fd]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_memory_fd extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_memory_fd_khr`]
 //! - [`get_memory_fd_properties_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`MemoryFdPropertiesKHR`]
 //! - [`MemoryGetFdInfoKHR`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryFdInfoKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_EXTERNAL_MEMORY_FD_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_MEMORY_FD_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_FD_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_FD_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_GET_FD_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Does the application need to close the file descriptor returned by
 //![`get_memory_fd_khr`]? **RESOLVED** : Yes, unless it is passed back in to a driver instance to
 //! import
@@ -46,7 +46,7 @@
 //!handle.
 //!The size will be specified by future extensions that introduce such external
 //!memory handle types.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
 //!# Other info
 //! * 2016-10-21

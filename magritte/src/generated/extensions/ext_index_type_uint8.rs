@@ -2,24 +2,24 @@
 //!# Description
 //!This extension allows `uint8_t` indices to be used with
 //![`cmd_bind_index_buffer`].
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_index_type_uint8]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_index_type_uint8 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceIndexTypeUint8FeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_INDEX_TYPE_UINT8_EXTENSION_NAME`]
 //! - [`EXT_INDEX_TYPE_UINT8_SPEC_VERSION`]
 //! - Extending [`IndexType`]:  - `VK_INDEX_TYPE_UINT8_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-05-02 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2019-05-02

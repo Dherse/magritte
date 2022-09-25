@@ -16,17 +16,17 @@
 //!   new shader domains depending on which traversal conditions are met
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - `SPV_KHR_ray_tracing`
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_spirv_1_4`]`
 //! - Requires `[`khr_acceleration_structure`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_tracing_pipeline]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_tracing_pipeline
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_ray_tracing_pipeline_stack_size_khr`]
 //! - [`cmd_trace_rays_indirect_khr`]
 //! - [`cmd_trace_rays_khr`]
@@ -34,7 +34,7 @@
 //! - [`get_ray_tracing_capture_replay_shader_group_handles_khr`]
 //! - [`get_ray_tracing_shader_group_handles_khr`]
 //! - [`get_ray_tracing_shader_group_stack_size_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`RayTracingPipelineCreateInfoKHR`]
 //! - [`RayTracingPipelineInterfaceCreateInfoKHR`]
 //! - [`RayTracingShaderGroupCreateInfoKHR`]
@@ -43,10 +43,10 @@
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRayTracingPipelineFeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`RayTracingShaderGroupTypeKHR`]
 //! - [`ShaderGroupShaderKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME`]
 //! - [`KHR_RAY_TRACING_PIPELINE_SPEC_VERSION`]
 //! - [`SHADER_UNUSED_KHR`]
@@ -72,7 +72,7 @@
 //!   `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_INTERFACE_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!(1) How does this extension differ from VK_NV_ray_tracing? **DISCUSSION** :The following is a
 //! summary of the main functional differences between
 //!VK_KHR_ray_tracing_pipeline and VK_NV_ray_tracing:
@@ -185,7 +185,7 @@
 //! - symmetry with gl_PrimitiveID which is also available in these shaders
 //! - there is no “baseInstance” relevant for these shaders, and so ID makes it more obvious that
 //!   this is zero-based.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-11-12 (Mathieu Robart, Daniel Koch, Eric Werness, Tobias Hector)  -
 //!   Decomposition of the specification, from VK_KHR_ray_tracing to VK_KHR_ray_tracing_pipeline
 //!   (#1918,!3912)  - require certain subgroup and sm_shader_builtin shader builtins to be

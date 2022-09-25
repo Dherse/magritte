@@ -7,20 +7,20 @@
 //!than color information.
 //!All samples are depth/stencil tested, but only the first color sample count
 //!number of samples get a corresponding color output.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_mixed_attachment_samples]
 //!   @anteru%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_mixed_attachment_samples extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME`]
 //! - [`AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION`]
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!None.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-07-24 (Daniel Rakos)  - Internal revisions
 //!# Other info
 //! * 2017-07-24

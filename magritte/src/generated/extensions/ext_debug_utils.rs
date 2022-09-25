@@ -25,17 +25,17 @@
 //!This should assist in clarifying the details of a debug message including:
 //!what objects are involved and potentially which location within a
 //![`Queue`] or [`CommandBuffer`] the message occurred.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Mark Young [marky-lunarg](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_utils]
 //!   @marky-lunarg%0A<<Here describe the issue or question you have about the VK_EXT_debug_utils
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`DebugUtilsMessengerEXT`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_begin_debug_utils_label_ext`]
 //! - [`cmd_end_debug_utils_label_ext`]
 //! - [`cmd_insert_debug_utils_label_ext`]
@@ -47,21 +47,21 @@
 //! - [`set_debug_utils_object_name_ext`]
 //! - [`set_debug_utils_object_tag_ext`]
 //! - [`submit_debug_utils_message_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DebugUtilsLabelEXT`]
 //! - [`DebugUtilsMessengerCallbackDataEXT`]
 //! - [`DebugUtilsObjectNameInfoEXT`]
 //! - [`DebugUtilsObjectTagInfoEXT`]
 //! - Extending [`InstanceCreateInfo`]:  - [`DebugUtilsMessengerCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DebugUtilsMessageSeverityFlagBitsEXT`]
 //! - [`DebugUtilsMessageTypeFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`DebugUtilsMessageSeverityFlagsEXT`]
 //! - [`DebugUtilsMessageTypeFlagsEXT`]
 //! - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
 //! - [`DebugUtilsMessengerCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_DEBUG_UTILS_EXTENSION_NAME`]
 //! - [`EXT_DEBUG_UTILS_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DEBUG_UTILS_MESSENGER_EXT`
@@ -70,7 +70,7 @@
 //!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_NAME_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DEBUG_UTILS_OBJECT_TAG_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should we just name this extension `VK_EXT_debug_report2` **RESOLVED** : No.
 //!There is enough additional changes to the structures to break backwards
 //!compatibility.
@@ -101,7 +101,7 @@
 //!It is cleaner to just define this all as an instance extension, plus it
 //!allows the application to enable all debug functionality provided with one
 //!enable string during [`create_instance`].
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-09-14 (Mark Young and all listed Contributors)  - Initial draft, based on
 //!   `[`ext_debug_report`]` and `[`ext_debug_marker`]` in addition to previous feedback supplied
 //!   from various companies including Valve, Epic, and Oxide games.

@@ -2,31 +2,31 @@
 //!# Description
 //!This extension allows applications to import CuBIN binaries and execute
 //!them.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_binary_import]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the VK_NVX_binary_import
 //!   extension>>)
 //! - Liam Middlebrook [liam-middlebrook](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_binary_import]
 //!   @liam-middlebrook%0A<<Here describe the issue or question you have about the
 //!   VK_NVX_binary_import extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`CuFunctionNVX`]
 //! - [`CuModuleNVX`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_cu_launch_kernel_nvx`]
 //! - [`create_cu_function_nvx`]
 //! - [`create_cu_module_nvx`]
 //! - [`destroy_cu_function_nvx`]
 //! - [`destroy_cu_module_nvx`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`CuFunctionCreateInfoNVX`]
 //! - [`CuLaunchInfoNVX`]
 //! - [`CuModuleCreateInfoNVX`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NVX_BINARY_IMPORT_EXTENSION_NAME`]
 //! - [`NVX_BINARY_IMPORT_SPEC_VERSION`]
 //! - Extending [`DebugReportObjectTypeEXT`]:  - `VK_DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX_EXT`
@@ -35,7 +35,7 @@
 //!   `VK_OBJECT_TYPE_CU_MODULE_NVX`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`  -
 //!   `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`  - `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-04-09 (Eric Werness)  - Internal revisions
 //!# Other info
 //! * 2021-04-09

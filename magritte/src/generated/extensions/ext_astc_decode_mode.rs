@@ -19,25 +19,25 @@
 //!   LDR and HDR mode. In this mode, negative values cannot be represented and are clamped to zero.
 //!   The alpha component is ignored, and the results are as if alpha was 1.0. This decode mode is
 //!   optional and support can be queried via the physical device properties.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_astc_decode_mode]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_astc_decode_mode extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`ImageViewCreateInfo`]:  - [`ImageViewAstcDecodeModeEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceAstcDecodeFeaturesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_ASTC_DECODE_MODE_EXTENSION_NAME`]
 //! - [`EXT_ASTC_DECODE_MODE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Are implementations allowed to decode at a higher precision than what is
 //!requested?
 //!```c
@@ -54,7 +54,7 @@
 //!Some implementations treat the different decode modes as different
 //!texture formats.
 //!```
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-08-07 (Jan-Harald Fredriksen)  - Initial revision
 //!# Other info
 //! * 2018-08-07

@@ -45,28 +45,28 @@
 //!   fWidth) into the rotated coordinate system.
 //! - The implementation is responsible for transforming `position` to the rotated coordinate
 //!   system.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Leger [jackohound](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_render_pass_transform]
 //!   @jackohound%0A<<Here describe the issue or question you have about the
 //!   VK_QCOM_render_pass_transform extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`CommandBufferInheritanceInfo`]:  -
 //!   [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 //! - Extending [`RenderPassBeginInfo`]:  - [`RenderPassTransformBeginInfoQCOM`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`QCOM_RENDER_PASS_TRANSFORM_EXTENSION_NAME`]
 //! - [`QCOM_RENDER_PASS_TRANSFORM_SPEC_VERSION`]
 //! - Extending [`RenderPassCreateFlagBits`]:  - `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDER_PASS_TRANSFORM_INFO_QCOM`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_TRANSFORM_BEGIN_INFO_QCOM`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Some early Adreno drivers (October 2019 through March 2020) advertised
 //!support for this extension but expected VK_STRUCTURE_TYPE values different
 //!from those in the vukan headers.
@@ -120,7 +120,7 @@
 //!coordinate system.
 //!This means that the application  **must**  swap the x/y of the reported rates to
 //!get the set of rates supported for 90 and 270 degree rotation.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-02-05 (Jeff Leger)
 //! - Revision 2, 2021-03-09 (Matthew Netsch)  - Adds interactions with VK_KHR_fragment_shading_rate
 //!# Other info

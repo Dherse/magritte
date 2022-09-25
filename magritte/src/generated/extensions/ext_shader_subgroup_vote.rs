@@ -61,20 +61,20 @@
 //!In another example, shader code might want to evaluate a complex function
 //!(`do_general_path`) that can be greatly simplified when assuming a
 //!specific value for one of its inputs (`do_fast_path`).
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Deprecated* by [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-new-features)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-new-features)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_subgroup_vote]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_shader_subgroup_vote
 //!   extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SHADER_SUBGROUP_VOTE_EXTENSION_NAME`]
 //! - [`EXT_SHADER_SUBGROUP_VOTE_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-11-28 (Daniel Koch)  - Initial draft
 //!# Other info
 //! * 2016-11-28

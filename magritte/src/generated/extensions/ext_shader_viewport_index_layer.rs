@@ -12,20 +12,20 @@
 //!`GL_ARB_shader_viewport_layer_array` (or the precursor
 //!`GL_AMD_vertex_shader_layer`, `GL_AMD_vertex_shader_viewport_index`, and
 //!`GL_NV_viewport_array2` extensions).
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_viewport_index_layer]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_viewport_index_layer extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME`]
 //! - [`EXT_SHADER_VIEWPORT_INDEX_LAYER_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-08-08 (Daniel Koch)  - Internal drafts
 //!# Other info
 //! * 2017-08-08

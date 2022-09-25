@@ -6,28 +6,28 @@
 //!rendering commands without application intervention.
 //!The conditional rendering commands are limited to draws, compute dispatches
 //!and clearing attachments within a conditional rendering block.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Vikram Kushwaha [vkushwaha](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_conditional_rendering]
 //!   @vkushwaha%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_conditional_rendering extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_begin_conditional_rendering_ext`]
 //! - [`cmd_end_conditional_rendering_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ConditionalRenderingBeginInfoEXT`]
 //! - Extending [`CommandBufferInheritanceInfo`]:  -
 //!   [`CommandBufferInheritanceConditionalRenderingInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceConditionalRenderingFeaturesEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ConditionalRenderingFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ConditionalRenderingFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_CONDITIONAL_RENDERING_EXTENSION_NAME`]
 //! - [`EXT_CONDITIONAL_RENDERING_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT`
@@ -37,7 +37,7 @@
 //!   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_CONDITIONAL_RENDERING_BEGIN_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should conditional rendering affect copy and blit commands? **RESOLVED** : Conditional
 //! rendering should not affect copies and blits.2) Should secondary command buffers be allowed to
 //! execute while conditional
@@ -47,7 +47,7 @@
 //!`conditionalRenderingEnable` is set to [`TRUE`].
 //!Conditional rendering  **must**  not be active in the primary command buffer if
 //!`conditionalRenderingEnable` is [`FALSE`].
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-04-19 (Vikram Kushwaha)  - First Version
 //! - Revision 2, 2018-05-21 (Vikram Kushwaha)  - Add new pipeline stage, access flags and limit
 //!   conditional rendering to a subpass or entire render pass.

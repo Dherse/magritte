@@ -36,20 +36,16 @@ features = []
 optional = true
 
 [dependencies.raw-window-handle]
-version = '0.4.3'
+version = '0.5.0'
 features = []
 optional = true
 
 [dependencies.smallvec]
-version = '1.8.0'
-features = [
-    'const_new',
-    'const_generics',
-    'union',
-]
+version = '1.9.0'
+features = []
 optional = true
 [build-dependencies.bindgen]
-version = '0.59.2'
+version = '0.60.1'
 features = []
 optional = true
 
@@ -727,8 +723,6 @@ all = [
 default = [
     'libloading',
     'smallvec',
-    'window',
-    'validation',
 ]
 validation = [
     'log',

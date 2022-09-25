@@ -16,32 +16,32 @@
 //!The discard rectangles can be different for each physical device in a device
 //!group by specifying the device mask and setting discard rectangle dynamic
 //!state.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_discard_rectangles]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_discard_rectangles extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_discard_rectangle_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDiscardRectanglePropertiesEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DiscardRectangleModeEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`PipelineDiscardRectangleStateCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_DISCARD_RECTANGLES_EXTENSION_NAME`]
 //! - [`EXT_DISCARD_RECTANGLES_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-22 (Piers Daniell)  - Internal revisions
 //!# Other info
 //! * 2016-12-22

@@ -7,30 +7,30 @@
 //!If the same rectangle is used for both the scissor and exclusive scissor
 //!tests, the exclusive scissor test will pass if and only if the scissor test
 //!fails.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_scissor_exclusive]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_scissor_exclusive
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_exclusive_scissor_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceExclusiveScissorFeaturesNV`]
 //! - Extending [`PipelineViewportStateCreateInfo`]:  -
 //!   [`PipelineViewportExclusiveScissorStateCreateInfoNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME`]
 //! - [`NV_SCISSOR_EXCLUSIVE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) For the scissor test, the viewport state must be created with a matching
 //!   number of scissor and viewport rectangles.
 //!   Should we have the same requirement for exclusive scissors? **RESOLVED** : For exclusive
@@ -39,7 +39,7 @@
 //!of viewport rectangles.
 //!If you pass in an exclusive scissor count of zero, the exclusive scissor
 //!test is treated as disabled.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-07-31 (Pat Brown)  - Internal revisions
 //!# Other info
 //! * 2018-07-31

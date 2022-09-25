@@ -22,18 +22,18 @@
 //!`GL_NV_geometry_shader_passthrough` extension must be enabled.
 //!Behaviour is described in the `GL_NV_geometry_shader_passthrough` extension
 //!specification.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_geometry_shader_passthrough]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_NV_geometry_shader_passthrough extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_GEOMETRY_SHADER_PASSTHROUGH_EXTENSION_NAME`]
 //! - [`NV_GEOMETRY_SHADER_PASSTHROUGH_SPEC_VERSION`]
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Should we require or allow a passthrough geometry shader to specify the
 //!output layout qualifiers for the output primitive type and maximum vertex
 //!count in the SPIR-V? **RESOLVED** : Yes they should be required in the SPIR-V.
@@ -50,7 +50,7 @@
 //!qualifier are exempted from the rule requiring location assignment because
 //!built-in variables do not have locations and are matched by `BuiltIn`
 //!decoration.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-15 (Daniel Koch)  - Internal revisions
 //!# Other info
 //! * 2017-02-15

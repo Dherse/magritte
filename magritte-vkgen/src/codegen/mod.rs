@@ -23,7 +23,7 @@ use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token, ToTokens};
-use tracing::warn;
+use tracing::{warn, error};
 
 use crate::{
     doc::Documentation,
@@ -60,6 +60,17 @@ impl<'a> Source<'a> {
                     #![allow(non_camel_case_types)]
                 }
             }
+        }
+
+        for version in [
+            Origin::Vulkan1_0,
+            Origin::Vulkan1_1,
+            Origin::Vulkan1_2,
+            Origin::Vulkan1_3
+        ] {
+            let (_, out, _) = per_origin.get_mut(&version).unwrap();
+
+            generate_version_doc(version, self, doc, out);
         }
 
         for extension in &self.extensions {
@@ -369,5 +380,34 @@ fn alias_of(original: &str, name: &str, mut out: &mut TokenStream) {
 
             #[doc(alias = #original)]
         }
+    }
+}
+
+
+/// Generates the module-level documentation for a version
+fn generate_version_doc<'a>(version: Origin<'a>, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) {
+    let name = format!("VK_VERSION_{}_{}", version.major(), version.minor());
+    if let Some(mut doc) = doc.find(&name) {
+        doc.set_mod_level_doc();
+
+        // parse the name section and write it out
+        doc.name(source, &(), out);
+
+        // parse the description section and write it out
+        doc.description(source, &(), out, None);
+
+        // parse the documentation section**s** only found in extension level docs
+        doc.extension(source, &(), out);
+
+        // parse the related item section and write it out
+        doc.related(source, out);
+
+        // adds the copyright of the Vulkan docs
+        doc.copyright(out);
+    } else {
+        error!("No documentation for {}", name);
+
+        // add the default no doc comment
+        Documentation::no_doc(out);
     }
 }

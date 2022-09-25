@@ -156,8 +156,6 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
             vec![
                 "libloading".to_string(),
                 "smallvec".to_string(),
-                "window".to_string(),
-                "validation".to_string(),
             ],
         );
 

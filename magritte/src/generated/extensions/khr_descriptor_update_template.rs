@@ -8,32 +8,32 @@
 //!This extension provides a way to update a fixed set of descriptors in a
 //!single [`DescriptorSet`] with a pointer to a user defined data structure
 //!describing the new descriptors.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Markus Tavenrath [mtavenrath](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_descriptor_update_template]
 //!   @mtavenrath%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_descriptor_update_template extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`DescriptorUpdateTemplateKHR`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_descriptor_update_template_khr`]
 //! - [`destroy_descriptor_update_template_khr`]
 //! - [`update_descriptor_set_with_template_khr`]
 //!If [`khr_push_descriptor`] is supported:
 //! - [`cmd_push_descriptor_set_with_template_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DescriptorUpdateTemplateCreateInfoKHR`]
 //! - [`DescriptorUpdateTemplateEntryKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`DescriptorUpdateTemplateTypeKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`DescriptorUpdateTemplateCreateFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME`]
 //! - [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION`]
 //! - Extending [`DescriptorUpdateTemplateType`]:  -
@@ -46,7 +46,7 @@
 //!If [`khr_push_descriptor`] is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:  -
 //!   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-01-11 (Markus Tavenrath)  - Initial draft
 //!# Other info
 //! * 2017-09-05

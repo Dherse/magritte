@@ -36,20 +36,20 @@
 //! - `ballotARB`() → `OpSubgroupBallotKHR`,
 //! - `readFirstInvocationARB`() → `OpSubgroupFirstInvocationKHR`, and
 //! - `readInvocationARB`() → `OpSubgroupReadInvocationKHR`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Deprecated* by [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-new-features)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-new-features)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_subgroup_ballot]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_subgroup_ballot extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_SHADER_SUBGROUP_BALLOT_EXTENSION_NAME`]
 //! - [`EXT_SHADER_SUBGROUP_BALLOT_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-11-28 (Daniel Koch)  - Initial draft
 //!# Other info
 //! * 2016-11-28

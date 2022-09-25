@@ -1,263 +1,569 @@
+//![VK_VERSION_1_1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_VERSION_1_1.html) - Vulkan version 1.1
+//!# Description
+//!Vulkan Version 1.1 [promoted](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-compatibility-promotion) a
+//!number of key extensions into the core API:
+//! - `[`khr_16bit_storage`]`
+//! - `[`khr_bind_memory2`]`
+//! - `[`khr_dedicated_allocation`]`
+//! - `[`khr_descriptor_update_template`]`
+//! - `[`khr_device_group`]`
+//! - `[`khr_device_group_creation`]`
+//! - `[`khr_external_fence`]`
+//! - `[`khr_external_fence_capabilities`]`
+//! - `[`khr_external_memory`]`
+//! - `[`khr_external_memory_capabilities`]`
+//! - `[`khr_external_semaphore`]`
+//! - `[`khr_external_semaphore_capabilities`]`
+//! - `[`khr_get_memory_requirements2`]`
+//! - `[`khr_get_physical_device_properties2`]`
+//! - `[`khr_maintenance1`]`
+//! - `[`khr_maintenance2`]`
+//! - `[`khr_maintenance3`]`
+//! - `[`khr_multiview`]`
+//! - `[`khr_relaxed_block_layout`]`
+//! - `[`khr_sampler_ycbcr_conversion`]`
+//! - `[`khr_shader_draw_parameters`]`
+//! - `[`khr_storage_buffer_storage_class`]`
+//! - `[`khr_variable_pointers`]`
+//!All differences in behavior between these extensions and the corresponding
+//!Vulkan 1.1 functionality are summarized in the [Vulkan 1.1 specification appendix](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions).
+//!### []()New Macros
+//!
+//! - [`crate::Version::VULKAN1_1`]
+//!
+//!### []()New Object Types
+//!
+//! - [`DescriptorUpdateTemplate`]
+//! - [`SamplerYcbcrConversion`]
+//!
+//!### []()New Commands
+//!
+//! - [`bind_buffer_memory2`]
+//! - [`bind_image_memory2`]
+//! - [`cmd_dispatch_base`]
+//! - [`cmd_set_device_mask`]
+//! - [`create_descriptor_update_template`]
+//! - [`create_sampler_ycbcr_conversion`]
+//! - [`destroy_descriptor_update_template`]
+//! - [`destroy_sampler_ycbcr_conversion`]
+//! - [`enumerate_instance_version`]
+//! - [`enumerate_physical_device_groups`]
+//! - [`get_buffer_memory_requirements2`]
+//! - [`get_descriptor_set_layout_support`]
+//! - [`get_device_group_peer_memory_features`]
+//! - [`get_device_queue2`]
+//! - [`get_image_memory_requirements2`]
+//! - [`get_image_sparse_memory_requirements2`]
+//! - [`get_physical_device_external_buffer_properties`]
+//! - [`get_physical_device_external_fence_properties`]
+//! - [`get_physical_device_external_semaphore_properties`]
+//! - [`get_physical_device_features2`]
+//! - [`get_physical_device_format_properties2`]
+//! - [`get_physical_device_image_format_properties2`]
+//! - [`get_physical_device_memory_properties2`]
+//! - [`get_physical_device_properties2`]
+//! - [`get_physical_device_queue_family_properties2`]
+//! - [`get_physical_device_sparse_image_format_properties2`]
+//! - [`trim_command_pool`]
+//! - [`update_descriptor_set_with_template`]
+//!
+//!### []()New Structures
+//!
+//! - [`BindBufferMemoryInfo`]
+//! - [`BindImageMemoryInfo`]
+//! - [`BufferMemoryRequirementsInfo2`]
+//! - [`DescriptorSetLayoutSupport`]
+//! - [`DescriptorUpdateTemplateCreateInfo`]
+//! - [`DescriptorUpdateTemplateEntry`]
+//! - [`DeviceQueueInfo2`]
+//! - [`ExternalBufferProperties`]
+//! - [`ExternalFenceProperties`]
+//! - [`ExternalMemoryProperties`]
+//! - [`ExternalSemaphoreProperties`]
+//! - [`FormatProperties2`]
+//! - [`ImageFormatProperties2`]
+//! - [`ImageMemoryRequirementsInfo2`]
+//! - [`ImageSparseMemoryRequirementsInfo2`]
+//! - [`InputAttachmentAspectReference`]
+//! - [`MemoryRequirements2`]
+//! - [`PhysicalDeviceExternalBufferInfo`]
+//! - [`PhysicalDeviceExternalFenceInfo`]
+//! - [`PhysicalDeviceExternalSemaphoreInfo`]
+//! - [`PhysicalDeviceGroupProperties`]
+//! - [`PhysicalDeviceImageFormatInfo2`]
+//! - [`PhysicalDeviceMemoryProperties2`]
+//! - [`PhysicalDeviceProperties2`]
+//! - [`PhysicalDeviceSparseImageFormatInfo2`]
+//! - [`QueueFamilyProperties2`]
+//! - [`SamplerYcbcrConversionCreateInfo`]
+//! - [`SparseImageFormatProperties2`]
+//! - [`SparseImageMemoryRequirements2`]
+//! - Extending [`BindBufferMemoryInfo`]:  - [`BindBufferMemoryDeviceGroupInfo`]
+//! - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemoryDeviceGroupInfo`]  -
+//!   [`BindImagePlaneMemoryInfo`]
+//! - Extending [`BindSparseInfo`]:  - [`DeviceGroupBindSparseInfo`]
+//! - Extending [`BufferCreateInfo`]:  - [`ExternalMemoryBufferCreateInfo`]
+//! - Extending [`CommandBufferBeginInfo`]:  - [`DeviceGroupCommandBufferBeginInfo`]
+//! - Extending [`DeviceCreateInfo`]:  - [`DeviceGroupDeviceCreateInfo`]  -
+//!   [`PhysicalDeviceFeatures2`]
+//! - Extending [`FenceCreateInfo`]:  - [`ExportFenceCreateInfo`]
+//! - Extending [`ImageCreateInfo`]:  - [`ExternalMemoryImageCreateInfo`]
+//! - Extending [`ImageFormatProperties2`]:  - [`ExternalImageFormatProperties`]  -
+//!   [`SamplerYcbcrConversionImageFormatProperties`]
+//! - Extending [`ImageMemoryRequirementsInfo2`]:  - [`ImagePlaneMemoryRequirementsInfo`]
+//! - Extending [`ImageViewCreateInfo`]:  - [`ImageViewUsageCreateInfo`]
+//! - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryAllocateInfo`]  -
+//!   [`MemoryAllocateFlagsInfo`]  - [`MemoryDedicatedAllocateInfo`]
+//! - Extending [`MemoryRequirements2`]:  - [`MemoryDedicatedRequirements`]
+//! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
+//!   [`PhysicalDevice16BitStorageFeatures`]  - [`PhysicalDeviceMultiviewFeatures`]  -
+//!   [`PhysicalDeviceProtectedMemoryFeatures`]  - [`PhysicalDeviceSamplerYcbcrConversionFeatures`]
+//!   - [`PhysicalDeviceShaderDrawParameterFeatures`]  -
+//!   [`PhysicalDeviceShaderDrawParametersFeatures`]  - [`PhysicalDeviceVariablePointerFeatures`]  -
+//!   [`PhysicalDeviceVariablePointersFeatures`]
+//! - Extending [`PhysicalDeviceImageFormatInfo2`]:  - [`PhysicalDeviceExternalImageFormatInfo`]
+//! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceIdProperties`]  -
+//!   [`PhysicalDeviceMaintenance3Properties`]  - [`PhysicalDeviceMultiviewProperties`]  -
+//!   [`PhysicalDevicePointClippingProperties`]  - [`PhysicalDeviceProtectedMemoryProperties`]  -
+//!   [`PhysicalDeviceSubgroupProperties`]
+//! - Extending [`PipelineTessellationStateCreateInfo`]:  -
+//!   [`PipelineTessellationDomainOriginStateCreateInfo`]
+//! - Extending [`RenderPassBeginInfo`], [`RenderingInfo`]:  - [`DeviceGroupRenderPassBeginInfo`]
+//! - Extending [`RenderPassCreateInfo`]:  - [`RenderPassInputAttachmentAspectCreateInfo`]  -
+//!   [`RenderPassMultiviewCreateInfo`]
+//! - Extending [`SamplerCreateInfo`], [`ImageViewCreateInfo`]:  - [`SamplerYcbcrConversionInfo`]
+//! - Extending [`SemaphoreCreateInfo`]:  - [`ExportSemaphoreCreateInfo`]
+//! - Extending [`SubmitInfo`]:  - [`DeviceGroupSubmitInfo`]  - [`ProtectedSubmitInfo`]
+//!
+//!### []()New Enums
+//!
+//! - [`ChromaLocation`]
+//! - [`DescriptorUpdateTemplateType`]
+//! - [`DeviceQueueCreateFlagBits`]
+//! - [`ExternalFenceFeatureFlagBits`]
+//! - [`ExternalFenceHandleTypeFlagBits`]
+//! - [`ExternalMemoryFeatureFlagBits`]
+//! - [`ExternalMemoryHandleTypeFlagBits`]
+//! - [`ExternalSemaphoreFeatureFlagBits`]
+//! - [`ExternalSemaphoreHandleTypeFlagBits`]
+//! - [`FenceImportFlagBits`]
+//! - [`MemoryAllocateFlagBits`]
+//! - [`PeerMemoryFeatureFlagBits`]
+//! - [`PointClippingBehavior`]
+//! - [`SamplerYcbcrModelConversion`]
+//! - [`SamplerYcbcrRange`]
+//! - [`SemaphoreImportFlagBits`]
+//! - [`SubgroupFeatureFlagBits`]
+//! - [`TessellationDomainOrigin`]
+//!
+//!### []()New Bitmasks
+//!
+//! - [`CommandPoolTrimFlags`]
+//! - [`DescriptorUpdateTemplateCreateFlags`]
+//! - [`ExternalFenceFeatureFlags`]
+//! - [`ExternalFenceHandleTypeFlags`]
+//! - [`ExternalMemoryFeatureFlags`]
+//! - [`ExternalMemoryHandleTypeFlags`]
+//! - [`ExternalSemaphoreFeatureFlags`]
+//! - [`ExternalSemaphoreHandleTypeFlags`]
+//! - [`FenceImportFlags`]
+//! - [`MemoryAllocateFlags`]
+//! - [`PeerMemoryFeatureFlags`]
+//! - [`SemaphoreImportFlags`]
+//! - [`SubgroupFeatureFlags`]
+//!
+//!### []()New Enum Constants
+//!
+//! - [`LUID_SIZE`]
+//! - [`MAX_DEVICE_GROUP_SIZE`]
+//! - [`QUEUE_FAMILY_EXTERNAL`]
+//! - Extending [`BufferCreateFlagBits`]:  - `VK_BUFFER_CREATE_PROTECTED_BIT`
+//! - Extending [`CommandPoolCreateFlagBits`]:  - `VK_COMMAND_POOL_CREATE_PROTECTED_BIT`
+//! - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT`  -
+//!   `VK_DEPENDENCY_VIEW_LOCAL_BIT`
+//! - Extending [`DeviceQueueCreateFlagBits`]:  - `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`
+//! - Extending [`Format`]:  - `VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16`  -
+//!   `VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16`  - `VK_FORMAT_B16G16R16G16_422_UNORM`  -
+//!   `VK_FORMAT_B8G8R8G8_422_UNORM`  - `VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16`  -
+//!   `VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16`  -
+//!   `VK_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16`  -
+//!   `VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16`  - `VK_FORMAT_G16B16G16R16_422_UNORM`
+//!   - `VK_FORMAT_G16_B16R16_2PLANE_420_UNORM`  - `VK_FORMAT_G16_B16R16_2PLANE_422_UNORM`  -
+//!   `VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM`  - `VK_FORMAT_G16_B16_R16_3PLANE_422_UNORM`  -
+//!   `VK_FORMAT_G16_B16_R16_3PLANE_444_UNORM`  - `VK_FORMAT_G8B8G8R8_422_UNORM`  -
+//!   `VK_FORMAT_G8_B8R8_2PLANE_420_UNORM`  - `VK_FORMAT_G8_B8R8_2PLANE_422_UNORM`  -
+//!   `VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM`  - `VK_FORMAT_G8_B8_R8_3PLANE_422_UNORM`  -
+//!   `VK_FORMAT_G8_B8_R8_3PLANE_444_UNORM`  - `VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16`  -
+//!   `VK_FORMAT_R10X6G10X6_UNORM_2PACK16`  - `VK_FORMAT_R10X6_UNORM_PACK16`  -
+//!   `VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16`  - `VK_FORMAT_R12X4G12X4_UNORM_2PACK16`  -
+//!   `VK_FORMAT_R12X4_UNORM_PACK16`
+//! - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_COSITED_CHROMA_SAMPLES_BIT`  -
+//!   `VK_FORMAT_FEATURE_DISJOINT_BIT`  - `VK_FORMAT_FEATURE_MIDPOINT_CHROMA_SAMPLES_BIT`  -
+//!   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_BIT`  -
+//!   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_CHROMA_RECONSTRUCTION_EXPLICIT_FORCEABLE_BIT`
+//!   - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_LINEAR_FILTER_BIT`  -
+//!   `VK_FORMAT_FEATURE_SAMPLED_IMAGE_YCBCR_CONVERSION_SEPARATE_RECONSTRUCTION_FILTER_BIT`  -
+//!   `VK_FORMAT_FEATURE_TRANSFER_DST_BIT`  - `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT`
+//! - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_PLANE_0_BIT`  -
+//!   `VK_IMAGE_ASPECT_PLANE_1_BIT`  - `VK_IMAGE_ASPECT_PLANE_2_BIT`
+//! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT`  -
+//!   `VK_IMAGE_CREATE_ALIAS_BIT`  - `VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT`  -
+//!   `VK_IMAGE_CREATE_DISJOINT_BIT`  - `VK_IMAGE_CREATE_EXTENDED_USAGE_BIT`  -
+//!   `VK_IMAGE_CREATE_PROTECTED_BIT`  - `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT`
+//! - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`  -
+//!   `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
+//! - Extending [`MemoryHeapFlagBits`]:  - `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT`
+//! - Extending [`MemoryPropertyFlagBits`]:  - `VK_MEMORY_PROPERTY_PROTECTED_BIT`
+//! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE`  -
+//!   `VK_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION`
+//! - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_DISPATCH_BASE`  -
+//!   `VK_PIPELINE_CREATE_DISPATCH_BASE_BIT`  -
+//!   `VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT`
+//! - Extending [`QueueFlagBits`]:  - `VK_QUEUE_PROTECTED_BIT`
+//! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`  -
+//!   `VK_ERROR_OUT_OF_POOL_MEMORY`
+//! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO`  -
+//!   `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_INFO`  -
+//!   `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO`  -
+//!   `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_INFO`  - `VK_STRUCTURE_TYPE_BIND_IMAGE_PLANE_MEMORY_INFO`
+//!   - `VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT`  -
+//!   `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO`  -
+//!   `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO`  - `VK_STRUCTURE_TYPE_DEVICE_QUEUE_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_FENCE_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES`  - `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2`
+//!   - `VK_STRUCTURE_TYPE_IMAGE_FORMAT_PROPERTIES_2`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_MEMORY_REQUIREMENTS_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_PLANE_MEMORY_REQUIREMENTS_INFO`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_IMAGE_VIEW_USAGE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO`  -
+//!   `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS`  - `VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2`
+//!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_16BIT_STORAGE_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_FENCE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_FORMAT_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PROPERTIES_2`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_POINT_CLIPPING_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROTECTED_MEMORY_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_YCBCR_CONVERSION_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETERS_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DRAW_PARAMETER_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES`  -
+//!   `VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_DOMAIN_ORIGIN_STATE_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_PROTECTED_SUBMIT_INFO`  - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2`  -
+//!   `VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO`  -
+//!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_IMAGE_FORMAT_PROPERTIES`  -
+//!   `VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_INFO`  -
+//!   `VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2`  -
+//!   `VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2`
+//!# Related
+//! - [`crate::vulkan1_0`]
+//! - [`crate::vulkan1_2`]
+//! - [`crate::vulkan1_3`]
+//!
+//!# Notes and documentation
+//!For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+//!
+//!This documentation is generated from the Vulkan specification and documentation.
+//!The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+//! Commons Attribution 4.0 International*.
+//!This license explicitely allows adapting the source material as long as proper credit is given.
 #[cfg(feature = "VK_AMD_device_coherent_memory")]
-pub use crate::extensions::amd_device_coherent_memory::PhysicalDeviceCoherentMemoryFeaturesAMD;
+use crate::extensions::amd_device_coherent_memory::PhysicalDeviceCoherentMemoryFeaturesAMD;
 #[cfg(feature = "VK_AMD_shader_core_properties")]
-pub use crate::extensions::amd_shader_core_properties::PhysicalDeviceShaderCorePropertiesAMD;
+use crate::extensions::amd_shader_core_properties::PhysicalDeviceShaderCorePropertiesAMD;
 #[cfg(feature = "VK_AMD_shader_core_properties2")]
-pub use crate::extensions::amd_shader_core_properties2::PhysicalDeviceShaderCoreProperties2AMD;
+use crate::extensions::amd_shader_core_properties2::PhysicalDeviceShaderCoreProperties2AMD;
 #[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
-pub use crate::extensions::amd_texture_gather_bias_lod::TextureLodGatherFormatPropertiesAMD;
+use crate::extensions::amd_texture_gather_bias_lod::TextureLodGatherFormatPropertiesAMD;
 #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
-pub use crate::extensions::android_external_memory_android_hardware_buffer::AndroidHardwareBufferUsageANDROID;
+use crate::extensions::android_external_memory_android_hardware_buffer::AndroidHardwareBufferUsageANDROID;
 #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
-pub use crate::extensions::android_external_memory_android_hardware_buffer::ExternalFormatANDROID;
+use crate::extensions::android_external_memory_android_hardware_buffer::ExternalFormatANDROID;
 #[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
-pub use crate::extensions::arm_rasterization_order_attachment_access::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM;
+use crate::extensions::arm_rasterization_order_attachment_access::PhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM;
 #[cfg(feature = "VK_EXT_4444_formats")]
-pub use crate::extensions::ext_4444_formats::PhysicalDevice4444FormatsFeaturesEXT;
+use crate::extensions::ext_4444_formats::PhysicalDevice4444FormatsFeaturesEXT;
 #[cfg(feature = "VK_EXT_astc_decode_mode")]
-pub use crate::extensions::ext_astc_decode_mode::PhysicalDeviceAstcDecodeFeaturesEXT;
+use crate::extensions::ext_astc_decode_mode::PhysicalDeviceAstcDecodeFeaturesEXT;
 #[cfg(feature = "VK_EXT_blend_operation_advanced")]
-pub use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedFeaturesEXT;
+use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedFeaturesEXT;
 #[cfg(feature = "VK_EXT_blend_operation_advanced")]
-pub use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedPropertiesEXT;
+use crate::extensions::ext_blend_operation_advanced::PhysicalDeviceBlendOperationAdvancedPropertiesEXT;
 #[cfg(feature = "VK_EXT_border_color_swizzle")]
-pub use crate::extensions::ext_border_color_swizzle::PhysicalDeviceBorderColorSwizzleFeaturesEXT;
+use crate::extensions::ext_border_color_swizzle::PhysicalDeviceBorderColorSwizzleFeaturesEXT;
 #[cfg(feature = "VK_EXT_buffer_device_address")]
-pub use crate::extensions::ext_buffer_device_address::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
+use crate::extensions::ext_buffer_device_address::PhysicalDeviceBufferDeviceAddressFeaturesEXT;
 #[cfg(feature = "VK_EXT_color_write_enable")]
-pub use crate::extensions::ext_color_write_enable::PhysicalDeviceColorWriteEnableFeaturesEXT;
+use crate::extensions::ext_color_write_enable::PhysicalDeviceColorWriteEnableFeaturesEXT;
 #[cfg(feature = "VK_EXT_conditional_rendering")]
-pub use crate::extensions::ext_conditional_rendering::PhysicalDeviceConditionalRenderingFeaturesEXT;
+use crate::extensions::ext_conditional_rendering::PhysicalDeviceConditionalRenderingFeaturesEXT;
 #[cfg(feature = "VK_EXT_conservative_rasterization")]
-pub use crate::extensions::ext_conservative_rasterization::PhysicalDeviceConservativeRasterizationPropertiesEXT;
+use crate::extensions::ext_conservative_rasterization::PhysicalDeviceConservativeRasterizationPropertiesEXT;
 #[cfg(feature = "VK_EXT_custom_border_color")]
-pub use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorFeaturesEXT;
+use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorFeaturesEXT;
 #[cfg(feature = "VK_EXT_custom_border_color")]
-pub use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorPropertiesEXT;
+use crate::extensions::ext_custom_border_color::PhysicalDeviceCustomBorderColorPropertiesEXT;
 #[cfg(feature = "VK_EXT_depth_clip_control")]
-pub use crate::extensions::ext_depth_clip_control::PhysicalDeviceDepthClipControlFeaturesEXT;
+use crate::extensions::ext_depth_clip_control::PhysicalDeviceDepthClipControlFeaturesEXT;
 #[cfg(feature = "VK_EXT_depth_clip_enable")]
-pub use crate::extensions::ext_depth_clip_enable::PhysicalDeviceDepthClipEnableFeaturesEXT;
+use crate::extensions::ext_depth_clip_enable::PhysicalDeviceDepthClipEnableFeaturesEXT;
 #[cfg(feature = "VK_EXT_device_memory_report")]
-pub use crate::extensions::ext_device_memory_report::PhysicalDeviceDeviceMemoryReportFeaturesEXT;
+use crate::extensions::ext_device_memory_report::PhysicalDeviceDeviceMemoryReportFeaturesEXT;
 #[cfg(feature = "VK_EXT_discard_rectangles")]
-pub use crate::extensions::ext_discard_rectangles::PhysicalDeviceDiscardRectanglePropertiesEXT;
+use crate::extensions::ext_discard_rectangles::PhysicalDeviceDiscardRectanglePropertiesEXT;
 #[cfg(feature = "VK_EXT_extended_dynamic_state")]
-pub use crate::extensions::ext_extended_dynamic_state::PhysicalDeviceExtendedDynamicStateFeaturesEXT;
+use crate::extensions::ext_extended_dynamic_state::PhysicalDeviceExtendedDynamicStateFeaturesEXT;
 #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
-pub use crate::extensions::ext_extended_dynamic_state2::PhysicalDeviceExtendedDynamicState2FeaturesEXT;
+use crate::extensions::ext_extended_dynamic_state2::PhysicalDeviceExtendedDynamicState2FeaturesEXT;
 #[cfg(feature = "VK_EXT_external_memory_host")]
-pub use crate::extensions::ext_external_memory_host::PhysicalDeviceExternalMemoryHostPropertiesEXT;
+use crate::extensions::ext_external_memory_host::PhysicalDeviceExternalMemoryHostPropertiesEXT;
 #[cfg(feature = "VK_EXT_filter_cubic")]
-pub use crate::extensions::ext_filter_cubic::FilterCubicImageViewImageFormatPropertiesEXT;
+use crate::extensions::ext_filter_cubic::FilterCubicImageViewImageFormatPropertiesEXT;
 #[cfg(feature = "VK_EXT_filter_cubic")]
-pub use crate::extensions::ext_filter_cubic::PhysicalDeviceImageViewImageFormatInfoEXT;
+use crate::extensions::ext_filter_cubic::PhysicalDeviceImageViewImageFormatInfoEXT;
 #[cfg(feature = "VK_EXT_fragment_density_map")]
-pub use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapFeaturesEXT;
+use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapFeaturesEXT;
 #[cfg(feature = "VK_EXT_fragment_density_map")]
-pub use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapPropertiesEXT;
+use crate::extensions::ext_fragment_density_map::PhysicalDeviceFragmentDensityMapPropertiesEXT;
 #[cfg(feature = "VK_EXT_fragment_density_map2")]
-pub use crate::extensions::ext_fragment_density_map2::PhysicalDeviceFragmentDensityMap2FeaturesEXT;
+use crate::extensions::ext_fragment_density_map2::PhysicalDeviceFragmentDensityMap2FeaturesEXT;
 #[cfg(feature = "VK_EXT_fragment_density_map2")]
-pub use crate::extensions::ext_fragment_density_map2::PhysicalDeviceFragmentDensityMap2PropertiesEXT;
+use crate::extensions::ext_fragment_density_map2::PhysicalDeviceFragmentDensityMap2PropertiesEXT;
 #[cfg(feature = "VK_EXT_fragment_shader_interlock")]
-pub use crate::extensions::ext_fragment_shader_interlock::PhysicalDeviceFragmentShaderInterlockFeaturesEXT;
+use crate::extensions::ext_fragment_shader_interlock::PhysicalDeviceFragmentShaderInterlockFeaturesEXT;
 #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-pub use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesList2EXT;
+use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesList2EXT;
 #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-pub use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesListEXT;
+use crate::extensions::ext_image_drm_format_modifier::DrmFormatModifierPropertiesListEXT;
 #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
-pub use crate::extensions::ext_image_drm_format_modifier::PhysicalDeviceImageDrmFormatModifierInfoEXT;
+use crate::extensions::ext_image_drm_format_modifier::PhysicalDeviceImageDrmFormatModifierInfoEXT;
 #[cfg(feature = "VK_EXT_image_view_min_lod")]
-pub use crate::extensions::ext_image_view_min_lod::PhysicalDeviceImageViewMinLodFeaturesEXT;
+use crate::extensions::ext_image_view_min_lod::PhysicalDeviceImageViewMinLodFeaturesEXT;
 #[cfg(feature = "VK_EXT_index_type_uint8")]
-pub use crate::extensions::ext_index_type_uint8::PhysicalDeviceIndexTypeUint8FeaturesEXT;
+use crate::extensions::ext_index_type_uint8::PhysicalDeviceIndexTypeUint8FeaturesEXT;
 #[cfg(feature = "VK_EXT_line_rasterization")]
-pub use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationFeaturesEXT;
+use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationFeaturesEXT;
 #[cfg(feature = "VK_EXT_line_rasterization")]
-pub use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationPropertiesEXT;
+use crate::extensions::ext_line_rasterization::PhysicalDeviceLineRasterizationPropertiesEXT;
 #[cfg(feature = "VK_EXT_memory_budget")]
-pub use crate::extensions::ext_memory_budget::PhysicalDeviceMemoryBudgetPropertiesEXT;
+use crate::extensions::ext_memory_budget::PhysicalDeviceMemoryBudgetPropertiesEXT;
 #[cfg(feature = "VK_EXT_memory_priority")]
-pub use crate::extensions::ext_memory_priority::PhysicalDeviceMemoryPriorityFeaturesEXT;
+use crate::extensions::ext_memory_priority::PhysicalDeviceMemoryPriorityFeaturesEXT;
 #[cfg(feature = "VK_EXT_multi_draw")]
-pub use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawFeaturesEXT;
+use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawFeaturesEXT;
 #[cfg(feature = "VK_EXT_multi_draw")]
-pub use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawPropertiesEXT;
+use crate::extensions::ext_multi_draw::PhysicalDeviceMultiDrawPropertiesEXT;
 #[cfg(feature = "VK_EXT_pageable_device_local_memory")]
-pub use crate::extensions::ext_pageable_device_local_memory::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT;
+use crate::extensions::ext_pageable_device_local_memory::PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT;
 #[cfg(feature = "VK_EXT_pci_bus_info")]
-pub use crate::extensions::ext_pci_bus_info::PhysicalDevicePciBusInfoPropertiesEXT;
+use crate::extensions::ext_pci_bus_info::PhysicalDevicePciBusInfoPropertiesEXT;
 #[cfg(feature = "VK_EXT_physical_device_drm")]
-pub use crate::extensions::ext_physical_device_drm::PhysicalDeviceDrmPropertiesEXT;
+use crate::extensions::ext_physical_device_drm::PhysicalDeviceDrmPropertiesEXT;
 #[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
-pub use crate::extensions::ext_primitive_topology_list_restart::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT;
+use crate::extensions::ext_primitive_topology_list_restart::PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT;
 #[cfg(feature = "VK_EXT_provoking_vertex")]
-pub use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexFeaturesEXT;
+use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexFeaturesEXT;
 #[cfg(feature = "VK_EXT_provoking_vertex")]
-pub use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexPropertiesEXT;
+use crate::extensions::ext_provoking_vertex::PhysicalDeviceProvokingVertexPropertiesEXT;
 #[cfg(feature = "VK_EXT_rgba10x6_formats")]
-pub use crate::extensions::ext_rgba10x6_formats::PhysicalDeviceRgba10x6FormatsFeaturesEXT;
+use crate::extensions::ext_rgba10x6_formats::PhysicalDeviceRgba10x6FormatsFeaturesEXT;
 #[cfg(feature = "VK_EXT_robustness2")]
-pub use crate::extensions::ext_robustness2::PhysicalDeviceRobustness2FeaturesEXT;
+use crate::extensions::ext_robustness2::PhysicalDeviceRobustness2FeaturesEXT;
 #[cfg(feature = "VK_EXT_robustness2")]
-pub use crate::extensions::ext_robustness2::PhysicalDeviceRobustness2PropertiesEXT;
+use crate::extensions::ext_robustness2::PhysicalDeviceRobustness2PropertiesEXT;
 #[cfg(feature = "VK_EXT_sample_locations")]
-pub use crate::extensions::ext_sample_locations::PhysicalDeviceSampleLocationsPropertiesEXT;
+use crate::extensions::ext_sample_locations::PhysicalDeviceSampleLocationsPropertiesEXT;
 #[cfg(feature = "VK_EXT_shader_atomic_float")]
-pub use crate::extensions::ext_shader_atomic_float::PhysicalDeviceShaderAtomicFloatFeaturesEXT;
+use crate::extensions::ext_shader_atomic_float::PhysicalDeviceShaderAtomicFloatFeaturesEXT;
 #[cfg(feature = "VK_EXT_shader_atomic_float2")]
-pub use crate::extensions::ext_shader_atomic_float2::PhysicalDeviceShaderAtomicFloat2FeaturesEXT;
+use crate::extensions::ext_shader_atomic_float2::PhysicalDeviceShaderAtomicFloat2FeaturesEXT;
 #[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
-pub use crate::extensions::ext_shader_image_atomic_int64::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT;
+use crate::extensions::ext_shader_image_atomic_int64::PhysicalDeviceShaderImageAtomicInt64FeaturesEXT;
 #[cfg(feature = "VK_EXT_texel_buffer_alignment")]
-pub use crate::extensions::ext_texel_buffer_alignment::PhysicalDeviceTexelBufferAlignmentFeaturesEXT;
+use crate::extensions::ext_texel_buffer_alignment::PhysicalDeviceTexelBufferAlignmentFeaturesEXT;
 #[cfg(feature = "VK_EXT_transform_feedback")]
-pub use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackFeaturesEXT;
+use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackFeaturesEXT;
 #[cfg(feature = "VK_EXT_transform_feedback")]
-pub use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackPropertiesEXT;
+use crate::extensions::ext_transform_feedback::PhysicalDeviceTransformFeedbackPropertiesEXT;
 #[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
-pub use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorFeaturesEXT;
+use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorFeaturesEXT;
 #[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
-pub use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorPropertiesEXT;
+use crate::extensions::ext_vertex_attribute_divisor::PhysicalDeviceVertexAttributeDivisorPropertiesEXT;
 #[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
-pub use crate::extensions::ext_vertex_input_dynamic_state::PhysicalDeviceVertexInputDynamicStateFeaturesEXT;
+use crate::extensions::ext_vertex_input_dynamic_state::PhysicalDeviceVertexInputDynamicStateFeaturesEXT;
 #[cfg(feature = "VK_EXT_video_decode_h264")]
-pub use crate::extensions::ext_video_decode_h264::VideoDecodeH264ProfileEXT;
+use crate::extensions::ext_video_decode_h264::VideoDecodeH264ProfileEXT;
 #[cfg(feature = "VK_EXT_video_decode_h265")]
-pub use crate::extensions::ext_video_decode_h265::VideoDecodeH265ProfileEXT;
+use crate::extensions::ext_video_decode_h265::VideoDecodeH265ProfileEXT;
 #[cfg(feature = "VK_EXT_video_encode_h264")]
-pub use crate::extensions::ext_video_encode_h264::VideoEncodeH264ProfileEXT;
+use crate::extensions::ext_video_encode_h264::VideoEncodeH264ProfileEXT;
 #[cfg(feature = "VK_EXT_video_encode_h265")]
-pub use crate::extensions::ext_video_encode_h265::VideoEncodeH265ProfileEXT;
+use crate::extensions::ext_video_encode_h265::VideoEncodeH265ProfileEXT;
 #[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
-pub use crate::extensions::ext_ycbcr_2plane_444_formats::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT;
+use crate::extensions::ext_ycbcr_2plane_444_formats::PhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT;
 #[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
-pub use crate::extensions::ext_ycbcr_image_arrays::PhysicalDeviceYcbcrImageArraysFeaturesEXT;
+use crate::extensions::ext_ycbcr_image_arrays::PhysicalDeviceYcbcrImageArraysFeaturesEXT;
 #[cfg(feature = "VK_HUAWEI_invocation_mask")]
-pub use crate::extensions::huawei_invocation_mask::PhysicalDeviceInvocationMaskFeaturesHUAWEI;
+use crate::extensions::huawei_invocation_mask::PhysicalDeviceInvocationMaskFeaturesHUAWEI;
 #[cfg(feature = "VK_HUAWEI_subpass_shading")]
-pub use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingFeaturesHUAWEI;
+use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingFeaturesHUAWEI;
 #[cfg(feature = "VK_HUAWEI_subpass_shading")]
-pub use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingPropertiesHUAWEI;
+use crate::extensions::huawei_subpass_shading::PhysicalDeviceSubpassShadingPropertiesHUAWEI;
 #[cfg(feature = "VK_INTEL_shader_integer_functions2")]
-pub use crate::extensions::intel_shader_integer_functions2::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL;
+use crate::extensions::intel_shader_integer_functions2::PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-pub use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructureFeaturesKHR;
+use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructureFeaturesKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-pub use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructurePropertiesKHR;
+use crate::extensions::khr_acceleration_structure::PhysicalDeviceAccelerationStructurePropertiesKHR;
 #[cfg(feature = "VK_KHR_device_group")]
-pub use crate::extensions::khr_device_group::BindImageMemorySwapchainInfoKHR;
+use crate::extensions::khr_device_group::BindImageMemorySwapchainInfoKHR;
 #[cfg(feature = "VK_KHR_fragment_shading_rate")]
-pub use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRateFeaturesKHR;
+use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRateFeaturesKHR;
 #[cfg(feature = "VK_KHR_fragment_shading_rate")]
-pub use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRatePropertiesKHR;
+use crate::extensions::khr_fragment_shading_rate::PhysicalDeviceFragmentShadingRatePropertiesKHR;
 #[cfg(feature = "VK_KHR_global_priority")]
-pub use crate::extensions::khr_global_priority::PhysicalDeviceGlobalPriorityQueryFeaturesKHR;
+use crate::extensions::khr_global_priority::PhysicalDeviceGlobalPriorityQueryFeaturesKHR;
 #[cfg(feature = "VK_KHR_global_priority")]
-pub use crate::extensions::khr_global_priority::QueueFamilyGlobalPriorityPropertiesKHR;
+use crate::extensions::khr_global_priority::QueueFamilyGlobalPriorityPropertiesKHR;
 #[cfg(feature = "VK_KHR_performance_query")]
-pub use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryFeaturesKHR;
+use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryFeaturesKHR;
 #[cfg(feature = "VK_KHR_performance_query")]
-pub use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryPropertiesKHR;
+use crate::extensions::khr_performance_query::PhysicalDevicePerformanceQueryPropertiesKHR;
 #[cfg(feature = "VK_KHR_pipeline_executable_properties")]
-pub use crate::extensions::khr_pipeline_executable_properties::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR;
+use crate::extensions::khr_pipeline_executable_properties::PhysicalDevicePipelineExecutablePropertiesFeaturesKHR;
 #[cfg(feature = "VK_KHR_portability_subset")]
-pub use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetFeaturesKHR;
+use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetFeaturesKHR;
 #[cfg(feature = "VK_KHR_portability_subset")]
-pub use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetPropertiesKHR;
+use crate::extensions::khr_portability_subset::PhysicalDevicePortabilitySubsetPropertiesKHR;
 #[cfg(feature = "VK_KHR_present_id")]
-pub use crate::extensions::khr_present_id::PhysicalDevicePresentIdFeaturesKHR;
+use crate::extensions::khr_present_id::PhysicalDevicePresentIdFeaturesKHR;
 #[cfg(feature = "VK_KHR_present_wait")]
-pub use crate::extensions::khr_present_wait::PhysicalDevicePresentWaitFeaturesKHR;
+use crate::extensions::khr_present_wait::PhysicalDevicePresentWaitFeaturesKHR;
 #[cfg(feature = "VK_KHR_push_descriptor")]
-pub use crate::extensions::khr_push_descriptor::PhysicalDevicePushDescriptorPropertiesKHR;
+use crate::extensions::khr_push_descriptor::PhysicalDevicePushDescriptorPropertiesKHR;
 #[cfg(feature = "VK_KHR_ray_query")]
-pub use crate::extensions::khr_ray_query::PhysicalDeviceRayQueryFeaturesKHR;
+use crate::extensions::khr_ray_query::PhysicalDeviceRayQueryFeaturesKHR;
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-pub use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelineFeaturesKHR;
+use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelineFeaturesKHR;
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-pub use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelinePropertiesKHR;
+use crate::extensions::khr_ray_tracing_pipeline::PhysicalDeviceRayTracingPipelinePropertiesKHR;
 #[cfg(feature = "VK_KHR_shader_clock")]
-pub use crate::extensions::khr_shader_clock::PhysicalDeviceShaderClockFeaturesKHR;
+use crate::extensions::khr_shader_clock::PhysicalDeviceShaderClockFeaturesKHR;
 #[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
-pub use crate::extensions::khr_shader_subgroup_uniform_control_flow::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR;
+use crate::extensions::khr_shader_subgroup_uniform_control_flow::PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR;
 #[cfg(feature = "VK_KHR_synchronization2")]
-pub use crate::extensions::khr_synchronization2::QueueFamilyCheckpointProperties2NV;
+use crate::extensions::khr_synchronization2::QueueFamilyCheckpointProperties2NV;
 #[cfg(feature = "VK_KHR_video_queue")]
-pub use crate::extensions::khr_video_queue::QueueFamilyQueryResultStatusProperties2KHR;
+use crate::extensions::khr_video_queue::QueueFamilyQueryResultStatusProperties2KHR;
 #[cfg(feature = "VK_KHR_video_queue")]
-pub use crate::extensions::khr_video_queue::VideoProfileKHR;
+use crate::extensions::khr_video_queue::VideoProfileKHR;
 #[cfg(feature = "VK_KHR_video_queue")]
-pub use crate::extensions::khr_video_queue::VideoProfilesKHR;
+use crate::extensions::khr_video_queue::VideoProfilesKHR;
 #[cfg(feature = "VK_KHR_video_queue")]
-pub use crate::extensions::khr_video_queue::VideoQueueFamilyProperties2KHR;
+use crate::extensions::khr_video_queue::VideoQueueFamilyProperties2KHR;
 #[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
-pub use crate::extensions::khr_workgroup_memory_explicit_layout::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR;
+use crate::extensions::khr_workgroup_memory_explicit_layout::PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR;
 #[cfg(feature = "VK_NV_compute_shader_derivatives")]
-pub use crate::extensions::nv_compute_shader_derivatives::PhysicalDeviceComputeShaderDerivativesFeaturesNV;
+use crate::extensions::nv_compute_shader_derivatives::PhysicalDeviceComputeShaderDerivativesFeaturesNV;
 #[cfg(feature = "VK_NV_cooperative_matrix")]
-pub use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixFeaturesNV;
+use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixFeaturesNV;
 #[cfg(feature = "VK_NV_cooperative_matrix")]
-pub use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixPropertiesNV;
+use crate::extensions::nv_cooperative_matrix::PhysicalDeviceCooperativeMatrixPropertiesNV;
 #[cfg(feature = "VK_NV_corner_sampled_image")]
-pub use crate::extensions::nv_corner_sampled_image::PhysicalDeviceCornerSampledImageFeaturesNV;
+use crate::extensions::nv_corner_sampled_image::PhysicalDeviceCornerSampledImageFeaturesNV;
 #[cfg(feature = "VK_NV_coverage_reduction_mode")]
-pub use crate::extensions::nv_coverage_reduction_mode::PhysicalDeviceCoverageReductionModeFeaturesNV;
+use crate::extensions::nv_coverage_reduction_mode::PhysicalDeviceCoverageReductionModeFeaturesNV;
 #[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
-pub use crate::extensions::nv_dedicated_allocation_image_aliasing::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV;
+use crate::extensions::nv_dedicated_allocation_image_aliasing::PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV;
 #[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
-pub use crate::extensions::nv_device_diagnostic_checkpoints::QueueFamilyCheckpointPropertiesNV;
+use crate::extensions::nv_device_diagnostic_checkpoints::QueueFamilyCheckpointPropertiesNV;
 #[cfg(feature = "VK_NV_device_diagnostics_config")]
-pub use crate::extensions::nv_device_diagnostics_config::PhysicalDeviceDiagnosticsConfigFeaturesNV;
+use crate::extensions::nv_device_diagnostics_config::PhysicalDeviceDiagnosticsConfigFeaturesNV;
 #[cfg(feature = "VK_NV_device_generated_commands")]
-pub use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV;
+use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsFeaturesNV;
 #[cfg(feature = "VK_NV_device_generated_commands")]
-pub use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV;
+use crate::extensions::nv_device_generated_commands::PhysicalDeviceDeviceGeneratedCommandsPropertiesNV;
 #[cfg(feature = "VK_NV_external_memory_rdma")]
-pub use crate::extensions::nv_external_memory_rdma::PhysicalDeviceExternalMemoryRdmaFeaturesNV;
+use crate::extensions::nv_external_memory_rdma::PhysicalDeviceExternalMemoryRdmaFeaturesNV;
 #[cfg(feature = "VK_NV_fragment_shader_barycentric")]
-pub use crate::extensions::nv_fragment_shader_barycentric::PhysicalDeviceFragmentShaderBarycentricFeaturesNV;
+use crate::extensions::nv_fragment_shader_barycentric::PhysicalDeviceFragmentShaderBarycentricFeaturesNV;
 #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
-pub use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV;
+use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsFeaturesNV;
 #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
-pub use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV;
+use crate::extensions::nv_fragment_shading_rate_enums::PhysicalDeviceFragmentShadingRateEnumsPropertiesNV;
 #[cfg(feature = "VK_NV_inherited_viewport_scissor")]
-pub use crate::extensions::nv_inherited_viewport_scissor::PhysicalDeviceInheritedViewportScissorFeaturesNV;
+use crate::extensions::nv_inherited_viewport_scissor::PhysicalDeviceInheritedViewportScissorFeaturesNV;
 #[cfg(feature = "VK_NV_linear_color_attachment")]
-pub use crate::extensions::nv_linear_color_attachment::PhysicalDeviceLinearColorAttachmentFeaturesNV;
+use crate::extensions::nv_linear_color_attachment::PhysicalDeviceLinearColorAttachmentFeaturesNV;
 #[cfg(feature = "VK_NV_mesh_shader")]
-pub use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderFeaturesNV;
+use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderFeaturesNV;
 #[cfg(feature = "VK_NV_mesh_shader")]
-pub use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderPropertiesNV;
+use crate::extensions::nv_mesh_shader::PhysicalDeviceMeshShaderPropertiesNV;
 #[cfg(feature = "VK_NV_ray_tracing")]
-pub use crate::extensions::nv_ray_tracing::PhysicalDeviceRayTracingPropertiesNV;
+use crate::extensions::nv_ray_tracing::PhysicalDeviceRayTracingPropertiesNV;
 #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
-pub use crate::extensions::nv_ray_tracing_motion_blur::PhysicalDeviceRayTracingMotionBlurFeaturesNV;
+use crate::extensions::nv_ray_tracing_motion_blur::PhysicalDeviceRayTracingMotionBlurFeaturesNV;
 #[cfg(feature = "VK_NV_representative_fragment_test")]
-pub use crate::extensions::nv_representative_fragment_test::PhysicalDeviceRepresentativeFragmentTestFeaturesNV;
+use crate::extensions::nv_representative_fragment_test::PhysicalDeviceRepresentativeFragmentTestFeaturesNV;
 #[cfg(feature = "VK_NV_scissor_exclusive")]
-pub use crate::extensions::nv_scissor_exclusive::PhysicalDeviceExclusiveScissorFeaturesNV;
+use crate::extensions::nv_scissor_exclusive::PhysicalDeviceExclusiveScissorFeaturesNV;
 #[cfg(feature = "VK_NV_shader_image_footprint")]
-pub use crate::extensions::nv_shader_image_footprint::PhysicalDeviceShaderImageFootprintFeaturesNV;
+use crate::extensions::nv_shader_image_footprint::PhysicalDeviceShaderImageFootprintFeaturesNV;
 #[cfg(feature = "VK_NV_shader_sm_builtins")]
-pub use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsFeaturesNV;
+use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsFeaturesNV;
 #[cfg(feature = "VK_NV_shader_sm_builtins")]
-pub use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsPropertiesNV;
+use crate::extensions::nv_shader_sm_builtins::PhysicalDeviceShaderSmBuiltinsPropertiesNV;
 #[cfg(feature = "VK_NV_shading_rate_image")]
-pub use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImageFeaturesNV;
+use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImageFeaturesNV;
 #[cfg(feature = "VK_NV_shading_rate_image")]
-pub use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImagePropertiesNV;
+use crate::extensions::nv_shading_rate_image::PhysicalDeviceShadingRateImagePropertiesNV;
 #[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
-pub use crate::extensions::nvx_multiview_per_view_attributes::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX;
+use crate::extensions::nvx_multiview_per_view_attributes::PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX;
 #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
-pub use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM;
+use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM;
 #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
-pub use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM;
+use crate::extensions::qcom_fragment_density_map_offset::PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM;
 #[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
-pub use crate::extensions::valve_descriptor_set_host_mapping::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
+use crate::extensions::valve_descriptor_set_host_mapping::PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
 #[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
-pub use crate::extensions::valve_mutable_descriptor_type::PhysicalDeviceMutableDescriptorTypeFeaturesVALVE;
+use crate::extensions::valve_mutable_descriptor_type::PhysicalDeviceMutableDescriptorTypeFeaturesVALVE;
 use crate::{
     core::{LUID_SIZE, MAX_DEVICE_GROUP_SIZE, UUID_SIZE},
     entry::Entry,

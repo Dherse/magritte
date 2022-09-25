@@ -5,20 +5,20 @@
 //!For example, placing a vector of three floats at an offset of
 //!16×N +  4.See [Offset and Stride Assignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-layout) for
 //!details.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - John Kessenich [johnkslang](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_relaxed_block_layout]
 //!   @johnkslang%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_relaxed_block_layout extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_RELAXED_BLOCK_LAYOUT_EXTENSION_NAME`]
 //! - [`KHR_RELAXED_BLOCK_LAYOUT_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-03-26 (JohnK)
 //!# Other info
 //! * 2017-03-26

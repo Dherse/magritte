@@ -2,18 +2,18 @@
 //!# Description
 //!This extension allows applications to compress a raw video sequence by using
 //!the H.264/AVC video compression standard.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!6
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_encode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Ahmed Abdelkhalek [aabdelkh](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_video_encode_h264]
 //!   @aabdelkh%0A<<Here describe the issue or question you have about the VK_EXT_video_encode_h264
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`VideoEncodeH264DpbSlotInfoEXT`]
 //! - [`VideoEncodeH264FrameSizeEXT`]
 //! - [`VideoEncodeH264NaluSliceEXT`]
@@ -32,17 +32,17 @@
 //!   [`VideoEncodeH264SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoEncodeH264SessionParametersAddInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`VideoEncodeH264CapabilityFlagBitsEXT`]
 //! - [`VideoEncodeH264InputModeFlagBitsEXT`]
 //! - [`VideoEncodeH264OutputModeFlagBitsEXT`]
 //! - [`VideoEncodeH264RateControlStructureFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoEncodeH264CapabilityFlagsEXT`]
 //! - [`VideoEncodeH264InputModeFlagsEXT`]
 //! - [`VideoEncodeH264OutputModeFlagsEXT`]
 //! - [`VideoEncodeH264RateControlStructureFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_VIDEO_ENCODE_H264_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_ENCODE_H264_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_CAPABILITIES_EXT`  -
@@ -58,7 +58,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H264_VCL_FRAME_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
 //!   `VK_VIDEO_CODEC_OPERATION_ENCODE_H264_BIT_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 0, 2018-7-23 (Ahmed Abdelkhalek)  - Initial draft
 //! - Revision 0.5, 2020-02-13 (Tony Zlatinski)  - General Spec cleanup  - Added DPB structures  -
 //!   Change the VCL frame encode structure  - Added a common Non-VCL Picture Paramarameters

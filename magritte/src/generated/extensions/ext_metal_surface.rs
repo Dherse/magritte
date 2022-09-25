@@ -4,26 +4,28 @@
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
 //!the `[`khr_surface`]` extension) from [`CaMetalLayer`], which is
 //!the native rendering surface of Apple’s Metal framework.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Dzmitry Malyshau [kvark](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_metal_surface]
 //!   @kvark%0A<<Here describe the issue or question you have about the VK_EXT_metal_surface
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New base types")]
+//! - [`CaMetalLayer`]
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_metal_surface_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`MetalSurfaceCreateInfoEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`MetalSurfaceCreateFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_METAL_SURFACE_EXTENSION_NAME`]
 //! - [`EXT_METAL_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-10-01 (Dzmitry Malyshau)  - Initial version
 //!# Other info
 //! * 2018-10-01

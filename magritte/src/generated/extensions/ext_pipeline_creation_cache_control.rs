@@ -6,22 +6,22 @@
 //!The goal is to provide information about potentially expensive hazards
 //!within the client driver during pipeline creation to the application before
 //!carrying them out rather than after.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Gregory Grebe [grgrebe_amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pipeline_creation_cache_control]
 //!   @grgrebe_amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_pipeline_creation_cache_control extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePipelineCreationCacheControlFeaturesEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`PipelineCacheCreateFlagBits`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME`]
 //! - [`EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION`]
 //! - Extending [`PipelineCacheCreateFlagBits`]:  -
@@ -32,7 +32,7 @@
 //!   `VK_PIPELINE_COMPILE_REQUIRED_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-11-01 (Gregory Grebe)  - Initial revision
 //! - Revision 2, 2020-02-24 (Gregory Grebe)  - Initial public revision
 //! - Revision 3, 2020-03-23 (Tobias Hector)  - Changed `VK_PIPELINE_COMPILE_REQUIRED_EXT` to a

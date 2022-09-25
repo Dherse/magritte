@@ -5,27 +5,27 @@
 //!the `[`khr_surface`]` extension) that refers to a QNX Screen
 //!`window`, as well as a query to determine support for rendering to a QNX
 //!Screen compositor.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Mike Gorchak [mgorchak-blackberry](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QNX_screen_surface]
 //!   @mgorchak-blackberry%0A<<Here describe the issue or question you have about the
 //!   VK_QNX_screen_surface extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`create_screen_surface_qnx`]
 //! - [`get_physical_device_screen_presentation_support_qnx`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`ScreenSurfaceCreateInfoQNX`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`ScreenSurfaceCreateFlagsQNX`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`QNX_SCREEN_SURFACE_EXTENSION_NAME`]
 //! - [`QNX_SCREEN_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SCREEN_SURFACE_CREATE_INFO_QNX`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-01-11 (Mike Gorchak)  - Initial draft.
 //!# Other info
 //! * 2021-01-11

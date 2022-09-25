@@ -5,26 +5,26 @@
 //!Bresenham-style line rasterization is supported, smooth rectangular lines
 //!(coverage to alpha) are supported, and stippled lines are supported for all
 //!three line rasterization modes.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_line_rasterization]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_line_rasterization extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_line_stipple_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceLineRasterizationFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceLineRasterizationPropertiesEXT`]
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationLineStateCreateInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`LineRasterizationModeEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_LINE_RASTERIZATION_EXTENSION_NAME`]
 //! - [`EXT_LINE_RASTERIZATION_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_LINE_STIPPLE_EXT`
@@ -32,7 +32,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!```c
 //!(1) Do we need to support Bresenham-style and smooth lines with more than
 //!one rasterization sample? i.e. the equivalent of glDisable(GL_MULTISAMPLE)
@@ -45,7 +45,7 @@
 //!restrictions from OpenGL, such as not supporting per-sample shading, alpha
 //!to coverage, or alpha to one.
 //!```
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-05-09 (Jeff Bolz)  - Initial draft
 //!# Other info
 //! * 2019-05-09

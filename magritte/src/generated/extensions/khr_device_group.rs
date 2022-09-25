@@ -7,18 +7,18 @@
 //!one subdevice to a resource on another subdevice, record command buffers
 //!where some work executes on an arbitrary subset of the subdevices, and
 //!potentially present a swapchain image from one or more subdevices.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!4
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_device_group_creation`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_device_group]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_device_group
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_dispatch_base_khr`]
 //! - [`cmd_set_device_mask_khr`]
 //! - [`get_device_group_peer_memory_features_khr`]
@@ -28,7 +28,7 @@
 //! - [`get_physical_device_present_rectangles_khr`]
 //!If [`khr_swapchain`] is supported:
 //! - [`acquire_next_image2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`BindSparseInfo`]:  - [`DeviceGroupBindSparseInfoKHR`]
 //! - Extending [`CommandBufferBeginInfo`]:  - [`DeviceGroupCommandBufferBeginInfoKHR`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryAllocateFlagsInfoKHR`]
@@ -45,17 +45,17 @@
 //! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`DeviceGroupPresentInfoKHR`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`DeviceGroupSwapchainCreateInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`MemoryAllocateFlagBitsKHR`]
 //! - [`PeerMemoryFeatureFlagBitsKHR`]
 //!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`MemoryAllocateFlagsKHR`]
 //! - [`PeerMemoryFeatureFlagsKHR`]
 //!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
 //! - [`KHR_DEVICE_GROUP_SPEC_VERSION`]
 //! - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR`
@@ -84,7 +84,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:  -
 //!   `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-10-19 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2017-05-19 (Tobias Hector)  - Removed extended memory bind functions to
 //!   VK_KHR_bind_memory2, added dependency on that extension, and device-group-specific structs for

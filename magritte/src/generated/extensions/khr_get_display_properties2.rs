@@ -5,27 +5,27 @@
 //!without introducing any further entry points.
 //!This extension can be considered the `[`khr_display`]` equivalent of
 //!the `[`khr_get_physical_device_properties2`]` extension.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_display`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_display_properties2]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_display_properties2 extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_display_mode_properties2_khr`]
 //! - [`get_display_plane_capabilities2_khr`]
 //! - [`get_physical_device_display_plane_properties2_khr`]
 //! - [`get_physical_device_display_properties2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`DisplayModeProperties2KHR`]
 //! - [`DisplayPlaneCapabilities2KHR`]
 //! - [`DisplayPlaneInfo2KHR`]
 //! - [`DisplayPlaneProperties2KHR`]
 //! - [`DisplayProperties2KHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME`]
 //! - [`KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`  -
@@ -33,7 +33,7 @@
 //!   `VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What should this extension be named? **RESOLVED** : [`VK_KHR_get_display_properties2`].
 //!Other alternatives:
 //! - `VK_KHR_display2`
@@ -48,7 +48,7 @@
 //!3) Should additional display query functions be extended? **RESOLVED** :
 //! - [`get_display_plane_supported_displays_khr`]: No. Extensions should instead extend
 //!   [`get_display_plane_capabilities_khr`]().
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-21 (James Jones)  - Initial draft.
 //!# Other info
 //! * 2017-02-21

@@ -14,19 +14,19 @@
 //! - An indirection table to link shader groups with acceleration structure items
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - `SPV_NV_ray_tracing`
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!3
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_get_memory_requirements2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_ray_tracing]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the VK_NV_ray_tracing
 //!   extension>>)
-//!# New handles
+# ! [doc = concat ! ("# " , "New object types")]
 //! - [`AccelerationStructureNV`]
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`bind_acceleration_structure_memory_nv`]
 //! - [`cmd_build_acceleration_structure_nv`]
 //! - [`cmd_copy_acceleration_structure_nv`]
@@ -39,7 +39,7 @@
 //! - [`get_acceleration_structure_handle_nv`]
 //! - [`get_acceleration_structure_memory_requirements_nv`]
 //! - [`get_ray_tracing_shader_group_handles_nv`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`AabbPositionsNV`]
 //! - [`AccelerationStructureCreateInfoNV`]
 //! - [`AccelerationStructureInfoNV`]
@@ -56,7 +56,7 @@
 //! - [`TransformMatrixNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceRayTracingPropertiesNV`]
 //! - Extending [`WriteDescriptorSet`]:  - [`WriteDescriptorSetAccelerationStructureNV`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`AccelerationStructureMemoryRequirementsTypeNV`]
 //! - [`AccelerationStructureTypeNV`]
 //! - [`BuildAccelerationStructureFlagBitsNV`]
@@ -65,11 +65,11 @@
 //! - [`GeometryInstanceFlagBitsNV`]
 //! - [`GeometryTypeNV`]
 //! - [`RayTracingShaderGroupTypeNV`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`BuildAccelerationStructureFlagsNV`]
 //! - [`GeometryFlagsNV`]
 //! - [`GeometryInstanceFlagsNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_RAY_TRACING_EXTENSION_NAME`]
 //! - [`NV_RAY_TRACING_SPEC_VERSION`]
 //! - [`SHADER_UNUSED_NV`]
@@ -124,9 +124,9 @@
 //!   `VK_STRUCTURE_TYPE_RAY_TRACING_PIPELINE_CREATE_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_RAY_TRACING_SHADER_GROUP_CREATE_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Are there issues? **RESOLVED** : Yes.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-09-11 (Robert Stepinski, Nuno Subtil, Eric Werness)  - Internal revisions
 //! - Revision 2, 2018-10-19 (Eric Werness)  - rename to VK_NV_ray_tracing, add support for
 //!   callables.  - too many updates to list

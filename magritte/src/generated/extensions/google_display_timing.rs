@@ -17,28 +17,28 @@
 //!This allows the application to avoid stuttering, so the animation looks
 //!smooth to the user.This extension treats variable-refresh-rate (VRR) displays as if they are
 //!fixed-refresh-rate (FRR) displays.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_display_timing]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
 //!   VK_GOOGLE_display_timing extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_past_presentation_timing_google`]
 //! - [`get_refresh_cycle_duration_google`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PastPresentationTimingGOOGLE`]
 //! - [`PresentTimeGOOGLE`]
 //! - [`RefreshCycleDurationGOOGLE`]
 //! - Extending [`PresentInfoKHR`]:  - [`PresentTimesInfoGOOGLE`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`GOOGLE_DISPLAY_TIMING_EXTENSION_NAME`]
 //! - [`GOOGLE_DISPLAY_TIMING_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-02-14 (Ian Elliott)  - Internal revisions
 //!# Other info
 //! * 2017-02-14

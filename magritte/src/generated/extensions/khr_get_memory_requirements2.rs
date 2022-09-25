@@ -11,27 +11,27 @@
 //!constructing the chain and letting the implementation fill them in.
 //!A new command is added for each `vkGet*MemoryRequrements` command in
 //!core Vulkan 1.0.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_memory_requirements2]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_memory_requirements2 extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_buffer_memory_requirements2_khr`]
 //! - [`get_image_memory_requirements2_khr`]
 //! - [`get_image_sparse_memory_requirements2_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`BufferMemoryRequirementsInfo2KHR`]
 //! - [`ImageMemoryRequirementsInfo2KHR`]
 //! - [`ImageSparseMemoryRequirementsInfo2KHR`]
 //! - [`MemoryRequirements2KHR`]
 //! - [`SparseImageMemoryRequirements2KHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME`]
 //! - [`KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR`  -
@@ -39,7 +39,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-03-23 (Jason Ekstrand)  - Internal revisions
 //!# Other info
 //! * 2017-09-05

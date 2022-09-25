@@ -28,22 +28,22 @@
 //!required to complete the operation have been exhausted (either by the same
 //!process or a different process).
 //!In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_global_priority]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_global_priority
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`DeviceQueueCreateInfo`]:  - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyGlobalPriorityPropertiesKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`QueueGlobalPriorityKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_GLOBAL_PRIORITY_EXTENSION_NAME`]
 //! - [`KHR_GLOBAL_PRIORITY_SPEC_VERSION`]
 //! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
@@ -52,7 +52,7 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Can we additionally query whether a caller is permitted to acquire a
 //!specific global queue priority in this extension? **RESOLVED** : No.
 //!Whether a caller has enough privilege goes with the OS, and the Vulkan
@@ -66,7 +66,7 @@
 //!Queue creation can fail because of runtime constraints like insufficient
 //!privilege or lack of resource, and the failure is not necessarily tied to
 //!that particular queue configuration requested.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-10-22 (Tobias Hector)  - Initial draft
 //!# Other info
 //! * 2021-10-22

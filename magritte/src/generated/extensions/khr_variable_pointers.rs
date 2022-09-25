@@ -9,28 +9,28 @@
 //!The first, `VariablePointersStorageBuffer`,  **must**  be supported by all
 //!implementations of this extension.
 //!The second, `VariablePointers`, is optional.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_storage_buffer_storage_class`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_variable_pointers]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_variable_pointers
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceVariablePointerFeaturesKHR`]  - [`PhysicalDeviceVariablePointersFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_VARIABLE_POINTERS_EXTENSION_NAME`]
 //! - [`KHR_VARIABLE_POINTERS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) Do we need an optional property for the SPIR-V
 //!`VariablePointersStorageBuffer` capability or should it be mandatory when
 //!this extension is advertised? **RESOLVED** : Add it as a distinct feature, but make support
@@ -45,7 +45,7 @@
 //!supported in all stages.3) Should the capabilities be features or limits? **RESOLVED** :
 //! Features, primarily for consistency with other similar
 //!extensions.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-03-14 (Jesse Hall and John Kessenich)  - Internal revisions
 //!# Other info
 //! * 2017-09-05

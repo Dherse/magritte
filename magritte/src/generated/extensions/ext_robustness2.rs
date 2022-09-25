@@ -13,24 +13,24 @@
 //![`crate::Handle::null`] **can**  be used instead of a valid handle.
 //!Accesses to null descriptors have well-defined behavior, and do not rely on
 //!robustness.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Liam Middlebrook [liam-middlebrook](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_robustness2]
 //!   @liam-middlebrook%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_robustness2 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRobustness2FeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceRobustness2PropertiesEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_ROBUSTNESS_2_EXTENSION_NAME`]
 //! - [`EXT_ROBUSTNESS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!0. Why do [`PhysicalDeviceRobustness2PropertiesEXT::robust_uniform_buffer_access_size_alignment`] and [`PhysicalDeviceRobustness2PropertiesEXT::robust_storage_buffer_access_size_alignment`] exist?
 //! **RESOLVED** : Some implementations cannot efficiently tightly bounds-check all
 //!buffer accesses.
@@ -40,7 +40,7 @@
 //!This is sufficient to implement D3D-like behavior, because D3D only allows
 //!binding whole uniform buffers or ranges that are a multiple of 256 bytes,
 //!and D3D raw and structured buffers only support 32-bit accesses.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-11-01 (Jeff Bolz, Liam Middlebrook)  - Initial draft
 //!# Other info
 //! * 2020-01-29

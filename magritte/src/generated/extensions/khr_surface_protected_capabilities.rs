@@ -16,22 +16,22 @@
 //![`SurfaceProtectedCapabilitiesKHR`] structure from which the application
 //! **can**  obtain information about support for protected swapchain creation
 //!through [`get_physical_device_surface_capabilities2_khr`].
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_get_surface_capabilities2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Sandeep Shinde [sashinde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_surface_protected_capabilities]
 //!   @sashinde%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_surface_protected_capabilities extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`SurfaceCapabilities2KHR`]:  - [`SurfaceProtectedCapabilitiesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME`]
 //! - [`KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-12-18 (Sandeep Shinde, Daniel Koch)  - Internal revisions.
 //!# Other info
 //! * 2018-12-18

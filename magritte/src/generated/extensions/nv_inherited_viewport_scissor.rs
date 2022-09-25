@@ -11,26 +11,26 @@
 //![`CommandBufferInheritanceViewportScissorInfoNV`].
 //!Viewport inheritance is effectively limited to the 2D rectangle; secondary
 //!command buffers must re-specify the inherited depth range values.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - David Zhao Akeley [akeley98](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_inherited_viewport_scissor]
 //!   @akeley98%0A<<Here describe the issue or question you have about the
 //!   VK_NV_inherited_viewport_scissor extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`CommandBufferInheritanceInfo`]:  -
 //!   [`CommandBufferInheritanceViewportScissorInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceInheritedViewportScissorFeaturesNV`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME`]
 //! - [`NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!(1) Why are viewport depth values configured in the
 //![`CommandBufferInheritanceViewportScissorInfoNV`] struct, rather than by
 //!a `vkCmd…​` function? **DISCUSSION** :We considered both adding a new `vkCmdSetViewportDepthNV`
@@ -69,7 +69,7 @@
 //![`Viewport`] array for both code paths, rather than constructing
 //!separate `VkViewportDepthNV` and [`Viewport`] arrays for each code
 //!path.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-02-04 (David Zhao Akeley)  - Internal revisions
 //!# Other info
 //! * 2021-02-04

@@ -9,19 +9,19 @@
 //!Support for these new operations is advertised via the
 //!`VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV` bit.This extension requires Vulkan 1.1, for general
 //! subgroup support.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.1
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_subgroup_partitioned]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_shader_subgroup_partitioned extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME`]
 //! - [`NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION`]
 //! - Extending [`SubgroupFeatureFlagBits`]:  - `VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2018-03-17 (Jeff Bolz)  - Internal revisions
 //!# Other info
 //! * 2018-03-17

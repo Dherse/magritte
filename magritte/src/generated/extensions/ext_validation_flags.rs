@@ -6,25 +6,25 @@
 //![`create_instance`].
 //!The structure contains an array of [`ValidationCheckEXT`] values that
 //!will be disabled by the validation layers.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
-//! - *Deprecated* by `[`ext_validation_features`]` extension
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Deprecated* by `[`ext_validation_features`]` extension
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobin Ehlis [tobine](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_validation_flags]
 //!   @tobine%0A<<Here describe the issue or question you have about the VK_EXT_validation_flags
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`InstanceCreateInfo`]:  - [`ValidationFlagsEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`ValidationCheckEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_VALIDATION_FLAGS_EXTENSION_NAME`]
 //! - [`EXT_VALIDATION_FLAGS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 2, 2019-08-19 (Mark Lobodzinski)  - Marked as deprecated
 //! - Revision 1, 2016-08-26 (Courtney Goeltzenleuchter)  - Initial draft
 //!# Other info

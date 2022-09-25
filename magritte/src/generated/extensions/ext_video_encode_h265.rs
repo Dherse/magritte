@@ -2,18 +2,18 @@
 //!# Description
 //!This extension allows applications to compress a raw video sequence by using
 //!the H.265/HEVC video compression standard.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!6
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_encode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Ahmed Abdelkhalek [aabdelkh](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_video_encode_h265]
 //!   @aabdelkh%0A<<Here describe the issue or question you have about the VK_EXT_video_encode_h265
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`VideoEncodeH265DpbSlotInfoEXT`]
 //! - [`VideoEncodeH265FrameSizeEXT`]
 //! - [`VideoEncodeH265NaluSliceSegmentEXT`]
@@ -32,21 +32,21 @@
 //!   [`VideoEncodeH265SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoEncodeH265SessionParametersAddInfoEXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`VideoEncodeH265CapabilityFlagBitsEXT`]
 //! - [`VideoEncodeH265CtbSizeFlagBitsEXT`]
 //! - [`VideoEncodeH265InputModeFlagBitsEXT`]
 //! - [`VideoEncodeH265OutputModeFlagBitsEXT`]
 //! - [`VideoEncodeH265RateControlStructureFlagBitsEXT`]
 //! - [`VideoEncodeH265TransformBlockSizeFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`VideoEncodeH265CapabilityFlagsEXT`]
 //! - [`VideoEncodeH265CtbSizeFlagsEXT`]
 //! - [`VideoEncodeH265InputModeFlagsEXT`]
 //! - [`VideoEncodeH265OutputModeFlagsEXT`]
 //! - [`VideoEncodeH265RateControlStructureFlagsEXT`]
 //! - [`VideoEncodeH265TransformBlockSizeFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_VIDEO_ENCODE_H265_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_ENCODE_H265_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_CAPABILITIES_EXT`  -
@@ -62,7 +62,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_ENCODE_H265_VCL_FRAME_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
 //!   `VK_VIDEO_CODEC_OPERATION_ENCODE_H265_BIT_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 0, 2019-11-14 (Ahmed Abdelkhalek)  - Initial draft
 //! - Revision 0.5, 2020-02-13 (Tony Zlatinski)  - General Spec cleanup  - Added DPB structures  -
 //!   Change the VCL frame encode structure  - Added a common Non-VCL Picture Paramarameters

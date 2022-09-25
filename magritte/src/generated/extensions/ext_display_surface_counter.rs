@@ -4,29 +4,29 @@
 //!display surfaces.
 //!It provides a mechanism to query support for such a counter from a
 //![`SurfaceKHR`] object.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_display`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_surface_counter]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_display_surface_counter extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`get_physical_device_surface_capabilities2_ext`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`SurfaceCapabilities2EXT`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`SurfaceCounterFlagBitsEXT`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`SurfaceCounterFlagsEXT`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME`]
 //! - [`EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2016-12-13 (James Jones)  - Initial draft
 //!# Other info
 //! * 2016-12-13

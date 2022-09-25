@@ -8,23 +8,23 @@
 //!timing functions map to the `OpReadClockKHR` instruction with a scope of
 //![`Device`], and the `clock*ARB`() timing functions map to the
 //!`OpReadClockKHR` instruction with a scope of `Subgroup`.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Aaron Hagan [ahagan](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_clock]
 //!   @ahagan%0A<<Here describe the issue or question you have about the VK_KHR_shader_clock
 //!   extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderClockFeaturesKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHADER_CLOCK_EXTENSION_NAME`]
 //! - [`KHR_SHADER_CLOCK_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-4-25 (Aaron Hagan)  - Initial revision
 //!# Other info
 //! * 2019-4-25

@@ -2,20 +2,20 @@
 //!# Description
 //!This extension allows the use of the `SPV_KHR_non_semantic_info` extension
 //!in SPIR-V shader modules.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_non_semantic_info]
 //!   @baldurk%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_non_semantic_info extension>>)
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME`]
 //! - [`KHR_SHADER_NON_SEMANTIC_INFO_SPEC_VERSION`]
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2019-10-16 (Baldur Karlsson)  - Initial revision
 //!# Other info
 //! * 2019-10-16

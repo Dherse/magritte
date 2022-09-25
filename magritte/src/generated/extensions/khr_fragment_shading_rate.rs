@@ -22,29 +22,29 @@
 //!extension which enables setting the
 //![primitive fragment shading
 //!rate](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-primitive), and allows querying the final shading rate from a fragment shader.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!2
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_create_renderpass2`]`
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_fragment_shading_rate]
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_fragment_shading_rate extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_set_fragment_shading_rate_khr`]
 //! - [`get_physical_device_fragment_shading_rates_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`PhysicalDeviceFragmentShadingRateKHR`]
 //! - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineFragmentShadingRateStateCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentShadingRateFeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceFragmentShadingRatePropertiesKHR`]
 //! - Extending [`SubpassDescription2`]:  - [`FragmentShadingRateAttachmentInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`FragmentShadingRateCombinerOpKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME`]
 //! - [`KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_FRAGMENT_SHADING_RATE_ATTACHMENT_READ_BIT_KHR`
@@ -63,7 +63,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  -
 //!   `VK_FORMAT_FEATURE_2_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2020-05-06 (Tobias Hector)  - Initial revision
 //! - Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
 //!   `vk.xml`

@@ -13,27 +13,27 @@
 //!   tessellation domain space.
 //! - Adds two new image layouts for depth stencil images to allow either the depth or stencil
 //!   aspect to be read-only while the other aspect is writable.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Michael Worcester [michaelworcester](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_maintenance2]
 //!   @michaelworcester%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_maintenance2 extension>>)
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`InputAttachmentAspectReferenceKHR`]
 //! - Extending [`ImageViewCreateInfo`]:  - [`ImageViewUsageCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePointClippingPropertiesKHR`]
 //! - Extending [`PipelineTessellationStateCreateInfo`]:  -
 //!   [`PipelineTessellationDomainOriginStateCreateInfoKHR`]
 //! - Extending [`RenderPassCreateInfo`]:  - [`RenderPassInputAttachmentAspectCreateInfoKHR`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`PointClippingBehaviorKHR`]
 //! - [`TessellationDomainOriginKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_MAINTENANCE2_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE2_SPEC_VERSION`]
 //! - [`KHR_MAINTENANCE_2_EXTENSION_NAME`]
@@ -50,7 +50,7 @@
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_INPUT_ATTACHMENT_ASPECT_CREATE_INFO_KHR`
 //! - Extending [`TessellationDomainOrigin`]:  - `VK_TESSELLATION_DOMAIN_ORIGIN_LOWER_LEFT_KHR`  -
 //!   `VK_TESSELLATION_DOMAIN_ORIGIN_UPPER_LEFT_KHR`
-//!# Known issues & F.A.Q
+# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
 //!1) What is the default tessellation domain origin? **RESOLVED** : Vulkan 1.0 originally
 //! inadvertently documented a lower-left
 //!origin, but the conformance tests and all implementations implemented an
@@ -58,7 +58,7 @@
 //!This extension adds a control to select between lower-left (for
 //!compatibility with OpenGL) and upper-left, and we retroactively fix
 //!unextended Vulkan to have a default of an upper-left origin.
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2017-04-28
 //!# Other info
 //! * 2017-09-05

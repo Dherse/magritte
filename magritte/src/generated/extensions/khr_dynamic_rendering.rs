@@ -8,21 +8,21 @@
 //![`qcom_render_pass_store_ops`], enabling
 //!applications to avoid unnecessary synchronization when an attachment is not
 //!written during a render pass.
-//!# Revision
+# ! [doc = concat ! ("# " , "Revision")]
 //!1
-//!# Dependencies
-//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-//!# Dependencies
+# ! [doc = concat ! ("# " , "Dependencies")]
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-//!# Contacts
+# ! [doc = concat ! ("# " , "Deprecation State")]
+//! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
+# ! [doc = concat ! ("# " , "Contacts")]
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_dynamic_rendering]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_dynamic_rendering
 //!   extension>>)
-//!# New functions & commands
+# ! [doc = concat ! ("# " , "New commands")]
 //! - [`cmd_begin_rendering_khr`]
 //! - [`cmd_end_rendering_khr`]
-//!# New structures
+# ! [doc = concat ! ("# " , "New structures")]
 //! - [`RenderingAttachmentInfoKHR`]
 //! - [`RenderingInfoKHR`]
 //! - Extending [`CommandBufferInheritanceInfo`]:  - [`CommandBufferInheritanceRenderingInfoKHR`]
@@ -42,11 +42,11 @@
 //!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`], [`RenderingInfo`]:
 //!   - [`MultiviewPerViewAttributesInfoNVX`]
-//!# New enums
+# ! [doc = concat ! ("# " , "New enums")]
 //! - [`RenderingFlagBitsKHR`]
-//!# New bitmasks
+# ! [doc = concat ! ("# " , "New bitmasks")]
 //! - [`RenderingFlagsKHR`]
-//!# New constants
+# ! [doc = concat ! ("# " , "New constants")]
 //! - [`KHR_DYNAMIC_RENDERING_EXTENSION_NAME`]
 //! - [`KHR_DYNAMIC_RENDERING_SPEC_VERSION`]
 //! - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_KHR`
@@ -73,7 +73,7 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV`
 //!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
-//!# Version History
+# ! [doc = concat ! ("# " , "Version history")]
 //! - Revision 1, 2021-10-06 (Tobias Hector)  - Initial revision
 //!# Other info
 //! * 2021-10-06
