@@ -27,22 +27,23 @@
 //!structure to set the subgroup size for that shader stage of the pipeline.
 //!For compute shaders, this requires the developer to query the
 //![`maxComputeWorkgroupSubgroups`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxComputeWorkgroupSubgroups)
-//!and ensure that:<span class="katex"><span class="katex-html" aria-hidden="true"><span
+//!and ensure that:<span class="katex"><span aria-hidden="true" class="katex-html"><span
 //! class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span
-//! class="mord mathdefault">s</span><span style="margin-right:0.2777777777777778em;"
-//! class="mspace"></span><span class="mrel">=</span><span class="mspace"
-//! style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut"
-//! style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span
-//! class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord
-//! mathdefault">o</span><span style="margin-right:0.02778em;" class="mord
-//! mathdefault">r</span><span style="margin-right:0.03148em;" class="mord
-//! mathdefault">k</span><span class="mord mathdefault">G</span><span class="mord mathdefault"
-//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
-//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span
-//! style="margin-right:0.04398em;" class="mord mathdefault">z</span><span class="mord
+//! class="mord mathdefault">s</span><span class="mspace"
+//! style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span
+//! style="margin-right:0.2777777777777778em;" class="mspace"></span></span><span class="base"><span
+//! class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span
+//! class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span
+//! class="mord mathdefault">o</span><span class="mord mathdefault"
+//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
+//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault">G</span><span class="mord
+//! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord
+//! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">p</span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord
+//! mathdefault" style="margin-right:0.04398em;">z</span><span class="mord
 //! mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault">x</span><span
-//! class="mspace" style="margin-right:0.2222222222222222em;"></span><span
+//! style="margin-right:0.2222222222222222em;" class="mspace"></span><span
 //! class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
 //! class="mspace"></span><span class="mord mathdefault"
 //! style="margin-right:0.13889em;">W</span><span class="mord mathdefault">o</span><span
@@ -51,50 +52,50 @@
 //! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord
 //! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
 //! mathdefault">p</span><span style="margin-right:0.05764em;" class="mord
-//! mathdefault">S</span><span class="mord mathdefault">i</span><span
-//! style="margin-right:0.04398em;" class="mord mathdefault">z</span><span class="mord
-//! mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">y</span><span style="margin-right:0.2222222222222222em;"
+//! mathdefault">S</span><span class="mord mathdefault">i</span><span class="mord mathdefault"
+//! style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span
+//! class="mord">.</span><span style="margin-right:0.03588em;" class="mord
+//! mathdefault">y</span><span style="margin-right:0.2222222222222222em;"
 //! class="mspace"></span><span class="mbin">×</span><span
 //! style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mord mathdefault"
 //! style="margin-right:0.13889em;">W</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
-//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span class="mord mathdefault"
-//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
-//! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
-//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord
-//! mathdefault" style="margin-right:0.04398em;">z</span><span class="mord
-//! mathdefault">e</span><span class="mord">.</span><span class="mord mathdefault"
-//! style="margin-right:0.04398em;">z</span><span style="margin-right:0.2777777777777778em;"
-//! class="mspace"></span><span class="mrel">≤</span><span class="mspace"
-//! style="margin-right:0.2777777777777778em;"></span><span style="margin-right:0.05764em;"
-//! class="mord mathdefault">S</span><span class="mord mathdefault">u</span><span class="mord
-//! mathdefault">b</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span class="mord mathdefault"
+//! mathdefault" style="margin-right:0.02778em;">r</span><span style="margin-right:0.03148em;"
+//! class="mord mathdefault">k</span><span style="margin-right:0.03588em;" class="mord
+//! mathdefault">g</span><span class="mord mathdefault"
 //! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">p</span><span
 //! style="margin-right:0.05764em;" class="mord mathdefault">S</span><span class="mord
 //! mathdefault">i</span><span class="mord mathdefault"
 //! style="margin-right:0.04398em;">z</span><span class="mord mathdefault">e</span><span
-//! class="mspace" style="margin-right:0.2222222222222222em;"></span><span
-//! class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-//! class="mspace"></span><span class="mord mathdefault">m</span><span class="mord
-//! mathdefault">a</span><span class="mord mathdefault">x</span><span class="mord mathdefault"
+//! class="mord">.</span><span class="mord mathdefault"
+//! style="margin-right:0.04398em;">z</span><span style="margin-right:0.2777777777777778em;"
+//! class="mspace"></span><span class="mrel">≤</span><span
+//! style="margin-right:0.2777777777777778em;" class="mspace"></span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">b</span><span class="mord mathdefault"
+//! style="margin-right:0.03588em;">g</span><span style="margin-right:0.02778em;" class="mord
+//! mathdefault">r</span><span class="mord mathdefault">o</span><span class="mord
+//! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">i</span><span class="mord
+//! mathdefault" style="margin-right:0.04398em;">z</span><span class="mord
+//! mathdefault">e</span><span class="mspace"
+//! style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+//! class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord
+//! mathdefault">m</span><span class="mord mathdefault">a</span><span class="mord
+//! mathdefault">x</span><span class="mord mathdefault"
 //! style="margin-right:0.07153em;">C</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">m</span><span class="mord mathdefault">p</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">t</span><span class="mord
 //! mathdefault">e</span><span style="margin-right:0.13889em;" class="mord
-//! mathdefault">W</span><span class="mord mathdefault">o</span><span
-//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span
-//! style="margin-right:0.03148em;" class="mord mathdefault">k</span><span
-//! style="margin-right:0.03588em;" class="mord mathdefault">g</span><span
-//! style="margin-right:0.02778em;" class="mord mathdefault">r</span><span class="mord
-//! mathdefault">o</span><span class="mord mathdefault">u</span><span class="mord
-//! mathdefault">p</span><span style="margin-right:0.05764em;" class="mord
-//! mathdefault">S</span><span class="mord mathdefault">u</span><span class="mord
-//! mathdefault">b</span><span class="mord mathdefault"
-//! style="margin-right:0.03588em;">g</span><span class="mord mathdefault"
+//! mathdefault">W</span><span class="mord mathdefault">o</span><span class="mord mathdefault"
+//! style="margin-right:0.02778em;">r</span><span class="mord mathdefault"
+//! style="margin-right:0.03148em;">k</span><span class="mord mathdefault"
+//! style="margin-right:0.03588em;">g</span><span style="margin-right:0.02778em;" class="mord
+//! mathdefault">r</span><span class="mord mathdefault">o</span><span class="mord
+//! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord mathdefault"
+//! style="margin-right:0.05764em;">S</span><span class="mord mathdefault">u</span><span class="mord
+//! mathdefault">b</span><span style="margin-right:0.03588em;" class="mord
+//! mathdefault">g</span><span class="mord mathdefault"
 //! style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord
 //! mathdefault">u</span><span class="mord mathdefault">p</span><span class="mord
 //! mathdefault">s</span></span></span></span></span>Developers can also specify a new pipeline
@@ -103,23 +104,23 @@
 //!workgroups.
 //!This requires the workgroup size in the X dimension to be a multiple of the
 //!subgroup size.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Neil Henning [sheredom](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_subgroup_size_control]
 //!   @sheredom%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_subgroup_size_control extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceSubgroupSizeControlFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceSubgroupSizeControlPropertiesEXT`]
 //! - Extending [`PipelineShaderStageCreateInfo`]:  -
 //!   [`PipelineShaderStageRequiredSubgroupSizeCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SUBGROUP_SIZE_CONTROL_EXTENSION_NAME`]
 //! - [`EXT_SUBGROUP_SIZE_CONTROL_SPEC_VERSION`]
 //! - Extending [`PipelineShaderStageCreateFlagBits`]:  -
@@ -129,11 +130,11 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_REQUIRED_SUBGROUP_SIZE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-03-05 (Neil Henning)  - Initial draft
 //! - Revision 2, 2019-07-26 (Jason Ekstrand)  - Add the missing
 //!   [`PhysicalDeviceSubgroupSizeControlFeaturesEXT`] for querying subgroup size control features.
-//!# Other info
+//!# Other information
 //! * 2019-03-05
 //! * - Promoted to Vulkan 1.3 Core
 //! * - Jeff Bolz, NVIDIA  - Jason Ekstrand, Intel  - Sławek Grajewski, Intel  - Jesse Hall, Google

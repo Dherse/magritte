@@ -8,27 +8,27 @@
 //!processes exceeds the size of the heap).
 //!In such a case, this priority value may be used to determine which
 //!allocations are more likely to remain in device-local memory.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_priority]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_priority
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryPriorityAllocateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMemoryPriorityFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_MEMORY_PRIORITY_EXTENSION_NAME`]
 //! - [`EXT_MEMORY_PRIORITY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-10-08 (Jeff Bolz)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2018-10-08
 //! * - Jeff Bolz, NVIDIA  - Jeff Juliano, NVIDIA
 //!# Related

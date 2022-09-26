@@ -9,24 +9,24 @@
 //!surface that have not changed.This extension is leveraged from the
 //! `EGL_KHR_swap_buffers_with_damage`
 //!extension.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_incremental_present]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_incremental_present extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PresentRegionKHR`]
 //! - [`RectLayerKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`PresentRegionsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_INCREMENTAL_PRESENT_EXTENSION_NAME`]
 //! - [`KHR_INCREMENTAL_PRESENT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) How should we handle steroescopic-3D swapchains? We need to add a layer
 //!for each rectangle.
 //!One approach is to create another struct containing the [`Rect2D`] plus
@@ -63,11 +63,11 @@
 //!rectangular region.
 //!This matches the behavior of the Android presentation engine, which set the
 //!precedent.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-11-02 (Ian Elliott)  - Internal revisions
 //! - Revision 2, 2021-03-18 (Ian Elliott)  - Clarified alignment of rectangles for presentation
 //!   engines that support transformed swapchains.
-//!# Other info
+//!# Other information
 //! * 2016-11-02
 //! * No known IP claims.
 //! * - Ian Elliott, Google  - Jesse Hall, Google  - Alon Or-bach, Samsung  - James Jones, NVIDIA  -

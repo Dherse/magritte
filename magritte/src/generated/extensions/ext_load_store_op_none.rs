@@ -10,23 +10,23 @@
 //!an alternative to preserve attachments in applications that cannot decide if
 //!an attachment will be used in a render pass until after the necessary
 //!pipelines have been created.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_load_store_op_none]
 //!   @syoussefi%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_load_store_op_none extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_LOAD_STORE_OP_NONE_EXTENSION_NAME`]
 //! - [`EXT_LOAD_STORE_OP_NONE_SPEC_VERSION`]
 //! - Extending [`AttachmentLoadOp`]:  - `VK_ATTACHMENT_LOAD_OP_NONE_EXT`
 //! - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-06-06 (Shahbaz Youssefi)  - Initial revision, based on
 //!   VK_QCOM_render_pass_store_ops.  - Added VK_ATTACHMENT_LOAD_OP_NONE_EXT.
-//!# Other info
+//!# Other information
 //! * 2021-06-06
 //! * - Shahbaz Youssefi, Google  - Bill Licea-Kane, Qualcomm Technologies, Inc.  - Tobias Hector,
 //!   AMD

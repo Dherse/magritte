@@ -5,30 +5,30 @@
 //!the `[`khr_surface`]` extension) that refers to a Wayland
 //![`wl_surface`], as well as a query to determine support for rendering to a
 //!Wayland compositor.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!6
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_wayland_surface
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_wayland_surface extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_wayland_surface_khr`]
 //! - [`get_physical_device_wayland_presentation_support_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`WaylandSurfaceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`WaylandSurfaceCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_WAYLAND_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_WAYLAND_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Does Wayland need a way to query for compatibility between a particular
 //!physical device and a specific Wayland display? This would be a more general
 //!query than [`get_physical_device_surface_support_khr`]: if the
@@ -45,7 +45,7 @@
 //!deadlock and requiring all Wayland applications to be able to support
 //!implementations which only support `VK_PRESENT_MODE_FIFO_KHR` would be
 //!an onerous restriction on application developers.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft, based on the previous contents of
 //!   VK_EXT_KHR_swapchain (later renamed VK_EXT_KHR_surface).
 //! - Revision 2, 2015-10-02 (James Jones)  - Added
@@ -61,7 +61,7 @@
 //! - Revision 6, 2017-02-08 (Jason Ekstrand)  - Added the requirement that implementations support
 //!   `VK_PRESENT_MODE_MAILBOX_KHR`.  - Added wording about interactions between
 //!   [`queue_present_khr`] and the Wayland requests sent to the compositor.
-//!# Other info
+//!# Other information
 //! * 2015-11-28
 //! * No known IP claims.
 //! * - Patrick Doane, Blizzard  - Jason Ekstrand, Intel  - Ian Elliott, LunarG  - Courtney

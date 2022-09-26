@@ -5,22 +5,22 @@
 //!Providing an invocation mask image to the ray tracing commands could
 //!potentially give the hardware the hint to do certain optimization without
 //!invoking an additional pass to compact the ray buffer.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_ray_tracing_pipeline`]`
 //! - Requires `[`khr_synchronization2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Yunpeng Zhu [yunxingzhu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_invocation_mask]
 //!   @yunxingzhu%0A<<Here describe the issue or question you have about the
 //!   VK_HUAWEI_invocation_mask extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_bind_invocation_mask_huawei`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceInvocationMaskFeaturesHUAWEI`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`HUAWEI_INVOCATION_MASK_EXTENSION_NAME`]
 //! - [`HUAWEI_INVOCATION_MASK_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI`
@@ -28,9 +28,9 @@
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-05-27 (Yunpeng Zhu)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2021-05-27
 //! * - This extension requires `[`khr_ray_tracing_pipeline`]`, which allow to bind an invocation
 //!   mask image before the ray tracing command  - This extension requires

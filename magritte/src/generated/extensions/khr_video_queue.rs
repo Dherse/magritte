@@ -1,20 +1,20 @@
 //![VK_KHR_video_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_queue.html) - device extension
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tony Zlatinski [tzlatinski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_queue]
 //!   @tzlatinski%0A<<Here describe the issue or question you have about the VK_KHR_video_queue
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`VideoSessionKHR`]
 //! - [`VideoSessionParametersKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`bind_video_session_memory_khr`]
 //! - [`cmd_begin_video_coding_khr`]
 //! - [`cmd_control_video_coding_khr`]
@@ -27,7 +27,7 @@
 //! - [`get_physical_device_video_format_properties_khr`]
 //! - [`get_video_session_memory_requirements_khr`]
 //! - [`update_video_session_parameters_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PhysicalDeviceVideoFormatInfoKHR`]
 //! - [`VideoBeginCodingInfoKHR`]
 //! - [`VideoBindMemoryKHR`]
@@ -47,7 +47,7 @@
 //!   [`ImageViewCreateInfo`], [`BufferCreateInfo`]:  - [`VideoProfileKHR`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyQueryResultStatusProperties2KHR`]  -
 //!   [`VideoQueueFamilyProperties2KHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`QueryResultStatusKHR`]
 //! - [`VideoCapabilityFlagBitsKHR`]
 //! - [`VideoChromaSubsamplingFlagBitsKHR`]
@@ -56,7 +56,7 @@
 //! - [`VideoCodingQualityPresetFlagBitsKHR`]
 //! - [`VideoComponentBitDepthFlagBitsKHR`]
 //! - [`VideoSessionCreateFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`VideoBeginCodingFlagsKHR`]
 //! - [`VideoCapabilityFlagsKHR`]
 //! - [`VideoChromaSubsamplingFlagsKHR`]
@@ -66,7 +66,7 @@
 //! - [`VideoComponentBitDepthFlagsKHR`]
 //! - [`VideoEndCodingFlagsKHR`]
 //! - [`VideoSessionCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_VIDEO_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_QUEUE_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_VIDEO_SESSION_KHR`  -
@@ -88,7 +88,7 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_VIDEO_SESSION_PARAMETERS_UPDATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 0.1, 2019-11-21 (Tony Zlatinski)  - Initial draft
 //! - Revision 0.2, 2019-11-27 (Tony Zlatinski)  - Make vulkan video core common between decode and
 //!   encode
@@ -100,7 +100,7 @@
 //! - Revision 3, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
 //!   from codec-operation specific extensions to this extension.  - Make Std header versions
 //!   codec-operation specific instead of only codec-specific.
-//!# Other info
+//!# Other information
 //! * 2022-03-16
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - George Hao, AMD  - Jake Beju, AMD  - Piers Daniell, NVIDIA  -

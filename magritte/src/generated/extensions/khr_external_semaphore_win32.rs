@@ -4,31 +4,31 @@
 //!memory using semaphores.
 //!This extension enables an application to export semaphore payload to and
 //!import semaphore payload from Windows handles.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_semaphore`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_win32 extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_semaphore_win32_handle_khr`]
 //! - [`import_semaphore_win32_handle_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`ImportSemaphoreWin32HandleInfoKHR`]
 //! - [`SemaphoreGetWin32HandleInfoKHR`]
 //! - Extending [`SemaphoreCreateInfo`]:  - [`ExportSemaphoreWin32HandleInfoKHR`]
 //! - Extending [`SubmitInfo`]:  - [`D3d12FenceSubmitInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Do applications need to call `CloseHandle`() on the values returned
 //!from [`get_semaphore_win32_handle_khr`] when `handleType` is
 //!`VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`? **RESOLVED** : Yes, unless it is
@@ -57,9 +57,9 @@
 //! simplicity, a
 //!new structure specifying D3D12 fence acquire and release values is added to
 //!the [`queue_submit`] function.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2016-10-21
 //! * No known IP claims.
 //! * - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Carsten Rohde, NVIDIA

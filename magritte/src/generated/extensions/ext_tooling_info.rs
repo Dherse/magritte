@@ -16,25 +16,25 @@
 //!application is providing debug markers, but the implementation is not
 //!actually doing anything with that information, this can quickly point that
 //!out.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_tooling_info]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_EXT_tooling_info
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_tool_properties_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PhysicalDeviceToolPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ToolPurposeFlagBitsEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ToolPurposeFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_TOOLING_INFO_EXTENSION_NAME`]
 //! - [`EXT_TOOLING_INFO_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT`
@@ -45,14 +45,14 @@
 //!If [`ext_debug_utils`] is supported:
 //! - Extending [`ToolPurposeFlagBits`]:  - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`  -
 //!   `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Why is this information separate from the layer mechanism?Some tooling may be built into a
 //! driver, or be part of the Vulkan loader
 //!etc.
 //!Tying this information directly to layers would have been awkward at best.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-11-05 (Tobias Hector)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2018-11-05
 //! * - Promoted to Vulkan 1.3 Core
 //! * - Rolando Caloca  - Matthaeus Chajdas  - Baldur Karlsson  - Daniel Rakos

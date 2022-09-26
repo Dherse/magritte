@@ -36,20 +36,20 @@
 //!`GL_NV_shading_rate_image` language extension and correspond to the built-in
 //!variables `gl_FragmentSizeNV` and `gl_InvocationsPerPixelNV`,
 //!respectively.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shading_rate_image]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_shading_rate_image
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_bind_shading_rate_image_nv`]
 //! - [`cmd_set_coarse_sample_order_nv`]
 //! - [`cmd_set_viewport_shading_rate_palette_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`CoarseSampleLocationNV`]
 //! - [`CoarseSampleOrderCustomNV`]
 //! - [`ShadingRatePaletteNV`]
@@ -59,10 +59,10 @@
 //! - Extending [`PipelineViewportStateCreateInfo`]:  -
 //!   [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]  -
 //!   [`PipelineViewportShadingRateImageStateCreateInfoNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`CoarseSampleOrderTypeNV`]
 //! - [`ShadingRatePaletteEntryNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_SHADING_RATE_IMAGE_EXTENSION_NAME`]
 //! - [`NV_SHADING_RATE_IMAGE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV`
@@ -76,7 +76,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADING_RATE_IMAGE_PROPERTIES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_COARSE_SAMPLE_ORDER_STATE_CREATE_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) When using shading rates specifying “coarse” fragments covering
 //!    multiple pixels, we will generate a combined coverage mask that combines
 //!    the coverage masks of all pixels covered by the fragment.
@@ -135,12 +135,12 @@
 //!fragments, but is less severe because it only affects certain samples of a
 //!pixel and such bright/dark samples may be averaged with other samples that
 //!do not have a similar problem.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 3, 2019-07-18 (Mathias Schott)  - Fully list extension interfaces in this appendix.
 //! - Revision 2, 2018-09-13 (Pat Brown)  - Miscellaneous edits preparing the specification for
 //!   publication.
 //! - Revision 1, 2018-08-08 (Pat Brown)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-07-18
 //! * - This extension requires [`SPV_NV_shading_rate`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shading_rate.html)
 //!   - This extension provides API support for [`GL_NV_shading_rate_image`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shading_rate_image.txt)

@@ -17,27 +17,27 @@
 //!`VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`.
 //!This extension supports both dynamic rendering and traditional render
 //!passes.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - sourav parmar [souravpNV](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_linear_color_attachment]
 //!   @souravpNV%0A<<Here describe the issue or question you have about the
 //!   VK_NV_linear_color_attachment extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceLinearColorAttachmentFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_LINEAR_COLOR_ATTACHMENT_EXTENSION_NAME`]
 //! - [`NV_LINEAR_COLOR_ATTACHMENT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-11-29 (sourav parmar)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2021-12-02
 //! * - This extension requires [`khr_format_feature_flags2`]
 //! * - Pat Brown, NVIDIA  - Piers Daniell, NVIDIA  - Sourav Parmar, NVIDIA

@@ -3,13 +3,13 @@
 //![`VK_IMG_format_pvrtc`] provides additional texture compression functionality
 //!specific to Imagination Technologies PowerVR Texture compression format
 //!(called PVRTC).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Stuart Smith
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`IMG_FORMAT_PVRTC_EXTENSION_NAME`]
 //! - [`IMG_FORMAT_PVRTC_SPEC_VERSION`]
 //! - Extending [`Format`]:  - `VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG`  -
@@ -17,9 +17,9 @@
 //!   `VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG`  -
 //!   `VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG`  -
 //!   `VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-09-02 (Stuart Smith)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2019-09-02
 //! * Imagination Technologies Proprietary
 //! * - Stuart Smith, Imagination Technologies

@@ -24,21 +24,21 @@
 //!   reason for [`allocate_descriptor_sets`] failures.
 //! - Add a new command [`trim_command_pool_khr`] which gives the implementation an opportunity to
 //!   release any unused command pool memory back to the system.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_maintenance1]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance1
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`trim_command_pool_khr`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`CommandPoolTrimFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_MAINTENANCE1_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE1_SPEC_VERSION`]
 //! - [`KHR_MAINTENANCE_1_EXTENSION_NAME`]
@@ -47,12 +47,12 @@
 //!   `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR`
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR`
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_OUT_OF_POOL_MEMORY_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!0. Are viewports with zero height allowed? **RESOLVED** : Yes, although they have low utility.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-26 (Piers Daniell)  - Internal revisions
 //! - Revision 2, 2018-03-13 (Jon Leech)  - Add issue for zero-height viewports
-//!# Other info
+//!# Other information
 //! * 2018-03-13
 //! * - Promoted to Vulkan 1.1 Core
 //! * - Dan Ginsburg, Valve  - Daniel Koch, NVIDIA  - Daniel Rakos, AMD  - Jan-Harald Fredriksen,

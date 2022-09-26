@@ -6,30 +6,30 @@
 //!This extension provides a set of capability queries and handle definitions
 //!that allow an application to determine what types of “external” semaphore
 //!handles an implementation supports for a given set of use cases.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore_capabilities extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_external_semaphore_properties_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`ExternalSemaphorePropertiesKHR`]
 //! - [`PhysicalDeviceExternalSemaphoreInfoKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceIdPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ExternalSemaphoreFeatureFlagBitsKHR`]
 //! - [`ExternalSemaphoreHandleTypeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ExternalSemaphoreFeatureFlagsKHR`]
 //! - [`ExternalSemaphoreHandleTypeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION`]
 //! - [`LUID_SIZE_KHR`]
@@ -45,9 +45,9 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-20 (James Jones)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2016-10-20
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

@@ -8,32 +8,32 @@
 //!   cannot be expressed in terms of the limits in Vulkan 1.0.
 //! - A limit on the maximum size of a single memory allocation. Some platforms have kernel
 //!   interfaces that limit the maximum size of an allocation.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_maintenance3]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance3
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_descriptor_set_layout_support_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DescriptorSetLayoutSupportKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMaintenance3PropertiesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_MAINTENANCE3_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE3_SPEC_VERSION`]
 //! - [`KHR_MAINTENANCE_3_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE_3_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_3_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-22
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * - Promoted to Vulkan 1.1 Core
 //! * - Jeff Bolz, NVIDIA

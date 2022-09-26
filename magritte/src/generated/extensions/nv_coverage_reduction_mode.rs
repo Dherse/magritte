@@ -20,36 +20,36 @@
 //!This extension would allow an implementation to support the behavior of both
 //![`VK_NV_framebuffer_mixed_samples`] and [`VK_AMD_mixed_attachment_samples`]
 //!extensions simultaneously.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`nv_framebuffer_mixed_samples`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_coverage_reduction_mode]
 //!   @kthangudu%0A<<Here describe the issue or question you have about the
 //!   VK_NV_coverage_reduction_mode extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`FramebufferMixedSamplesCombinationNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCoverageReductionModeFeaturesNV`]
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineCoverageReductionStateCreateInfoNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`CoverageReductionModeNV`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PipelineCoverageReductionStateCreateFlagsNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME`]
 //! - [`NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`
 //!   - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-01-29 (Kedarnath Thangudu)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-01-29
 //! * - Kedarnath Thangudu, NVIDIA  - Jeff Bolz, NVIDIA
 //!# Related

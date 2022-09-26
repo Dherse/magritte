@@ -9,32 +9,32 @@
 //!consumed by [`create_graphics_pipelines`].
 //!It is intended primarily for use by debug tooling rather than for production
 //!applications.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Yiwei Zhang [zhangyiwei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_device_memory_report]
 //!   @zhangyiwei%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_device_memory_report extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DeviceMemoryReportCallbackDataEXT`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDeviceMemoryReportFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DeviceMemoryReportEventTypeEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`DeviceMemoryReportFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME`]
 //! - [`EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should this be better expressed as an extension to VK_EXT_debug_utils and
 //!its general-purpose messenger construct? **RESOLVED** : No.
 //!The intended lifecycle is quite different.
@@ -130,10 +130,10 @@
 //!Right now the allocation failure could have happened anywhere during
 //!recording, and a callback would be really useful to understand where and
 //!why.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-08-26 (Yiwei Zhang)  - Initial version
 //! - Revision 2, 2021-01-06 (Yiwei Zhang)  - Minor description update
-//!# Other info
+//!# Other information
 //! * 2021-01-06
 //! * No known IP claims.
 //! * - Yiwei Zhang, Google  - Jesse Hall, Google

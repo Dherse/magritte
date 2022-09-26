@@ -6,22 +6,22 @@
 //!samples and a number of instructions, but this can be inefficient.
 //!The cubic filter mode exposes an optimized high quality texture sampling
 //!using fixed texture sampling functionality.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_IMG_filter_cubic]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_IMG_filter_cubic
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`IMG_FILTER_CUBIC_EXTENSION_NAME`]
 //! - [`IMG_FILTER_CUBIC_SPEC_VERSION`]
 //! - Extending [`Filter`]:  - `VK_FILTER_CUBIC_IMG`
 //! - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-02-23 (Tobias Hector)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2016-02-23
 //! * - Tobias Hector, Imagination Technologies
 //!# Notes and documentation

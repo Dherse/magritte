@@ -5,35 +5,35 @@
 //!This extension enables an application to create fences from which non-Vulkan
 //!handles that reference the underlying synchronization primitive can be
 //!exported.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_fence_capabilities`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`FenceCreateInfo`]:  - [`ExportFenceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`FenceImportFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`FenceImportFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_FENCE_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_FENCE_SPEC_VERSION`]
 //! - Extending [`FenceImportFlagBits`]:  - `VK_FENCE_IMPORT_TEMPORARY_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!This extension borrows concepts, semantics, and language from
 //!`[`khr_external_semaphore`]`.
 //!That extension’s issues apply equally to this extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-05-08 (Jesse Hall)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2017-05-08
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

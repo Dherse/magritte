@@ -2,24 +2,24 @@
 //!# Description
 //!This extension adds support for allocating memory which can be used for
 //!remote direct memory access (RDMA) from other devices.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_rdma]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_NV_external_memory_rdma
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New base types")]
+//!# New base types
 //! - [`RemoteAddressNV`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_memory_remote_address_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MemoryGetRemoteAddressInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceExternalMemoryRdmaFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME`]
 //! - [`NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:  -
@@ -27,9 +27,9 @@
 //! - Extending [`MemoryPropertyFlagBits`]:  - `VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-12-15 (Carsten Rohde)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2021-04-19
 //! * No known IP claims.
 //! * - Carsten Rohde, NVIDIA

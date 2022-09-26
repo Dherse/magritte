@@ -15,17 +15,17 @@
 //!can also be passed in to device creation to enable features.This extension also allows
 //! applications to use the physical-device
 //!components of device extensions before [`create_device`] is called.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_physical_device_properties2]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_physical_device_properties2 extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_features2_khr`]
 //! - [`get_physical_device_format_properties2_khr`]
 //! - [`get_physical_device_image_format_properties2_khr`]
@@ -33,7 +33,7 @@
 //! - [`get_physical_device_properties2_khr`]
 //! - [`get_physical_device_queue_family_properties2_khr`]
 //! - [`get_physical_device_sparse_image_format_properties2_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`FormatProperties2KHR`]
 //! - [`ImageFormatProperties2KHR`]
 //! - [`PhysicalDeviceImageFormatInfo2KHR`]
@@ -43,7 +43,7 @@
 //! - [`QueueFamilyProperties2KHR`]
 //! - [`SparseImageFormatProperties2KHR`]
 //! - Extending [`DeviceCreateInfo`]:  - [`PhysicalDeviceFeatures2KHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME`]
 //! - [`KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_2_KHR`  -
@@ -55,11 +55,11 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SPARSE_IMAGE_FORMAT_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_PROPERTIES_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SPARSE_IMAGE_FORMAT_PROPERTIES_2_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-09-12 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2016-11-02 (Ian Elliott)  - Added ability for applications to use the
 //!   physical-device components of device extensions before vkCreateDevice is called.
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

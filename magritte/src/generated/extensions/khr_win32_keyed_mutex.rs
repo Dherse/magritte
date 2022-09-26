@@ -6,24 +6,24 @@
 //!This extension provides a way for an application to access the keyed mutex
 //!associated with an imported Vulkan memory object when submitting command
 //!buffers to a queue.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory_win32`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_keyed_mutex]
 //!   @crohde%0A<<Here describe the issue or question you have about the VK_KHR_win32_keyed_mutex
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`Win32KeyedMutexAcquireReleaseInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_WIN32_KEYED_MUTEX_EXTENSION_NAME`]
 //! - [`KHR_WIN32_KEYED_MUTEX_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2016-10-21
 //! * No known IP claims.
 //! * - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Carsten Rohde, NVIDIA

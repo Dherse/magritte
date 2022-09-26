@@ -5,36 +5,36 @@
 //!Vulkan objects, as well as additional commands for recording annotations of
 //!named sections of a workload to aid organization and offline analysis in
 //!external tools.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_debug_report`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to `[`ext_debug_utils`]` extension
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_marker]
 //!   @baldurk%0A<<Here describe the issue or question you have about the VK_EXT_debug_marker
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_debug_marker_begin_ext`]
 //! - [`cmd_debug_marker_end_ext`]
 //! - [`cmd_debug_marker_insert_ext`]
 //! - [`debug_marker_set_object_name_ext`]
 //! - [`debug_marker_set_object_tag_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DebugMarkerMarkerInfoEXT`]
 //! - [`DebugMarkerObjectNameInfoEXT`]
 //! - [`DebugMarkerObjectTagInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DebugReportObjectTypeEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DEBUG_MARKER_EXTENSION_NAME`]
 //! - [`EXT_DEBUG_MARKER_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should the tag or name for an object be specified using the `pNext`
 //!parameter in the object’s `Vk*CreateInfo` structure? **RESOLVED** : No.
 //!While this fits with other Vulkan patterns and would allow more type safety
@@ -52,7 +52,7 @@
 //!All functions have been modified to take a structure type with extensible
 //!`pNext` pointer, to allow future extensions to add additional annotation
 //!information in the same commands.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-02-24 (Baldur Karlsson)  - Initial draft, based on LunarG marker spec
 //! - Revision 2, 2016-02-26 (Baldur Karlsson)  - Renamed Dbg to DebugMarker in function names  -
 //!   Allow markers in secondary command buffers under certain circumstances  - Minor language
@@ -63,7 +63,7 @@
 //! - Revision 4, 2017-01-31 (Baldur Karlsson)  - Added explicit dependency on VK_EXT_debug_report
 //!   - Moved definition of [`DebugReportObjectTypeEXT`] to debug report chapter.  - Fixed typo in
 //!   dates in revision history
-//!# Other info
+//!# Other information
 //! * 2017-01-31
 //! * No known IP claims.
 //! * - Baldur Karlsson  - Dan Ginsburg, Valve  - Jon Ashburn, LunarG  - Kyle Spagnoli, NVIDIA

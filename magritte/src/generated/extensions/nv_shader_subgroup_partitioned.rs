@@ -9,21 +9,21 @@
 //!Support for these new operations is advertised via the
 //!`VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV` bit.This extension requires Vulkan 1.1, for general
 //! subgroup support.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_subgroup_partitioned]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_shader_subgroup_partitioned extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME`]
 //! - [`NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION`]
 //! - Extending [`SubgroupFeatureFlagBits`]:  - `VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-03-17 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-03-17
 //! * - This extension requires [`SPV_NV_shader_subgroup_partitioned`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_subgroup_partitioned.html)
 //!   - This extension provides API support for [`GL_NV_shader_subgroup_partitioned`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GL_NV_shader_subgroup_partitioned.txt)

@@ -11,41 +11,41 @@
 //![`GL_NV_cooperative_matrix`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_cooperative_matrix.txt)
 //!GLSL extension.This extension includes support for enumerating the matrix types and
 //!dimensions that are supported by the implementation.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_cooperative_matrix]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_cooperative_matrix extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_cooperative_matrix_properties_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`CooperativeMatrixPropertiesNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCooperativeMatrixFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceCooperativeMatrixPropertiesNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ComponentTypeNV`]
 //! - [`ScopeNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_COOPERATIVE_MATRIX_EXTENSION_NAME`]
 //! - [`NV_COOPERATIVE_MATRIX_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) What matrix properties will be supported in practice? **RESOLVED** : In NVIDIA’s initial
 //! implementation, we will support:
 //! - AType = BType = fp16 CType = DType = fp16 MxNxK = 16x8x16 scope = Subgroup
 //! - AType = BType = fp16 CType = DType = fp16 MxNxK = 16x8x8 scope = Subgroup
 //! - AType = BType = fp16 CType = DType = fp32 MxNxK = 16x8x16 scope = Subgroup
 //! - AType = BType = fp16 CType = DType = fp32 MxNxK = 16x8x8 scope = Subgroup
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-02-05 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-02-05
 //! * - This extension requires [`SPV_NV_cooperative_matrix`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_cooperative_matrix.html)
 //!   - This extension provides API support for [`GL_NV_cooperative_matrix`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_cooperative_matrix.txt)

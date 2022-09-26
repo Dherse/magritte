@@ -23,31 +23,31 @@
 //!required to complete the operation have been exhausted (either by the same
 //!process or a different process).
 //!In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to `[`khr_global_priority`]` extension
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Andres Rodriguez [lostgoat](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_global_priority]
 //!   @lostgoat%0A<<Here describe the issue or question you have about the VK_EXT_global_priority
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`DeviceQueueCreateInfo`]:  - [`DeviceQueueGlobalPriorityCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`QueueGlobalPriorityEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_GLOBAL_PRIORITY_EXTENSION_NAME`]
 //! - [`EXT_GLOBAL_PRIORITY_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_NOT_PERMITTED_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2017-11-03 (Andres Rodriguez)  - Fixed VkQueueGlobalPriorityEXT missing _EXT
 //!   suffix
 //! - Revision 1, 2017-10-06 (Andres Rodriguez)  - First version.
-//!# Other info
+//!# Other information
 //! * 2017-10-06
 //! * No known IP claims.
 //! * - Andres Rodriguez, Valve  - Pierre-Loup Griffais, Valve  - Dan Ginsburg, Valve  - Mitch

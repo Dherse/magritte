@@ -11,27 +11,27 @@
 //!constructing the chain and letting the implementation fill them in.
 //!A new command is added for each `vkGet*MemoryRequrements` command in
 //!core Vulkan 1.0.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_memory_requirements2]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_memory_requirements2 extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_buffer_memory_requirements2_khr`]
 //! - [`get_image_memory_requirements2_khr`]
 //! - [`get_image_sparse_memory_requirements2_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`BufferMemoryRequirementsInfo2KHR`]
 //! - [`ImageMemoryRequirementsInfo2KHR`]
 //! - [`ImageSparseMemoryRequirementsInfo2KHR`]
 //! - [`MemoryRequirements2KHR`]
 //! - [`SparseImageMemoryRequirements2KHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_GET_MEMORY_REQUIREMENTS_2_EXTENSION_NAME`]
 //! - [`KHR_GET_MEMORY_REQUIREMENTS_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BUFFER_MEMORY_REQUIREMENTS_INFO_2_KHR`  -
@@ -39,9 +39,9 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SPARSE_MEMORY_REQUIREMENTS_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_REQUIREMENTS_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SPARSE_IMAGE_MEMORY_REQUIREMENTS_2_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-03-23 (Jason Ekstrand)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

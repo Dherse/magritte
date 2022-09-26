@@ -7,18 +7,18 @@
 //!one subdevice to a resource on another subdevice, record command buffers
 //!where some work executes on an arbitrary subset of the subdevices, and
 //!potentially present a swapchain image from one or more subdevices.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_device_group_creation`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_device_group]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_device_group
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_dispatch_base_khr`]
 //! - [`cmd_set_device_mask_khr`]
 //! - [`get_device_group_peer_memory_features_khr`]
@@ -28,7 +28,7 @@
 //! - [`get_physical_device_present_rectangles_khr`]
 //!If [`khr_swapchain`] is supported:
 //! - [`acquire_next_image2_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`BindSparseInfo`]:  - [`DeviceGroupBindSparseInfoKHR`]
 //! - Extending [`CommandBufferBeginInfo`]:  - [`DeviceGroupCommandBufferBeginInfoKHR`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryAllocateFlagsInfoKHR`]
@@ -45,17 +45,17 @@
 //! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`DeviceGroupPresentInfoKHR`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`DeviceGroupSwapchainCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`MemoryAllocateFlagBitsKHR`]
 //! - [`PeerMemoryFeatureFlagBitsKHR`]
 //!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`MemoryAllocateFlagsKHR`]
 //! - [`PeerMemoryFeatureFlagsKHR`]
 //!If [`khr_surface`] is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
 //! - [`KHR_DEVICE_GROUP_SPEC_VERSION`]
 //! - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR`
@@ -84,7 +84,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:  -
 //!   `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-19 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2017-05-19 (Tobias Hector)  - Removed extended memory bind functions to
 //!   VK_KHR_bind_memory2, added dependency on that extension, and device-group-specific structs for
@@ -93,7 +93,7 @@
 //!   extensions. All Vulkan 1.1 WSI interactions are with the VK_KHR_swapchain extension.
 //! - Revision 4, 2017-10-10 (Jeff Bolz)  - Rename “SFR” bits and structure members to use the
 //!   phrase “split instance bind regions”.
-//!# Other info
+//!# Other information
 //! * 2017-10-10
 //! * No known IP claims.
 //! * - This extension requires [`SPV_KHR_device_group`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_device_group.html)

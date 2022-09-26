@@ -7,23 +7,23 @@
 //!pipeline objects they need to create.This extension adds dynamic state support for what is
 //! normally static state
 //!in [`PipelineVertexInputStateCreateInfo`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_vertex_input_dynamic_state]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_vertex_input_dynamic_state extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_vertex_input_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`VertexInputAttributeDescription2EXT`]
 //! - [`VertexInputBindingDescription2EXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceVertexInputDynamicStateFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME`]
 //! - [`EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_VERTEX_INPUT_EXT`
@@ -31,13 +31,13 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VERTEX_INPUT_ATTRIBUTE_DESCRIPTION_2_EXT`  -
 //!   `VK_STRUCTURE_TYPE_VERTEX_INPUT_BINDING_DESCRIPTION_2_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2020-11-05 (Piers Daniell)  - Make [`VertexInputBindingDescription2EXT`]
 //!   extensible  - Add new [`VertexInputAttributeDescription2EXT`] struct for the
 //!   `pVertexAttributeDescriptions` parameter to [`cmd_set_vertex_input_ext`] so it is also
 //!   extensible
 //! - Revision 1, 2020-08-21 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2020-08-21
 //! * No known IP claims.
 //! * - Jeff Bolz, NVIDIA  - Spencer Fricke, Samsung  - Stu Smith, AMD

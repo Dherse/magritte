@@ -3,16 +3,16 @@
 //!This extension allows instance-rate vertex attributes to be repeated for
 //!certain number of instances instead of advancing for every instance when
 //!instanced rendering is enabled.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Vikram Kushwaha [vkushwaha](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_vertex_attribute_divisor]
 //!   @vkushwaha%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_vertex_attribute_divisor extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`VertexInputBindingDivisorDescriptionEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceVertexAttributeDivisorFeaturesEXT`]
@@ -20,26 +20,26 @@
 //!   [`PhysicalDeviceVertexAttributeDivisorPropertiesEXT`]
 //! - Extending [`PipelineVertexInputStateCreateInfo`]:  -
 //!   [`PipelineVertexInputDivisorStateCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME`]
 //! - [`EXT_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) What is the effect of a non-zero value for `firstInstance`? **RESOLVED** : The Vulkan API
 //! should follow the OpenGL convention and offset
 //!attribute fetching by `firstInstance` while computing vertex attribute
 //!offsets.2) Should zero be an allowed divisor? **RESOLVED** : Yes.
 //!A zero divisor means the vertex attribute is repeated for all instances.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-12-04 (Vikram Kushwaha)  - First Version
 //! - Revision 2, 2018-07-16 (Jason Ekstrand)  - Adjust the interaction between `divisor` and
 //!   `firstInstance` to match the OpenGL convention.  - Disallow divisors of zero.
 //! - Revision 3, 2018-08-03 (Vikram Kushwaha)  - Allow a zero divisor.  - Add a physical device
 //!   features structure to query/enable this feature.
-//!# Other info
+//!# Other information
 //! * 2018-08-03
 //! * No known IP claims.
 //! * - Vikram Kushwaha, NVIDIA  - Jason Ekstrand, Intel

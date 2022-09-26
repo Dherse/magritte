@@ -5,35 +5,35 @@
 //!“supersample” fragment shading rates that trigger multiple fragment shader
 //!invocations per pixel as well as a “no invocations” shading rate that
 //!discards any portions of a primitive that would use that shading rate.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_fragment_shading_rate`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_shading_rate_enums]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the
 //!   VK_NV_fragment_shading_rate_enums extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_fragment_shading_rate_enum_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`GraphicsPipelineCreateInfo`]:  -
 //!   [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentShadingRateEnumsFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceFragmentShadingRateEnumsPropertiesNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`FragmentShadingRateNV`]
 //! - [`FragmentShadingRateTypeNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME`]
 //! - [`NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!0. Why was this extension created?   How should it be named? **RESOLVED** : The primary goal of
 //! this extension was to expose support for supersample and “no invocations” shading rates, which
 //! are supported by the VK_NV_shading_rate_image extension but not by VK_KHR_fragment_shading_rate.
@@ -70,9 +70,9 @@
 //! member to [`PipelineFragmentShadingRateEnumStateCreateInfoNV`] that selects between using state
 //! specified by that structure and state specified by
 //! [`PipelineFragmentShadingRateStateCreateInfoKHR`].
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-09-02 (pbrown)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2020-09-02
 //! * - Pat Brown, NVIDIA  - Jeff Bolz, NVIDIA
 //!# Related

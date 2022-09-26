@@ -8,30 +8,30 @@
 //! translating DX content which assumes depth clamping is
 //!always enabled, but depth clip can be controlled by the DepthClipEnable
 //!rasterization state (D3D12_RASTERIZER_DESC).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_depth_clip_enable]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_depth_clip_enable extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDepthClipEnableFeaturesEXT`]
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PipelineRasterizationDepthClipStateCreateFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DEPTH_CLIP_ENABLE_EXTENSION_NAME`]
 //! - [`EXT_DEPTH_CLIP_ENABLE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_DEPTH_CLIP_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-12-20 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-12-20
 //! * - Daniel Rakos, AMD  - Henri Verbeet, CodeWeavers  - Jeff Bolz, NVIDIA  - Philip Rebohle, DXVK
 //!   - Tobias Hector, AMD

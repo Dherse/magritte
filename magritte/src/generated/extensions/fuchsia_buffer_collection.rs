@@ -15,25 +15,25 @@
 //!in its design.
 //!VK_FUCHSIA_buffer_collection is the Vulkan extension that allows Vulkan
 //!applications to interoperate with the Sysmem service on Fuchsia.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`fuchsia_external_memory`]`
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_buffer_collection]
 //!   @rosasco%0A<<Here describe the issue or question you have about the
 //!   VK_FUCHSIA_buffer_collection extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`BufferCollectionFUCHSIA`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_buffer_collection_fuchsia`]
 //! - [`destroy_buffer_collection_fuchsia`]
 //! - [`get_buffer_collection_properties_fuchsia`]
 //! - [`set_buffer_collection_buffer_constraints_fuchsia`]
 //! - [`set_buffer_collection_image_constraints_fuchsia`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`BufferCollectionConstraintsInfoFUCHSIA`]
 //! - [`BufferCollectionCreateInfoFUCHSIA`]
 //! - [`BufferCollectionPropertiesFUCHSIA`]
@@ -44,12 +44,12 @@
 //! - Extending [`BufferCreateInfo`]:  - [`BufferCollectionBufferCreateInfoFUCHSIA`]
 //! - Extending [`ImageCreateInfo`]:  - [`BufferCollectionImageCreateInfoFUCHSIA`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryBufferCollectionFUCHSIA`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ImageConstraintsInfoFlagBitsFUCHSIA`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ImageConstraintsInfoFlagsFUCHSIA`]
 //! - [`ImageFormatConstraintsFlagsFUCHSIA`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME`]
 //! - [`FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION`]
 //! - Extending [`DebugReportObjectTypeEXT`]:  -
@@ -66,7 +66,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`  -
 //!   `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) When configuring a [`ImageConstraintsInfoFUCHSIA`] structure for
 //!constraint setting, should a NULL `pFormatConstraints` parameter be
 //!allowed ? **RESOLVED** : No.
@@ -77,10 +77,10 @@
 //![`FormatFeatureFlags`].The explicit requirement for `pFormatConstraints` to be non-NULL
 //!simplifies the implied logic of the implementation and expectations for the
 //!Vulkan application.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2021-09-23 (John Rosasco)  - Review passes
 //! - Revision 1, 2021-03-09 (John Rosasco)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2021-09-23
 //! * No known IP claims.
 //! * - Craig Stout, Google  - John Bauman, Google  - John Rosasco, Google

@@ -6,24 +6,24 @@
 //!This extension defines the infrastructure for pipeline libraries, but does
 //!not specify the creation or usage of pipeline libraries.
 //!This is left to additional dependent extensions.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_pipeline_library]
 //!   @pixeljetstream%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_pipeline_library extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PipelineLibraryCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_PIPELINE_LIBRARY_EXTENSION_NAME`]
 //! - [`KHR_PIPELINE_LIBRARY_SPEC_VERSION`]
 //! - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-01-08 (Christoph Kubisch)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2020-01-08
 //! * No known IP claims.
 //! * - See contributors to `[`khr_ray_tracing_pipeline`]`

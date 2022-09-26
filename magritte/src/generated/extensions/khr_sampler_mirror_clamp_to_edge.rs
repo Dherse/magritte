@@ -9,22 +9,22 @@
 //!by using the original image to generate a matching “mirror image”.
 //!This mode allows the texture to be mirrored only once in the negative s, t,
 //!and r directions.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_sampler_mirror_clamp_to_edge]
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_sampler_mirror_clamp_to_edge extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME`]
 //! - [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION`]
 //! - Extending [`SamplerAddressMode`]:  - `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE`  -
 //!   `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Why are both KHR and core versions of the
 //!`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE` token present? **RESOLVED** : This functionality
 //! was intended to be required in Vulkan 1.0.
@@ -36,12 +36,12 @@
 //!hardwiring into the spec Makefile so it was always included with the
 //!Specification, even in the core-only versions.
 //!This has now been reverted, and it is treated as any other extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-02-16 (Tobias Hector)  - Initial draft
 //! - Revision 2, 2019-08-14 (Jon Leech)  - Add KHR-suffixed alias of non-suffixed enum.
 //! - Revision 3, 2019-08-17 (Jon Leech)  - Add an issue explaining the reason for the extension API
 //!   not being suffixed with KHR.
-//!# Other info
+//!# Other information
 //! * 2019-08-17
 //! * - Promoted to Vulkan 1.2 Core
 //! * - Tobias Hector, Imagination Technologies  - Jon Leech, Khronos

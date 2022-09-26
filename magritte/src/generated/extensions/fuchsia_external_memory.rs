@@ -6,24 +6,24 @@
 //!subsystems need to interoperate on them.
 //!Sharing memory buffers may also facilitate a better distribution of
 //!processing workload for more complex memory manipulation pipelines.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory_capabilities`]`
 //! - Requires `[`khr_external_memory`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_memory]
 //!   @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_external_memory
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_memory_zircon_handle_fuchsia`]
 //! - [`get_memory_zircon_handle_properties_fuchsia`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MemoryGetZirconHandleInfoFUCHSIA`]
 //! - [`MemoryZirconHandlePropertiesFUCHSIA`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryZirconHandleInfoFUCHSIA`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME`]
 //! - [`FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:  -
@@ -31,11 +31,11 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA`
 //!   - `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!See `[`khr_external_memory`]` issues list for further information.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-03-01 (John Rosasco)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2021-03-01
 //! * No known IP claims.
 //! * - Craig Stout, Google  - John Bauman, Google  - John Rosasco, Google

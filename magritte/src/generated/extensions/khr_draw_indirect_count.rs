@@ -8,25 +8,25 @@
 //!to drawing.
 //!This enables the application to generate an arbitrary number of drawing
 //!commands and execute them without host intervention.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_draw_indirect_count]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_draw_indirect_count extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_draw_indexed_indirect_count_khr`]
 //! - [`cmd_draw_indirect_count_khr`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DRAW_INDIRECT_COUNT_EXTENSION_NAME`]
 //! - [`KHR_DRAW_INDIRECT_COUNT_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-25 (Piers Daniell)  - Initial draft based off VK_AMD_draw_indirect_count
-//!# Other info
+//!# Other information
 //! * 2017-08-25
 //! * - Promoted to Vulkan 1.2 Core
 //! * No known IP claims.

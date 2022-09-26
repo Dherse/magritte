@@ -5,30 +5,30 @@
 //!the `[`khr_surface`]` extension) that refers to an X11 [`Window`],
 //!using the Xlib client-side library, as well as a query to determine support
 //!for rendering via Xlib.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!6
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xlib_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_xlib_surface
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xlib_surface]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_xlib_surface
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_xlib_surface_khr`]
 //! - [`get_physical_device_xlib_presentation_support_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`XlibSurfaceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`XlibSurfaceCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_XLIB_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_XLIB_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Does X11 need a way to query for compatibility between a particular
 //!physical device and a specific screen? This would be a more general query
 //!than [`get_physical_device_surface_support_khr`]; if it returned
@@ -38,7 +38,7 @@
 //![`Device`] before creating a window.
 //!To ensure the query is reliable, it must be made against a particular X
 //!visual rather than the screen in general.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft, based on the previous contents of
 //!   VK_EXT_KHR_swapchain (later renamed VK_EXT_KHR_surface).
 //! - Revision 2, 2015-10-02 (James Jones)  - Added presentation support query for (Display*,
@@ -52,7 +52,7 @@
 //! - Revision 5, 2015-11-03 (Daniel Rakos)  - Added allocation callbacks to vkCreateXlibSurfaceKHR.
 //! - Revision 6, 2015-11-28 (Daniel Rakos)  - Updated the surface create function to take a
 //!   pCreateInfo structure.
-//!# Other info
+//!# Other information
 //! * 2015-11-28
 //! * No known IP claims.
 //! * - Patrick Doane, Blizzard  - Jason Ekstrand, Intel  - Ian Elliott, LunarG  - Courtney

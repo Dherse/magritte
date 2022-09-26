@@ -34,19 +34,19 @@
 //!The old limits only count descriptors in non-updateAfterBind descriptor set
 //!layouts, and the new limits count descriptors in all descriptor set layouts
 //!in the pipeline layout.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_maintenance3`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_descriptor_indexing]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_descriptor_indexing extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`DescriptorSetAllocateInfo`]:  -
 //!   [`DescriptorSetVariableDescriptorCountAllocateInfoEXT`]
 //! - Extending [`DescriptorSetLayoutCreateInfo`]:  -
@@ -56,11 +56,11 @@
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDescriptorIndexingFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDescriptorIndexingPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DescriptorBindingFlagBitsEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`DescriptorBindingFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME`]
 //! - [`EXT_DESCRIPTOR_INDEXING_SPEC_VERSION`]
 //! - Extending [`DescriptorBindingFlagBits`]:  - `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT`  -
@@ -78,10 +78,10 @@
 //!   `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-07-26 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2017-10-02 (Jeff Bolz)  - ???
-//!# Other info
+//!# Other information
 //! * 2017-10-02
 //! * - Promoted to Vulkan 1.2 Core  - This extension requires [`SPV_EXT_descriptor_indexing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_descriptor_indexing.html)
 //!   - This extension provides API support for [`GL_EXT_nonuniform_qualifier`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_nonuniform_qualifier.txt)

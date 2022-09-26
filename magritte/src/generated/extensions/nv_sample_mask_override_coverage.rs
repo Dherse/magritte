@@ -14,20 +14,20 @@
 //!`GL_NV_sample_mask_override_coverage` extension must be enabled.
 //!Behavior is described in the `GL_NV_sample_mask_override_coverage` extension
 //!spec.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_sample_mask_override_coverage]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_sample_mask_override_coverage extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_SAMPLE_MASK_OVERRIDE_COVERAGE_EXTENSION_NAME`]
 //! - [`NV_SAMPLE_MASK_OVERRIDE_COVERAGE_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-12-08 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2016-12-08
 //! * No known IP claims.
 //! * - This extension requires [`SPV_NV_sample_mask_override_coverage`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_sample_mask_override_coverage.html)

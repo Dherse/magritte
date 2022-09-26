@@ -5,28 +5,28 @@
 //!hardware or instructions they may have.
 //!Zero initialization is commonly used by applications running untrusted
 //!content (e.g. web browsers) as way of defeating memory-scraping attacks.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Alan Baker [alan-baker](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_zero_initialize_workgroup_memory]
 //!   @alan-baker%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_zero_initialize_workgroup_memory extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME`]
 //! - [`KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-11-18 (Alan Baker)  - Internal draft version
-//!# Other info
+//!# Other information
 //! * 2020-11-18
 //! * - Promoted to Vulkan 1.3 Core
 //! * No known IP claims.

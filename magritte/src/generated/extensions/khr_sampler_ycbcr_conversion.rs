@@ -10,26 +10,26 @@
 //!It also adds a selection of multi-planar formats, image aspect plane, and
 //!the ability to bind memory to the planes of an image collectively or
 //!separately.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!14
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_maintenance1`]`
 //! - Requires `[`khr_bind_memory2`]`
 //! - Requires `[`khr_get_memory_requirements2`]`
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Andrew Garrard [fluppeteer](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_sampler_ycbcr_conversion]
 //!   @fluppeteer%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_sampler_ycbcr_conversion extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`SamplerYcbcrConversionKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_sampler_ycbcr_conversion_khr`]
 //! - [`destroy_sampler_ycbcr_conversion_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`SamplerYcbcrConversionCreateInfoKHR`]
 //! - Extending [`BindImageMemoryInfo`]:  - [`BindImagePlaneMemoryInfoKHR`]
 //! - Extending [`ImageFormatProperties2`]:  - [`SamplerYcbcrConversionImageFormatPropertiesKHR`]
@@ -37,11 +37,11 @@
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceSamplerYcbcrConversionFeaturesKHR`]
 //! - Extending [`SamplerCreateInfo`], [`ImageViewCreateInfo`]:  - [`SamplerYcbcrConversionInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ChromaLocationKHR`]
 //! - [`SamplerYcbcrModelConversionKHR`]
 //! - [`SamplerYcbcrRangeKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME`]
 //! - [`KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION`]
 //! - Extending [`ChromaLocation`]:  - `VK_CHROMA_LOCATION_COSITED_EVEN_KHR`  -
@@ -99,7 +99,7 @@
 //!If [`ext_debug_report`] is supported:
 //! - Extending [`DebugReportObjectTypeEXT`]:  -
 //!   `VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_YCBCR_CONVERSION_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-01-24 (Andrew Garrard)  - Initial draft
 //! - Revision 2, 2017-01-25 (Andrew Garrard)  - After initial feedback
 //! - Revision 3, 2017-01-27 (Andrew Garrard)  - Higher bit depth formats, renaming, swizzle
@@ -117,7 +117,7 @@
 //! - Revision 12, 2017-06-06 (Andrew Garrard)  - Added conversion to image view creation
 //! - Revision 13, 2017-07-13 (Andrew Garrard)  - Allowed cosited-only chroma samples for formats
 //! - Revision 14, 2017-08-11 (Andrew Garrard)  - Reflected quantization changes in BT.2100-1
-//!# Other info
+//!# Other information
 //! * 2017-08-11
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

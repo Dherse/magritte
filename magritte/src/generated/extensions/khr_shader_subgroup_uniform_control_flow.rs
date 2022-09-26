@@ -9,25 +9,25 @@
 //!This extension will guarantee that uniform subgroup will reconverge in the
 //!same manner as invocation groups (see “Uniform Control Flow” in the
 //![Khronos SPIR-V Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#spirv-spec)).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Alan Baker [alan-baker](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_subgroup_uniform_control_flow]
 //!   @alan-baker%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_subgroup_uniform_control_flow extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_EXTENSION_NAME`]
 //! - [`KHR_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-08-27 (Alan Baker)  - Internal draft version
-//!# Other info
+//!# Other information
 //! * 2020-08-27
 //! * No known IP claims.
 //! * - Requires SPIR-V 1.3.  - This extension requires [`SPV_KHR_subgroup_uniform_control_flow`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_subgroup_uniform_control_flow.html)

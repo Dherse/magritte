@@ -26,19 +26,19 @@
 //!non-per-view outputs, whichever would be more efficient.If `[`nv_viewport_array2`]` is not also
 //! supported and enabled, the
 //!per-view viewport mask  **must**  not be used.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_multiview`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_multiview_per_view_attributes]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NVX_multiview_per_view_attributes extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME`]
 //! - [`NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
@@ -46,9 +46,9 @@
 //! - Extending [`SubpassDescriptionFlagBits`]:  -
 //!   `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX`  -
 //!   `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-01-13 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-01-13
 //! * No known IP claims.
 //! * - This extension requires [`SPV_NVX_multiview_per_view_attributes`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NVX_multiview_per_view_attributes.html)

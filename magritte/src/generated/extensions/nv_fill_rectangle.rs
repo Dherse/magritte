@@ -7,21 +7,21 @@
 //!triangles with an internal edge.
 //!It is also useful to minimize the number of primitives that need to be
 //!drawn, particularly for a user interface.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fill_rectangle]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NV_fill_rectangle
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_FILL_RECTANGLE_EXTENSION_NAME`]
 //! - [`NV_FILL_RECTANGLE_SPEC_VERSION`]
 //! - Extending [`PolygonMode`]:  - `VK_POLYGON_MODE_FILL_RECTANGLE_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-05-22 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-05-22
 //! * - Jeff Bolz, NVIDIA
 //!# Notes and documentation

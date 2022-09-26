@@ -13,24 +13,24 @@
 //!traversal results to the calling shader.This extension adds support for the following SPIR-V
 //! extension in Vulkan:
 //! - `SPV_KHR_ray_query`
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_spirv_1_4`]`
 //! - Requires `[`khr_acceleration_structure`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_query]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_query
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceRayQueryFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_RAY_QUERY_EXTENSION_NAME`]
 //! - [`KHR_RAY_QUERY_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) What are the changes between the public provisional (VK_KHR_ray_tracing
 //!v8) release and the final (VK_KHR_acceleration_structure v11 /
 //!VK_KHR_ray_query v1) release?
@@ -40,7 +40,7 @@
 //!   and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages)
 //! - Update SPIRV capabilities to use `RayQueryKHR`
 //! - extension is no longer provisional
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-11-12 (Mathieu Robart, Daniel Koch, Andrew Garrard)  - Decomposition of the
 //!   specification, from VK_KHR_ray_tracing to VK_KHR_ray_query (#1918,!3912)  - update to use
 //!   `RayQueryKHR` SPIR-V capability  - add numerical limits for ray parameters (#2235,!3960)  -
@@ -48,7 +48,7 @@
 //!   TLAS (#2239,!4141)  - require `HitT` to be in ray interval for
 //!   `OpRayQueryGenerateIntersectionKHR` (#2359,!4146)  - add ray query shader stages for AS read
 //!   bit (#2407,!4203)
-//!# Other info
+//!# Other information
 //! * 2020-11-12
 //! * - This extension requires [`SPV_KHR_ray_query`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_ray_query.html)
 //!   - This extension provides API support for [`GLSL_EXT_ray_query`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_ray_query.txt)

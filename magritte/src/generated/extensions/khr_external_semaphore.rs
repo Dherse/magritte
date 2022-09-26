@@ -5,29 +5,29 @@
 //!This extension enables an application to create semaphores from which
 //!non-Vulkan handles that reference the underlying synchronization primitive
 //!can be exported.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_semaphore_capabilities`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_semaphore extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`SemaphoreCreateInfo`]:  - [`ExportSemaphoreCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`SemaphoreImportFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`SemaphoreImportFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_SEMAPHORE_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_SEMAPHORE_SPEC_VERSION`]
 //! - Extending [`SemaphoreImportFlagBits`]:  - `VK_SEMAPHORE_IMPORT_TEMPORARY_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should there be restrictions on what side effects can occur when waiting
 //!on imported semaphores that are in an invalid state? **RESOLVED** : Yes.
 //!Normally, validating such state would be the responsibility of the
@@ -44,9 +44,9 @@
 //!import operation.
 //!However, implementations need not validate handles are of the exact type
 //!specified by the application.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2016-10-21
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

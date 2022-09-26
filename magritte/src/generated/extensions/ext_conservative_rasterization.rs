@@ -24,34 +24,34 @@
 //!Degenerate triangles are those that end up with zero area after the
 //!rasterizer quantizes them to the fixed-point pixel grid.
 //!Degenerate lines are those with zero length after quantization.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_conservative_rasterization]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_conservative_rasterization extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceConservativeRasterizationPropertiesEXT`]
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationConservativeStateCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ConservativeRasterizationModeEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PipelineRasterizationConservativeStateCreateFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME`]
 //! - [`EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONSERVATIVE_RASTERIZATION_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_CONSERVATIVE_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1.1, 2020-09-06 (Piers Daniell)  - Add missing SPIR-V and GLSL dependencies.
 //! - Revision 1, 2017-08-28 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2020-06-09
 //! *   - This extension requires [`SPV_EXT_fragment_fully_covered`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_fragment_fully_covered.html) if the [`PhysicalDeviceConservativeRasterizationPropertiesEXT::fully_covered_fragment_shader_input_variable`] feature is used.  - This extension requires [`SPV_KHR_post_depth_coverage`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_post_depth_coverage.html)if the [`PhysicalDeviceConservativeRasterizationPropertiesEXT::conservative_rasterization_post_depth_coverage`] feature is used.  - This extension provides API support for [`GL_NV_conservative_raster_underestimation`](https://www.khronos.org/registry/OpenGL/extensions/NV/NV_conservative_raster_underestimation.txt) if the [`PhysicalDeviceConservativeRasterizationPropertiesEXT::fully_covered_fragment_shader_input_variable`] feature is used.
 //! * - Daniel Koch, NVIDIA  - Daniel Rakos, AMD  - Jeff Bolz, NVIDIA  - Slawomir Grajewski, Intel

@@ -9,20 +9,20 @@
 //! - Acceleration structure objects and build commands
 //! - Structures to describe geometry inputs to acceleration structure builds
 //! - Acceleration structure copy commands
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!13
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
 //! - Requires `[`ext_descriptor_indexing`]`
 //! - Requires `[`khr_buffer_device_address`]`
 //! - Requires `[`khr_deferred_host_operations`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_acceleration_structure]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_acceleration_structure extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`AccelerationStructureKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`build_acceleration_structures_khr`]
 //! - [`cmd_build_acceleration_structures_indirect_khr`]
 //! - [`cmd_build_acceleration_structures_khr`]
@@ -39,7 +39,7 @@
 //! - [`get_acceleration_structure_device_address_khr`]
 //! - [`get_device_acceleration_structure_compatibility_khr`]
 //! - [`write_acceleration_structures_properties_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`AabbPositionsKHR`]
 //! - [`AccelerationStructureBuildGeometryInfoKHR`]
 //! - [`AccelerationStructureBuildRangeInfoKHR`]
@@ -61,11 +61,11 @@
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceAccelerationStructurePropertiesKHR`]
 //! - Extending [`WriteDescriptorSet`]:  - [`WriteDescriptorSetAccelerationStructureKHR`]
-# ! [doc = concat ! ("# " , "New unions")]
+//!# New unions
 //! - [`AccelerationStructureGeometryDataKHR`]
 //! - [`DeviceOrHostAddressConstKHR`]
 //! - [`DeviceOrHostAddressKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`AccelerationStructureBuildTypeKHR`]
 //! - [`AccelerationStructureCompatibilityKHR`]
 //! - [`AccelerationStructureCreateFlagBitsKHR`]
@@ -76,12 +76,12 @@
 //! - [`GeometryFlagBitsKHR`]
 //! - [`GeometryInstanceFlagBitsKHR`]
 //! - [`GeometryTypeKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`AccelerationStructureCreateFlagsKHR`]
 //! - [`BuildAccelerationStructureFlagsKHR`]
 //! - [`GeometryFlagsKHR`]
 //! - [`GeometryInstanceFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME`]
 //! - [`KHR_ACCELERATION_STRUCTURE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`  -
@@ -119,7 +119,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  -
 //!   `VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) How does this extension differ from VK_NV_ray_tracing? **DISCUSSION** :The following is a
 //! summary of the main functional differences between
 //!VK_KHR_acceleration_structure and VK_NV_ray_tracing:
@@ -319,7 +319,7 @@
 //!We thus added a generic acceleration structure type whose type is unknown at
 //!creation time, but is specified at build time instead.
 //!Applications which are written directly for Vulkan should not use it.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-12-05 (Members of the Vulkan Ray Tracing TSG)  - Internal revisions (forked
 //!   from VK_NV_ray_tracing)
 //! - Revision 2, 2019-12-20 (Daniel Koch, Eric Werness)  - Add const version of DeviceOrHostAddress
@@ -426,7 +426,7 @@
 //!   description and add note.
 //! - Revision 13, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
 //!   `vk.xml`
-//!# Other info
+//!# Other information
 //! * 2021-09-30
 //! * - Samuel Bourasseau, Adobe  - Matthäus Chajdas, AMD  - Greg Grebe, AMD  - Nicolai Hähnle, AMD
 //!   - Tobias Hector, AMD  - Dave Oldcorn, AMD  - Skyler Saleh, AMD  - Mathieu Robart, Arm  -
@@ -8432,11 +8432,12 @@ impl<'lt> AccelerationStructureDeviceAddressInfoKHR<'lt> {
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span
-///   class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-///   style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span
-///   style="margin-right:0.2222222222222222em;" class="mspace"></span><span
-///   class="mbin">×</span><span style="margin-right:0.2222222222222222em;"
-///   class="mspace"></span></span><span class="base"><span class="strut"
+///   class="katex-html" aria-hidden="true"><span class="base"><span
+///   style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span
+///   class="mord">2</span><span class="mspace"
+///   style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span
+///   class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span
+///   class="base"><span class="strut"
 ///   style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span
 ///   class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord
 ///   mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span

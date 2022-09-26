@@ -2,20 +2,20 @@
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - [`SPV_AMD_shader_image_load_store_lod`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_image_load_store_lod.html)
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_image_load_store_lod]
 //!   @dominikwitczakamd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_image_load_store_lod extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_SHADER_IMAGE_LOAD_STORE_LOD_EXTENSION_NAME`]
 //! - [`AMD_SHADER_IMAGE_LOAD_STORE_LOD_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-21 (Dominik Witczak)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-08-21
 //! * - This extension requires [`SPV_AMD_shader_image_load_store_lod`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_image_load_store_lod.html)
 //!   - This extension provides API support for [`GL_AMD_shader_image_load_store_lod`](https://www.khronos.org/registry/OpenGL/extensions/AMD/AMD_shader_image_load_store_lod.txt)

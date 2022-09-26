@@ -8,31 +8,31 @@
 //!executing on.This extension enables support for the SPIR-V `ShaderSMBuiltinsNV`
 //!capability.These properties and built-ins  **should**  typically only be used for debugging
 //!purposes.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_sm_builtins]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_shader_sm_builtins
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderSmBuiltinsFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceShaderSmBuiltinsPropertiesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_SHADER_SM_BUILTINS_EXTENSION_NAME`]
 //! - [`NV_SHADER_SM_BUILTINS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_PROPERTIES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!0. What should we call this extension? **RESOLVED** : `NV_shader_sm_builtins`. Other options
 //! considered included:  - `NV_shader_smid` - but SMID is really easy to typo/confuse as SIMD.  -
 //! `NV_shader_sm_info` - but  **Info**  is typically reserved for input structures
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-05-28 (Daniel Koch)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-05-28
 //! * - This extension requires [`SPV_NV_shader_sm_builtins`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_shader_sm_builtins.html).
 //!   - This extension provides API support for [`GL_NV_shader_sm_builtins`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nv/GLSL_NV_shader_sm_builtins.txt)

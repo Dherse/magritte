@@ -28,22 +28,22 @@
 //!required to complete the operation have been exhausted (either by the same
 //!process or a different process).
 //!In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_global_priority]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_global_priority
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`DeviceQueueCreateInfo`]:  - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyGlobalPriorityPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`QueueGlobalPriorityKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_GLOBAL_PRIORITY_EXTENSION_NAME`]
 //! - [`KHR_GLOBAL_PRIORITY_SPEC_VERSION`]
 //! - [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
@@ -52,7 +52,7 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Can we additionally query whether a caller is permitted to acquire a
 //!specific global queue priority in this extension? **RESOLVED** : No.
 //!Whether a caller has enough privilege goes with the OS, and the Vulkan
@@ -66,9 +66,9 @@
 //!Queue creation can fail because of runtime constraints like insufficient
 //!privilege or lack of resource, and the failure is not necessarily tied to
 //!that particular queue configuration requested.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-10-22 (Tobias Hector)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2021-10-22
 //! * - Tobias Hector, AMD  - Contributors to [`ext_global_priority`]  - Contributors to
 //!   [`ext_global_priority_query`]

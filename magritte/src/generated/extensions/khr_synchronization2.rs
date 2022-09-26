@@ -52,20 +52,20 @@
 //!   `VK_PIPELINE_STAGE_NONE_KHR` and `VK_PIPELINE_STAGE_2_NONE_KHR` values.
 //! - [`MemoryBarrier2KHR`] can be chained to [`SubpassDependency2`], overriding the original 32-bit
 //!   stage and access masks.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_synchronization2]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_synchronization2
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New base types")]
+//!# New base types
 //! - [`Flags64`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_pipeline_barrier2_khr`]
 //! - [`cmd_reset_event2_khr`]
 //! - [`cmd_set_event2_khr`]
@@ -76,7 +76,7 @@
 //! - [`cmd_write_buffer_marker2_amd`]
 //!If [`nv_device_diagnostic_checkpoints`] is supported:
 //! - [`get_queue_checkpoint_data2_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`BufferMemoryBarrier2KHR`]
 //! - [`CommandBufferSubmitInfoKHR`]
 //! - [`DependencyInfoKHR`]
@@ -89,15 +89,15 @@
 //!If [`nv_device_diagnostic_checkpoints`] is supported:
 //! - [`CheckpointData2NV`]
 //! - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyCheckpointProperties2NV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`AccessFlagBits2KHR`]
 //! - [`PipelineStageFlagBits2KHR`]
 //! - [`SubmitFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`AccessFlags2KHR`]
 //! - [`PipelineStageFlags2KHR`]
 //! - [`SubmitFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SYNCHRONIZATION_2_EXTENSION_NAME`]
 //! - [`KHR_SYNCHRONIZATION_2_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_NONE_KHR`
@@ -154,9 +154,9 @@
 //!If [`nv_shading_rate_image`] is supported:
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_SHADING_RATE_IMAGE_READ_BIT_NV`
 //! - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_SHADING_RATE_IMAGE_BIT_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-12-03 (Tobias Hector)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2020-12-03
 //! * - Promoted to Vulkan 1.3 Core  - Interacts with `[`khr_create_renderpass2`]`
 //! * - Tobias Hector

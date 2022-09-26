@@ -5,34 +5,34 @@
 //!the `[`khr_surface`]` extension) based on an `NSView`, the native
 //!surface type of macOS, which is underpinned by a [`CaMetalLayer`], to
 //!support rendering to the surface using Apple’s Metal framework.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Deprecated* by `[`ext_metal_surface`]` extension
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Bill Hollings [billhollings](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_MVK_macos_surface]
 //!   @billhollings%0A<<Here describe the issue or question you have about the VK_MVK_macos_surface
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_mac_os_surface_mvk`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MacOsSurfaceCreateInfoMVK`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`MacOsSurfaceCreateFlagsMVK`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`MVK_MACOS_SURFACE_EXTENSION_NAME`]
 //! - [`MVK_MACOS_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MACOS_SURFACE_CREATE_INFO_MVK`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-02-15 (Bill Hollings)  - Initial draft.
 //! - Revision 2, 2017-02-24 (Bill Hollings)  - Minor syntax fix to emphasize firm requirement for
 //!   `NSView` to be backed by a [`CaMetalLayer`].
 //! - Revision 3, 2020-07-31 (Bill Hollings)  - Update documentation on requirements for `NSView`.
 //!   - Mark as deprecated by [`VK_EXT_metal_surface`].
-//!# Other info
+//!# Other information
 //! * 2020-07-31
 //! * No known IP claims.
 //! * - Bill Hollings, The Brenwill Workshop Ltd.

@@ -7,22 +7,22 @@
 //!closed.
 //!Essentially, the X11 screen will behave as if the monitor has been unplugged
 //!until control is released.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_direct_mode_display`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_acquire_xlib_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_acquire_xlib_display extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_xlib_display_ext`]
 //! - [`get_rand_r_output_display_ext`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME`]
 //! - [`EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should [`acquire_xlib_display_ext`] take an RandR display ID, or a
 //!Vulkan display handle as input? **RESOLVED** : A Vulkan display handle.
 //!Otherwise there would be no way to specify handles to displays that had been
@@ -33,9 +33,9 @@
 //!for this purpose.3) Should [`get_rand_r_output_display_ext`] be part of this extension, or a
 //!general Vulkan / RandR or Vulkan / Xlib extension? **RESOLVED** : To avoid yet another
 //! extension, include it in this extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-12-13 (James Jones)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-12-13
 //! * No known IP claims.
 //! * - Dave Airlie, Red Hat  - Pierre Boudier, NVIDIA  - James Jones, NVIDIA  - Damien Leone,

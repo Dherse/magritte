@@ -8,18 +8,18 @@
 //!`maxDepthBounds`.
 //!Finally it removes the restriction on the `depth` value in
 //![`ClearDepthStencilValue`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_depth_range_unrestricted]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_depth_range_unrestricted extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DEPTH_RANGE_UNRESTRICTED_EXTENSION_NAME`]
 //! - [`EXT_DEPTH_RANGE_UNRESTRICTED_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) How do [`Viewport`]`minDepth` and `maxDepth` values outside
 //!of the `0.0` to `1.0` range interact with
 //![Primitive Clipping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-clipping)? **RESOLVED** : The behavior described in [Primitive
@@ -34,9 +34,9 @@
 //!`1.0` range and the depth buffer is fixed-point rather than floating-point? **RESOLVED** : The
 //! supported range of a fixed-point depth buffer is `0.0` to
 //!`1.0` and depth fragments are clamped to this range.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-06-22 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-06-22
 //! * - Daniel Koch, NVIDIA  - Jeff Bolz, NVIDIA
 //!# Notes and documentation

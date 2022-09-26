@@ -22,25 +22,25 @@
 //!mipmap levels, etc).
 //!This extension is designed to be used in concert with
 //!`[`ext_memory_priority`]` to help with this part of memory management.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_budget]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_budget
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceMemoryProperties2`]:  - [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_MEMORY_BUDGET_EXTENSION_NAME`]
 //! - [`EXT_MEMORY_BUDGET_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-10-08 (Jeff Bolz)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2018-10-08
 //! * - Jeff Bolz, NVIDIA  - Jeff Juliano, NVIDIA
 //!# Related

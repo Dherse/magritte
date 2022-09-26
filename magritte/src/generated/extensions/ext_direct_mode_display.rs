@@ -6,21 +6,21 @@
 //!This is especially useful for virtual reality applications that wish to hide
 //!HMDs (head mounted displays) from the native platform’s display management
 //!system, desktop, and/or other applications.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_display`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_direct_mode_display]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_direct_mode_display extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`release_display_ext`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME`]
 //! - [`EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should this extension and its related platform-specific extensions
 //!leverage `[`khr_display`]`, or provide separate equivalent interfaces. **RESOLVED** : Use
 //! `[`khr_display`]` concepts and objects.
@@ -34,9 +34,9 @@
 //! acquire displays and enable direct mode? **RESOLVED** : No, these operations happen in one
 //! combined command.
 //!Acquiring a display puts it into direct mode.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-12-13 (James Jones)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-12-13
 //! * No known IP claims.
 //! * - Pierre Boudier, NVIDIA  - James Jones, NVIDIA  - Damien Leone, NVIDIA  - Pierre-Loup

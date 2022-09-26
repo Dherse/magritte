@@ -2,22 +2,22 @@
 //!# Description
 //!This extension enables an application to import host allocations and host
 //!mapped foreign device memory to Vulkan memory objects.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_host]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_external_memory_host extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_memory_host_pointer_properties_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MemoryHostPointerPropertiesEXT`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryHostPointerInfoEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceExternalMemoryHostPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME`]
 //! - [`EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:  -
@@ -26,7 +26,7 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) What memory type has to be used to import host pointers? **RESOLVED** : Depends on the
 //! implementation.
 //!Applications have to use the new [`get_memory_host_pointer_properties_ext`]
@@ -60,9 +60,9 @@
 //!Implementations are still allowed to support only one of the handle types
 //!introduced by this extension by not returning import support for a
 //!particular handle type as returned in [`ExternalMemoryPropertiesKHR`].
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-11-10 (Daniel Rakos)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-11-10
 //! * No known IP claims.
 //! * - Jaakko Konttinen, AMD  - David Mao, AMD  - Daniel Rakos, AMD  - Tobias Hector, Imagination

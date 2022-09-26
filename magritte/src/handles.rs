@@ -149,7 +149,7 @@ impl<T: Handle> Drop for Unique<T> {
 
         unsafe {
             T::destroy(self);
-            Box::from_raw(self.inner.as_ptr());
+            drop(Box::from_raw(self.inner.as_ptr()));
         }
     }
 }

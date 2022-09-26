@@ -2,20 +2,20 @@
 //!# Description
 //!This extension adds support for the following SPIR-V extension in Vulkan:
 //! - [`SPV_AMD_shader_ballot`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_ballot.html)
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_ballot]
 //!   @dominikwitczakamd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_ballot extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_SHADER_BALLOT_EXTENSION_NAME`]
 //! - [`AMD_SHADER_BALLOT_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-09-19 (Dominik Witczak)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-09-19
 //! * No known IP claims.
 //! * - This extension requires [`SPV_AMD_shader_ballot`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_ballot.html)

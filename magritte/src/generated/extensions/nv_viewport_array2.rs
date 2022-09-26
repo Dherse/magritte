@@ -24,22 +24,22 @@
 //!`ViewportRelativeNV` decorations, respectively.
 //!Behaviour is described in the `GL_NV_viewport_array2` extension
 //!specificiation.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_viewport_array2]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_viewport_array2
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_VIEWPORT_ARRAY2_EXTENSION_NAME`]
 //! - [`NV_VIEWPORT_ARRAY2_SPEC_VERSION`]
 //! - [`NV_VIEWPORT_ARRAY_2_EXTENSION_NAME`]
 //! - [`NV_VIEWPORT_ARRAY_2_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-02-15 (Daniel Koch)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-02-15
 //! * - This extension requires [`SPV_NV_viewport_array2`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_viewport_array2.html)
 //!   - This extension provides API support for [`GL_NV_viewport_array2`](https://www.khronos.org/registry/OpenGL/extensions/NV/NV_viewport_array2.txt)

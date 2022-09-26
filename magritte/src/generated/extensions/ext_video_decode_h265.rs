@@ -1,14 +1,14 @@
 //![VK_EXT_video_decode_h265](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_video_decode_h265.html) - device extension
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_decode_queue`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - [peter.fang@amd.com]()
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`VideoDecodeCapabilitiesKHR`]:  - [`VideoDecodeH265CapabilitiesEXT`]
 //! - Extending [`VideoDecodeInfoKHR`]:  - [`VideoDecodeH265PictureInfoEXT`]
 //! - Extending [`VideoProfileKHR`], [`QueryPoolCreateInfo`], [`FormatProperties2`],
@@ -19,7 +19,7 @@
 //!   [`VideoDecodeH265SessionParametersCreateInfoEXT`]
 //! - Extending [`VideoSessionParametersUpdateInfoKHR`]:  -
 //!   [`VideoDecodeH265SessionParametersAddInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_VIDEO_DECODE_H265_EXTENSION_NAME`]
 //! - [`EXT_VIDEO_DECODE_H265_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_CAPABILITIES_EXT`  -
@@ -30,13 +30,13 @@
 //!   `VK_STRUCTURE_TYPE_VIDEO_DECODE_H265_SESSION_PARAMETERS_CREATE_INFO_EXT`
 //! - Extending [`VideoCodecOperationFlagBitsKHR`]:  -
 //!   `VK_VIDEO_CODEC_OPERATION_DECODE_H265_BIT_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 1.6, March 29 2021 (Tony Zlatinski)  - Spec and API updates.
 //! - Revision 2, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting
 //!   from this extension to VK_KHR_video_queue extension.  - Remove the now empty
 //!   VkVideoDecodeH265SessionCreateInfoEXT.
-//!# Other info
+//!# Other information
 //! * 2022-03-16
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - HoHin Lau, AMD  - Jake Beju, AMD  - Peter Fang, AMD  - Ping Liu,

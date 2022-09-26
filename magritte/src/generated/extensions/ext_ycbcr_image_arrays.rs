@@ -3,26 +3,26 @@
 //!This extension allows images of a format that requires
 //![Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion) to be
 //!created with multiple array layers, which is otherwise restricted.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_sampler_ycbcr_conversion`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_ycbcr_image_arrays]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_ycbcr_image_arrays extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceYcbcrImageArraysFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME`]
 //! - [`EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-01-15 (Piers Daniell)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2019-01-15
 //! * - Piers Daniell, NVIDIA
 //!# Related

@@ -1,30 +1,30 @@
 //![VK_EXT_host_query_reset](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_host_query_reset.html) - device extension
 //!# Description
 //!This extension adds a new function to reset queries from the host.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Bas Nieuwenhuizen [BNieuwenhuizen](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_host_query_reset]
 //!   @BNieuwenhuizen%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_host_query_reset extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`reset_query_pool_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceHostQueryResetFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_HOST_QUERY_RESET_EXTENSION_NAME`]
 //! - [`EXT_HOST_QUERY_RESET_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-03-12 (Bas Nieuwenhuizen)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2019-03-06
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.2 Core

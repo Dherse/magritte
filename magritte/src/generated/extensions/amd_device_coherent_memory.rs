@@ -8,27 +8,27 @@
 //! memory are expected to have lower performance
 //!for general access than non-device coherent memory, but can be useful in
 //!certain scenarios; particularly so for debugging.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_device_coherent_memory]
 //!   @tobski%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_device_coherent_memory extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceCoherentMemoryFeaturesAMD`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME`]
 //! - [`AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION`]
 //! - Extending [`MemoryPropertyFlagBits`]:  - `VK_MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD`  -
 //!   `VK_MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-02-04 (Tobias Hector)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2019-02-04
 //! * - Ping Fu, AMD  - Timothy Lottes, AMD  - Tobias Hector, AMD
 //!# Related

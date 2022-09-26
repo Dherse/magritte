@@ -2,27 +2,27 @@
 //!# Description
 //!This extension provides an interface to query calibrated timestamps obtained
 //!quasi simultaneously from two time domains.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_calibrated_timestamps]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_calibrated_timestamps extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_calibrated_timestamps_ext`]
 //! - [`get_physical_device_calibrateable_time_domains_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`CalibratedTimestampInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`TimeDomainEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME`]
 //! - [`EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Is the device timestamp value returned in the same time domain as the
 //!timestamp values written by [`cmd_write_timestamp`]? **RESOLVED** : Yes.2) What time domain is
 //! the host timestamp returned in? **RESOLVED** : A query is provided to determine the
@@ -76,10 +76,10 @@
 //!by convention the maximum deviation is always at least the maximum of the
 //!length of the ticks of the set of time domains calibrated and thus can never
 //!be zero.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2021-03-16 (Lionel Landwerlin)  - Specify requirement on device timestamps
 //! - Revision 1, 2018-10-04 (Daniel Rakos)  - Internal revisions.
-//!# Other info
+//!# Other information
 //! * 2018-10-04
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Alan Harrison, AMD  - Derrick Owens, AMD  - Daniel Rakos, AMD

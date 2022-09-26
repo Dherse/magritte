@@ -1,26 +1,26 @@
 //![VK_KHR_video_decode_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_decode_queue.html) - device extension
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_queue`]`
 //! - Requires `[`khr_synchronization2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - [jake.beju@amd.com]()
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_decode_video_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`VideoDecodeInfoKHR`]
 //! - Extending [`VideoCapabilitiesKHR`]:  - [`VideoDecodeCapabilitiesKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`VideoDecodeCapabilityFlagBitsKHR`]
 //! - [`VideoDecodeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`VideoDecodeCapabilityFlagsKHR`]
 //! - [`VideoDecodeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_VIDEO_DECODE_READ_BIT_KHR`  -
@@ -40,7 +40,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_DECODE_DPB_BIT_KHR`  -
 //!   `VK_FORMAT_FEATURE_2_VIDEO_DECODE_OUTPUT_BIT_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-6-11 (Peter Fang)  - Initial draft
 //! - Revision 1.5, Nov 09 2018 (Tony Zlatinski)  - API Updates
 //! - Revision 1.6, Jan 08 2020 (Tony Zlatinski)  - API unify with the video_encode_queue spec
@@ -50,7 +50,7 @@
 //! - Revision 3, 2022-02-25 (Ahmed Abdelkhalek)  - Add VkVideoDecodeCapabilitiesKHR with new flags
 //!   to report support for decode DPB and output coinciding in the same image, or in distinct
 //!   images.
-//!# Other info
+//!# Other information
 //! * 2022-02-25
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - Jake Beju, AMD  - Olivier Lapicque, NVIDIA  - Peter Fang, AMD  -

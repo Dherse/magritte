@@ -7,29 +7,29 @@
 //!Commands  **must**  not be deferred unless the deferral is specifically allowed
 //!by another extension which depends on
 //!`[`khr_deferred_host_operations`]`.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Josh Barczak [jbarczak](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_deferred_host_operations]
 //!   @jbarczak%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_deferred_host_operations extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`DeferredOperationKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_deferred_operation_khr`]
 //! - [`deferred_operation_join_khr`]
 //! - [`destroy_deferred_operation_khr`]
 //! - [`get_deferred_operation_max_concurrency_khr`]
 //! - [`get_deferred_operation_result_khr`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DEFERRED_HOST_OPERATIONS_EXTENSION_NAME`]
 //! - [`KHR_DEFERRED_HOST_OPERATIONS_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DEFERRED_OPERATION_KHR`
 //! - Extending [`VulkanResultCodes`]:  - `VK_OPERATION_DEFERRED_KHR`  -
 //!   `VK_OPERATION_NOT_DEFERRED_KHR`  - `VK_THREAD_DONE_KHR`  - `VK_THREAD_IDLE_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!0. Should this extension have a VkPhysicalDevice*FeaturesKHR structure?
 //! **RESOLVED** : No.
 //!This extension does not add any functionality on its own and requires a
@@ -37,7 +37,7 @@
 //!value in adding a feature structure.
 //!If necessary, any dependent extension could add a feature boolean if it
 //!wanted to indicate that it is adding optional deferral support.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-12-05 (Josh Barczak, Daniel Koch)  - Initial draft.
 //! - Revision 2, 2020-03-06 (Daniel Koch, Tobias Hector)  - Add missing
 //!   VK_OBJECT_TYPE_DEFERRED_OPERATION_KHR enum  - fix sample code  - Clarified deferred operation
@@ -48,7 +48,7 @@
 //! - Revision 4, 2020-11-12 (Tobias Hector, Daniel Koch)  - Remove VkDeferredOperationInfoKHR and
 //!   change return value semantics when deferred host operations are in use (#2067,3813)  - clarify
 //!   return value of vkGetDeferredOperationResultKHR (#2339,!4110)
-//!# Other info
+//!# Other information
 //! * 2020-11-12
 //! * No known IP claims.
 //! * - Joshua Barczak, Intel  - Jeff Bolz, NVIDIA  - Daniel Koch, NVIDIA  - Slawek Grajewski, Intel

@@ -3,29 +3,29 @@
 //!This extension exposes additional shader core properties for a target
 //!physical device through the `[`khr_get_physical_device_properties2`]`
 //!extension.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`amd_shader_core_properties`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_core_properties2]
 //!   @anteru%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_core_properties2 extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceShaderCoreProperties2AMD`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ShaderCorePropertiesFlagBitsAMD`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ShaderCorePropertiesFlagsAMD`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME`]
 //! - [`AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-07-26 (Matthaeus G. Chajdas)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2019-07-26
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Tobias Hector, AMD

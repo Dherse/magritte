@@ -5,22 +5,22 @@
 //!This extension provides a new SPIR-V `StorageBuffer` storage class.
 //!A `Block`-decorated object in this class is equivalent to a
 //!`BufferBlock`-decorated object in the `Uniform` storage class.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Alexander Galazin [alegal-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_storage_buffer_storage_class]
 //!   @alegal-arm%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_storage_buffer_storage_class extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME`]
 //! - [`KHR_STORAGE_BUFFER_STORAGE_CLASS_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-03-23 (Alexander Galazin)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * No known IP claims.
 //! * - This extension requires [`SPV_KHR_storage_buffer_storage_class`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_storage_buffer_storage_class.html)

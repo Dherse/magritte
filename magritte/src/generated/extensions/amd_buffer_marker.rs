@@ -5,22 +5,22 @@
 //! development of
 //!debugging tools for tracking which pipelined command contributed to device
 //!loss.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_buffer_marker]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the VK_AMD_buffer_marker
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_write_buffer_marker_amd`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_BUFFER_MARKER_EXTENSION_NAME`]
 //! - [`AMD_BUFFER_MARKER_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-01-26 (Jaakko Konttinen)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2018-01-26
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Jaakko Konttinen, AMD  - Daniel Rakos, AMD

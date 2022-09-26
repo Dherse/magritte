@@ -5,21 +5,21 @@
 //! enabled, the HDR profile is supported for all ASTC
 //!formats listed in [ASTC Compressed Image
 //!Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#appendix-compressedtex-astc).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_texture_compression_astc_hdr]
 //!   @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_texture_compression_astc_hdr extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceTextureCompressionAstchdrFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_TEXTURE_COMPRESSION_ASTC_HDR_EXTENSION_NAME`]
 //! - [`EXT_TEXTURE_COMPRESSION_ASTC_HDR_SPEC_VERSION`]
 //! - Extending [`Format`]:  - `VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT`  -
@@ -32,7 +32,7 @@
 //!   `VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should we add a feature or limit for this functionality?Yes.
 //!It is consistent with the ASTC LDR support to add a feature like
 //!textureCompressionASTC_HDR.The feature is strictly speaking redundant as long as this is just an
@@ -50,9 +50,9 @@
 //!`VK_FORMAT_ASTC_4x4_UNORM_BLOCK` image format  **may**  return HDR results.
 //!Applications  **can**  get predictable results by using the appropriate image
 //!format.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-05-28 (Jan-Harald Fredriksen)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2019-05-28
 //! * - Promoted to Vulkan 1.3 Core
 //! * No known issues.

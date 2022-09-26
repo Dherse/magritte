@@ -4,23 +4,23 @@
 //!extension specification to be used instead of SPIR-V.
 //!The implementation will automatically detect whether the shader is SPIR-V or
 //!GLSL, and compile it appropriately.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Deprecated* without replacement
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_glsl_shader]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_NV_glsl_shader
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_GLSL_SHADER_EXTENSION_NAME`]
 //! - [`NV_GLSL_SHADER_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_SHADER_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-02-14 (Piers Daniell)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-02-14
 //! * No known IP claims.
 //! * - Piers Daniell, NVIDIA

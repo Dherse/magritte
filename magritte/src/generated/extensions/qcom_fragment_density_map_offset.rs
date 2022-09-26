@@ -3,23 +3,23 @@
 //!This extension allows an application to specify offsets to a fragment
 //!density map attachment, changing the framebuffer location where density
 //!values are applied to without having to regenerate the fragment density map.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`ext_fragment_density_map`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_fragment_density_map_offset]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
 //!   VK_QCOM_fragment_density_map_offset extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM`]
 //! - Extending [`SubpassEndInfo`]:  - [`SubpassFragmentDensityMapOffsetEndInfoQCOM`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME`]
 //! - [`QCOM_FRAGMENT_DENSITY_MAP_OFFSET_SPEC_VERSION`]
 //! - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_FRAGMENT_DENSITY_MAP_OFFSET_BIT_QCOM`
@@ -27,9 +27,9 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-09-03 (Matthew Netsch)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2021-09-03
 //! * - Matthew Netsch, Qualcomm Technologies, Inc.  - Jonathan Wicks, Qualcomm Technologies, Inc.
 //!   - Jonathan Tinkham, Qualcomm Technologies, Inc.  - Jeff Leger, Qualcomm Technologies, Inc.

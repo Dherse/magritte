@@ -29,19 +29,19 @@
 //![`RenderPassSampleLocationsBeginInfoEXT`] **can**  be chained from
 //![`RenderPassBeginInfo`] to provide sample locations for layout
 //!transitions performed implicitly by a render pass instance.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_sample_locations]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_sample_locations
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_sample_locations_ext`]
 //! - [`get_physical_device_multisample_properties_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`AttachmentSampleLocationsEXT`]
 //! - [`MultisamplePropertiesEXT`]
 //! - [`SampleLocationEXT`]
@@ -51,7 +51,7 @@
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineSampleLocationsStateCreateInfoEXT`]
 //! - Extending [`RenderPassBeginInfo`]:  - [`RenderPassSampleLocationsBeginInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SAMPLE_LOCATIONS_EXTENSION_NAME`]
 //! - [`EXT_SAMPLE_LOCATIONS_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`
@@ -62,9 +62,9 @@
 //!   `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-02 (Daniel Rakos)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-08-02
 //! * - Mais Alnasser, AMD  - Matthaeus G. Chajdas, AMD  - Maciej Jesionowski, AMD  - Daniel Rakos,
 //!   AMD  - Slawomir Grajewski, Intel  - Jeff Bolz, NVIDIA  - Bill Licea-Kane, Qualcomm

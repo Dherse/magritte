@@ -35,29 +35,29 @@
 //!and
 //![`GL_EXT_buffer_reference_uvec2`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_buffer_reference_uvec2.txt)
 //!extensions were also added to help cover a few additional edge cases.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_buffer_device_address]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_buffer_device_address extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_buffer_device_address_khr`]
 //! - [`get_buffer_opaque_capture_address_khr`]
 //! - [`get_device_memory_opaque_capture_address_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`BufferDeviceAddressInfoKHR`]
 //! - [`DeviceMemoryOpaqueCaptureAddressInfoKHR`]
 //! - Extending [`BufferCreateInfo`]:  - [`BufferOpaqueCaptureAddressCreateInfoKHR`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryOpaqueCaptureAddressAllocateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceBufferDeviceAddressFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`]
 //! - [`KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 //! - Extending [`BufferCreateFlagBits`]:  -
@@ -71,10 +71,10 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OPAQUE_CAPTURE_ADDRESS_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-06-24 (Jan-Harald Fredriksen)  - Internal revisions based on
 //!   VK_EXT_buffer_device_address
-//!# Other info
+//!# Other information
 //! * 2019-06-24
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.2 Core  - This extension requires [`SPV_KHR_physical_storage_buffer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_physical_storage_buffer.html)

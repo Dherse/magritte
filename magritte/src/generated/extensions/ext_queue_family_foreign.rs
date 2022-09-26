@@ -14,22 +14,22 @@
 //!   [`QUEUE_FAMILY_FOREIGN_EXT`] is more restrictive.
 //! - Applications should expect transitions to/from [`QUEUE_FAMILY_FOREIGN_EXT`] to be more
 //!   expensive than transitions to/from [`QUEUE_FAMILY_EXTERNAL_KHR`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_queue_family_foreign]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_queue_family_foreign extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_QUEUE_FAMILY_FOREIGN_EXTENSION_NAME`]
 //! - [`EXT_QUEUE_FAMILY_FOREIGN_SPEC_VERSION`]
 //! - [`QUEUE_FAMILY_FOREIGN_EXT`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-11-01 (Chad Versace)  - Squashed internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-11-01
 //! * No known IP claims.
 //! * - Chad Versace, Google  - James Jones, NVIDIA  - Jason Ekstrand, Intel  - Jesse Hall, Google

@@ -6,22 +6,22 @@
 //!target.The primary use of this extension is to reduce workloads in areas where
 //!lower quality may not be perceived such as the distorted edges of a lens or
 //!the periphery of a user’s gaze.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_fragment_density_map]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_fragment_density_map extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceFragmentDensityMapPropertiesEXT`]
 //! - Extending [`RenderPassCreateInfo`], [`RenderPassCreateInfo2`]:  -
 //!   [`RenderPassFragmentDensityMapCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME`]
 //! - [`EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
@@ -40,11 +40,11 @@
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-09-25 (Matthew Netsch)  - Initial version
 //! - Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
 //!   `vk.xml`
-//!# Other info
+//!# Other information
 //! * 2021-09-30
 //! * - This extension requires [`SPV_EXT_fragment_invocation_density`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_fragment_invocation_density.html)
 //!   - This extension provides API support for [`GL_EXT_fragment_invocation_density`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_fragment_invocation_density.txt)

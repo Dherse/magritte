@@ -49,25 +49,25 @@
 //!happen asynchronously to the device, therefore the primary use-case is
 //!generating “less” total work (occlusion culling, classification to use
 //!specialized shaders, etc.).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
 //! - Requires `[`khr_buffer_device_address`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_generated_commands]
 //!   @pixeljetstream%0A<<Here describe the issue or question you have about the
 //!   VK_NV_device_generated_commands extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`IndirectCommandsLayoutNV`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_bind_pipeline_shader_group_nv`]
 //! - [`cmd_execute_generated_commands_nv`]
 //! - [`cmd_preprocess_generated_commands_nv`]
 //! - [`create_indirect_commands_layout_nv`]
 //! - [`destroy_indirect_commands_layout_nv`]
 //! - [`get_generated_commands_memory_requirements_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`BindIndexBufferIndirectCommandNV`]
 //! - [`BindShaderGroupIndirectCommandNV`]
 //! - [`BindVertexBufferIndirectCommandNV`]
@@ -83,14 +83,14 @@
 //!   [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`IndirectCommandsLayoutUsageFlagBitsNV`]
 //! - [`IndirectCommandsTokenTypeNV`]
 //! - [`IndirectStateFlagBitsNV`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`IndirectCommandsLayoutUsageFlagsNV`]
 //! - [`IndirectStateFlagsNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME`]
 //! - [`NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_COMMAND_PREPROCESS_READ_BIT_NV`  -
@@ -106,7 +106,7 @@
 //!   `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) How to name this extension ?[`VK_NV_device_generated_commands`]As usual, one of the hardest
 //! issues ;)Alternatives: `VK_gpu_commands`, `VK_execute_commands`,
 //!`VK_device_commands`, `VK_device_execute_commands`, `VK_device_execute`,
@@ -236,12 +236,12 @@
 //!an EXT.18) Is there an interaction with VK_KHR_pipeline_library planned?Yes, a future version of
 //! this extension will detail the interaction, once
 //!VK_KHR_pipeline_library is no longer provisional.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-02-20 (Christoph Kubisch)  - Initial version
 //! - Revision 2, 2020-03-09 (Christoph Kubisch)  - Remove VK_EXT_debug_report interactions
 //! - Revision 3, 2020-03-09 (Christoph Kubisch)  - Fix naming VkPhysicalDeviceGenerated to
 //!   VkPhysicalDeviceDeviceGenerated
-//!# Other info
+//!# Other information
 //! * 2020-02-20
 //! * - This extension requires Vulkan 1.1  - This extension requires
 //!   [`VK_EXT_buffer_device_address`] or [`VK_KHR_buffer_device_address`] or Vulkan 1.2 for the

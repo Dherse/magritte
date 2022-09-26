@@ -5,22 +5,22 @@
 //! - Allow negative height to be specified in the [`Viewport::height`] field to perform y-inversion
 //!   of the clip-space to framebuffer-space transform. This allows apps to avoid having to use
 //!   `gl_Position.y = -gl_Position.y` in shaders also targeting other APIs.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Obsoleted* by `[`khr_maintenance1`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_negative_viewport_height]
 //!   @anteru%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_negative_viewport_height extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_NEGATIVE_VIEWPORT_HEIGHT_EXTENSION_NAME`]
 //! - [`AMD_NEGATIVE_VIEWPORT_HEIGHT_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-09-02 (Matthaeus Chajdas)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-09-02
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Graham Sellers, AMD  - Baldur Karlsson

@@ -23,23 +23,6 @@ lazy_static::lazy_static! {
     static ref SELECTOR_MEMBERS_H2: Selector = Selector::parse("h2#_members").unwrap();
     static ref SELECTOR_PARAMETERS_H2: Selector = Selector::parse("h2#_parameters").unwrap();
 
-    static ref SELECTOR_REVISION_H2: Selector = Selector::parse("h2#_revision").unwrap();
-    static ref SELECTOR_DEPRECATION_H2: Selector = Selector::parse("h2#_deprecation_state").unwrap();
-    static ref SELECTOR_DEPENDENCIES_H2: Selector = Selector::parse("h2#_extension_and_version_dependencies").unwrap();
-    static ref SELECTOR_CONTACT_H2: Selector = Selector::parse("h2#_contact").unwrap();
-    static ref SELECTOR_OTHER_EXT_METADATA_H2: Selector = Selector::parse("h2#_other_extension_metadata").unwrap();
-    static ref SELECTOR_NEW_OBJ_H2: Selector = Selector::parse("h2#_new_object_types").unwrap();
-    static ref SELECTOR_NEW_COMMANDS_H2: Selector = Selector::parse("h2#_new_commands").unwrap();
-    static ref SELECTOR_NEW_MACROS_H2: Selector = Selector::parse("h2#_new_macros").unwrap();
-    
-    static ref SELECTOR_NEW_STRUCTURES_H2: Selector = Selector::parse("h2#_new_structures").unwrap();
-    static ref SELECTOR_NEW_ENUMS_H2: Selector = Selector::parse("h2#_new_enums").unwrap();
-    static ref SELECTOR_NEW_BITMASKS_H2: Selector = Selector::parse("h2#_new_bitmasks").unwrap();
-    static ref SELECTOR_NEW_CONSTS_H2: Selector = Selector::parse("h2#_new_enum_constants").unwrap();
-    static ref SELECTOR_ISSUES_H2: Selector = Selector::parse("h2#_issues").unwrap();
-    static ref SELECTOR_HISTORY_H2: Selector = Selector::parse("h2#_version_history").unwrap();
-
-
     static ref SELECTOR_SECTIONBODY: Selector = Selector::parse("div.sectionbody").unwrap();
     static ref SELECTOR_SECTIONBODY_P: Selector = Selector::parse("div.sectionbody > p").unwrap();
     static ref SELECTOR_SECTIONBODY_DIV_PARAGRAPH_P: Selector = Selector::parse("div.sectionbody > div.paragraph > p").unwrap();
@@ -53,11 +36,12 @@ macro_rules! subsection {
             }
 
             if let Some(text) = $self.visit_selectable($source, $this, None, &SELECTOR, &SELECTOR_SECTIONBODY) {
+                let doc_str = format!("# {}", $title);
                 let lines = text.split('\n');
                 quote::quote_each_token! {
                     $out
     
-                    #![doc = concat!("# ", $title)]
+                    #![doc = #doc_str]
                     #(#![doc = #lines])*
                 }
             }
@@ -457,23 +441,8 @@ impl<'a> DocRef<'a> {
             _new_bitmasks -> "New bitmasks",
             _new_enum_constants -> "New constants",
             _issues -> "Known issues & F.A.Q.",
-            _version_history -> "Version history"
-        }
-
-        if let Some(text) = self.visit_selectable(
-            source,
-            this,
-            None,
-            &SELECTOR_OTHER_EXT_METADATA_H2,
-            &SELECTOR_SECTIONBODY,
-        ) {
-            let lines = text.split('\n');
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Other info"]
-                #(#![doc = #lines])*
-            }
+            _version_history -> "Version history",
+            _other_extension_metadata -> "Other information"
         }
     }
 

@@ -5,28 +5,28 @@
 //!without introducing any further entry points.
 //!This extension can be considered the `[`khr_surface`]` equivalent of
 //!the `[`khr_get_physical_device_properties2`]` extension.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_surface_capabilities2]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_get_surface_capabilities2 extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_surface_capabilities2_khr`]
 //! - [`get_physical_device_surface_formats2_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PhysicalDeviceSurfaceInfo2KHR`]
 //! - [`SurfaceCapabilities2KHR`]
 //! - [`SurfaceFormat2KHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME`]
 //! - [`KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR`  - `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) What should this extension be named? **RESOLVED** : [`VK_KHR_get_surface_capabilities2`].
 //!Other alternatives:
 //! - `VK_KHR_surface2`
@@ -44,9 +44,9 @@
 //! - [`get_physical_device_xcb_presentation_support_khr`]: Not in this extension.
 //! - [`get_physical_device_wayland_presentation_support_khr`]: Not in this extension.
 //! - [`get_physical_device_win32_presentation_support_khr`]: Not in this extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-02-27 (James Jones)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2017-02-27
 //! * No known IP claims.
 //! * - Ian Elliott, Google  - James Jones, NVIDIA  - Alon Or-bach, Samsung

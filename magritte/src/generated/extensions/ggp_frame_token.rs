@@ -4,25 +4,25 @@
 //!extension in combination with a Google Games Platform surface provided by
 //!the `[`ggp_stream_descriptor_surface`]` extension to associate a
 //!Google Games Platform frame token with a present operation.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`ggp_stream_descriptor_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jean-Francois Roy [jfroy](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GGP_frame_token]
 //!   @jfroy%0A<<Here describe the issue or question you have about the VK_GGP_frame_token
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PresentInfoKHR`]:  - [`PresentFrameTokenGGP`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`GGP_FRAME_TOKEN_EXTENSION_NAME`]
 //! - [`GGP_FRAME_TOKEN_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-11-26 (Jean-Francois Roy)  - Initial revision.
-//!# Other info
+//!# Other information
 //! * 2019-01-28
 //! * No known IP claims.
 //! * - Jean-Francois Roy, Google  - Richard O’Grady, Google

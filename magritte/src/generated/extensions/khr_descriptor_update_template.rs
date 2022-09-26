@@ -8,32 +8,32 @@
 //!This extension provides a way to update a fixed set of descriptors in a
 //!single [`DescriptorSet`] with a pointer to a user defined data structure
 //!describing the new descriptors.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Markus Tavenrath [mtavenrath](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_descriptor_update_template]
 //!   @mtavenrath%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_descriptor_update_template extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`DescriptorUpdateTemplateKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_descriptor_update_template_khr`]
 //! - [`destroy_descriptor_update_template_khr`]
 //! - [`update_descriptor_set_with_template_khr`]
 //!If [`khr_push_descriptor`] is supported:
 //! - [`cmd_push_descriptor_set_with_template_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DescriptorUpdateTemplateCreateInfoKHR`]
 //! - [`DescriptorUpdateTemplateEntryKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DescriptorUpdateTemplateTypeKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`DescriptorUpdateTemplateCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME`]
 //! - [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION`]
 //! - Extending [`DescriptorUpdateTemplateType`]:  -
@@ -46,9 +46,9 @@
 //!If [`khr_push_descriptor`] is supported:
 //! - Extending [`DescriptorUpdateTemplateType`]:  -
 //!   `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-01-11 (Markus Tavenrath)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * No known IP claims.
 //! * - Interacts with `[`khr_push_descriptor`]`  - Promoted to Vulkan 1.1 Core

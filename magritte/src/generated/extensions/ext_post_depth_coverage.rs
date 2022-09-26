@@ -16,20 +16,20 @@
 //!layout qualifier from GL_ARB_post_depth_coverage or
 //!GL_EXT_post_depth_coverage maps to the `PostDepthCoverage` execution
 //!mode.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_post_depth_coverage]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_post_depth_coverage
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_POST_DEPTH_COVERAGE_EXTENSION_NAME`]
 //! - [`EXT_POST_DEPTH_COVERAGE_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-07-17 (Daniel Koch)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-07-17
 //! * - This extension requires [`SPV_KHR_post_depth_coverage`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_post_depth_coverage.html)
 //!   - This extension provides API support for [`GL_ARB_post_depth_coverage`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_post_depth_coverage.txt)

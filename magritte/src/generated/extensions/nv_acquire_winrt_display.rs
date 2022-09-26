@@ -13,22 +13,22 @@
 //!until control is released or the application terminates.
 //!An application’s attempt to acquire is denied if a different application has
 //!already acquired the display.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_direct_mode_display`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Juliano [jjuliano](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_acquire_winrt_display]
 //!   @jjuliano%0A<<Here describe the issue or question you have about the
 //!   VK_NV_acquire_winrt_display extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_winrt_display_nv`]
 //! - [`get_winrt_display_nv`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME`]
 //! - [`NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) What should the platform substring be for this extension: **RESOLVED** : The platform
 //! substring is “Winrt”.The substring “Winrt” matches the fact that the OS API exposing the
 //!acquire and release functionality is called “WinRT”.The substring “Win32” is wrong because the
@@ -86,9 +86,9 @@
 //!The product type can be queried from Windows 10.
 //!See
 //![https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo](https://docs.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-getproductinfo)
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-09-29 (Jeff Juliano)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2020-09-29
 //! * No known IP claims.
 //! * - Jeff Juliano, NVIDIA

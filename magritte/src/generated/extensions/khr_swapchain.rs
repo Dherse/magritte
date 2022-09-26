@@ -4,21 +4,21 @@
 //!`[`khr_surface`]` extension.
 //!It introduces [`SwapchainKHR`] objects, which provide the ability to
 //!present rendering results to a surface.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!70
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_swapchain
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_swapchain
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`SwapchainKHR`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_next_image_khr`]
 //! - [`create_swapchain_khr`]
 //! - [`destroy_swapchain_khr`]
@@ -29,7 +29,7 @@
 //! - [`get_device_group_present_capabilities_khr`]
 //! - [`get_device_group_surface_present_modes_khr`]
 //! - [`get_physical_device_present_rectangles_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PresentInfoKHR`]
 //! - [`SwapchainCreateInfoKHR`]
 //!If [Version 1.1]() is supported:
@@ -39,15 +39,15 @@
 //! - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`]
 //! - Extending [`PresentInfoKHR`]:  - [`DeviceGroupPresentInfoKHR`]
 //! - Extending [`SwapchainCreateInfoKHR`]:  - [`DeviceGroupSwapchainCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`SwapchainCreateFlagBitsKHR`]
 //!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`SwapchainCreateFlagsKHR`]
 //!If [Version 1.1]() is supported:
 //! - [`DeviceGroupPresentModeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SWAPCHAIN_EXTENSION_NAME`]
 //! - [`KHR_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`
@@ -64,7 +64,7 @@
 //!   `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR`
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:  - `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR`  -
 //!   `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Does this extension allow the application to specify the memory backing
 //!of the presentable images? **RESOLVED** : No.
 //!Unlike standard images, the implementation will allocate the memory backing
@@ -333,7 +333,7 @@
 //![`SurfaceKHR`] objects that may be created for the same native window if
 //!such a requirement makes sense on a particular platform, but a global
 //!requirement is only sensible at the swapchain level.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-05-20 (James Jones)  - Initial draft, based on LunarG KHR spec, other KHR
 //!   specs, patches attached to bugs.
 //! - Revision 2, 2015-05-22 (Ian Elliott)  - Made many agreed-upon changes from 2015-05-21 KHR TSG
@@ -510,7 +510,7 @@
 //!   that it will be removed from future versions of the appendix.
 //! - Revision 69, 2017-09-07 (Tobias Hector)  - Added interactions with Vulkan 1.1
 //! - Revision 70, 2017-10-06 (Ian Elliott)  - Corrected interactions with Vulkan 1.1
-//!# Other info
+//!# Other information
 //! * 2017-10-06
 //! * No known IP claims.
 //! * - Interacts with Vulkan 1.1

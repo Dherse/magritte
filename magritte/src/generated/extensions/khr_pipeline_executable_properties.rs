@@ -9,20 +9,20 @@
 //!to provide more detailed information to the user.
 //!Certain compile-time shader statistics provided through this extension may
 //!be useful to developers for debugging or performance analysis.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_pipeline_executable_properties]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_pipeline_executable_properties extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_pipeline_executable_internal_representations_khr`]
 //! - [`get_pipeline_executable_properties_khr`]
 //! - [`get_pipeline_executable_statistics_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PipelineExecutableInfoKHR`]
 //! - [`PipelineExecutableInternalRepresentationKHR`]
 //! - [`PipelineExecutablePropertiesKHR`]
@@ -30,11 +30,11 @@
 //! - [`PipelineInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePipelineExecutablePropertiesFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New unions")]
+//!# New unions
 //! - [`PipelineExecutableStatisticValueKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`PipelineExecutableStatisticFormatKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME`]
 //! - [`KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION`]
 //! - Extending [`PipelineCreateFlagBits`]:  -
@@ -46,7 +46,7 @@
 //!   `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) What should we call the pieces of the pipeline which are produced by the
 //!compilation process and about which you can query properties and statistics? **RESOLVED** : Call
 //! them “executables”.
@@ -54,9 +54,9 @@
 //!determined that “pipeline binary” could have a fairly broad meaning (such
 //!as a binary serialized form of an entire pipeline) and was too big of a
 //!namespace for the very specific needs of this extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-05-28 (Jason Ekstrand)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2019-05-28
 //! * No known IP claims.
 //! * - Jason Ekstrand, Intel  - Ian Romanick, Intel  - Kenneth Graunke, Intel  - Baldur Karlsson,

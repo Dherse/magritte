@@ -4,22 +4,22 @@
 //!floating-point computations through the ability to query and override the
 //!implementation’s default behavior for rounding modes, denormals, signed
 //!zero, and infinity.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Alexander Galazin [alegal-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_float_controls]
 //!   @alegal-arm%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_float_controls extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceFloatControlsPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ShaderFloatControlsIndependenceKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME`]
 //! - [`KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION`]
 //! - Extending [`ShaderFloatControlsIndependence`]:  -
@@ -28,7 +28,7 @@
 //!   `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Which instructions must flush denorms? **RESOLVED** : Only floating-point conversion,
 //! floating-point arithmetic,
 //!floating-point relational (except `OpIsNaN`, `OpIsInf`), and
@@ -52,13 +52,13 @@
 //!instructions.6) When using inf/nan-ignore mode, what is expected of `OpIsNan` and
 //!`OpIsInf`? **RESOLVED** : These instructions must always accurately detect inf/nan if it
 //!is passed to them.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 4, 2019-06-18 (Tobias Hector)  - Modified settings restrictions, see [Version 4 API
 //!   incompatibility]()
 //! - Revision 3, 2018-09-11 (Alexander Galazin)  - Minor restructuring
 //! - Revision 2, 2018-04-17 (Alexander Galazin)  - Added issues and resolutions
 //! - Revision 1, 2018-04-11 (Alexander Galazin)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2018-09-11
 //! * - Promoted to Vulkan 1.2 Core  - This extension requires [`SPV_KHR_float_controls`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_float_controls.html)
 //! * No known IP claims.

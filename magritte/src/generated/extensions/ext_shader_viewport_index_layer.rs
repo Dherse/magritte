@@ -12,22 +12,22 @@
 //!`GL_ARB_shader_viewport_layer_array` (or the precursor
 //!`GL_AMD_vertex_shader_layer`, `GL_AMD_vertex_shader_viewport_index`, and
 //!`GL_NV_viewport_array2` extensions).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_viewport_index_layer]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_viewport_index_layer extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME`]
 //! - [`EXT_SHADER_VIEWPORT_INDEX_LAYER_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-08 (Daniel Koch)  - Internal drafts
-//!# Other info
+//!# Other information
 //! * 2017-08-08
 //! * - Promoted to Vulkan 1.2 Core  - This extension requires [`SPV_EXT_shader_viewport_index_layer`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_viewport_index_layer.html)
 //!   - This extension provides API support for [`GL_ARB_shader_viewport_layer_array`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_viewport_layer_array.txt),

@@ -12,26 +12,26 @@
 //!the shader to alias data whose lifetimes do not overlap.The explicit layout support and some
 //! form of aliasing is also required for
 //!layering OpenCL on top of Vulkan.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Caio Marcelo de Oliveira Filho [cmarcelo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_workgroup_memory_explicit_layout]
 //!   @cmarcelo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_workgroup_memory_explicit_layout extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME`]
 //! - [`KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-06-01 (Caio Marcelo de Oliveira Filho)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2020-06-01
 //! * No known IP claims.
 //! * - This extension requires [`SPV_KHR_workgroup_memory_explicit_layout`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_workgroup_memory_explicit_layout.html)

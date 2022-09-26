@@ -5,30 +5,30 @@
 //!This extension provides a set of capability queries that allow applications
 //!determine what types of win32 memory handles an implementation supports for
 //!a given set of use cases.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Deprecated* by `[`khr_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_capabilities]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_NV_external_memory_capabilities extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_physical_device_external_image_format_properties_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`ExternalImageFormatPropertiesNV`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ExternalMemoryFeatureFlagBitsNV`]
 //! - [`ExternalMemoryHandleTypeFlagBitsNV`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ExternalMemoryFeatureFlagsNV`]
 //! - [`ExternalMemoryHandleTypeFlagsNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
 //! - [`NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Why do so many external memory capabilities need to be queried on a
 //!per-memory-handle-type basis? **RESOLVED** : This is because some handle types are based on
 //! OS-native objects
@@ -51,9 +51,9 @@
 //!Presumably more handle types could be added by separate extensions though,
 //!and it would be midly weird to have some platform-specific ones defined in
 //!the core spec and some in extensions
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-08-19 (James Jones)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2016-08-19
 //! * No known IP claims.
 //! * - Interacts with Vulkan 1.1.  - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts

@@ -9,40 +9,40 @@
 //!Private data slots can be reserved at device creation time, and limiting use
 //!to the amount reserved will allow the extension to exhibit better
 //!performance characteristics.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthew Rusch [mattruschnv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_private_data]
 //!   @mattruschnv%0A<<Here describe the issue or question you have about the VK_EXT_private_data
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`PrivateDataSlotEXT`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_private_data_slot_ext`]
 //! - [`destroy_private_data_slot_ext`]
 //! - [`get_private_data_ext`]
 //! - [`set_private_data_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PrivateDataSlotCreateInfoEXT`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DevicePrivateDataCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePrivateDataFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PrivateDataSlotCreateFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_PRIVATE_DATA_EXTENSION_NAME`]
 //! - [`EXT_PRIVATE_DATA_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_PRIVATE_DATA_SLOT_EXT`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PRIVATE_DATA_SLOT_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-01-15 (Matthew Rusch)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2020-03-25
 //! * - Promoted to Vulkan 1.3 Core
 //! * No known IP claims.

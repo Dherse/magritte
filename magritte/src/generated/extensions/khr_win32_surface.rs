@@ -4,30 +4,30 @@
 //!It provides a mechanism to create a [`SurfaceKHR`] object (defined by
 //!the `[`khr_surface`]` extension) that refers to a Win32 [`HWND`], as
 //!well as a query to determine support for rendering to the windows desktop.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!6
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_win32_surface
 //!   extension>>)
 //! - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_surface]
 //!   @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_win32_surface
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_win32_surface_khr`]
 //! - [`get_physical_device_win32_presentation_support_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`Win32SurfaceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`Win32SurfaceCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_WIN32_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_WIN32_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Does Win32 need a way to query for compatibility between a particular
 //!physical device and a specific screen? Compatibility between a physical
 //!device and a window generally only depends on what screen the window is on.
@@ -65,7 +65,7 @@
 //! - Creating a [`SwapchainKHR`] over a window object can alter the object for its remaining
 //!   lifetime. Either of the above alterations may occur as a side effect of
 //!   [`create_swapchain_khr`].
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft, based on the previous contents of
 //!   VK_EXT_KHR_swapchain (later renamed VK_EXT_KHR_surface).
 //! - Revision 2, 2015-10-02 (James Jones)  - Added presentation support query for win32 desktops.
@@ -77,7 +77,7 @@
 //!   pCreateInfo structure.
 //! - Revision 6, 2017-04-24 (Jeff Juliano)  - Add issue 2 addressing reuse of a native window
 //!   object in a different Graphics API, or by a different Vulkan ICD.
-//!# Other info
+//!# Other information
 //! * 2017-04-24
 //! * No known IP claims.
 //! * - Patrick Doane, Blizzard  - Jason Ekstrand, Intel  - Ian Elliott, LunarG  - Courtney

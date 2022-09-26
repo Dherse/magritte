@@ -2,26 +2,26 @@
 //!# Description
 //!This extension allows `uint8_t` indices to be used with
 //![`cmd_bind_index_buffer`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_index_type_uint8]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_index_type_uint8 extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceIndexTypeUint8FeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_INDEX_TYPE_UINT8_EXTENSION_NAME`]
 //! - [`EXT_INDEX_TYPE_UINT8_SPEC_VERSION`]
 //! - Extending [`IndexType`]:  - `VK_INDEX_TYPE_UINT8_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-05-02 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-05-02
 //! * No known IP claims.
 //! * - Jeff Bolz, NVIDIA

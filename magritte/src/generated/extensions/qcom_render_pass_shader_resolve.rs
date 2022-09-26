@@ -11,20 +11,20 @@
 //!region dependency to a fragment region dependency, so that a
 //!framebuffer-region dependency  **can**  replace a framebuffer-global dependency
 //!in some cases.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Bill Licea-Kane [wwlk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_render_pass_shader_resolve]
 //!   @wwlk%0A<<Here describe the issue or question you have about the
 //!   VK_QCOM_render_pass_shader_resolve extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`QCOM_RENDER_PASS_SHADER_RESOLVE_EXTENSION_NAME`]
 //! - [`QCOM_RENDER_PASS_SHADER_RESOLVE_SPEC_VERSION`]
 //! - Extending [`SubpassDescriptionFlagBits`]:  - `VK_SUBPASS_DESCRIPTION_FRAGMENT_REGION_BIT_QCOM`
 //!   - `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should this extension be named render_pass_shader_resolve? **RESOLVED**  Yes.This is part of
 //! suite of small extensions to render pass.Following the style guide, instead of following
 //! VK_KHR_create_renderpass2.2) Should the VK_SAMPLE_COUNT_1_BIT be required for each
@@ -42,14 +42,14 @@
 //!`minSampleShading` **must**  equal 0.0.However, this bit may be set on any subpass, it is not
 //! restricted to a
 //!shader resolve subpass.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-06-28 (wwlk)  - Initial draft
 //! - Revision 2, 2019-11-06 (wwlk)  - General clean-up/spec updates  - Added issues
 //! - Revision 3, 2019-11-07 (wwlk)  - Typos  - Additional issues  - Clarified that a shader resolve
 //!   subpass is the last subpass in a subpass dependency chain
 //! - Revision 4, 2020-01-06 (wwlk)  - Change resolution of Issue 1 (*render_pass*, not
 //!   *renderpass*)
-//!# Other info
+//!# Other information
 //! * 2019-11-07
 //! * No known IP claims.
 //! * None.

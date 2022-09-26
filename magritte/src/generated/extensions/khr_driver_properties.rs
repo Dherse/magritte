@@ -5,23 +5,23 @@
 //!determine which physical device corresponds to which particular vendor’s
 //!driver, and which conformance test suite version the driver implementation
 //!is compliant with.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_driver_properties]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_driver_properties extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`ConformanceVersionKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDriverPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DriverIdKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DRIVER_PROPERTIES_EXTENSION_NAME`]
 //! - [`KHR_DRIVER_PROPERTIES_SPEC_VERSION`]
 //! - [`MAX_DRIVER_INFO_SIZE_KHR`]
@@ -34,9 +34,9 @@
 //!   `VK_DRIVER_ID_MESA_RADV_KHR`  - `VK_DRIVER_ID_NVIDIA_PROPRIETARY_KHR`  -
 //!   `VK_DRIVER_ID_QUALCOMM_PROPRIETARY_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-04-11 (Daniel Rakos)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-04-11
 //! * - Promoted to Vulkan 1.2 Core
 //! * No known IP claims.

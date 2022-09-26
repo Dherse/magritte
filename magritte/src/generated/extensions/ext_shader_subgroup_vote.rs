@@ -61,22 +61,22 @@
 //!In another example, shader code might want to evaluate a complex function
 //!(`do_general_path`) that can be greatly simplified when assuming a
 //!specific value for one of its inputs (`do_fast_path`).
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Deprecated* by [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-new-features)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_subgroup_vote]
 //!   @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_shader_subgroup_vote
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SHADER_SUBGROUP_VOTE_EXTENSION_NAME`]
 //! - [`EXT_SHADER_SUBGROUP_VOTE_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-11-28 (Daniel Koch)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2016-11-28
 //! * No known IP claims.
 //! * - This extension requires [`SPV_KHR_subgroup_vote`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_subgroup_vote.html)

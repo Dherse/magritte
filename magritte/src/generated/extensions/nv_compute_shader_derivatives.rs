@@ -13,30 +13,30 @@
 //!The `DerivativeGroupLinearNV` execution mode assembles shader invocations
 //!into 2x2 groups, where each group has local invocation index values of the
 //!form 4m+{0,1,2,3}.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_compute_shader_derivatives]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the
 //!   VK_NV_compute_shader_derivatives extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceComputeShaderDerivativesFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME`]
 //! - [`NV_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) Should we specify that the groups of four shader invocations used for
 //!derivatives in a compute shader are the same groups of four invocations that
 //!form a “quad” in shader subgroups? **RESOLVED** : Yes.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-07-19 (Pat Brown)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2018-07-19
 //! * No known IP claims.
 //! * - This extension requires [`SPV_NV_compute_shader_derivatives`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_compute_shader_derivatives.html)

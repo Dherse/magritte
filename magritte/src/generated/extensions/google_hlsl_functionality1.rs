@@ -2,22 +2,22 @@
 //!# Description
 //!The [`VK_GOOGLE_hlsl_functionality1`] extension allows use of the
 //!`SPV_GOOGLE_hlsl_functionality1` extension in SPIR-V shader modules.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Hai Nguyen [chaoticbob](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_hlsl_functionality1]
 //!   @chaoticbob%0A<<Here describe the issue or question you have about the
 //!   VK_GOOGLE_hlsl_functionality1 extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`GOOGLE_HLSL_FUNCTIONALITY1_EXTENSION_NAME`]
 //! - [`GOOGLE_HLSL_FUNCTIONALITY1_SPEC_VERSION`]
 //! - [`GOOGLE_HLSL_FUNCTIONALITY_1_EXTENSION_NAME`]
 //! - [`GOOGLE_HLSL_FUNCTIONALITY_1_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-07-09 (Neil Henning)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2018-07-09
 //! * No known IP claims.
 //! * - This extension requires [`SPV_GOOGLE_hlsl_functionality1`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/GOOGLE/SPV_GOOGLE_hlsl_functionality1.html)

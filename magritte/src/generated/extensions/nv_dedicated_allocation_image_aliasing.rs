@@ -5,26 +5,26 @@
 //!image being aliased must be smaller than or equal to those of the original
 //!image for which the allocation was created, and every other image parameter
 //!must match.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_dedicated_allocation`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_dedicated_allocation_image_aliasing]
 //!   @nsubtil%0A<<Here describe the issue or question you have about the
 //!   VK_NV_dedicated_allocation_image_aliasing extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME`]
 //! - [`NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-01-04 (Nuno Subtil)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2019-01-04
 //! * - Nuno Subtil, NVIDIA  - Jeff Bolz, NVIDIA  - Eric Werness, NVIDIA  - Axel Gneiting, id
 //!   Software

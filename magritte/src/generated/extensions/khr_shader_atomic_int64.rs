@@ -6,28 +6,28 @@
 //!The supported operations include OpAtomicMin, OpAtomicMax, OpAtomicAnd,
 //!OpAtomicOr, OpAtomicXor, OpAtomicAdd, OpAtomicExchange, and
 //!OpAtomicCompareExchange.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Aaron Hagan [ahagan](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_atomic_int64]
 //!   @ahagan%0A<<Here describe the issue or question you have about the VK_KHR_shader_atomic_int64
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderAtomicInt64FeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME`]
 //! - [`KHR_SHADER_ATOMIC_INT64_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-07-05 (Aaron Hagan)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-07-05
 //! * - Promoted to Vulkan 1.2 Core  - This extension provides API support for [`GL_ARB_gpu_shader_int64`](https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_gpu_shader_int64.txt)
 //!   and [`GL_EXT_shader_atomic_int64`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GL_EXT_shader_atomic_int64.txt)

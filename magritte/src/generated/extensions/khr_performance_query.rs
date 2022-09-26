@@ -7,21 +7,21 @@
 //!We extend [`QueryType`] to add a new query type for performance queries,
 //!and chain a structure on [`QueryPoolCreateInfo`] to specify the
 //!performance queries to enable.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_performance_query]
 //!   @alonorbach%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_performance_query extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_profiling_lock_khr`]
 //! - [`enumerate_physical_device_queue_family_performance_query_counters_khr`]
 //! - [`get_physical_device_queue_family_performance_query_passes_khr`]
 //! - [`release_profiling_lock_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`AcquireProfilingLockInfoKHR`]
 //! - [`PerformanceCounterDescriptionKHR`]
 //! - [`PerformanceCounterKHR`]
@@ -30,18 +30,18 @@
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePerformanceQueryPropertiesKHR`]
 //! - Extending [`QueryPoolCreateInfo`]:  - [`QueryPoolPerformanceCreateInfoKHR`]
 //! - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`PerformanceQuerySubmitInfoKHR`]
-# ! [doc = concat ! ("# " , "New unions")]
+//!# New unions
 //! - [`PerformanceCounterResultKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`AcquireProfilingLockFlagBitsKHR`]
 //! - [`PerformanceCounterDescriptionFlagBitsKHR`]
 //! - [`PerformanceCounterScopeKHR`]
 //! - [`PerformanceCounterStorageKHR`]
 //! - [`PerformanceCounterUnitKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`AcquireProfilingLockFlagsKHR`]
 //! - [`PerformanceCounterDescriptionFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_PERFORMANCE_QUERY_EXTENSION_NAME`]
 //! - [`KHR_PERFORMANCE_QUERY_SPEC_VERSION`]
 //! - Extending [`QueryType`]:  - `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`
@@ -52,7 +52,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should this extension include a mechanism to begin a query in command
 //!buffer *A* and end the query in command buffer *B*? **RESOLVED**  No - queries are tied to
 //! command buffer creation and thus have to
@@ -85,9 +85,9 @@
 //! index at submit time instead, to avoid
 //!requiring re-recording of command buffers when multiple counter passes are
 //!needed.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-10-08
-//!# Other info
+//!# Other information
 //! * 2019-10-08
 //! * No known IP claims.
 //! * - Jesse Barker, Unity Technologies  - Kenneth Benzie, Codeplay  - Jan-Harald Fredriksen, ARM

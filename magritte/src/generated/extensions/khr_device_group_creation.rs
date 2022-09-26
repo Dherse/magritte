@@ -5,31 +5,31 @@
 //!those groups.
 //!Such a logical device can then be used with new features in the
 //!`[`khr_device_group`]` extension.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_device_group_creation]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_device_group_creation extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`enumerate_physical_device_groups_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`PhysicalDeviceGroupPropertiesKHR`]
 //! - Extending [`DeviceCreateInfo`]:  - [`DeviceGroupDeviceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME`]
 //! - [`KHR_DEVICE_GROUP_CREATION_SPEC_VERSION`]
 //! - [`MAX_DEVICE_GROUP_SIZE_KHR`]
 //! - Extending [`MemoryHeapFlagBits`]:  - `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-19 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2016-10-19
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

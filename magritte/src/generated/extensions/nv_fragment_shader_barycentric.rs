@@ -18,24 +18,24 @@
 //! - `in vec3 gl_BaryCoordNoPerspNV;` → `BaryCoordNoPerspNV`
 //!GLSL variables declared using the `__pervertexNV` GLSL qualifier are
 //!expected to be decorated with `PerVertexNV` in SPIR-V.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_shader_barycentric]
 //!   @nvpbrown%0A<<Here describe the issue or question you have about the
 //!   VK_NV_fragment_shader_barycentric extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentShaderBarycentricFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_FRAGMENT_SHADER_BARYCENTRIC_EXTENSION_NAME`]
 //! - [`NV_FRAGMENT_SHADER_BARYCENTRIC_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) The AMD_shader_explicit_vertex_parameter extension provides similar
 //!    functionality.
 //!    Why write a new extension, and how is this extension different? **RESOLVED** : For the
@@ -75,9 +75,9 @@
 //!Additionally, it is not clear that its a good idea (or even legal) to have
 //!two variables using the “same attribute”, but with different interpolation
 //!modifiers.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-08-03 (Pat Brown)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-08-03
 //! * No known IP claims.
 //! * - This extension requires [`SPV_NV_fragment_shader_barycentric`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NV_fragment_shader_barycentric.html)

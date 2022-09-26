@@ -4,22 +4,22 @@
 //!`[`ext_fragment_density_map`]` in order to reduce fragment density map
 //!host latency as well as improved queries for subsampled sampler
 //!implementation-dependent behavior.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_fragment_density_map`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_fragment_density_map2]
 //!   @mnetsch%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_fragment_density_map2 extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceFragmentDensityMapFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceFragmentDensityMapPropertiesEXT`]
 //! - Extending [`RenderPassCreateInfo`], [`RenderPassCreateInfo2`]:  -
 //!   [`RenderPassFragmentDensityMapCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME`]
 //! - [`EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT`
@@ -38,9 +38,9 @@
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-06-16 (Matthew Netsch)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2020-06-16
 //! * - Interacts with Vulkan 1.1
 //! * - Matthew Netsch, Qualcomm Technologies, Inc.  - Jonathan Tinkham, Qualcomm Technologies, Inc.

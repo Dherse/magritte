@@ -69,24 +69,24 @@
 //!formats with 32-bit floating-point components, and in a loss of precision
 //!for formats with 12- and 16-bit signed or unsigned normalized integer
 //!components.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_blend_operation_advanced]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_blend_operation_advanced extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`]
 //! - Extending [`PipelineColorBlendStateCreateInfo`]:  -
 //!   [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`BlendOverlapEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME`]
 //! - [`EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits`]:  - `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT`
@@ -111,12 +111,12 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!None.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-06-12 (Jeff Bolz)  - Internal revisions
 //! - Revision 2, 2017-06-12 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-06-12
 //! * - Jeff Bolz, NVIDIA
 //!# Related

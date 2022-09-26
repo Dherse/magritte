@@ -4,24 +4,24 @@
 //!using the Direct Rendering Manager (DRM) interface.
 //!When acquired, the display will be under full control of the application
 //!until the display is either released or the connector is unplugged.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`ext_direct_mode_display`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Drew DeVault [sir@cmpwn.com]()
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_drm_display_ext`]
 //! - [`get_drm_display_ext`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME`]
 //! - [`EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!None.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-05-11 (Simon Zeni)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2021-06-09
 //! * No known IP claims.
 //! * - Simon Zeni, Status Holdings, Ltd.

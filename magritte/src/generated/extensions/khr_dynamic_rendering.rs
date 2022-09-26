@@ -8,21 +8,21 @@
 //![`qcom_render_pass_store_ops`], enabling
 //!applications to avoid unnecessary synchronization when an attachment is not
 //!written during a render pass.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_dynamic_rendering]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_KHR_dynamic_rendering
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_begin_rendering_khr`]
 //! - [`cmd_end_rendering_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`RenderingAttachmentInfoKHR`]
 //! - [`RenderingInfoKHR`]
 //! - Extending [`CommandBufferInheritanceInfo`]:  - [`CommandBufferInheritanceRenderingInfoKHR`]
@@ -42,11 +42,11 @@
 //!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`], [`RenderingInfo`]:
 //!   - [`MultiviewPerViewAttributesInfoNVX`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`RenderingFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`RenderingFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DYNAMIC_RENDERING_EXTENSION_NAME`]
 //! - [`KHR_DYNAMIC_RENDERING_SPEC_VERSION`]
 //! - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_KHR`
@@ -73,9 +73,9 @@
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV`
 //!If [`nvx_multiview_per_view_attributes`] is supported:
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-10-06 (Tobias Hector)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2021-10-06
 //! * - Promoted to Vulkan 1.3 Core
 //! * - Tobias Hector, AMD  - Arseny Kapoulkine, Roblox  - François Duranleau, Gameloft  - Stuart

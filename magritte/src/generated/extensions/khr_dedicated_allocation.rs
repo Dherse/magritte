@@ -20,32 +20,32 @@
 //!and memory allocation: a new structure that flags whether an image/buffer
 //!should have a dedicated allocation, and a structure indicating the image or
 //!buffer that an allocation will be bound to.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_memory_requirements2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_dedicated_allocation]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_dedicated_allocation extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`MemoryAllocateInfo`]:  - [`MemoryDedicatedAllocateInfoKHR`]
 //! - Extending [`MemoryRequirements2`]:  - [`MemoryDedicatedRequirementsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DEDICATED_ALLOCATION_EXTENSION_NAME`]
 //! - [`KHR_DEDICATED_ALLOCATION_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-02-27 (James Jones)  - Copy content from VK_NV_dedicated_allocation  - Add
 //!   some references to external object interactions to the overview.
 //! - Revision 2, 2017-03-27 (Jason Ekstrand)  - Rework the extension to be query-based
 //! - Revision 3, 2017-07-31 (Jason Ekstrand)  - Clarify that memory objects allocated with
 //!   VkMemoryDedicatedAllocateInfoKHR can only have the specified resource bound and no others.
-//!# Other info
+//!# Other information
 //! * 2017-09-05
 //! * No known IP claims.
 //! * - Promoted to Vulkan 1.1 Core

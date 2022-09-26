@@ -5,20 +5,20 @@
 //!generate the stencil reference value per invocation.
 //!When stencil testing is enabled, this allows the test to be performed
 //!against the value generated in the shader.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_stencil_export]
 //!   @dominikwitczakamd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_shader_stencil_export extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SHADER_STENCIL_EXPORT_EXTENSION_NAME`]
 //! - [`EXT_SHADER_STENCIL_EXPORT_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-07-19 (Dominik Witczak)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-07-19
 //! * No known IP claims.
 //! * - This extension requires [`SPV_EXT_shader_stencil_export`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/EXT/SPV_EXT_shader_stencil_export.html)

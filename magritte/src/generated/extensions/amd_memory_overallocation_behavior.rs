@@ -5,26 +5,26 @@
 //![`PhysicalDeviceMemoryProperties`]) is allowed or not.
 //!Overallocation may lead to performance loss and is not supported for all
 //!platforms.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Martin Dinkov [mdinkov](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_memory_overallocation_behavior]
 //!   @mdinkov%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_memory_overallocation_behavior extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`DeviceCreateInfo`]:  - [`DeviceMemoryOverallocationCreateInfoAMD`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`MemoryOverallocationBehaviorAMD`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME`]
 //! - [`AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-09-19 (Martin Dinkov)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2018-09-19
 //! * No known IP claims.
 //! * - Martin Dinkov, AMD  - Matthaeus Chajdas, AMD  - Daniel Rakos, AMD  - Jon Campbell, AMD

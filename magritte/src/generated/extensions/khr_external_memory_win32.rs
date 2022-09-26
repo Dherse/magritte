@@ -7,31 +7,31 @@
 //!memory objects and to import Vulkan memory objects from Windows handles
 //!exported from other Vulkan memory objects or from similar resources in other
 //!APIs.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_win32]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_external_memory_win32 extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_memory_win32_handle_khr`]
 //! - [`get_memory_win32_handle_properties_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MemoryGetWin32HandleInfoKHR`]
 //! - [`MemoryWin32HandlePropertiesKHR`]
 //! - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryWin32HandleInfoKHR`]  -
 //!   [`ImportMemoryWin32HandleInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Do applications need to call `CloseHandle`() on the values returned
 //!from [`get_memory_win32_handle_khr`] when `handleType` is
 //!`VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`? **RESOLVED** : Yes, unless it is passed
@@ -52,9 +52,9 @@
 //!for external handle types that require dedicated allocations, and by the
 //!size specified when creating the object from which the handle was exported
 //!for other external handle types.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-10-21 (James Jones)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2016-10-21
 //! * No known IP claims.
 //! * - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Carsten Rohde, NVIDIA

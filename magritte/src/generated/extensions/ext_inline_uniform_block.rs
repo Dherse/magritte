@@ -7,25 +7,25 @@
 //!reused across multiple disjoint sets of drawing or dispatching commands and
 //! **may**  enable uniform data to be accessed with fewer indirections compared to
 //!uniforms backed by buffer memory.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - Requires `[`khr_maintenance1`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [aqnuep](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_inline_uniform_block]
 //!   @aqnuep%0A<<Here describe the issue or question you have about the VK_EXT_inline_uniform_block
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`DescriptorPoolCreateInfo`]:  - [`DescriptorPoolInlineUniformBlockCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceInlineUniformBlockFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceInlineUniformBlockPropertiesEXT`]
 //! - Extending [`WriteDescriptorSet`]:  - [`WriteDescriptorSetInlineUniformBlockEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME`]
 //! - [`EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION`]
 //! - Extending [`DescriptorType`]:  - `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT`
@@ -34,7 +34,7 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Do we need a new storage class for inline uniform blocks vs uniform
 //!blocks? **RESOLVED** : No.
 //!The `Uniform` storage class is used to allow the same syntax used for
@@ -72,9 +72,9 @@
 //!uniform block accesses? **RESOLVED** : No, similarly to push constants, as they are not backed
 //! by
 //!buffer memory like uniform buffers.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-08-01 (Daniel Rakos)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-08-01
 //! * - Promoted to Vulkan 1.3 Core
 //! * No known IP claims.

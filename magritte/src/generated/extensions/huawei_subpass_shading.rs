@@ -21,25 +21,25 @@
 //!`LocalInvocationId` and the [`Rect2D`] of the
 //![`RenderPassBeginInfo::render_area`].This extension allows a subpass’s pipeline bind point to be
 //!`VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_create_renderpass2`]`
 //! - Requires `[`khr_synchronization2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Hueilong Wang [wyvernathuawei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_subpass_shading]
 //!   @wyvernathuawei%0A<<Here describe the issue or question you have about the
 //!   VK_HUAWEI_subpass_shading extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_subpass_shading_huawei`]
 //! - [`get_device_subpass_shading_max_workgroup_size_huawei`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`ComputePipelineCreateInfo`]:  - [`SubpassShadingPipelineCreateInfoHUAWEI`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceSubpassShadingFeaturesHUAWEI`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`HUAWEI_SUBPASS_SHADING_EXTENSION_NAME`]
 //! - [`HUAWEI_SUBPASS_SHADING_SPEC_VERSION`]
 //! - Extending [`PipelineBindPoint`]:  - `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
@@ -49,10 +49,10 @@
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_FEATURES_HUAWEI`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBPASS_SHADING_PROPERTIES_HUAWEI`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2021-06-28 (Hueilong Wang)  - Change vkGetSubpassShadingMaxWorkgroupSizeHUAWEI to vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI to resolve issue [`pub1564`](https://github.com/KhronosGroup/Vulkan-Docs/issues/1564)
 //! - Revision 1, 2020-12-15 (Hueilong Wang)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2021-06-01
 //! * - This extension requires [`SPV_HUAWEI_subpass_shading`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/HUAWEI/SPV_HUAWEI_subpass_shading.html).
 //!   - This extension provides API support for [`GL_HUAWEI_subpass_shading`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/huawei/GLSL_HUAWEI_subpass_shading.txt).

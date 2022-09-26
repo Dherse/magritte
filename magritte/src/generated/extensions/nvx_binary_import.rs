@@ -2,31 +2,31 @@
 //!# Description
 //!This extension allows applications to import CuBIN binaries and execute
 //!them.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_binary_import]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the VK_NVX_binary_import
 //!   extension>>)
 //! - Liam Middlebrook [liam-middlebrook](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_binary_import]
 //!   @liam-middlebrook%0A<<Here describe the issue or question you have about the
 //!   VK_NVX_binary_import extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`CuFunctionNVX`]
 //! - [`CuModuleNVX`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_cu_launch_kernel_nvx`]
 //! - [`create_cu_function_nvx`]
 //! - [`create_cu_module_nvx`]
 //! - [`destroy_cu_function_nvx`]
 //! - [`destroy_cu_module_nvx`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`CuFunctionCreateInfoNVX`]
 //! - [`CuLaunchInfoNVX`]
 //! - [`CuModuleCreateInfoNVX`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NVX_BINARY_IMPORT_EXTENSION_NAME`]
 //! - [`NVX_BINARY_IMPORT_SPEC_VERSION`]
 //! - Extending [`DebugReportObjectTypeEXT`]:  - `VK_DEBUG_REPORT_OBJECT_TYPE_CU_FUNCTION_NVX_EXT`
@@ -35,9 +35,9 @@
 //!   `VK_OBJECT_TYPE_CU_MODULE_NVX`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CU_FUNCTION_CREATE_INFO_NVX`  -
 //!   `VK_STRUCTURE_TYPE_CU_LAUNCH_INFO_NVX`  - `VK_STRUCTURE_TYPE_CU_MODULE_CREATE_INFO_NVX`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-04-09 (Eric Werness)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2021-04-09
 //! * - Eric Werness, NVIDIA  - Liam Middlebrook, NVIDIA
 //!# Related

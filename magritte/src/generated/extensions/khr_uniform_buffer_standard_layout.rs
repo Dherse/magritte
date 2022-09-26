@@ -6,28 +6,28 @@
 //!This allows, for example, the std430 layout, as defined in
 //![GLSL](https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.60.pdf)
 //!to be supported in uniform buffers.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Graeme Leese [gnl21](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_uniform_buffer_standard_layout]
 //!   @gnl21%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_uniform_buffer_standard_layout extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceUniformBufferStandardLayoutFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_UNIFORM_BUFFER_STANDARD_LAYOUT_EXTENSION_NAME`]
 //! - [`KHR_UNIFORM_BUFFER_STANDARD_LAYOUT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-01-25 (Graeme Leese)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2019-01-25
 //! * - Promoted to Vulkan 1.2 Core
 //! * - Graeme Leese, Broadcom  - Jeff Bolz, NVIDIA  - Tobias Hector, AMD  - Jason Ekstrand, Intel

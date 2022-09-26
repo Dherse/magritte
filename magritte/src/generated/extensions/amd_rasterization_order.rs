@@ -24,25 +24,25 @@
 //!   and the primitives rendered are known to not overlap in clip space.
 //! - If depth testing is not used and blending is enabled for all attachments with a commutative
 //!   blend operator.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_rasterization_order]
 //!   @drakos-amd%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_rasterization_order extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationStateRasterizationOrderAMD`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`RasterizationOrderAMD`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_RASTERIZATION_ORDER_EXTENSION_NAME`]
 //! - [`AMD_RASTERIZATION_ORDER_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) How is this extension useful to application developers? **RESOLVED** : Allows them to
 //! increase primitive throughput for cases when
 //!strict API order rasterization is not important due to the nature of the
@@ -61,9 +61,9 @@
 //!repeatability and other invariance rules of the API? **RESOLVED** : Yes, in the sense that it
 //! extends the list of exceptions when
 //!the repeatability requirement does not apply.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-04-25 (Daniel Rakos)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2016-04-25
 //! * No known IP claims.
 //! * - Matthaeus G. Chajdas, AMD  - Jaakko Konttinen, AMD  - Daniel Rakos, AMD  - Graham Sellers,

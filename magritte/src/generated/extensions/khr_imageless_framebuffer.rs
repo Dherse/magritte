@@ -8,25 +8,25 @@
 //![`FramebufferAttachmentsCreateInfoKHR`], and the actual image views are
 //!provided at render pass begin time via
 //![`RenderPassAttachmentBeginInfoKHR`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_maintenance2`]`
 //! - Requires `[`khr_image_format_list`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobias](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_imageless_framebuffer]
 //!   @tobias%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_imageless_framebuffer extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`FramebufferAttachmentImageInfoKHR`]
 //! - Extending [`FramebufferCreateInfo`]:  - [`FramebufferAttachmentsCreateInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceImagelessFramebufferFeaturesKHR`]
 //! - Extending [`RenderPassBeginInfo`]:  - [`RenderPassAttachmentBeginInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_IMAGELESS_FRAMEBUFFER_EXTENSION_NAME`]
 //! - [`KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION`]
 //! - Extending [`FramebufferCreateFlagBits`]:  - `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR`
@@ -34,9 +34,9 @@
 //!   `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-12-14 (Tobias Hector)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2018-12-14
 //! * - Promoted to Vulkan 1.2 Core
 //! * - Tobias Hector  - Graham Wihlidal

@@ -5,29 +5,29 @@
 //!the `[`khr_surface`]` extension) that refers to a DirectFB
 //![`IDirectFBSurface`], as well as a query to determine support for rendering
 //!via DirectFB.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Nicolas Caramelli [caramelli](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_directfb_surface]
 //!   @caramelli%0A<<Here describe the issue or question you have about the VK_EXT_directfb_surface
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_direct_fb_surface_ext`]
 //! - [`get_physical_device_direct_fb_presentation_support_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DirectFBSurfaceCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`DirectFBSurfaceCreateFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DIRECTFB_SURFACE_EXTENSION_NAME`]
 //! - [`EXT_DIRECTFB_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-06-16 (Nicolas Caramelli)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2020-06-16
 //! * No known IP claims.
 //! * - Nicolas Caramelli

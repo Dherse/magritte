@@ -11,22 +11,22 @@
 //!However, if any contents were generated within the render area during
 //!rendering, the contents of the attachment will be undefined inside the
 //!render area.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Bill Licea-Kane [wwlk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_QCOM_render_pass_store_ops]
 //!   @wwlk%0A<<Here describe the issue or question you have about the VK_QCOM_render_pass_store_ops
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`QCOM_RENDER_PASS_STORE_OPS_EXTENSION_NAME`]
 //! - [`QCOM_RENDER_PASS_STORE_OPS_SPEC_VERSION`]
 //! - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_QCOM`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-12-20 (wwlk)  - Initial version
 //! - Revision 2, 2020-03-25 (wwlk)  - Minor renaming
-//!# Other info
+//!# Other information
 //! * 2020-03-25
 //! * - Bill Licea-Kane, Qualcomm Technologies, Inc.
 //!# Notes and documentation

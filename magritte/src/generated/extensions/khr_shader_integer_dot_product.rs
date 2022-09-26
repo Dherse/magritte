@@ -5,31 +5,31 @@
 //!These instructions are particularly useful for neural network inference and
 //!training but find uses in other general purpose compute applications as
 //!well.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Kevin Petit [kevinpetit](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_integer_dot_product]
 //!   @kevinpetit%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_integer_dot_product extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderIntegerDotProductFeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  -
 //!   [`PhysicalDeviceShaderIntegerDotProductPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME`]
 //! - [`KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-06-16 (Kévin Petit)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2021-06-16
 //! * - Promoted to Vulkan 1.3 Core  - This extension requires [`SPV_KHR_integer_dot_product`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_integer_dot_product.html).
 //!   - This extension interacts with `[`khr_shader_float16_int8`]`.

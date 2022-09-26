@@ -6,21 +6,21 @@
 //!This extension enables applications to import a `dma_buf` as
 //![`DeviceMemory`], to export [`DeviceMemory`] as a `dma_buf`, and
 //!to create [`Buffer`] objects that  **can**  be bound to that memory.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_memory_fd`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_dma_buf]
 //!   @chadversary%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_external_memory_dma_buf extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_EXTERNAL_MEMORY_DMA_BUF_EXTENSION_NAME`]
 //! - [`EXT_EXTERNAL_MEMORY_DMA_BUF_SPEC_VERSION`]
 //! - Extending [`ExternalMemoryHandleTypeFlagBits`]:  -
 //!   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) How does the application, when creating a [`Image`] that it intends
 //!to bind to `dma_buf`[`DeviceMemory`] containing an externally
 //!produced image, specify the memory layout (such as row pitch and DRM format
@@ -41,9 +41,9 @@
 //!This feature, together with features provided by
 //!`[`khr_external_memory_fd`]`, is sufficient to bind a [`Buffer`]
 //!to `dma_buf`.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-10-10 (Chad Versace)  - Squashed internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-10-10
 //! * No known IP claims.
 //! * - Chad Versace, Google  - James Jones, NVIDIA  - Jason Ekstrand, Intel

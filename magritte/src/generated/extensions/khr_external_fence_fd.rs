@@ -4,33 +4,33 @@
 //!memory using fences.
 //!This extension enables an application to export fence payload to and import
 //!fence payload from POSIX file descriptors.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_external_fence`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_fd]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence_fd
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_fence_fd_khr`]
 //! - [`import_fence_fd_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`FenceGetFdInfoKHR`]
 //! - [`ImportFenceFdInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME`]
 //! - [`KHR_EXTERNAL_FENCE_FD_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!This extension borrows concepts, semantics, and language from
 //!`[`khr_external_semaphore_fd`]`.
 //!That extension’s issues apply equally to this extension.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-05-08 (Jesse Hall)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2017-05-08
 //! * No known IP claims.
 //! * - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  -

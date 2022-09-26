@@ -2,26 +2,26 @@
 //!# Description
 //!This extension provides an API to create a swapchain directly on a device’s
 //!display without any underlying window system.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!10
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_display`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display_swapchain]
 //!   @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display_swapchain
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_shared_swapchains_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PresentInfoKHR`]:  - [`DisplayPresentInfoKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME`]
 //! - [`KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION`]
 //! - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Should swapchains sharing images each hold a reference to the images, or
 //!should it be up to the application to destroy the swapchains and images in
 //!an order that avoids the need for reference counting? **RESOLVED** : Take a reference.
@@ -54,7 +54,7 @@
 //!This was deemed unusable because drivers need to know all of the displays an
 //!image will be used on when determining which internal formats and layouts to
 //!use for that image.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-07-29 (James Jones)  - Initial draft
 //! - Revision 2, 2015-08-21 (Ian Elliott)  - Renamed this extension and all of its enumerations,
 //!   types, functions, etc. This makes it compliant with the proposed standard for Vulkan
@@ -74,7 +74,7 @@
 //! - Revision 10, 2017-03-13 (James Jones)  - Closed all remaining issues. The specification and
 //!   implementations have been shipping with the proposed resolutions for some time now.  - Removed
 //!   the sample code and noted it has been integrated into the official Vulkan SDK cube demo.
-//!# Other info
+//!# Other information
 //! * 2017-03-13
 //! * No known IP claims.
 //! * - James Jones, NVIDIA  - Jeff Vigil, Qualcomm  - Jesse Hall, Google

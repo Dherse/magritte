@@ -15,28 +15,28 @@
 //!`OpTerminateInvocation` provides the behavior required by the GLSL
 //!`discard` statement, and should be used when available by GLSL compilers
 //!and applications that need the GLSL `discard` behavior.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_terminate_invocation]
 //!   @critsec%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_shader_terminate_invocation extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceShaderTerminateInvocationFeaturesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SHADER_TERMINATE_INVOCATION_EXTENSION_NAME`]
 //! - [`KHR_SHADER_TERMINATE_INVOCATION_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-08-11 (Jesse Hall)
-//!# Other info
+//!# Other information
 //! * 2020-08-11
 //! * - Promoted to Vulkan 1.3 Core  - Requires the [`SPV_KHR_terminate_invocation`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_terminate_invocation.html)
 //!   SPIR-V extension.

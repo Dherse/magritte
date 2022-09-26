@@ -24,25 +24,25 @@
 //!Some implementations may also support averaging (the same as color sample
 //!resolve) or taking the minimum or maximum sample, which may be more suitable
 //!for depth/stencil resolve.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_create_renderpass2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jan-Harald Fredriksen [janharald](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_depth_stencil_resolve]
 //!   @janharald%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_depth_stencil_resolve extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDepthStencilResolvePropertiesKHR`]
 //! - Extending [`SubpassDescription2`]:  - [`SubpassDescriptionDepthStencilResolveKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ResolveModeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`ResolveModeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME`]
 //! - [`KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION`]
 //! - Extending [`ResolveModeFlagBits`]:  - `VK_RESOLVE_MODE_AVERAGE_BIT_KHR`  -
@@ -51,9 +51,9 @@
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-04-09 (Jan-Harald Fredriksen)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2018-04-09
 //! * - Promoted to Vulkan 1.2 Core
 //! * - Jan-Harald Fredriksen, Arm  - Andrew Garrard, Samsung Electronics  - Soowan Park, Samsung

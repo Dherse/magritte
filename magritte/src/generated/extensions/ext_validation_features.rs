@@ -10,30 +10,30 @@
 //!The structure also contains an array of [`ValidationFeatureDisableEXT`]
 //!enum values that disable specific validation layer features that are enabled
 //!by default.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!5
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Karl Schultz [karl-lunarg](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_validation_features]
 //!   @karl-lunarg%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_validation_features extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`InstanceCreateInfo`]:  - [`ValidationFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ValidationFeatureDisableEXT`]
 //! - [`ValidationFeatureEnableEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_VALIDATION_FEATURES_EXTENSION_NAME`]
 //! - [`EXT_VALIDATION_FEATURES_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VALIDATION_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-11-14 (Karl Schultz)  - Initial revision
 //! - Revision 2, 2019-08-06 (Mark Lobodzinski)  - Add Best Practices enable
 //! - Revision 3, 2020-03-04 (Tony Barbour)  - Add Debug Printf enable
 //! - Revision 4, 2020-07-29 (John Zulauf)  - Add Synchronization Validation enable
 //! - Revision 5, 2021-05-18 (Tony Barbour)  - Add Shader Validation Cache disable
-//!# Other info
+//!# Other information
 //! * 2018-11-14
 //! * No known IP claims.
 //! * - Karl Schultz, LunarG  - Dave Houlton, LunarG  - Mark Lobodzinski, LunarG  - Camden Stocker,

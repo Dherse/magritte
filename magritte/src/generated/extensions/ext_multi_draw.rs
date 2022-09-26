@@ -9,31 +9,31 @@
 //!These functions could be used any time multiple draw commands are being
 //!recorded without any state changes between them in order to maximize
 //!performance.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Mike Blumenkrantz [zmike](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_multi_draw]
 //!   @zmike%0A<<Here describe the issue or question you have about the VK_EXT_multi_draw
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_draw_multi_ext`]
 //! - [`cmd_draw_multi_indexed_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`MultiDrawIndexedInfoEXT`]
 //! - [`MultiDrawInfoEXT`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMultiDrawFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMultiDrawPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_MULTI_DRAW_EXTENSION_NAME`]
 //! - [`EXT_MULTI_DRAW_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-01-20 (Mike Blumenkrantz)  - Initial version
-//!# Other info
+//!# Other information
 //! * 2021-05-19
 //! * No known IP claims.
 //! * - Mike Blumenkrantz, VALVE  - Piers Daniell, NVIDIA  - Jason Ekstrand, INTEL  - Spencer

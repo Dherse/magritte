@@ -16,34 +16,34 @@
 //!The discard rectangles can be different for each physical device in a device
 //!group by specifying the device mask and setting discard rectangle dynamic
 //!state.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_discard_rectangles]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_discard_rectangles extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_discard_rectangle_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDiscardRectanglePropertiesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`DiscardRectangleModeEXT`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PipelineDiscardRectangleStateCreateFlagsEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_DISCARD_RECTANGLES_EXTENSION_NAME`]
 //! - [`EXT_DISCARD_RECTANGLES_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2016-12-22 (Piers Daniell)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2016-12-22
 //! * - Interacts with `[`khr_device_group`]`  - Interacts with Vulkan 1.1
 //! * - Daniel Koch, NVIDIA  - Jeff Bolz, NVIDIA

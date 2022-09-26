@@ -25,32 +25,32 @@
 //! the
 //!existing structures used by certain standard Vulkan calls, in order to query
 //!for non-conformant portable behavior.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Bill Hollings [billhollings](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_portability_subset]
 //!   @billhollings%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_portability_subset extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePortabilitySubsetFeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePortabilitySubsetPropertiesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_PORTABILITY_SUBSET_EXTENSION_NAME`]
 //! - [`KHR_PORTABILITY_SUBSET_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!None.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-07-21 (Bill Hollings)  - Initial draft.
-//!# Other info
+//!# Other information
 //! * 2020-07-21
 //! * No known IP claims.
 //! * - Bill Hollings, The Brenwill Workshop Ltd.  - Daniel Koch, NVIDIA  - Dzmitry Malyshau,

@@ -11,27 +11,27 @@
 //! for deferred rendering algorithms, where
 //!the second pass needs to know which samples belong to which original
 //!fragments.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_coverage_to_color]
 //!   @jeffbolznv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_fragment_coverage_to_color extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PipelineMultisampleStateCreateInfo`]:  -
 //!   [`PipelineCoverageToColorStateCreateInfoNV`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`PipelineCoverageToColorStateCreateFlagsNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_FRAGMENT_COVERAGE_TO_COLOR_EXTENSION_NAME`]
 //! - [`NV_FRAGMENT_COVERAGE_TO_COLOR_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-05-21 (Jeff Bolz)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-05-21
 //! * - Jeff Bolz, NVIDIA
 //!# Related

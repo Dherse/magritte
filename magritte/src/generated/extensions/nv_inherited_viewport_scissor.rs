@@ -11,26 +11,26 @@
 //![`CommandBufferInheritanceViewportScissorInfoNV`].
 //!Viewport inheritance is effectively limited to the 2D rectangle; secondary
 //!command buffers must re-specify the inherited depth range values.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - David Zhao Akeley [akeley98](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_inherited_viewport_scissor]
 //!   @akeley98%0A<<Here describe the issue or question you have about the
 //!   VK_NV_inherited_viewport_scissor extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`CommandBufferInheritanceInfo`]:  -
 //!   [`CommandBufferInheritanceViewportScissorInfoNV`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceInheritedViewportScissorFeaturesNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME`]
 //! - [`NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!(1) Why are viewport depth values configured in the
 //![`CommandBufferInheritanceViewportScissorInfoNV`] struct, rather than by
 //!a `vkCmd…​` function? **DISCUSSION** :We considered both adding a new `vkCmdSetViewportDepthNV`
@@ -69,9 +69,9 @@
 //![`Viewport`] array for both code paths, rather than constructing
 //!separate `VkViewportDepthNV` and [`Viewport`] arrays for each code
 //!path.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-02-04 (David Zhao Akeley)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2021-02-04
 //! * - David Zhao Akeley, NVIDIA  - Jeff Bolz, NVIDIA  - Piers Daniell, NVIDIA  - Christoph
 //!   Kubisch, NVIDIA

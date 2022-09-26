@@ -30,33 +30,33 @@
 //!Since the offset to w, (Ax +  By), is always positive, and
 //!increases with the absolute values of x and y, the effective
 //!resolution will fall off linearly from the center of the image to its edges.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_clip_space_w_scaling]
 //!   @ewerness-nv%0A<<Here describe the issue or question you have about the
 //!   VK_NV_clip_space_w_scaling extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_viewport_w_scaling_nv`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`ViewportWScalingNV`]
 //! - Extending [`PipelineViewportStateCreateInfo`]:  -
 //!   [`PipelineViewportWScalingStateCreateInfoNV`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME`]
 //! - [`NV_CLIP_SPACE_W_SCALING_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Is the pipeline struct name too long? **RESOLVED** : It fits with the naming convention.2)
 //! Separate W scaling section or fold into coordinate transformations? **RESOLVED** : Leaving it as
 //! its own section for now.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-02-15 (Eric Werness)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2017-02-15
 //! * - Eric Werness, NVIDIA  - Kedarnath Thangudu, NVIDIA
 //!# Related

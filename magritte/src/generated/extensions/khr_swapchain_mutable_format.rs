@@ -6,22 +6,22 @@
 //! image views from
 //!presentable images with a different format than the one used to create the
 //!swapchain.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_swapchain`]`
 //! - Requires `[`khr_maintenance2`]`
 //! - Requires `[`khr_image_format_list`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Daniel Rakos [drakos-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain_mutable_format]
 //!   @drakos-arm%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_swapchain_mutable_format extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_SWAPCHAIN_MUTABLE_FORMAT_EXTENSION_NAME`]
 //! - [`KHR_SWAPCHAIN_MUTABLE_FORMAT_SPEC_VERSION`]
 //! - Extending [`SwapchainCreateFlagBitsKHR`]:  - `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Are there any new capabilities needed? **RESOLVED** : No.
 //!It is expected that all implementations exposing this extension support
 //!swapchain image format mutability.2) Do we need a separate
@@ -38,9 +38,9 @@
 //!The structure is required to be included in the `pNext` chain of
 //![`SwapchainCreateInfoKHR`] for swapchains created with
 //!`VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR`.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-03-28 (Daniel Rakos)  - Internal revisions.
-//!# Other info
+//!# Other information
 //! * 2018-03-28
 //! * No known IP claims.
 //! * - Jason Ekstrand, Intel  - Jan-Harald Fredriksen, ARM  - Jesse Hall, Google  - Daniel Rakos,

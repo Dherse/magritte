@@ -4,27 +4,27 @@
 //!value.
 //!This provides a more efficient implementation when layering OpenGL
 //!functionality on Vulkan by avoiding emulation which incurs data copies.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_primitive_topology_list_restart]
 //!   @syoussefi%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_primitive_topology_list_restart extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME`]
 //! - [`EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 0, 2020-09-14 (Courtney Goeltzenleuchter)  - Internal revisions
 //! - Revision 1, 2021-01-11 (Shahbaz Youssefi)  - Add the `primitiveTopologyPatchListRestart`
 //!   feature  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2021-01-11
 //! * No known IP claims.
 //! * - Courtney Goeltzenleuchter, Google  - Shahbaz Youssefi, Google

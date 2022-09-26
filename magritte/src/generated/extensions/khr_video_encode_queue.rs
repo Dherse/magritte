@@ -1,34 +1,34 @@
 //![VK_KHR_video_encode_queue](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_encode_queue.html) - device extension
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!4
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_video_queue`]`
 //! - Requires `[`khr_synchronization2`]`
 //! - **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header)
 //!   of provisional header files for enablement and stability details.**
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Ahmed Abdelkhalek [aabdelkh](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_video_encode_queue]
 //!   @aabdelkh%0A<<Here describe the issue or question you have about the VK_KHR_video_encode_queue
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_encode_video_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`VideoEncodeInfoKHR`]
 //! - Extending [`VideoCapabilitiesKHR`]:  - [`VideoEncodeCapabilitiesKHR`]
 //! - Extending [`VideoCodingControlInfoKHR`]:  - [`VideoEncodeRateControlInfoKHR`]  -
 //!   [`VideoEncodeRateControlLayerInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`VideoEncodeCapabilityFlagBitsKHR`]
 //! - [`VideoEncodeFlagBitsKHR`]
 //! - [`VideoEncodeRateControlFlagBitsKHR`]
 //! - [`VideoEncodeRateControlModeFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`VideoEncodeCapabilityFlagsKHR`]
 //! - [`VideoEncodeFlagsKHR`]
 //! - [`VideoEncodeRateControlFlagsKHR`]
 //! - [`VideoEncodeRateControlModeFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME`]
 //! - [`KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION`]
 //! - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_VIDEO_ENCODE_READ_BIT_KHR`  -
@@ -51,7 +51,7 @@
 //!If [`khr_format_feature_flags2`] is supported:
 //! - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_DPB_BIT_KHR`  -
 //!   `VK_FORMAT_FEATURE_2_VIDEO_ENCODE_INPUT_BIT_KHR`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-07-23 (Ahmed Abdelkhalek)  - Initial draft
 //! - Revision 1.1, 10/29/2019 (Tony Zlatinski)  - Updated the reserved spec tokens and renamed
 //!   VkVideoEncoderKHR to VkVideoSessionKHR
@@ -60,7 +60,7 @@
 //! - Revision 3, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to
 //!   `vk.xml`
 //! - Revision 4, 2022-02-10 (Ahmed Abdelkhalek)  - Updates to encode capability interface
-//!# Other info
+//!# Other information
 //! * 2022-02-10
 //! * No known IP claims.
 //! * - Ahmed Abdelkhalek, AMD  - Damien Kessler, NVIDIA  - Daniel Rakos, AMD  - George Hao, AMD  -

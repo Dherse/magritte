@@ -6,24 +6,24 @@
 //!Secondly, the extension allows the application to query which formats can be
 //!used together with the new function prototypes introduced by the SPIR-V
 //!extension.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Rex Xu [amdrexu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_texture_gather_bias_lod]
 //!   @amdrexu%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_texture_gather_bias_lod extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`ImageFormatProperties2`]:  - [`TextureLodGatherFormatPropertiesAMD`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME`]
 //! - [`AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-03-21 (Dominik Witczak)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-03-21
 //! * No known IP claims.
 //! * - This extension requires [`SPV_AMD_texture_gather_bias_lod`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_texture_gather_bias_lod.html)

@@ -13,20 +13,20 @@
 //! fetched with
 //!the corresponding fragment mask value using the `fragmentFetchAMD` shader
 //!function.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Aaron Hagan [AaronHaganAMD](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_fragment_mask]
 //!   @AaronHaganAMD%0A<<Here describe the issue or question you have about the
 //!   VK_AMD_shader_fragment_mask extension>>)
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`AMD_SHADER_FRAGMENT_MASK_EXTENSION_NAME`]
 //! - [`AMD_SHADER_FRAGMENT_MASK_SPEC_VERSION`]
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2017-08-16 (Aaron Hagan)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2017-08-16
 //! * No known IP claims.
 //! * - This extension requires [`SPV_AMD_shader_fragment_mask`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/AMD/SPV_AMD_shader_fragment_mask.html)

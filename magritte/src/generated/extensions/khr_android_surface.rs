@@ -9,34 +9,34 @@
 //!Common consumer endpoints for `ANativeWindows` are the system window
 //!compositor, video encoders, and application-specific compositors importing
 //!the images through a `SurfaceTexture`.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!6
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_surface`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_android_surface]
 //!   @critsec%0A<<Here describe the issue or question you have about the VK_KHR_android_surface
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New base types")]
+//!# New base types
 //! - [`ANativeWindow`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`create_android_surface_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`AndroidSurfaceCreateInfoKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`AndroidSurfaceCreateFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_ANDROID_SURFACE_EXTENSION_NAME`]
 //! - [`KHR_ANDROID_SURFACE_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Does Android need a way to query for compatibility between a particular
 //!physical device (and queue family?) and a specific Android display? **RESOLVED** : No.
 //!Currently on Android, any physical device is expected to be able to present
 //!to the system compositor, and all queue families must support the necessary
 //!image layout transitions and synchronization operations.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2015-09-23 (Jesse Hall)  - Initial draft.
 //! - Revision 2, 2015-10-26 (Ian Elliott)  - Renamed from VK_EXT_KHR_android_surface to
 //!   VK_KHR_android_surface.
@@ -47,7 +47,7 @@
 //!   pCreateInfo structure.
 //! - Revision 6, 2016-01-14 (James Jones)  - Moved VK_ERROR_NATIVE_WINDOW_IN_USE_KHR from the
 //!   VK_KHR_android_surface to the VK_KHR_surface extension.
-//!# Other info
+//!# Other information
 //! * 2016-01-14
 //! * No known IP claims.
 //! * - Patrick Doane, Blizzard  - Jason Ekstrand, Intel  - Ian Elliott, LunarG  - Courtney

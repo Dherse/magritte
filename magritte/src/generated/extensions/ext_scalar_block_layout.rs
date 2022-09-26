@@ -4,28 +4,28 @@
 //!It modifies the alignment rules for uniform buffers, storage buffers and
 //!push constants, allowing non-scalar types to be aligned solely based on the
 //!size of their components, without additional requirements.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_scalar_block_layout]
 //!   @tobski%0A<<Here describe the issue or question you have about the VK_EXT_scalar_block_layout
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceScalarBlockLayoutFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_SCALAR_BLOCK_LAYOUT_EXTENSION_NAME`]
 //! - [`EXT_SCALAR_BLOCK_LAYOUT_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-11-14 (Tobias Hector)  - Initial draft
-//!# Other info
+//!# Other information
 //! * 2018-11-14
 //! * - Promoted to Vulkan 1.2 Core
 //! * - Jeff Bolz  - Jan-Harald Fredriksen  - Graeme Leese  - Jason Ekstrand  - John Kessenich

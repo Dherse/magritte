@@ -12,31 +12,31 @@
 //!colorWriteMask dynamic is that, on many implementations, the more flexible
 //!per-component semantics of the colorWriteMask state cannot be made dynamic
 //!in a performant manner.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Sharif Elcott [selcott](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_color_write_enable]
 //!   @selcott%0A<<Here describe the issue or question you have about the VK_EXT_color_write_enable
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`cmd_set_color_write_enable_ext`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceColorWriteEnableFeaturesEXT`]
 //! - Extending [`PipelineColorBlendStateCreateInfo`]:  - [`PipelineColorWriteCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_COLOR_WRITE_ENABLE_EXTENSION_NAME`]
 //! - [`EXT_COLOR_WRITE_ENABLE_SPEC_VERSION`]
 //! - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_COLOR_WRITE_ENABLE_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_WRITE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2020-01-25 (Sharif Elcott)  - Internal revisions
-//!# Other info
+//!# Other information
 //! * 2020-02-25
 //! * No known IP claims.
 //! * - Sharif Elcott, Google  - Tobias Hector, AMD  - Piers Daniell, NVIDIA

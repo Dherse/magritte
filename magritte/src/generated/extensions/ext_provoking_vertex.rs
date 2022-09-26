@@ -6,31 +6,31 @@
 //!APIs like OpenGL on top of Vulkan, and need to match the source API’s
 //!provoking vertex convention.
 //!Applications using Vulkan directly should use Vulkan’s default convention.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jesse Hall [jessehall](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_provoking_vertex]
 //!   @jessehall%0A<<Here describe the issue or question you have about the VK_EXT_provoking_vertex
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceProvokingVertexFeaturesEXT`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceProvokingVertexPropertiesEXT`]
 //! - Extending [`PipelineRasterizationStateCreateInfo`]:  -
 //!   [`PipelineRasterizationProvokingVertexStateCreateInfoEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`ProvokingVertexModeEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_PROVOKING_VERTEX_EXTENSION_NAME`]
 //! - [`EXT_PROVOKING_VERTEX_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`  -
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) At what granularity should this state be set? **RESOLVED** : At pipeline bind, with an
 //! optional per-render pass restriction.The most natural place to put this state is in the graphics
 //! pipeline object.
@@ -50,7 +50,7 @@
 //!in the original drawing when the transform feedback buffer was written
 //!(assuming the provoking vertex mode has not changed, in APIs that support
 //!more than one mode).
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, (1c) 2021-02-22 (Jesse Hall)  - Added
 //!   VkPhysicalDeviceProvokingVertexPropertiesEXT::transformFeedbackPreservesTriangleFanProvokingVertex
 //!   to accommodate implementations that cannot change the transform feedback vertex order for
@@ -60,7 +60,7 @@
 //!   required that transform feedback write vertices so as to preserve the provoking vertex of each
 //!   primitive.
 //! - Revision 1, (1a) 2019-10-23 (Jesse Hall)  - Initial draft, based on a proposal by Alexis Hétu
-//!# Other info
+//!# Other information
 //! * 2021-02-22
 //! * No known IP claims.
 //! * - Alexis Hétu, Google  - Bill Licea-Kane, Qualcomm  - Daniel Koch, Nvidia  - Jamie Madill,

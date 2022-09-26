@@ -12,22 +12,22 @@
 //!   specified value.
 //! - Device signal - A device operation that allows advancing the timeline semaphore to a specified
 //!   value.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_timeline_semaphore]
 //!   @jekstrand%0A<<Here describe the issue or question you have about the
 //!   VK_KHR_timeline_semaphore extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_semaphore_counter_value_khr`]
 //! - [`signal_semaphore_khr`]
 //! - [`wait_semaphores_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`SemaphoreSignalInfoKHR`]
 //! - [`SemaphoreWaitInfoKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
@@ -36,12 +36,12 @@
 //! - Extending [`SemaphoreCreateInfo`], [`PhysicalDeviceExternalSemaphoreInfo`]:  -
 //!   [`SemaphoreTypeCreateInfoKHR`]
 //! - Extending [`SubmitInfo`], [`BindSparseInfo`]:  - [`TimelineSemaphoreSubmitInfoKHR`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`SemaphoreTypeKHR`]
 //! - [`SemaphoreWaitFlagBitsKHR`]
-# ! [doc = concat ! ("# " , "New bitmasks")]
+//!# New bitmasks
 //! - [`SemaphoreWaitFlagsKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME`]
 //! - [`KHR_TIMELINE_SEMAPHORE_SPEC_VERSION`]
 //! - Extending [`SemaphoreType`]:  - `VK_SEMAPHORE_TYPE_BINARY_KHR`  -
@@ -54,7 +54,7 @@
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR`  -
 //!   `VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!1) Do we need a new object type for this? **RESOLVED** : No, we just introduce a new type of
 //! semaphore object, as
 //![`VK_KHR_external_semaphore_win32`] already uses semaphores as the destination
@@ -110,11 +110,11 @@
 //!semaphore type by adding a [`SemaphoreTypeCreateInfoKHR`] structure to
 //!the `pNext` chain of [`PhysicalDeviceExternalSemaphoreInfo`] so no
 //!new feature bit is required.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2018-05-10 (Jason Ekstrand)  - Initial version
 //! - Revision 2, 2019-06-12 (Jason Ekstrand)  - Added an initialValue parameter to timeline
 //!   semaphore creation
-//!# Other info
+//!# Other information
 //! * 2019-06-12
 //! * No known IP claims.
 //! * - This extension interacts with `[`khr_external_semaphore_capabilities`]`  - This extension

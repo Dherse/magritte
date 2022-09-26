@@ -5,17 +5,17 @@
 //![Graphics
 //!Performance Analyzers](https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html) make use of this extension and the metrics-discovery
 //!library to present the data in a human readable way.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Lionel Landwerlin [llandwerlin](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_INTEL_performance_query]
 //!   @llandwerlin%0A<<Here describe the issue or question you have about the
 //!   VK_INTEL_performance_query extension>>)
-# ! [doc = concat ! ("# " , "New object types")]
+//!# New object types
 //! - [`PerformanceConfigurationINTEL`]
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`acquire_performance_configuration_intel`]
 //! - [`cmd_set_performance_marker_intel`]
 //! - [`cmd_set_performance_override_intel`]
@@ -25,7 +25,7 @@
 //! - [`queue_set_performance_configuration_intel`]
 //! - [`release_performance_configuration_intel`]
 //! - [`uninitialize_performance_api_intel`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`InitializePerformanceApiInfoINTEL`]
 //! - [`PerformanceConfigurationAcquireInfoINTEL`]
 //! - [`PerformanceMarkerInfoINTEL`]
@@ -34,15 +34,15 @@
 //! - [`PerformanceValueINTEL`]
 //! - Extending [`QueryPoolCreateInfo`]:  - [`QueryPoolCreateInfoINTEL`]  -
 //!   [`QueryPoolPerformanceQueryCreateInfoINTEL`]
-# ! [doc = concat ! ("# " , "New unions")]
+//!# New unions
 //! - [`PerformanceValueDataINTEL`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`PerformanceConfigurationTypeINTEL`]
 //! - [`PerformanceOverrideTypeINTEL`]
 //! - [`PerformanceParameterTypeINTEL`]
 //! - [`PerformanceValueTypeINTEL`]
 //! - [`QueryPoolSamplingModeINTEL`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`INTEL_PERFORMANCE_QUERY_EXTENSION_NAME`]
 //! - [`INTEL_PERFORMANCE_QUERY_SPEC_VERSION`]
 //! - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_PERFORMANCE_CONFIGURATION_INTEL`
@@ -54,11 +54,11 @@
 //!   `VK_STRUCTURE_TYPE_PERFORMANCE_STREAM_MARKER_INFO_INTEL`  -
 //!   `VK_STRUCTURE_TYPE_QUERY_POOL_CREATE_INFO_INTEL`  -
 //!   `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_QUERY_CREATE_INFO_INTEL`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 2, 2020-03-06 (Lionel Landwerlin)  - Rename VkQueryPoolCreateInfoINTEL in
 //!   VkQueryPoolPerformanceQueryCreateInfoINTEL
 //! - Revision 1, 2018-05-16 (Lionel Landwerlin)  - Initial revision
-//!# Other info
+//!# Other information
 //! * 2018-05-16
 //! * No known IP claims.
 //! * - Lionel Landwerlin, Intel  - Piotr Maciejewski, Intel

@@ -21,27 +21,27 @@
 //!   input vector, with additional values being discarded.
 //! - Add a guarantee for buffer memory requirement that the size memory requirement is never
 //!   greater than the result of aligning create size with the alignment memory requirement.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!2
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.1
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_maintenance4]
 //!   @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_KHR_maintenance4
 //!   extension>>)
-# ! [doc = concat ! ("# " , "New commands")]
+//!# New commands
 //! - [`get_device_buffer_memory_requirements_khr`]
 //! - [`get_device_image_memory_requirements_khr`]
 //! - [`get_device_image_sparse_memory_requirements_khr`]
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - [`DeviceBufferMemoryRequirementsKHR`]
 //! - [`DeviceImageMemoryRequirementsKHR`]
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDeviceMaintenance4FeaturesKHR`]
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMaintenance4PropertiesKHR`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`KHR_MAINTENANCE_4_EXTENSION_NAME`]
 //! - [`KHR_MAINTENANCE_4_SPEC_VERSION`]
 //! - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_NONE_KHR`
@@ -49,12 +49,12 @@
 //!   `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR`  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR`
-# ! [doc = concat ! ("# " , "Known issues & F.A.Q.")]
+//!# Known issues & F.A.Q.
 //!None.
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-08-18 (Piers Daniell)  - Internal revisions
 //! - Revision 2, 2021-10-25 (Yiwei Zhang)  - More guarantees on buffer memory requirements
-//!# Other info
+//!# Other information
 //! * 2021-10-25
 //! * - Promoted to Vulkan 1.3 Core  - Requires SPIR-V 1.2 for `LocalSizeId`
 //! * - Lionel Duc, NVIDIA  - Jason Ekstrand, Intel  - Spencer Fricke, Samsung  - Tobias Hector, AMD

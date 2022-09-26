@@ -14,24 +14,24 @@
 //!rendering engine), or may have neither (e.g. if it is a software rendering
 //!engine without a display subsystem).To query DRM properties for a physical device, chain
 //![`PhysicalDeviceDrmPropertiesEXT`] to [`PhysicalDeviceProperties2`].
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!1
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
 //! - Requires `[`khr_get_physical_device_properties2`]`
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Simon Ser [emersion](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_physical_device_drm]
 //!   @emersion%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_physical_device_drm extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDrmPropertiesEXT`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME`]
 //! - [`EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION`]
 //! - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2021-06-09  - First stable revision
-//!# Other info
+//!# Other information
 //! * 2021-06-09
 //! * No known IP claims.
 //! * - Simon Ser

@@ -6,22 +6,22 @@
 //!The goal is to provide information about potentially expensive hazards
 //!within the client driver during pipeline creation to the application before
 //!carrying them out rather than after.
-# ! [doc = concat ! ("# " , "Revision")]
+//!# Revision
 //!3
-# ! [doc = concat ! ("# " , "Dependencies")]
+//!# Dependencies
 //! - Requires Vulkan 1.0
-# ! [doc = concat ! ("# " , "Deprecation State")]
+//!# Deprecation State
 //! - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
-# ! [doc = concat ! ("# " , "Contacts")]
+//!# Contacts
 //! - Gregory Grebe [grgrebe_amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pipeline_creation_cache_control]
 //!   @grgrebe_amd%0A<<Here describe the issue or question you have about the
 //!   VK_EXT_pipeline_creation_cache_control extension>>)
-# ! [doc = concat ! ("# " , "New structures")]
+//!# New structures
 //! - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  -
 //!   [`PhysicalDevicePipelineCreationCacheControlFeaturesEXT`]
-# ! [doc = concat ! ("# " , "New enums")]
+//!# New enums
 //! - [`PipelineCacheCreateFlagBits`]
-# ! [doc = concat ! ("# " , "New constants")]
+//!# New constants
 //! - [`EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME`]
 //! - [`EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION`]
 //! - Extending [`PipelineCacheCreateFlagBits`]:  -
@@ -32,13 +32,13 @@
 //!   `VK_PIPELINE_COMPILE_REQUIRED_EXT`
 //! - Extending [`StructureType`]:  -
 //!   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES_EXT`
-# ! [doc = concat ! ("# " , "Version history")]
+//!# Version history
 //! - Revision 1, 2019-11-01 (Gregory Grebe)  - Initial revision
 //! - Revision 2, 2020-02-24 (Gregory Grebe)  - Initial public revision
 //! - Revision 3, 2020-03-23 (Tobias Hector)  - Changed `VK_PIPELINE_COMPILE_REQUIRED_EXT` to a
 //!   success code, adding an alias for the original `VK_ERROR_PIPELINE_COMPILE_REQUIRED_EXT`. Also
 //!   updated the xml to include these codes as return values.
-//!# Other info
+//!# Other information
 //! * 2020-03-23
 //! * - Promoted to Vulkan 1.3 Core
 //! * No known IP claims.
