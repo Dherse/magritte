@@ -1,16 +1,10 @@
 //! # Small helpers
 
+#[cfg(feature = "VK_KHR_swapchain")]
 use std::sync::atomic::AtomicBool;
 
-use crate::Handle;
 #[cfg(feature = "VK_KHR_swapchain")]
-use crate::Unique;
-
-#[cfg(feature = "VK_KHR_swapchain")]
-use crate::extensions::khr_swapchain::{SwapchainImage, SwapchainImageView};
-
-#[cfg(feature = "VK_KHR_swapchain")]
-use crate::vulkan1_0::{Image, ImageView};
+use crate::{Handle, Unique, extensions::khr_swapchain::{SwapchainImage, SwapchainImageView}, vulkan1_0::{Image, ImageView}};
 
 #[cfg(feature = "VK_KHR_swapchain")]
 impl Unique<SwapchainImage> {

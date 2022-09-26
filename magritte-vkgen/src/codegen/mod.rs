@@ -297,6 +297,7 @@ impl<'a> Source<'a> {
             #![doc = "# Extensions"]
             #![doc = "This module contains all of the registered extensions gated by relevant feature gates."]
             
+            #[allow(unused_imports)]
             use crate::cstr_ptr;
             use std::os::raw::c_char;
         "##

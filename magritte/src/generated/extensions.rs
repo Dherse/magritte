@@ -2,6 +2,7 @@
 //!# Extensions
 //!This module contains all of the registered extensions gated by relevant feature gates.
 
+#[allow(unused_imports)]
 use crate::cstr_ptr;
 use std::os::raw::c_char;
 #[cfg(feature = "VK_AMD_buffer_marker")]
