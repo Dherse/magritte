@@ -139,12 +139,36 @@ impl<'a> Handle<'a> {
         quote_each_token! {
             out
 
-            #[derive(Clone)]
+            #[derive(Clone, Debug, PartialEq, Eq)]
             pub enum Handles {
                 #(
                     #conds
                     #handle_idents(Unique<#handle_idents>)
                 ),*
+            }
+
+            impl Handles {
+                #[inline]
+                pub fn strong_count(&self) -> usize {
+                    match self {
+                        #(
+                            #conds
+                            Self::#handle_idents(handle) => handle.strong_count()
+                        ),*
+                    }
+                }
+            }
+
+            impl Handles {
+                #[inline]
+                pub fn as_raw(&self) -> u64 {
+                    match self {
+                        #(
+                            #conds
+                            Self::#handle_idents(handle) => handle.as_stored() as u64
+                        ),*
+                    }
+                }
             }
 
             impl Handles {

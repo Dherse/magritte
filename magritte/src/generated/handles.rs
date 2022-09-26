@@ -47,7 +47,7 @@ use crate::{
     vulkan1_1::{DescriptorUpdateTemplate, SamplerYcbcrConversion},
     vulkan1_3::PrivateDataSlot,
 };
-#[derive(Clone)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum Handles {
     Instance(Unique<Instance>),
     PhysicalDevice(Unique<PhysicalDevice>),
@@ -115,6 +115,152 @@ pub enum Handles {
     SwapchainImage(Unique<SwapchainImage>),
     #[cfg(feature = "VK_KHR_swapchain")]
     SwapchainImageView(Unique<SwapchainImageView>),
+}
+impl Handles {
+    #[inline]
+    pub fn strong_count(&self) -> usize {
+        match self {
+            Self::Instance(handle) => handle.strong_count(),
+            Self::PhysicalDevice(handle) => handle.strong_count(),
+            Self::Device(handle) => handle.strong_count(),
+            Self::Queue(handle) => handle.strong_count(),
+            Self::CommandBuffer(handle) => handle.strong_count(),
+            Self::DeviceMemory(handle) => handle.strong_count(),
+            Self::CommandPool(handle) => handle.strong_count(),
+            Self::Buffer(handle) => handle.strong_count(),
+            Self::BufferView(handle) => handle.strong_count(),
+            Self::Image(handle) => handle.strong_count(),
+            Self::ImageView(handle) => handle.strong_count(),
+            Self::ShaderModule(handle) => handle.strong_count(),
+            Self::Pipeline(handle) => handle.strong_count(),
+            Self::PipelineLayout(handle) => handle.strong_count(),
+            Self::Sampler(handle) => handle.strong_count(),
+            Self::DescriptorSet(handle) => handle.strong_count(),
+            Self::DescriptorSetLayout(handle) => handle.strong_count(),
+            Self::DescriptorPool(handle) => handle.strong_count(),
+            Self::Fence(handle) => handle.strong_count(),
+            Self::Semaphore(handle) => handle.strong_count(),
+            Self::Event(handle) => handle.strong_count(),
+            Self::QueryPool(handle) => handle.strong_count(),
+            Self::Framebuffer(handle) => handle.strong_count(),
+            Self::RenderPass(handle) => handle.strong_count(),
+            Self::PipelineCache(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_NV_device_generated_commands")]
+            Self::IndirectCommandsLayoutNV(handle) => handle.strong_count(),
+            Self::DescriptorUpdateTemplate(handle) => handle.strong_count(),
+            Self::SamplerYcbcrConversion(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_EXT_validation_cache")]
+            Self::ValidationCacheEXT(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            Self::AccelerationStructureKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            Self::AccelerationStructureNV(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_INTEL_performance_query")]
+            Self::PerformanceConfigurationINTEL(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            Self::BufferCollectionFUCHSIA(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_deferred_host_operations")]
+            Self::DeferredOperationKHR(handle) => handle.strong_count(),
+            Self::PrivateDataSlot(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuModuleNVX(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuFunctionNVX(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayModeKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_surface")]
+            Self::SurfaceKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_EXT_debug_report")]
+            Self::DebugReportCallbackEXT(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_EXT_debug_utils")]
+            Self::DebugUtilsMessengerEXT(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionParametersKHR(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImage(handle) => handle.strong_count(),
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImageView(handle) => handle.strong_count(),
+        }
+    }
+}
+impl Handles {
+    #[inline]
+    pub fn as_raw(&self) -> u64 {
+        match self {
+            Self::Instance(handle) => handle.as_stored() as u64,
+            Self::PhysicalDevice(handle) => handle.as_stored() as u64,
+            Self::Device(handle) => handle.as_stored() as u64,
+            Self::Queue(handle) => handle.as_stored() as u64,
+            Self::CommandBuffer(handle) => handle.as_stored() as u64,
+            Self::DeviceMemory(handle) => handle.as_stored() as u64,
+            Self::CommandPool(handle) => handle.as_stored() as u64,
+            Self::Buffer(handle) => handle.as_stored() as u64,
+            Self::BufferView(handle) => handle.as_stored() as u64,
+            Self::Image(handle) => handle.as_stored() as u64,
+            Self::ImageView(handle) => handle.as_stored() as u64,
+            Self::ShaderModule(handle) => handle.as_stored() as u64,
+            Self::Pipeline(handle) => handle.as_stored() as u64,
+            Self::PipelineLayout(handle) => handle.as_stored() as u64,
+            Self::Sampler(handle) => handle.as_stored() as u64,
+            Self::DescriptorSet(handle) => handle.as_stored() as u64,
+            Self::DescriptorSetLayout(handle) => handle.as_stored() as u64,
+            Self::DescriptorPool(handle) => handle.as_stored() as u64,
+            Self::Fence(handle) => handle.as_stored() as u64,
+            Self::Semaphore(handle) => handle.as_stored() as u64,
+            Self::Event(handle) => handle.as_stored() as u64,
+            Self::QueryPool(handle) => handle.as_stored() as u64,
+            Self::Framebuffer(handle) => handle.as_stored() as u64,
+            Self::RenderPass(handle) => handle.as_stored() as u64,
+            Self::PipelineCache(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_NV_device_generated_commands")]
+            Self::IndirectCommandsLayoutNV(handle) => handle.as_stored() as u64,
+            Self::DescriptorUpdateTemplate(handle) => handle.as_stored() as u64,
+            Self::SamplerYcbcrConversion(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_EXT_validation_cache")]
+            Self::ValidationCacheEXT(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            Self::AccelerationStructureKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            Self::AccelerationStructureNV(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_INTEL_performance_query")]
+            Self::PerformanceConfigurationINTEL(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            Self::BufferCollectionFUCHSIA(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_deferred_host_operations")]
+            Self::DeferredOperationKHR(handle) => handle.as_stored() as u64,
+            Self::PrivateDataSlot(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuModuleNVX(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_NVX_binary_import")]
+            Self::CuFunctionNVX(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_display")]
+            Self::DisplayModeKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_surface")]
+            Self::SurfaceKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_EXT_debug_report")]
+            Self::DebugReportCallbackEXT(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_EXT_debug_utils")]
+            Self::DebugUtilsMessengerEXT(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_video_queue")]
+            Self::VideoSessionParametersKHR(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImage(handle) => handle.as_stored() as u64,
+            #[cfg(feature = "VK_KHR_swapchain")]
+            Self::SwapchainImageView(handle) => handle.as_stored() as u64,
+        }
+    }
 }
 impl Handles {
     ///Gets the [`ObjectType`] from the handle

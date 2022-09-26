@@ -37,7 +37,7 @@ pub struct Inner<T: Handle> {
     pub strong: AtomicUsize,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct Unique<T: Handle> {
     pub(crate) inner: NonNull<Inner<T>>,
     pub this: T,
