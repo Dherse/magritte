@@ -28,6 +28,13 @@ cd vendors
 sudo docker run --user `id -u`:`id -g` -it --rm --mount type=bind,source=$(pwd)/Vulkan-Docs,target=/vulkan khronosgroup/docker-images:asciidoctor-spec /bin/bash
 ```
 
+Note that on Windows, it is a bit trickier and works with this command:
+
+```sh
+cd vendors
+sudo docker run --user root -it --rm --mount type=bind,source=$(pwd)/Vulkan-Docs,target=/vulkan khronosgroup/docker-images:asciidoctor-spec /bin/bash
+```
+
 You will finally need to build the spec (in the opened docker bash)
 
 ```sh
