@@ -44,7 +44,7 @@ cd /vulkan
 
 ## Building the bindings
 
-You will need a `nightly` installation of rust.
+You will need a `nightly` installation of rust, minimum rust version is `1.66.0-nightly`.
 
 In the main directory run
 
