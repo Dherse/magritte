@@ -159,6 +159,13 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
             ],
         );
 
+        features.insert(
+            "video_bindgen".to_string(),
+            vec![
+                "bindgen".to_string()
+            ]
+        );
+
         source.generate_feature_set(&mut features);
 
         manifest.features = features;

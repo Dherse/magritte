@@ -21,27 +21,27 @@ categories = [
 license-file = '../LICENSE'
 repository = 'https://github.com/Dherse/magritte'
 [dependencies.bytemuck]
-version = '1.9.1'
+version = '1.9'
 features = []
 optional = false
 
 [dependencies.libloading]
-version = '0.7.3'
+version = '0.7'
 features = []
 optional = true
 
 [dependencies.log]
-version = '0.4.16'
+version = '0.4'
 features = []
 optional = true
 
 [dependencies.raw-window-handle]
-version = '0.5.0'
+version = '0.5'
 features = []
 optional = true
 
 [dependencies.smallvec]
-version = '1.9.0'
+version = '1.9'
 features = []
 optional = true
 [build-dependencies.bindgen]
@@ -728,6 +728,7 @@ validation = [
     'log',
     'VK_EXT_debug_utils',
 ]
+video_bindgen = ['bindgen']
 window = [
     'raw-window-handle',
     'VK_KHR_surface',
