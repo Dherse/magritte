@@ -176,7 +176,7 @@ pub trait Handle: Clone {
     type Metadata: Send + Sync;
 
     /// The contained type
-    type Storage;
+    type Storage: ToBits;
 
     /// Destroy tha handle, only called on `drop`
     /// The function is unsafe because it cannot be proven
@@ -196,6 +196,32 @@ pub trait Handle: Clone {
     #[doc(hidden)]
     unsafe fn coerce<T: Handle<Storage = Self::Storage>>(self) -> T {
         T::from_stored(self.as_stored())
+    }
+}
+
+impl<'a, H: Handle + Copy> Handle for &'a H {
+    type Parent = <H as Handle>::Parent;
+
+    type VTable = <H as Handle>::VTable;
+
+    type Metadata = <H as Handle>::Metadata;
+
+    type Storage = <H as Handle>::Storage;
+
+    unsafe fn destroy(self: &mut Unique<Self>) {
+        // destroying a handle of a reference does nothing
+    }
+
+    fn as_stored(self) -> Self::Storage {
+        (*self).as_stored()
+    }
+
+    unsafe fn from_stored(_: Self::Storage) -> Self {
+        unimplemented!("cannot create a reference from a stored value")
+    }
+
+    unsafe fn load_vtable(&self, _: &Self::Parent, _: &Self::Metadata) -> Self::VTable {
+        unimplemented!("cannot load a vtable from a reference")
     }
 }
 
@@ -258,3 +284,37 @@ pub trait AsRaw {
 }
 
 include!("generated/handles.rs");
+
+pub trait ToBits {
+    fn to_bits(&self) -> u64;
+}
+
+impl ToBits for () {
+    fn to_bits(&self) -> u64 {
+        u64::MAX
+    }
+}
+
+impl ToBits for u64 {
+    fn to_bits(&self) -> u64 {
+        *self
+    }
+}
+
+impl ToBits for u32 {
+    fn to_bits(&self) -> u64 {
+        *self as u64
+    }
+}
+
+impl<I> ToBits for *const I {
+    fn to_bits(&self) -> u64 {
+        *self as usize as u64
+    }
+}
+
+impl<I> ToBits for *mut I {
+    fn to_bits(&self) -> u64 {
+        *self as usize as u64
+    }
+}

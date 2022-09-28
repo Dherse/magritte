@@ -1,5 +1,3 @@
-
-
 #[cfg(feature = "crossbeam-channel")]
 pub type Receiver<T> = crossbeam_channel::Receiver<T>;
 
@@ -45,7 +43,7 @@ impl<T> Tx<T> for std::sync::mpsc::Sender<T> {
 #[cfg(feature = "crossbeam-channel")]
 impl<T> Rx<T> for crossbeam_channel::Receiver<T> {
     type Tx = crossbeam_channel::Sender<T>;
-    
+
     fn recv(&self) -> Option<T> {
         self.recv().ok()
     }
