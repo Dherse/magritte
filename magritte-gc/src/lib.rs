@@ -172,7 +172,7 @@ impl Handle {
         let mut lock = self.tracked_by.lock().unwrap();
 
         lock.drain_filter(|value| {
-            objects.contains_key(&*value)
+            !objects.contains_key(&*value)
         });
 
         lock.is_empty() && self.handle.strong_count() == 1
