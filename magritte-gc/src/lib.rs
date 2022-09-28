@@ -105,12 +105,14 @@ enum Command {
 
 fn gc_thread(rx: Receiver<Command>) -> Result<(), GcError> {
     let mut objects = BTreeMap::<u64, Handle>::new();
+    let mut to_remove = Vec::new();
     loop {
         match <Receiver<_> as Rx<_>>::recv(&rx) {
             Some(msg) => match msg {
                 Command::Run => {
                     trace!("Running garbage collection");
-                    let mut to_remove = Vec::new();
+
+                    to_remove.clear();
 
                     for (handle, object) in objects.iter() {
                         if object.is_dead(&objects) {
@@ -118,8 +120,8 @@ fn gc_thread(rx: Receiver<Command>) -> Result<(), GcError> {
                         }
                     }
 
-                    for handle in to_remove {
-                        objects.remove(&handle);
+                    for handle in &to_remove {
+                        objects.remove(handle);
                     }
                 },
                 Command::Track(handle) => {
