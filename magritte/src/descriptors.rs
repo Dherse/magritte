@@ -1,7 +1,7 @@
 use crate::{vulkan1_0::{Device, DescriptorPoolCreateFlags, DescriptorPool, DescriptorPoolSize, DescriptorType, DescriptorPoolCreateInfo}, Unique, VulkanResult, vulkan1_3::DescriptorPoolInlineUniformBlockCreateInfo, Chain, Version};
 
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DescriptorCounts {
     pub sampler: u32,
     pub combined_image_sampler: u32,
@@ -17,6 +17,31 @@ pub struct DescriptorCounts {
     #[cfg(feature = "VK_KHR_acceleration_structure")]
     pub acceleration_structure: u32,
     pub inline_uniform_block_bindings: u32,
+}
+
+macro_rules! desc_set {
+    (
+        $this:expr;
+        $($(#[$outer:meta])* $name:ident),*
+    ) => {
+        $(
+            $(#[$outer])*
+            pub fn $name(&mut self, count: u32) -> &mut Self {
+                self.$name += count;
+                self
+            }
+        )*
+    };
+}
+
+impl DescriptorCounts {
+    desc_set! {
+        self;
+        sampler, combined_image_sampler, sampled_image, storage_image,
+        uniform_texel_buffer, storage_texel_buffer, uniform_buffer,
+        storage_buffer, uniform_buffer_dynamic, storage_buffer_dynamic,
+        input_attachment, #[cfg(feature = "VK_KHR_acceleration_structure")] acceleration_structure, inline_uniform_block_bindings
+    }
 }
 
 macro_rules! desc_init {
