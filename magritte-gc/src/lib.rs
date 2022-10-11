@@ -215,11 +215,9 @@ impl Handle {
         lock.is_empty()
             && self.handle.strong_count() == 1
             && if let Handles::Fence(f) = &self.handle {
-                unsafe {
-                    match f.device().get_fence_status(f.this) {
-                        magritte::VulkanResult::Success(VulkanResultCodes::NOT_READY, _) => false,
-                        _ => true,
-                    }
+                match f.status() {
+                    magritte::VulkanResult::Success(VulkanResultCodes::NOT_READY, _) => false,
+                    _ => true,
                 }
             } else {
                 false
