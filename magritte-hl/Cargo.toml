@@ -4,6 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-magritte = { path = "../magritte" }
-
+# Vulkan Memory Allocator
 magritte-vma = { path = "../magritte-vma" }
+
+# Vulkan bindings
+[dependencies.magritte]
+path = "../magritte"
+features = [
+    "window",
+    "validation",
+]

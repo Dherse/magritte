@@ -36,6 +36,7 @@ pub mod window;
 pub mod commands;
 #[doc(hidden)]
 pub mod fence;
+pub mod descriptors;
 
 pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;
