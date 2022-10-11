@@ -34,6 +34,8 @@ pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
 pub mod commands;
+#[doc(hidden)]
+pub mod fence;
 
 pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;
