@@ -69,7 +69,7 @@ impl DescriptorPool {
         max_sets: u32,
         flags: DescriptorPoolCreateFlags,
     ) -> VulkanResult<Unique<Self>> {
-        let mut descriptors = [DescriptorPoolSize::default(); if cfg!(feature = "VK_KHR_acceleration_structure") { 12 } else { 11 }];
+        let mut descriptors = [DescriptorPoolSize::default(); if cfg!(feature = "VK_KHR_acceleration_structure") { 13 } else { 12 }];
         let mut len = 0;
 
         desc_init! {
@@ -86,7 +86,9 @@ impl DescriptorPool {
             storage_buffer_dynamic -> STORAGE_BUFFER_DYNAMIC,
             input_attachment -> INPUT_ATTACHMENT,
             #[cfg(feature = "VK_KHR_acceleration_structure")]
-            acceleration_structure -> ACCELERATION_STRUCTURE
+            acceleration_structure -> ACCELERATION_STRUCTURE_KHR,
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            acceleration_structure -> ACCELERATION_STRUCTURE_NV
         }
 
         let mut inline_block_info = DescriptorPoolInlineUniformBlockCreateInfo::default()
