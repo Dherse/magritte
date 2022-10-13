@@ -104,6 +104,8 @@ impl DescriptorPool {
                 info.chain(&mut inline_block_info)
             } else if device.metadata().ext_inline_uniform_block {
                 info.chain(&mut inline_block_info)
+            } else {
+                info
             }
 
             #[cfg(not(feature = "VK_EXT_inline_uniform_block"))]
