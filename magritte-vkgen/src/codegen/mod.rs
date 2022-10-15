@@ -4,6 +4,7 @@
 mod basetypes;
 mod bitflags;
 mod bitmasks;
+mod commands;
 mod constants;
 mod enums;
 mod expr;
@@ -16,14 +17,13 @@ mod opaques;
 mod structs;
 pub mod ty;
 mod unions;
-mod commands;
 
 use std::{collections::BTreeMap, fmt::Write, ops::Deref};
 
 use ahash::AHashMap;
 use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token, ToTokens};
-use tracing::{warn, error};
+use tracing::{error, warn};
 
 use crate::{
     doc::Documentation,
@@ -66,7 +66,7 @@ impl<'a> Source<'a> {
             Origin::Vulkan1_0,
             Origin::Vulkan1_1,
             Origin::Vulkan1_2,
-            Origin::Vulkan1_3
+            Origin::Vulkan1_3,
         ] {
             let (_, out, _) = per_origin.get_mut(&version).unwrap();
 
@@ -383,7 +383,6 @@ fn alias_of(original: &str, name: &str, mut out: &mut TokenStream) {
         }
     }
 }
-
 
 /// Generates the module-level documentation for a version
 fn generate_version_doc<'a>(version: Origin<'a>, source: &Source<'a>, doc: &mut Documentation, out: &mut TokenStream) {

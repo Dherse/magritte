@@ -1,6 +1,6 @@
 #![warn(trivial_casts, trivial_numeric_casts)]
 
-use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
+pub use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
 
 use crate::{
     extensions::{self, khr_surface::SurfaceKHR},

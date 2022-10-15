@@ -7,6 +7,10 @@ edition = "2021"
 name = "triangle"
 path = "src/bins/triangle.rs"
 
+[[bin]]
+name = "triangle_hl"
+path = "src/bins/triangle_hl.rs"
+
 [dependencies]
 winit = "0.27.3"
 log = "0.4.17"
@@ -31,6 +35,10 @@ features = [
 version = '1.9.1'
 features = [ "derive" ]
 
+[dependencies.magritte-hl]
+path = "../magritte-hl"
+features = []
+
 [dependencies.magritte]
 path = "../magritte"
 default-features = false
@@ -41,6 +49,7 @@ features = [
     "window",
     "VK_KHR_swapchain",
     "VK_EXT_debug_utils",
+    "VK_EXT_validation_features",
 ]
 
 [dependencies.magritte-vma]

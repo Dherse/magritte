@@ -1,5 +1,10 @@
-use crate::{vulkan1_0::{Device, DescriptorPoolCreateFlags, DescriptorPool, DescriptorPoolSize, DescriptorType, DescriptorPoolCreateInfo}, Unique, VulkanResult, vulkan1_3::DescriptorPoolInlineUniformBlockCreateInfo, Chain, Version};
-
+use crate::{
+    vulkan1_0::{
+        DescriptorPool, DescriptorPoolCreateFlags, DescriptorPoolCreateInfo, DescriptorPoolSize, DescriptorType, Device,
+    },
+    vulkan1_3::DescriptorPoolInlineUniformBlockCreateInfo,
+    Chain, Unique, Version, VulkanResult,
+};
 
 #[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 pub struct DescriptorCounts {
@@ -69,7 +74,11 @@ impl DescriptorPool {
         max_sets: u32,
         flags: DescriptorPoolCreateFlags,
     ) -> VulkanResult<Unique<Self>> {
-        let mut descriptors = [DescriptorPoolSize::default(); if cfg!(feature = "VK_KHR_acceleration_structure") { 13 } else { 12 }];
+        let mut descriptors = [DescriptorPoolSize::default(); if cfg!(feature = "VK_KHR_acceleration_structure") {
+            13
+        } else {
+            12
+        }];
         let mut len = 0;
 
         desc_init! {
@@ -99,7 +108,6 @@ impl DescriptorPool {
             .with_max_sets(max_sets)
             .with_pool_sizes(&descriptors[..len]);
 
-        
         let info = if descriptor_count.inline_uniform_block_bindings > 0 {
             #[cfg(feature = "VK_EXT_inline_uniform_block")]
             if device.instance().metadata().version() >= Version::VULKAN1_3 {

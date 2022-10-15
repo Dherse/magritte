@@ -4,7 +4,11 @@
 use std::sync::atomic::AtomicBool;
 
 #[cfg(feature = "VK_KHR_swapchain")]
-use crate::{Handle, Unique, extensions::khr_swapchain::{SwapchainImage, SwapchainImageView}, vulkan1_0::{Image, ImageView}};
+use crate::{
+    extensions::khr_swapchain::{SwapchainImage, SwapchainImageView},
+    vulkan1_0::{Image, ImageView},
+    Handle, Unique,
+};
 
 #[cfg(feature = "VK_KHR_swapchain")]
 impl Unique<SwapchainImage> {

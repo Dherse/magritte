@@ -1,4 +1,3 @@
-
 //!# Extensions
 //!This module contains all of the registered extensions gated by relevant feature gates.
 
@@ -555,7 +554,7 @@ pub mod valve_descriptor_set_host_mapping;
 pub mod valve_mutable_descriptor_type;
 use crate::Version;
 ///A list of Vulkan extensions
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct DeviceExtensions {
     pub version: Version,
     pub count: usize,
@@ -5697,9 +5696,2890 @@ impl DeviceExtensions {
         }
         out
     }
+    ///Gets the extensions from the list of available extensions
+    pub fn from_extension_properties(version: Version, properties: &[crate::vulkan1_0::ExtensionProperties]) -> Self {
+        use crate::AsCStr;
+        let mut out = Self::from_version(version);
+        for property in properties {
+            let name = property.extension_name.as_cstr();
+            let hash = crate::utils::const_hash(name);
+            #[cfg(feature = "VK_KHR_swapchain")]
+            if hash == crate::utils::const_hash_str("VK_KHR_swapchain") {
+                out.khr_swapchain = true;
+            }
+            #[cfg(feature = "VK_KHR_display_swapchain")]
+            if hash == crate::utils::const_hash_str("VK_KHR_display_swapchain") {
+                out.khr_display_swapchain = true;
+            }
+            #[cfg(feature = "VK_NV_glsl_shader")]
+            if hash == crate::utils::const_hash_str("VK_NV_glsl_shader") {
+                out.nv_glsl_shader = true;
+            }
+            #[cfg(feature = "VK_EXT_depth_range_unrestricted")]
+            if hash == crate::utils::const_hash_str("VK_EXT_depth_range_unrestricted") {
+                out.ext_depth_range_unrestricted = true;
+            }
+            #[cfg(feature = "VK_KHR_sampler_mirror_clamp_to_edge")]
+            if hash == crate::utils::const_hash_str("VK_KHR_sampler_mirror_clamp_to_edge") {
+                out.khr_sampler_mirror_clamp_to_edge = true;
+            }
+            #[cfg(feature = "VK_IMG_filter_cubic")]
+            if hash == crate::utils::const_hash_str("VK_IMG_filter_cubic") {
+                out.img_filter_cubic = true;
+            }
+            #[cfg(feature = "VK_AMD_rasterization_order")]
+            if hash == crate::utils::const_hash_str("VK_AMD_rasterization_order") {
+                out.amd_rasterization_order = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_trinary_minmax")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_trinary_minmax") {
+                out.amd_shader_trinary_minmax = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_explicit_vertex_parameter")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_explicit_vertex_parameter") {
+                out.amd_shader_explicit_vertex_parameter = true;
+            }
+            #[cfg(feature = "VK_EXT_debug_marker")]
+            if hash == crate::utils::const_hash_str("VK_EXT_debug_marker") {
+                out.ext_debug_marker = true;
+            }
+            #[cfg(feature = "VK_KHR_video_queue")]
+            if hash == crate::utils::const_hash_str("VK_KHR_video_queue") {
+                out.khr_video_queue = true;
+            }
+            #[cfg(feature = "VK_KHR_video_decode_queue")]
+            if hash == crate::utils::const_hash_str("VK_KHR_video_decode_queue") {
+                out.khr_video_decode_queue = true;
+            }
+            #[cfg(feature = "VK_AMD_gcn_shader")]
+            if hash == crate::utils::const_hash_str("VK_AMD_gcn_shader") {
+                out.amd_gcn_shader = true;
+            }
+            #[cfg(feature = "VK_NV_dedicated_allocation")]
+            if hash == crate::utils::const_hash_str("VK_NV_dedicated_allocation") {
+                out.nv_dedicated_allocation = true;
+            }
+            #[cfg(feature = "VK_EXT_transform_feedback")]
+            if hash == crate::utils::const_hash_str("VK_EXT_transform_feedback") {
+                out.ext_transform_feedback = true;
+            }
+            #[cfg(feature = "VK_NVX_binary_import")]
+            if hash == crate::utils::const_hash_str("VK_NVX_binary_import") {
+                out.nvx_binary_import = true;
+            }
+            #[cfg(feature = "VK_NVX_image_view_handle")]
+            if hash == crate::utils::const_hash_str("VK_NVX_image_view_handle") {
+                out.nvx_image_view_handle = true;
+            }
+            #[cfg(feature = "VK_AMD_draw_indirect_count")]
+            if hash == crate::utils::const_hash_str("VK_AMD_draw_indirect_count") {
+                out.amd_draw_indirect_count = true;
+            }
+            #[cfg(feature = "VK_AMD_negative_viewport_height")]
+            if hash == crate::utils::const_hash_str("VK_AMD_negative_viewport_height") {
+                out.amd_negative_viewport_height = true;
+            }
+            #[cfg(feature = "VK_AMD_gpu_shader_half_float")]
+            if hash == crate::utils::const_hash_str("VK_AMD_gpu_shader_half_float") {
+                out.amd_gpu_shader_half_float = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_ballot")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_ballot") {
+                out.amd_shader_ballot = true;
+            }
+            #[cfg(feature = "VK_EXT_video_encode_h264")]
+            if hash == crate::utils::const_hash_str("VK_EXT_video_encode_h264") {
+                out.ext_video_encode_h264 = true;
+            }
+            #[cfg(feature = "VK_EXT_video_encode_h265")]
+            if hash == crate::utils::const_hash_str("VK_EXT_video_encode_h265") {
+                out.ext_video_encode_h265 = true;
+            }
+            #[cfg(feature = "VK_EXT_video_decode_h264")]
+            if hash == crate::utils::const_hash_str("VK_EXT_video_decode_h264") {
+                out.ext_video_decode_h264 = true;
+            }
+            #[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
+            if hash == crate::utils::const_hash_str("VK_AMD_texture_gather_bias_lod") {
+                out.amd_texture_gather_bias_lod = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_info")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_info") {
+                out.amd_shader_info = true;
+            }
+            #[cfg(feature = "VK_KHR_dynamic_rendering")]
+            if hash == crate::utils::const_hash_str("VK_KHR_dynamic_rendering") {
+                out.khr_dynamic_rendering = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_image_load_store_lod")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_image_load_store_lod") {
+                out.amd_shader_image_load_store_lod = true;
+            }
+            #[cfg(feature = "VK_NV_corner_sampled_image")]
+            if hash == crate::utils::const_hash_str("VK_NV_corner_sampled_image") {
+                out.nv_corner_sampled_image = true;
+            }
+            #[cfg(feature = "VK_KHR_multiview")]
+            if hash == crate::utils::const_hash_str("VK_KHR_multiview") {
+                out.khr_multiview = true;
+            }
+            #[cfg(feature = "VK_IMG_format_pvrtc")]
+            if hash == crate::utils::const_hash_str("VK_IMG_format_pvrtc") {
+                out.img_format_pvrtc = true;
+            }
+            #[cfg(feature = "VK_NV_external_memory")]
+            if hash == crate::utils::const_hash_str("VK_NV_external_memory") {
+                out.nv_external_memory = true;
+            }
+            #[cfg(feature = "VK_NV_external_memory_win32")]
+            if hash == crate::utils::const_hash_str("VK_NV_external_memory_win32") {
+                out.nv_external_memory_win32 = true;
+            }
+            #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+            if hash == crate::utils::const_hash_str("VK_NV_win32_keyed_mutex") {
+                out.nv_win32_keyed_mutex = true;
+            }
+            #[cfg(feature = "VK_KHR_device_group")]
+            if hash == crate::utils::const_hash_str("VK_KHR_device_group") {
+                out.khr_device_group = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_draw_parameters")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_draw_parameters") {
+                out.khr_shader_draw_parameters = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_subgroup_ballot")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_subgroup_ballot") {
+                out.ext_shader_subgroup_ballot = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_subgroup_vote")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_subgroup_vote") {
+                out.ext_shader_subgroup_vote = true;
+            }
+            #[cfg(feature = "VK_EXT_texture_compression_astc_hdr")]
+            if hash == crate::utils::const_hash_str("VK_EXT_texture_compression_astc_hdr") {
+                out.ext_texture_compression_astc_hdr = true;
+            }
+            #[cfg(feature = "VK_EXT_astc_decode_mode")]
+            if hash == crate::utils::const_hash_str("VK_EXT_astc_decode_mode") {
+                out.ext_astc_decode_mode = true;
+            }
+            #[cfg(feature = "VK_KHR_maintenance1")]
+            if hash == crate::utils::const_hash_str("VK_KHR_maintenance1") {
+                out.khr_maintenance1 = true;
+            }
+            #[cfg(feature = "VK_KHR_external_memory")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_memory") {
+                out.khr_external_memory = true;
+            }
+            #[cfg(feature = "VK_KHR_external_memory_win32")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_memory_win32") {
+                out.khr_external_memory_win32 = true;
+            }
+            #[cfg(feature = "VK_KHR_external_memory_fd")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_memory_fd") {
+                out.khr_external_memory_fd = true;
+            }
+            #[cfg(feature = "VK_KHR_win32_keyed_mutex")]
+            if hash == crate::utils::const_hash_str("VK_KHR_win32_keyed_mutex") {
+                out.khr_win32_keyed_mutex = true;
+            }
+            #[cfg(feature = "VK_KHR_external_semaphore")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore") {
+                out.khr_external_semaphore = true;
+            }
+            #[cfg(feature = "VK_KHR_external_semaphore_win32")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_win32") {
+                out.khr_external_semaphore_win32 = true;
+            }
+            #[cfg(feature = "VK_KHR_external_semaphore_fd")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_fd") {
+                out.khr_external_semaphore_fd = true;
+            }
+            #[cfg(feature = "VK_KHR_push_descriptor")]
+            if hash == crate::utils::const_hash_str("VK_KHR_push_descriptor") {
+                out.khr_push_descriptor = true;
+            }
+            #[cfg(feature = "VK_EXT_conditional_rendering")]
+            if hash == crate::utils::const_hash_str("VK_EXT_conditional_rendering") {
+                out.ext_conditional_rendering = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_float16_int8")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_float16_int8") {
+                out.khr_shader_float16_int8 = true;
+            }
+            #[cfg(feature = "VK_KHR_16bit_storage")]
+            if hash == crate::utils::const_hash_str("VK_KHR_16bit_storage") {
+                out.khr_16bit_storage = true;
+            }
+            #[cfg(feature = "VK_KHR_incremental_present")]
+            if hash == crate::utils::const_hash_str("VK_KHR_incremental_present") {
+                out.khr_incremental_present = true;
+            }
+            #[cfg(feature = "VK_KHR_descriptor_update_template")]
+            if hash == crate::utils::const_hash_str("VK_KHR_descriptor_update_template") {
+                out.khr_descriptor_update_template = true;
+            }
+            #[cfg(feature = "VK_NV_clip_space_w_scaling")]
+            if hash == crate::utils::const_hash_str("VK_NV_clip_space_w_scaling") {
+                out.nv_clip_space_w_scaling = true;
+            }
+            #[cfg(feature = "VK_EXT_display_control")]
+            if hash == crate::utils::const_hash_str("VK_EXT_display_control") {
+                out.ext_display_control = true;
+            }
+            #[cfg(feature = "VK_GOOGLE_display_timing")]
+            if hash == crate::utils::const_hash_str("VK_GOOGLE_display_timing") {
+                out.google_display_timing = true;
+            }
+            #[cfg(feature = "VK_NV_sample_mask_override_coverage")]
+            if hash == crate::utils::const_hash_str("VK_NV_sample_mask_override_coverage") {
+                out.nv_sample_mask_override_coverage = true;
+            }
+            #[cfg(feature = "VK_NV_geometry_shader_passthrough")]
+            if hash == crate::utils::const_hash_str("VK_NV_geometry_shader_passthrough") {
+                out.nv_geometry_shader_passthrough = true;
+            }
+            #[cfg(feature = "VK_NV_viewport_array2")]
+            if hash == crate::utils::const_hash_str("VK_NV_viewport_array2") {
+                out.nv_viewport_array2 = true;
+            }
+            #[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
+            if hash == crate::utils::const_hash_str("VK_NVX_multiview_per_view_attributes") {
+                out.nvx_multiview_per_view_attributes = true;
+            }
+            #[cfg(feature = "VK_NV_viewport_swizzle")]
+            if hash == crate::utils::const_hash_str("VK_NV_viewport_swizzle") {
+                out.nv_viewport_swizzle = true;
+            }
+            #[cfg(feature = "VK_EXT_discard_rectangles")]
+            if hash == crate::utils::const_hash_str("VK_EXT_discard_rectangles") {
+                out.ext_discard_rectangles = true;
+            }
+            #[cfg(feature = "VK_EXT_conservative_rasterization")]
+            if hash == crate::utils::const_hash_str("VK_EXT_conservative_rasterization") {
+                out.ext_conservative_rasterization = true;
+            }
+            #[cfg(feature = "VK_EXT_depth_clip_enable")]
+            if hash == crate::utils::const_hash_str("VK_EXT_depth_clip_enable") {
+                out.ext_depth_clip_enable = true;
+            }
+            #[cfg(feature = "VK_EXT_hdr_metadata")]
+            if hash == crate::utils::const_hash_str("VK_EXT_hdr_metadata") {
+                out.ext_hdr_metadata = true;
+            }
+            #[cfg(feature = "VK_KHR_imageless_framebuffer")]
+            if hash == crate::utils::const_hash_str("VK_KHR_imageless_framebuffer") {
+                out.khr_imageless_framebuffer = true;
+            }
+            #[cfg(feature = "VK_KHR_create_renderpass2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_create_renderpass2") {
+                out.khr_create_renderpass2 = true;
+            }
+            #[cfg(feature = "VK_KHR_shared_presentable_image")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shared_presentable_image") {
+                out.khr_shared_presentable_image = true;
+            }
+            #[cfg(feature = "VK_KHR_external_fence")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_fence") {
+                out.khr_external_fence = true;
+            }
+            #[cfg(feature = "VK_KHR_external_fence_win32")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_fence_win32") {
+                out.khr_external_fence_win32 = true;
+            }
+            #[cfg(feature = "VK_KHR_external_fence_fd")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_fence_fd") {
+                out.khr_external_fence_fd = true;
+            }
+            #[cfg(feature = "VK_KHR_performance_query")]
+            if hash == crate::utils::const_hash_str("VK_KHR_performance_query") {
+                out.khr_performance_query = true;
+            }
+            #[cfg(feature = "VK_KHR_maintenance2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_maintenance2") {
+                out.khr_maintenance2 = true;
+            }
+            #[cfg(feature = "VK_KHR_variable_pointers")]
+            if hash == crate::utils::const_hash_str("VK_KHR_variable_pointers") {
+                out.khr_variable_pointers = true;
+            }
+            #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
+            if hash == crate::utils::const_hash_str("VK_EXT_external_memory_dma_buf") {
+                out.ext_external_memory_dma_buf = true;
+            }
+            #[cfg(feature = "VK_EXT_queue_family_foreign")]
+            if hash == crate::utils::const_hash_str("VK_EXT_queue_family_foreign") {
+                out.ext_queue_family_foreign = true;
+            }
+            #[cfg(feature = "VK_KHR_dedicated_allocation")]
+            if hash == crate::utils::const_hash_str("VK_KHR_dedicated_allocation") {
+                out.khr_dedicated_allocation = true;
+            }
+            #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+            if hash == crate::utils::const_hash_str("VK_ANDROID_external_memory_android_hardware_buffer") {
+                out.android_external_memory_android_hardware_buffer = true;
+            }
+            #[cfg(feature = "VK_EXT_sampler_filter_minmax")]
+            if hash == crate::utils::const_hash_str("VK_EXT_sampler_filter_minmax") {
+                out.ext_sampler_filter_minmax = true;
+            }
+            #[cfg(feature = "VK_KHR_storage_buffer_storage_class")]
+            if hash == crate::utils::const_hash_str("VK_KHR_storage_buffer_storage_class") {
+                out.khr_storage_buffer_storage_class = true;
+            }
+            #[cfg(feature = "VK_AMD_gpu_shader_int16")]
+            if hash == crate::utils::const_hash_str("VK_AMD_gpu_shader_int16") {
+                out.amd_gpu_shader_int16 = true;
+            }
+            #[cfg(feature = "VK_AMD_mixed_attachment_samples")]
+            if hash == crate::utils::const_hash_str("VK_AMD_mixed_attachment_samples") {
+                out.amd_mixed_attachment_samples = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_fragment_mask")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_fragment_mask") {
+                out.amd_shader_fragment_mask = true;
+            }
+            #[cfg(feature = "VK_EXT_inline_uniform_block")]
+            if hash == crate::utils::const_hash_str("VK_EXT_inline_uniform_block") {
+                out.ext_inline_uniform_block = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_stencil_export")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_stencil_export") {
+                out.ext_shader_stencil_export = true;
+            }
+            #[cfg(feature = "VK_EXT_sample_locations")]
+            if hash == crate::utils::const_hash_str("VK_EXT_sample_locations") {
+                out.ext_sample_locations = true;
+            }
+            #[cfg(feature = "VK_KHR_relaxed_block_layout")]
+            if hash == crate::utils::const_hash_str("VK_KHR_relaxed_block_layout") {
+                out.khr_relaxed_block_layout = true;
+            }
+            #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_get_memory_requirements2") {
+                out.khr_get_memory_requirements2 = true;
+            }
+            #[cfg(feature = "VK_KHR_image_format_list")]
+            if hash == crate::utils::const_hash_str("VK_KHR_image_format_list") {
+                out.khr_image_format_list = true;
+            }
+            #[cfg(feature = "VK_EXT_blend_operation_advanced")]
+            if hash == crate::utils::const_hash_str("VK_EXT_blend_operation_advanced") {
+                out.ext_blend_operation_advanced = true;
+            }
+            #[cfg(feature = "VK_NV_fragment_coverage_to_color")]
+            if hash == crate::utils::const_hash_str("VK_NV_fragment_coverage_to_color") {
+                out.nv_fragment_coverage_to_color = true;
+            }
+            #[cfg(feature = "VK_KHR_acceleration_structure")]
+            if hash == crate::utils::const_hash_str("VK_KHR_acceleration_structure") {
+                out.khr_acceleration_structure = true;
+            }
+            #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+            if hash == crate::utils::const_hash_str("VK_KHR_ray_tracing_pipeline") {
+                out.khr_ray_tracing_pipeline = true;
+            }
+            #[cfg(feature = "VK_KHR_ray_query")]
+            if hash == crate::utils::const_hash_str("VK_KHR_ray_query") {
+                out.khr_ray_query = true;
+            }
+            #[cfg(feature = "VK_NV_framebuffer_mixed_samples")]
+            if hash == crate::utils::const_hash_str("VK_NV_framebuffer_mixed_samples") {
+                out.nv_framebuffer_mixed_samples = true;
+            }
+            #[cfg(feature = "VK_NV_fill_rectangle")]
+            if hash == crate::utils::const_hash_str("VK_NV_fill_rectangle") {
+                out.nv_fill_rectangle = true;
+            }
+            #[cfg(feature = "VK_NV_shader_sm_builtins")]
+            if hash == crate::utils::const_hash_str("VK_NV_shader_sm_builtins") {
+                out.nv_shader_sm_builtins = true;
+            }
+            #[cfg(feature = "VK_EXT_post_depth_coverage")]
+            if hash == crate::utils::const_hash_str("VK_EXT_post_depth_coverage") {
+                out.ext_post_depth_coverage = true;
+            }
+            #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+            if hash == crate::utils::const_hash_str("VK_KHR_sampler_ycbcr_conversion") {
+                out.khr_sampler_ycbcr_conversion = true;
+            }
+            #[cfg(feature = "VK_KHR_bind_memory2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_bind_memory2") {
+                out.khr_bind_memory2 = true;
+            }
+            #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+            if hash == crate::utils::const_hash_str("VK_EXT_image_drm_format_modifier") {
+                out.ext_image_drm_format_modifier = true;
+            }
+            #[cfg(feature = "VK_EXT_validation_cache")]
+            if hash == crate::utils::const_hash_str("VK_EXT_validation_cache") {
+                out.ext_validation_cache = true;
+            }
+            #[cfg(feature = "VK_EXT_descriptor_indexing")]
+            if hash == crate::utils::const_hash_str("VK_EXT_descriptor_indexing") {
+                out.ext_descriptor_indexing = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_viewport_index_layer")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_viewport_index_layer") {
+                out.ext_shader_viewport_index_layer = true;
+            }
+            #[cfg(feature = "VK_KHR_portability_subset")]
+            if hash == crate::utils::const_hash_str("VK_KHR_portability_subset") {
+                out.khr_portability_subset = true;
+            }
+            #[cfg(feature = "VK_NV_shading_rate_image")]
+            if hash == crate::utils::const_hash_str("VK_NV_shading_rate_image") {
+                out.nv_shading_rate_image = true;
+            }
+            #[cfg(feature = "VK_NV_ray_tracing")]
+            if hash == crate::utils::const_hash_str("VK_NV_ray_tracing") {
+                out.nv_ray_tracing = true;
+            }
+            #[cfg(feature = "VK_NV_representative_fragment_test")]
+            if hash == crate::utils::const_hash_str("VK_NV_representative_fragment_test") {
+                out.nv_representative_fragment_test = true;
+            }
+            #[cfg(feature = "VK_KHR_maintenance3")]
+            if hash == crate::utils::const_hash_str("VK_KHR_maintenance3") {
+                out.khr_maintenance3 = true;
+            }
+            #[cfg(feature = "VK_KHR_draw_indirect_count")]
+            if hash == crate::utils::const_hash_str("VK_KHR_draw_indirect_count") {
+                out.khr_draw_indirect_count = true;
+            }
+            #[cfg(feature = "VK_EXT_filter_cubic")]
+            if hash == crate::utils::const_hash_str("VK_EXT_filter_cubic") {
+                out.ext_filter_cubic = true;
+            }
+            #[cfg(feature = "VK_QCOM_render_pass_shader_resolve")]
+            if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_shader_resolve") {
+                out.qcom_render_pass_shader_resolve = true;
+            }
+            #[cfg(feature = "VK_EXT_global_priority")]
+            if hash == crate::utils::const_hash_str("VK_EXT_global_priority") {
+                out.ext_global_priority = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_subgroup_extended_types")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_subgroup_extended_types") {
+                out.khr_shader_subgroup_extended_types = true;
+            }
+            #[cfg(feature = "VK_KHR_8bit_storage")]
+            if hash == crate::utils::const_hash_str("VK_KHR_8bit_storage") {
+                out.khr_8bit_storage = true;
+            }
+            #[cfg(feature = "VK_EXT_external_memory_host")]
+            if hash == crate::utils::const_hash_str("VK_EXT_external_memory_host") {
+                out.ext_external_memory_host = true;
+            }
+            #[cfg(feature = "VK_AMD_buffer_marker")]
+            if hash == crate::utils::const_hash_str("VK_AMD_buffer_marker") {
+                out.amd_buffer_marker = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_atomic_int64")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_atomic_int64") {
+                out.khr_shader_atomic_int64 = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_clock")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_clock") {
+                out.khr_shader_clock = true;
+            }
+            #[cfg(feature = "VK_AMD_pipeline_compiler_control")]
+            if hash == crate::utils::const_hash_str("VK_AMD_pipeline_compiler_control") {
+                out.amd_pipeline_compiler_control = true;
+            }
+            #[cfg(feature = "VK_EXT_calibrated_timestamps")]
+            if hash == crate::utils::const_hash_str("VK_EXT_calibrated_timestamps") {
+                out.ext_calibrated_timestamps = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_core_properties")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_core_properties") {
+                out.amd_shader_core_properties = true;
+            }
+            #[cfg(feature = "VK_EXT_video_decode_h265")]
+            if hash == crate::utils::const_hash_str("VK_EXT_video_decode_h265") {
+                out.ext_video_decode_h265 = true;
+            }
+            #[cfg(feature = "VK_KHR_global_priority")]
+            if hash == crate::utils::const_hash_str("VK_KHR_global_priority") {
+                out.khr_global_priority = true;
+            }
+            #[cfg(feature = "VK_AMD_memory_overallocation_behavior")]
+            if hash == crate::utils::const_hash_str("VK_AMD_memory_overallocation_behavior") {
+                out.amd_memory_overallocation_behavior = true;
+            }
+            #[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+            if hash == crate::utils::const_hash_str("VK_EXT_vertex_attribute_divisor") {
+                out.ext_vertex_attribute_divisor = true;
+            }
+            #[cfg(feature = "VK_GGP_frame_token")]
+            if hash == crate::utils::const_hash_str("VK_GGP_frame_token") {
+                out.ggp_frame_token = true;
+            }
+            #[cfg(feature = "VK_EXT_pipeline_creation_feedback")]
+            if hash == crate::utils::const_hash_str("VK_EXT_pipeline_creation_feedback") {
+                out.ext_pipeline_creation_feedback = true;
+            }
+            #[cfg(feature = "VK_KHR_driver_properties")]
+            if hash == crate::utils::const_hash_str("VK_KHR_driver_properties") {
+                out.khr_driver_properties = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_float_controls")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_float_controls") {
+                out.khr_shader_float_controls = true;
+            }
+            #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
+            if hash == crate::utils::const_hash_str("VK_NV_shader_subgroup_partitioned") {
+                out.nv_shader_subgroup_partitioned = true;
+            }
+            #[cfg(feature = "VK_KHR_depth_stencil_resolve")]
+            if hash == crate::utils::const_hash_str("VK_KHR_depth_stencil_resolve") {
+                out.khr_depth_stencil_resolve = true;
+            }
+            #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
+            if hash == crate::utils::const_hash_str("VK_KHR_swapchain_mutable_format") {
+                out.khr_swapchain_mutable_format = true;
+            }
+            #[cfg(feature = "VK_NV_compute_shader_derivatives")]
+            if hash == crate::utils::const_hash_str("VK_NV_compute_shader_derivatives") {
+                out.nv_compute_shader_derivatives = true;
+            }
+            #[cfg(feature = "VK_NV_mesh_shader")]
+            if hash == crate::utils::const_hash_str("VK_NV_mesh_shader") {
+                out.nv_mesh_shader = true;
+            }
+            #[cfg(feature = "VK_NV_fragment_shader_barycentric")]
+            if hash == crate::utils::const_hash_str("VK_NV_fragment_shader_barycentric") {
+                out.nv_fragment_shader_barycentric = true;
+            }
+            #[cfg(feature = "VK_NV_shader_image_footprint")]
+            if hash == crate::utils::const_hash_str("VK_NV_shader_image_footprint") {
+                out.nv_shader_image_footprint = true;
+            }
+            #[cfg(feature = "VK_NV_scissor_exclusive")]
+            if hash == crate::utils::const_hash_str("VK_NV_scissor_exclusive") {
+                out.nv_scissor_exclusive = true;
+            }
+            #[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
+            if hash == crate::utils::const_hash_str("VK_NV_device_diagnostic_checkpoints") {
+                out.nv_device_diagnostic_checkpoints = true;
+            }
+            #[cfg(feature = "VK_KHR_timeline_semaphore")]
+            if hash == crate::utils::const_hash_str("VK_KHR_timeline_semaphore") {
+                out.khr_timeline_semaphore = true;
+            }
+            #[cfg(feature = "VK_INTEL_shader_integer_functions2")]
+            if hash == crate::utils::const_hash_str("VK_INTEL_shader_integer_functions2") {
+                out.intel_shader_integer_functions2 = true;
+            }
+            #[cfg(feature = "VK_INTEL_performance_query")]
+            if hash == crate::utils::const_hash_str("VK_INTEL_performance_query") {
+                out.intel_performance_query = true;
+            }
+            #[cfg(feature = "VK_KHR_vulkan_memory_model")]
+            if hash == crate::utils::const_hash_str("VK_KHR_vulkan_memory_model") {
+                out.khr_vulkan_memory_model = true;
+            }
+            #[cfg(feature = "VK_EXT_pci_bus_info")]
+            if hash == crate::utils::const_hash_str("VK_EXT_pci_bus_info") {
+                out.ext_pci_bus_info = true;
+            }
+            #[cfg(feature = "VK_AMD_display_native_hdr")]
+            if hash == crate::utils::const_hash_str("VK_AMD_display_native_hdr") {
+                out.amd_display_native_hdr = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_terminate_invocation")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_terminate_invocation") {
+                out.khr_shader_terminate_invocation = true;
+            }
+            #[cfg(feature = "VK_EXT_fragment_density_map")]
+            if hash == crate::utils::const_hash_str("VK_EXT_fragment_density_map") {
+                out.ext_fragment_density_map = true;
+            }
+            #[cfg(feature = "VK_EXT_scalar_block_layout")]
+            if hash == crate::utils::const_hash_str("VK_EXT_scalar_block_layout") {
+                out.ext_scalar_block_layout = true;
+            }
+            #[cfg(feature = "VK_GOOGLE_hlsl_functionality1")]
+            if hash == crate::utils::const_hash_str("VK_GOOGLE_hlsl_functionality1") {
+                out.google_hlsl_functionality1 = true;
+            }
+            #[cfg(feature = "VK_GOOGLE_decorate_string")]
+            if hash == crate::utils::const_hash_str("VK_GOOGLE_decorate_string") {
+                out.google_decorate_string = true;
+            }
+            #[cfg(feature = "VK_EXT_subgroup_size_control")]
+            if hash == crate::utils::const_hash_str("VK_EXT_subgroup_size_control") {
+                out.ext_subgroup_size_control = true;
+            }
+            #[cfg(feature = "VK_KHR_fragment_shading_rate")]
+            if hash == crate::utils::const_hash_str("VK_KHR_fragment_shading_rate") {
+                out.khr_fragment_shading_rate = true;
+            }
+            #[cfg(feature = "VK_AMD_shader_core_properties2")]
+            if hash == crate::utils::const_hash_str("VK_AMD_shader_core_properties2") {
+                out.amd_shader_core_properties2 = true;
+            }
+            #[cfg(feature = "VK_AMD_device_coherent_memory")]
+            if hash == crate::utils::const_hash_str("VK_AMD_device_coherent_memory") {
+                out.amd_device_coherent_memory = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_image_atomic_int64") {
+                out.ext_shader_image_atomic_int64 = true;
+            }
+            #[cfg(feature = "VK_KHR_spirv_1_4")]
+            if hash == crate::utils::const_hash_str("VK_KHR_spirv_1_4") {
+                out.khr_spirv_1_4 = true;
+            }
+            #[cfg(feature = "VK_EXT_memory_budget")]
+            if hash == crate::utils::const_hash_str("VK_EXT_memory_budget") {
+                out.ext_memory_budget = true;
+            }
+            #[cfg(feature = "VK_EXT_memory_priority")]
+            if hash == crate::utils::const_hash_str("VK_EXT_memory_priority") {
+                out.ext_memory_priority = true;
+            }
+            #[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
+            if hash == crate::utils::const_hash_str("VK_NV_dedicated_allocation_image_aliasing") {
+                out.nv_dedicated_allocation_image_aliasing = true;
+            }
+            #[cfg(feature = "VK_KHR_separate_depth_stencil_layouts")]
+            if hash == crate::utils::const_hash_str("VK_KHR_separate_depth_stencil_layouts") {
+                out.khr_separate_depth_stencil_layouts = true;
+            }
+            #[cfg(feature = "VK_EXT_buffer_device_address")]
+            if hash == crate::utils::const_hash_str("VK_EXT_buffer_device_address") {
+                out.ext_buffer_device_address = true;
+            }
+            #[cfg(feature = "VK_EXT_tooling_info")]
+            if hash == crate::utils::const_hash_str("VK_EXT_tooling_info") {
+                out.ext_tooling_info = true;
+            }
+            #[cfg(feature = "VK_EXT_separate_stencil_usage")]
+            if hash == crate::utils::const_hash_str("VK_EXT_separate_stencil_usage") {
+                out.ext_separate_stencil_usage = true;
+            }
+            #[cfg(feature = "VK_KHR_present_wait")]
+            if hash == crate::utils::const_hash_str("VK_KHR_present_wait") {
+                out.khr_present_wait = true;
+            }
+            #[cfg(feature = "VK_NV_cooperative_matrix")]
+            if hash == crate::utils::const_hash_str("VK_NV_cooperative_matrix") {
+                out.nv_cooperative_matrix = true;
+            }
+            #[cfg(feature = "VK_NV_coverage_reduction_mode")]
+            if hash == crate::utils::const_hash_str("VK_NV_coverage_reduction_mode") {
+                out.nv_coverage_reduction_mode = true;
+            }
+            #[cfg(feature = "VK_EXT_fragment_shader_interlock")]
+            if hash == crate::utils::const_hash_str("VK_EXT_fragment_shader_interlock") {
+                out.ext_fragment_shader_interlock = true;
+            }
+            #[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
+            if hash == crate::utils::const_hash_str("VK_EXT_ycbcr_image_arrays") {
+                out.ext_ycbcr_image_arrays = true;
+            }
+            #[cfg(feature = "VK_KHR_uniform_buffer_standard_layout")]
+            if hash == crate::utils::const_hash_str("VK_KHR_uniform_buffer_standard_layout") {
+                out.khr_uniform_buffer_standard_layout = true;
+            }
+            #[cfg(feature = "VK_EXT_provoking_vertex")]
+            if hash == crate::utils::const_hash_str("VK_EXT_provoking_vertex") {
+                out.ext_provoking_vertex = true;
+            }
+            #[cfg(feature = "VK_EXT_full_screen_exclusive")]
+            if hash == crate::utils::const_hash_str("VK_EXT_full_screen_exclusive") {
+                out.ext_full_screen_exclusive = true;
+            }
+            #[cfg(feature = "VK_KHR_buffer_device_address")]
+            if hash == crate::utils::const_hash_str("VK_KHR_buffer_device_address") {
+                out.khr_buffer_device_address = true;
+            }
+            #[cfg(feature = "VK_EXT_line_rasterization")]
+            if hash == crate::utils::const_hash_str("VK_EXT_line_rasterization") {
+                out.ext_line_rasterization = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_atomic_float")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_atomic_float") {
+                out.ext_shader_atomic_float = true;
+            }
+            #[cfg(feature = "VK_EXT_host_query_reset")]
+            if hash == crate::utils::const_hash_str("VK_EXT_host_query_reset") {
+                out.ext_host_query_reset = true;
+            }
+            #[cfg(feature = "VK_EXT_index_type_uint8")]
+            if hash == crate::utils::const_hash_str("VK_EXT_index_type_uint8") {
+                out.ext_index_type_uint8 = true;
+            }
+            #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+            if hash == crate::utils::const_hash_str("VK_EXT_extended_dynamic_state") {
+                out.ext_extended_dynamic_state = true;
+            }
+            #[cfg(feature = "VK_KHR_deferred_host_operations")]
+            if hash == crate::utils::const_hash_str("VK_KHR_deferred_host_operations") {
+                out.khr_deferred_host_operations = true;
+            }
+            #[cfg(feature = "VK_KHR_pipeline_executable_properties")]
+            if hash == crate::utils::const_hash_str("VK_KHR_pipeline_executable_properties") {
+                out.khr_pipeline_executable_properties = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_atomic_float2")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_atomic_float2") {
+                out.ext_shader_atomic_float2 = true;
+            }
+            #[cfg(feature = "VK_EXT_shader_demote_to_helper_invocation")]
+            if hash == crate::utils::const_hash_str("VK_EXT_shader_demote_to_helper_invocation") {
+                out.ext_shader_demote_to_helper_invocation = true;
+            }
+            #[cfg(feature = "VK_NV_device_generated_commands")]
+            if hash == crate::utils::const_hash_str("VK_NV_device_generated_commands") {
+                out.nv_device_generated_commands = true;
+            }
+            #[cfg(feature = "VK_NV_inherited_viewport_scissor")]
+            if hash == crate::utils::const_hash_str("VK_NV_inherited_viewport_scissor") {
+                out.nv_inherited_viewport_scissor = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_integer_dot_product")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_integer_dot_product") {
+                out.khr_shader_integer_dot_product = true;
+            }
+            #[cfg(feature = "VK_EXT_texel_buffer_alignment")]
+            if hash == crate::utils::const_hash_str("VK_EXT_texel_buffer_alignment") {
+                out.ext_texel_buffer_alignment = true;
+            }
+            #[cfg(feature = "VK_QCOM_render_pass_transform")]
+            if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_transform") {
+                out.qcom_render_pass_transform = true;
+            }
+            #[cfg(feature = "VK_EXT_device_memory_report")]
+            if hash == crate::utils::const_hash_str("VK_EXT_device_memory_report") {
+                out.ext_device_memory_report = true;
+            }
+            #[cfg(feature = "VK_EXT_robustness2")]
+            if hash == crate::utils::const_hash_str("VK_EXT_robustness2") {
+                out.ext_robustness2 = true;
+            }
+            #[cfg(feature = "VK_EXT_custom_border_color")]
+            if hash == crate::utils::const_hash_str("VK_EXT_custom_border_color") {
+                out.ext_custom_border_color = true;
+            }
+            #[cfg(feature = "VK_GOOGLE_user_type")]
+            if hash == crate::utils::const_hash_str("VK_GOOGLE_user_type") {
+                out.google_user_type = true;
+            }
+            #[cfg(feature = "VK_KHR_pipeline_library")]
+            if hash == crate::utils::const_hash_str("VK_KHR_pipeline_library") {
+                out.khr_pipeline_library = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_non_semantic_info")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_non_semantic_info") {
+                out.khr_shader_non_semantic_info = true;
+            }
+            #[cfg(feature = "VK_KHR_present_id")]
+            if hash == crate::utils::const_hash_str("VK_KHR_present_id") {
+                out.khr_present_id = true;
+            }
+            #[cfg(feature = "VK_EXT_private_data")]
+            if hash == crate::utils::const_hash_str("VK_EXT_private_data") {
+                out.ext_private_data = true;
+            }
+            #[cfg(feature = "VK_EXT_pipeline_creation_cache_control")]
+            if hash == crate::utils::const_hash_str("VK_EXT_pipeline_creation_cache_control") {
+                out.ext_pipeline_creation_cache_control = true;
+            }
+            #[cfg(feature = "VK_KHR_video_encode_queue")]
+            if hash == crate::utils::const_hash_str("VK_KHR_video_encode_queue") {
+                out.khr_video_encode_queue = true;
+            }
+            #[cfg(feature = "VK_NV_device_diagnostics_config")]
+            if hash == crate::utils::const_hash_str("VK_NV_device_diagnostics_config") {
+                out.nv_device_diagnostics_config = true;
+            }
+            #[cfg(feature = "VK_QCOM_render_pass_store_ops")]
+            if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_store_ops") {
+                out.qcom_render_pass_store_ops = true;
+            }
+            #[cfg(feature = "VK_KHR_synchronization2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_synchronization2") {
+                out.khr_synchronization2 = true;
+            }
+            #[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
+            if hash == crate::utils::const_hash_str("VK_KHR_shader_subgroup_uniform_control_flow") {
+                out.khr_shader_subgroup_uniform_control_flow = true;
+            }
+            #[cfg(feature = "VK_KHR_zero_initialize_workgroup_memory")]
+            if hash == crate::utils::const_hash_str("VK_KHR_zero_initialize_workgroup_memory") {
+                out.khr_zero_initialize_workgroup_memory = true;
+            }
+            #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+            if hash == crate::utils::const_hash_str("VK_NV_fragment_shading_rate_enums") {
+                out.nv_fragment_shading_rate_enums = true;
+            }
+            #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+            if hash == crate::utils::const_hash_str("VK_NV_ray_tracing_motion_blur") {
+                out.nv_ray_tracing_motion_blur = true;
+            }
+            #[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
+            if hash == crate::utils::const_hash_str("VK_EXT_ycbcr_2plane_444_formats") {
+                out.ext_ycbcr_2plane_444_formats = true;
+            }
+            #[cfg(feature = "VK_EXT_fragment_density_map2")]
+            if hash == crate::utils::const_hash_str("VK_EXT_fragment_density_map2") {
+                out.ext_fragment_density_map2 = true;
+            }
+            #[cfg(feature = "VK_QCOM_rotated_copy_commands")]
+            if hash == crate::utils::const_hash_str("VK_QCOM_rotated_copy_commands") {
+                out.qcom_rotated_copy_commands = true;
+            }
+            #[cfg(feature = "VK_EXT_image_robustness")]
+            if hash == crate::utils::const_hash_str("VK_EXT_image_robustness") {
+                out.ext_image_robustness = true;
+            }
+            #[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
+            if hash == crate::utils::const_hash_str("VK_KHR_workgroup_memory_explicit_layout") {
+                out.khr_workgroup_memory_explicit_layout = true;
+            }
+            #[cfg(feature = "VK_KHR_copy_commands2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_copy_commands2") {
+                out.khr_copy_commands2 = true;
+            }
+            #[cfg(feature = "VK_EXT_4444_formats")]
+            if hash == crate::utils::const_hash_str("VK_EXT_4444_formats") {
+                out.ext_4444_formats = true;
+            }
+            #[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
+            if hash == crate::utils::const_hash_str("VK_ARM_rasterization_order_attachment_access") {
+                out.arm_rasterization_order_attachment_access = true;
+            }
+            #[cfg(feature = "VK_EXT_rgba10x6_formats")]
+            if hash == crate::utils::const_hash_str("VK_EXT_rgba10x6_formats") {
+                out.ext_rgba10x6_formats = true;
+            }
+            #[cfg(feature = "VK_NV_acquire_winrt_display")]
+            if hash == crate::utils::const_hash_str("VK_NV_acquire_winrt_display") {
+                out.nv_acquire_winrt_display = true;
+            }
+            #[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
+            if hash == crate::utils::const_hash_str("VK_VALVE_mutable_descriptor_type") {
+                out.valve_mutable_descriptor_type = true;
+            }
+            #[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
+            if hash == crate::utils::const_hash_str("VK_EXT_vertex_input_dynamic_state") {
+                out.ext_vertex_input_dynamic_state = true;
+            }
+            #[cfg(feature = "VK_EXT_physical_device_drm")]
+            if hash == crate::utils::const_hash_str("VK_EXT_physical_device_drm") {
+                out.ext_physical_device_drm = true;
+            }
+            #[cfg(feature = "VK_EXT_depth_clip_control")]
+            if hash == crate::utils::const_hash_str("VK_EXT_depth_clip_control") {
+                out.ext_depth_clip_control = true;
+            }
+            #[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
+            if hash == crate::utils::const_hash_str("VK_EXT_primitive_topology_list_restart") {
+                out.ext_primitive_topology_list_restart = true;
+            }
+            #[cfg(feature = "VK_KHR_format_feature_flags2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_format_feature_flags2") {
+                out.khr_format_feature_flags2 = true;
+            }
+            #[cfg(feature = "VK_FUCHSIA_external_memory")]
+            if hash == crate::utils::const_hash_str("VK_FUCHSIA_external_memory") {
+                out.fuchsia_external_memory = true;
+            }
+            #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
+            if hash == crate::utils::const_hash_str("VK_FUCHSIA_external_semaphore") {
+                out.fuchsia_external_semaphore = true;
+            }
+            #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+            if hash == crate::utils::const_hash_str("VK_FUCHSIA_buffer_collection") {
+                out.fuchsia_buffer_collection = true;
+            }
+            #[cfg(feature = "VK_HUAWEI_subpass_shading")]
+            if hash == crate::utils::const_hash_str("VK_HUAWEI_subpass_shading") {
+                out.huawei_subpass_shading = true;
+            }
+            #[cfg(feature = "VK_HUAWEI_invocation_mask")]
+            if hash == crate::utils::const_hash_str("VK_HUAWEI_invocation_mask") {
+                out.huawei_invocation_mask = true;
+            }
+            #[cfg(feature = "VK_NV_external_memory_rdma")]
+            if hash == crate::utils::const_hash_str("VK_NV_external_memory_rdma") {
+                out.nv_external_memory_rdma = true;
+            }
+            #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+            if hash == crate::utils::const_hash_str("VK_EXT_extended_dynamic_state2") {
+                out.ext_extended_dynamic_state2 = true;
+            }
+            #[cfg(feature = "VK_EXT_color_write_enable")]
+            if hash == crate::utils::const_hash_str("VK_EXT_color_write_enable") {
+                out.ext_color_write_enable = true;
+            }
+            #[cfg(feature = "VK_EXT_global_priority_query")]
+            if hash == crate::utils::const_hash_str("VK_EXT_global_priority_query") {
+                out.ext_global_priority_query = true;
+            }
+            #[cfg(feature = "VK_EXT_image_view_min_lod")]
+            if hash == crate::utils::const_hash_str("VK_EXT_image_view_min_lod") {
+                out.ext_image_view_min_lod = true;
+            }
+            #[cfg(feature = "VK_EXT_multi_draw")]
+            if hash == crate::utils::const_hash_str("VK_EXT_multi_draw") {
+                out.ext_multi_draw = true;
+            }
+            #[cfg(feature = "VK_EXT_load_store_op_none")]
+            if hash == crate::utils::const_hash_str("VK_EXT_load_store_op_none") {
+                out.ext_load_store_op_none = true;
+            }
+            #[cfg(feature = "VK_EXT_border_color_swizzle")]
+            if hash == crate::utils::const_hash_str("VK_EXT_border_color_swizzle") {
+                out.ext_border_color_swizzle = true;
+            }
+            #[cfg(feature = "VK_EXT_pageable_device_local_memory")]
+            if hash == crate::utils::const_hash_str("VK_EXT_pageable_device_local_memory") {
+                out.ext_pageable_device_local_memory = true;
+            }
+            #[cfg(feature = "VK_KHR_maintenance4")]
+            if hash == crate::utils::const_hash_str("VK_KHR_maintenance4") {
+                out.khr_maintenance4 = true;
+            }
+            #[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
+            if hash == crate::utils::const_hash_str("VK_VALVE_descriptor_set_host_mapping") {
+                out.valve_descriptor_set_host_mapping = true;
+            }
+            #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+            if hash == crate::utils::const_hash_str("VK_QCOM_fragment_density_map_offset") {
+                out.qcom_fragment_density_map_offset = true;
+            }
+            #[cfg(feature = "VK_NV_linear_color_attachment")]
+            if hash == crate::utils::const_hash_str("VK_NV_linear_color_attachment") {
+                out.nv_linear_color_attachment = true;
+            }
+        }
+        out
+    }
+}
+impl std::cmp::PartialOrd for DeviceExtensions {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+impl std::cmp::Ord for DeviceExtensions {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        let mut current_cmp = self.version.cmp(&other.version);
+        #[cfg(feature = "VK_KHR_swapchain")]
+        if self.khr_swapchain && !other.khr_swapchain {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_swapchain && other.khr_swapchain {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_display_swapchain")]
+        if self.khr_display_swapchain && !other.khr_display_swapchain {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_display_swapchain && other.khr_display_swapchain {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_glsl_shader")]
+        if self.nv_glsl_shader && !other.nv_glsl_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_glsl_shader && other.nv_glsl_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_depth_range_unrestricted")]
+        if self.ext_depth_range_unrestricted && !other.ext_depth_range_unrestricted {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_depth_range_unrestricted && other.ext_depth_range_unrestricted {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_sampler_mirror_clamp_to_edge")]
+        if self.khr_sampler_mirror_clamp_to_edge && !other.khr_sampler_mirror_clamp_to_edge {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_sampler_mirror_clamp_to_edge && other.khr_sampler_mirror_clamp_to_edge {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_IMG_filter_cubic")]
+        if self.img_filter_cubic && !other.img_filter_cubic {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.img_filter_cubic && other.img_filter_cubic {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_rasterization_order")]
+        if self.amd_rasterization_order && !other.amd_rasterization_order {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_rasterization_order && other.amd_rasterization_order {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_trinary_minmax")]
+        if self.amd_shader_trinary_minmax && !other.amd_shader_trinary_minmax {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_trinary_minmax && other.amd_shader_trinary_minmax {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_explicit_vertex_parameter")]
+        if self.amd_shader_explicit_vertex_parameter && !other.amd_shader_explicit_vertex_parameter {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_explicit_vertex_parameter && other.amd_shader_explicit_vertex_parameter {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_debug_marker")]
+        if self.ext_debug_marker && !other.ext_debug_marker {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_debug_marker && other.ext_debug_marker {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_video_queue")]
+        if self.khr_video_queue && !other.khr_video_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_video_queue && other.khr_video_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_video_decode_queue")]
+        if self.khr_video_decode_queue && !other.khr_video_decode_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_video_decode_queue && other.khr_video_decode_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_gcn_shader")]
+        if self.amd_gcn_shader && !other.amd_gcn_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_gcn_shader && other.amd_gcn_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_dedicated_allocation")]
+        if self.nv_dedicated_allocation && !other.nv_dedicated_allocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_dedicated_allocation && other.nv_dedicated_allocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_transform_feedback")]
+        if self.ext_transform_feedback && !other.ext_transform_feedback {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_transform_feedback && other.ext_transform_feedback {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NVX_binary_import")]
+        if self.nvx_binary_import && !other.nvx_binary_import {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nvx_binary_import && other.nvx_binary_import {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NVX_image_view_handle")]
+        if self.nvx_image_view_handle && !other.nvx_image_view_handle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nvx_image_view_handle && other.nvx_image_view_handle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_draw_indirect_count")]
+        if self.amd_draw_indirect_count && !other.amd_draw_indirect_count {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_draw_indirect_count && other.amd_draw_indirect_count {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_negative_viewport_height")]
+        if self.amd_negative_viewport_height && !other.amd_negative_viewport_height {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_negative_viewport_height && other.amd_negative_viewport_height {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_gpu_shader_half_float")]
+        if self.amd_gpu_shader_half_float && !other.amd_gpu_shader_half_float {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_gpu_shader_half_float && other.amd_gpu_shader_half_float {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_ballot")]
+        if self.amd_shader_ballot && !other.amd_shader_ballot {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_ballot && other.amd_shader_ballot {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_video_encode_h264")]
+        if self.ext_video_encode_h264 && !other.ext_video_encode_h264 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_video_encode_h264 && other.ext_video_encode_h264 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_video_encode_h265")]
+        if self.ext_video_encode_h265 && !other.ext_video_encode_h265 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_video_encode_h265 && other.ext_video_encode_h265 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_video_decode_h264")]
+        if self.ext_video_decode_h264 && !other.ext_video_decode_h264 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_video_decode_h264 && other.ext_video_decode_h264 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
+        if self.amd_texture_gather_bias_lod && !other.amd_texture_gather_bias_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_texture_gather_bias_lod && other.amd_texture_gather_bias_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_info")]
+        if self.amd_shader_info && !other.amd_shader_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_info && other.amd_shader_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_dynamic_rendering")]
+        if self.khr_dynamic_rendering && !other.khr_dynamic_rendering {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_dynamic_rendering && other.khr_dynamic_rendering {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_image_load_store_lod")]
+        if self.amd_shader_image_load_store_lod && !other.amd_shader_image_load_store_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_image_load_store_lod && other.amd_shader_image_load_store_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_corner_sampled_image")]
+        if self.nv_corner_sampled_image && !other.nv_corner_sampled_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_corner_sampled_image && other.nv_corner_sampled_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_multiview")]
+        if self.khr_multiview && !other.khr_multiview {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_multiview && other.khr_multiview {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_IMG_format_pvrtc")]
+        if self.img_format_pvrtc && !other.img_format_pvrtc {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.img_format_pvrtc && other.img_format_pvrtc {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_external_memory")]
+        if self.nv_external_memory && !other.nv_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_external_memory && other.nv_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_external_memory_win32")]
+        if self.nv_external_memory_win32 && !other.nv_external_memory_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_external_memory_win32 && other.nv_external_memory_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_win32_keyed_mutex")]
+        if self.nv_win32_keyed_mutex && !other.nv_win32_keyed_mutex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_win32_keyed_mutex && other.nv_win32_keyed_mutex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_device_group")]
+        if self.khr_device_group && !other.khr_device_group {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_device_group && other.khr_device_group {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_draw_parameters")]
+        if self.khr_shader_draw_parameters && !other.khr_shader_draw_parameters {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_draw_parameters && other.khr_shader_draw_parameters {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_subgroup_ballot")]
+        if self.ext_shader_subgroup_ballot && !other.ext_shader_subgroup_ballot {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_subgroup_ballot && other.ext_shader_subgroup_ballot {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_subgroup_vote")]
+        if self.ext_shader_subgroup_vote && !other.ext_shader_subgroup_vote {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_subgroup_vote && other.ext_shader_subgroup_vote {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_texture_compression_astc_hdr")]
+        if self.ext_texture_compression_astc_hdr && !other.ext_texture_compression_astc_hdr {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_texture_compression_astc_hdr && other.ext_texture_compression_astc_hdr {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_astc_decode_mode")]
+        if self.ext_astc_decode_mode && !other.ext_astc_decode_mode {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_astc_decode_mode && other.ext_astc_decode_mode {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_maintenance1")]
+        if self.khr_maintenance1 && !other.khr_maintenance1 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_maintenance1 && other.khr_maintenance1 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_memory")]
+        if self.khr_external_memory && !other.khr_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_memory && other.khr_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_memory_win32")]
+        if self.khr_external_memory_win32 && !other.khr_external_memory_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_memory_win32 && other.khr_external_memory_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_memory_fd")]
+        if self.khr_external_memory_fd && !other.khr_external_memory_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_memory_fd && other.khr_external_memory_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_win32_keyed_mutex")]
+        if self.khr_win32_keyed_mutex && !other.khr_win32_keyed_mutex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_win32_keyed_mutex && other.khr_win32_keyed_mutex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_semaphore")]
+        if self.khr_external_semaphore && !other.khr_external_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_semaphore && other.khr_external_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_semaphore_win32")]
+        if self.khr_external_semaphore_win32 && !other.khr_external_semaphore_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_semaphore_win32 && other.khr_external_semaphore_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_semaphore_fd")]
+        if self.khr_external_semaphore_fd && !other.khr_external_semaphore_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_semaphore_fd && other.khr_external_semaphore_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_push_descriptor")]
+        if self.khr_push_descriptor && !other.khr_push_descriptor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_push_descriptor && other.khr_push_descriptor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_conditional_rendering")]
+        if self.ext_conditional_rendering && !other.ext_conditional_rendering {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_conditional_rendering && other.ext_conditional_rendering {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_float16_int8")]
+        if self.khr_shader_float16_int8 && !other.khr_shader_float16_int8 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_float16_int8 && other.khr_shader_float16_int8 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_16bit_storage")]
+        if self.khr_16bit_storage && !other.khr_16bit_storage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_16bit_storage && other.khr_16bit_storage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_incremental_present")]
+        if self.khr_incremental_present && !other.khr_incremental_present {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_incremental_present && other.khr_incremental_present {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_descriptor_update_template")]
+        if self.khr_descriptor_update_template && !other.khr_descriptor_update_template {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_descriptor_update_template && other.khr_descriptor_update_template {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_clip_space_w_scaling")]
+        if self.nv_clip_space_w_scaling && !other.nv_clip_space_w_scaling {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_clip_space_w_scaling && other.nv_clip_space_w_scaling {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_display_control")]
+        if self.ext_display_control && !other.ext_display_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_display_control && other.ext_display_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GOOGLE_display_timing")]
+        if self.google_display_timing && !other.google_display_timing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.google_display_timing && other.google_display_timing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_sample_mask_override_coverage")]
+        if self.nv_sample_mask_override_coverage && !other.nv_sample_mask_override_coverage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_sample_mask_override_coverage && other.nv_sample_mask_override_coverage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_geometry_shader_passthrough")]
+        if self.nv_geometry_shader_passthrough && !other.nv_geometry_shader_passthrough {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_geometry_shader_passthrough && other.nv_geometry_shader_passthrough {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_viewport_array2")]
+        if self.nv_viewport_array2 && !other.nv_viewport_array2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_viewport_array2 && other.nv_viewport_array2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
+        if self.nvx_multiview_per_view_attributes && !other.nvx_multiview_per_view_attributes {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nvx_multiview_per_view_attributes && other.nvx_multiview_per_view_attributes {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_viewport_swizzle")]
+        if self.nv_viewport_swizzle && !other.nv_viewport_swizzle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_viewport_swizzle && other.nv_viewport_swizzle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_discard_rectangles")]
+        if self.ext_discard_rectangles && !other.ext_discard_rectangles {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_discard_rectangles && other.ext_discard_rectangles {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_conservative_rasterization")]
+        if self.ext_conservative_rasterization && !other.ext_conservative_rasterization {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_conservative_rasterization && other.ext_conservative_rasterization {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_depth_clip_enable")]
+        if self.ext_depth_clip_enable && !other.ext_depth_clip_enable {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_depth_clip_enable && other.ext_depth_clip_enable {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_hdr_metadata")]
+        if self.ext_hdr_metadata && !other.ext_hdr_metadata {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_hdr_metadata && other.ext_hdr_metadata {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_imageless_framebuffer")]
+        if self.khr_imageless_framebuffer && !other.khr_imageless_framebuffer {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_imageless_framebuffer && other.khr_imageless_framebuffer {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_create_renderpass2")]
+        if self.khr_create_renderpass2 && !other.khr_create_renderpass2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_create_renderpass2 && other.khr_create_renderpass2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shared_presentable_image")]
+        if self.khr_shared_presentable_image && !other.khr_shared_presentable_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shared_presentable_image && other.khr_shared_presentable_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_fence")]
+        if self.khr_external_fence && !other.khr_external_fence {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_fence && other.khr_external_fence {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_fence_win32")]
+        if self.khr_external_fence_win32 && !other.khr_external_fence_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_fence_win32 && other.khr_external_fence_win32 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_fence_fd")]
+        if self.khr_external_fence_fd && !other.khr_external_fence_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_fence_fd && other.khr_external_fence_fd {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_performance_query")]
+        if self.khr_performance_query && !other.khr_performance_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_performance_query && other.khr_performance_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_maintenance2")]
+        if self.khr_maintenance2 && !other.khr_maintenance2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_maintenance2 && other.khr_maintenance2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_variable_pointers")]
+        if self.khr_variable_pointers && !other.khr_variable_pointers {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_variable_pointers && other.khr_variable_pointers {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
+        if self.ext_external_memory_dma_buf && !other.ext_external_memory_dma_buf {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_external_memory_dma_buf && other.ext_external_memory_dma_buf {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_queue_family_foreign")]
+        if self.ext_queue_family_foreign && !other.ext_queue_family_foreign {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_queue_family_foreign && other.ext_queue_family_foreign {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_dedicated_allocation")]
+        if self.khr_dedicated_allocation && !other.khr_dedicated_allocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_dedicated_allocation && other.khr_dedicated_allocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
+        if self.android_external_memory_android_hardware_buffer
+            && !other.android_external_memory_android_hardware_buffer
+        {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.android_external_memory_android_hardware_buffer
+            && other.android_external_memory_android_hardware_buffer
+        {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_sampler_filter_minmax")]
+        if self.ext_sampler_filter_minmax && !other.ext_sampler_filter_minmax {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_sampler_filter_minmax && other.ext_sampler_filter_minmax {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_storage_buffer_storage_class")]
+        if self.khr_storage_buffer_storage_class && !other.khr_storage_buffer_storage_class {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_storage_buffer_storage_class && other.khr_storage_buffer_storage_class {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_gpu_shader_int16")]
+        if self.amd_gpu_shader_int16 && !other.amd_gpu_shader_int16 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_gpu_shader_int16 && other.amd_gpu_shader_int16 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_mixed_attachment_samples")]
+        if self.amd_mixed_attachment_samples && !other.amd_mixed_attachment_samples {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_mixed_attachment_samples && other.amd_mixed_attachment_samples {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_fragment_mask")]
+        if self.amd_shader_fragment_mask && !other.amd_shader_fragment_mask {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_fragment_mask && other.amd_shader_fragment_mask {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_inline_uniform_block")]
+        if self.ext_inline_uniform_block && !other.ext_inline_uniform_block {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_inline_uniform_block && other.ext_inline_uniform_block {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_stencil_export")]
+        if self.ext_shader_stencil_export && !other.ext_shader_stencil_export {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_stencil_export && other.ext_shader_stencil_export {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_sample_locations")]
+        if self.ext_sample_locations && !other.ext_sample_locations {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_sample_locations && other.ext_sample_locations {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_relaxed_block_layout")]
+        if self.khr_relaxed_block_layout && !other.khr_relaxed_block_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_relaxed_block_layout && other.khr_relaxed_block_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_get_memory_requirements2")]
+        if self.khr_get_memory_requirements2 && !other.khr_get_memory_requirements2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_get_memory_requirements2 && other.khr_get_memory_requirements2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_image_format_list")]
+        if self.khr_image_format_list && !other.khr_image_format_list {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_image_format_list && other.khr_image_format_list {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_blend_operation_advanced")]
+        if self.ext_blend_operation_advanced && !other.ext_blend_operation_advanced {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_blend_operation_advanced && other.ext_blend_operation_advanced {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_fragment_coverage_to_color")]
+        if self.nv_fragment_coverage_to_color && !other.nv_fragment_coverage_to_color {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_fragment_coverage_to_color && other.nv_fragment_coverage_to_color {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_acceleration_structure")]
+        if self.khr_acceleration_structure && !other.khr_acceleration_structure {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_acceleration_structure && other.khr_acceleration_structure {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
+        if self.khr_ray_tracing_pipeline && !other.khr_ray_tracing_pipeline {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_ray_tracing_pipeline && other.khr_ray_tracing_pipeline {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_ray_query")]
+        if self.khr_ray_query && !other.khr_ray_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_ray_query && other.khr_ray_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_framebuffer_mixed_samples")]
+        if self.nv_framebuffer_mixed_samples && !other.nv_framebuffer_mixed_samples {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_framebuffer_mixed_samples && other.nv_framebuffer_mixed_samples {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_fill_rectangle")]
+        if self.nv_fill_rectangle && !other.nv_fill_rectangle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_fill_rectangle && other.nv_fill_rectangle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_shader_sm_builtins")]
+        if self.nv_shader_sm_builtins && !other.nv_shader_sm_builtins {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_shader_sm_builtins && other.nv_shader_sm_builtins {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_post_depth_coverage")]
+        if self.ext_post_depth_coverage && !other.ext_post_depth_coverage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_post_depth_coverage && other.ext_post_depth_coverage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
+        if self.khr_sampler_ycbcr_conversion && !other.khr_sampler_ycbcr_conversion {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_sampler_ycbcr_conversion && other.khr_sampler_ycbcr_conversion {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_bind_memory2")]
+        if self.khr_bind_memory2 && !other.khr_bind_memory2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_bind_memory2 && other.khr_bind_memory2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
+        if self.ext_image_drm_format_modifier && !other.ext_image_drm_format_modifier {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_image_drm_format_modifier && other.ext_image_drm_format_modifier {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_validation_cache")]
+        if self.ext_validation_cache && !other.ext_validation_cache {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_validation_cache && other.ext_validation_cache {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_descriptor_indexing")]
+        if self.ext_descriptor_indexing && !other.ext_descriptor_indexing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_descriptor_indexing && other.ext_descriptor_indexing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_viewport_index_layer")]
+        if self.ext_shader_viewport_index_layer && !other.ext_shader_viewport_index_layer {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_viewport_index_layer && other.ext_shader_viewport_index_layer {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_portability_subset")]
+        if self.khr_portability_subset && !other.khr_portability_subset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_portability_subset && other.khr_portability_subset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_shading_rate_image")]
+        if self.nv_shading_rate_image && !other.nv_shading_rate_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_shading_rate_image && other.nv_shading_rate_image {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_ray_tracing")]
+        if self.nv_ray_tracing && !other.nv_ray_tracing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_ray_tracing && other.nv_ray_tracing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_representative_fragment_test")]
+        if self.nv_representative_fragment_test && !other.nv_representative_fragment_test {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_representative_fragment_test && other.nv_representative_fragment_test {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_maintenance3")]
+        if self.khr_maintenance3 && !other.khr_maintenance3 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_maintenance3 && other.khr_maintenance3 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_draw_indirect_count")]
+        if self.khr_draw_indirect_count && !other.khr_draw_indirect_count {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_draw_indirect_count && other.khr_draw_indirect_count {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_filter_cubic")]
+        if self.ext_filter_cubic && !other.ext_filter_cubic {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_filter_cubic && other.ext_filter_cubic {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QCOM_render_pass_shader_resolve")]
+        if self.qcom_render_pass_shader_resolve && !other.qcom_render_pass_shader_resolve {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qcom_render_pass_shader_resolve && other.qcom_render_pass_shader_resolve {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_global_priority")]
+        if self.ext_global_priority && !other.ext_global_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_global_priority && other.ext_global_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_subgroup_extended_types")]
+        if self.khr_shader_subgroup_extended_types && !other.khr_shader_subgroup_extended_types {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_subgroup_extended_types && other.khr_shader_subgroup_extended_types {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_8bit_storage")]
+        if self.khr_8bit_storage && !other.khr_8bit_storage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_8bit_storage && other.khr_8bit_storage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_external_memory_host")]
+        if self.ext_external_memory_host && !other.ext_external_memory_host {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_external_memory_host && other.ext_external_memory_host {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_buffer_marker")]
+        if self.amd_buffer_marker && !other.amd_buffer_marker {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_buffer_marker && other.amd_buffer_marker {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_atomic_int64")]
+        if self.khr_shader_atomic_int64 && !other.khr_shader_atomic_int64 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_atomic_int64 && other.khr_shader_atomic_int64 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_clock")]
+        if self.khr_shader_clock && !other.khr_shader_clock {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_clock && other.khr_shader_clock {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_pipeline_compiler_control")]
+        if self.amd_pipeline_compiler_control && !other.amd_pipeline_compiler_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_pipeline_compiler_control && other.amd_pipeline_compiler_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_calibrated_timestamps")]
+        if self.ext_calibrated_timestamps && !other.ext_calibrated_timestamps {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_calibrated_timestamps && other.ext_calibrated_timestamps {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_core_properties")]
+        if self.amd_shader_core_properties && !other.amd_shader_core_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_core_properties && other.amd_shader_core_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_video_decode_h265")]
+        if self.ext_video_decode_h265 && !other.ext_video_decode_h265 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_video_decode_h265 && other.ext_video_decode_h265 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_global_priority")]
+        if self.khr_global_priority && !other.khr_global_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_global_priority && other.khr_global_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_memory_overallocation_behavior")]
+        if self.amd_memory_overallocation_behavior && !other.amd_memory_overallocation_behavior {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_memory_overallocation_behavior && other.amd_memory_overallocation_behavior {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
+        if self.ext_vertex_attribute_divisor && !other.ext_vertex_attribute_divisor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_vertex_attribute_divisor && other.ext_vertex_attribute_divisor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GGP_frame_token")]
+        if self.ggp_frame_token && !other.ggp_frame_token {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ggp_frame_token && other.ggp_frame_token {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_pipeline_creation_feedback")]
+        if self.ext_pipeline_creation_feedback && !other.ext_pipeline_creation_feedback {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_pipeline_creation_feedback && other.ext_pipeline_creation_feedback {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_driver_properties")]
+        if self.khr_driver_properties && !other.khr_driver_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_driver_properties && other.khr_driver_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_float_controls")]
+        if self.khr_shader_float_controls && !other.khr_shader_float_controls {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_float_controls && other.khr_shader_float_controls {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
+        if self.nv_shader_subgroup_partitioned && !other.nv_shader_subgroup_partitioned {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_shader_subgroup_partitioned && other.nv_shader_subgroup_partitioned {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_depth_stencil_resolve")]
+        if self.khr_depth_stencil_resolve && !other.khr_depth_stencil_resolve {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_depth_stencil_resolve && other.khr_depth_stencil_resolve {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
+        if self.khr_swapchain_mutable_format && !other.khr_swapchain_mutable_format {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_swapchain_mutable_format && other.khr_swapchain_mutable_format {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_compute_shader_derivatives")]
+        if self.nv_compute_shader_derivatives && !other.nv_compute_shader_derivatives {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_compute_shader_derivatives && other.nv_compute_shader_derivatives {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_mesh_shader")]
+        if self.nv_mesh_shader && !other.nv_mesh_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_mesh_shader && other.nv_mesh_shader {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_fragment_shader_barycentric")]
+        if self.nv_fragment_shader_barycentric && !other.nv_fragment_shader_barycentric {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_fragment_shader_barycentric && other.nv_fragment_shader_barycentric {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_shader_image_footprint")]
+        if self.nv_shader_image_footprint && !other.nv_shader_image_footprint {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_shader_image_footprint && other.nv_shader_image_footprint {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_scissor_exclusive")]
+        if self.nv_scissor_exclusive && !other.nv_scissor_exclusive {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_scissor_exclusive && other.nv_scissor_exclusive {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
+        if self.nv_device_diagnostic_checkpoints && !other.nv_device_diagnostic_checkpoints {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_device_diagnostic_checkpoints && other.nv_device_diagnostic_checkpoints {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_timeline_semaphore")]
+        if self.khr_timeline_semaphore && !other.khr_timeline_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_timeline_semaphore && other.khr_timeline_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_INTEL_shader_integer_functions2")]
+        if self.intel_shader_integer_functions2 && !other.intel_shader_integer_functions2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.intel_shader_integer_functions2 && other.intel_shader_integer_functions2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_INTEL_performance_query")]
+        if self.intel_performance_query && !other.intel_performance_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.intel_performance_query && other.intel_performance_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_vulkan_memory_model")]
+        if self.khr_vulkan_memory_model && !other.khr_vulkan_memory_model {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_vulkan_memory_model && other.khr_vulkan_memory_model {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_pci_bus_info")]
+        if self.ext_pci_bus_info && !other.ext_pci_bus_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_pci_bus_info && other.ext_pci_bus_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_display_native_hdr")]
+        if self.amd_display_native_hdr && !other.amd_display_native_hdr {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_display_native_hdr && other.amd_display_native_hdr {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_terminate_invocation")]
+        if self.khr_shader_terminate_invocation && !other.khr_shader_terminate_invocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_terminate_invocation && other.khr_shader_terminate_invocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_fragment_density_map")]
+        if self.ext_fragment_density_map && !other.ext_fragment_density_map {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_fragment_density_map && other.ext_fragment_density_map {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_scalar_block_layout")]
+        if self.ext_scalar_block_layout && !other.ext_scalar_block_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_scalar_block_layout && other.ext_scalar_block_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GOOGLE_hlsl_functionality1")]
+        if self.google_hlsl_functionality1 && !other.google_hlsl_functionality1 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.google_hlsl_functionality1 && other.google_hlsl_functionality1 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GOOGLE_decorate_string")]
+        if self.google_decorate_string && !other.google_decorate_string {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.google_decorate_string && other.google_decorate_string {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_subgroup_size_control")]
+        if self.ext_subgroup_size_control && !other.ext_subgroup_size_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_subgroup_size_control && other.ext_subgroup_size_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_fragment_shading_rate")]
+        if self.khr_fragment_shading_rate && !other.khr_fragment_shading_rate {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_fragment_shading_rate && other.khr_fragment_shading_rate {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_shader_core_properties2")]
+        if self.amd_shader_core_properties2 && !other.amd_shader_core_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_shader_core_properties2 && other.amd_shader_core_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_AMD_device_coherent_memory")]
+        if self.amd_device_coherent_memory && !other.amd_device_coherent_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.amd_device_coherent_memory && other.amd_device_coherent_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
+        if self.ext_shader_image_atomic_int64 && !other.ext_shader_image_atomic_int64 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_image_atomic_int64 && other.ext_shader_image_atomic_int64 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_spirv_1_4")]
+        if self.khr_spirv_1_4 && !other.khr_spirv_1_4 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_spirv_1_4 && other.khr_spirv_1_4 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_memory_budget")]
+        if self.ext_memory_budget && !other.ext_memory_budget {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_memory_budget && other.ext_memory_budget {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_memory_priority")]
+        if self.ext_memory_priority && !other.ext_memory_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_memory_priority && other.ext_memory_priority {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
+        if self.nv_dedicated_allocation_image_aliasing && !other.nv_dedicated_allocation_image_aliasing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_dedicated_allocation_image_aliasing && other.nv_dedicated_allocation_image_aliasing {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_separate_depth_stencil_layouts")]
+        if self.khr_separate_depth_stencil_layouts && !other.khr_separate_depth_stencil_layouts {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_separate_depth_stencil_layouts && other.khr_separate_depth_stencil_layouts {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_buffer_device_address")]
+        if self.ext_buffer_device_address && !other.ext_buffer_device_address {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_buffer_device_address && other.ext_buffer_device_address {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_tooling_info")]
+        if self.ext_tooling_info && !other.ext_tooling_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_tooling_info && other.ext_tooling_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_separate_stencil_usage")]
+        if self.ext_separate_stencil_usage && !other.ext_separate_stencil_usage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_separate_stencil_usage && other.ext_separate_stencil_usage {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_present_wait")]
+        if self.khr_present_wait && !other.khr_present_wait {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_present_wait && other.khr_present_wait {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_cooperative_matrix")]
+        if self.nv_cooperative_matrix && !other.nv_cooperative_matrix {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_cooperative_matrix && other.nv_cooperative_matrix {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_coverage_reduction_mode")]
+        if self.nv_coverage_reduction_mode && !other.nv_coverage_reduction_mode {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_coverage_reduction_mode && other.nv_coverage_reduction_mode {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_fragment_shader_interlock")]
+        if self.ext_fragment_shader_interlock && !other.ext_fragment_shader_interlock {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_fragment_shader_interlock && other.ext_fragment_shader_interlock {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
+        if self.ext_ycbcr_image_arrays && !other.ext_ycbcr_image_arrays {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_ycbcr_image_arrays && other.ext_ycbcr_image_arrays {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_uniform_buffer_standard_layout")]
+        if self.khr_uniform_buffer_standard_layout && !other.khr_uniform_buffer_standard_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_uniform_buffer_standard_layout && other.khr_uniform_buffer_standard_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_provoking_vertex")]
+        if self.ext_provoking_vertex && !other.ext_provoking_vertex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_provoking_vertex && other.ext_provoking_vertex {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_full_screen_exclusive")]
+        if self.ext_full_screen_exclusive && !other.ext_full_screen_exclusive {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_full_screen_exclusive && other.ext_full_screen_exclusive {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_buffer_device_address")]
+        if self.khr_buffer_device_address && !other.khr_buffer_device_address {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_buffer_device_address && other.khr_buffer_device_address {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_line_rasterization")]
+        if self.ext_line_rasterization && !other.ext_line_rasterization {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_line_rasterization && other.ext_line_rasterization {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_atomic_float")]
+        if self.ext_shader_atomic_float && !other.ext_shader_atomic_float {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_atomic_float && other.ext_shader_atomic_float {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_host_query_reset")]
+        if self.ext_host_query_reset && !other.ext_host_query_reset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_host_query_reset && other.ext_host_query_reset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_index_type_uint8")]
+        if self.ext_index_type_uint8 && !other.ext_index_type_uint8 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_index_type_uint8 && other.ext_index_type_uint8 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_extended_dynamic_state")]
+        if self.ext_extended_dynamic_state && !other.ext_extended_dynamic_state {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_extended_dynamic_state && other.ext_extended_dynamic_state {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_deferred_host_operations")]
+        if self.khr_deferred_host_operations && !other.khr_deferred_host_operations {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_deferred_host_operations && other.khr_deferred_host_operations {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_pipeline_executable_properties")]
+        if self.khr_pipeline_executable_properties && !other.khr_pipeline_executable_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_pipeline_executable_properties && other.khr_pipeline_executable_properties {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_atomic_float2")]
+        if self.ext_shader_atomic_float2 && !other.ext_shader_atomic_float2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_atomic_float2 && other.ext_shader_atomic_float2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_shader_demote_to_helper_invocation")]
+        if self.ext_shader_demote_to_helper_invocation && !other.ext_shader_demote_to_helper_invocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_shader_demote_to_helper_invocation && other.ext_shader_demote_to_helper_invocation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_device_generated_commands")]
+        if self.nv_device_generated_commands && !other.nv_device_generated_commands {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_device_generated_commands && other.nv_device_generated_commands {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_inherited_viewport_scissor")]
+        if self.nv_inherited_viewport_scissor && !other.nv_inherited_viewport_scissor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_inherited_viewport_scissor && other.nv_inherited_viewport_scissor {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_integer_dot_product")]
+        if self.khr_shader_integer_dot_product && !other.khr_shader_integer_dot_product {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_integer_dot_product && other.khr_shader_integer_dot_product {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_texel_buffer_alignment")]
+        if self.ext_texel_buffer_alignment && !other.ext_texel_buffer_alignment {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_texel_buffer_alignment && other.ext_texel_buffer_alignment {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QCOM_render_pass_transform")]
+        if self.qcom_render_pass_transform && !other.qcom_render_pass_transform {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qcom_render_pass_transform && other.qcom_render_pass_transform {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_device_memory_report")]
+        if self.ext_device_memory_report && !other.ext_device_memory_report {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_device_memory_report && other.ext_device_memory_report {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_robustness2")]
+        if self.ext_robustness2 && !other.ext_robustness2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_robustness2 && other.ext_robustness2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_custom_border_color")]
+        if self.ext_custom_border_color && !other.ext_custom_border_color {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_custom_border_color && other.ext_custom_border_color {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GOOGLE_user_type")]
+        if self.google_user_type && !other.google_user_type {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.google_user_type && other.google_user_type {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_pipeline_library")]
+        if self.khr_pipeline_library && !other.khr_pipeline_library {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_pipeline_library && other.khr_pipeline_library {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_non_semantic_info")]
+        if self.khr_shader_non_semantic_info && !other.khr_shader_non_semantic_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_non_semantic_info && other.khr_shader_non_semantic_info {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_present_id")]
+        if self.khr_present_id && !other.khr_present_id {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_present_id && other.khr_present_id {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_private_data")]
+        if self.ext_private_data && !other.ext_private_data {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_private_data && other.ext_private_data {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_pipeline_creation_cache_control")]
+        if self.ext_pipeline_creation_cache_control && !other.ext_pipeline_creation_cache_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_pipeline_creation_cache_control && other.ext_pipeline_creation_cache_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_video_encode_queue")]
+        if self.khr_video_encode_queue && !other.khr_video_encode_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_video_encode_queue && other.khr_video_encode_queue {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_device_diagnostics_config")]
+        if self.nv_device_diagnostics_config && !other.nv_device_diagnostics_config {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_device_diagnostics_config && other.nv_device_diagnostics_config {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QCOM_render_pass_store_ops")]
+        if self.qcom_render_pass_store_ops && !other.qcom_render_pass_store_ops {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qcom_render_pass_store_ops && other.qcom_render_pass_store_ops {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_synchronization2")]
+        if self.khr_synchronization2 && !other.khr_synchronization2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_synchronization2 && other.khr_synchronization2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
+        if self.khr_shader_subgroup_uniform_control_flow && !other.khr_shader_subgroup_uniform_control_flow {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_shader_subgroup_uniform_control_flow && other.khr_shader_subgroup_uniform_control_flow {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_zero_initialize_workgroup_memory")]
+        if self.khr_zero_initialize_workgroup_memory && !other.khr_zero_initialize_workgroup_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_zero_initialize_workgroup_memory && other.khr_zero_initialize_workgroup_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
+        if self.nv_fragment_shading_rate_enums && !other.nv_fragment_shading_rate_enums {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_fragment_shading_rate_enums && other.nv_fragment_shading_rate_enums {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
+        if self.nv_ray_tracing_motion_blur && !other.nv_ray_tracing_motion_blur {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_ray_tracing_motion_blur && other.nv_ray_tracing_motion_blur {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
+        if self.ext_ycbcr_2plane_444_formats && !other.ext_ycbcr_2plane_444_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_ycbcr_2plane_444_formats && other.ext_ycbcr_2plane_444_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_fragment_density_map2")]
+        if self.ext_fragment_density_map2 && !other.ext_fragment_density_map2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_fragment_density_map2 && other.ext_fragment_density_map2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QCOM_rotated_copy_commands")]
+        if self.qcom_rotated_copy_commands && !other.qcom_rotated_copy_commands {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qcom_rotated_copy_commands && other.qcom_rotated_copy_commands {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_image_robustness")]
+        if self.ext_image_robustness && !other.ext_image_robustness {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_image_robustness && other.ext_image_robustness {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
+        if self.khr_workgroup_memory_explicit_layout && !other.khr_workgroup_memory_explicit_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_workgroup_memory_explicit_layout && other.khr_workgroup_memory_explicit_layout {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_copy_commands2")]
+        if self.khr_copy_commands2 && !other.khr_copy_commands2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_copy_commands2 && other.khr_copy_commands2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_4444_formats")]
+        if self.ext_4444_formats && !other.ext_4444_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_4444_formats && other.ext_4444_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
+        if self.arm_rasterization_order_attachment_access && !other.arm_rasterization_order_attachment_access {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.arm_rasterization_order_attachment_access && other.arm_rasterization_order_attachment_access {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_rgba10x6_formats")]
+        if self.ext_rgba10x6_formats && !other.ext_rgba10x6_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_rgba10x6_formats && other.ext_rgba10x6_formats {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_acquire_winrt_display")]
+        if self.nv_acquire_winrt_display && !other.nv_acquire_winrt_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_acquire_winrt_display && other.nv_acquire_winrt_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
+        if self.valve_mutable_descriptor_type && !other.valve_mutable_descriptor_type {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.valve_mutable_descriptor_type && other.valve_mutable_descriptor_type {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
+        if self.ext_vertex_input_dynamic_state && !other.ext_vertex_input_dynamic_state {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_vertex_input_dynamic_state && other.ext_vertex_input_dynamic_state {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_physical_device_drm")]
+        if self.ext_physical_device_drm && !other.ext_physical_device_drm {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_physical_device_drm && other.ext_physical_device_drm {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_depth_clip_control")]
+        if self.ext_depth_clip_control && !other.ext_depth_clip_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_depth_clip_control && other.ext_depth_clip_control {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
+        if self.ext_primitive_topology_list_restart && !other.ext_primitive_topology_list_restart {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_primitive_topology_list_restart && other.ext_primitive_topology_list_restart {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_format_feature_flags2")]
+        if self.khr_format_feature_flags2 && !other.khr_format_feature_flags2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_format_feature_flags2 && other.khr_format_feature_flags2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_FUCHSIA_external_memory")]
+        if self.fuchsia_external_memory && !other.fuchsia_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.fuchsia_external_memory && other.fuchsia_external_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
+        if self.fuchsia_external_semaphore && !other.fuchsia_external_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.fuchsia_external_semaphore && other.fuchsia_external_semaphore {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+        if self.fuchsia_buffer_collection && !other.fuchsia_buffer_collection {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.fuchsia_buffer_collection && other.fuchsia_buffer_collection {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_HUAWEI_subpass_shading")]
+        if self.huawei_subpass_shading && !other.huawei_subpass_shading {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.huawei_subpass_shading && other.huawei_subpass_shading {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_HUAWEI_invocation_mask")]
+        if self.huawei_invocation_mask && !other.huawei_invocation_mask {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.huawei_invocation_mask && other.huawei_invocation_mask {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_external_memory_rdma")]
+        if self.nv_external_memory_rdma && !other.nv_external_memory_rdma {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_external_memory_rdma && other.nv_external_memory_rdma {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
+        if self.ext_extended_dynamic_state2 && !other.ext_extended_dynamic_state2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_extended_dynamic_state2 && other.ext_extended_dynamic_state2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_color_write_enable")]
+        if self.ext_color_write_enable && !other.ext_color_write_enable {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_color_write_enable && other.ext_color_write_enable {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_global_priority_query")]
+        if self.ext_global_priority_query && !other.ext_global_priority_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_global_priority_query && other.ext_global_priority_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_image_view_min_lod")]
+        if self.ext_image_view_min_lod && !other.ext_image_view_min_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_image_view_min_lod && other.ext_image_view_min_lod {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_multi_draw")]
+        if self.ext_multi_draw && !other.ext_multi_draw {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_multi_draw && other.ext_multi_draw {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_load_store_op_none")]
+        if self.ext_load_store_op_none && !other.ext_load_store_op_none {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_load_store_op_none && other.ext_load_store_op_none {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_border_color_swizzle")]
+        if self.ext_border_color_swizzle && !other.ext_border_color_swizzle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_border_color_swizzle && other.ext_border_color_swizzle {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_pageable_device_local_memory")]
+        if self.ext_pageable_device_local_memory && !other.ext_pageable_device_local_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_pageable_device_local_memory && other.ext_pageable_device_local_memory {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_maintenance4")]
+        if self.khr_maintenance4 && !other.khr_maintenance4 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_maintenance4 && other.khr_maintenance4 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
+        if self.valve_descriptor_set_host_mapping && !other.valve_descriptor_set_host_mapping {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.valve_descriptor_set_host_mapping && other.valve_descriptor_set_host_mapping {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
+        if self.qcom_fragment_density_map_offset && !other.qcom_fragment_density_map_offset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qcom_fragment_density_map_offset && other.qcom_fragment_density_map_offset {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_linear_color_attachment")]
+        if self.nv_linear_color_attachment && !other.nv_linear_color_attachment {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_linear_color_attachment && other.nv_linear_color_attachment {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        current_cmp
+    }
 }
 ///A list of Vulkan extensions
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct InstanceExtensions {
     pub version: Version,
     pub count: usize,
@@ -6526,5 +9406,458 @@ impl InstanceExtensions {
             out.push(cstr_ptr!("VK_GOOGLE_surfaceless_query"));
         }
         out
+    }
+    ///Gets the extensions from the list of available extensions
+    pub fn from_extension_properties(version: Version, properties: &[crate::vulkan1_0::ExtensionProperties]) -> Self {
+        use crate::AsCStr;
+        let mut out = Self::from_version(version);
+        for property in properties {
+            let name = property.extension_name.as_cstr();
+            let hash = crate::utils::const_hash(name);
+            #[cfg(feature = "VK_KHR_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_surface") {
+                out.khr_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_display")]
+            if hash == crate::utils::const_hash_str("VK_KHR_display") {
+                out.khr_display = true;
+            }
+            #[cfg(feature = "VK_KHR_xlib_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_xlib_surface") {
+                out.khr_xlib_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_xcb_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_xcb_surface") {
+                out.khr_xcb_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_wayland_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_wayland_surface") {
+                out.khr_wayland_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_android_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_android_surface") {
+                out.khr_android_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_win32_surface")]
+            if hash == crate::utils::const_hash_str("VK_KHR_win32_surface") {
+                out.khr_win32_surface = true;
+            }
+            #[cfg(feature = "VK_EXT_debug_report")]
+            if hash == crate::utils::const_hash_str("VK_EXT_debug_report") {
+                out.ext_debug_report = true;
+            }
+            #[cfg(feature = "VK_GGP_stream_descriptor_surface")]
+            if hash == crate::utils::const_hash_str("VK_GGP_stream_descriptor_surface") {
+                out.ggp_stream_descriptor_surface = true;
+            }
+            #[cfg(feature = "VK_NV_external_memory_capabilities")]
+            if hash == crate::utils::const_hash_str("VK_NV_external_memory_capabilities") {
+                out.nv_external_memory_capabilities = true;
+            }
+            #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_get_physical_device_properties2") {
+                out.khr_get_physical_device_properties2 = true;
+            }
+            #[cfg(feature = "VK_EXT_validation_flags")]
+            if hash == crate::utils::const_hash_str("VK_EXT_validation_flags") {
+                out.ext_validation_flags = true;
+            }
+            #[cfg(feature = "VK_NN_vi_surface")]
+            if hash == crate::utils::const_hash_str("VK_NN_vi_surface") {
+                out.nn_vi_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_device_group_creation")]
+            if hash == crate::utils::const_hash_str("VK_KHR_device_group_creation") {
+                out.khr_device_group_creation = true;
+            }
+            #[cfg(feature = "VK_KHR_external_memory_capabilities")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_memory_capabilities") {
+                out.khr_external_memory_capabilities = true;
+            }
+            #[cfg(feature = "VK_KHR_external_semaphore_capabilities")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_capabilities") {
+                out.khr_external_semaphore_capabilities = true;
+            }
+            #[cfg(feature = "VK_EXT_direct_mode_display")]
+            if hash == crate::utils::const_hash_str("VK_EXT_direct_mode_display") {
+                out.ext_direct_mode_display = true;
+            }
+            #[cfg(feature = "VK_EXT_acquire_xlib_display")]
+            if hash == crate::utils::const_hash_str("VK_EXT_acquire_xlib_display") {
+                out.ext_acquire_xlib_display = true;
+            }
+            #[cfg(feature = "VK_EXT_display_surface_counter")]
+            if hash == crate::utils::const_hash_str("VK_EXT_display_surface_counter") {
+                out.ext_display_surface_counter = true;
+            }
+            #[cfg(feature = "VK_EXT_swapchain_colorspace")]
+            if hash == crate::utils::const_hash_str("VK_EXT_swapchain_colorspace") {
+                out.ext_swapchain_colorspace = true;
+            }
+            #[cfg(feature = "VK_KHR_external_fence_capabilities")]
+            if hash == crate::utils::const_hash_str("VK_KHR_external_fence_capabilities") {
+                out.khr_external_fence_capabilities = true;
+            }
+            #[cfg(feature = "VK_KHR_get_surface_capabilities2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_get_surface_capabilities2") {
+                out.khr_get_surface_capabilities2 = true;
+            }
+            #[cfg(feature = "VK_KHR_get_display_properties2")]
+            if hash == crate::utils::const_hash_str("VK_KHR_get_display_properties2") {
+                out.khr_get_display_properties2 = true;
+            }
+            #[cfg(feature = "VK_MVK_ios_surface")]
+            if hash == crate::utils::const_hash_str("VK_MVK_ios_surface") {
+                out.mvk_ios_surface = true;
+            }
+            #[cfg(feature = "VK_MVK_macos_surface")]
+            if hash == crate::utils::const_hash_str("VK_MVK_macos_surface") {
+                out.mvk_macos_surface = true;
+            }
+            #[cfg(feature = "VK_EXT_debug_utils")]
+            if hash == crate::utils::const_hash_str("VK_EXT_debug_utils") {
+                out.ext_debug_utils = true;
+            }
+            #[cfg(feature = "VK_FUCHSIA_imagepipe_surface")]
+            if hash == crate::utils::const_hash_str("VK_FUCHSIA_imagepipe_surface") {
+                out.fuchsia_imagepipe_surface = true;
+            }
+            #[cfg(feature = "VK_EXT_metal_surface")]
+            if hash == crate::utils::const_hash_str("VK_EXT_metal_surface") {
+                out.ext_metal_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_surface_protected_capabilities")]
+            if hash == crate::utils::const_hash_str("VK_KHR_surface_protected_capabilities") {
+                out.khr_surface_protected_capabilities = true;
+            }
+            #[cfg(feature = "VK_EXT_validation_features")]
+            if hash == crate::utils::const_hash_str("VK_EXT_validation_features") {
+                out.ext_validation_features = true;
+            }
+            #[cfg(feature = "VK_EXT_headless_surface")]
+            if hash == crate::utils::const_hash_str("VK_EXT_headless_surface") {
+                out.ext_headless_surface = true;
+            }
+            #[cfg(feature = "VK_EXT_acquire_drm_display")]
+            if hash == crate::utils::const_hash_str("VK_EXT_acquire_drm_display") {
+                out.ext_acquire_drm_display = true;
+            }
+            #[cfg(feature = "VK_EXT_directfb_surface")]
+            if hash == crate::utils::const_hash_str("VK_EXT_directfb_surface") {
+                out.ext_directfb_surface = true;
+            }
+            #[cfg(feature = "VK_QNX_screen_surface")]
+            if hash == crate::utils::const_hash_str("VK_QNX_screen_surface") {
+                out.qnx_screen_surface = true;
+            }
+            #[cfg(feature = "VK_KHR_portability_enumeration")]
+            if hash == crate::utils::const_hash_str("VK_KHR_portability_enumeration") {
+                out.khr_portability_enumeration = true;
+            }
+            #[cfg(feature = "VK_GOOGLE_surfaceless_query")]
+            if hash == crate::utils::const_hash_str("VK_GOOGLE_surfaceless_query") {
+                out.google_surfaceless_query = true;
+            }
+        }
+        out
+    }
+}
+impl std::cmp::PartialOrd for InstanceExtensions {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+impl std::cmp::Ord for InstanceExtensions {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        let mut current_cmp = self.version.cmp(&other.version);
+        #[cfg(feature = "VK_KHR_surface")]
+        if self.khr_surface && !other.khr_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_surface && other.khr_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_display")]
+        if self.khr_display && !other.khr_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_display && other.khr_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_xlib_surface")]
+        if self.khr_xlib_surface && !other.khr_xlib_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_xlib_surface && other.khr_xlib_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_xcb_surface")]
+        if self.khr_xcb_surface && !other.khr_xcb_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_xcb_surface && other.khr_xcb_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_wayland_surface")]
+        if self.khr_wayland_surface && !other.khr_wayland_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_wayland_surface && other.khr_wayland_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_android_surface")]
+        if self.khr_android_surface && !other.khr_android_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_android_surface && other.khr_android_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_win32_surface")]
+        if self.khr_win32_surface && !other.khr_win32_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_win32_surface && other.khr_win32_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_debug_report")]
+        if self.ext_debug_report && !other.ext_debug_report {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_debug_report && other.ext_debug_report {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GGP_stream_descriptor_surface")]
+        if self.ggp_stream_descriptor_surface && !other.ggp_stream_descriptor_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ggp_stream_descriptor_surface && other.ggp_stream_descriptor_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NV_external_memory_capabilities")]
+        if self.nv_external_memory_capabilities && !other.nv_external_memory_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nv_external_memory_capabilities && other.nv_external_memory_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
+        if self.khr_get_physical_device_properties2 && !other.khr_get_physical_device_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_get_physical_device_properties2 && other.khr_get_physical_device_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_validation_flags")]
+        if self.ext_validation_flags && !other.ext_validation_flags {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_validation_flags && other.ext_validation_flags {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_NN_vi_surface")]
+        if self.nn_vi_surface && !other.nn_vi_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.nn_vi_surface && other.nn_vi_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_device_group_creation")]
+        if self.khr_device_group_creation && !other.khr_device_group_creation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_device_group_creation && other.khr_device_group_creation {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_memory_capabilities")]
+        if self.khr_external_memory_capabilities && !other.khr_external_memory_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_memory_capabilities && other.khr_external_memory_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_semaphore_capabilities")]
+        if self.khr_external_semaphore_capabilities && !other.khr_external_semaphore_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_semaphore_capabilities && other.khr_external_semaphore_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_direct_mode_display")]
+        if self.ext_direct_mode_display && !other.ext_direct_mode_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_direct_mode_display && other.ext_direct_mode_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_acquire_xlib_display")]
+        if self.ext_acquire_xlib_display && !other.ext_acquire_xlib_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_acquire_xlib_display && other.ext_acquire_xlib_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_display_surface_counter")]
+        if self.ext_display_surface_counter && !other.ext_display_surface_counter {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_display_surface_counter && other.ext_display_surface_counter {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_swapchain_colorspace")]
+        if self.ext_swapchain_colorspace && !other.ext_swapchain_colorspace {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_swapchain_colorspace && other.ext_swapchain_colorspace {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_external_fence_capabilities")]
+        if self.khr_external_fence_capabilities && !other.khr_external_fence_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_external_fence_capabilities && other.khr_external_fence_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_get_surface_capabilities2")]
+        if self.khr_get_surface_capabilities2 && !other.khr_get_surface_capabilities2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_get_surface_capabilities2 && other.khr_get_surface_capabilities2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_get_display_properties2")]
+        if self.khr_get_display_properties2 && !other.khr_get_display_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_get_display_properties2 && other.khr_get_display_properties2 {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_MVK_ios_surface")]
+        if self.mvk_ios_surface && !other.mvk_ios_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.mvk_ios_surface && other.mvk_ios_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_MVK_macos_surface")]
+        if self.mvk_macos_surface && !other.mvk_macos_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.mvk_macos_surface && other.mvk_macos_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_debug_utils")]
+        if self.ext_debug_utils && !other.ext_debug_utils {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_debug_utils && other.ext_debug_utils {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_FUCHSIA_imagepipe_surface")]
+        if self.fuchsia_imagepipe_surface && !other.fuchsia_imagepipe_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.fuchsia_imagepipe_surface && other.fuchsia_imagepipe_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_metal_surface")]
+        if self.ext_metal_surface && !other.ext_metal_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_metal_surface && other.ext_metal_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_surface_protected_capabilities")]
+        if self.khr_surface_protected_capabilities && !other.khr_surface_protected_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_surface_protected_capabilities && other.khr_surface_protected_capabilities {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_validation_features")]
+        if self.ext_validation_features && !other.ext_validation_features {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_validation_features && other.ext_validation_features {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_headless_surface")]
+        if self.ext_headless_surface && !other.ext_headless_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_headless_surface && other.ext_headless_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_acquire_drm_display")]
+        if self.ext_acquire_drm_display && !other.ext_acquire_drm_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_acquire_drm_display && other.ext_acquire_drm_display {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_EXT_directfb_surface")]
+        if self.ext_directfb_surface && !other.ext_directfb_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.ext_directfb_surface && other.ext_directfb_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_QNX_screen_surface")]
+        if self.qnx_screen_surface && !other.qnx_screen_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.qnx_screen_surface && other.qnx_screen_surface {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_KHR_portability_enumeration")]
+        if self.khr_portability_enumeration && !other.khr_portability_enumeration {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.khr_portability_enumeration && other.khr_portability_enumeration {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        #[cfg(feature = "VK_GOOGLE_surfaceless_query")]
+        if self.google_surfaceless_query && !other.google_surfaceless_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+        } else if !self.google_surfaceless_query && other.google_surfaceless_query {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+        } else {
+            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+        }
+        current_cmp
     }
 }

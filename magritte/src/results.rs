@@ -65,6 +65,17 @@ impl<T> VulkanResult<T> {
     }
 }
 
+impl<T> FromResidual<VulkanResult<Infallible>> for VulkanResult<T> {
+    #[inline]
+    #[track_caller]
+    fn from_residual(residual: VulkanResult<Infallible>) -> Self {
+        match residual {
+            VulkanResult::Err(e) => VulkanResult::Err(e),
+            VulkanResult::Success(_, _) => unreachable!(),
+        }
+    }
+}
+
 impl<T> FromResidual<Result<Infallible, VulkanResultCodes>> for VulkanResult<T> {
     #[inline]
     #[track_caller]

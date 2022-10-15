@@ -190,6 +190,8 @@ impl<'a> Extension<'a> {
             ExtensionType::Instance => Ident::new("InstanceExtensions", Span::call_site()),
         };
 
+        let field_idents: Vec<_> = exts.iter().map(|ext| ext.as_ident()).collect();
+        let extensions_names_str: Vec<_> = exts.iter().map(|ext| ext.name()).collect();
         let fields = exts.iter().map(|ext| ext.generate_field_code(source));
         let inits = exts.iter().map(|ext| ext.generate_initialization(source));
         let getters = exts.iter().map(|ext| ext.generate_getter_function(source));
@@ -200,7 +202,7 @@ impl<'a> Extension<'a> {
             out
 
             #[doc = "A list of Vulkan extensions"]
-            #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+            #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
             pub struct #name {
                 pub version: Version,
                 pub count: usize,
@@ -284,6 +286,51 @@ impl<'a> Extension<'a> {
                     )*
 
                     out
+                }
+
+                #[doc = "Gets the extensions from the list of available extensions"]
+                pub fn from_extension_properties(version: Version, properties: &[crate::vulkan1_0::ExtensionProperties]) -> Self {
+                    use crate::AsCStr;
+                    let mut out = Self::from_version(version);
+
+                    for property in properties {
+                        let name = property.extension_name.as_cstr();
+                        let hash = crate::utils::const_hash(name);
+
+                        #(
+                            #[cfg(feature = #extensions_names_str)]
+                            if hash == crate::utils::const_hash_str(#extensions_names_str) {
+                                out.#field_idents = true;
+                                out.count += 1;
+                            }
+                        )*
+                    }
+
+                    out
+                }
+            }
+
+            impl std::cmp::PartialOrd for #name {
+                fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+                    Some(self.cmp(other))
+                }
+            }
+
+            impl std::cmp::Ord for #name {
+                fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+                    let mut current_cmp = self.version.cmp(&other.version);
+                    #(
+                        #[cfg(feature = #extensions_names_str)]
+                        if self.#field_idents && !other.#field_idents {
+                            current_cmp = current_cmp.then(std::cmp::Ordering::Greater);
+                        } else if !self.#field_idents && other.#field_idents {
+                            current_cmp = current_cmp.then(std::cmp::Ordering::Less);
+                        } else {
+                            current_cmp = current_cmp.then(std::cmp::Ordering::Equal);
+                        }
+                    )*
+
+                    current_cmp
                 }
             }
         }

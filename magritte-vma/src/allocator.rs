@@ -9,7 +9,7 @@ use magritte::{
         Buffer, BufferCreateInfo, Device, DeviceSize, Image, ImageCreateInfo, MemoryPropertyFlags, MemoryRequirements,
         PhysicalDevice, PhysicalDeviceMemoryProperties, PhysicalDeviceProperties, VulkanResultCodes,
     },
-    AsRaw, DeviceExtensions, Handle, Unique,
+    AsCStr, AsRaw, DeviceExtensions, Handle, Unique,
 };
 use smallvec::SmallVec;
 
@@ -28,7 +28,7 @@ use crate::{
     flags::AllocatorCreateFlags,
     image::{ImageUsage, VmaImage},
     pool::Pool,
-    Allocation, AllocationCreateFlags, AsCStr, DefragmentationFlags, MemoryCorruptionState, PoolCreateInfo,
+    Allocation, AllocationCreateFlags, DefragmentationFlags, MemoryCorruptionState, PoolCreateInfo,
 };
 
 #[derive(Debug, Clone, Copy, Eq, Ord, PartialEq, PartialOrd, Hash)]

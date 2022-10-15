@@ -1,7 +1,7 @@
 //! # Command buffers
 //! TODO
 
-use crate::{Unique, vulkan1_0::CommandBuffer};
+use crate::{vulkan1_0::CommandBuffer, Unique};
 
 pub trait CommonCommandBuffer {
     /// Gets the inner command buffer

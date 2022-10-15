@@ -4,7 +4,8 @@ use quote::{format_ident, quote_each_token};
 
 use crate::{
     imports::Imports,
-    source::{Handle, Source}, origin::Origin,
+    origin::Origin,
+    source::{Handle, Source},
 };
 
 impl<'a> Handle<'a> {
@@ -87,12 +88,8 @@ impl<'a> Handle<'a> {
             }
         });
 
+        let enum_ = source.enums.get_by_name("VkObjectType").expect("VkObjectType missing");
 
-        let enum_ = source
-            .enums
-            .get_by_name("VkObjectType")
-            .expect("VkObjectType missing");
-        
         let object_type_variants = handles.iter().map(|h| {
             let shouty_name = if h.rename.is_some() {
                 source
@@ -105,15 +102,9 @@ impl<'a> Handle<'a> {
                 h.name().to_shouty_snake_case()
             };
 
-            if let Some(variant) = enum_
-                .variants()
-                .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
-            {
+            if let Some(variant) = enum_.variants().get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name)) {
                 variant.as_ident()
-            } else if let Some(variant) = enum_
-                .aliases()
-                .get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name))
-            {
+            } else if let Some(variant) = enum_.aliases().get_by_name(&format!("VK_OBJECT_TYPE_{}", shouty_name)) {
                 variant.as_ident()
             } else {
                 format_ident!("UNKNOWN")

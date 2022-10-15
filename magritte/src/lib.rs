@@ -8,7 +8,8 @@
     const_mut_refs,
     arbitrary_self_types,
     try_trait_v2,
-    cfg_sanitize
+    cfg_sanitize,
+    const_cstr_methods
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![allow(unreachable_code)]
@@ -20,7 +21,11 @@ pub mod version;
 pub mod video;
 
 pub mod chaining;
+pub mod commands;
+pub mod descriptors;
 pub mod entry;
+#[doc(hidden)]
+pub mod fence;
 pub mod handles;
 pub mod helpers;
 #[cfg(feature = "libloading")]
@@ -29,14 +34,13 @@ pub mod memory;
 pub mod results;
 pub mod size;
 pub mod spv;
+pub mod utils;
 #[cfg(feature = "validation")]
 pub mod validation;
 #[cfg(feature = "window")]
 pub mod window;
-pub mod commands;
-#[doc(hidden)]
-pub mod fence;
-pub mod descriptors;
+
+use std::ffi::CStr;
 
 pub use chaining::Chain;
 use generated::vulkan1_0::VulkanResultCodes;
@@ -119,5 +123,27 @@ impl std::fmt::Display for VulkanResultCodes {
             Self::OPERATION_NOT_DEFERRED_KHR => f.write_str("a deferred operation was requested and no operations were deferred"),
             _ => f.write_str("invalid"),
         }
+    }
+}
+
+pub trait AsCStr {
+    fn as_cstr(&self) -> &CStr;
+}
+
+impl AsCStr for &[i8] {
+    fn as_cstr(&self) -> &CStr {
+        unsafe { CStr::from_ptr(self.as_ptr()) }
+    }
+}
+
+impl<const N: usize> AsCStr for &[i8; N] {
+    fn as_cstr(&self) -> &CStr {
+        unsafe { CStr::from_ptr(self.as_ptr()) }
+    }
+}
+
+impl<const N: usize> AsCStr for [i8; N] {
+    fn as_cstr(&self) -> &CStr {
+        unsafe { CStr::from_ptr(self.as_ptr()) }
     }
 }

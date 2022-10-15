@@ -4,6 +4,7 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
+#[cfg(feature = "log")]
 use log::error;
 use magritte::{
     vulkan1_0::{Buffer, BufferCreateInfo, DeviceSize, Image, ImageCreateInfo, MemoryPropertyFlags, VulkanResultCodes},
@@ -476,6 +477,7 @@ impl<'a> Drop for Mapped<'a> {
                     unsafe { CStr::from_ptr(name_ptr).to_str().expect("invalid UTF-8 string") }
                 };
 
+                #[cfg(feature = "log")]
                 error!("failed to flush allocation: {}, reason: {:?}", name, ret);
             }
         }

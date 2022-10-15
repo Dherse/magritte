@@ -40,7 +40,7 @@ macro_rules! subsection {
                 let lines = text.split('\n');
                 quote::quote_each_token! {
                     $out
-    
+
                     #![doc = #doc_str]
                     #(#![doc = #lines])*
                 }
@@ -421,7 +421,7 @@ impl<'a> DocRef<'a> {
     /// Processes the new object types, commands, structures, enums, bitmasks, constants, issues and
     /// version history
     pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) {
-        subsection!{
+        subsection! {
             out;
             self;
             source;

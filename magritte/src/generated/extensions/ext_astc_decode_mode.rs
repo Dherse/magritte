@@ -41,19 +41,19 @@
 //!1) Are implementations allowed to decode at a higher precision than what is
 //!requested?
 //!```c
-//!RESOLUTION: No.
-//!If we allow this, then this extension could be exposed on all
-//!implementations that support ASTC.
-//!But developers would have no way of knowing what precision was actually
-//!used, and thus whether the image quality is sufficient at reduced
-//!precision.
-//!```
+//! RESOLUTION: No.
+//! If we allow this, then this extension could be exposed on all
+//! implementations that support ASTC.
+//! But developers would have no way of knowing what precision was actually
+//! used, and thus whether the image quality is sufficient at reduced
+//! precision.
+//! ```
 //!2) Should the decode mode be image view state and/or sampler state?
 //!```c
-//!RESOLUTION: Image view state only.
-//!Some implementations treat the different decode modes as different
-//!texture formats.
-//!```
+//! RESOLUTION: Image view state only.
+//! Some implementations treat the different decode modes as different
+//! texture formats.
+//! ```
 //!# Version history
 //! - Revision 1, 2018-08-07 (Jan-Harald Fredriksen)  - Initial revision
 //!# Other information
@@ -94,12 +94,12 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 ///    VkFormat           decodeMode;
 ///} VkImageViewASTCDecodeModeEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`decode_mode`] is the intermediate format used to decode ASTC compressed formats.
-///# Description
-///## Valid Usage
+/// # Description
+/// ## Valid Usage
 /// - [`decode_mode`] **must**  be one of `VK_FORMAT_R16G16B16A16_SFLOAT`,
 ///   `VK_FORMAT_R8G8B8A8_UNORM`, or `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32`
 /// - If the [`decodeModeSharedExponent`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-astc-decodeModeSharedExponent)
@@ -107,22 +107,22 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// - If [`decode_mode`] is `VK_FORMAT_R8G8B8A8_UNORM` the image view  **must**  not include blocks
 ///   using any of the ASTC HDR modes
 /// - `format` of the image view  **must**  be one of the [ASTC Compressed Image Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#appendix-compressedtex-astc)
-///If `format` uses sRGB encoding then the [`decode_mode`] has no effect.
-///## Valid Usage (Implicit)
+/// If `format` uses sRGB encoding then the [`decode_mode`] has no effect.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`
 /// - [`decode_mode`] **must**  be a valid [`Format`] value
-///# Related
+/// # Related
 /// - [`ext_astc_decode_mode`]
 /// - [`Format`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewASTCDecodeModeEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -228,34 +228,34 @@ impl<'lt> ImageViewAstcDecodeModeEXT<'lt> {
 ///    VkBool32           decodeModeSharedExponent;
 ///} VkPhysicalDeviceASTCDecodeFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following feature:
-///# Description
+/// # Members
+/// This structure describes the following feature:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`decode_mode_shared_exponent`] indicates whether the implementation supports decoding ASTC
 ///   compressed formats to `VK_FORMAT_E5B9G9R9_UFLOAT_PACK32` internal precision.
-///If the [`PhysicalDeviceAstcDecodeFeaturesEXT`] structure is included in the [`p_next`] chain of
+/// If the [`PhysicalDeviceAstcDecodeFeaturesEXT`] structure is included in the [`p_next`] chain of
 /// the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceAstcDecodeFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceAstcDecodeFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`ext_astc_decode_mode`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceASTCDecodeFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

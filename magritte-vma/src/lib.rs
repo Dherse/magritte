@@ -1,7 +1,5 @@
 #![feature(arbitrary_self_types)]
 
-use std::ffi::CStr;
-
 #[doc(hidden)]
 mod ffi;
 
@@ -24,19 +22,3 @@ pub use ffi::{
 pub use flags::{AllocationCreateFlags, DefragmentationFlags, PoolCreateFlags};
 pub use image::{ImageUsage, VmaImage};
 pub use pool::{MemoryCorruptionState, Pool};
-
-pub(crate) trait AsCStr {
-    fn as_cstr(&self) -> &CStr;
-}
-
-impl AsCStr for &[i8] {
-    fn as_cstr(&self) -> &CStr {
-        unsafe { CStr::from_ptr(self.as_ptr()) }
-    }
-}
-
-impl<const N: usize> AsCStr for &[i8; N] {
-    fn as_cstr(&self) -> &CStr {
-        unsafe { CStr::from_ptr(self.as_ptr()) }
-    }
-}

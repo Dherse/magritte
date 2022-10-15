@@ -2,7 +2,7 @@ use std::{borrow::Cow, ffi::CStr, os::raw::c_char};
 
 use crate::{
     core::FALSE,
-    cstr_ptr,
+    cstr,
     entry::Entry,
     extensions::ext_debug_utils::{
         DebugUtilsMessageSeverityFlagBitsEXT, DebugUtilsMessageSeverityFlagsEXT, DebugUtilsMessageTypeFlagsEXT,
@@ -14,7 +14,9 @@ use crate::{
 pub use log::Level;
 use log::{debug, error, info, warn};
 
-pub const VALIDATION_LAYER_NAME: *const c_char = cstr_ptr!("VK_LAYER_KHRONOS_validation");
+pub const VALIDATION_LAYER_NAME: *const c_char = VALIDATION_LAYER_NAME_CSTR.as_ptr();
+
+pub const VALIDATION_LAYER_NAME_CSTR: &CStr = cstr!("VK_LAYER_KHRONOS_validation");
 
 /// Enables the Vulkan validation layer in the extension set
 #[inline]

@@ -65,23 +65,23 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
 ///    VK_MEMORY_OVERALLOCATION_BEHAVIOR_DISALLOWED_AMD = 2,
 ///} VkMemoryOverallocationBehaviorAMD;
 ///```
-///# Description
+/// # Description
 /// - [`DEFAULT`] lets the implementation decide if overallocation is allowed.
 /// - [`ALLOWED`] specifies overallocation is allowed if platform permits.
 /// - [`DISALLOWED`] specifies the application is not allowed to allocate device memory beyond the
 ///   heap sizes reported by [`PhysicalDeviceMemoryProperties`]. Allocations that are not explicitly
 ///   made by the application within the scope of the Vulkan instance are not accounted for.
-///# Related
+/// # Related
 /// - [`amd_memory_overallocation_behavior`]
 /// - [`DeviceMemoryOverallocationCreateInfoAMD`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryOverallocationBehaviorAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -164,26 +164,26 @@ impl std::fmt::Debug for MemoryOverallocationBehaviorAMD {
 ///    VkMemoryOverallocationBehaviorAMD    overallocationBehavior;
 ///} VkDeviceMemoryOverallocationCreateInfoAMD;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`overallocation_behavior`] is the desired overallocation behavior.
-///# Description
-///## Valid Usage (Implicit)
+/// # Description
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_MEMORY_OVERALLOCATION_CREATE_INFO_AMD`
 /// - [`overallocation_behavior`] **must**  be a valid [`MemoryOverallocationBehaviorAMD`] value
-///# Related
+/// # Related
 /// - [`amd_memory_overallocation_behavior`]
 /// - [`MemoryOverallocationBehaviorAMD`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceMemoryOverallocationCreateInfoAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

@@ -66,7 +66,7 @@ impl<'a> Origin<'a> {
     }
 
     /// Gets the major part of the version from an origin.
-    /// 
+    ///
     /// # Panics
     /// Panics if the origin is not a Vulkan version
     pub fn major(&self) -> u32 {
@@ -80,7 +80,7 @@ impl<'a> Origin<'a> {
     }
 
     /// Gets the minor part of the version from an origin.
-    /// 
+    ///
     /// # Panics
     /// Panics if the origin is not a Vulkan version
     pub fn minor(&self) -> u32 {

@@ -34,17 +34,17 @@
 //!   `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
 //!# Known issues & F.A.Q.
 //!```c
-//!(1) Do we need to support Bresenham-style and smooth lines with more than
-//!one rasterization sample? i.e. the equivalent of glDisable(GL_MULTISAMPLE)
-//!in OpenGL when the framebuffer has more than one sample?
-//!```
+//! (1) Do we need to support Bresenham-style and smooth lines with more than
+//! one rasterization sample? i.e. the equivalent of glDisable(GL_MULTISAMPLE)
+//! in OpenGL when the framebuffer has more than one sample?
+//! ```
 //!
 //!```c
-//!RESOLVED: Yes.
-//!For simplicity, Bresenham line rasterization carries forward a few
-//!restrictions from OpenGL, such as not supporting per-sample shading, alpha
-//!to coverage, or alpha to one.
-//!```
+//! RESOLVED: Yes.
+//! For simplicity, Bresenham line rasterization carries forward a few
+//! restrictions from OpenGL, such as not supporting per-sample shading, alpha
+//! to coverage, or alpha to one.
+//! ```
 //!# Version history
 //! - Revision 1, 2019-05-09 (Jeff Bolz)  - Initial draft
 //!# Other information
@@ -91,46 +91,46 @@ pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    uint32_t                                    lineStippleFactor,
 ///    uint16_t                                    lineStipplePattern);
 ///```
-///# Parameters
+/// # Parameters
 /// - [`command_buffer`] is the command buffer into which the command will be recorded.
 /// - [`line_stipple_factor`] is the repeat factor used in stippled line rasterization.
 /// - [`line_stipple_pattern`] is the bit pattern used in stippled line rasterization.
-///# Description
-///This command sets the line stipple state for subsequent drawing commands
-///when the graphics pipeline is created with
-///`VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` set in
-///[`PipelineDynamicStateCreateInfo::dynamic_states`].
-///Otherwise, this state is specified by the
-///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_factor`]
-///and
-///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_pattern`]
-///values used to create the currently active pipeline.
-///## Valid Usage
+/// # Description
+/// This command sets the line stipple state for subsequent drawing commands
+/// when the graphics pipeline is created with
+/// `VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` set in
+/// [`PipelineDynamicStateCreateInfo::dynamic_states`].
+/// Otherwise, this state is specified by the
+/// [`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_factor`]
+/// and
+/// [`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_pattern`]
+/// values used to create the currently active pipeline.
+/// ## Valid Usage
 /// - [`line_stipple_factor`] **must**  be in the range [1,256]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 /// - [`command_buffer`] **must**  be in the [recording state]()
 /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
 ///   operations
 ///
-///## Host Synchronization
+/// ## Host Synchronization
 /// - Host access to [`command_buffer`] **must**  be externally synchronized
 /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**  be
 ///   externally synchronized
 ///
-///## Command Properties
-///# Related
+/// ## Command Properties
+/// # Related
 /// - [`ext_line_rasterization`]
 /// - [`CommandBuffer`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkCmdSetLineStippleEXT")]
 pub type FNCmdSetLineStippleExt = Option<
     unsafe extern "system" fn(command_buffer: CommandBuffer, line_stipple_factor: u32, line_stipple_pattern: u16),
@@ -149,22 +149,22 @@ pub type FNCmdSetLineStippleExt = Option<
 ///    VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT = 3,
 ///} VkLineRasterizationModeEXT;
 ///```
-///# Description
+/// # Description
 /// - [`DEFAULT`] is equivalent to [`RECTANGULAR`] if [`PhysicalDeviceLimits::strict_lines`] is [`TRUE`], otherwise lines are drawn as non-`strictLines` parallelograms. Both of these modes are defined in [Basic Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-basic).
 /// - [`RECTANGULAR`] specifies lines drawn as if they were rectangles extruded from the line
 /// - [`BRESENHAM`] specifies lines drawn by determining which pixel diamonds the line intersects and exits, as defined in [Bresenham Line Segment Rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
 /// - [`RECTANGULAR_SMOOTH`] specifies lines drawn if they were rectangles extruded from the line, with alpha falloff, as defined in [Smooth Lines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
-///# Related
+/// # Related
 /// - [`ext_line_rasterization`]
 /// - [`PipelineRasterizationLineStateCreateInfoEXT`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkLineRasterizationModeEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -256,9 +256,9 @@ impl std::fmt::Debug for LineRasterizationModeEXT {
 ///    VkBool32           stippledSmoothLines;
 ///} VkPhysicalDeviceLineRasterizationFeaturesEXT;
 ///```
-///# Members
-///This structure describes the following features:
-///# Description
+/// # Members
+/// This structure describes the following features:
+/// # Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`rectangular_lines`] indicates whether the implementation supports [rectangular line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
@@ -272,27 +272,27 @@ impl std::fmt::Debug for LineRasterizationModeEXT {
 ///   with `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT` lines.
 /// - [`stippled_smooth_lines`] indicates whether the implementation supports [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple)
 ///   with `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT` lines.
-///If the [`PhysicalDeviceLineRasterizationFeaturesEXT`] structure is included in the [`p_next`]
+/// If the [`PhysicalDeviceLineRasterizationFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceFeatures2`] structure passed to
-///[`get_physical_device_features2`], it is filled in to indicate whether each
-///corresponding feature is supported.
-///[`PhysicalDeviceLineRasterizationFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-///[`DeviceCreateInfo`] to selectively enable these features.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceFeatures2`] structure passed to
+/// [`get_physical_device_features2`], it is filled in to indicate whether each
+/// corresponding feature is supported.
+/// [`PhysicalDeviceLineRasterizationFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+/// [`DeviceCreateInfo`] to selectively enable these features.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
-///# Related
+/// # Related
 /// - [`ext_line_rasterization`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -695,29 +695,29 @@ impl<'lt> PhysicalDeviceLineRasterizationFeaturesEXT<'lt> {
 ///    uint32_t           lineSubPixelPrecisionBits;
 ///} VkPhysicalDeviceLineRasterizationPropertiesEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`line_sub_pixel_precision_bits`] is the number of bits of subpixel precision in framebuffer coordinates x<sub>f</sub> and y<sub>f</sub> when rasterizing [line segments](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
-///# Description
-///If the [`PhysicalDeviceLineRasterizationPropertiesEXT`] structure is included in the [`p_next`]
+/// # Description
+/// If the [`PhysicalDeviceLineRasterizationPropertiesEXT`] structure is included in the [`p_next`]
 /// chain of the
-///[`PhysicalDeviceProperties2`] structure passed to
-///[`get_physical_device_properties2`], it is filled in with each
-///corresponding implementation-dependent property.
-///## Valid Usage (Implicit)
+/// [`PhysicalDeviceProperties2`] structure passed to
+/// [`get_physical_device_properties2`], it is filled in with each
+/// corresponding implementation-dependent property.
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`
-///# Related
+/// # Related
 /// - [`ext_line_rasterization`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceLineRasterizationPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -838,7 +838,7 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 ///    uint16_t                      lineStipplePattern;
 ///} VkPipelineRasterizationLineStateCreateInfoEXT;
 ///```
-///# Members
+/// # Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`line_rasterization_mode`] is a [`LineRasterizationModeEXT`] value selecting the style of
@@ -846,10 +846,10 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 /// - [`stippled_line_enable`] enables [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple).
 /// - [`line_stipple_factor`] is the repeat factor used in stippled line rasterization.
 /// - [`line_stipple_pattern`] is the bit pattern used in stippled line rasterization.
-///# Description
-///If [`stippled_line_enable`] is [`FALSE`], the values of
-///[`line_stipple_factor`] and [`line_stipple_pattern`] are ignored.
-///## Valid Usage
+/// # Description
+/// If [`stippled_line_enable`] is [`FALSE`], the values of
+/// [`line_stipple_factor`] and [`line_stipple_pattern`] are ignored.
+/// ## Valid Usage
 /// - If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT`, then the [rectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rectangularLines)
 ///   feature  **must**  be enabled
 /// - If [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT`, then the [bresenhamLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bresenhamLines)
@@ -860,22 +860,22 @@ impl<'lt> PhysicalDeviceLineRasterizationPropertiesEXT<'lt> {
 /// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT`, then the [stippledSmoothLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledSmoothLines) feature  **must**  be enabled
 /// -    If [`stippled_line_enable`] is [`TRUE`] and [`line_rasterization_mode`] is `VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT`, then the [stippledRectangularLines](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-stippledRectangularLines) feature  **must**  be enabled and [`PhysicalDeviceLimits::strict_lines`] **must**  be [`TRUE`]
 ///
-///## Valid Usage (Implicit)
+/// ## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
 /// - [`line_rasterization_mode`] **must**  be a valid [`LineRasterizationModeEXT`] value
-///# Related
+/// # Related
 /// - [`ext_line_rasterization`]
 /// - [`Bool32`]
 /// - [`LineRasterizationModeEXT`]
 /// - [`StructureType`]
 ///
-///# Notes and documentation
-///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+/// # Notes and documentation
+/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-///This documentation is generated from the Vulkan specification and documentation.
-///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+/// This documentation is generated from the Vulkan specification and documentation.
+/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-///This license explicitely allows adapting the source material as long as proper credit is given.
+/// This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationLineStateCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1082,46 +1082,46 @@ impl CommandBuffer {
     ///    uint32_t                                    lineStippleFactor,
     ///    uint16_t                                    lineStipplePattern);
     ///```
-    ///# Parameters
+    /// # Parameters
     /// - [`command_buffer`] is the command buffer into which the command will be recorded.
     /// - [`line_stipple_factor`] is the repeat factor used in stippled line rasterization.
     /// - [`line_stipple_pattern`] is the bit pattern used in stippled line rasterization.
-    ///# Description
-    ///This command sets the line stipple state for subsequent drawing commands
-    ///when the graphics pipeline is created with
-    ///`VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` set in
-    ///[`PipelineDynamicStateCreateInfo::dynamic_states`].
-    ///Otherwise, this state is specified by the
-    ///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_factor`]
-    ///and
-    ///[`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_pattern`]
-    ///values used to create the currently active pipeline.
-    ///## Valid Usage
+    /// # Description
+    /// This command sets the line stipple state for subsequent drawing commands
+    /// when the graphics pipeline is created with
+    /// `VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` set in
+    /// [`PipelineDynamicStateCreateInfo::dynamic_states`].
+    /// Otherwise, this state is specified by the
+    /// [`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_factor`]
+    /// and
+    /// [`PipelineRasterizationLineStateCreateInfoEXT`]::[`line_stipple_pattern`]
+    /// values used to create the currently active pipeline.
+    /// ## Valid Usage
     /// - [`line_stipple_factor`] **must**  be in the range [1,256]
     ///
-    ///## Valid Usage (Implicit)
+    /// ## Valid Usage (Implicit)
     /// - [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
     /// - [`command_buffer`] **must**  be in the [recording state]()
     /// - The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics
     ///   operations
     ///
-    ///## Host Synchronization
+    /// ## Host Synchronization
     /// - Host access to [`command_buffer`] **must**  be externally synchronized
     /// - Host access to the [`CommandPool`] that [`command_buffer`] was allocated from  **must**
     ///   be externally synchronized
     ///
-    ///## Command Properties
-    ///# Related
+    /// ## Command Properties
+    /// # Related
     /// - [`ext_line_rasterization`]
     /// - [`CommandBuffer`]
     ///
-    ///# Notes and documentation
-    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    /// # Notes and documentation
+    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    ///This documentation is generated from the Vulkan specification and documentation.
-    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    /// This documentation is generated from the Vulkan specification and documentation.
+    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    ///This license explicitely allows adapting the source material as long as proper credit is
+    /// This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkCmdSetLineStippleEXT")]
     #[track_caller]

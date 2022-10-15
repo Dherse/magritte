@@ -27,22 +27,30 @@ use tracing::{error, info, trace, warn};
 
 #[cfg(not(any(feature = "log", feature = "tracing")))]
 macro_rules! error {
-    ($($arg:tt)*) => { () };
+    ($($arg:tt)*) => {
+        ()
+    };
 }
 
 #[cfg(not(any(feature = "log", feature = "tracing")))]
 macro_rules! trace {
-    ($($arg:tt)*) => { () };
+    ($($arg:tt)*) => {
+        ()
+    };
 }
 
 #[cfg(not(any(feature = "log", feature = "tracing")))]
 macro_rules! info {
-    ($($arg:tt)*) => { () };
+    ($($arg:tt)*) => {
+        ()
+    };
 }
 
 #[cfg(not(any(feature = "log", feature = "tracing")))]
 macro_rules! warn {
-    ($($arg:tt)*) => { () };
+    ($($arg:tt)*) => {
+        ()
+    };
 }
 
 /// A simple dependency and reference counter based garbage collector for Vulkan handles.

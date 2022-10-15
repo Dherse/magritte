@@ -7,10 +7,19 @@ edition = "2021"
 # Vulkan Memory Allocator
 magritte-vma = { path = "../magritte-vma" }
 
+# Error handling
+thiserror = "1.0.37"
+
+# Logging facilities
+log = "0.4.16"
+
 # Vulkan bindings
 [dependencies.magritte]
 path = "../magritte"
 features = [
     "window",
+    "VK_KHR_swapchain",
+    "VK_EXT_validation_features",
+    "VK_EXT_debug_utils",
     "validation",
 ]
