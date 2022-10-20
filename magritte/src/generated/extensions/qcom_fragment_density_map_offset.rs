@@ -68,35 +68,35 @@ pub const QCOM_FRAGMENT_DENSITY_MAP_OFFSET_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           fragmentDensityMapOffset;
 ///} VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - `fragmentDensityMapOffsets` specifies whether the implementation supports [fragment density map offsets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapoffsets)
-/// If the [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`] structure is included in the
+///If the [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_FEATURES_QCOM`
-/// # Related
+///# Related
 /// - [`qcom_fragment_density_map_offset`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -122,6 +122,13 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -237,31 +244,31 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetFeaturesQCOM<'lt> {
 ///    VkExtent2D         fragmentDensityOffsetGranularity;
 ///} VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_offset_granularity`] is the granularity for [fragment density offsets](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-fragmentdensitymapoffsets).
-/// # Description
-/// If the [`PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM`] structure is included in the
+///# Description
+///If the [`PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_OFFSET_PROPERTIES_QCOM`
-/// # Related
+///# Related
 /// - [`qcom_fragment_density_map_offset`]
 /// - [`Extent2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -288,6 +295,13 @@ impl<'lt> Default for PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> 
     }
 }
 impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -379,27 +393,27 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 ///    const VkOffset2D*    pFragmentDensityOffsets;
 ///} VkSubpassFragmentDensityMapOffsetEndInfoQCOM;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_density_offset_count`] is the number of offsets being specified.
 /// - [`fragment_density_offsets`] is a pointer to an array of [`Offset2D`] structs, each of which
 ///   describes the offset per layer.
-/// # Description
-/// The array elements are given per `layer` as defined by
-/// [Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value), where
-/// index = layer.
-/// Each (x,y) offset is in framebuffer pixels and shifts the fetch of the
-/// fragment density map by that amount.
-/// Offsets can be positive or negative.Offset values specified for any subpass that is not the last
+///# Description
+///The array elements are given per `layer` as defined by
+///[Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value), where
+///index = layer.
+///Each (x,y) offset is in framebuffer pixels and shifts the fetch of the
+///fragment density map by that amount.
+///Offsets can be positive or negative.Offset values specified for any subpass that is not the last
 /// subpass in the
-/// render pass are ignored.
-/// If the [`SubpassEndInfo`]::[`p_next`] chain for the last subpass of a
-/// renderpass does not include
-/// [`SubpassFragmentDensityMapOffsetEndInfoQCOM`], or if
-/// [`fragment_density_offset_count`] is zero, then the offset (0,0) is
-/// used for [Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value).
-/// ## Valid Usage
+///render pass are ignored.
+///If the [`SubpassEndInfo`]::[`p_next`] chain for the last subpass of a
+///renderpass does not include
+///[`SubpassFragmentDensityMapOffsetEndInfoQCOM`], or if
+///[`fragment_density_offset_count`] is zero, then the offset (0,0) is
+///used for [Fetch Density Value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymap-fetch-density-value).
+///## Valid Usage
 /// - If the [`fragmentDensityMapOffsets`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fragmentDensityMapOffsets)
 ///   feature is not enabled or fragment density map is not enabled in the render pass,
 ///   [`fragment_density_offset_count`] **must**  equal `0`.
@@ -435,22 +449,22 @@ impl<'lt> PhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM<'lt> {
 /// - The `y` component of each element of [`fragment_density_offsets`] **must**  be an integer
 ///   multiple of `fragmentDensityOffsetGranularity.height`.
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_FRAGMENT_DENSITY_MAP_OFFSET_END_INFO_QCOM`
 /// - If [`fragment_density_offset_count`] is not `0`, [`fragment_density_offsets`] **must**  be a
 ///   valid pointer to an array of [`fragment_density_offset_count`][`Offset2D`] structures
-/// # Related
+///# Related
 /// - [`qcom_fragment_density_map_offset`]
 /// - [`Offset2D`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSubpassFragmentDensityMapOffsetEndInfoQCOM")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]

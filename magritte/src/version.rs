@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 use bytemuck::{Pod, Zeroable};
 
 /// Utilities for pretty printing Vulkan versions
-#[derive(Copy, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Copy, Clone, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
@@ -19,6 +19,18 @@ pub struct Version(pub u32);
 impl const Default for Version {
     fn default() -> Self {
         Self::VULKAN1_0
+    }
+}
+
+impl PartialOrd<Self> for Version {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl Ord for Version {
+    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+        self.0.cmp(&other.0)
     }
 }
 

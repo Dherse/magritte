@@ -64,27 +64,27 @@ pub const GGP_FRAME_TOKEN_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_GGP_f
 ///    GgpFrameToken      frameToken;
 ///} VkPresentFrameTokenGGP;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`frame_token`] is the Google Games Platform frame token.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`frame_token`] **must**  be a valid [`GgpFrameToken`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PRESENT_FRAME_TOKEN_GGP`
-/// # Related
+///# Related
 /// - [`ggp_frame_token`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentFrameTokenGGP")]
 #[repr(C)]
 pub struct PresentFrameTokenGGP<'lt> {
@@ -109,6 +109,13 @@ impl<'lt> Default for PresentFrameTokenGGP<'lt> {
     }
 }
 impl<'lt> PresentFrameTokenGGP<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PresentFrameTokenGGP<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next

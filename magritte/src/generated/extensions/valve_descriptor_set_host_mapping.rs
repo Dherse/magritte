@@ -76,26 +76,26 @@ pub const VALVE_DESCRIPTOR_SET_HOST_MAPPING_EXTENSION_NAME: &'static CStr =
 ///    const VkDescriptorSetBindingReferenceVALVE* pBindingReference,
 ///    VkDescriptorSetLayoutHostMappingInfoVALVE*  pHostMapping);
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_binding_reference`] **must**  be a valid pointer to a valid
 ///   [`DescriptorSetBindingReferenceVALVE`] structure
 /// - [`p_host_mapping`] **must**  be a valid pointer to a
 ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetBindingReferenceVALVE`]
 /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
 pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
     for<'lt> unsafe extern "system" fn(
@@ -116,23 +116,23 @@ pub type FNGetDescriptorSetLayoutHostMappingInfoValve = Option<
 ///    VkDescriptorSet                             descriptorSet,
 ///    void**                                      ppData);
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
 /// - [`pp_data`] **must**  be a valid pointer to a pointer value
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSet`]
 /// - [`Device`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
 pub type FNGetDescriptorSetHostMappingValve =
     Option<unsafe extern "system" fn(device: Device, descriptor_set: DescriptorSet, pp_data: *mut *mut c_void)>;
@@ -149,22 +149,22 @@ pub type FNGetDescriptorSetHostMappingValve =
 ///    VkBool32           descriptorSetHostMapping;
 ///} VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -190,6 +190,13 @@ impl<'lt> Default for PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -307,24 +314,24 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 ///    uint32_t                 binding;
 ///} VkDescriptorSetBindingReferenceVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_BINDING_REFERENCE_VALVE`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`DescriptorSetLayout`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetBindingReferenceVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -352,6 +359,13 @@ impl<'lt> Default for DescriptorSetBindingReferenceVALVE<'lt> {
     }
 }
 impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DescriptorSetBindingReferenceVALVE<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
@@ -452,22 +466,22 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 ///    uint32_t           descriptorSize;
 ///} VkDescriptorSetLayoutHostMappingInfoVALVE;
 ///```
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_HOST_MAPPING_INFO_VALVE`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`valve_descriptor_set_host_mapping`]
 /// - [`StructureType`]
 /// - [`get_descriptor_set_layout_host_mapping_info_valve`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutHostMappingInfoVALVE")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -495,6 +509,13 @@ impl<'lt> Default for DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     }
 }
 impl<'lt> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DescriptorSetLayoutHostMappingInfoVALVE<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -601,26 +622,26 @@ impl Device {
     ///    const VkDescriptorSetBindingReferenceVALVE* pBindingReference,
     ///    VkDescriptorSetLayoutHostMappingInfoVALVE*  pHostMapping);
     ///```
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_binding_reference`] **must**  be a valid pointer to a valid
     ///   [`DescriptorSetBindingReferenceVALVE`] structure
     /// - [`p_host_mapping`] **must**  be a valid pointer to a
     ///   [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
-    /// # Related
+    ///# Related
     /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSetBindingReferenceVALVE`]
     /// - [`DescriptorSetLayoutHostMappingInfoVALVE`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetLayoutHostMappingInfoVALVE")]
     #[track_caller]
@@ -629,7 +650,7 @@ impl Device {
         self: &Unique<Device>,
         p_binding_reference: &DescriptorSetBindingReferenceVALVE<'lt>,
         p_host_mapping: Option<DescriptorSetLayoutHostMappingInfoVALVE<'lt>>,
-    ) -> DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
+    ) -> DescriptorSetLayoutHostMappingInfoVALVE<'static> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .vtable()
@@ -650,7 +671,7 @@ impl Device {
         );
         {
             p_host_mapping.p_next = std::ptr::null_mut();
-            p_host_mapping
+            std::mem::transmute(p_host_mapping)
         }
     }
 }
@@ -667,23 +688,23 @@ impl Device {
     ///    VkDescriptorSet                             descriptorSet,
     ///    void**                                      ppData);
     ///```
-    /// # Description
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`descriptor_set`] **must**  be a valid [`DescriptorSet`] handle
     /// - [`pp_data`] **must**  be a valid pointer to a pointer value
-    /// # Related
+    ///# Related
     /// - [`valve_descriptor_set_host_mapping`]
     /// - [`DescriptorSet`]
     /// - [`Device`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDescriptorSetHostMappingVALVE")]
     #[track_caller]

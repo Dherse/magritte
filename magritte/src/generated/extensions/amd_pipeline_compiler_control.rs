@@ -69,17 +69,17 @@ pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr =
 ///typedef enum VkPipelineCompilerControlFlagBitsAMD {
 ///} VkPipelineCompilerControlFlagBitsAMD;
 ///```
-/// # Related
+///# Related
 /// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCompilerControlFlagBitsAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -140,17 +140,17 @@ impl std::fmt::Debug for PipelineCompilerControlFlagBitsAMD {
 ///typedef enum VkPipelineCompilerControlFlagBitsAMD {
 ///} VkPipelineCompilerControlFlagBitsAMD;
 ///```
-/// # Related
+///# Related
 /// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCompilerControlFlagsAMD")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -403,27 +403,27 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
 ///    VkPipelineCompilerControlFlagsAMD    compilerControlFlags;
 ///} VkPipelineCompilerControlCreateInfoAMD;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`compiler_control_flags`] is a bitmask of [`PipelineCompilerControlFlagBitsAMD`] affecting
 ///   how the pipeline will be compiled.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
 /// - [`compiler_control_flags`] **must**  be `0`
-/// # Related
+///# Related
 /// - [`amd_pipeline_compiler_control`]
 /// - [`PipelineCompilerControlFlagsAMD`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCompilerControlCreateInfoAMD")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -451,6 +451,13 @@ impl<'lt> Default for PipelineCompilerControlCreateInfoAMD<'lt> {
     }
 }
 impl<'lt> PipelineCompilerControlCreateInfoAMD<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PipelineCompilerControlCreateInfoAMD<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next

@@ -175,6 +175,15 @@ impl<'a> Struct<'a> {
         })
     }
 
+    /// Does the structure only contain the `p_next` pointer and no other.
+    pub fn has_only_p_next(&self) -> bool {
+        self.has_p_next().is_some() && self.fields().iter().all(|field| match field.ty() {
+            Ty::Pointer(_, _) if field.original_name() == "pNext" => true,
+            Ty::Pointer(_, _) | Ty::Slice(_, _, _) => false,
+            _ => true,
+        })
+    }
+
     /*/// Checks if this structure needs one or more generic type arguments
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_generics(source))

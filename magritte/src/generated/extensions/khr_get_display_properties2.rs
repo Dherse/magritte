@@ -99,38 +99,38 @@ pub const KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME: &'static CStr = crate::cs
 ///    uint32_t*                                   pPropertyCount,
 ///    VkDisplayProperties2KHR*                    pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is a physical device.
 /// - [`p_property_count`] is a pointer to an integer related to the number of display devices
 ///   available or queried, as described below.
 /// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayProperties2KHR`]
 ///   structures.
-/// # Description
-/// [`get_physical_device_display_properties2_khr`] behaves similarly to
-/// [`get_physical_device_display_properties_khr`], with the ability to return
-/// extended information via chained output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_display_properties2_khr`] behaves similarly to
+///[`get_physical_device_display_properties_khr`], with the ability to return
+///extended information via chained output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
 ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
 ///   [`p_property_count`][`DisplayProperties2KHR`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayProperties2KHR`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceDisplayProperties2KHR")]
 pub type FNGetPhysicalDeviceDisplayProperties2Khr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -149,38 +149,38 @@ pub type FNGetPhysicalDeviceDisplayProperties2Khr = Option<
 ///    uint32_t*                                   pPropertyCount,
 ///    VkDisplayPlaneProperties2KHR*               pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is a physical device.
 /// - [`p_property_count`] is a pointer to an integer related to the number of display planes
 ///   available or queried, as described below.
 /// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayPlaneProperties2KHR`]
 ///   structures.
-/// # Description
-/// [`get_physical_device_display_plane_properties2_khr`] behaves similarly to
-/// [`get_physical_device_display_plane_properties_khr`], with the ability to
-/// return extended information via chained output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_physical_device_display_plane_properties2_khr`] behaves similarly to
+///[`get_physical_device_display_plane_properties_khr`], with the ability to
+///return extended information via chained output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
 /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
 ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
 ///   [`p_property_count`][`DisplayPlaneProperties2KHR`] structures
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneProperties2KHR`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetPhysicalDeviceDisplayPlaneProperties2KHR")]
 pub type FNGetPhysicalDeviceDisplayPlaneProperties2Khr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -200,18 +200,18 @@ pub type FNGetPhysicalDeviceDisplayPlaneProperties2Khr = Option<
 ///    uint32_t*                                   pPropertyCount,
 ///    VkDisplayModeProperties2KHR*                pProperties);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device associated with [`display`].
 /// - [`display`] is the display to query.
 /// - [`p_property_count`] is a pointer to an integer related to the number of display modes
 ///   available or queried, as described below.
 /// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayModeProperties2KHR`]
 ///   structures.
-/// # Description
-/// [`get_display_mode_properties2_khr`] behaves similarly to
-/// [`get_display_mode_properties_khr`], with the ability to return extended
-/// information via chained output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_display_mode_properties2_khr`] behaves similarly to
+///[`get_display_mode_properties_khr`], with the ability to return extended
+///information via chained output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
 /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -220,22 +220,22 @@ pub type FNGetPhysicalDeviceDisplayPlaneProperties2Khr = Option<
 ///   [`p_property_count`][`DisplayModeProperties2KHR`] structures
 /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayKHR`]
 /// - [`DisplayModeProperties2KHR`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDisplayModeProperties2KHR")]
 pub type FNGetDisplayModeProperties2Khr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -255,40 +255,40 @@ pub type FNGetDisplayModeProperties2Khr = Option<
 ///    const VkDisplayPlaneInfo2KHR*               pDisplayPlaneInfo,
 ///    VkDisplayPlaneCapabilities2KHR*             pCapabilities);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`physical_device`] is the physical device associated with [`p_display_plane_info`].
 /// - [`p_display_plane_info`] is a pointer to a [`DisplayPlaneInfo2KHR`] structure describing the
 ///   plane and mode.
 /// - [`p_capabilities`] is a pointer to a [`DisplayPlaneCapabilities2KHR`] structure in which the
 ///   capabilities are returned.
-/// # Description
-/// [`get_display_plane_capabilities2_khr`] behaves similarly to
-/// [`get_display_plane_capabilities_khr`], with the ability to specify extended
-/// inputs via chained input structures, and to return extended information via
-/// chained output structures.
-/// ## Valid Usage (Implicit)
+///# Description
+///[`get_display_plane_capabilities2_khr`] behaves similarly to
+///[`get_display_plane_capabilities_khr`], with the ability to specify extended
+///inputs via chained input structures, and to return extended information via
+///chained output structures.
+///## Valid Usage (Implicit)
 /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 /// - [`p_display_plane_info`] **must**  be a valid pointer to a valid [`DisplayPlaneInfo2KHR`]
 ///   structure
 /// - [`p_capabilities`] **must**  be a valid pointer to a [`DisplayPlaneCapabilities2KHR`]
 ///   structure
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneCapabilities2KHR`]
 /// - [`DisplayPlaneInfo2KHR`]
 /// - [`PhysicalDevice`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetDisplayPlaneCapabilities2KHR")]
 pub type FNGetDisplayPlaneCapabilities2Khr = Option<
     for<'lt> unsafe extern "system" fn(
@@ -308,27 +308,27 @@ pub type FNGetDisplayPlaneCapabilities2Khr = Option<
 ///    VkDisplayPropertiesKHR    displayProperties;
 ///} VkDisplayProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_properties`] is a [`DisplayPropertiesKHR`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayPropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_physical_device_display_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayProperties2KHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -354,6 +354,13 @@ impl<'lt> Default for DisplayProperties2KHR<'lt> {
     }
 }
 impl<'lt> DisplayProperties2KHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DisplayProperties2KHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -443,27 +450,27 @@ impl<'lt> DisplayProperties2KHR<'lt> {
 ///    VkDisplayPlanePropertiesKHR    displayPlaneProperties;
 ///} VkDisplayPlaneProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_plane_properties`] is a [`DisplayPlanePropertiesKHR`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayPlanePropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_physical_device_display_plane_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneProperties2KHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -490,6 +497,13 @@ impl<'lt> Default for DisplayPlaneProperties2KHR<'lt> {
     }
 }
 impl<'lt> DisplayPlaneProperties2KHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DisplayPlaneProperties2KHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -582,27 +596,27 @@ impl<'lt> DisplayPlaneProperties2KHR<'lt> {
 ///    VkDisplayModePropertiesKHR    displayModeProperties;
 ///} VkDisplayModeProperties2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`display_mode_properties`] is a [`DisplayModePropertiesKHR`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayModePropertiesKHR`]
 /// - [`StructureType`]
 /// - [`get_display_mode_properties2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeProperties2KHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -629,6 +643,13 @@ impl<'lt> Default for DisplayModeProperties2KHR<'lt> {
     }
 }
 impl<'lt> DisplayModeProperties2KHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DisplayModeProperties2KHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -722,36 +743,36 @@ impl<'lt> DisplayModeProperties2KHR<'lt> {
 ///    uint32_t            planeIndex;
 ///} VkDisplayPlaneInfo2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`mode`] is the display mode the application intends to program when using the specified
 ///   plane.
-/// # Description
+///# Description
 /// - [`plane_index`] is the plane which the application intends to use with the display.
-/// The members of [`DisplayPlaneInfo2KHR`] correspond to the arguments to
-/// [`get_display_plane_capabilities_khr`], with [`s_type`] and [`p_next`]
-/// added for extensibility.
-/// ## Valid Usage (Implicit)
+///The members of [`DisplayPlaneInfo2KHR`] correspond to the arguments to
+///[`get_display_plane_capabilities_khr`], with [`s_type`] and [`p_next`]
+///added for extensibility.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`mode`] **must**  be a valid [`DisplayModeKHR`] handle
 ///
-/// ## Host Synchronization
+///## Host Synchronization
 /// - Host access to [`mode`] **must**  be externally synchronized
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayModeKHR`]
 /// - [`StructureType`]
 /// - [`get_display_plane_capabilities2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneInfo2KHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -781,6 +802,13 @@ impl<'lt> Default for DisplayPlaneInfo2KHR<'lt> {
     }
 }
 impl<'lt> DisplayPlaneInfo2KHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DisplayPlaneInfo2KHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
@@ -878,27 +906,27 @@ impl<'lt> DisplayPlaneInfo2KHR<'lt> {
 ///    VkDisplayPlaneCapabilitiesKHR    capabilities;
 ///} VkDisplayPlaneCapabilities2KHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`capabilities`] is a [`DisplayPlaneCapabilitiesKHR`] structure.
-/// # Description
-/// ## Valid Usage (Implicit)
+///# Description
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR`
 /// - [`p_next`] **must**  be `NULL`
-/// # Related
+///# Related
 /// - [`khr_get_display_properties2`]
 /// - [`DisplayPlaneCapabilitiesKHR`]
 /// - [`StructureType`]
 /// - [`get_display_plane_capabilities2_khr`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPlaneCapabilities2KHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -924,6 +952,13 @@ impl<'lt> Default for DisplayPlaneCapabilities2KHR<'lt> {
     }
 }
 impl<'lt> DisplayPlaneCapabilities2KHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> DisplayPlaneCapabilities2KHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -1013,38 +1048,38 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkDisplayProperties2KHR*                    pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is a physical device.
     /// - [`p_property_count`] is a pointer to an integer related to the number of display devices
     ///   available or queried, as described below.
     /// - [`p_properties`] is either `NULL` or a pointer to an array of [`DisplayProperties2KHR`]
     ///   structures.
-    /// # Description
-    /// [`get_physical_device_display_properties2_khr`] behaves similarly to
-    /// [`get_physical_device_display_properties_khr`], with the ability to return
-    /// extended information via chained output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_display_properties2_khr`] behaves similarly to
+    ///[`get_physical_device_display_properties_khr`], with the ability to return
+    ///extended information via chained output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
     ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
     ///   [`p_property_count`][`DisplayProperties2KHR`] structures
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`khr_get_display_properties2`]
     /// - [`DisplayProperties2KHR`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceDisplayProperties2KHR")]
     #[track_caller]
@@ -1095,38 +1130,38 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkDisplayPlaneProperties2KHR*               pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is a physical device.
     /// - [`p_property_count`] is a pointer to an integer related to the number of display planes
     ///   available or queried, as described below.
     /// - [`p_properties`] is either `NULL` or a pointer to an array of
     ///   [`DisplayPlaneProperties2KHR`] structures.
-    /// # Description
-    /// [`get_physical_device_display_plane_properties2_khr`] behaves similarly to
-    /// [`get_physical_device_display_plane_properties_khr`], with the ability to
-    /// return extended information via chained output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_physical_device_display_plane_properties2_khr`] behaves similarly to
+    ///[`get_physical_device_display_plane_properties_khr`], with the ability to
+    ///return extended information via chained output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
     /// - If the value referenced by [`p_property_count`] is not `0`, and [`p_properties`] is not
     ///   `NULL`, [`p_properties`] **must**  be a valid pointer to an array of
     ///   [`p_property_count`][`DisplayPlaneProperties2KHR`] structures
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`khr_get_display_properties2`]
     /// - [`DisplayPlaneProperties2KHR`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetPhysicalDeviceDisplayPlaneProperties2KHR")]
     #[track_caller]
@@ -1178,18 +1213,18 @@ impl PhysicalDevice {
     ///    uint32_t*                                   pPropertyCount,
     ///    VkDisplayModeProperties2KHR*                pProperties);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device associated with [`display`].
     /// - [`display`] is the display to query.
     /// - [`p_property_count`] is a pointer to an integer related to the number of display modes
     ///   available or queried, as described below.
     /// - [`p_properties`] is either `NULL` or a pointer to an array of
     ///   [`DisplayModeProperties2KHR`] structures.
-    /// # Description
-    /// [`get_display_mode_properties2_khr`] behaves similarly to
-    /// [`get_display_mode_properties_khr`], with the ability to return extended
-    /// information via chained output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_display_mode_properties2_khr`] behaves similarly to
+    ///[`get_display_mode_properties_khr`], with the ability to return extended
+    ///information via chained output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`display`] **must**  be a valid [`DisplayKHR`] handle
     /// - [`p_property_count`] **must**  be a valid pointer to a `uint32_t` value
@@ -1198,22 +1233,22 @@ impl PhysicalDevice {
     ///   [`p_property_count`][`DisplayModeProperties2KHR`] structures
     /// - [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`  - `VK_INCOMPLETE`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`khr_get_display_properties2`]
     /// - [`DisplayKHR`]
     /// - [`DisplayModeProperties2KHR`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDisplayModeProperties2KHR")]
     #[track_caller]
@@ -1265,40 +1300,40 @@ impl PhysicalDevice {
     ///    const VkDisplayPlaneInfo2KHR*               pDisplayPlaneInfo,
     ///    VkDisplayPlaneCapabilities2KHR*             pCapabilities);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`physical_device`] is the physical device associated with [`p_display_plane_info`].
     /// - [`p_display_plane_info`] is a pointer to a [`DisplayPlaneInfo2KHR`] structure describing
     ///   the plane and mode.
     /// - [`p_capabilities`] is a pointer to a [`DisplayPlaneCapabilities2KHR`] structure in which
     ///   the capabilities are returned.
-    /// # Description
-    /// [`get_display_plane_capabilities2_khr`] behaves similarly to
-    /// [`get_display_plane_capabilities_khr`], with the ability to specify extended
-    /// inputs via chained input structures, and to return extended information via
-    /// chained output structures.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///[`get_display_plane_capabilities2_khr`] behaves similarly to
+    ///[`get_display_plane_capabilities_khr`], with the ability to specify extended
+    ///inputs via chained input structures, and to return extended information via
+    ///chained output structures.
+    ///## Valid Usage (Implicit)
     /// - [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
     /// - [`p_display_plane_info`] **must**  be a valid pointer to a valid [`DisplayPlaneInfo2KHR`]
     ///   structure
     /// - [`p_capabilities`] **must**  be a valid pointer to a [`DisplayPlaneCapabilities2KHR`]
     ///   structure
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
-    /// # Related
+    ///# Related
     /// - [`khr_get_display_properties2`]
     /// - [`DisplayPlaneCapabilities2KHR`]
     /// - [`DisplayPlaneInfo2KHR`]
     /// - [`PhysicalDevice`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetDisplayPlaneCapabilities2KHR")]
     #[track_caller]
@@ -1307,7 +1342,7 @@ impl PhysicalDevice {
         self: &Unique<PhysicalDevice>,
         p_display_plane_info: &DisplayPlaneInfo2KHR<'lt>,
         p_capabilities: Option<DisplayPlaneCapabilities2KHR<'lt>>,
-    ) -> VulkanResult<DisplayPlaneCapabilities2KHR<'lt>> {
+    ) -> VulkanResult<DisplayPlaneCapabilities2KHR<'static>> {
         #[cfg(any(debug_assertions, feature = "assertions"))]
         let _function = self
             .instance()
@@ -1331,7 +1366,7 @@ impl PhysicalDevice {
         match _return {
             VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
                 p_capabilities.p_next = std::ptr::null_mut();
-                p_capabilities
+                std::mem::transmute(p_capabilities)
             }),
             e => VulkanResult::Err(e),
         }

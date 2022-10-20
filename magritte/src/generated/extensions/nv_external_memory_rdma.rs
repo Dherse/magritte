@@ -78,38 +78,38 @@ pub type RemoteAddressNV = c_void;
 ///    const VkMemoryGetRemoteAddressInfoNV*       pMemoryGetRemoteAddressInfo,
 ///    VkRemoteAddressNV*                          pAddress);
 ///```
-/// # Parameters
+///# Parameters
 /// - [`device`] is the logical device that created the device memory being exported.
 /// - [`p_memory_get_remote_address_info`] is a pointer to a [`MemoryGetRemoteAddressInfoNV`]
 ///   structure containing parameters of the export operation.
 /// - [`p_address`] will return the address representing the payload of the device memory object.
-/// # Description
-/// More communication may be required between the kernel-mode drivers of the
-/// devices involved.
-/// This information is out of scope of this documentation and should be
-/// requested from the vendors of the devices.
-/// ## Valid Usage (Implicit)
+///# Description
+///More communication may be required between the kernel-mode drivers of the
+///devices involved.
+///This information is out of scope of this documentation and should be
+///requested from the vendors of the devices.
+///## Valid Usage (Implicit)
 /// - [`device`] **must**  be a valid [`Device`] handle
 /// - [`p_memory_get_remote_address_info`] **must**  be a valid pointer to a valid
 ///   [`MemoryGetRemoteAddressInfoNV`] structure
 /// - [`p_address`] **must**  be a valid pointer to a [`RemoteAddressNV`] value
 ///
-/// ## Return Codes
+///## Return Codes
 /// * - `VK_SUCCESS`
 /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-/// # Related
+///# Related
 /// - [`nv_external_memory_rdma`]
 /// - [`Device`]
 /// - [`MemoryGetRemoteAddressInfoNV`]
 /// - [`RemoteAddressNV`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "vkGetMemoryRemoteAddressNV")]
 pub type FNGetMemoryRemoteAddressNv = Option<
     for<'lt> unsafe extern "system" fn(
@@ -130,35 +130,35 @@ pub type FNGetMemoryRemoteAddressNv = Option<
 ///    VkBool32           externalMemoryRDMA;
 ///} VkPhysicalDeviceExternalMemoryRDMAFeaturesNV;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`external_memory_rdma`] indicates whether the implementation has support for the
 ///   `VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV` memory property and the
 ///   `VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV` external memory handle type.
-/// If the [`PhysicalDeviceExternalMemoryRdmaFeaturesNV`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceExternalMemoryRdmaFeaturesNV`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceExternalMemoryRdmaFeaturesNV`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceExternalMemoryRdmaFeaturesNV`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
-/// # Related
+///# Related
 /// - [`nv_external_memory_rdma`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalMemoryRDMAFeaturesNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -188,6 +188,13 @@ impl<'lt> Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -303,35 +310,35 @@ impl<'lt> PhysicalDeviceExternalMemoryRdmaFeaturesNV<'lt> {
 ///    VkExternalMemoryHandleTypeFlagBits    handleType;
 ///} VkMemoryGetRemoteAddressInfoNV;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`memory`] is the memory object from which the remote accessible address will be exported.
 /// - [`handle_type`] is the type of handle requested.
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - [`handle_type`] **must**  have been included in [`ExportMemoryAllocateInfo::handle_types`]
 ///   when [`memory`] was created
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`
 /// - [`p_next`] **must**  be `NULL`
 /// - [`memory`] **must**  be a valid [`DeviceMemory`] handle
 /// - [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
-/// # Related
+///# Related
 /// - [`nv_external_memory_rdma`]
 /// - [`DeviceMemory`]
 /// - [`ExternalMemoryHandleTypeFlagBits`]
 /// - [`StructureType`]
 /// - [`get_memory_remote_address_nv`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetRemoteAddressInfoNV")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -361,6 +368,13 @@ impl<'lt> Default for MemoryGetRemoteAddressInfoNV<'lt> {
     }
 }
 impl<'lt> MemoryGetRemoteAddressInfoNV<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> MemoryGetRemoteAddressInfoNV<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next
@@ -459,39 +473,39 @@ impl Device {
     ///    const VkMemoryGetRemoteAddressInfoNV*       pMemoryGetRemoteAddressInfo,
     ///    VkRemoteAddressNV*                          pAddress);
     ///```
-    /// # Parameters
+    ///# Parameters
     /// - [`device`] is the logical device that created the device memory being exported.
     /// - [`p_memory_get_remote_address_info`] is a pointer to a [`MemoryGetRemoteAddressInfoNV`]
     ///   structure containing parameters of the export operation.
     /// - [`p_address`] will return the address representing the payload of the device memory
     ///   object.
-    /// # Description
-    /// More communication may be required between the kernel-mode drivers of the
-    /// devices involved.
-    /// This information is out of scope of this documentation and should be
-    /// requested from the vendors of the devices.
-    /// ## Valid Usage (Implicit)
+    ///# Description
+    ///More communication may be required between the kernel-mode drivers of the
+    ///devices involved.
+    ///This information is out of scope of this documentation and should be
+    ///requested from the vendors of the devices.
+    ///## Valid Usage (Implicit)
     /// - [`device`] **must**  be a valid [`Device`] handle
     /// - [`p_memory_get_remote_address_info`] **must**  be a valid pointer to a valid
     ///   [`MemoryGetRemoteAddressInfoNV`] structure
     /// - [`p_address`] **must**  be a valid pointer to a [`RemoteAddressNV`] value
     ///
-    /// ## Return Codes
+    ///## Return Codes
     /// * - `VK_SUCCESS`
     /// * - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
-    /// # Related
+    ///# Related
     /// - [`nv_external_memory_rdma`]
     /// - [`Device`]
     /// - [`MemoryGetRemoteAddressInfoNV`]
     /// - [`RemoteAddressNV`]
     ///
-    /// # Notes and documentation
-    /// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+    ///# Notes and documentation
+    ///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
     ///
-    /// This documentation is generated from the Vulkan specification and documentation.
-    /// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+    ///This documentation is generated from the Vulkan specification and documentation.
+    ///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
     /// Commons Attribution 4.0 International*.
-    /// This license explicitely allows adapting the source material as long as proper credit is
+    ///This license explicitely allows adapting the source material as long as proper credit is
     /// given.
     #[doc(alias = "vkGetMemoryRemoteAddressNV")]
     #[track_caller]

@@ -1,3 +1,4 @@
+
 //!# Extensions
 //!This module contains all of the registered extensions gated by relevant feature gates.
 
@@ -5706,954 +5707,1192 @@ impl DeviceExtensions {
             #[cfg(feature = "VK_KHR_swapchain")]
             if hash == crate::utils::const_hash_str("VK_KHR_swapchain") {
                 out.khr_swapchain = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_display_swapchain")]
             if hash == crate::utils::const_hash_str("VK_KHR_display_swapchain") {
                 out.khr_display_swapchain = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_glsl_shader")]
             if hash == crate::utils::const_hash_str("VK_NV_glsl_shader") {
                 out.nv_glsl_shader = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_depth_range_unrestricted")]
             if hash == crate::utils::const_hash_str("VK_EXT_depth_range_unrestricted") {
                 out.ext_depth_range_unrestricted = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_sampler_mirror_clamp_to_edge")]
             if hash == crate::utils::const_hash_str("VK_KHR_sampler_mirror_clamp_to_edge") {
                 out.khr_sampler_mirror_clamp_to_edge = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_IMG_filter_cubic")]
             if hash == crate::utils::const_hash_str("VK_IMG_filter_cubic") {
                 out.img_filter_cubic = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_rasterization_order")]
             if hash == crate::utils::const_hash_str("VK_AMD_rasterization_order") {
                 out.amd_rasterization_order = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_trinary_minmax")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_trinary_minmax") {
                 out.amd_shader_trinary_minmax = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_explicit_vertex_parameter")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_explicit_vertex_parameter") {
                 out.amd_shader_explicit_vertex_parameter = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_debug_marker")]
             if hash == crate::utils::const_hash_str("VK_EXT_debug_marker") {
                 out.ext_debug_marker = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_video_queue")]
             if hash == crate::utils::const_hash_str("VK_KHR_video_queue") {
                 out.khr_video_queue = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_video_decode_queue")]
             if hash == crate::utils::const_hash_str("VK_KHR_video_decode_queue") {
                 out.khr_video_decode_queue = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_gcn_shader")]
             if hash == crate::utils::const_hash_str("VK_AMD_gcn_shader") {
                 out.amd_gcn_shader = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_dedicated_allocation")]
             if hash == crate::utils::const_hash_str("VK_NV_dedicated_allocation") {
                 out.nv_dedicated_allocation = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_transform_feedback")]
             if hash == crate::utils::const_hash_str("VK_EXT_transform_feedback") {
                 out.ext_transform_feedback = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NVX_binary_import")]
             if hash == crate::utils::const_hash_str("VK_NVX_binary_import") {
                 out.nvx_binary_import = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NVX_image_view_handle")]
             if hash == crate::utils::const_hash_str("VK_NVX_image_view_handle") {
                 out.nvx_image_view_handle = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_draw_indirect_count")]
             if hash == crate::utils::const_hash_str("VK_AMD_draw_indirect_count") {
                 out.amd_draw_indirect_count = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_negative_viewport_height")]
             if hash == crate::utils::const_hash_str("VK_AMD_negative_viewport_height") {
                 out.amd_negative_viewport_height = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_gpu_shader_half_float")]
             if hash == crate::utils::const_hash_str("VK_AMD_gpu_shader_half_float") {
                 out.amd_gpu_shader_half_float = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_ballot")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_ballot") {
                 out.amd_shader_ballot = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_video_encode_h264")]
             if hash == crate::utils::const_hash_str("VK_EXT_video_encode_h264") {
                 out.ext_video_encode_h264 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_video_encode_h265")]
             if hash == crate::utils::const_hash_str("VK_EXT_video_encode_h265") {
                 out.ext_video_encode_h265 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_video_decode_h264")]
             if hash == crate::utils::const_hash_str("VK_EXT_video_decode_h264") {
                 out.ext_video_decode_h264 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_texture_gather_bias_lod")]
             if hash == crate::utils::const_hash_str("VK_AMD_texture_gather_bias_lod") {
                 out.amd_texture_gather_bias_lod = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_info")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_info") {
                 out.amd_shader_info = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_dynamic_rendering")]
             if hash == crate::utils::const_hash_str("VK_KHR_dynamic_rendering") {
                 out.khr_dynamic_rendering = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_image_load_store_lod")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_image_load_store_lod") {
                 out.amd_shader_image_load_store_lod = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_corner_sampled_image")]
             if hash == crate::utils::const_hash_str("VK_NV_corner_sampled_image") {
                 out.nv_corner_sampled_image = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_multiview")]
             if hash == crate::utils::const_hash_str("VK_KHR_multiview") {
                 out.khr_multiview = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_IMG_format_pvrtc")]
             if hash == crate::utils::const_hash_str("VK_IMG_format_pvrtc") {
                 out.img_format_pvrtc = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_external_memory")]
             if hash == crate::utils::const_hash_str("VK_NV_external_memory") {
                 out.nv_external_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_external_memory_win32")]
             if hash == crate::utils::const_hash_str("VK_NV_external_memory_win32") {
                 out.nv_external_memory_win32 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_win32_keyed_mutex")]
             if hash == crate::utils::const_hash_str("VK_NV_win32_keyed_mutex") {
                 out.nv_win32_keyed_mutex = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_device_group")]
             if hash == crate::utils::const_hash_str("VK_KHR_device_group") {
                 out.khr_device_group = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_draw_parameters")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_draw_parameters") {
                 out.khr_shader_draw_parameters = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_subgroup_ballot")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_subgroup_ballot") {
                 out.ext_shader_subgroup_ballot = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_subgroup_vote")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_subgroup_vote") {
                 out.ext_shader_subgroup_vote = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_texture_compression_astc_hdr")]
             if hash == crate::utils::const_hash_str("VK_EXT_texture_compression_astc_hdr") {
                 out.ext_texture_compression_astc_hdr = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_astc_decode_mode")]
             if hash == crate::utils::const_hash_str("VK_EXT_astc_decode_mode") {
                 out.ext_astc_decode_mode = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_maintenance1")]
             if hash == crate::utils::const_hash_str("VK_KHR_maintenance1") {
                 out.khr_maintenance1 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_memory")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_memory") {
                 out.khr_external_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_memory_win32")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_memory_win32") {
                 out.khr_external_memory_win32 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_memory_fd")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_memory_fd") {
                 out.khr_external_memory_fd = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_win32_keyed_mutex")]
             if hash == crate::utils::const_hash_str("VK_KHR_win32_keyed_mutex") {
                 out.khr_win32_keyed_mutex = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_semaphore")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore") {
                 out.khr_external_semaphore = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_semaphore_win32")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_win32") {
                 out.khr_external_semaphore_win32 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_semaphore_fd")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_fd") {
                 out.khr_external_semaphore_fd = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_push_descriptor")]
             if hash == crate::utils::const_hash_str("VK_KHR_push_descriptor") {
                 out.khr_push_descriptor = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_conditional_rendering")]
             if hash == crate::utils::const_hash_str("VK_EXT_conditional_rendering") {
                 out.ext_conditional_rendering = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_float16_int8")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_float16_int8") {
                 out.khr_shader_float16_int8 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_16bit_storage")]
             if hash == crate::utils::const_hash_str("VK_KHR_16bit_storage") {
                 out.khr_16bit_storage = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_incremental_present")]
             if hash == crate::utils::const_hash_str("VK_KHR_incremental_present") {
                 out.khr_incremental_present = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_descriptor_update_template")]
             if hash == crate::utils::const_hash_str("VK_KHR_descriptor_update_template") {
                 out.khr_descriptor_update_template = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_clip_space_w_scaling")]
             if hash == crate::utils::const_hash_str("VK_NV_clip_space_w_scaling") {
                 out.nv_clip_space_w_scaling = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_display_control")]
             if hash == crate::utils::const_hash_str("VK_EXT_display_control") {
                 out.ext_display_control = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GOOGLE_display_timing")]
             if hash == crate::utils::const_hash_str("VK_GOOGLE_display_timing") {
                 out.google_display_timing = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_sample_mask_override_coverage")]
             if hash == crate::utils::const_hash_str("VK_NV_sample_mask_override_coverage") {
                 out.nv_sample_mask_override_coverage = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_geometry_shader_passthrough")]
             if hash == crate::utils::const_hash_str("VK_NV_geometry_shader_passthrough") {
                 out.nv_geometry_shader_passthrough = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_viewport_array2")]
             if hash == crate::utils::const_hash_str("VK_NV_viewport_array2") {
                 out.nv_viewport_array2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NVX_multiview_per_view_attributes")]
             if hash == crate::utils::const_hash_str("VK_NVX_multiview_per_view_attributes") {
                 out.nvx_multiview_per_view_attributes = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_viewport_swizzle")]
             if hash == crate::utils::const_hash_str("VK_NV_viewport_swizzle") {
                 out.nv_viewport_swizzle = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_discard_rectangles")]
             if hash == crate::utils::const_hash_str("VK_EXT_discard_rectangles") {
                 out.ext_discard_rectangles = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_conservative_rasterization")]
             if hash == crate::utils::const_hash_str("VK_EXT_conservative_rasterization") {
                 out.ext_conservative_rasterization = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_depth_clip_enable")]
             if hash == crate::utils::const_hash_str("VK_EXT_depth_clip_enable") {
                 out.ext_depth_clip_enable = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_hdr_metadata")]
             if hash == crate::utils::const_hash_str("VK_EXT_hdr_metadata") {
                 out.ext_hdr_metadata = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_imageless_framebuffer")]
             if hash == crate::utils::const_hash_str("VK_KHR_imageless_framebuffer") {
                 out.khr_imageless_framebuffer = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_create_renderpass2")]
             if hash == crate::utils::const_hash_str("VK_KHR_create_renderpass2") {
                 out.khr_create_renderpass2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shared_presentable_image")]
             if hash == crate::utils::const_hash_str("VK_KHR_shared_presentable_image") {
                 out.khr_shared_presentable_image = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_fence")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_fence") {
                 out.khr_external_fence = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_fence_win32")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_fence_win32") {
                 out.khr_external_fence_win32 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_fence_fd")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_fence_fd") {
                 out.khr_external_fence_fd = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_performance_query")]
             if hash == crate::utils::const_hash_str("VK_KHR_performance_query") {
                 out.khr_performance_query = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_maintenance2")]
             if hash == crate::utils::const_hash_str("VK_KHR_maintenance2") {
                 out.khr_maintenance2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_variable_pointers")]
             if hash == crate::utils::const_hash_str("VK_KHR_variable_pointers") {
                 out.khr_variable_pointers = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_external_memory_dma_buf")]
             if hash == crate::utils::const_hash_str("VK_EXT_external_memory_dma_buf") {
                 out.ext_external_memory_dma_buf = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_queue_family_foreign")]
             if hash == crate::utils::const_hash_str("VK_EXT_queue_family_foreign") {
                 out.ext_queue_family_foreign = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_dedicated_allocation")]
             if hash == crate::utils::const_hash_str("VK_KHR_dedicated_allocation") {
                 out.khr_dedicated_allocation = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_ANDROID_external_memory_android_hardware_buffer")]
             if hash == crate::utils::const_hash_str("VK_ANDROID_external_memory_android_hardware_buffer") {
                 out.android_external_memory_android_hardware_buffer = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_sampler_filter_minmax")]
             if hash == crate::utils::const_hash_str("VK_EXT_sampler_filter_minmax") {
                 out.ext_sampler_filter_minmax = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_storage_buffer_storage_class")]
             if hash == crate::utils::const_hash_str("VK_KHR_storage_buffer_storage_class") {
                 out.khr_storage_buffer_storage_class = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_gpu_shader_int16")]
             if hash == crate::utils::const_hash_str("VK_AMD_gpu_shader_int16") {
                 out.amd_gpu_shader_int16 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_mixed_attachment_samples")]
             if hash == crate::utils::const_hash_str("VK_AMD_mixed_attachment_samples") {
                 out.amd_mixed_attachment_samples = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_fragment_mask")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_fragment_mask") {
                 out.amd_shader_fragment_mask = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_inline_uniform_block")]
             if hash == crate::utils::const_hash_str("VK_EXT_inline_uniform_block") {
                 out.ext_inline_uniform_block = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_stencil_export")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_stencil_export") {
                 out.ext_shader_stencil_export = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_sample_locations")]
             if hash == crate::utils::const_hash_str("VK_EXT_sample_locations") {
                 out.ext_sample_locations = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_relaxed_block_layout")]
             if hash == crate::utils::const_hash_str("VK_KHR_relaxed_block_layout") {
                 out.khr_relaxed_block_layout = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_get_memory_requirements2")]
             if hash == crate::utils::const_hash_str("VK_KHR_get_memory_requirements2") {
                 out.khr_get_memory_requirements2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_image_format_list")]
             if hash == crate::utils::const_hash_str("VK_KHR_image_format_list") {
                 out.khr_image_format_list = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_blend_operation_advanced")]
             if hash == crate::utils::const_hash_str("VK_EXT_blend_operation_advanced") {
                 out.ext_blend_operation_advanced = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_fragment_coverage_to_color")]
             if hash == crate::utils::const_hash_str("VK_NV_fragment_coverage_to_color") {
                 out.nv_fragment_coverage_to_color = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_acceleration_structure")]
             if hash == crate::utils::const_hash_str("VK_KHR_acceleration_structure") {
                 out.khr_acceleration_structure = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
             if hash == crate::utils::const_hash_str("VK_KHR_ray_tracing_pipeline") {
                 out.khr_ray_tracing_pipeline = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_ray_query")]
             if hash == crate::utils::const_hash_str("VK_KHR_ray_query") {
                 out.khr_ray_query = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_framebuffer_mixed_samples")]
             if hash == crate::utils::const_hash_str("VK_NV_framebuffer_mixed_samples") {
                 out.nv_framebuffer_mixed_samples = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_fill_rectangle")]
             if hash == crate::utils::const_hash_str("VK_NV_fill_rectangle") {
                 out.nv_fill_rectangle = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_shader_sm_builtins")]
             if hash == crate::utils::const_hash_str("VK_NV_shader_sm_builtins") {
                 out.nv_shader_sm_builtins = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_post_depth_coverage")]
             if hash == crate::utils::const_hash_str("VK_EXT_post_depth_coverage") {
                 out.ext_post_depth_coverage = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_sampler_ycbcr_conversion")]
             if hash == crate::utils::const_hash_str("VK_KHR_sampler_ycbcr_conversion") {
                 out.khr_sampler_ycbcr_conversion = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_bind_memory2")]
             if hash == crate::utils::const_hash_str("VK_KHR_bind_memory2") {
                 out.khr_bind_memory2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_image_drm_format_modifier")]
             if hash == crate::utils::const_hash_str("VK_EXT_image_drm_format_modifier") {
                 out.ext_image_drm_format_modifier = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_validation_cache")]
             if hash == crate::utils::const_hash_str("VK_EXT_validation_cache") {
                 out.ext_validation_cache = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_descriptor_indexing")]
             if hash == crate::utils::const_hash_str("VK_EXT_descriptor_indexing") {
                 out.ext_descriptor_indexing = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_viewport_index_layer")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_viewport_index_layer") {
                 out.ext_shader_viewport_index_layer = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_portability_subset")]
             if hash == crate::utils::const_hash_str("VK_KHR_portability_subset") {
                 out.khr_portability_subset = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_shading_rate_image")]
             if hash == crate::utils::const_hash_str("VK_NV_shading_rate_image") {
                 out.nv_shading_rate_image = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_ray_tracing")]
             if hash == crate::utils::const_hash_str("VK_NV_ray_tracing") {
                 out.nv_ray_tracing = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_representative_fragment_test")]
             if hash == crate::utils::const_hash_str("VK_NV_representative_fragment_test") {
                 out.nv_representative_fragment_test = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_maintenance3")]
             if hash == crate::utils::const_hash_str("VK_KHR_maintenance3") {
                 out.khr_maintenance3 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_draw_indirect_count")]
             if hash == crate::utils::const_hash_str("VK_KHR_draw_indirect_count") {
                 out.khr_draw_indirect_count = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_filter_cubic")]
             if hash == crate::utils::const_hash_str("VK_EXT_filter_cubic") {
                 out.ext_filter_cubic = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QCOM_render_pass_shader_resolve")]
             if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_shader_resolve") {
                 out.qcom_render_pass_shader_resolve = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_global_priority")]
             if hash == crate::utils::const_hash_str("VK_EXT_global_priority") {
                 out.ext_global_priority = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_subgroup_extended_types")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_subgroup_extended_types") {
                 out.khr_shader_subgroup_extended_types = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_8bit_storage")]
             if hash == crate::utils::const_hash_str("VK_KHR_8bit_storage") {
                 out.khr_8bit_storage = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_external_memory_host")]
             if hash == crate::utils::const_hash_str("VK_EXT_external_memory_host") {
                 out.ext_external_memory_host = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_buffer_marker")]
             if hash == crate::utils::const_hash_str("VK_AMD_buffer_marker") {
                 out.amd_buffer_marker = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_atomic_int64")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_atomic_int64") {
                 out.khr_shader_atomic_int64 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_clock")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_clock") {
                 out.khr_shader_clock = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_pipeline_compiler_control")]
             if hash == crate::utils::const_hash_str("VK_AMD_pipeline_compiler_control") {
                 out.amd_pipeline_compiler_control = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_calibrated_timestamps")]
             if hash == crate::utils::const_hash_str("VK_EXT_calibrated_timestamps") {
                 out.ext_calibrated_timestamps = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_core_properties")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_core_properties") {
                 out.amd_shader_core_properties = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_video_decode_h265")]
             if hash == crate::utils::const_hash_str("VK_EXT_video_decode_h265") {
                 out.ext_video_decode_h265 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_global_priority")]
             if hash == crate::utils::const_hash_str("VK_KHR_global_priority") {
                 out.khr_global_priority = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_memory_overallocation_behavior")]
             if hash == crate::utils::const_hash_str("VK_AMD_memory_overallocation_behavior") {
                 out.amd_memory_overallocation_behavior = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_vertex_attribute_divisor")]
             if hash == crate::utils::const_hash_str("VK_EXT_vertex_attribute_divisor") {
                 out.ext_vertex_attribute_divisor = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GGP_frame_token")]
             if hash == crate::utils::const_hash_str("VK_GGP_frame_token") {
                 out.ggp_frame_token = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_pipeline_creation_feedback")]
             if hash == crate::utils::const_hash_str("VK_EXT_pipeline_creation_feedback") {
                 out.ext_pipeline_creation_feedback = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_driver_properties")]
             if hash == crate::utils::const_hash_str("VK_KHR_driver_properties") {
                 out.khr_driver_properties = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_float_controls")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_float_controls") {
                 out.khr_shader_float_controls = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_shader_subgroup_partitioned")]
             if hash == crate::utils::const_hash_str("VK_NV_shader_subgroup_partitioned") {
                 out.nv_shader_subgroup_partitioned = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_depth_stencil_resolve")]
             if hash == crate::utils::const_hash_str("VK_KHR_depth_stencil_resolve") {
                 out.khr_depth_stencil_resolve = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
             if hash == crate::utils::const_hash_str("VK_KHR_swapchain_mutable_format") {
                 out.khr_swapchain_mutable_format = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_compute_shader_derivatives")]
             if hash == crate::utils::const_hash_str("VK_NV_compute_shader_derivatives") {
                 out.nv_compute_shader_derivatives = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_mesh_shader")]
             if hash == crate::utils::const_hash_str("VK_NV_mesh_shader") {
                 out.nv_mesh_shader = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_fragment_shader_barycentric")]
             if hash == crate::utils::const_hash_str("VK_NV_fragment_shader_barycentric") {
                 out.nv_fragment_shader_barycentric = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_shader_image_footprint")]
             if hash == crate::utils::const_hash_str("VK_NV_shader_image_footprint") {
                 out.nv_shader_image_footprint = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_scissor_exclusive")]
             if hash == crate::utils::const_hash_str("VK_NV_scissor_exclusive") {
                 out.nv_scissor_exclusive = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_device_diagnostic_checkpoints")]
             if hash == crate::utils::const_hash_str("VK_NV_device_diagnostic_checkpoints") {
                 out.nv_device_diagnostic_checkpoints = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_timeline_semaphore")]
             if hash == crate::utils::const_hash_str("VK_KHR_timeline_semaphore") {
                 out.khr_timeline_semaphore = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_INTEL_shader_integer_functions2")]
             if hash == crate::utils::const_hash_str("VK_INTEL_shader_integer_functions2") {
                 out.intel_shader_integer_functions2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_INTEL_performance_query")]
             if hash == crate::utils::const_hash_str("VK_INTEL_performance_query") {
                 out.intel_performance_query = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_vulkan_memory_model")]
             if hash == crate::utils::const_hash_str("VK_KHR_vulkan_memory_model") {
                 out.khr_vulkan_memory_model = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_pci_bus_info")]
             if hash == crate::utils::const_hash_str("VK_EXT_pci_bus_info") {
                 out.ext_pci_bus_info = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_display_native_hdr")]
             if hash == crate::utils::const_hash_str("VK_AMD_display_native_hdr") {
                 out.amd_display_native_hdr = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_terminate_invocation")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_terminate_invocation") {
                 out.khr_shader_terminate_invocation = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_fragment_density_map")]
             if hash == crate::utils::const_hash_str("VK_EXT_fragment_density_map") {
                 out.ext_fragment_density_map = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_scalar_block_layout")]
             if hash == crate::utils::const_hash_str("VK_EXT_scalar_block_layout") {
                 out.ext_scalar_block_layout = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GOOGLE_hlsl_functionality1")]
             if hash == crate::utils::const_hash_str("VK_GOOGLE_hlsl_functionality1") {
                 out.google_hlsl_functionality1 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GOOGLE_decorate_string")]
             if hash == crate::utils::const_hash_str("VK_GOOGLE_decorate_string") {
                 out.google_decorate_string = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_subgroup_size_control")]
             if hash == crate::utils::const_hash_str("VK_EXT_subgroup_size_control") {
                 out.ext_subgroup_size_control = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_fragment_shading_rate")]
             if hash == crate::utils::const_hash_str("VK_KHR_fragment_shading_rate") {
                 out.khr_fragment_shading_rate = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_shader_core_properties2")]
             if hash == crate::utils::const_hash_str("VK_AMD_shader_core_properties2") {
                 out.amd_shader_core_properties2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_AMD_device_coherent_memory")]
             if hash == crate::utils::const_hash_str("VK_AMD_device_coherent_memory") {
                 out.amd_device_coherent_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_image_atomic_int64")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_image_atomic_int64") {
                 out.ext_shader_image_atomic_int64 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_spirv_1_4")]
             if hash == crate::utils::const_hash_str("VK_KHR_spirv_1_4") {
                 out.khr_spirv_1_4 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_memory_budget")]
             if hash == crate::utils::const_hash_str("VK_EXT_memory_budget") {
                 out.ext_memory_budget = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_memory_priority")]
             if hash == crate::utils::const_hash_str("VK_EXT_memory_priority") {
                 out.ext_memory_priority = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_dedicated_allocation_image_aliasing")]
             if hash == crate::utils::const_hash_str("VK_NV_dedicated_allocation_image_aliasing") {
                 out.nv_dedicated_allocation_image_aliasing = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_separate_depth_stencil_layouts")]
             if hash == crate::utils::const_hash_str("VK_KHR_separate_depth_stencil_layouts") {
                 out.khr_separate_depth_stencil_layouts = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_buffer_device_address")]
             if hash == crate::utils::const_hash_str("VK_EXT_buffer_device_address") {
                 out.ext_buffer_device_address = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_tooling_info")]
             if hash == crate::utils::const_hash_str("VK_EXT_tooling_info") {
                 out.ext_tooling_info = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_separate_stencil_usage")]
             if hash == crate::utils::const_hash_str("VK_EXT_separate_stencil_usage") {
                 out.ext_separate_stencil_usage = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_present_wait")]
             if hash == crate::utils::const_hash_str("VK_KHR_present_wait") {
                 out.khr_present_wait = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_cooperative_matrix")]
             if hash == crate::utils::const_hash_str("VK_NV_cooperative_matrix") {
                 out.nv_cooperative_matrix = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_coverage_reduction_mode")]
             if hash == crate::utils::const_hash_str("VK_NV_coverage_reduction_mode") {
                 out.nv_coverage_reduction_mode = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_fragment_shader_interlock")]
             if hash == crate::utils::const_hash_str("VK_EXT_fragment_shader_interlock") {
                 out.ext_fragment_shader_interlock = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_ycbcr_image_arrays")]
             if hash == crate::utils::const_hash_str("VK_EXT_ycbcr_image_arrays") {
                 out.ext_ycbcr_image_arrays = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_uniform_buffer_standard_layout")]
             if hash == crate::utils::const_hash_str("VK_KHR_uniform_buffer_standard_layout") {
                 out.khr_uniform_buffer_standard_layout = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_provoking_vertex")]
             if hash == crate::utils::const_hash_str("VK_EXT_provoking_vertex") {
                 out.ext_provoking_vertex = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_full_screen_exclusive")]
             if hash == crate::utils::const_hash_str("VK_EXT_full_screen_exclusive") {
                 out.ext_full_screen_exclusive = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_buffer_device_address")]
             if hash == crate::utils::const_hash_str("VK_KHR_buffer_device_address") {
                 out.khr_buffer_device_address = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_line_rasterization")]
             if hash == crate::utils::const_hash_str("VK_EXT_line_rasterization") {
                 out.ext_line_rasterization = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_atomic_float")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_atomic_float") {
                 out.ext_shader_atomic_float = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_host_query_reset")]
             if hash == crate::utils::const_hash_str("VK_EXT_host_query_reset") {
                 out.ext_host_query_reset = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_index_type_uint8")]
             if hash == crate::utils::const_hash_str("VK_EXT_index_type_uint8") {
                 out.ext_index_type_uint8 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_extended_dynamic_state")]
             if hash == crate::utils::const_hash_str("VK_EXT_extended_dynamic_state") {
                 out.ext_extended_dynamic_state = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_deferred_host_operations")]
             if hash == crate::utils::const_hash_str("VK_KHR_deferred_host_operations") {
                 out.khr_deferred_host_operations = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_pipeline_executable_properties")]
             if hash == crate::utils::const_hash_str("VK_KHR_pipeline_executable_properties") {
                 out.khr_pipeline_executable_properties = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_atomic_float2")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_atomic_float2") {
                 out.ext_shader_atomic_float2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_shader_demote_to_helper_invocation")]
             if hash == crate::utils::const_hash_str("VK_EXT_shader_demote_to_helper_invocation") {
                 out.ext_shader_demote_to_helper_invocation = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_device_generated_commands")]
             if hash == crate::utils::const_hash_str("VK_NV_device_generated_commands") {
                 out.nv_device_generated_commands = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_inherited_viewport_scissor")]
             if hash == crate::utils::const_hash_str("VK_NV_inherited_viewport_scissor") {
                 out.nv_inherited_viewport_scissor = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_integer_dot_product")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_integer_dot_product") {
                 out.khr_shader_integer_dot_product = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_texel_buffer_alignment")]
             if hash == crate::utils::const_hash_str("VK_EXT_texel_buffer_alignment") {
                 out.ext_texel_buffer_alignment = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QCOM_render_pass_transform")]
             if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_transform") {
                 out.qcom_render_pass_transform = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_device_memory_report")]
             if hash == crate::utils::const_hash_str("VK_EXT_device_memory_report") {
                 out.ext_device_memory_report = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_robustness2")]
             if hash == crate::utils::const_hash_str("VK_EXT_robustness2") {
                 out.ext_robustness2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_custom_border_color")]
             if hash == crate::utils::const_hash_str("VK_EXT_custom_border_color") {
                 out.ext_custom_border_color = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GOOGLE_user_type")]
             if hash == crate::utils::const_hash_str("VK_GOOGLE_user_type") {
                 out.google_user_type = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_pipeline_library")]
             if hash == crate::utils::const_hash_str("VK_KHR_pipeline_library") {
                 out.khr_pipeline_library = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_non_semantic_info")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_non_semantic_info") {
                 out.khr_shader_non_semantic_info = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_present_id")]
             if hash == crate::utils::const_hash_str("VK_KHR_present_id") {
                 out.khr_present_id = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_private_data")]
             if hash == crate::utils::const_hash_str("VK_EXT_private_data") {
                 out.ext_private_data = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_pipeline_creation_cache_control")]
             if hash == crate::utils::const_hash_str("VK_EXT_pipeline_creation_cache_control") {
                 out.ext_pipeline_creation_cache_control = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_video_encode_queue")]
             if hash == crate::utils::const_hash_str("VK_KHR_video_encode_queue") {
                 out.khr_video_encode_queue = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_device_diagnostics_config")]
             if hash == crate::utils::const_hash_str("VK_NV_device_diagnostics_config") {
                 out.nv_device_diagnostics_config = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QCOM_render_pass_store_ops")]
             if hash == crate::utils::const_hash_str("VK_QCOM_render_pass_store_ops") {
                 out.qcom_render_pass_store_ops = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_synchronization2")]
             if hash == crate::utils::const_hash_str("VK_KHR_synchronization2") {
                 out.khr_synchronization2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_shader_subgroup_uniform_control_flow")]
             if hash == crate::utils::const_hash_str("VK_KHR_shader_subgroup_uniform_control_flow") {
                 out.khr_shader_subgroup_uniform_control_flow = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_zero_initialize_workgroup_memory")]
             if hash == crate::utils::const_hash_str("VK_KHR_zero_initialize_workgroup_memory") {
                 out.khr_zero_initialize_workgroup_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_fragment_shading_rate_enums")]
             if hash == crate::utils::const_hash_str("VK_NV_fragment_shading_rate_enums") {
                 out.nv_fragment_shading_rate_enums = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_ray_tracing_motion_blur")]
             if hash == crate::utils::const_hash_str("VK_NV_ray_tracing_motion_blur") {
                 out.nv_ray_tracing_motion_blur = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_ycbcr_2plane_444_formats")]
             if hash == crate::utils::const_hash_str("VK_EXT_ycbcr_2plane_444_formats") {
                 out.ext_ycbcr_2plane_444_formats = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_fragment_density_map2")]
             if hash == crate::utils::const_hash_str("VK_EXT_fragment_density_map2") {
                 out.ext_fragment_density_map2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QCOM_rotated_copy_commands")]
             if hash == crate::utils::const_hash_str("VK_QCOM_rotated_copy_commands") {
                 out.qcom_rotated_copy_commands = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_image_robustness")]
             if hash == crate::utils::const_hash_str("VK_EXT_image_robustness") {
                 out.ext_image_robustness = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_workgroup_memory_explicit_layout")]
             if hash == crate::utils::const_hash_str("VK_KHR_workgroup_memory_explicit_layout") {
                 out.khr_workgroup_memory_explicit_layout = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_copy_commands2")]
             if hash == crate::utils::const_hash_str("VK_KHR_copy_commands2") {
                 out.khr_copy_commands2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_4444_formats")]
             if hash == crate::utils::const_hash_str("VK_EXT_4444_formats") {
                 out.ext_4444_formats = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_ARM_rasterization_order_attachment_access")]
             if hash == crate::utils::const_hash_str("VK_ARM_rasterization_order_attachment_access") {
                 out.arm_rasterization_order_attachment_access = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_rgba10x6_formats")]
             if hash == crate::utils::const_hash_str("VK_EXT_rgba10x6_formats") {
                 out.ext_rgba10x6_formats = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_acquire_winrt_display")]
             if hash == crate::utils::const_hash_str("VK_NV_acquire_winrt_display") {
                 out.nv_acquire_winrt_display = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_VALVE_mutable_descriptor_type")]
             if hash == crate::utils::const_hash_str("VK_VALVE_mutable_descriptor_type") {
                 out.valve_mutable_descriptor_type = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_vertex_input_dynamic_state")]
             if hash == crate::utils::const_hash_str("VK_EXT_vertex_input_dynamic_state") {
                 out.ext_vertex_input_dynamic_state = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_physical_device_drm")]
             if hash == crate::utils::const_hash_str("VK_EXT_physical_device_drm") {
                 out.ext_physical_device_drm = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_depth_clip_control")]
             if hash == crate::utils::const_hash_str("VK_EXT_depth_clip_control") {
                 out.ext_depth_clip_control = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_primitive_topology_list_restart")]
             if hash == crate::utils::const_hash_str("VK_EXT_primitive_topology_list_restart") {
                 out.ext_primitive_topology_list_restart = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_format_feature_flags2")]
             if hash == crate::utils::const_hash_str("VK_KHR_format_feature_flags2") {
                 out.khr_format_feature_flags2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_FUCHSIA_external_memory")]
             if hash == crate::utils::const_hash_str("VK_FUCHSIA_external_memory") {
                 out.fuchsia_external_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_FUCHSIA_external_semaphore")]
             if hash == crate::utils::const_hash_str("VK_FUCHSIA_external_semaphore") {
                 out.fuchsia_external_semaphore = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
             if hash == crate::utils::const_hash_str("VK_FUCHSIA_buffer_collection") {
                 out.fuchsia_buffer_collection = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_HUAWEI_subpass_shading")]
             if hash == crate::utils::const_hash_str("VK_HUAWEI_subpass_shading") {
                 out.huawei_subpass_shading = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_HUAWEI_invocation_mask")]
             if hash == crate::utils::const_hash_str("VK_HUAWEI_invocation_mask") {
                 out.huawei_invocation_mask = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_external_memory_rdma")]
             if hash == crate::utils::const_hash_str("VK_NV_external_memory_rdma") {
                 out.nv_external_memory_rdma = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_extended_dynamic_state2")]
             if hash == crate::utils::const_hash_str("VK_EXT_extended_dynamic_state2") {
                 out.ext_extended_dynamic_state2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_color_write_enable")]
             if hash == crate::utils::const_hash_str("VK_EXT_color_write_enable") {
                 out.ext_color_write_enable = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_global_priority_query")]
             if hash == crate::utils::const_hash_str("VK_EXT_global_priority_query") {
                 out.ext_global_priority_query = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_image_view_min_lod")]
             if hash == crate::utils::const_hash_str("VK_EXT_image_view_min_lod") {
                 out.ext_image_view_min_lod = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_multi_draw")]
             if hash == crate::utils::const_hash_str("VK_EXT_multi_draw") {
                 out.ext_multi_draw = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_load_store_op_none")]
             if hash == crate::utils::const_hash_str("VK_EXT_load_store_op_none") {
                 out.ext_load_store_op_none = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_border_color_swizzle")]
             if hash == crate::utils::const_hash_str("VK_EXT_border_color_swizzle") {
                 out.ext_border_color_swizzle = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_pageable_device_local_memory")]
             if hash == crate::utils::const_hash_str("VK_EXT_pageable_device_local_memory") {
                 out.ext_pageable_device_local_memory = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_maintenance4")]
             if hash == crate::utils::const_hash_str("VK_KHR_maintenance4") {
                 out.khr_maintenance4 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_VALVE_descriptor_set_host_mapping")]
             if hash == crate::utils::const_hash_str("VK_VALVE_descriptor_set_host_mapping") {
                 out.valve_descriptor_set_host_mapping = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QCOM_fragment_density_map_offset")]
             if hash == crate::utils::const_hash_str("VK_QCOM_fragment_density_map_offset") {
                 out.qcom_fragment_density_map_offset = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_linear_color_attachment")]
             if hash == crate::utils::const_hash_str("VK_NV_linear_color_attachment") {
                 out.nv_linear_color_attachment = true;
+                out.count += 1;
             }
         }
         out
@@ -9417,146 +9656,182 @@ impl InstanceExtensions {
             #[cfg(feature = "VK_KHR_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_surface") {
                 out.khr_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_display")]
             if hash == crate::utils::const_hash_str("VK_KHR_display") {
                 out.khr_display = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_xlib_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_xlib_surface") {
                 out.khr_xlib_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_xcb_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_xcb_surface") {
                 out.khr_xcb_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_wayland_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_wayland_surface") {
                 out.khr_wayland_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_android_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_android_surface") {
                 out.khr_android_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_win32_surface")]
             if hash == crate::utils::const_hash_str("VK_KHR_win32_surface") {
                 out.khr_win32_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_debug_report")]
             if hash == crate::utils::const_hash_str("VK_EXT_debug_report") {
                 out.ext_debug_report = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GGP_stream_descriptor_surface")]
             if hash == crate::utils::const_hash_str("VK_GGP_stream_descriptor_surface") {
                 out.ggp_stream_descriptor_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NV_external_memory_capabilities")]
             if hash == crate::utils::const_hash_str("VK_NV_external_memory_capabilities") {
                 out.nv_external_memory_capabilities = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_get_physical_device_properties2")]
             if hash == crate::utils::const_hash_str("VK_KHR_get_physical_device_properties2") {
                 out.khr_get_physical_device_properties2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_validation_flags")]
             if hash == crate::utils::const_hash_str("VK_EXT_validation_flags") {
                 out.ext_validation_flags = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_NN_vi_surface")]
             if hash == crate::utils::const_hash_str("VK_NN_vi_surface") {
                 out.nn_vi_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_device_group_creation")]
             if hash == crate::utils::const_hash_str("VK_KHR_device_group_creation") {
                 out.khr_device_group_creation = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_memory_capabilities")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_memory_capabilities") {
                 out.khr_external_memory_capabilities = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_semaphore_capabilities")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_semaphore_capabilities") {
                 out.khr_external_semaphore_capabilities = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_direct_mode_display")]
             if hash == crate::utils::const_hash_str("VK_EXT_direct_mode_display") {
                 out.ext_direct_mode_display = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_acquire_xlib_display")]
             if hash == crate::utils::const_hash_str("VK_EXT_acquire_xlib_display") {
                 out.ext_acquire_xlib_display = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_display_surface_counter")]
             if hash == crate::utils::const_hash_str("VK_EXT_display_surface_counter") {
                 out.ext_display_surface_counter = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_swapchain_colorspace")]
             if hash == crate::utils::const_hash_str("VK_EXT_swapchain_colorspace") {
                 out.ext_swapchain_colorspace = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_external_fence_capabilities")]
             if hash == crate::utils::const_hash_str("VK_KHR_external_fence_capabilities") {
                 out.khr_external_fence_capabilities = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_get_surface_capabilities2")]
             if hash == crate::utils::const_hash_str("VK_KHR_get_surface_capabilities2") {
                 out.khr_get_surface_capabilities2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_get_display_properties2")]
             if hash == crate::utils::const_hash_str("VK_KHR_get_display_properties2") {
                 out.khr_get_display_properties2 = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_MVK_ios_surface")]
             if hash == crate::utils::const_hash_str("VK_MVK_ios_surface") {
                 out.mvk_ios_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_MVK_macos_surface")]
             if hash == crate::utils::const_hash_str("VK_MVK_macos_surface") {
                 out.mvk_macos_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_debug_utils")]
             if hash == crate::utils::const_hash_str("VK_EXT_debug_utils") {
                 out.ext_debug_utils = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_FUCHSIA_imagepipe_surface")]
             if hash == crate::utils::const_hash_str("VK_FUCHSIA_imagepipe_surface") {
                 out.fuchsia_imagepipe_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_metal_surface")]
             if hash == crate::utils::const_hash_str("VK_EXT_metal_surface") {
                 out.ext_metal_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_surface_protected_capabilities")]
             if hash == crate::utils::const_hash_str("VK_KHR_surface_protected_capabilities") {
                 out.khr_surface_protected_capabilities = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_validation_features")]
             if hash == crate::utils::const_hash_str("VK_EXT_validation_features") {
                 out.ext_validation_features = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_headless_surface")]
             if hash == crate::utils::const_hash_str("VK_EXT_headless_surface") {
                 out.ext_headless_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_acquire_drm_display")]
             if hash == crate::utils::const_hash_str("VK_EXT_acquire_drm_display") {
                 out.ext_acquire_drm_display = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_EXT_directfb_surface")]
             if hash == crate::utils::const_hash_str("VK_EXT_directfb_surface") {
                 out.ext_directfb_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_QNX_screen_surface")]
             if hash == crate::utils::const_hash_str("VK_QNX_screen_surface") {
                 out.qnx_screen_surface = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_KHR_portability_enumeration")]
             if hash == crate::utils::const_hash_str("VK_KHR_portability_enumeration") {
                 out.khr_portability_enumeration = true;
+                out.count += 1;
             }
             #[cfg(feature = "VK_GOOGLE_surfaceless_query")]
             if hash == crate::utils::const_hash_str("VK_GOOGLE_surfaceless_query") {
                 out.google_surfaceless_query = true;
+                out.count += 1;
             }
         }
         out

@@ -78,9 +78,9 @@ pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           fragmentShaderShadingRateInterlock;
 ///} VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`fragment_shader_sample_interlock`] indicates that the implementation supports the
@@ -89,29 +89,29 @@ pub const EXT_FRAGMENT_SHADER_INTERLOCK_EXTENSION_NAME: &'static CStr =
 ///   `FragmentShaderPixelInterlockEXT` SPIR-V capability.
 /// - [`fragment_shader_shading_rate_interlock`] indicates that the implementation supports the
 ///   `FragmentShaderShadingRateInterlockEXT` SPIR-V capability.
-/// If the [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceFragmentShaderInterlockFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_fragment_shader_interlock`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -147,6 +147,13 @@ impl<'lt> Default for PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceFragmentShaderInterlockFeaturesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next

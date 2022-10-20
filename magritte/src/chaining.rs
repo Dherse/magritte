@@ -5,6 +5,9 @@ pub unsafe trait Chain<'other, T>: Sized {
 
     #[must_use]
     fn chain(self, new: &'other mut T) -> Self::Out;
+
+    #[must_use]
+    fn chain_opt(self, new: Option<&'other mut T>) -> Self::Out;
 }
 
 #[inline]

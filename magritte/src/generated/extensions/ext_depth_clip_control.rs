@@ -87,33 +87,33 @@ pub const EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkBool32           depthClipControl;
 ///} VkPhysicalDeviceDepthClipControlFeaturesEXT;
 ///```
-/// # Members
-/// The members of the [`PhysicalDeviceDepthClipControlFeaturesEXT`]
-/// structure describe the following features:
-/// # Description
+///# Members
+///The members of the [`PhysicalDeviceDepthClipControlFeaturesEXT`]
+///structure describe the following features:
+///# Description
 /// - [`depth_clip_control`] indicates that the implementation supports setting
 ///   [`PipelineViewportDepthClipControlCreateInfoEXT::negative_one_to_one`] to [`TRUE`].
-/// If the [`PhysicalDeviceDepthClipControlFeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceDepthClipControlFeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceDepthClipControlFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceDepthClipControlFeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_depth_clip_control`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDepthClipControlFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -141,6 +141,13 @@ impl<'lt> Default for PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceDepthClipControlFeaturesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -256,30 +263,30 @@ impl<'lt> PhysicalDeviceDepthClipControlFeaturesEXT<'lt> {
 ///    VkBool32           negativeOneToOne;
 ///} VkPipelineViewportDepthClipControlCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`negative_one_to_one`] sets the z<sub>m</sub> in the *view volume* to -w<sub>c</sub>
-/// # Description
-/// ## Valid Usage
+///# Description
+///## Valid Usage
 /// - If [depthClipControl](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClipControl)
 ///   is not enabled, [`negative_one_to_one`] **must**  be [`FALSE`]
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
-/// # Related
+///# Related
 /// - [`ext_depth_clip_control`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportDepthClipControlCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -306,6 +313,13 @@ impl<'lt> Default for PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
     }
 }
 impl<'lt> PipelineViewportDepthClipControlCreateInfoEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PipelineViewportDepthClipControlCreateInfoEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next

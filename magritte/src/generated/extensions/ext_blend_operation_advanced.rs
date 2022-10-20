@@ -167,24 +167,24 @@ pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = crate::cs
 ///    VK_BLEND_OVERLAP_CONJOINT_EXT = 2,
 ///} VkBlendOverlapEXT;
 ///```
-/// # Description
+///# Description
 /// - [`UNCORRELATED`] specifies that there is no correlation between the source and destination
 ///   coverage.
 /// - [`CONJOINT`] specifies that the source and destination coverage are considered to have maximal
 ///   overlap.
 /// - [`DISJOINT`] specifies that the source and destination coverage are considered to have minimal
 ///   overlap.
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBlendOverlapEXT")]
 #[derive(Clone, Copy, PartialEq, Eq, Ord, PartialOrd, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
@@ -258,9 +258,9 @@ impl std::fmt::Debug for BlendOverlapEXT {
 ///    VkBool32           advancedBlendCoherentOperations;
 ///} VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following feature:
-/// # Description
+///# Members
+///This structure describes the following feature:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`advanced_blend_coherent_operations`] specifies whether blending using [advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced)
@@ -270,29 +270,29 @@ impl std::fmt::Debug for BlendOverlapEXT {
 ///   synchronization over basic blending. If this is [`FALSE`], then memory dependencies are
 ///   required to guarantee order between two advanced blending operations that occur on the same
 ///   sample.
-/// If the [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] structure is included in the
+///If the [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] **can**  also be used in the [`p_next`]
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] **can**  also be used in the [`p_next`]
 /// chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -328,6 +328,13 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -448,7 +455,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///    VkBool32           advancedBlendAllOperations;
 ///} VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`advanced_blend_max_color_attachments`] is one greater than the highest color attachment index that  **can**  be used in a subpass, for a pipeline that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
@@ -466,27 +473,27 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedFeaturesEXT<'lt> {
 ///   `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
 /// - [`advanced_blend_all_operations`] specifies whether all advanced blend operation enums are
 ///   supported. See the valid usage of [`PipelineColorBlendAttachmentState`].
-/// # Description
-/// If the [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`] structure is included in the
+///# Description
+///If the [`PhysicalDeviceBlendOperationAdvancedPropertiesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -541,6 +548,13 @@ impl<'lt> Default for PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -865,7 +879,7 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///    VkBlendOverlapEXT    blendOverlap;
 ///} VkPipelineColorBlendAdvancedStateCreateInfoEXT;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`src_premultiplied`] specifies whether the source color of the blend operation is treated as
@@ -874,12 +888,12 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 ///   treated as premultiplied.
 /// - [`blend_overlap`] is a [`BlendOverlapEXT`] value specifying how the source and destination
 ///   sample’s coverage is correlated.
-/// # Description
-/// If this structure is not present, [`src_premultiplied`] and
-/// [`dst_premultiplied`] are both considered to be [`TRUE`], and
-/// [`blend_overlap`] is considered to be
-/// `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
-/// ## Valid Usage
+///# Description
+///If this structure is not present, [`src_premultiplied`] and
+///[`dst_premultiplied`] are both considered to be [`TRUE`], and
+///[`blend_overlap`] is considered to be
+///`VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
+///## Valid Usage
 /// - If the [non-premultiplied source color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedSrcColor)
 ///   property is not supported, [`src_premultiplied`] **must**  be [`TRUE`]
 /// - If the [non-premultiplied destination color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedDstColor)
@@ -887,23 +901,23 @@ impl<'lt> PhysicalDeviceBlendOperationAdvancedPropertiesEXT<'lt> {
 /// - If the [correlated overlap](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendCorrelatedOverlap)
 ///   property is not supported, [`blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`
 ///
-/// ## Valid Usage (Implicit)
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`
 /// - [`blend_overlap`] **must**  be a valid [`BlendOverlapEXT`] value
-/// # Related
+///# Related
 /// - [`ext_blend_operation_advanced`]
 /// - [`BlendOverlapEXT`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorBlendAdvancedStateCreateInfoEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -938,6 +952,13 @@ impl<'lt> Default for PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
     }
 }
 impl<'lt> PipelineColorBlendAdvancedStateCreateInfoEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PipelineColorBlendAdvancedStateCreateInfoEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *const BaseInStructure<'lt> {
         self.p_next

@@ -89,9 +89,9 @@ pub const EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///    VkBool32           sparseImageFloat32AtomicMinMax;
 ///} VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 ///
@@ -119,27 +119,27 @@ pub const EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME: &'static CStr = crate::cstr!
 ///   floating-point min and max atomic image operations.
 /// - [`sparse_image_float32_atomic_min_max`] indicates whether 32-bit floating-point min and max
 ///   atomic operations  **can**  be used on sparse images.
-/// If the [`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`] structure is included in the [`p_next`]
+///If the [`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_shader_atomic_float2`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloat2FeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -219,6 +219,13 @@ impl<'lt> Default for PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'lt> {
     }
 }
 impl<'lt> PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDeviceShaderAtomicFloat2FeaturesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next

@@ -1,17 +1,22 @@
-use std::{ffi::CStr, sync::Arc};
+use std::{collections::HashMap, ffi::CStr, sync::Arc};
 
 use log::{debug, trace, Level};
 use magritte::{
     entry::Entry,
     extensions::ext_debug_utils::DebugUtilsMessengerEXT,
     validation::VALIDATION_LAYER_NAME_CSTR,
-    vulkan1_0::{self, ApplicationInfo, Device, DeviceCreateInfo, Instance, InstanceCreateInfo, VulkanResultCodes},
+    vulkan1_0::{
+        self, ApplicationInfo, Device, DeviceCreateInfo, DeviceQueueCreateFlags, Instance, InstanceCreateInfo,
+        VulkanResultCodes,
+    },
+    vulkan1_1::DeviceQueueInfo2,
     window::create_surface,
     AsCStr, AsRaw, Chain, DeviceExtensions, InstanceExtensions, SmallVec, Unique, Version,
 };
 use magritte_vma::Allocator;
+pub use parking_lot::RwLock;
 
-use crate::{device::PhysicalDevice, queue::{Queues, Queue}, VulkanApplication};
+use crate::{device::PhysicalDevice, queue::{Queue, QueueIndex}, VulkanApplication};
 
 #[derive(thiserror::Error, Debug)]
 pub enum ContextError {
@@ -82,10 +87,7 @@ pub enum ContextError {
     AllocatorCreationFailed(VulkanResultCodes),
 
     #[error("Queue from family {family} with index {index} does not have a supported type")]
-    UnsupportedQueueFamily {
-        family: u32,
-        index: u32
-    },
+    UnsupportedQueueFamily { family: u32, index: u32 },
 }
 
 pub struct Context<V: VulkanApplication> {
@@ -111,7 +113,7 @@ pub struct Context<V: VulkanApplication> {
     pub allocator: Unique<Allocator>,
 
     /// The queues that are instantiated on the device
-    pub queues: Queues,
+    pub queues: HashMap<QueueIndex, Arc<RwLock<Queue>>>,
 }
 
 impl<V: VulkanApplication> Context<V> {
@@ -128,7 +130,7 @@ impl<V: VulkanApplication> Context<V> {
         };
         debug!("Vulkan version: {}", version);
 
-        let version = application.vulkan_version(version);
+        let version = application.vulkan_version(version).max(Version::VULKAN1_1);
         debug!("Will use Vulkan version: {}", version);
 
         // Verify that we meet the minimum supported Vulkan version
@@ -298,7 +300,7 @@ impl<V: VulkanApplication> Context<V> {
                 .map_err(ContextError::PhysicalDeviceEnumerationFailed)?
                 .into_iter()
                 .enumerate()
-                .map(|(index, p)| PhysicalDevice::new(index, &instance, surface.as_ref(), p).result())
+                .map(|(index, p)| PhysicalDevice::new(index, version, &instance, surface.as_ref(), p).result())
                 .collect::<Result<SmallVec<_>, _>>()
                 .map_err(ContextError::PhysicalDeviceCreationFailed)?
         };
@@ -391,40 +393,36 @@ impl<V: VulkanApplication> Context<V> {
         let allocator = Allocator::new(&device, None, None).map_err(ContextError::AllocatorCreationFailed)?;
         debug!("Allocator created: {:?}", allocator.as_raw());
 
-        let mut queues = Queues::default();
+        let mut queues = HashMap::with_capacity(queue_info.len());
 
-        let mut len = 0;
         for queue_def in &queue_defs {
             for i in 0..queue_def.priorities.len() {
-                let queue = unsafe { device.get_device_queue(Some(queue_def.family_index),  Some(i as _)) };
+                let info = DeviceQueueInfo2::default()
+                    .with_queue_family_index(queue_def.family_index)
+                    .with_queue_index(i as u32)
+                    .with_flags(if queue_def.protected {
+                        DeviceQueueCreateFlags::PROTECTED
+                    } else {
+                        DeviceQueueCreateFlags::empty()
+                    });
+
+                let queue = unsafe { device.get_device_queue2(&info) };
 
                 let family = &physical_device.queue_families[queue_def.family_index as usize];
-                let queue = Queue::new(
-                    queue_def.family_index,
-                    i as u32,
-                    family.properties.queue_flags(),
-                    queue
+
+                queues.insert(
+                    QueueIndex(queue_def.family_index, i as u32),
+                    Arc::new(RwLock::new(Queue::new(
+                        queue_def.family_index,
+                        i as u32,
+                        family.properties.queue_flags(),
+                        queue,
+                    ))),
                 );
-                
-                len += 1;
-                if family.supports_graphics() && family.supports_surface() {
-                    queues.present.push(queue);
-                } else if family.supports_graphics() {
-                    queues.graphics.push(queue);
-                } else if family.supports_compute() {
-                    queues.compute.push(queue);
-                } else if family.supports_transfer() {
-                    queues.transfer.push(queue);
-                } else {
-                    return Err(ContextError::UnsupportedQueueFamily {
-                        family: queue_def.family_index,
-                        index: i as u32,
-                    });
-                }
             }
         }
 
-        trace!("Loaded {} queues", len);
+        trace!("Loaded {} queue(s)", queues.len());
 
         Ok(Self {
             application,
@@ -439,29 +437,45 @@ impl<V: VulkanApplication> Context<V> {
     }
 
     /// Returns a reference to the entry of this [`Context<V>`].
+    #[inline]
+    #[must_use]
     pub fn entry(&self) -> &Arc<Entry> {
         &self.entry
     }
 
     /// Returns a reference to the instance of this [`Context<V>`].
+    #[inline]
+    #[must_use]
     pub fn instance(&self) -> &Unique<Instance> {
         &self.instance
     }
 
+    /// Returns a reference to the physical device of this [`Context<V>`].
+    #[inline]
+    #[must_use]
     pub fn physical_device(&self) -> &PhysicalDevice {
         &self.physical_device
     }
 
+    /// Returns a reference to the logical device of this [`Context<V>`].
+    #[inline]
+    #[must_use]
     pub fn device(&self) -> &Unique<Device> {
         &self.device
     }
 
+    /// Returns a reference to the allocator of this [`Context<V>`].
+    #[inline]
+    #[must_use]
     pub fn allocator(&self) -> &Unique<Allocator> {
         &self.allocator
     }
 
-    pub fn queues(&self) -> &Queues {
-        &self.queues
+    /// Returns a queue, if it exists, of this [`Context<V>`].
+    #[inline]
+    #[must_use]
+    pub fn queue<I: Into<QueueIndex>>(&mut self, queue: I) -> Option<&Arc<RwLock<Queue>>> {
+        self.queues.get(&queue.into())
     }
 }
 

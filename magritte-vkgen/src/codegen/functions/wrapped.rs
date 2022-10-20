@@ -345,8 +345,8 @@ impl StatefulFunctionGeneratorState {
         arg: FunctionArgument<'a>,
         inner: Ty<'a>,
     ) {
-        self.return_types
-            .push(inner.as_raw_ty(source, Some(imports), true).0.to_token_stream());
+        let inner_ty = inner.as_raw_ty(source, Some(imports), true).0.to_token_stream();
+        self.return_types.push(inner_ty);
         let (ty, _) = inner.as_raw_ty(source, Some(imports), true);
 
         let ret_ident = arg.as_ident();
@@ -366,10 +366,16 @@ impl StatefulFunctionGeneratorState {
                         #ret_ident: Option<#ty>
                     });
 
+                    // this is a work around for the lifetime of the `p_next` field.
+                    // if we do not make the output lifetime static, we have issues with borrowed values in the `p_next` chain.
+                    // using the transmute and by setting `p_next` to null, we avoid the issue entirely.
+                    let inner_ty_str = self.return_types.pop().unwrap().to_string().replace("'lt", "'static");
+                    self.return_types.push(inner_ty_str.parse().unwrap());
+
                     self.return_values.push(quote! {
                         {
                             #ret_ident.p_next = std::ptr::#null ();
-                            #ret_ident
+                            std::mem::transmute(#ret_ident)
                         }
                     });
 

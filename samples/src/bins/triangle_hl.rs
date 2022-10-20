@@ -2,8 +2,8 @@ use std::{error::Error, ffi::CStr};
 
 use clap::Parser;
 use log::LevelFilter;
-use magritte::{cstr, vulkan1_0::SampleCountFlagBits, InstanceExtensions, Version};
-use magritte_hl::{context::Context, VulkanApplication};
+use magritte::{cstr, vulkan1_0::{SampleCountFlagBits, CommandPoolCreateFlags}, InstanceExtensions, Version};
+use magritte_hl::{context::Context, VulkanApplication, queue::QueueIndex};
 use winit::{
     dpi::LogicalSize,
     event_loop::EventLoop,
@@ -58,12 +58,19 @@ pub fn main() -> Result<(), Box<dyn Error>> {
     // Then we create the Vulkan context
     let mut context = Context::new(app)?;
 
+    let graphics_queue = context.queue(context.graphics_queue).expect("Queue not instantiated");
+
+    let (command_pool, _) = graphics_queue.read().create_command_pool(CommandPoolCreateFlags::empty())?;
+
+    println!("{:?}", command_pool);
+
     Ok(())
 }
 
 struct TriangleApplication {
     window: Window,
     validation_layers: bool,
+    graphics_queue: QueueIndex,
 }
 
 impl TriangleApplication {
@@ -71,6 +78,7 @@ impl TriangleApplication {
         Self {
             window,
             validation_layers,
+            graphics_queue: QueueIndex::default(),
         }
     }
 }
@@ -81,7 +89,11 @@ impl VulkanApplication for TriangleApplication {
     }
 
     fn version(&self) -> Version {
-        Version::new(1, 0, 0)
+        Version::new(0, 1, 0)
+    }
+
+    fn vulkan_version(&mut self, _supported: Version) -> Version {
+        Version::VULKAN1_1
     }
 
     fn required_instance_extensions(&mut self, version: Version) -> InstanceExtensions {
@@ -101,7 +113,10 @@ impl VulkanApplication for TriangleApplication {
             .queue_families
             .iter()
             .find(|q| q.supports_graphics() && q.supports_surface)
-            .map(|q| q.as_create_info(&[1.0], false))
+            .map(|q| {
+                self.graphics_queue = QueueIndex(q.index, 0);
+                q.as_create_info(&[1.0], false)
+            })
             .into_iter()
             .collect()
     }

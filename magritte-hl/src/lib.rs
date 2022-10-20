@@ -42,13 +42,13 @@ pub trait VulkanApplication {
 
     /// Gets the minimum Vulkan version that this application supports
     fn minimum_vulkan_version(&self) -> Version {
-        Version::VULKAN1_0
+        Version::VULKAN1_1
     }
 
     /// Gets the Vulkan version that this application wants to use.
     /// Based on the Vulkan version that is available
-    fn vulkan_version(&mut self, supported: Version) -> Version {
-        supported
+    fn vulkan_version(&mut self, _supported: Version) -> Version {
+        Version::VULKAN1_1
     }
 
     /// Gets the instance extensions that this applications needs.
@@ -129,7 +129,8 @@ pub trait VulkanApplication {
     fn queues(&mut self, _device: &PhysicalDevice) -> Vec<QueueCreateInfo>;
 
     /// Gets the basic physical device features that this application requires.
-    /// Can use [`None`] if the user whishes to provide the features using the [`VulkanApplication::device_create_info`] function.
+    /// Can use [`None`] if the user whishes to provide the features using the
+    /// [`VulkanApplication::device_create_info`] function.
     fn features(&mut self, _device: &PhysicalDevice) -> Option<PhysicalDeviceFeatures> {
         Some(PhysicalDeviceFeatures::default())
     }

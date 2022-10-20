@@ -62,11 +62,11 @@ pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &'static CStr =
 ///    VkBool32           primitiveTopologyPatchListRestart;
 ///} VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT;
 ///```
-/// # Members
-/// The members of the
-/// [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] structure
-/// describe the following features:
-/// # Description
+///# Members
+///The members of the
+///[`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] structure
+///describe the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`primitive_topology_list_restart`] indicates that list type primitives,
@@ -77,29 +77,29 @@ pub const EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME: &'static CStr =
 /// - [`primitive_topology_patch_list_restart`] indicates that the
 ///   `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST` topology  **can**  use the primitive restart index value in
 ///   index buffers.
-/// If the [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] structure is included in the
+///If the [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] structure is included in the
 /// [`p_next`] chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] **can**  also be used in the
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`] **can**  also be used in the
 /// [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be
 ///   `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
-/// # Related
+///# Related
 /// - [`ext_primitive_topology_list_restart`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -136,6 +136,13 @@ impl<'lt> Default for PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt>
     }
 }
 impl<'lt> PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next

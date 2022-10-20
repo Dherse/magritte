@@ -26,12 +26,12 @@
 //!invocations and execute them concurrently.
 //!When executing code like
 //!```c
-//! if (condition) {
+//!if (condition) {
 //!  result = do_fast_path();
-//! } else {
+//!} else {
 //!  result = do_general_path();
-//! }
-//! ```
+//!}
+//!```
 //!where `condition` diverges between invocations, an implementation might
 //!first execute `do_fast_path`() for the invocations where `condition`
 //!is true and leave the other invocations dormant.
@@ -43,12 +43,12 @@
 //! ability to avoid divergent execution by
 //!evaluating a condition across an entire subgroup using code like:
 //!```c
-//! if (allInvocationsARB(condition)) {
+//!if (allInvocationsARB(condition)) {
 //!  result = do_fast_path();
-//! } else {
+//!} else {
 //!  result = do_general_path();
-//! }
-//! ```
+//!}
+//!```
 //!The built-in function `allInvocationsARB`() will return the same value
 //!for all invocations in the group, so the group will either execute
 //!`do_fast_path`() or `do_general_path`(), but never both.

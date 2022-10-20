@@ -160,6 +160,20 @@ impl<'a> Struct<'a> {
         // creates a doc alias if the name has been changed
         alias_of(self.original_name(), self.name(), out);
 
+        // check if the struct can have a `make_static` function
+        let make_static = self.has_only_p_next().then(|| {
+            let p_next = self.fields().iter().find(|field| field.original_name() == "pNext").unwrap().as_ident();
+            quote! {
+                #[doc = "Creates a static version of this structure"]
+                pub fn make_static(mut self) -> #name<'static> {
+                    unsafe {
+                        self . #p_next = std::ptr::null_mut() as _;
+                        std::mem::transmute(self)
+                    }
+                }
+            }
+        });
+
         quote_each_token! {
             out
 
@@ -185,6 +199,7 @@ impl<'a> Struct<'a> {
             }
 
             impl #lifetime #name #lifetime {
+                #make_static
                 #(#raw_getters)*
                 #(#raw_setters)*
                 #(#raw_setter_builders)*
@@ -210,6 +225,15 @@ impl<'a> Struct<'a> {
                             );
 
                             std::mem::transmute(self)
+                        }
+                    }
+
+                    #[must_use]
+                    #[inline]
+                    fn chain_opt(self, new: Option<&'other mut #extenders<'extender>>) -> Self::Out {
+                        match new {
+                            Some(new) => self.chain(new),
+                            None => unsafe { std::mem::transmute(self) },
                         }
                     }
                 }

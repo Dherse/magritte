@@ -103,9 +103,9 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 ///    VkBool32           vertexAttributeAccessBeyondStride;
 ///} VkPhysicalDevicePortabilitySubsetFeaturesKHR;
 ///```
-/// # Members
-/// This structure describes the following features:
-/// # Description
+///# Members
+///This structure describes the following features:
+///# Description
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`constant_alpha_color_blend_factors`] indicates whether this implementation supports constant
@@ -142,27 +142,27 @@ pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// - [`vertex_attribute_access_beyond_stride`] indicates whether this implementation supports
 ///   accessing a vertex input attribute beyond the stride of the corresponding vertex input
 ///   binding.
-/// If the [`PhysicalDevicePortabilitySubsetFeaturesKHR`] structure is included in the [`p_next`]
+///If the [`PhysicalDevicePortabilitySubsetFeaturesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceFeatures2`] structure passed to
-/// [`get_physical_device_features2`], it is filled in to indicate whether each
-/// corresponding feature is supported.
-/// [`PhysicalDevicePortabilitySubsetFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
-/// [`DeviceCreateInfo`] to selectively enable these features.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceFeatures2`] structure passed to
+///[`get_physical_device_features2`], it is filled in to indicate whether each
+///corresponding feature is supported.
+///[`PhysicalDevicePortabilitySubsetFeaturesKHR`] **can**  also be used in the [`p_next`] chain of
+///[`DeviceCreateInfo`] to selectively enable these features.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
-/// # Related
+///# Related
 /// - [`khr_portability_subset`]
 /// - [`Bool32`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -269,6 +269,13 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
     }
 }
 impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDevicePortabilitySubsetFeaturesKHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
@@ -1026,31 +1033,31 @@ impl<'lt> PhysicalDevicePortabilitySubsetFeaturesKHR<'lt> {
 ///    uint32_t           minVertexInputBindingStrideAlignment;
 ///} VkPhysicalDevicePortabilitySubsetPropertiesKHR;
 ///```
-/// # Members
+///# Members
 /// - [`s_type`] is the type of this structure.
 /// - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 /// - [`min_vertex_input_binding_stride_alignment`] indicates the minimum alignment for vertex input
 ///   strides. [`VertexInputBindingDescription::stride`] **must**  be a multiple of, and at least as
 ///   large as, this value. The value  **must**  be a power of two.
-/// # Description
-/// If the [`PhysicalDevicePortabilitySubsetPropertiesKHR`] structure is included in the [`p_next`]
+///# Description
+///If the [`PhysicalDevicePortabilitySubsetPropertiesKHR`] structure is included in the [`p_next`]
 /// chain of the
-/// [`PhysicalDeviceProperties2`] structure passed to
-/// [`get_physical_device_properties2`], it is filled in with each
-/// corresponding implementation-dependent property.
-/// ## Valid Usage (Implicit)
+///[`PhysicalDeviceProperties2`] structure passed to
+///[`get_physical_device_properties2`], it is filled in with each
+///corresponding implementation-dependent property.
+///## Valid Usage (Implicit)
 /// - [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
-/// # Related
+///# Related
 /// - [`khr_portability_subset`]
 /// - [`StructureType`]
 ///
-/// # Notes and documentation
-/// For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+///# Notes and documentation
+///For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 ///
-/// This documentation is generated from the Vulkan specification and documentation.
-/// The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
+///This documentation is generated from the Vulkan specification and documentation.
+///The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative
 /// Commons Attribution 4.0 International*.
-/// This license explicitely allows adapting the source material as long as proper credit is given.
+///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
 #[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
@@ -1080,6 +1087,13 @@ impl<'lt> Default for PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
     }
 }
 impl<'lt> PhysicalDevicePortabilitySubsetPropertiesKHR<'lt> {
+    ///Creates a static version of this structure
+    pub fn make_static(mut self) -> PhysicalDevicePortabilitySubsetPropertiesKHR<'static> {
+        unsafe {
+            self.p_next = std::ptr::null_mut() as _;
+            std::mem::transmute(self)
+        }
+    }
     ///Gets the raw value of [`Self::p_next`]
     pub fn p_next_raw(&self) -> *mut BaseOutStructure<'lt> {
         self.p_next
