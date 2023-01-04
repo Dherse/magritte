@@ -425,7 +425,7 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCompilerControlCreateInfoAMD")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineCompilerControlCreateInfoAMD<'lt> {
     ///Lifetime field

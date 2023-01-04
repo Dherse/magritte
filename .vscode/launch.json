@@ -7,6 +7,20 @@
         {
             "type": "lldb",
             "request": "launch",
+            "name": "Cargo launch",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin", "magritte-vkgen"
+                ]
+            },
+            "program": "${workspaceRoot}/target/debug/magritte-vkgen",
+            "cwd": "${workspaceRoot}",
+            "args": []
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
             "name": "Debug unit tests in library 'magritte-vma-sys'",
             "cargo": {
                 "args": [

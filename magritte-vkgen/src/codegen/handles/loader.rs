@@ -1,6 +1,6 @@
-use std::ops::Deref;
+use std::{ops::Deref, collections::HashMap};
 
-use ahash::AHashMap;
+
 use heck::ToUpperCamelCase;
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
@@ -100,11 +100,11 @@ impl<'a> Handle<'a> {
     pub fn functions_by_origin<'b>(
         &self,
         source: &'b Source<'a>,
-    ) -> AHashMap<&'b Origin<'a>, Vec<HandleFunction<'a, 'b>>>
+    ) -> HashMap<&'b Origin<'a>, Vec<HandleFunction<'a, 'b>>>
     where
         'a: 'b,
     {
-        let mut out = AHashMap::<&'b Origin<'a>, Vec<HandleFunction<'a, 'b>>>::default();
+        let mut out = HashMap::<&'b Origin<'a>, Vec<HandleFunction<'a, 'b>>>::default();
         for fun in self
             .loader_functions(source)
             .map(|fun| HandleFunction::Function(fun))

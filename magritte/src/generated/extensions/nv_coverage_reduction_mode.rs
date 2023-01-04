@@ -318,7 +318,7 @@ impl std::fmt::Debug for PipelineCoverageReductionStateCreateFlagsNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCoverageReductionModeFeaturesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
     ///Lifetime field
@@ -502,7 +502,7 @@ impl<'lt> PhysicalDeviceCoverageReductionModeFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineCoverageReductionStateCreateInfoNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineCoverageReductionStateCreateInfoNV<'lt> {
     ///Lifetime field
@@ -681,7 +681,7 @@ impl<'lt> PipelineCoverageReductionStateCreateInfoNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFramebufferMixedSamplesCombinationNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct FramebufferMixedSamplesCombinationNV<'lt> {
     ///Lifetime field
@@ -948,15 +948,14 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_combinations = SmallVec::<FramebufferMixedSamplesCombinationNV<'lt>>::from_elem(
-            Default::default(),
-            p_combination_count as usize,
-        );
+        let mut p_combinations =
+            SmallVec::<FramebufferMixedSamplesCombinationNV<'lt>>::with_capacity(p_combination_count as usize);
         let _return = _function(self.as_raw(), &mut p_combination_count, p_combinations.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_combinations)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_combinations.set_len(p_combination_count as usize);
+                p_combinations
+            }),
             e => VulkanResult::Err(e),
         }
     }

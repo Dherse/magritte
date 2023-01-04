@@ -1464,7 +1464,7 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
     ///Lifetime field
@@ -1688,7 +1688,7 @@ impl<'lt> PhysicalDevicePerformanceQueryFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
     ///Lifetime field
@@ -1868,7 +1868,7 @@ impl<'lt> PhysicalDevicePerformanceQueryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceCounterKHR<'lt> {
     ///Lifetime field
@@ -2097,7 +2097,7 @@ impl<'lt> PerformanceCounterKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceCounterDescriptionKHR<'lt> {
     ///Lifetime field
@@ -2336,7 +2336,7 @@ impl<'lt> PerformanceCounterDescriptionKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolPerformanceCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueryPoolPerformanceCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2534,7 +2534,7 @@ impl<'lt> QueryPoolPerformanceCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireProfilingLockInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AcquireProfilingLockInfoKHR<'lt> {
     ///Lifetime field
@@ -2695,7 +2695,7 @@ impl<'lt> AcquireProfilingLockInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceQuerySubmitInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceQuerySubmitInfoKHR<'lt> {
     ///Lifetime field
@@ -2955,10 +2955,9 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_counters =
-            SmallVec::<PerformanceCounterKHR<'lt>>::from_elem(Default::default(), p_counter_count as usize);
+        let mut p_counters = SmallVec::<PerformanceCounterKHR<'lt>>::with_capacity(p_counter_count as usize);
         let mut p_counter_descriptions =
-            SmallVec::<PerformanceCounterDescriptionKHR<'lt>>::from_elem(Default::default(), p_counter_count as usize);
+            SmallVec::<PerformanceCounterDescriptionKHR<'lt>>::with_capacity(p_counter_count as usize);
         let _return = _function(
             self.as_raw(),
             queue_family_index.unwrap_or_default() as _,
@@ -2967,9 +2966,19 @@ impl PhysicalDevice {
             p_counter_descriptions.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, (p_counters, p_counter_descriptions))
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
+                _return,
+                (
+                    {
+                        p_counters.set_len(p_counter_count as usize);
+                        p_counters
+                    },
+                    {
+                        p_counter_descriptions.set_len(p_counter_count as usize);
+                        p_counter_descriptions
+                    },
+                ),
+            ),
             e => VulkanResult::Err(e),
         }
     }

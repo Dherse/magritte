@@ -5,7 +5,7 @@ mod html;
 
 use std::{borrow::Cow, collections::HashMap, ops::Deref};
 
-use ahash::AHashMap;
+
 use proc_macro2::TokenStream;
 use regex::Regex;
 use scraper::{ElementRef, Html, Selector};
@@ -119,7 +119,7 @@ impl<'a> DocRef<'a> {
         &mut self,
         source: &Source<'b>,
         this: &impl Queryable<'b>,
-        variants: Option<&mut AHashMap<String, String>>,
+        variants: Option<&mut HashMap<String, String>>,
         first_selector: &Selector,
         second_selector: &Selector,
     ) -> Option<String> {
@@ -304,7 +304,7 @@ impl<'a> DocRef<'a> {
         source: &Source<'b>,
         this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
-        variants: Option<&mut AHashMap<String, String>>,
+        variants: Option<&mut HashMap<String, String>>,
     ) -> Option<()> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_MEMBERS_H2, &SELECTOR_SECTIONBODY)?;
 
@@ -344,7 +344,7 @@ impl<'a> DocRef<'a> {
         source: &Source<'b>,
         this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
-        variants: Option<&mut AHashMap<String, String>>,
+        variants: Option<&mut HashMap<String, String>>,
     ) -> Option<()> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_PARAMETERS_H2, &SELECTOR_SECTIONBODY)?;
 
@@ -384,7 +384,7 @@ impl<'a> DocRef<'a> {
         source: &Source<'b>,
         this: &impl Queryable<'b>,
         mut out: &mut TokenStream,
-        variants: Option<&mut AHashMap<String, String>>,
+        variants: Option<&mut HashMap<String, String>>,
     ) -> Option<()> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_DESCRIPTION_H2, &SELECTOR_SECTIONBODY)?;
 

@@ -296,7 +296,7 @@ impl std::fmt::Debug for PipelineRasterizationConservativeStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
     ///Lifetime field
@@ -852,7 +852,7 @@ impl<'lt> PhysicalDeviceConservativeRasterizationPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationConservativeStateCreateInfoEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct PipelineRasterizationConservativeStateCreateInfoEXT<'lt> {
     ///Lifetime field

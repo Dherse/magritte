@@ -228,6 +228,13 @@ impl<'a> Handle<'a> {
                         Self :: #handle_idents (value)
                     }
                 }
+
+                #conds
+                impl Into<Unique<#handle_idents>> for Handles {
+                    fn into(self) -> Unique<#handle_idents> {
+                        self. #as_idents ()
+                    }
+                }
             )*
         }
     }

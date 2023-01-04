@@ -15,7 +15,7 @@ magritte-vma = { path = "../magritte-vma" }
 magritte-hl = { path = "../magritte-hl" }
 
 [dependencies.crossbeam-channel]
-version = "0.5.6"
+version = "0.5"
 optional = true
 
 [dependencies.log]

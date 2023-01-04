@@ -45,7 +45,7 @@ struct Opts {
     pub validation_layers: bool,
 
     /// The level of verbosity (1: INFO, 2: DEBUG, 3: TRACE)
-    #[clap(short = 'v', long, parse(from_occurrences))]
+    #[clap(short = 'v', long, action = clap::ArgAction::Count)]
     pub verbose: u8,
 
     /// The level of multisampling, must be a multiple of 2 (i.e 1, 2, 4, 8, 16).

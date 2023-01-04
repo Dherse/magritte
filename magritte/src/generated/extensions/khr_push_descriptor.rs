@@ -222,7 +222,7 @@ pub type FNCmdPushDescriptorSetKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePushDescriptorPropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePushDescriptorPropertiesKHR<'lt> {
     ///Lifetime field

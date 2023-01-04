@@ -957,7 +957,7 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportMemoryBufferCollectionFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImportMemoryBufferCollectionFUCHSIA<'lt> {
     ///Lifetime field
@@ -1121,7 +1121,7 @@ impl<'lt> ImportMemoryBufferCollectionFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionImageCreateInfoFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionImageCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -1286,7 +1286,7 @@ impl<'lt> BufferCollectionImageCreateInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionBufferCreateInfoFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionBufferCreateInfoFUCHSIA<'lt> {
     ///Lifetime field
@@ -2223,7 +2223,7 @@ impl<'lt> BufferConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSysmemColorSpaceFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SysmemColorSpaceFUCHSIA<'lt> {
     ///Lifetime field
@@ -2949,7 +2949,7 @@ impl<'lt> ImageConstraintsInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferCollectionConstraintsInfoFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferCollectionConstraintsInfoFUCHSIA<'lt> {
     ///Lifetime field

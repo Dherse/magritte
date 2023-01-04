@@ -99,7 +99,7 @@ pub const EXT_TEXEL_BUFFER_ALIGNMENT_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceTexelBufferAlignmentFeaturesEXT<'lt> {
     ///Lifetime field

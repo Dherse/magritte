@@ -101,7 +101,7 @@ pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = crate::cstr!("
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT<'lt> {
     ///Lifetime field

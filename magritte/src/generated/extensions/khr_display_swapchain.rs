@@ -242,7 +242,7 @@ pub type FNCreateSharedSwapchainsKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPresentInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DisplayPresentInfoKHR<'lt> {
     ///Lifetime field
@@ -525,7 +525,7 @@ impl Device {
             .and_then(|vtable| vtable.create_shared_swapchains_khr())
             .unwrap_unchecked();
         let swapchain_count = (|len: usize| len)(p_create_infos.len()) as _;
-        let mut p_swapchains = SmallVec::<SwapchainKHR>::from_elem(Default::default(), swapchain_count as usize);
+        let mut p_swapchains = SmallVec::<SwapchainKHR>::with_capacity(swapchain_count as usize);
         let _return = _function(
             self.as_raw(),
             swapchain_count,
@@ -536,13 +536,13 @@ impl Device {
             p_swapchains.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(
-                _return,
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, {
+                p_swapchains.set_len(swapchain_count as usize);
                 p_swapchains
                     .into_iter()
                     .map(|i| Unique::new(self, i, AtomicBool::default()))
-                    .collect(),
-            ),
+                    .collect()
+            }),
             e => VulkanResult::Err(e),
         }
     }

@@ -1725,7 +1725,7 @@ impl std::fmt::Debug for DebugUtilsMessengerCallbackDataFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsObjectNameInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DebugUtilsObjectNameInfoEXT<'lt> {
     ///Lifetime field
@@ -1934,7 +1934,7 @@ impl<'lt> DebugUtilsObjectNameInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsObjectTagInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DebugUtilsObjectTagInfoEXT<'lt> {
     ///Lifetime field
@@ -2174,7 +2174,7 @@ impl<'lt> DebugUtilsObjectTagInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsLabelEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct DebugUtilsLabelEXT<'lt> {
     ///Lifetime field
@@ -2390,7 +2390,6 @@ impl<'lt> DebugUtilsLabelEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
-#[derive(Clone)]
 #[repr(C)]
 pub struct DebugUtilsMessengerCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -2687,7 +2686,7 @@ impl<'lt> DebugUtilsMessengerCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDebugUtilsMessengerCallbackDataEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DebugUtilsMessengerCallbackDataEXT<'lt> {
     ///Lifetime field

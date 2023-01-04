@@ -9,7 +9,7 @@ use magritte::{
         khr_surface::SurfaceKHR,
     },
     vulkan1_0::{DeviceCreateInfo, LayerProperties, PhysicalDeviceFeatures},
-    window::HasRawWindowHandle,
+    window::{HasRawDisplayHandle, HasRawWindowHandle},
     DeviceExtensions, InstanceExtensions, Unique, Version,
 };
 use queue::QueueCreateInfo;
@@ -19,6 +19,8 @@ pub mod device;
 pub mod queue;
 
 pub trait VulkanApplication {
+    type Window: HasRawWindowHandle + HasRawDisplayHandle;
+
     /// Gets the application name
     fn name(&self) -> &CStr;
 
@@ -88,7 +90,7 @@ pub trait VulkanApplication {
     }
 
     /// Gets the window to enable surface creation
-    fn window(&self) -> Option<&dyn HasRawWindowHandle> {
+    fn window(&self) -> Option<&Self::Window> {
         None
     }
 

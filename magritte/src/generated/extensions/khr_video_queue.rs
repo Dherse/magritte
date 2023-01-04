@@ -3977,7 +3977,7 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoQueueFamilyProperties2KHR<'lt> {
     ///Lifetime field
@@ -4124,7 +4124,7 @@ impl<'lt> VideoQueueFamilyProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueueFamilyQueryResultStatusProperties2KHR<'lt> {
     ///Lifetime field
@@ -4300,7 +4300,7 @@ impl<'lt> QueueFamilyQueryResultStatusProperties2KHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfilesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoProfilesKHR<'lt> {
     ///Lifetime field
@@ -4487,7 +4487,7 @@ impl<'lt> VideoProfilesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVideoFormatInfoKHR<'lt> {
     ///Lifetime field
@@ -4672,7 +4672,7 @@ impl<'lt> PhysicalDeviceVideoFormatInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoFormatPropertiesKHR<'lt> {
     ///Lifetime field
@@ -4835,7 +4835,7 @@ impl<'lt> VideoFormatPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoProfileKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoProfileKHR<'lt> {
     ///Lifetime field
@@ -5198,7 +5198,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCapabilitiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoCapabilitiesKHR<'lt> {
     ///Lifetime field
@@ -5576,7 +5576,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoGetMemoryPropertiesKHR<'lt> {
     ///Lifetime field
@@ -5757,7 +5757,7 @@ impl<'lt> VideoGetMemoryPropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBindMemoryKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoBindMemoryKHR<'lt> {
     ///Lifetime field
@@ -5969,7 +5969,7 @@ impl<'lt> VideoBindMemoryKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoPictureResourceKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoPictureResourceKHR<'lt> {
     ///Lifetime field
@@ -6176,7 +6176,7 @@ impl<'lt> VideoPictureResourceKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoReferenceSlotKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoReferenceSlotKHR<'lt> {
     ///Lifetime field
@@ -6463,7 +6463,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -6827,7 +6827,7 @@ impl<'lt> VideoSessionCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionParametersCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -7106,7 +7106,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoSessionParametersUpdateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoSessionParametersUpdateInfoKHR<'lt> {
     ///Lifetime field
@@ -7390,7 +7390,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoBeginCodingInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoBeginCodingInfoKHR<'lt> {
     ///Lifetime field
@@ -7675,7 +7675,7 @@ impl<'lt> VideoBeginCodingInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEndCodingInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEndCodingInfoKHR<'lt> {
     ///Lifetime field
@@ -7817,7 +7817,7 @@ impl<'lt> VideoEndCodingInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoCodingControlInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoCodingControlInfoKHR<'lt> {
     ///Lifetime field
@@ -8170,10 +8170,8 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_video_format_properties = SmallVec::<VideoFormatPropertiesKHR<'lt>>::from_elem(
-            Default::default(),
-            p_video_format_property_count as usize,
-        );
+        let mut p_video_format_properties =
+            SmallVec::<VideoFormatPropertiesKHR<'lt>>::with_capacity(p_video_format_property_count as usize);
         let _return = _function(
             self.as_raw(),
             p_video_format_info as *const PhysicalDeviceVideoFormatInfoKHR<'lt>,
@@ -8181,9 +8179,10 @@ impl PhysicalDevice {
             p_video_format_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_video_format_properties)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_video_format_properties.set_len(p_video_format_property_count as usize);
+                p_video_format_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -8662,8 +8661,7 @@ impl Device {
                 v
             },
         };
-        let mut p_video_session_memory_requirements = SmallVec::<VideoGetMemoryPropertiesKHR<'lt>>::from_elem(
-            Default::default(),
+        let mut p_video_session_memory_requirements = SmallVec::<VideoGetMemoryPropertiesKHR<'lt>>::with_capacity(
             p_video_session_memory_requirements_count as usize,
         );
         let _return = _function(
@@ -8673,9 +8671,10 @@ impl Device {
             p_video_session_memory_requirements.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_video_session_memory_requirements)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_video_session_memory_requirements.set_len(p_video_session_memory_requirements_count as usize);
+                p_video_session_memory_requirements
+            }),
             e => VulkanResult::Err(e),
         }
     }

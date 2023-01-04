@@ -108,7 +108,7 @@ pub const NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceComputeShaderDerivativesFeaturesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceComputeShaderDerivativesFeaturesNV<'lt> {
     ///Lifetime field

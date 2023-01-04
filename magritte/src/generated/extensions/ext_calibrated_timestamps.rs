@@ -419,7 +419,7 @@ impl std::fmt::Debug for TimeDomainEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCalibratedTimestampInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CalibratedTimestampInfoEXT<'lt> {
     ///Lifetime field
@@ -603,12 +603,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_time_domains = SmallVec::<TimeDomainEXT>::from_elem(Default::default(), p_time_domain_count as usize);
+        let mut p_time_domains = SmallVec::<TimeDomainEXT>::with_capacity(p_time_domain_count as usize);
         let _return = _function(self.as_raw(), &mut p_time_domain_count, p_time_domains.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_time_domains)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_time_domains.set_len(p_time_domain_count as usize);
+                p_time_domains
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -692,7 +693,7 @@ impl Device {
             .and_then(|vtable| vtable.get_calibrated_timestamps_ext())
             .unwrap_unchecked();
         let timestamp_count = (|len: usize| len)(p_timestamp_infos.len()) as _;
-        let mut p_timestamps = SmallVec::<u64>::from_elem(Default::default(), timestamp_count as usize);
+        let mut p_timestamps = SmallVec::<u64>::with_capacity(timestamp_count as usize);
         let mut p_max_deviation = Default::default();
         let _return = _function(
             self.as_raw(),
@@ -702,7 +703,16 @@ impl Device {
             &mut p_max_deviation,
         );
         match _return {
-            VulkanResultCodes::SUCCESS => VulkanResult::Success(_return, (p_timestamps, p_max_deviation)),
+            VulkanResultCodes::SUCCESS => VulkanResult::Success(
+                _return,
+                (
+                    {
+                        p_timestamps.set_len(timestamp_count as usize);
+                        p_timestamps
+                    },
+                    p_max_deviation,
+                ),
+            ),
             e => VulkanResult::Err(e),
         }
     }

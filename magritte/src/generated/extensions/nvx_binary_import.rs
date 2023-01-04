@@ -333,7 +333,7 @@ pub type FNCmdCuLaunchKernelNvx = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuModuleCreateInfoNVX")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CuModuleCreateInfoNVX<'lt> {
     ///Lifetime field
@@ -498,7 +498,7 @@ impl<'lt> CuModuleCreateInfoNVX<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuFunctionCreateInfoNVX")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CuFunctionCreateInfoNVX<'lt> {
     ///Lifetime field
@@ -677,7 +677,7 @@ impl<'lt> CuFunctionCreateInfoNVX<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCuLaunchInfoNVX")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CuLaunchInfoNVX<'lt> {
     ///Lifetime field

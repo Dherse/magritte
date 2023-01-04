@@ -124,7 +124,7 @@ pub const KHR_RAY_QUERY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_KHR_ray
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayQueryFeaturesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayQueryFeaturesKHR<'lt> {
     ///Lifetime field

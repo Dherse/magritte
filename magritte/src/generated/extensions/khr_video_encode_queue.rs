@@ -2370,7 +2370,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeRateControlInfoKHR<'lt> {
     ///Lifetime field
@@ -2704,7 +2704,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeRateControlLayerInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeRateControlLayerInfoKHR<'lt> {
     ///Lifetime field
@@ -3065,7 +3065,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeCapabilitiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeCapabilitiesKHR<'lt> {
     ///Lifetime field

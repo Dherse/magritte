@@ -18,9 +18,9 @@ mod structs;
 pub mod ty;
 mod unions;
 
-use std::{collections::BTreeMap, fmt::Write, ops::Deref};
+use std::{collections::{BTreeMap, HashMap}, fmt::Write, ops::Deref};
 
-use ahash::AHashMap;
+
 use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token, ToTokens};
 use tracing::{error, warn};
@@ -47,7 +47,7 @@ impl<'a> Source<'a> {
             .iter()
             .filter(|o| !o.is_disabled())
             .map(|o| (o, (Imports::new(o), TokenStream::new(), TokenStream::new())))
-            .collect::<AHashMap<_, _>>();
+            .collect::<HashMap<_, _>>();
 
         {
             let (_, out, _) = per_origin.get_mut(&Origin::Opaque).unwrap();

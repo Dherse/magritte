@@ -1,6 +1,6 @@
-use std::{borrow::Cow, ops::Not};
+use std::{borrow::Cow, ops::Not, collections::HashMap};
 
-use ahash::AHashMap;
+
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, quote_each_token};
 use tracing::warn;
@@ -162,7 +162,12 @@ impl<'a> Struct<'a> {
 
         // check if the struct can have a `make_static` function
         let make_static = self.has_only_p_next().then(|| {
-            let p_next = self.fields().iter().find(|field| field.original_name() == "pNext").unwrap().as_ident();
+            let p_next = self
+                .fields()
+                .iter()
+                .find(|field| field.original_name() == "pNext")
+                .unwrap()
+                .as_ident();
             quote! {
                 #[doc = "Creates a static version of this structure"]
                 pub fn make_static(mut self) -> #name<'static> {
@@ -247,7 +252,7 @@ impl<'a> Struct<'a> {
         source: &Source<'a>,
         doc: &mut Documentation,
         out: &mut TokenStream,
-    ) -> Option<AHashMap<String, String>> {
+    ) -> Option<HashMap<String, String>> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
@@ -256,7 +261,7 @@ impl<'a> Struct<'a> {
             doc.specification(source, self, out);
 
             // parse the description section
-            let mut fields = AHashMap::with_capacity(self.fields().len());
+            let mut fields = HashMap::with_capacity(self.fields().len());
 
             // parse the members and write them out
             doc.members(source, self, out, Some(&mut fields));
@@ -289,7 +294,7 @@ impl<'a> Field<'a> {
         &self,
         source: &Source<'a>,
         imports: &Imports,
-        doc: &AHashMap<String, String>,
+        doc: &HashMap<String, String>,
     ) -> TokenStream {
         // get the name as an identifier of the field
         let name = self.as_ident();
@@ -314,7 +319,7 @@ impl<'a> Field<'a> {
         &self,
         source: &Source<'a>,
         imports: &Imports,
-        doc: &AHashMap<String, String>,
+        doc: &HashMap<String, String>,
     ) -> TokenStream {
         // get the name as an identifier of the field
         let name = self.as_ident();

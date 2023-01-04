@@ -170,7 +170,7 @@ impl Vulkan {
 
         // Here, we create the surface, literally the canvas on which we will paint.
         // As often for this simple but annoying tasks, Magritte provides a helper function.
-        let (surface, _) = unsafe { create_surface(&instance, window, None)? };
+        let (surface, _) = unsafe { create_surface(&instance, window, window, None)? };
 
         info!("We have created the surface: {:?}", surface.as_raw());
 

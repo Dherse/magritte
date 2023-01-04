@@ -20,18 +20,15 @@ tracing = "0.1.29"
 proc-macro2 = "1.0.36"
 quote = "1.0.15"
 
-# Faster hash map
-ahash = "0.7.6"
-
 # Small vec optimization.
 smallvec = { version = "1.8.0", features = [ "union", "specialization", "const_generics", "serde", "const_new" ] }
 
 # HTML scraper (for building the doc)
-scraper = "0.12.0"
+scraper = "0.14.0"
 ego-tree = "^0.6"
 
 # vk.xml parser
-vk-parse = "0.7.0"
+vk-parse = "0.9.0"
 
 # Regex parsing
 regex = "1.5.4"
@@ -57,15 +54,15 @@ lazy_static = "1.4"
 mimalloc = { version = "0.1.27", default-features = false}
 
 # Parsing of the Cargo manifest for automatic feature generation
-cargo_toml = "0.11.5"
+cargo_toml = "0.14.0"
 toml = "0.5.8"
 
 # Command Line Argument Parser (CLAP)
 [dependencies.clap]
-version = "3.1.8"
+version = "4.0.32"
 features = [ "derive" ]
 
 # Python runtime to solve length equations
 [dependencies.pyo3]
-version = "0.16.2"
+version = "0.17.3"
 features = ["auto-initialize"]

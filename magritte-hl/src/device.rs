@@ -77,7 +77,7 @@ impl QueueFamily {
     }
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Debug, PartialEq)]
 pub struct PhysicalDevice {
     /// The index of the device in the list of devices
     pub index: usize,

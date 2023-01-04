@@ -489,7 +489,7 @@ impl std::fmt::Debug for PipelineExecutableStatisticFormatKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
     ///Lifetime field
@@ -660,7 +660,7 @@ impl<'lt> PhysicalDevicePipelineExecutablePropertiesFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineInfoKHR<'lt> {
     ///Lifetime field
@@ -812,7 +812,7 @@ impl<'lt> PipelineInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutablePropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutablePropertiesKHR<'lt> {
     ///Lifetime field
@@ -1037,7 +1037,7 @@ impl<'lt> PipelineExecutablePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutableInfoKHR<'lt> {
     ///Lifetime field
@@ -1202,7 +1202,6 @@ impl<'lt> PipelineExecutableInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
-#[derive(Clone)]
 #[repr(C)]
 pub struct PipelineExecutableStatisticKHR<'lt> {
     ///Lifetime field
@@ -1455,7 +1454,7 @@ impl<'lt> PipelineExecutableStatisticKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineExecutableInternalRepresentationKHR<'lt> {
     ///Lifetime field
@@ -1859,10 +1858,8 @@ impl Device {
                 v
             },
         };
-        let mut p_properties = SmallVec::<PipelineExecutablePropertiesKHR<'lt>>::from_elem(
-            Default::default(),
-            p_executable_count as usize,
-        );
+        let mut p_properties =
+            SmallVec::<PipelineExecutablePropertiesKHR<'lt>>::with_capacity(p_executable_count as usize);
         let _return = _function(
             self.as_raw(),
             p_pipeline_info as *const PipelineInfoKHR<'lt>,
@@ -1870,7 +1867,10 @@ impl Device {
             p_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_properties.set_len(p_executable_count as usize);
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -1980,7 +1980,7 @@ impl Device {
             },
         };
         let mut p_statistics =
-            SmallVec::<PipelineExecutableStatisticKHR<'lt>>::from_elem(Default::default(), p_statistic_count as usize);
+            SmallVec::<PipelineExecutableStatisticKHR<'lt>>::with_capacity(p_statistic_count as usize);
         let _return = _function(
             self.as_raw(),
             p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
@@ -1988,7 +1988,10 @@ impl Device {
             p_statistics.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_statistics),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_statistics.set_len(p_statistic_count as usize);
+                p_statistics
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -2104,10 +2107,10 @@ impl Device {
                 v
             },
         };
-        let mut p_internal_representations = SmallVec::<PipelineExecutableInternalRepresentationKHR<'lt>>::from_elem(
-            Default::default(),
-            p_internal_representation_count as usize,
-        );
+        let mut p_internal_representations =
+            SmallVec::<PipelineExecutableInternalRepresentationKHR<'lt>>::with_capacity(
+                p_internal_representation_count as usize,
+            );
         let _return = _function(
             self.as_raw(),
             p_executable_info as *const PipelineExecutableInfoKHR<'lt>,
@@ -2115,9 +2118,10 @@ impl Device {
             p_internal_representations.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_internal_representations)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_internal_representations.set_len(p_internal_representation_count as usize);
+                p_internal_representations
+            }),
             e => VulkanResult::Err(e),
         }
     }

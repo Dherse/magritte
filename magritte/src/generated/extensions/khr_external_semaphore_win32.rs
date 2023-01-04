@@ -775,7 +775,7 @@ impl<'lt> ExportSemaphoreWin32HandleInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkD3D12FenceSubmitInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct D3d12FenceSubmitInfoKHR<'lt> {
     ///Lifetime field
@@ -1031,7 +1031,7 @@ impl<'lt> D3d12FenceSubmitInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreGetWin32HandleInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SemaphoreGetWin32HandleInfoKHR<'lt> {
     ///Lifetime field

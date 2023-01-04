@@ -443,6 +443,11 @@ impl From<Unique<Instance>> for Handles {
         Self::Instance(value)
     }
 }
+impl Into<Unique<Instance>> for Handles {
+    fn into(self) -> Unique<Instance> {
+        self.as_instance()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `PhysicalDevice`
     #[inline]
@@ -475,6 +480,11 @@ impl Handles {
 impl From<Unique<PhysicalDevice>> for Handles {
     fn from(value: Unique<PhysicalDevice>) -> Self {
         Self::PhysicalDevice(value)
+    }
+}
+impl Into<Unique<PhysicalDevice>> for Handles {
+    fn into(self) -> Unique<PhysicalDevice> {
+        self.as_physical_device()
     }
 }
 impl Handles {
@@ -511,6 +521,11 @@ impl From<Unique<Device>> for Handles {
         Self::Device(value)
     }
 }
+impl Into<Unique<Device>> for Handles {
+    fn into(self) -> Unique<Device> {
+        self.as_device()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `Queue`
     #[inline]
@@ -543,6 +558,11 @@ impl Handles {
 impl From<Unique<Queue>> for Handles {
     fn from(value: Unique<Queue>) -> Self {
         Self::Queue(value)
+    }
+}
+impl Into<Unique<Queue>> for Handles {
+    fn into(self) -> Unique<Queue> {
+        self.as_queue()
     }
 }
 impl Handles {
@@ -579,6 +599,11 @@ impl From<Unique<CommandBuffer>> for Handles {
         Self::CommandBuffer(value)
     }
 }
+impl Into<Unique<CommandBuffer>> for Handles {
+    fn into(self) -> Unique<CommandBuffer> {
+        self.as_command_buffer()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `DeviceMemory`
     #[inline]
@@ -611,6 +636,11 @@ impl Handles {
 impl From<Unique<DeviceMemory>> for Handles {
     fn from(value: Unique<DeviceMemory>) -> Self {
         Self::DeviceMemory(value)
+    }
+}
+impl Into<Unique<DeviceMemory>> for Handles {
+    fn into(self) -> Unique<DeviceMemory> {
+        self.as_device_memory()
     }
 }
 impl Handles {
@@ -647,6 +677,11 @@ impl From<Unique<CommandPool>> for Handles {
         Self::CommandPool(value)
     }
 }
+impl Into<Unique<CommandPool>> for Handles {
+    fn into(self) -> Unique<CommandPool> {
+        self.as_command_pool()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `Buffer`
     #[inline]
@@ -679,6 +714,11 @@ impl Handles {
 impl From<Unique<Buffer>> for Handles {
     fn from(value: Unique<Buffer>) -> Self {
         Self::Buffer(value)
+    }
+}
+impl Into<Unique<Buffer>> for Handles {
+    fn into(self) -> Unique<Buffer> {
+        self.as_buffer()
     }
 }
 impl Handles {
@@ -715,6 +755,11 @@ impl From<Unique<BufferView>> for Handles {
         Self::BufferView(value)
     }
 }
+impl Into<Unique<BufferView>> for Handles {
+    fn into(self) -> Unique<BufferView> {
+        self.as_buffer_view()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `Image`
     #[inline]
@@ -747,6 +792,11 @@ impl Handles {
 impl From<Unique<Image>> for Handles {
     fn from(value: Unique<Image>) -> Self {
         Self::Image(value)
+    }
+}
+impl Into<Unique<Image>> for Handles {
+    fn into(self) -> Unique<Image> {
+        self.as_image()
     }
 }
 impl Handles {
@@ -783,6 +833,11 @@ impl From<Unique<ImageView>> for Handles {
         Self::ImageView(value)
     }
 }
+impl Into<Unique<ImageView>> for Handles {
+    fn into(self) -> Unique<ImageView> {
+        self.as_image_view()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `ShaderModule`
     #[inline]
@@ -815,6 +870,11 @@ impl Handles {
 impl From<Unique<ShaderModule>> for Handles {
     fn from(value: Unique<ShaderModule>) -> Self {
         Self::ShaderModule(value)
+    }
+}
+impl Into<Unique<ShaderModule>> for Handles {
+    fn into(self) -> Unique<ShaderModule> {
+        self.as_shader_module()
     }
 }
 impl Handles {
@@ -851,6 +911,11 @@ impl From<Unique<Pipeline>> for Handles {
         Self::Pipeline(value)
     }
 }
+impl Into<Unique<Pipeline>> for Handles {
+    fn into(self) -> Unique<Pipeline> {
+        self.as_pipeline()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `PipelineLayout`
     #[inline]
@@ -883,6 +948,11 @@ impl Handles {
 impl From<Unique<PipelineLayout>> for Handles {
     fn from(value: Unique<PipelineLayout>) -> Self {
         Self::PipelineLayout(value)
+    }
+}
+impl Into<Unique<PipelineLayout>> for Handles {
+    fn into(self) -> Unique<PipelineLayout> {
+        self.as_pipeline_layout()
     }
 }
 impl Handles {
@@ -919,6 +989,11 @@ impl From<Unique<Sampler>> for Handles {
         Self::Sampler(value)
     }
 }
+impl Into<Unique<Sampler>> for Handles {
+    fn into(self) -> Unique<Sampler> {
+        self.as_sampler()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `DescriptorSet`
     #[inline]
@@ -951,6 +1026,11 @@ impl Handles {
 impl From<Unique<DescriptorSet>> for Handles {
     fn from(value: Unique<DescriptorSet>) -> Self {
         Self::DescriptorSet(value)
+    }
+}
+impl Into<Unique<DescriptorSet>> for Handles {
+    fn into(self) -> Unique<DescriptorSet> {
+        self.as_descriptor_set()
     }
 }
 impl Handles {
@@ -988,6 +1068,11 @@ impl From<Unique<DescriptorSetLayout>> for Handles {
         Self::DescriptorSetLayout(value)
     }
 }
+impl Into<Unique<DescriptorSetLayout>> for Handles {
+    fn into(self) -> Unique<DescriptorSetLayout> {
+        self.as_descriptor_set_layout()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `DescriptorPool`
     #[inline]
@@ -1020,6 +1105,11 @@ impl Handles {
 impl From<Unique<DescriptorPool>> for Handles {
     fn from(value: Unique<DescriptorPool>) -> Self {
         Self::DescriptorPool(value)
+    }
+}
+impl Into<Unique<DescriptorPool>> for Handles {
+    fn into(self) -> Unique<DescriptorPool> {
+        self.as_descriptor_pool()
     }
 }
 impl Handles {
@@ -1056,6 +1146,11 @@ impl From<Unique<Fence>> for Handles {
         Self::Fence(value)
     }
 }
+impl Into<Unique<Fence>> for Handles {
+    fn into(self) -> Unique<Fence> {
+        self.as_fence()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `Semaphore`
     #[inline]
@@ -1088,6 +1183,11 @@ impl Handles {
 impl From<Unique<Semaphore>> for Handles {
     fn from(value: Unique<Semaphore>) -> Self {
         Self::Semaphore(value)
+    }
+}
+impl Into<Unique<Semaphore>> for Handles {
+    fn into(self) -> Unique<Semaphore> {
+        self.as_semaphore()
     }
 }
 impl Handles {
@@ -1124,6 +1224,11 @@ impl From<Unique<Event>> for Handles {
         Self::Event(value)
     }
 }
+impl Into<Unique<Event>> for Handles {
+    fn into(self) -> Unique<Event> {
+        self.as_event()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `QueryPool`
     #[inline]
@@ -1156,6 +1261,11 @@ impl Handles {
 impl From<Unique<QueryPool>> for Handles {
     fn from(value: Unique<QueryPool>) -> Self {
         Self::QueryPool(value)
+    }
+}
+impl Into<Unique<QueryPool>> for Handles {
+    fn into(self) -> Unique<QueryPool> {
+        self.as_query_pool()
     }
 }
 impl Handles {
@@ -1192,6 +1302,11 @@ impl From<Unique<Framebuffer>> for Handles {
         Self::Framebuffer(value)
     }
 }
+impl Into<Unique<Framebuffer>> for Handles {
+    fn into(self) -> Unique<Framebuffer> {
+        self.as_framebuffer()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `RenderPass`
     #[inline]
@@ -1226,6 +1341,11 @@ impl From<Unique<RenderPass>> for Handles {
         Self::RenderPass(value)
     }
 }
+impl Into<Unique<RenderPass>> for Handles {
+    fn into(self) -> Unique<RenderPass> {
+        self.as_render_pass()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `PipelineCache`
     #[inline]
@@ -1258,6 +1378,11 @@ impl Handles {
 impl From<Unique<PipelineCache>> for Handles {
     fn from(value: Unique<PipelineCache>) -> Self {
         Self::PipelineCache(value)
+    }
+}
+impl Into<Unique<PipelineCache>> for Handles {
+    fn into(self) -> Unique<PipelineCache> {
+        self.as_pipeline_cache()
     }
 }
 #[cfg(feature = "VK_NV_device_generated_commands")]
@@ -1297,6 +1422,12 @@ impl From<Unique<IndirectCommandsLayoutNV>> for Handles {
         Self::IndirectCommandsLayoutNV(value)
     }
 }
+#[cfg(feature = "VK_NV_device_generated_commands")]
+impl Into<Unique<IndirectCommandsLayoutNV>> for Handles {
+    fn into(self) -> Unique<IndirectCommandsLayoutNV> {
+        self.as_indirect_commands_layout_nv()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `DescriptorUpdateTemplate`
     #[inline]
@@ -1332,6 +1463,11 @@ impl From<Unique<DescriptorUpdateTemplate>> for Handles {
         Self::DescriptorUpdateTemplate(value)
     }
 }
+impl Into<Unique<DescriptorUpdateTemplate>> for Handles {
+    fn into(self) -> Unique<DescriptorUpdateTemplate> {
+        self.as_descriptor_update_template()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `SamplerYcbcrConversion`
     #[inline]
@@ -1365,6 +1501,11 @@ impl Handles {
 impl From<Unique<SamplerYcbcrConversion>> for Handles {
     fn from(value: Unique<SamplerYcbcrConversion>) -> Self {
         Self::SamplerYcbcrConversion(value)
+    }
+}
+impl Into<Unique<SamplerYcbcrConversion>> for Handles {
+    fn into(self) -> Unique<SamplerYcbcrConversion> {
+        self.as_sampler_ycbcr_conversion()
     }
 }
 #[cfg(feature = "VK_EXT_validation_cache")]
@@ -1404,6 +1545,12 @@ impl From<Unique<ValidationCacheEXT>> for Handles {
         Self::ValidationCacheEXT(value)
     }
 }
+#[cfg(feature = "VK_EXT_validation_cache")]
+impl Into<Unique<ValidationCacheEXT>> for Handles {
+    fn into(self) -> Unique<ValidationCacheEXT> {
+        self.as_validation_cache_ext()
+    }
+}
 #[cfg(feature = "VK_KHR_acceleration_structure")]
 impl Handles {
     ///Checks if the handle is a `AccelerationStructureKHR`
@@ -1439,6 +1586,12 @@ impl Handles {
 impl From<Unique<AccelerationStructureKHR>> for Handles {
     fn from(value: Unique<AccelerationStructureKHR>) -> Self {
         Self::AccelerationStructureKHR(value)
+    }
+}
+#[cfg(feature = "VK_KHR_acceleration_structure")]
+impl Into<Unique<AccelerationStructureKHR>> for Handles {
+    fn into(self) -> Unique<AccelerationStructureKHR> {
+        self.as_acceleration_structure_khr()
     }
 }
 #[cfg(feature = "VK_NV_ray_tracing")]
@@ -1478,6 +1631,12 @@ impl From<Unique<AccelerationStructureNV>> for Handles {
         Self::AccelerationStructureNV(value)
     }
 }
+#[cfg(feature = "VK_NV_ray_tracing")]
+impl Into<Unique<AccelerationStructureNV>> for Handles {
+    fn into(self) -> Unique<AccelerationStructureNV> {
+        self.as_acceleration_structure_nv()
+    }
+}
 #[cfg(feature = "VK_INTEL_performance_query")]
 impl Handles {
     ///Checks if the handle is a `PerformanceConfigurationINTEL`
@@ -1513,6 +1672,12 @@ impl Handles {
 impl From<Unique<PerformanceConfigurationINTEL>> for Handles {
     fn from(value: Unique<PerformanceConfigurationINTEL>) -> Self {
         Self::PerformanceConfigurationINTEL(value)
+    }
+}
+#[cfg(feature = "VK_INTEL_performance_query")]
+impl Into<Unique<PerformanceConfigurationINTEL>> for Handles {
+    fn into(self) -> Unique<PerformanceConfigurationINTEL> {
+        self.as_performance_configuration_intel()
     }
 }
 #[cfg(feature = "VK_FUCHSIA_buffer_collection")]
@@ -1552,6 +1717,12 @@ impl From<Unique<BufferCollectionFUCHSIA>> for Handles {
         Self::BufferCollectionFUCHSIA(value)
     }
 }
+#[cfg(feature = "VK_FUCHSIA_buffer_collection")]
+impl Into<Unique<BufferCollectionFUCHSIA>> for Handles {
+    fn into(self) -> Unique<BufferCollectionFUCHSIA> {
+        self.as_buffer_collection_fuchsia()
+    }
+}
 #[cfg(feature = "VK_KHR_deferred_host_operations")]
 impl Handles {
     ///Checks if the handle is a `DeferredOperationKHR`
@@ -1589,6 +1760,12 @@ impl From<Unique<DeferredOperationKHR>> for Handles {
         Self::DeferredOperationKHR(value)
     }
 }
+#[cfg(feature = "VK_KHR_deferred_host_operations")]
+impl Into<Unique<DeferredOperationKHR>> for Handles {
+    fn into(self) -> Unique<DeferredOperationKHR> {
+        self.as_deferred_operation_khr()
+    }
+}
 impl Handles {
     ///Checks if the handle is a `PrivateDataSlot`
     #[inline]
@@ -1622,6 +1799,11 @@ impl Handles {
 impl From<Unique<PrivateDataSlot>> for Handles {
     fn from(value: Unique<PrivateDataSlot>) -> Self {
         Self::PrivateDataSlot(value)
+    }
+}
+impl Into<Unique<PrivateDataSlot>> for Handles {
+    fn into(self) -> Unique<PrivateDataSlot> {
+        self.as_private_data_slot()
     }
 }
 #[cfg(feature = "VK_NVX_binary_import")]
@@ -1661,6 +1843,12 @@ impl From<Unique<CuModuleNVX>> for Handles {
     }
 }
 #[cfg(feature = "VK_NVX_binary_import")]
+impl Into<Unique<CuModuleNVX>> for Handles {
+    fn into(self) -> Unique<CuModuleNVX> {
+        self.as_cu_module_nvx()
+    }
+}
+#[cfg(feature = "VK_NVX_binary_import")]
 impl Handles {
     ///Checks if the handle is a `CuFunctionNVX`
     #[inline]
@@ -1694,6 +1882,12 @@ impl Handles {
 impl From<Unique<CuFunctionNVX>> for Handles {
     fn from(value: Unique<CuFunctionNVX>) -> Self {
         Self::CuFunctionNVX(value)
+    }
+}
+#[cfg(feature = "VK_NVX_binary_import")]
+impl Into<Unique<CuFunctionNVX>> for Handles {
+    fn into(self) -> Unique<CuFunctionNVX> {
+        self.as_cu_function_nvx()
     }
 }
 #[cfg(feature = "VK_KHR_display")]
@@ -1733,6 +1927,12 @@ impl From<Unique<DisplayKHR>> for Handles {
     }
 }
 #[cfg(feature = "VK_KHR_display")]
+impl Into<Unique<DisplayKHR>> for Handles {
+    fn into(self) -> Unique<DisplayKHR> {
+        self.as_display_khr()
+    }
+}
+#[cfg(feature = "VK_KHR_display")]
 impl Handles {
     ///Checks if the handle is a `DisplayModeKHR`
     #[inline]
@@ -1767,6 +1967,12 @@ impl Handles {
 impl From<Unique<DisplayModeKHR>> for Handles {
     fn from(value: Unique<DisplayModeKHR>) -> Self {
         Self::DisplayModeKHR(value)
+    }
+}
+#[cfg(feature = "VK_KHR_display")]
+impl Into<Unique<DisplayModeKHR>> for Handles {
+    fn into(self) -> Unique<DisplayModeKHR> {
+        self.as_display_mode_khr()
     }
 }
 #[cfg(feature = "VK_KHR_surface")]
@@ -1805,6 +2011,12 @@ impl From<Unique<SurfaceKHR>> for Handles {
         Self::SurfaceKHR(value)
     }
 }
+#[cfg(feature = "VK_KHR_surface")]
+impl Into<Unique<SurfaceKHR>> for Handles {
+    fn into(self) -> Unique<SurfaceKHR> {
+        self.as_surface_khr()
+    }
+}
 #[cfg(feature = "VK_KHR_swapchain")]
 impl Handles {
     ///Checks if the handle is a `SwapchainKHR`
@@ -1839,6 +2051,12 @@ impl Handles {
 impl From<Unique<SwapchainKHR>> for Handles {
     fn from(value: Unique<SwapchainKHR>) -> Self {
         Self::SwapchainKHR(value)
+    }
+}
+#[cfg(feature = "VK_KHR_swapchain")]
+impl Into<Unique<SwapchainKHR>> for Handles {
+    fn into(self) -> Unique<SwapchainKHR> {
+        self.as_swapchain_khr()
     }
 }
 #[cfg(feature = "VK_EXT_debug_report")]
@@ -1878,6 +2096,12 @@ impl From<Unique<DebugReportCallbackEXT>> for Handles {
         Self::DebugReportCallbackEXT(value)
     }
 }
+#[cfg(feature = "VK_EXT_debug_report")]
+impl Into<Unique<DebugReportCallbackEXT>> for Handles {
+    fn into(self) -> Unique<DebugReportCallbackEXT> {
+        self.as_debug_report_callback_ext()
+    }
+}
 #[cfg(feature = "VK_EXT_debug_utils")]
 impl Handles {
     ///Checks if the handle is a `DebugUtilsMessengerEXT`
@@ -1913,6 +2137,12 @@ impl Handles {
 impl From<Unique<DebugUtilsMessengerEXT>> for Handles {
     fn from(value: Unique<DebugUtilsMessengerEXT>) -> Self {
         Self::DebugUtilsMessengerEXT(value)
+    }
+}
+#[cfg(feature = "VK_EXT_debug_utils")]
+impl Into<Unique<DebugUtilsMessengerEXT>> for Handles {
+    fn into(self) -> Unique<DebugUtilsMessengerEXT> {
+        self.as_debug_utils_messenger_ext()
     }
 }
 #[cfg(feature = "VK_KHR_video_queue")]
@@ -1953,6 +2183,12 @@ impl From<Unique<VideoSessionKHR>> for Handles {
     }
 }
 #[cfg(feature = "VK_KHR_video_queue")]
+impl Into<Unique<VideoSessionKHR>> for Handles {
+    fn into(self) -> Unique<VideoSessionKHR> {
+        self.as_video_session_khr()
+    }
+}
+#[cfg(feature = "VK_KHR_video_queue")]
 impl Handles {
     ///Checks if the handle is a `VideoSessionParametersKHR`
     #[inline]
@@ -1987,6 +2223,12 @@ impl Handles {
 impl From<Unique<VideoSessionParametersKHR>> for Handles {
     fn from(value: Unique<VideoSessionParametersKHR>) -> Self {
         Self::VideoSessionParametersKHR(value)
+    }
+}
+#[cfg(feature = "VK_KHR_video_queue")]
+impl Into<Unique<VideoSessionParametersKHR>> for Handles {
+    fn into(self) -> Unique<VideoSessionParametersKHR> {
+        self.as_video_session_parameters_khr()
     }
 }
 #[cfg(feature = "VK_KHR_swapchain")]
@@ -2026,6 +2268,12 @@ impl From<Unique<SwapchainImage>> for Handles {
     }
 }
 #[cfg(feature = "VK_KHR_swapchain")]
+impl Into<Unique<SwapchainImage>> for Handles {
+    fn into(self) -> Unique<SwapchainImage> {
+        self.as_swapchain_image()
+    }
+}
+#[cfg(feature = "VK_KHR_swapchain")]
 impl Handles {
     ///Checks if the handle is a `SwapchainImageView`
     #[inline]
@@ -2060,5 +2308,11 @@ impl Handles {
 impl From<Unique<SwapchainImageView>> for Handles {
     fn from(value: Unique<SwapchainImageView>) -> Self {
         Self::SwapchainImageView(value)
+    }
+}
+#[cfg(feature = "VK_KHR_swapchain")]
+impl Into<Unique<SwapchainImageView>> for Handles {
+    fn into(self) -> Unique<SwapchainImageView> {
+        self.as_swapchain_image_view()
     }
 }

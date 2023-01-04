@@ -1482,7 +1482,7 @@ impl std::fmt::Debug for ShaderGroupShaderKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -1924,7 +1924,7 @@ impl<'lt> RayTracingShaderGroupCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2446,7 +2446,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelineFeaturesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
     ///Lifetime field
@@ -2857,7 +2857,7 @@ impl<'lt> PhysicalDeviceRayTracingPipelineFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRayTracingPipelinePropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPipelinePropertiesKHR<'lt> {
     ///Lifetime field
@@ -3402,7 +3402,7 @@ impl TraceRaysIndirectCommandKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRayTracingPipelineInterfaceCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RayTracingPipelineInterfaceCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -3862,7 +3862,7 @@ impl Device {
             .and_then(|vtable| vtable.create_ray_tracing_pipelines_khr())
             .unwrap_unchecked();
         let create_info_count = (|len: usize| len)(p_create_infos.len()) as _;
-        let mut p_pipelines = SmallVec::<Pipeline>::from_elem(Default::default(), create_info_count as usize);
+        let mut p_pipelines = SmallVec::<Pipeline>::with_capacity(create_info_count as usize);
         let _return = _function(
             self.as_raw(),
             deferred_operation.unwrap_or_default(),
@@ -3878,13 +3878,13 @@ impl Device {
             VulkanResultCodes::SUCCESS
             | VulkanResultCodes::OPERATION_DEFERRED_KHR
             | VulkanResultCodes::OPERATION_NOT_DEFERRED_KHR
-            | VulkanResultCodes::PIPELINE_COMPILE_REQUIRED => VulkanResult::Success(
-                _return,
+            | VulkanResultCodes::PIPELINE_COMPILE_REQUIRED => VulkanResult::Success(_return, {
+                p_pipelines.set_len(create_info_count as usize);
                 p_pipelines
                     .into_iter()
                     .map(|i| Unique::new(self, i, AtomicBool::default()))
-                    .collect(),
-            ),
+                    .collect()
+            }),
             e => VulkanResult::Err(e),
         }
     }

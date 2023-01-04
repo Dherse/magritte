@@ -222,7 +222,7 @@ pub type FNCmdSetLogicOpExt = Option<unsafe extern "system" fn(command_buffer: C
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicState2FeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicState2FeaturesEXT<'lt> {
     ///Lifetime field

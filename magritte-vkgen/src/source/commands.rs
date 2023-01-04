@@ -253,7 +253,7 @@ impl<'a> FunctionArgument<'a> {
 
         let externally_synced = ExternallySynced::new(param.externsync.as_ref().map(|s| s as &str));
 
-        let ty = Ty::new(code, len.as_ref().unwrap_or_else(|| &"")).1;
+        let ty = Ty::with_name(code, len.as_ref().unwrap_or_else(|| &"")).1;
         info!(?ty, "type parsed");
 
         Self {

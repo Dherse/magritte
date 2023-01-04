@@ -1,6 +1,6 @@
-use std::{borrow::Cow, ops::Deref};
+use std::{borrow::Cow, ops::Deref, collections::HashSet};
 
-use ahash::AHashSet;
+
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 use smallvec::SmallVec;
@@ -292,11 +292,14 @@ impl StatefulFunctionGeneratorState {
         let ret_ident = arg.as_ident();
 
         self.return_initializations.push(quote! {
-            let mut #ret_ident = SmallVec::<#ty>::from_elem(Default::default(), #len as usize);
+            let mut #ret_ident = SmallVec::<#ty>::with_capacity(#len as usize);
         });
 
         self.return_values.push(quote! {
-            #ret_ident
+            {
+                #ret_ident.set_len(#len as usize);
+                #ret_ident
+            }
         });
 
         if let Ty::Named(name) = inner {
@@ -324,7 +327,10 @@ impl StatefulFunctionGeneratorState {
 
                 imports.push("std::sync::atomic::AtomicBool");
                 *self.return_values.last_mut().unwrap() = quote! {
-                    #ret_ident.into_iter().map(|i| Unique::new(self, i, AtomicBool::default())).collect()
+                    {
+                        #ret_ident.set_len(#len as usize);
+                        #ret_ident.into_iter().map(|i| Unique::new(self, i, AtomicBool::default())).collect()
+                    }
                 };
             }
         }
@@ -367,8 +373,9 @@ impl StatefulFunctionGeneratorState {
                     });
 
                     // this is a work around for the lifetime of the `p_next` field.
-                    // if we do not make the output lifetime static, we have issues with borrowed values in the `p_next` chain.
-                    // using the transmute and by setting `p_next` to null, we avoid the issue entirely.
+                    // if we do not make the output lifetime static, we have issues with borrowed values in the `p_next`
+                    // chain. using the transmute and by setting `p_next` to null, we avoid the
+                    // issue entirely.
                     let inner_ty_str = self.return_types.pop().unwrap().to_string().replace("'lt", "'static");
                     self.return_types.push(inner_ty_str.parse().unwrap());
 
@@ -867,7 +874,7 @@ impl<'a> ArgKind<'a> {
     {
         let mut out = Vec::new();
 
-        let mut lengths = AHashSet::new();
+        let mut lengths = HashSet::new();
         for (i, arg) in args.iter().enumerate() {
             // We check if we are a handle
             if i == 0 && arg.ty().eq(&Ty::Named(Cow::Borrowed(handle))) {

@@ -177,11 +177,12 @@ impl<'a> Struct<'a> {
 
     /// Does the structure only contain the `p_next` pointer and no other.
     pub fn has_only_p_next(&self) -> bool {
-        self.has_p_next().is_some() && self.fields().iter().all(|field| match field.ty() {
-            Ty::Pointer(_, _) if field.original_name() == "pNext" => true,
-            Ty::Pointer(_, _) | Ty::Slice(_, _, _) => false,
-            _ => true,
-        })
+        self.has_p_next().is_some()
+            && self.fields().iter().all(|field| match field.ty() {
+                Ty::Pointer(_, _) if field.original_name() == "pNext" => true,
+                Ty::Pointer(_, _) | Ty::Slice(_, _, _) => false,
+                _ => true,
+            })
     }
 
     /*/// Checks if this structure needs one or more generic type arguments
@@ -269,9 +270,9 @@ impl<'a> Field<'a> {
 
         let mut ty = Ty::new(
             &member.code,
+            name.as_ref().unwrap(),
             member.altlen.as_ref().or(member.len.as_ref()).map_or("", |s| s as &str),
         )
-        .1
         .simplify();
 
         let original_name = name.expect("missing name");
@@ -378,37 +379,65 @@ impl<'a> Field<'a> {
 
     /// Does this field has a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
-        self.ty().has_lifetime(source, pointer_has_lifetime)
+        if self.original_name() == "sType" { false } else if self.original_name() == "pNext" {
+            true
+        }  else {
+            self.ty().has_lifetime(source, pointer_has_lifetime)
+        }
     }
 
     /// Checks if this field is debug
     pub fn is_debug(&self, source: &Source<'a>) -> bool {
-        self.ty().is_debug(source)
+        if self.original_name() == "sType" || self.original_name() == "pNext" {
+            true
+        } else {
+            self.ty().is_debug(source)
+        }
     }
 
     /// Checks if this field is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
-        self.ty().is_copy(source)
+        if self.original_name() == "sType" { true} else if self.original_name() == "pNext" {
+            false
+        } else {
+            self.ty().is_copy(source)
+        }
     }
 
     /// Checks if this field is copy
     pub fn is_partial_eq(&self, source: &Source<'a>) -> bool {
-        self.ty().is_partial_eq(source)
+        if self.original_name() == "sType" || self.original_name() == "pNext" {
+            true
+        } else {
+            self.ty().is_partial_eq(source)
+        }
     }
 
     /// Checks if this field is copy
     pub fn is_eq(&self, source: &Source<'a>) -> bool {
-        self.ty().is_eq(source)
+        if self.original_name() == "sType" || self.original_name() == "pNext" {
+            true
+        } else {
+            self.ty().is_eq(source)
+        }
     }
 
     /// Checks if this field is copy
     pub fn is_hash(&self, source: &Source<'a>) -> bool {
-        self.ty().is_hash(source)
+        if self.original_name() == "sType" || self.original_name() == "pNext" {
+            true
+        } else {
+            self.ty().is_hash(source)
+        }
     }
 
     /// Checks whether the field can be (de)serialized
     pub fn is_serde(&self, source: &Source<'a>) -> bool {
-        self.ty().is_serde(source)
+        if self.original_name() == "sType" { true} else if self.original_name() == "pNext" {
+            false
+        } else {
+            self.ty().is_serde(source)
+        }
     }
 
     /*/// Does this field have a generic type argument

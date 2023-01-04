@@ -2259,7 +2259,7 @@ impl DisplayModePropertiesKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayModeCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DisplayModeCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2756,7 +2756,7 @@ impl DisplayPlaneCapabilitiesKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplaySurfaceCreateInfoKHR")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct DisplaySurfaceCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -3182,11 +3182,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_properties =
-            SmallVec::<DisplayPropertiesKHR<'lt>>::from_elem(Default::default(), p_property_count as usize);
+        let mut p_properties = SmallVec::<DisplayPropertiesKHR<'lt>>::with_capacity(p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_properties.set_len(p_property_count as usize);
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -3277,11 +3279,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_properties =
-            SmallVec::<DisplayPlanePropertiesKHR>::from_elem(Default::default(), p_property_count as usize);
+        let mut p_properties = SmallVec::<DisplayPlanePropertiesKHR>::with_capacity(p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_properties.set_len(p_property_count as usize);
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -3380,7 +3384,7 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_displays = SmallVec::<DisplayKHR>::from_elem(Default::default(), p_display_count as usize);
+        let mut p_displays = SmallVec::<DisplayKHR>::with_capacity(p_display_count as usize);
         let _return = _function(
             self.as_raw(),
             plane_index.unwrap_or_default() as _,
@@ -3388,13 +3392,13 @@ impl PhysicalDevice {
             p_displays.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
-                _return,
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_displays.set_len(p_display_count as usize);
                 p_displays
                     .into_iter()
                     .map(|i| Unique::new(self, i, AtomicBool::default()))
-                    .collect(),
-            ),
+                    .collect()
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -3488,11 +3492,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_properties =
-            SmallVec::<DisplayModePropertiesKHR>::from_elem(Default::default(), p_property_count as usize);
+        let mut p_properties = SmallVec::<DisplayModePropertiesKHR>::with_capacity(p_property_count as usize);
         let _return = _function(self.as_raw(), display, &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_properties.set_len(p_property_count as usize);
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

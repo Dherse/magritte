@@ -124,7 +124,7 @@ pub const EXT_ROBUSTNESS_2_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_EXT_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2FeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2FeaturesEXT<'lt> {
     ///Lifetime field
@@ -413,7 +413,7 @@ impl<'lt> PhysicalDeviceRobustness2FeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceRobustness2PropertiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceRobustness2PropertiesEXT<'lt> {
     ///Lifetime field

@@ -1,8 +1,7 @@
 //! Utilities to generate nicer imports.
 
-use std::{cell::RefCell, fmt::Display, str::FromStr};
+use std::{cell::RefCell, fmt::Display, str::FromStr, collections::HashSet};
 
-use ahash::AHashSet;
 use proc_macro2::TokenStream;
 use quote::ToTokens;
 
@@ -10,12 +9,12 @@ use crate::origin::Origin;
 
 /// A set of imports
 #[derive(Debug, Clone, Default)]
-pub struct Imports(pub(crate) RefCell<AHashSet<String>>, pub(crate) Origin<'static>);
+pub struct Imports(pub(crate) RefCell<HashSet<String>>, pub(crate) Origin<'static>);
 
 impl Imports {
     /// Creates a new imports with an origin
     pub fn new(origin: &Origin<'_>) -> Self {
-        Self(RefCell::new(AHashSet::new()), origin.as_static())
+        Self(RefCell::new(HashSet::new()), origin.as_static())
     }
 
     /// Push a new imports from its name

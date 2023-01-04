@@ -200,7 +200,7 @@ pub type FNCmdSetCheckpointNv =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyCheckpointPropertiesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueueFamilyCheckpointPropertiesNV<'lt> {
     ///Lifetime field
@@ -347,7 +347,7 @@ impl<'lt> QueueFamilyCheckpointPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCheckpointDataNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CheckpointDataNV<'lt> {
     ///Lifetime field
@@ -571,14 +571,16 @@ impl Queue {
                 v
             },
         };
-        let mut p_checkpoint_data =
-            SmallVec::<CheckpointDataNV<'lt>>::from_elem(Default::default(), p_checkpoint_data_count as usize);
+        let mut p_checkpoint_data = SmallVec::<CheckpointDataNV<'lt>>::with_capacity(p_checkpoint_data_count as usize);
         let _return = _function(
             self.as_raw(),
             &mut p_checkpoint_data_count,
             p_checkpoint_data.as_mut_ptr(),
         );
-        p_checkpoint_data
+        {
+            p_checkpoint_data.set_len(p_checkpoint_data_count as usize);
+            p_checkpoint_data
+        }
     }
 }
 impl CommandBuffer {

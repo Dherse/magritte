@@ -936,7 +936,7 @@ impl<'a> Source<'a> {
         let name = function_name(original_name, &self.tags[..]);
         info!(?name, "generated rustified name");
 
-        let (_, return_type) = Ty::new(def_.proto.type_name.as_ref().expect("no return type for command"), "");
+        let (_, return_type) = Ty::with_name(def_.proto.type_name.as_ref().expect("no return type for command"), "");
         info!(?return_type, "parsed return type");
 
         let success_codes = def_
@@ -1213,7 +1213,7 @@ impl<'a> Source<'a> {
                     let name = const_name(original_name, None);
                     info!(?name, "generated rustified name");
 
-                    let ty = Ty::new(en.type_suffix.as_ref().unwrap(), "").1;
+                    let ty = Ty::with_name(en.type_suffix.as_ref().unwrap(), "").1;
                     info!(?ty, "parsed type");
 
                     let expr = Expr::new(value);
@@ -1344,7 +1344,7 @@ impl<'a> Source<'a> {
                     .iter()
                     .find_map(|s| {
                         if let TypeCodeMarkup::Type(ty) = s {
-                            Some(Ty::new(ty, ""))
+                            Some(Ty::with_name(ty, ""))
                         } else {
                             None
                         }
@@ -1390,7 +1390,7 @@ impl<'a> Source<'a> {
         let name = funcpointer_name(original_name, &self.tags[..]);
         info!(?name, "rustified name built");
 
-        let (_, ret) = Ty::new(code.split(' ').nth(1).expect("no return type"), "");
+        let (_, ret) = Ty::with_name(code.split(' ').nth(1).expect("no return type"), "");
         info!(?ret, "return type parsed");
 
         let return_type = ret.is_void().not().then(|| ret);
@@ -1400,7 +1400,7 @@ impl<'a> Source<'a> {
             .nth(2)
             .expect("no arguments for function pointer")
             .split(',')
-            .map(|elements| Ty::new(elements, ""))
+            .map(|elements| Ty::with_name(elements, ""))
             .map(|(original_name, ty)| {
                 let name = original_name.to_snake_case();
                 info!(?original_name, ?ty, ?name, "processed argument");

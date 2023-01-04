@@ -1,6 +1,6 @@
-use std::{borrow::Cow, mem::swap};
+use std::{borrow::Cow, mem::swap, collections::HashMap};
 
-use ahash::AHashMap;
+
 use ego_tree::NodeRef;
 use nom::combinator::all_consuming;
 use regex::{Regex, Replacer};
@@ -32,7 +32,7 @@ where
     pub in_item: bool,
     pub found: bool,
     pub level: u32,
-    pub variants: Option<&'a mut AHashMap<String, String>>,
+    pub variants: Option<&'a mut HashMap<String, String>>,
 }
 
 impl<'a, 'b, T: Queryable<'b>> Visitor<'a, 'b, T>

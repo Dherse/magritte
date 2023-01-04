@@ -131,7 +131,7 @@ pub const VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME: &'static CStr =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE<'lt> {
     ///Lifetime field
@@ -450,7 +450,7 @@ impl<'lt> MutableDescriptorTypeListVALVE<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMutableDescriptorTypeCreateInfoVALVE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MutableDescriptorTypeCreateInfoVALVE<'lt> {
     ///Lifetime field

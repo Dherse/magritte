@@ -8930,7 +8930,7 @@ impl std::fmt::Debug for FenceImportFlags {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFeatures2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFeatures2<'lt> {
     ///Lifetime field
@@ -12000,7 +12000,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProperties2")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct PhysicalDeviceProperties2<'lt> {
     ///Lifetime field
@@ -13539,7 +13539,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFormatProperties2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct FormatProperties2<'lt> {
     ///Lifetime field
@@ -13920,7 +13920,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageFormatProperties2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageFormatProperties2<'lt> {
     ///Lifetime field
@@ -14232,7 +14232,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageFormatInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceImageFormatInfo2<'lt> {
     ///Lifetime field
@@ -14593,7 +14593,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueueFamilyProperties2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueueFamilyProperties2<'lt> {
     ///Lifetime field
@@ -14868,7 +14868,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryProperties2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryProperties2<'lt> {
     ///Lifetime field
@@ -15042,7 +15042,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageFormatProperties2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SparseImageFormatProperties2<'lt> {
     ///Lifetime field
@@ -15213,7 +15213,7 @@ impl<'lt> SparseImageFormatProperties2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSparseImageFormatInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSparseImageFormatInfo2<'lt> {
     ///Lifetime field
@@ -15464,7 +15464,7 @@ impl<'lt> PhysicalDeviceSparseImageFormatInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceVariablePointersFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceVariablePointersFeatures<'lt> {
     ///Lifetime field
@@ -15844,7 +15844,7 @@ impl ExternalMemoryProperties {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalImageFormatInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExternalImageFormatInfo<'lt> {
     ///Lifetime field
@@ -15983,7 +15983,7 @@ impl<'lt> PhysicalDeviceExternalImageFormatInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalImageFormatProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalImageFormatProperties<'lt> {
     ///Lifetime field
@@ -16143,7 +16143,7 @@ impl<'lt> ExternalImageFormatProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalBufferInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExternalBufferInfo<'lt> {
     ///Lifetime field
@@ -16331,7 +16331,7 @@ impl<'lt> PhysicalDeviceExternalBufferInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalBufferProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalBufferProperties<'lt> {
     ///Lifetime field
@@ -16519,7 +16519,7 @@ impl<'lt> ExternalBufferProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceIDProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceIdProperties<'lt> {
     ///Lifetime field
@@ -16779,7 +16779,7 @@ impl<'lt> PhysicalDeviceIdProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryImageCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalMemoryImageCreateInfo<'lt> {
     ///Lifetime field
@@ -16922,7 +16922,7 @@ impl<'lt> ExternalMemoryImageCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalMemoryBufferCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalMemoryBufferCreateInfo<'lt> {
     ///Lifetime field
@@ -17071,7 +17071,7 @@ impl<'lt> ExternalMemoryBufferCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportMemoryAllocateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExportMemoryAllocateInfo<'lt> {
     ///Lifetime field
@@ -17216,7 +17216,7 @@ impl<'lt> ExportMemoryAllocateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalSemaphoreInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExternalSemaphoreInfo<'lt> {
     ///Lifetime field
@@ -17392,7 +17392,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalSemaphoreProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalSemaphoreProperties<'lt> {
     ///Lifetime field
@@ -17606,7 +17606,7 @@ impl<'lt> ExternalSemaphoreProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportSemaphoreCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExportSemaphoreCreateInfo<'lt> {
     ///Lifetime field
@@ -17751,7 +17751,7 @@ impl<'lt> ExportSemaphoreCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExternalFenceInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExternalFenceInfo<'lt> {
     ///Lifetime field
@@ -17901,7 +17901,7 @@ impl<'lt> PhysicalDeviceExternalFenceInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExternalFenceProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExternalFenceProperties<'lt> {
     ///Lifetime field
@@ -18108,7 +18108,7 @@ impl<'lt> ExternalFenceProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkExportFenceCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ExportFenceCreateInfo<'lt> {
     ///Lifetime field
@@ -18264,7 +18264,7 @@ impl<'lt> ExportFenceCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewFeatures<'lt> {
     ///Lifetime field
@@ -18552,7 +18552,7 @@ impl<'lt> PhysicalDeviceMultiviewFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMultiviewProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMultiviewProperties<'lt> {
     ///Lifetime field
@@ -18821,7 +18821,7 @@ impl<'lt> PhysicalDeviceMultiviewProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassMultiviewCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderPassMultiviewCreateInfo<'lt> {
     ///Lifetime field
@@ -19138,7 +19138,7 @@ impl<'lt> RenderPassMultiviewCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceGroupProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceGroupProperties<'lt> {
     ///Lifetime field
@@ -19392,7 +19392,7 @@ impl<'lt> PhysicalDeviceGroupProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryAllocateFlagsInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryAllocateFlagsInfo<'lt> {
     ///Lifetime field
@@ -19624,7 +19624,7 @@ impl<'lt> MemoryAllocateFlagsInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindBufferMemoryInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindBufferMemoryInfo<'lt> {
     ///Lifetime field
@@ -19853,7 +19853,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindBufferMemoryDeviceGroupInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindBufferMemoryDeviceGroupInfo<'lt> {
     ///Lifetime field
@@ -20141,7 +20141,7 @@ impl<'lt> BindBufferMemoryDeviceGroupInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemoryInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindImageMemoryInfo<'lt> {
     ///Lifetime field
@@ -20463,7 +20463,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemoryDeviceGroupInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindImageMemoryDeviceGroupInfo<'lt> {
     ///Lifetime field
@@ -20746,7 +20746,7 @@ impl<'lt> BindImageMemoryDeviceGroupInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupRenderPassBeginInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupRenderPassBeginInfo<'lt> {
     ///Lifetime field
@@ -20948,7 +20948,7 @@ impl<'lt> DeviceGroupRenderPassBeginInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupCommandBufferBeginInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupCommandBufferBeginInfo<'lt> {
     ///Lifetime field
@@ -21122,7 +21122,7 @@ impl<'lt> DeviceGroupCommandBufferBeginInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupSubmitInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupSubmitInfo<'lt> {
     ///Lifetime field
@@ -21446,7 +21446,7 @@ impl<'lt> DeviceGroupSubmitInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupBindSparseInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupBindSparseInfo<'lt> {
     ///Lifetime field
@@ -21633,7 +21633,7 @@ impl<'lt> DeviceGroupBindSparseInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupDeviceCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupDeviceCreateInfo<'lt> {
     ///Lifetime field
@@ -22099,7 +22099,7 @@ impl DescriptorUpdateTemplateEntry {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorUpdateTemplateCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DescriptorUpdateTemplateCreateInfo<'lt> {
     ///Lifetime field
@@ -22573,7 +22573,7 @@ impl InputAttachmentAspectReference {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassInputAttachmentAspectCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderPassInputAttachmentAspectCreateInfo<'lt> {
     ///Lifetime field
@@ -22780,7 +22780,7 @@ impl<'lt> RenderPassInputAttachmentAspectCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevice16BitStorageFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevice16BitStorageFeatures<'lt> {
     ///Lifetime field
@@ -23136,7 +23136,7 @@ impl<'lt> PhysicalDevice16BitStorageFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSubgroupProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSubgroupProperties<'lt> {
     ///Lifetime field
@@ -23373,7 +23373,7 @@ impl<'lt> PhysicalDeviceSubgroupProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferMemoryRequirementsInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferMemoryRequirementsInfo2<'lt> {
     ///Lifetime field
@@ -23533,7 +23533,7 @@ impl<'lt> BufferMemoryRequirementsInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageMemoryRequirementsInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageMemoryRequirementsInfo2<'lt> {
     ///Lifetime field
@@ -23696,7 +23696,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageSparseMemoryRequirementsInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageSparseMemoryRequirementsInfo2<'lt> {
     ///Lifetime field
@@ -23845,7 +23845,7 @@ impl<'lt> ImageSparseMemoryRequirementsInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryRequirements2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryRequirements2<'lt> {
     ///Lifetime field
@@ -24018,7 +24018,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSparseImageMemoryRequirements2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SparseImageMemoryRequirements2<'lt> {
     ///Lifetime field
@@ -24167,7 +24167,7 @@ impl<'lt> SparseImageMemoryRequirements2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDevicePointClippingProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDevicePointClippingProperties<'lt> {
     ///Lifetime field
@@ -24344,7 +24344,7 @@ impl<'lt> PhysicalDevicePointClippingProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryDedicatedRequirements")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryDedicatedRequirements<'lt> {
     ///Lifetime field
@@ -24630,7 +24630,7 @@ impl<'lt> MemoryDedicatedRequirements<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryDedicatedAllocateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryDedicatedAllocateInfo<'lt> {
     ///Lifetime field
@@ -24797,7 +24797,7 @@ impl<'lt> MemoryDedicatedAllocateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewUsageCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageViewUsageCreateInfo<'lt> {
     ///Lifetime field
@@ -24944,7 +24944,7 @@ impl<'lt> ImageViewUsageCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineTessellationDomainOriginStateCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineTessellationDomainOriginStateCreateInfo<'lt> {
     ///Lifetime field
@@ -25096,7 +25096,7 @@ impl<'lt> PipelineTessellationDomainOriginStateCreateInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SamplerYcbcrConversionInfo<'lt> {
     ///Lifetime field
@@ -25316,7 +25316,7 @@ impl<'lt> SamplerYcbcrConversionInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionCreateInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SamplerYcbcrConversionCreateInfo<'lt> {
     ///Lifetime field
@@ -25680,7 +25680,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other> crate::Chain<'
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImagePlaneMemoryInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindImagePlaneMemoryInfo<'lt> {
     ///Lifetime field
@@ -25833,7 +25833,7 @@ impl<'lt> BindImagePlaneMemoryInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImagePlaneMemoryRequirementsInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImagePlaneMemoryRequirementsInfo<'lt> {
     ///Lifetime field
@@ -25982,7 +25982,7 @@ impl<'lt> ImagePlaneMemoryRequirementsInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSamplerYcbcrConversionFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
     ///Lifetime field
@@ -26162,7 +26162,7 @@ impl<'lt> PhysicalDeviceSamplerYcbcrConversionFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSamplerYcbcrConversionImageFormatProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SamplerYcbcrConversionImageFormatProperties<'lt> {
     ///Lifetime field
@@ -26305,7 +26305,7 @@ impl<'lt> SamplerYcbcrConversionImageFormatProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkProtectedSubmitInfo")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ProtectedSubmitInfo<'lt> {
     ///Lifetime field
@@ -26475,7 +26475,7 @@ impl<'lt> ProtectedSubmitInfo<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryFeatures<'lt> {
     ///Lifetime field
@@ -26651,7 +26651,7 @@ impl<'lt> PhysicalDeviceProtectedMemoryFeatures<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProtectedMemoryProperties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceProtectedMemoryProperties<'lt> {
     ///Lifetime field
@@ -26841,7 +26841,7 @@ impl<'lt> PhysicalDeviceProtectedMemoryProperties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceQueueInfo2")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceQueueInfo2<'lt> {
     ///Lifetime field
@@ -27035,7 +27035,7 @@ impl<'lt> DeviceQueueInfo2<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMaintenance3Properties")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMaintenance3Properties<'lt> {
     ///Lifetime field
@@ -27206,7 +27206,7 @@ impl<'lt> PhysicalDeviceMaintenance3Properties<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutSupport")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DescriptorSetLayoutSupport<'lt> {
     ///Lifetime field
@@ -27419,7 +27419,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceShaderDrawParametersFeatures")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceShaderDrawParametersFeatures<'lt> {
     ///Lifetime field
@@ -27666,19 +27666,18 @@ impl Instance {
                 v
             },
         };
-        let mut p_physical_device_group_properties = SmallVec::<PhysicalDeviceGroupProperties<'lt>>::from_elem(
-            Default::default(),
-            p_physical_device_group_count as usize,
-        );
+        let mut p_physical_device_group_properties =
+            SmallVec::<PhysicalDeviceGroupProperties<'lt>>::with_capacity(p_physical_device_group_count as usize);
         let _return = _function(
             self.as_raw(),
             &mut p_physical_device_group_count,
             p_physical_device_group_properties.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_physical_device_group_properties)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_physical_device_group_properties.set_len(p_physical_device_group_count as usize);
+                p_physical_device_group_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }
@@ -28185,16 +28184,17 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_queue_family_properties = SmallVec::<QueueFamilyProperties2<'lt>>::from_elem(
-            Default::default(),
-            p_queue_family_property_count as usize,
-        );
+        let mut p_queue_family_properties =
+            SmallVec::<QueueFamilyProperties2<'lt>>::with_capacity(p_queue_family_property_count as usize);
         let _return = _function(
             self.as_raw(),
             &mut p_queue_family_property_count,
             p_queue_family_properties.as_mut_ptr(),
         );
-        p_queue_family_properties
+        {
+            p_queue_family_properties.set_len(p_queue_family_property_count as usize);
+            p_queue_family_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -28408,15 +28408,17 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_properties =
-            SmallVec::<SparseImageFormatProperties2<'lt>>::from_elem(Default::default(), p_property_count as usize);
+        let mut p_properties = SmallVec::<SparseImageFormatProperties2<'lt>>::with_capacity(p_property_count as usize);
         let _return = _function(
             self.as_raw(),
             p_format_info as *const PhysicalDeviceSparseImageFormatInfo2<'lt>,
             &mut p_property_count,
             p_properties.as_mut_ptr(),
         );
-        p_properties
+        {
+            p_properties.set_len(p_property_count as usize);
+            p_properties
+        }
     }
 }
 impl PhysicalDevice {
@@ -29860,17 +29862,18 @@ impl Device {
                 v
             },
         };
-        let mut p_sparse_memory_requirements = SmallVec::<SparseImageMemoryRequirements2<'lt>>::from_elem(
-            Default::default(),
-            p_sparse_memory_requirement_count as usize,
-        );
+        let mut p_sparse_memory_requirements =
+            SmallVec::<SparseImageMemoryRequirements2<'lt>>::with_capacity(p_sparse_memory_requirement_count as usize);
         let _return = _function(
             self.as_raw(),
             p_info as *const ImageSparseMemoryRequirementsInfo2<'lt>,
             &mut p_sparse_memory_requirement_count,
             p_sparse_memory_requirements.as_mut_ptr(),
         );
-        p_sparse_memory_requirements
+        {
+            p_sparse_memory_requirements.set_len(p_sparse_memory_requirement_count as usize);
+            p_sparse_memory_requirements
+        }
     }
 }
 impl Device {

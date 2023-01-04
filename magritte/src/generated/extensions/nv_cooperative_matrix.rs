@@ -409,7 +409,7 @@ impl std::fmt::Debug for ComponentTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixFeaturesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
     ///Lifetime field
@@ -637,7 +637,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixPropertiesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
     ///Lifetime field
@@ -820,7 +820,7 @@ impl<'lt> PhysicalDeviceCooperativeMatrixPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkCooperativeMatrixPropertiesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct CooperativeMatrixPropertiesNV<'lt> {
     ///Lifetime field
@@ -1159,11 +1159,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_properties =
-            SmallVec::<CooperativeMatrixPropertiesNV<'lt>>::from_elem(Default::default(), p_property_count as usize);
+        let mut p_properties = SmallVec::<CooperativeMatrixPropertiesNV<'lt>>::with_capacity(p_property_count as usize);
         let _return = _function(self.as_raw(), &mut p_property_count, p_properties.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_properties),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_properties.set_len(p_property_count as usize);
+                p_properties
+            }),
             e => VulkanResult::Err(e),
         }
     }

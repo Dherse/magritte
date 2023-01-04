@@ -515,7 +515,7 @@ impl std::fmt::Debug for ValidationCacheCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkValidationCacheCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ValidationCacheCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -715,7 +715,7 @@ impl<'lt> ValidationCacheCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkShaderModuleValidationCacheCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ShaderModuleValidationCacheCreateInfoEXT<'lt> {
     ///Lifetime field

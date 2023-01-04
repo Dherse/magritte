@@ -48,11 +48,23 @@ pub enum Ty<'a> {
 impl<'a> Ty<'a> {
     /// Creates a new type from a definition and a length
     #[must_use]
-    pub fn new(definition: &'a str, length_str: &'a str) -> (Cow<'a, str>, Self) {
-        let definition = definition.trim();
+    pub fn new(definitions: &'a str, name: &str, length_str: &'a str) -> Self {
+        let code = definitions.trim_end_matches(name);
+
         let lengths = length_str.split(',');
 
-        let (_, base_ty) = ty(definition).unwrap();
+        let (_, base_ty) = ty(&code).unwrap();
+
+        let ty = process_base_ty(&mut "", base_ty, lengths.filter(|s| !s.is_empty()));
+
+        ty
+    }
+    /// Creates a new type from a definition and a length
+    #[must_use]
+    pub fn with_name(definition: &'a str, length_str: &'a str) -> (Cow<'a, str>, Self) {
+        let lengths = length_str.split(',');
+
+        let (_, base_ty) = ty(definition.trim()).unwrap();
 
         let mut name = "unknown";
         let ty = process_base_ty(&mut name, base_ty, lengths.filter(|s| !s.is_empty()));

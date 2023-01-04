@@ -370,7 +370,7 @@ impl SampleLocationEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSampleLocationsInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SampleLocationsInfoEXT<'lt> {
     ///Lifetime field
@@ -847,7 +847,7 @@ impl<'lt> SubpassSampleLocationsEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkRenderPassSampleLocationsBeginInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct RenderPassSampleLocationsBeginInfoEXT<'lt> {
     ///Lifetime field
@@ -1350,7 +1350,7 @@ impl<'lt> PipelineSampleLocationsStateCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
     ///Lifetime field
@@ -1615,7 +1615,7 @@ impl<'lt> PhysicalDeviceSampleLocationsPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMultisamplePropertiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MultisamplePropertiesEXT<'lt> {
     ///Lifetime field

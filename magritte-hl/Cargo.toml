@@ -8,13 +8,16 @@ edition = "2021"
 magritte-vma = { path = "../magritte-vma" }
 
 # Error handling
-thiserror = "1.0.37"
+thiserror = "1.0"
 
 # Logging facilities
-log = "0.4.16"
+log = "0.4"
 
 # Faster mutexes
-parking_lot = "0.12.1"
+parking_lot = "0.12"
+
+# Faster hashing algorithm
+ahash = "0.8.2"
 
 # Vulkan bindings
 [dependencies.magritte]

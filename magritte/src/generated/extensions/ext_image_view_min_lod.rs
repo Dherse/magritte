@@ -93,7 +93,7 @@ pub const EXT_IMAGE_VIEW_MIN_LOD_EXTENSION_NAME: &'static CStr = crate::cstr!("V
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceImageViewMinLodFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
     ///Lifetime field
@@ -268,7 +268,7 @@ impl<'lt> PhysicalDeviceImageViewMinLodFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewMinLodCreateInfoEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct ImageViewMinLodCreateInfoEXT<'lt> {
     ///Lifetime field

@@ -610,7 +610,7 @@ impl std::fmt::Debug for DisplayEventTypeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayPowerInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DisplayPowerInfoEXT<'lt> {
     ///Lifetime field
@@ -747,7 +747,7 @@ impl<'lt> DisplayPowerInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceEventInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceEventInfoEXT<'lt> {
     ///Lifetime field
@@ -880,7 +880,7 @@ impl<'lt> DeviceEventInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDisplayEventInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DisplayEventInfoEXT<'lt> {
     ///Lifetime field
@@ -1024,7 +1024,7 @@ impl<'lt> DisplayEventInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCounterCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SwapchainCounterCreateInfoEXT<'lt> {
     ///Lifetime field

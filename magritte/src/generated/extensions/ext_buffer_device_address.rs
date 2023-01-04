@@ -138,7 +138,7 @@ pub const EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = crate::cstr!
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
     ///Lifetime field
@@ -422,7 +422,7 @@ impl<'lt> PhysicalDeviceBufferDeviceAddressFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBufferDeviceAddressCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BufferDeviceAddressCreateInfoEXT<'lt> {
     ///Lifetime field

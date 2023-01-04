@@ -171,7 +171,7 @@ pub type FNCmdSetColorWriteEnableExt = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceColorWriteEnableFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
     ///Lifetime field
@@ -369,7 +369,7 @@ impl<'lt> PhysicalDeviceColorWriteEnableFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineColorWriteCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineColorWriteCreateInfoEXT<'lt> {
     ///Lifetime field

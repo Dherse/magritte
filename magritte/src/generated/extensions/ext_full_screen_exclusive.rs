@@ -507,7 +507,7 @@ impl std::fmt::Debug for FullScreenExclusiveEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFullScreenExclusiveInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceFullScreenExclusiveInfoEXT<'lt> {
     ///Lifetime field
@@ -809,7 +809,7 @@ impl<'lt> SurfaceFullScreenExclusiveWin32InfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilitiesFullScreenExclusiveEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceCapabilitiesFullScreenExclusiveEXT<'lt> {
     ///Lifetime field
@@ -1039,8 +1039,7 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_present_modes =
-            SmallVec::<PresentModeKHR>::from_elem(Default::default(), p_present_mode_count as usize);
+        let mut p_present_modes = SmallVec::<PresentModeKHR>::with_capacity(p_present_mode_count as usize);
         let _return = _function(
             self.as_raw(),
             p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
@@ -1048,9 +1047,10 @@ impl PhysicalDevice {
             p_present_modes.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_present_modes)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_present_modes.set_len(p_present_mode_count as usize);
+                p_present_modes
+            }),
             e => VulkanResult::Err(e),
         }
     }

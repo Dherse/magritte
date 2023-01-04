@@ -920,7 +920,7 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupPresentCapabilitiesKHR<'lt> {
     ///Lifetime field
@@ -1097,7 +1097,7 @@ impl<'lt> DeviceGroupPresentCapabilitiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageSwapchainCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageSwapchainCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -1249,7 +1249,7 @@ impl<'lt> ImageSwapchainCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkBindImageMemorySwapchainInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct BindImageMemorySwapchainInfoKHR<'lt> {
     ///Lifetime field
@@ -1440,7 +1440,7 @@ impl<'lt> BindImageMemorySwapchainInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkAcquireNextImageInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct AcquireNextImageInfoKHR<'lt> {
     ///Lifetime field
@@ -1720,7 +1720,7 @@ impl<'lt> AcquireNextImageInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupPresentInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupPresentInfoKHR<'lt> {
     ///Lifetime field
@@ -1920,7 +1920,7 @@ impl<'lt> DeviceGroupPresentInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDeviceGroupSwapchainCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DeviceGroupSwapchainCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2127,10 +2127,13 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_rects = SmallVec::<Rect2D>::from_elem(Default::default(), p_rect_count as usize);
+        let mut p_rects = SmallVec::<Rect2D>::with_capacity(p_rect_count as usize);
         let _return = _function(self.as_raw(), surface, &mut p_rect_count, p_rects.as_mut_ptr());
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, p_rects),
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_rects.set_len(p_rect_count as usize);
+                p_rects
+            }),
             e => VulkanResult::Err(e),
         }
     }

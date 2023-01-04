@@ -1,6 +1,6 @@
 #![warn(trivial_casts, trivial_numeric_casts)]
 
-pub use raw_window_handle::{HasRawWindowHandle, RawWindowHandle};
+pub use raw_window_handle::{HasRawDisplayHandle, HasRawWindowHandle, RawDisplayHandle, RawWindowHandle};
 
 use crate::{
     extensions::{self, khr_surface::SurfaceKHR},
@@ -19,12 +19,13 @@ use crate::{
 /// resulting [`SurfaceKHR`].
 pub unsafe fn create_surface(
     instance: &Unique<Instance>,
-    window_handle: &dyn HasRawWindowHandle,
+    window_handle: &impl HasRawWindowHandle,
+    display_handle: &impl HasRawDisplayHandle,
     allocation_callbacks: Option<&AllocationCallbacks>,
 ) -> VulkanResult<Unique<SurfaceKHR>> {
-    match window_handle.raw_window_handle() {
+    match (window_handle.raw_window_handle(), display_handle.raw_display_handle()) {
         #[cfg(target_os = "windows")]
-        RawWindowHandle::Win32(handle) => {
+        (RawWindowHandle::Win32(handle), RawDisplayHandle::Windows(_)) => {
             let surface_desc = extensions::khr_win32_surface::Win32SurfaceCreateInfoKHR::default()
                 .with_hinstance(std::mem::transmute(handle.hinstance))
                 .with_hwnd(std::mem::transmute(handle.hwnd));
@@ -39,10 +40,10 @@ pub unsafe fn create_surface(
             target_os = "netbsd",
             target_os = "openbsd"
         ))]
-        RawWindowHandle::Wayland(handle) => {
+        (RawWindowHandle::Wayland(window), RawDisplayHandle::Wayland(display)) => {
             let surface_desc = extensions::khr_wayland_surface::WaylandSurfaceCreateInfoKHR::default()
-                .with_display(handle.display)
-                .with_surface(handle.surface);
+                .with_display(display.display)
+                .with_surface(window.surface);
 
             instance.create_wayland_surface_khr(&surface_desc, allocation_callbacks)
         },
@@ -54,10 +55,10 @@ pub unsafe fn create_surface(
             target_os = "netbsd",
             target_os = "openbsd"
         ))]
-        RawWindowHandle::Xlib(handle) => {
+        (RawWindowHandle::Xlib(window), RawDisplayHandle::Xlib(display)) => {
             let surface_desc = extensions::khr_xlib_surface::XlibSurfaceCreateInfoKHR::default()
-                .with_dpy(handle.display)
-                .with_window(handle.window);
+                .with_dpy(display.display)
+                .with_window(window.window);
 
             instance.create_xlib_surface_khr(&surface_desc, allocation_callbacks)
         },
@@ -69,29 +70,29 @@ pub unsafe fn create_surface(
             target_os = "netbsd",
             target_os = "openbsd"
         ))]
-        RawWindowHandle::Xcb(handle) => {
+        (RawWindowHandle::Xcb(window), RawDisplayHandle::Xcb(display)) => {
             let surface_desc = extensions::khr_xcb_surface::XcbSurfaceCreateInfoKHR::default()
-                .with_connection(handle.connection)
-                .with_window(handle.window);
+                .with_connection(display.connection)
+                .with_window(window.window);
 
             instance.create_xcb_surface_khr(&surface_desc, allocation_callbacks)
         },
 
         #[cfg(any(target_os = "android"))]
-        RawWindowHandle::Android(handle) => {
+        (RawWindowHandle::AndroidNdk(window), RawDisplayHandle::Android(_)) => {
             let surface_desc =
-                extensions::khr_android_surface::AndroidSurfaceCreateInfoKHR::default().window(handle.a_native_window);
+                extensions::khr_android_surface::AndroidSurfaceCreateInfoKHR::default().window(window.a_native_window);
 
             instance.create_android_surface(&surface_desc, allocation_callbacks)
         },
 
         #[cfg(any(target_os = "macos"))]
-        RawWindowHandle::MacOS(handle) => {
+        (RawWindowHandle::AppKit(window), RawDisplayHandle::AppKit(_)) => {
             todo!()
         },
 
         #[cfg(any(target_os = "ios"))]
-        RawWindowHandle::IOS(handle) => {
+        (RawWindowHandle::UiKit(window), RawDisplayHandle::UiKit(_)) => {
             todo!()
         },
 
@@ -102,8 +103,8 @@ pub unsafe fn create_surface(
 /// Query the required instance extensions for creating a surface from a window handle.
 ///
 /// The returned extensions will include all extension dependencies.
-pub fn enable_required_extensions<W: HasRawWindowHandle>(
-    window_handle: W,
+pub fn enable_required_extensions(
+    window_handle: impl HasRawWindowHandle,
     extensions: InstanceExtensions,
 ) -> Result<InstanceExtensions, VulkanResultCodes> {
     let extensions = match window_handle.raw_window_handle() {

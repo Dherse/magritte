@@ -1,4 +1,6 @@
-use ahash::AHashMap;
+
+use std::collections::HashMap;
+
 use heck::ToShoutySnakeCase;
 use proc_macro2::{Ident, Literal, Span, TokenStream};
 use quote::quote;
@@ -40,7 +42,7 @@ impl<'a> Bit<'a> {
         &self,
         source: &Source<'a>,
         parent: &Origin<'a>,
-        doc: &AHashMap<String, String>,
+        doc: &HashMap<String, String>,
     ) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(

@@ -92,7 +92,7 @@ pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_E
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceMemoryPriorityFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
     ///Lifetime field
@@ -269,7 +269,7 @@ impl<'lt> PhysicalDeviceMemoryPriorityFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryPriorityAllocateInfoEXT")]
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, PartialEq, PartialOrd)]
 #[repr(C)]
 pub struct MemoryPriorityAllocateInfoEXT<'lt> {
     ///Lifetime field

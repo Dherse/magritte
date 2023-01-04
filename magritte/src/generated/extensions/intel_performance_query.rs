@@ -1083,7 +1083,7 @@ impl PerformanceValueINTEL {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkInitializePerformanceApiInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct InitializePerformanceApiInfoINTEL<'lt> {
     ///Lifetime field
@@ -1239,7 +1239,7 @@ impl<'lt> InitializePerformanceApiInfoINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkQueryPoolPerformanceQueryCreateInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
     ///Lifetime field
@@ -1377,7 +1377,7 @@ impl<'lt> QueryPoolPerformanceQueryCreateInfoINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceMarkerInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceMarkerInfoINTEL<'lt> {
     ///Lifetime field
@@ -1515,7 +1515,7 @@ impl<'lt> PerformanceMarkerInfoINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceStreamMarkerInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceStreamMarkerInfoINTEL<'lt> {
     ///Lifetime field
@@ -1652,7 +1652,7 @@ impl<'lt> PerformanceStreamMarkerInfoINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceOverrideInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceOverrideInfoINTEL<'lt> {
     ///Lifetime field
@@ -1860,7 +1860,7 @@ impl<'lt> PerformanceOverrideInfoINTEL<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPerformanceConfigurationAcquireInfoINTEL")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PerformanceConfigurationAcquireInfoINTEL<'lt> {
     ///Lifetime field

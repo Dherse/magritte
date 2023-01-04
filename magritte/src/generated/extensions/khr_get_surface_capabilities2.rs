@@ -308,7 +308,7 @@ pub type FNGetPhysicalDeviceSurfaceFormats2Khr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceSurfaceInfo2KHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceSurfaceInfo2KHR<'lt> {
     ///Lifetime field
@@ -495,7 +495,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceCapabilities2KHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceCapabilities2KHR<'lt> {
     ///Lifetime field
@@ -739,7 +739,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSurfaceFormat2KHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SurfaceFormat2KHR<'lt> {
     ///Lifetime field
@@ -1048,8 +1048,7 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_surface_formats =
-            SmallVec::<SurfaceFormat2KHR<'lt>>::from_elem(Default::default(), p_surface_format_count as usize);
+        let mut p_surface_formats = SmallVec::<SurfaceFormat2KHR<'lt>>::with_capacity(p_surface_format_count as usize);
         let _return = _function(
             self.as_raw(),
             p_surface_info as *const PhysicalDeviceSurfaceInfo2KHR<'lt>,
@@ -1057,9 +1056,10 @@ impl PhysicalDevice {
             p_surface_formats.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_surface_formats)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_surface_formats.set_len(p_surface_format_count as usize);
+                p_surface_formats
+            }),
             e => VulkanResult::Err(e),
         }
     }

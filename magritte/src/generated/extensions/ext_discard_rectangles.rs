@@ -310,7 +310,7 @@ impl std::fmt::Debug for PipelineDiscardRectangleStateCreateFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDiscardRectanglePropertiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
     ///Lifetime field
@@ -472,7 +472,7 @@ impl<'lt> PhysicalDeviceDiscardRectanglePropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineDiscardRectangleStateCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineDiscardRectangleStateCreateInfoEXT<'lt> {
     ///Lifetime field

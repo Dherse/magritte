@@ -124,7 +124,7 @@ pub const EXT_ASTC_DECODE_MODE_EXTENSION_NAME: &'static CStr = crate::cstr!("VK_
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImageViewASTCDecodeModeEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImageViewAstcDecodeModeEXT<'lt> {
     ///Lifetime field
@@ -264,7 +264,7 @@ impl<'lt> ImageViewAstcDecodeModeEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceASTCDecodeFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceAstcDecodeFeaturesEXT<'lt> {
     ///Lifetime field

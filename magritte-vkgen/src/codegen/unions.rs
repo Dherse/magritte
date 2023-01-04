@@ -1,4 +1,6 @@
-use ahash::AHashMap;
+
+use std::collections::HashMap;
+
 use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token};
 use tracing::warn;
@@ -66,7 +68,7 @@ impl<'a> Union<'a> {
         source: &Source<'a>,
         doc: &mut Documentation,
         out: &mut TokenStream,
-    ) -> Option<AHashMap<String, String>> {
+    ) -> Option<HashMap<String, String>> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
@@ -75,7 +77,7 @@ impl<'a> Union<'a> {
             doc.specification(source, self, out);
 
             // parse the description section
-            let mut fields = AHashMap::with_capacity(self.fields().len());
+            let mut fields = HashMap::with_capacity(self.fields().len());
 
             // parse the members and write them out
             doc.members(source, self, out, Some(&mut fields));

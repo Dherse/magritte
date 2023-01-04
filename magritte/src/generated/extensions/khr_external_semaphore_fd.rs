@@ -242,7 +242,7 @@ pub type FNImportSemaphoreFdKhr = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkImportSemaphoreFdInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct ImportSemaphoreFdInfoKHR<'lt> {
     ///Lifetime field
@@ -465,7 +465,7 @@ impl<'lt> ImportSemaphoreFdInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSemaphoreGetFdInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SemaphoreGetFdInfoKHR<'lt> {
     ///Lifetime field

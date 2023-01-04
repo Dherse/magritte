@@ -166,7 +166,7 @@ pub type FNGetDescriptorSetHostMappingValve =
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
     ///Lifetime field
@@ -333,7 +333,7 @@ impl<'lt> PhysicalDeviceDescriptorSetHostMappingFeaturesVALVE<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetBindingReferenceVALVE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DescriptorSetBindingReferenceVALVE<'lt> {
     ///Lifetime field
@@ -483,7 +483,7 @@ impl<'lt> DescriptorSetBindingReferenceVALVE<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkDescriptorSetLayoutHostMappingInfoVALVE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct DescriptorSetLayoutHostMappingInfoVALVE<'lt> {
     ///Lifetime field

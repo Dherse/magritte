@@ -21,14 +21,12 @@ categories = [
 license-file = '../LICENSE'
 repository = 'https://github.com/Dherse/magritte'
 [dependencies.bytemuck]
-version = '1.9'
+version = '1.12'
 features = []
-optional = false
 
 [dependencies.const-fnv1a-hash]
 version = '1.1.0'
 features = []
-optional = false
 
 [dependencies.libloading]
 version = '0.7'
@@ -46,11 +44,11 @@ features = []
 optional = true
 
 [dependencies.smallvec]
-version = '1.9'
+version = '1.10'
 features = []
 optional = true
 [build-dependencies.bindgen]
-version = '0.60.1'
+version = '0.63'
 features = []
 optional = true
 

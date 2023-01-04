@@ -2,8 +2,12 @@ use std::{error::Error, ffi::CStr};
 
 use clap::Parser;
 use log::LevelFilter;
-use magritte::{cstr, vulkan1_0::{SampleCountFlagBits, CommandPoolCreateFlags}, InstanceExtensions, Version};
-use magritte_hl::{context::Context, VulkanApplication, queue::QueueIndex};
+use magritte::{
+    cstr,
+    vulkan1_0::{CommandPoolCreateFlags, SampleCountFlagBits},
+    InstanceExtensions, Version,
+};
+use magritte_hl::{context::Context, queue::QueueIndex, VulkanApplication};
 use winit::{
     dpi::LogicalSize,
     event_loop::EventLoop,
@@ -17,7 +21,7 @@ struct Opts {
     pub validation_layers: bool,
 
     /// The level of verbosity (1: INFO, 2: DEBUG, 3: TRACE)
-    #[clap(short = 'v', long, parse(from_occurrences))]
+    #[clap(short = 'v', long, action = clap::ArgAction::Count)]
     pub verbose: u8,
 
     /// The level of multisampling, must be a multiple of 2 (i.e 1, 2, 4, 8, 16).
@@ -60,7 +64,9 @@ pub fn main() -> Result<(), Box<dyn Error>> {
 
     let graphics_queue = context.queue(context.graphics_queue).expect("Queue not instantiated");
 
-    let (command_pool, _) = graphics_queue.read().create_command_pool(CommandPoolCreateFlags::empty())?;
+    let (command_pool, _) = graphics_queue
+        .read()
+        .create_command_pool(CommandPoolCreateFlags::empty())?;
 
     println!("{:?}", command_pool);
 
@@ -84,6 +90,8 @@ impl TriangleApplication {
 }
 
 impl VulkanApplication for TriangleApplication {
+    type Window = Window;
+
     fn name(&self) -> &CStr {
         cstr!("Triangle")
     }
@@ -104,7 +112,7 @@ impl VulkanApplication for TriangleApplication {
         self.validation_layers && available
     }
 
-    fn window(&self) -> Option<&dyn magritte::window::HasRawWindowHandle> {
+    fn window(&self) -> Option<&Self::Window> {
         Some(&self.window)
     }
 

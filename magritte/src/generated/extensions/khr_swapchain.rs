@@ -1730,7 +1730,7 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkSwapchainCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -2465,7 +2465,7 @@ unsafe impl<'this: 'extender + 'other, 'extender: 'other, 'other>
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PresentInfoKHR<'lt> {
     ///Lifetime field
@@ -3231,8 +3231,7 @@ impl SwapchainKHR {
                 v
             },
         };
-        let mut p_swapchain_images =
-            SmallVec::<SwapchainImage>::from_elem(Default::default(), p_swapchain_image_count as usize);
+        let mut p_swapchain_images = SmallVec::<SwapchainImage>::with_capacity(p_swapchain_image_count as usize);
         let _return = _function(
             self.device().as_raw(),
             swapchain,
@@ -3240,13 +3239,13 @@ impl SwapchainKHR {
             p_swapchain_images.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(
-                _return,
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_swapchain_images.set_len(p_swapchain_image_count as usize);
                 p_swapchain_images
                     .into_iter()
                     .map(|i| Unique::new(self, i, AtomicBool::default()))
-                    .collect(),
-            ),
+                    .collect()
+            }),
             e => VulkanResult::Err(e),
         }
     }

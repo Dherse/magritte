@@ -1,5 +1,6 @@
-use std::{collections::HashMap, ffi::CStr, sync::Arc};
+use std::{ffi::CStr, sync::Arc};
 
+use ahash::AHashMap;
 use log::{debug, trace, Level};
 use magritte::{
     entry::Entry,
@@ -16,7 +17,11 @@ use magritte::{
 use magritte_vma::Allocator;
 pub use parking_lot::RwLock;
 
-use crate::{device::PhysicalDevice, queue::{Queue, QueueIndex}, VulkanApplication};
+use crate::{
+    device::PhysicalDevice,
+    queue::{Queue, QueueIndex},
+    VulkanApplication,
+};
 
 #[derive(thiserror::Error, Debug)]
 pub enum ContextError {
@@ -113,7 +118,7 @@ pub struct Context<V: VulkanApplication> {
     pub allocator: Unique<Allocator>,
 
     /// The queues that are instantiated on the device
-    pub queues: HashMap<QueueIndex, Arc<RwLock<Queue>>>,
+    pub queues: AHashMap<QueueIndex, Arc<RwLock<Queue>>>,
 }
 
 impl<V: VulkanApplication> Context<V> {
@@ -283,7 +288,7 @@ impl<V: VulkanApplication> Context<V> {
 
         let surface = if let Some(window) = application.window() {
             let surface = unsafe {
-                create_surface(&instance, window, None)
+                create_surface(&instance, &window, &window, None)
                     .result()
                     .map_err(ContextError::SurfaceCreationFailed)?
             };
@@ -393,7 +398,7 @@ impl<V: VulkanApplication> Context<V> {
         let allocator = Allocator::new(&device, None, None).map_err(ContextError::AllocatorCreationFailed)?;
         debug!("Allocator created: {:?}", allocator.as_raw());
 
-        let mut queues = HashMap::with_capacity(queue_info.len());
+        let mut queues = AHashMap::with_capacity(queue_info.len());
 
         for queue_def in &queue_defs {
             for i in 0..queue_def.priorities.len() {

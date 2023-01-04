@@ -5,10 +5,10 @@ use std::{
     borrow::Cow,
     fmt::{self, Debug, Formatter},
     mem::replace,
-    ops::{Index, Range, RangeFull, RangeInclusive, RangeTo, RangeToInclusive},
+    ops::{Index, Range, RangeFull, RangeInclusive, RangeTo, RangeToInclusive}, collections::HashMap,
 };
 
-use ahash::AHashMap;
+
 use rayon::prelude::*;
 use smallvec::SmallVec;
 
@@ -19,8 +19,8 @@ where
     T: SymbolName<'a>,
 {
     values: SmallVec<[T; 8]>,
-    symbols: AHashMap<Cow<'a, str>, usize>,
-    symbols_pretty: AHashMap<String, usize>,
+    symbols: HashMap<Cow<'a, str>, usize>,
+    symbols_pretty: HashMap<String, usize>,
 }
 
 impl<'a, T> Debug for SymbolTable<'a, T>
@@ -50,8 +50,8 @@ where
     pub fn new() -> Self {
         Self {
             values: SmallVec::new(),
-            symbols: AHashMap::new(),
-            symbols_pretty: AHashMap::new(),
+            symbols: HashMap::new(),
+            symbols_pretty: HashMap::new(),
         }
     }
 
@@ -61,8 +61,8 @@ where
     pub fn with_capacity(cap: usize) -> Self {
         Self {
             values: SmallVec::with_capacity(cap),
-            symbols: AHashMap::with_capacity(cap),
-            symbols_pretty: AHashMap::with_capacity(cap),
+            symbols: HashMap::with_capacity(cap),
+            symbols_pretty: HashMap::with_capacity(cap),
         }
     }
 
@@ -70,8 +70,8 @@ where
     pub fn with_iter(inputs: impl Iterator<Item = T>) -> Self {
         let (min, max) = inputs.size_hint();
         let mut values = SmallVec::with_capacity(max.unwrap_or(min));
-        let mut symbols = AHashMap::with_capacity(max.unwrap_or(min));
-        let mut symbols_pretty = AHashMap::with_capacity(max.unwrap_or(min));
+        let mut symbols = HashMap::with_capacity(max.unwrap_or(min));
+        let mut symbols_pretty = HashMap::with_capacity(max.unwrap_or(min));
         for (index, input) in inputs.enumerate() {
             symbols.insert(input.name(), index);
             symbols_pretty.insert(input.pretty_name(), index);

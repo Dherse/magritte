@@ -514,7 +514,7 @@ impl PastPresentationTimingGOOGLE {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPresentTimesInfoGOOGLE")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PresentTimesInfoGOOGLE<'lt> {
     ///Lifetime field
@@ -931,10 +931,8 @@ impl Device {
                 v
             },
         };
-        let mut p_presentation_timings = SmallVec::<PastPresentationTimingGOOGLE>::from_elem(
-            Default::default(),
-            p_presentation_timing_count as usize,
-        );
+        let mut p_presentation_timings =
+            SmallVec::<PastPresentationTimingGOOGLE>::with_capacity(p_presentation_timing_count as usize);
         let _return = _function(
             self.as_raw(),
             swapchain,
@@ -942,9 +940,10 @@ impl Device {
             p_presentation_timings.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_presentation_timings)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_presentation_timings.set_len(p_presentation_timing_count as usize);
+                p_presentation_timings
+            }),
             e => VulkanResult::Err(e),
         }
     }

@@ -456,7 +456,7 @@ impl std::fmt::Debug for FragmentShadingRateCombinerOpKHR {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkFragmentShadingRateAttachmentInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct FragmentShadingRateAttachmentInfoKHR<'lt> {
     ///Lifetime field
@@ -641,7 +641,7 @@ impl<'lt> FragmentShadingRateAttachmentInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineFragmentShadingRateStateCreateInfoKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
     ///Lifetime field
@@ -820,7 +820,7 @@ impl<'lt> PipelineFragmentShadingRateStateCreateInfoKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateFeaturesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
     ///Lifetime field
@@ -1158,7 +1158,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateFeaturesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRatePropertiesKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
     ///Lifetime field
@@ -2056,7 +2056,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRatePropertiesKHR<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateKHR")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateKHR<'lt> {
     ///Lifetime field
@@ -2289,8 +2289,7 @@ impl PhysicalDevice {
                 v
             },
         };
-        let mut p_fragment_shading_rates = SmallVec::<PhysicalDeviceFragmentShadingRateKHR<'lt>>::from_elem(
-            Default::default(),
+        let mut p_fragment_shading_rates = SmallVec::<PhysicalDeviceFragmentShadingRateKHR<'lt>>::with_capacity(
             p_fragment_shading_rate_count as usize,
         );
         let _return = _function(
@@ -2299,9 +2298,10 @@ impl PhysicalDevice {
             p_fragment_shading_rates.as_mut_ptr(),
         );
         match _return {
-            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => {
-                VulkanResult::Success(_return, p_fragment_shading_rates)
-            },
+            VulkanResultCodes::SUCCESS | VulkanResultCodes::INCOMPLETE => VulkanResult::Success(_return, {
+                p_fragment_shading_rates.set_len(p_fragment_shading_rate_count as usize);
+                p_fragment_shading_rates
+            }),
             e => VulkanResult::Err(e),
         }
     }

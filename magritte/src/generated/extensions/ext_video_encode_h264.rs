@@ -2547,7 +2547,7 @@ impl std::fmt::Debug for VideoEncodeH264RateControlStructureFlagsEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264CapabilitiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264CapabilitiesEXT<'lt> {
     ///Lifetime field
@@ -2996,7 +2996,7 @@ impl<'lt> VideoEncodeH264CapabilitiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264SessionParametersAddInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersAddInfoEXT<'lt> {
     ///Lifetime field
@@ -3204,7 +3204,7 @@ impl<'lt> VideoEncodeH264SessionParametersAddInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264SessionParametersCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264SessionParametersCreateInfoEXT<'lt> {
     ///Lifetime field
@@ -3410,7 +3410,7 @@ impl<'lt> VideoEncodeH264SessionParametersCreateInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264DpbSlotInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264DpbSlotInfoEXT<'lt> {
     ///Lifetime field
@@ -3582,7 +3582,7 @@ impl<'lt> VideoEncodeH264DpbSlotInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264VclFrameInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264VclFrameInfoEXT<'lt> {
     ///Lifetime field
@@ -3861,7 +3861,7 @@ impl<'lt> VideoEncodeH264VclFrameInfoEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264ReferenceListsEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264ReferenceListsEXT<'lt> {
     ///Lifetime field
@@ -4165,7 +4165,7 @@ impl<'lt> VideoEncodeH264ReferenceListsEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264EmitPictureParametersEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264EmitPictureParametersEXT<'lt> {
     ///Lifetime field
@@ -4577,7 +4577,7 @@ impl<'lt> VideoEncodeH264ProfileEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264NaluSliceEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264NaluSliceEXT<'lt> {
     ///Lifetime field
@@ -4796,7 +4796,7 @@ impl<'lt> VideoEncodeH264NaluSliceEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264RateControlInfoEXT<'lt> {
     ///Lifetime field
@@ -5287,7 +5287,7 @@ impl VideoEncodeH264FrameSizeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkVideoEncodeH264RateControlLayerInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct VideoEncodeH264RateControlLayerInfoEXT<'lt> {
     ///Lifetime field

@@ -91,7 +91,7 @@ pub const AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME: &'static CStr = crate::cstr
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceCoherentMemoryFeaturesAMD")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceCoherentMemoryFeaturesAMD<'lt> {
     ///Lifetime field

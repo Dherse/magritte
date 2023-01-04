@@ -1,4 +1,6 @@
-use ahash::AHashMap;
+
+use std::collections::HashMap;
+
 use proc_macro2::{Ident, Literal, TokenStream};
 use quote::quote;
 use tracing::warn;
@@ -17,7 +19,7 @@ impl<'a> Bit<'a> {
         &self,
         source: &Source<'a>,
         parent: &Origin<'a>,
-        doc: &AHashMap<String, String>,
+        doc: &HashMap<String, String>,
     ) -> TokenStream {
         // get the doc of the bit
         let doc = doc.get(self.name()).map_or_else(
@@ -173,7 +175,7 @@ impl<'a> Enum<'a> {
         source: &Source<'a>,
         doc: &mut Documentation,
         out: &mut TokenStream,
-    ) -> Option<AHashMap<String, String>> {
+    ) -> Option<HashMap<String, String>> {
         if let Some(mut doc) = doc.find(self.original_name()) {
             // parse the name section and write it out
             doc.name(source, self, out);
@@ -182,7 +184,7 @@ impl<'a> Enum<'a> {
             doc.specification(source, self, out);
 
             // parse the description section
-            let mut variants = AHashMap::with_capacity(self.variants().len());
+            let mut variants = HashMap::with_capacity(self.variants().len());
             doc.description(source, self, out, Some(&mut variants));
 
             // parse the related elements and write them out

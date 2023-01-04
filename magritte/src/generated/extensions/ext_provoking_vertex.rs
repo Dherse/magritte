@@ -230,7 +230,7 @@ impl std::fmt::Debug for ProvokingVertexModeEXT {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProvokingVertexFeaturesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
     ///Lifetime field
@@ -465,7 +465,7 @@ impl<'lt> PhysicalDeviceProvokingVertexFeaturesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceProvokingVertexPropertiesEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
     ///Lifetime field
@@ -702,7 +702,7 @@ impl<'lt> PhysicalDeviceProvokingVertexPropertiesEXT<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineRasterizationProvokingVertexStateCreateInfoEXT")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT<'lt> {
     ///Lifetime field

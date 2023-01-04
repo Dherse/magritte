@@ -530,7 +530,7 @@ impl std::fmt::Debug for FragmentShadingRateTypeNV {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
     ///Lifetime field
@@ -811,7 +811,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
     ///Lifetime field
@@ -985,7 +985,7 @@ impl<'lt> PhysicalDeviceFragmentShadingRateEnumsPropertiesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineFragmentShadingRateEnumStateCreateInfoNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV<'lt> {
     ///Lifetime field

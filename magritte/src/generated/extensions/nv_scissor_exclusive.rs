@@ -196,7 +196,7 @@ pub type FNCmdSetExclusiveScissorNv = Option<
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPhysicalDeviceExclusiveScissorFeaturesNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
     ///Lifetime field
@@ -382,7 +382,7 @@ impl<'lt> PhysicalDeviceExclusiveScissorFeaturesNV<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkPipelineViewportExclusiveScissorStateCreateInfoNV")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct PipelineViewportExclusiveScissorStateCreateInfoNV<'lt> {
     ///Lifetime field

@@ -377,7 +377,7 @@ impl<'lt> ImportMemoryZirconHandleInfoFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryZirconHandlePropertiesFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryZirconHandlePropertiesFUCHSIA<'lt> {
     ///Lifetime field
@@ -528,7 +528,7 @@ impl<'lt> MemoryZirconHandlePropertiesFUCHSIA<'lt> {
 /// Commons Attribution 4.0 International*.
 ///This license explicitely allows adapting the source material as long as proper credit is given.
 #[doc(alias = "VkMemoryGetZirconHandleInfoFUCHSIA")]
-#[derive(Debug, Clone, Eq, Ord, PartialEq, PartialOrd, Hash)]
+#[derive(Debug, Eq, Ord, PartialEq, PartialOrd, Hash)]
 #[repr(C)]
 pub struct MemoryGetZirconHandleInfoFUCHSIA<'lt> {
     ///Lifetime field
