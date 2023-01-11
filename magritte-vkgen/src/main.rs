@@ -4,14 +4,16 @@
 #![warn(clippy::pedantic, clippy::cargo)]
 #![deny(missing_docs)]
 
-use std::{collections::BTreeMap, error::Error, fmt::Write, io::stderr, ops::Not, path::PathBuf};
+use std::{error::Error, io::stderr, ops::Not, sync::Arc};
 
-use cargo_toml::Manifest;
 use clap::Parser;
-use magritte_vkgen::{codegen::CodeOut, parse_documentation, parse_registry, rustmft::run_rustfmt, source::Source};
+use magritte_vkgen::{
+    codegen::VisitorFlags,
+    parse_documentation, parse_registry,
+    source::Source,
+    visitors::{DocVisitor, FeatureVisitor, HandleVisitor, NativeVisitor},
+};
 use mimalloc::MiMalloc;
-use quote::ToTokens;
-use rayon::iter::{IntoParallelIterator, ParallelIterator};
 use tracing::{info, span, Level};
 use tracing_subscriber::{fmt::time::UtcTime, EnvFilter};
 
@@ -26,6 +28,9 @@ const DOC_IN_PATH: &str = "vendors/Vulkan-Docs/gen/out/man/html/";
 
 /// The path where the generated bindings will be written to.
 const BINDING_OUT_PATH: &str = "magritte/src/generated/";
+
+/// The path where the generated bindings will be written to.
+const DOC_OUT_PATH: &str = "magritte/doc/";
 
 /// The path where the generated bindings will be written to.
 const CARGO_TOML_PATH: &str = "magritte/Cargo.toml";
@@ -74,7 +79,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
     info!("Processed registry");
 
-    let mut doc = if let Some(doc) = documentation_thread {
+    let doc = if let Some(doc) = documentation_thread {
         doc.join().expect("failed to wait for thread")?
     } else {
         magritte_vkgen::doc::Documentation::default()
@@ -83,7 +88,29 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
     info!("Got documentation");
     info!("Built the thread pool");
 
-    let path = PathBuf::from(BINDING_OUT_PATH);
+    let mut doc_visitor = DocVisitor::new(doc, BINDING_OUT_PATH);
+    source.visit(&mut doc_visitor, VisitorFlags::ORIGINS | VisitorFlags::ALL_OBJECTS);
+    source.visit(&mut doc_visitor, VisitorFlags::EXTENSIONS);
+    source.visit(&mut doc_visitor, VisitorFlags::VERSIONS);
+    let doc = Arc::new(doc_visitor);
+    info!("Visited documentation");
+
+    let mut extension_visitor = FeatureVisitor::new();
+    source.visit(&mut extension_visitor, VisitorFlags::EXTENSIONS);
+    extension_visitor.write_extensions_mod(BINDING_OUT_PATH);
+    extension_visitor.write(CARGO_TOML_PATH);
+    info!("Visited extensions & versions for feature flag generation");
+
+    let mut handle_visitor = HandleVisitor::new(BINDING_OUT_PATH);
+    source.visit(&mut handle_visitor, VisitorFlags::ORIGINS | VisitorFlags::HANDLES);
+    handle_visitor.write();
+    info!("Visited handles");
+
+    let mut native_visitor = NativeVisitor::new(Arc::clone(&doc), BINDING_OUT_PATH);
+    source.visit(&mut native_visitor, VisitorFlags::all());
+    info!("Visited native code");
+
+    /*let path = PathBuf::from(BINDING_OUT_PATH);
     source
         .generate_code(&mut doc)
         .into_par_iter()
@@ -123,49 +150,7 @@ fn main() -> Result<(), Box<dyn Error + Send + Sync + 'static>> {
 
         let code = run_rustfmt(source.generate_handles_mod()).unwrap();
         std::fs::write(&path, &code).unwrap();
-    }
-
-    {
-        let contents = std::fs::read(CARGO_TOML_PATH).unwrap();
-        let mut manifest = Manifest::from_slice(&contents).unwrap();
-
-        let mut features: BTreeMap<String, Vec<String>> = BTreeMap::default();
-
-        features.insert(
-            "window".to_string(),
-            vec![
-                "raw-window-handle".to_string(),
-                "VK_KHR_surface".to_string(),
-                "VK_KHR_win32_surface".to_string(),
-                "VK_KHR_wayland_surface".to_string(),
-                "VK_KHR_xlib_surface".to_string(),
-                "VK_KHR_xcb_surface".to_string(),
-                "VK_KHR_android_surface".to_string(),
-                "VK_MVK_macos_surface".to_string(),
-                "VK_EXT_metal_surface".to_string(),
-            ],
-        );
-
-        features.insert(
-            "validation".to_string(),
-            vec!["log".to_string(), "VK_EXT_debug_utils".to_string()],
-        );
-
-        features.insert(
-            "default".to_string(),
-            vec!["libloading".to_string(), "smallvec".to_string()],
-        );
-
-        features.insert("video_bindgen".to_string(), vec!["bindgen".to_string()]);
-
-        source.generate_feature_set(&mut features);
-
-        manifest.features = features;
-
-        let out = toml::ser::to_string_pretty(&manifest).unwrap();
-
-        std::fs::write(CARGO_TOML_PATH, out.as_bytes()).unwrap();
-    }
+    }*/
 
     Ok(())
 }

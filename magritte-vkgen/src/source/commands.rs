@@ -1,6 +1,6 @@
 mod sync;
 
-use heck::ToSnakeCase;
+use heck::{ToSnakeCase, ToUpperCamelCase};
 use proc_macro2::{Ident, Span};
 pub use sync::ExternallySynced;
 use tracing::{info, span, Level};
@@ -19,7 +19,7 @@ use crate::{
     ty::Ty,
 };
 
-use super::{structs::Optionality, Source};
+use super::{structs::Optionality, FunctionPointer, FunctionPointerArgument, Source};
 
 /// A function defined in Vulkan
 #[derive(Debug, Clone, PartialEq)]
@@ -174,6 +174,30 @@ impl<'a> Function<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.arguments().iter().any(|arg| arg.has_lifetime(source))
     }
+
+    /// Turns this function into an equivalent function pointer name
+    pub fn as_fn_pointer_name(&self) -> String {
+        format!("FN{}", self.name().to_upper_camel_case())
+    }
+
+    /// Turns this function into an equivalent function pointer type
+    pub fn as_function_pointer(&self) -> FunctionPointer<'a> {
+        FunctionPointer {
+            original_name: self.original_name.clone(),
+            name: self.as_fn_pointer_name(),
+            arguments: self
+                .arguments()
+                .iter()
+                .map(|arg| FunctionPointerArgument {
+                    original_name: arg.original_name.clone(),
+                    name: arg.name.clone(),
+                    ty: arg.ty.clone(),
+                })
+                .collect(),
+            return_type: self.return_type().cloned(),
+            origin: self.origin().clone(),
+        }
+    }
 }
 
 impl<'a> SymbolName<'a> for Function<'a> {
@@ -309,7 +333,8 @@ impl<'a> FunctionArgument<'a> {
 
     /// Does the argument have a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
-        self.ty().has_lifetime(source, false)
+        todo!()
+        // self.ty().has_lifetime(source, false)
     }
 }
 

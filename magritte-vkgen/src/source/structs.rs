@@ -120,7 +120,7 @@ impl<'a> Struct<'a> {
     }
 
     /// Checks if this structure needs a lifetime
-    pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
+    /*pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_lifetime(source, true))
     }
 
@@ -132,6 +132,11 @@ impl<'a> Struct<'a> {
     /// Checks if this structure is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
         self.fields.iter().all(|f| f.is_copy(source))
+    }
+
+    /// Checks if this structure is clone
+    pub fn is_clone(&self, source: &Source<'a>) -> bool {
+        self.fields.iter().all(|f| f.is_clone(source))
     }
 
     /// Checks if this field is partial_eq
@@ -151,6 +156,12 @@ impl<'a> Struct<'a> {
     /// Checks whether the struct can be (de)serialized
     pub fn is_serde(&self, source: &Source<'a>) -> bool {
         self.fields.iter().all(|f| f.is_serde(source))
+    }*/
+
+    /// Checks if this struct contains opaque fields and is therefore
+    /// incompatible with WASM (at least wihout manual translation)
+    pub fn has_opaque(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().any(|f| f.is_opaque(source))
     }
 
     /// Gets a field by either its original name or its pretty name
@@ -342,6 +353,16 @@ impl<'a> Field<'a> {
         Ident::new(self.name(), Span::call_site())
     }
 
+    /// Checks whether this field is an element of a pointer chain
+    pub fn is_p_next(&self) -> bool {
+        self.original_name() == "pNext"
+    }
+
+    /// Checks whether this field is the structure type field
+    pub fn is_s_type(&self) -> bool {
+        self.original_name() == "sType"
+    }
+
     /// Get a reference to the field's ty.
     pub fn ty(&self) -> &Ty<'a> {
         &self.ty
@@ -377,12 +398,15 @@ impl<'a> Field<'a> {
         self.value.as_ref().map(|s| s as &str)
     }
 
-    /// Does this field has a lifetime
+    /*/// Does this field has a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
-        if self.original_name() == "sType" { false } else if self.original_name() == "pNext" {
+        if self.original_name() == "sType" {
+            false
+        } else if self.original_name() == "pNext" {
             true
-        }  else {
-            self.ty().has_lifetime(source, pointer_has_lifetime)
+        } else {
+            todo!()
+            // self.ty().has_lifetime(source, pointer_has_lifetime)
         }
     }
 
@@ -391,17 +415,21 @@ impl<'a> Field<'a> {
         if self.original_name() == "sType" || self.original_name() == "pNext" {
             true
         } else {
-            self.ty().is_debug(source)
+            todo!()
+            // self.ty().is_debug(source)
         }
     }
 
     /// Checks if this field is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
-        if self.original_name() == "sType" { true} else if self.original_name() == "pNext" {
-            false
-        } else {
-            self.ty().is_copy(source)
-        }
+        todo!()
+        // self.ty().is_copy(source)
+    }
+
+    /// Checks if this field is copy
+    pub fn is_clone(&self, source: &Source<'a>) -> bool {
+        todo!()
+        // self.ty().is_clone(source)
     }
 
     /// Checks if this field is copy
@@ -409,7 +437,8 @@ impl<'a> Field<'a> {
         if self.original_name() == "sType" || self.original_name() == "pNext" {
             true
         } else {
-            self.ty().is_partial_eq(source)
+            todo!()
+            // self.ty().is_partial_eq(source)
         }
     }
 
@@ -418,7 +447,8 @@ impl<'a> Field<'a> {
         if self.original_name() == "sType" || self.original_name() == "pNext" {
             true
         } else {
-            self.ty().is_eq(source)
+            todo!()
+            // self.ty().is_eq(source)
         }
     }
 
@@ -427,23 +457,51 @@ impl<'a> Field<'a> {
         if self.original_name() == "sType" || self.original_name() == "pNext" {
             true
         } else {
-            self.ty().is_hash(source)
+            todo!()
+            // self.ty().is_hash(source)
         }
     }
 
     /// Checks whether the field can be (de)serialized
     pub fn is_serde(&self, source: &Source<'a>) -> bool {
-        if self.original_name() == "sType" { true} else if self.original_name() == "pNext" {
+        if self.original_name() == "sType" {
+            true
+        } else if self.original_name() == "pNext" {
             false
         } else {
-            self.ty().is_serde(source)
+            todo!()
+            // self.ty().is_serde(source)
         }
     }
 
-    /*/// Does this field have a generic type argument
+    /// Does this field have a generic type argument
     pub fn has_generics(&self, source: &Source<'a>) -> bool {
         self.ty().has_generics(source)
     }*/
+
+    pub fn is_opaque(&self, source: &Source<'a>) -> bool {
+        // List of allowed "opaque" types:
+        // - pNext: the pointer chain, not actually opaque
+        // - pData: refers to byte arrays which are *mut c_void
+        // - pTag: refers to byte arrays which are *mut c_void
+        // - hostAddress: refers to an address in memory for VkDeviceOrHostAddressKHR, will need manual impl
+        // - pInitialData: refers to byte arrays which are *mut c_void
+        // - pShaderGroupCaptureReplayHandle: used for Vulkan replay, will not be available in non-native
+        //   mode
+        // - user data, will need special handling in WASM mode
+        if self.original_name() == "pNext"
+            || self.original_name() == "pData"
+            || self.original_name() == "pTag"
+            || self.original_name() == "hostAddress"
+            || self.original_name() == "pInitialData"
+            || self.original_name() == "pShaderGroupCaptureReplayHandle"
+            || self.original_name() == "pUserData"
+        {
+            false
+        } else {
+            self.ty().is_opaque(source)
+        }
+    }
 }
 
 impl<'a> SymbolName<'a> for Field<'a> {

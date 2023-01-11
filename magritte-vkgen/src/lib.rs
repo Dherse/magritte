@@ -8,7 +8,8 @@
     box_patterns,
     const_option_ext,
     string_remove_matches,
-    extend_one
+    extend_one,
+    associated_type_defaults
 )]
 #![warn(clippy::pedantic, clippy::cargo)]
 #![allow(
@@ -19,7 +20,6 @@
     clippy::module_name_repetitions,
     clippy::default_trait_access
 )]
-#![deny(missing_docs)]
 
 pub mod codegen;
 pub mod doc;
@@ -31,6 +31,8 @@ pub mod rustmft;
 pub mod source;
 pub mod symbols;
 pub mod ty;
+pub mod visitors;
+// pub mod wasm;
 
 use std::{collections::HashMap, error::Error, fs::try_exists, io::Cursor};
 

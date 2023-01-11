@@ -1,0 +1,12 @@
+[package]
+name = "magritte-parse"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+heck = "0.4.0"
+lazy_static = "1.4.0"
+magritte-types = { path = "../magritte-types" }
+nom = "7.1.2"
+regex = "1.7.1"
+vk-parse = "0.9.0"

@@ -81,9 +81,9 @@ pub unsafe fn create_surface(
         #[cfg(any(target_os = "android"))]
         (RawWindowHandle::AndroidNdk(window), RawDisplayHandle::Android(_)) => {
             let surface_desc =
-                extensions::khr_android_surface::AndroidSurfaceCreateInfoKHR::default().window(window.a_native_window);
+                extensions::khr_android_surface::AndroidSurfaceCreateInfoKHR::default().with_window(&mut *window.a_native_window);
 
-            instance.create_android_surface(&surface_desc, allocation_callbacks)
+            instance.create_android_surface_khr(&surface_desc, allocation_callbacks)
         },
 
         #[cfg(any(target_os = "macos"))]

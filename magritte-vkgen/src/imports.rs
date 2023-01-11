@@ -1,6 +1,6 @@
 //! Utilities to generate nicer imports.
 
-use std::{cell::RefCell, fmt::Display, str::FromStr, collections::HashSet};
+use std::{cell::RefCell, collections::HashSet, fmt::Display, str::FromStr};
 
 use proc_macro2::TokenStream;
 use quote::ToTokens;

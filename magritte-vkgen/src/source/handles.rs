@@ -116,6 +116,11 @@ impl<'a> Handle<'a> {
         self.dispatchable
     }
 
+    #[inline]
+    pub fn rename(&self) -> Option<&str> {
+        self.rename.as_ref().map(|s| s as &str)
+    }
+
     /// Get a reference to the handle's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {

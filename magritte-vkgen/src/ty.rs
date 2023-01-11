@@ -18,7 +18,10 @@ use nom::{
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
 
-use crate::expr::{parse_expr, variable_raw, Expr};
+use crate::{
+    expr::{parse_expr, variable_raw, Expr},
+    source::Source,
+};
 
 /// A Vulkan C-like type
 #[derive(Debug, Clone, PartialEq)]
@@ -59,6 +62,7 @@ impl<'a> Ty<'a> {
 
         ty
     }
+    
     /// Creates a new type from a definition and a length
     #[must_use]
     pub fn with_name(definition: &'a str, length_str: &'a str) -> (Cow<'a, str>, Self) {
@@ -206,6 +210,15 @@ impl<'a> Ty<'a> {
         }
     }
 
+    /// Gets the named type (if any) at the core of this complex type.
+    pub fn base_named_type(&self) -> Option<&Cow<'a, str>> {
+        match self {
+            Ty::Pointer(_, ty) | Ty::Array(ty, _) | Ty::Slice(_, ty, _) => ty.base_named_type(),
+            Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => None,
+            Ty::Named(name) => Some(name),
+        }
+    }
+
     /// Decomposes self into a native type
     ///
     /// # Panics
@@ -293,6 +306,20 @@ impl<'a> Ty<'a> {
             _ => panic!("not a slice: {:?}", self),
         }
     }
+
+    pub fn is_opaque(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Native(Native::Void) => true,
+            Ty::Native(_) | Ty::StringArray(_) | Ty::NullTerminatedString(_) => false,
+            Ty::Pointer(_, ty) | Ty::Array(ty, _) | Ty::Slice(_, ty, _) => ty.is_opaque(source),
+            Ty::Named(name) => source
+                .find(name)
+                .expect("unknown type")
+                .as_type_ref()
+                .expect("not a type")
+                .has_opaque(source),
+        }
+    }
 }
 
 /// A native type
@@ -343,6 +370,33 @@ impl Native {
             Native::Bool => quote! { false },
             Native::NullTerminatedString => quote! { std::ptr::null() },
         }
+    }
+
+    pub fn as_ident(&self) -> Ident {
+        Ident::new(
+            match self {
+                Native::Void => "c_void",
+                Native::UInt(1) => "u8",
+                Native::UInt(2) => "u16",
+                Native::UInt(4) => "u32",
+                Native::UInt(8) => "u64",
+                Native::UInt(other) => panic!("unsupported unsigned int size: {}", other),
+                Native::Int(1) => "i8",
+                Native::Int(2) => "i16",
+                Native::Int(4) => "i32",
+                Native::Int(8) => "i64",
+                Native::Int(other) => panic!("unsupported signed int size: {}", other),
+                Native::USize => "usize",
+                Native::SSize => "isize",
+                Native::Char => "c_char",
+                Native::UChar => "c_uchar",
+                Native::Float => "f32",
+                Native::Double => "f64",
+                Native::Bool => "bool",
+                Native::NullTerminatedString => "CStr",
+            },
+            Span::call_site(),
+        )
     }
 }
 

@@ -97,18 +97,18 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
 
     /// Turns a reference into a type reference, returns `None` if it is not a type
     #[inline]
-    pub const fn as_type_ref(&self) -> Option<TypeRef<'a, 'b>> {
+    pub const fn as_type_ref(self) -> Option<TypeRef<'a, 'b>> {
         match self {
-            Ref::OpaqueType(r) => Some(TypeRef::OpaqueType(*r)),
-            Ref::Alias(r) => Some(TypeRef::Alias(*r)),
-            Ref::Struct(r) => Some(TypeRef::Struct(*r)),
-            Ref::Union(r) => Some(TypeRef::Union(*r)),
-            Ref::Handle(r) => Some(TypeRef::Handle(*r)),
-            Ref::FunctionPointer(r) => Some(TypeRef::FunctionPointer(*r)),
-            Ref::Basetype(r) => Some(TypeRef::Basetype(*r)),
-            Ref::Bitmask(r) => Some(TypeRef::Bitmask(*r)),
-            Ref::BitFlag(r) => Some(TypeRef::BitFlag(*r)),
-            Ref::Enum(r) => Some(TypeRef::Enum(*r)),
+            Ref::OpaqueType(r) => Some(TypeRef::OpaqueType(r)),
+            Ref::Alias(r) => Some(TypeRef::Alias(r)),
+            Ref::Struct(r) => Some(TypeRef::Struct(r)),
+            Ref::Union(r) => Some(TypeRef::Union(r)),
+            Ref::Handle(r) => Some(TypeRef::Handle(r)),
+            Ref::FunctionPointer(r) => Some(TypeRef::FunctionPointer(r)),
+            Ref::Basetype(r) => Some(TypeRef::Basetype(r)),
+            Ref::Bitmask(r) => Some(TypeRef::Bitmask(r)),
+            Ref::BitFlag(r) => Some(TypeRef::BitFlag(r)),
+            Ref::Enum(r) => Some(TypeRef::Enum(r)),
             Ref::Vendor(_)
             | Ref::Extension(_)
             | Ref::Tag(_)
@@ -123,6 +123,10 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
     /// Returns true if this reference is an alias
     pub const fn is_alias(&self) -> bool {
         matches!(self, Self::Alias(_) | Self::ConstAlias(_) | Self::CommandAlias(_))
+    }
+
+    pub fn import(&self, imports: &Imports) {
+        imports.push_origin(self.origin(), self.name());
     }
 
     /// Gets the name of the reference
@@ -187,11 +191,33 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
         path
     }
 
+    /// Returns the reference as a path
+    pub fn as_string_path(&self) -> String {
+        let path = self.origin().as_string_path();
+
+        if !matches!(self, Self::Extension(_) | Self::Origin(_)) {
+            let ident = self.as_ident();
+            return format!("{path}::{ident}");
+        }
+
+        path
+    }
+
     /// Tries to destructure `self` into a function
     #[inline]
     pub fn as_function(&self) -> Option<&'b Function<'a>> {
         if let Self::Function(fn_) = *self {
             Some(fn_)
+        } else {
+            None
+        }
+    }
+
+    /// Tries to destructure `self` into a constant
+    #[inline]
+    pub fn as_const(&self) -> Option<&'b Const<'a>> {
+        if let Self::Const(cst) = *self {
+            Some(cst)
         } else {
             None
         }
@@ -340,6 +366,26 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         }
     }
 
+    pub fn has_opaque(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => true,
+            TypeRef::Alias(alias) => source
+                .find(alias.of())
+                .expect("unknown alias")
+                .as_type_ref()
+                .expect("not a type")
+                .has_opaque(source),
+            TypeRef::Struct(s) => s.has_opaque(source),
+            TypeRef::Union(u) => u.has_opaque(source),
+            TypeRef::FunctionPointer(f) => f.has_opaque(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_) => false,
+        }
+    }
+
     /// Finds the child of an element
     #[inline]
 
@@ -434,7 +480,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
         }
     }
 
-    /// Does the type have a lifetime
+    /*/// Does the type have a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
         match self {
             TypeRef::Alias(alias) => source
@@ -462,6 +508,22 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_copy(source),
             TypeRef::Struct(struct_) => struct_.is_copy(source) && struct_.has_p_next().is_none(),
             TypeRef::Union(union_) => union_.is_copy(source),
+            TypeRef::Handle(_)
+            | TypeRef::Basetype(_)
+            | TypeRef::Bitmask(_)
+            | TypeRef::BitFlag(_)
+            | TypeRef::Enum(_)
+            | TypeRef::FunctionPointer(_) => true,
+        }
+    }
+
+    /// Checks if the type is copy
+    pub fn is_clone(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Alias(alias) => source.resolve_type(alias.of()).expect("unknown alias").is_clone(source),
+            TypeRef::Struct(struct_) => struct_.is_clone(source) && struct_.has_p_next().is_none(),
+            TypeRef::Union(union_) => union_.is_clone(source),
             TypeRef::Handle(_)
             | TypeRef::Basetype(_)
             | TypeRef::Bitmask(_)
@@ -548,7 +610,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Basetype(_) | TypeRef::Bitmask(_) | TypeRef::BitFlag(_) | TypeRef::Enum(_) => true,
             TypeRef::Handle(_) | TypeRef::FunctionPointer(_) | TypeRef::Union(_) => false,
         }
-    }
+    }*/
 
     /// Creates the default value for this type
     pub fn default_tokens(&self, source: &Source, imports: Option<&Imports>, value: Option<&str>) -> TokenStream {
@@ -602,11 +664,13 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
                         .get_by_either(value)
                         .expect("unknown variant");
                     let ident = bitmask.as_ident();
-                    let variant = variant.as_flag_ident();
+                    todo!()
 
-                    quote! {
+                    // let variant = variant.as_flag_ident();
+
+                    /*quote! {
                         #ident::#variant
-                    }
+                    }*/
                 } else {
                     quote! { Default::default() }
                 }

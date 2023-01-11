@@ -19,3 +19,6 @@ perf.data.old
 
 # Data caches
 *_pipeline_cache.dat
+
+# VSCode files
+.vscode/**

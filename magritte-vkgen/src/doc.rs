@@ -3,8 +3,7 @@
 
 mod html;
 
-use std::{borrow::Cow, collections::HashMap, ops::Deref};
-
+use std::{borrow::Cow, collections::HashMap, fmt::Write, ops::Deref};
 
 use proc_macro2::TokenStream;
 use regex::Regex;
@@ -36,14 +35,7 @@ macro_rules! subsection {
             }
 
             if let Some(text) = $self.visit_selectable($source, $this, None, &SELECTOR, &SELECTOR_SECTIONBODY) {
-                let doc_str = format!("# {}", $title);
-                let lines = text.split('\n');
-                quote::quote_each_token! {
-                    $out
-
-                    #![doc = #doc_str]
-                    #(#![doc = #lines])*
-                }
+                write!(&mut $out, "\n\n# {}\n{}", $title, text).expect("failed to write to string");
             }
         }
     };
@@ -153,41 +145,14 @@ impl<'a> DocRef<'a> {
     }
 
     /// Gets the `C Specification` section as markdown
-    pub fn specification<'b>(
-        &mut self,
-        source: &Source<'b>,
-        this: &impl Queryable<'b>,
-        mut out: &mut TokenStream,
-    ) -> Option<()> {
+    pub fn specification<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>) -> Option<String> {
         let text = self.visit_selectable(source, this, None, &SELECTOR_SPECIFICATION_H2, &SELECTOR_SECTIONBODY)?;
-        let lines = text.split('\n');
 
-        if self.1 {
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# C Specifications"]
-                #(#![doc = #lines])*
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-
-                #[doc = "# C Specifications"]
-                #(#[doc = #lines])*
-            }
-        }
-
-        Some(())
+        Some(format!("\n\n# C Specifications\n{}", text))
     }
 
     /// Gets the `Name` section as markdown
-    pub fn name<'b>(
-        &mut self,
-        source: &Source<'b>,
-        this: &impl Queryable<'b>,
-        mut out: &mut TokenStream,
-    ) -> Option<()> {
+    pub fn name<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>) -> Option<String> {
         let mut text = self.visit_selectable(source, this, None, &SELECTOR_NAME_H2, &SELECTOR_SECTIONBODY)?;
 
         // generate the link for the type itself
@@ -210,27 +175,11 @@ impl<'a> DocRef<'a> {
             return None;
         }
 
-        let lines = text.split('\n');
-
-        if self.1 {
-            quote::quote_each_token! {
-                out
-
-                #(#![doc = #lines])*
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-
-                #(#[doc = #lines])*
-            }
-        }
-
-        Some(())
+        Some(text)
     }
 
     /// Processes the related items
-    pub fn related<'b>(&mut self, source: &Source<'b>, mut out: &mut TokenStream) -> Option<()> {
+    pub fn related<'b>(&mut self, source: &Source<'b>) -> Option<String> {
         let h2 = self.html().select(&SELECTOR_RELATED_H2).next()?;
 
         let parent = ElementRef::wrap(h2.parent()?)?;
@@ -274,25 +223,7 @@ impl<'a> DocRef<'a> {
                 return None;
             }
 
-            let lines = text.split('\n');
-
-            if self.1 {
-                quote::quote_each_token! {
-                    out
-
-                    #![doc = "# Related"]
-                    #(#![doc = #lines])*
-                }
-            } else {
-                quote::quote_each_token! {
-                    out
-
-                    #[doc = "# Related"]
-                    #(#[doc = #lines])*
-                }
-            }
-
-            Some(())
+            Some(format!("\n\n# Related\n{}", text))
         } else {
             None
         }
@@ -303,9 +234,8 @@ impl<'a> DocRef<'a> {
         &mut self,
         source: &Source<'b>,
         this: &impl Queryable<'b>,
-        mut out: &mut TokenStream,
         variants: Option<&mut HashMap<String, String>>,
-    ) -> Option<()> {
+    ) -> Option<String> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_MEMBERS_H2, &SELECTOR_SECTIONBODY)?;
 
         let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&text, " ");
@@ -318,24 +248,7 @@ impl<'a> DocRef<'a> {
             return None;
         }
 
-        let lines = text.split('\n');
-        if self.1 {
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Members"]
-                #(#![doc = #lines])*
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-
-                #[doc = "# Members"]
-                #(#[doc = #lines])*
-            }
-        }
-
-        Some(())
+        Some(format!("\n\n# Members\n{text}"))
     }
 
     /// Processes the parameters, optionally writing the variants to a map of variants
@@ -343,9 +256,8 @@ impl<'a> DocRef<'a> {
         &mut self,
         source: &Source<'b>,
         this: &impl Queryable<'b>,
-        mut out: &mut TokenStream,
         variants: Option<&mut HashMap<String, String>>,
-    ) -> Option<()> {
+    ) -> Option<String> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_PARAMETERS_H2, &SELECTOR_SECTIONBODY)?;
 
         let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&text, " ");
@@ -358,24 +270,7 @@ impl<'a> DocRef<'a> {
             return None;
         }
 
-        let lines = text.split('\n');
-        if self.1 {
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Parameters"]
-                #(#![doc = #lines])*
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-
-                #[doc = "# Parameters"]
-                #(#[doc = #lines])*
-            }
-        }
-
-        Some(())
+        Some(format!("\n\n# Parameters\n{text}"))
     }
 
     /// Processes the description, optionally writing the variants to a map of variants
@@ -383,9 +278,8 @@ impl<'a> DocRef<'a> {
         &mut self,
         source: &Source<'b>,
         this: &impl Queryable<'b>,
-        mut out: &mut TokenStream,
         variants: Option<&mut HashMap<String, String>>,
-    ) -> Option<()> {
+    ) -> Option<String> {
         let text = self.visit_selectable(source, this, variants, &SELECTOR_DESCRIPTION_H2, &SELECTOR_SECTIONBODY)?;
 
         let proc = DOUBLE_WHITE_SPACE_REGEX.replace(&text, " ");
@@ -398,37 +292,22 @@ impl<'a> DocRef<'a> {
             return None;
         }
 
-        let lines = text.split('\n');
-        if self.1 {
-            quote::quote_each_token! {
-                out
-
-                #![doc = "# Description"]
-                #(#![doc = #lines])*
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-
-                #[doc = "# Description"]
-                #(#[doc = #lines])*
-            }
-        }
-
-        Some(())
+        Some(format!("\n\n# Description\n{text}"))
     }
 
     /// Processes the new object types, commands, structures, enums, bitmasks, constants, issues and
     /// version history
-    pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>, mut out: &mut TokenStream) {
+    pub fn extension<'b>(&mut self, source: &Source<'b>, this: &impl Queryable<'b>) -> String {
+        let mut out = String::with_capacity(10 << 10);
         subsection! {
             out;
             self;
             source;
             this;
+            _registered_extension_number -> "Registered extension number",
             _revision -> "Revision",
             _extension_and_version_dependencies -> "Dependencies",
-            _deprecation_state -> "Deprecation State",
+            _deprecation_state -> "Deprecation state",
             _contact -> "Contacts",
             _new_macros -> "New macros",
             _new_base_types -> "New base types",
@@ -444,31 +323,19 @@ impl<'a> DocRef<'a> {
             _version_history -> "Version history",
             _other_extension_metadata -> "Other information"
         }
+
+        out
     }
 
     /// Adds the copyright to the bottom of the documentation
-    pub fn copyright(&self, mut out: &mut TokenStream) {
-        if self.1 {
-            quote::quote_each_token! {
-                out
+    pub fn copyright(&self) -> &'static str {
+        r#"
+# Notes and documentation
+For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
 
-                #![doc = "# Notes and documentation"]
-                #![doc = "For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)"]
-                #![doc = "\n"]
-                #![doc = "This documentation is generated from the Vulkan specification and documentation."]
-                #![doc = "The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative Commons Attribution 4.0 International*."]
-                #![doc = "This license explicitely allows adapting the source material as long as proper credit is given."]
-            }
-        } else {
-            quote::quote_each_token! {
-                out
-                #[doc = "# Notes and documentation"]
-                #[doc = "For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)"]
-                #[doc = "\n"]
-                #[doc = "This documentation is generated from the Vulkan specification and documentation."]
-                #[doc = "The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative Commons Attribution 4.0 International*."]
-                #[doc = "This license explicitely allows adapting the source material as long as proper credit is given."]
-            }
-        }
+This documentation is generated from the Vulkan specification and documentation.
+The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative Commons Attribution 4.0 International*.
+his license explicitely allows adapting the source material as long as proper credit is given.
+        "#
     }
 }

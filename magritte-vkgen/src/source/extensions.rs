@@ -4,7 +4,7 @@ use heck::ToSnakeCase;
 use proc_macro2::{Ident, Span};
 use smallvec::SmallVec;
 
-use crate::{origin::Origin, symbols::SymbolName};
+use crate::{doc::Queryable, origin::Origin, symbols::SymbolName};
 
 use super::Source;
 
@@ -143,6 +143,12 @@ impl<'a> SymbolName<'a> for Extension<'a> {
 
     fn pretty_name(&self) -> String {
         self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable<'a> for Extension<'a> {
+    fn find<'b>(&'b self, _source: &'b Source<'a>, _name: &str) -> Option<&'b str> {
+        None
     }
 }
 

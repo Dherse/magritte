@@ -1,15 +1,15 @@
 [workspace]
 members = [
+    "crates/magritte-parse",
+    "crates/magritte-common",
+    "crates/magritte-types",
+    "crates/magritte-utils",
+    "bins/magritte-ron-build",
+    "bins/magritte-doc-build",
+    "host/magritte-native-host",
+    "host/magritte-wasm-host",
+    "backend/magritte-wasm-backend",
+    "backend/magritte-native-backend",
     "magritte",
     "magritte-vkgen",
-    "magritte-vma",
-    "magritte-shaders",
-    "magritte-gc",
-    "magritte-hl",
-    "magritte-rg",
-    "samples",
 ]
-
-[profile.release]
-# Enabling debug symbols for `flamegraph` and `perf`.
-debug = true

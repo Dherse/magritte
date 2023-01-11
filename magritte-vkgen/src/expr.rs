@@ -1,6 +1,6 @@
 //! C expression parsing
 
-use std::{borrow::Cow, str::FromStr};
+use std::{borrow::Cow, fmt::Display, str::FromStr};
 
 use nom::{
     branch::alt,
@@ -56,6 +56,25 @@ pub enum Expr<'a> {
 
     /// Negative of a value
     Neg(Box<Expr<'a>>),
+}
+
+impl<'a> Display for Expr<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Expr::String(s) => write!(f, "\"{s}\""),
+            Expr::Variable(var) => write!(f, "{var}"),
+            Expr::Constant(cst) => write!(f, "{cst}"),
+            Expr::ConstantInt(cst) => write!(f, "{cst}"),
+            Expr::ConstantFloat(cst) => write!(f, "{cst}"),
+            Expr::Resolve(a, b) => write!(f, "{a}->{b}"),
+            Expr::Divide(a, b) => write!(f, "{a} / {b}"),
+            Expr::Multiply(a, b) => write!(f, "{a} * {b}"),
+            Expr::Add(a, b) => write!(f, "{a} + {b}"),
+            Expr::Subtract(a, b) => write!(f, "{a} - {b}"),
+            Expr::BitwiseNot(a) => write!(f, "!{a}"),
+            Expr::Neg(a) => write!(f, "-{a}"),
+        }
+    }
 }
 
 impl<'a> Expr<'a> {

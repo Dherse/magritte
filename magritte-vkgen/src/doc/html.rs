@@ -1,5 +1,4 @@
-use std::{borrow::Cow, mem::swap, collections::HashMap};
-
+use std::{borrow::Cow, collections::HashMap, mem::swap};
 
 use ego_tree::NodeRef;
 use nom::combinator::all_consuming;
@@ -46,6 +45,8 @@ where
                 self.out = new;
             },
         }
+
+        self.out = self.out.replace("[]()", "").to_string();
     }
 
     pub fn visit(&mut self, child: NodeRef<Node>) -> Option<()> {

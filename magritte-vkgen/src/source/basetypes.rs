@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{origin::Origin, symbols::SymbolName, ty::Ty};
+use crate::{doc::Queryable, origin::Origin, symbols::SymbolName, ty::Ty};
 
 /// A type basetype.
 #[derive(Debug, Clone, PartialEq)]
@@ -82,5 +82,11 @@ impl<'a> SymbolName<'a> for Basetype<'a> {
 
     fn pretty_name(&self) -> String {
         self.name().to_owned()
+    }
+}
+
+impl<'a> Queryable<'a> for Basetype<'a> {
+    fn find<'b>(&'b self, source: &'b super::Source<'a>, name: &str) -> Option<&'b str> {
+        None
     }
 }

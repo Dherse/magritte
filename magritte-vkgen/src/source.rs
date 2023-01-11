@@ -61,6 +61,8 @@ pub use self::{
     vendors::Vendor,
 };
 
+pub const EXTENSION_BLOCK_LIST: &[&str] = &["VK_EXT_video", "VK_QCOM", "VK_QNX", "VK_GGP"];
+
 /// The set of elements defined in the Vulkan specifications, pre-processed
 /// for easier code generation.
 #[derive(Debug, Clone, PartialEq, Default)]
@@ -525,72 +527,17 @@ impl<'a> Source<'a> {
         this
     }
 
-    /// Finds a value defined in the Vulkan spefification and returns it if it exists.
-    #[inline]
-    pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
-        if let Some((_, _, ty, idx)) = self.global.get_by_either(name) {
-            match ty {
-                SourceType::Vendor => self.vendors.get(*idx).map(Ref::Vendor),
-                SourceType::Extension => self.extensions.get(*idx).map(Ref::Extension),
-                SourceType::Tag => self.tags.get(*idx).map(Ref::Tag),
-                SourceType::Opaque => self.opaque_types.get(*idx).map(Ref::OpaqueType),
-                SourceType::Alias => self.aliases.get(*idx).map(Ref::Alias),
-                SourceType::Struct => self.structs.get(*idx).map(Ref::Struct),
-                SourceType::Union => self.unions.get(*idx).map(Ref::Union),
-                SourceType::Handle => self.handles.get(*idx).map(Ref::Handle),
-                SourceType::FunctionPointer => self.funcpointers.get(*idx).map(Ref::FunctionPointer),
-                SourceType::BaseType => self.basetypes.get(*idx).map(Ref::Basetype),
-                SourceType::Bitmask => self.bitmasks.get(*idx).map(Ref::Bitmask),
-                SourceType::Constant => self.constants.get(*idx).map(Ref::Const),
-                SourceType::ConstantAlias => self.constant_aliases.get(*idx).map(Ref::ConstAlias),
-                SourceType::Bitflag => self.bitflags.get(*idx).map(Ref::BitFlag),
-                SourceType::Enum => self.enums.get(*idx).map(Ref::Enum),
-                SourceType::CommandAlias => self.command_aliases.get(*idx).map(Ref::CommandAlias),
-                SourceType::Function => self.functions.get(*idx).map(Ref::Function),
-                SourceType::Command => self.commands.get(*idx).map(|f| Ref::Function(f)),
-            }
-        } else if let Some(v) = self.origins.get_by_either(name) {
-            Some(Ref::Origin(v))
-        } else {
-            None
-        }
-    }
-
-    /// Resolves a chain of aliases to the original reference.
-    ///
-    /// This **never** returns [`Ref::Alias`], [`Ref::ConstAlias`], [`Ref::CommandAlias`]
-    #[inline]
-    pub fn resolve(&self, name: &str) -> Option<Ref<'a, '_>> {
-        let ref_ = self.find(name)?;
-
-        match ref_ {
-            Ref::Alias(alias) => self.resolve(alias.of()),
-            Ref::ConstAlias(alias) => self.resolve(alias.of()),
-            Ref::CommandAlias(alias) => self.resolve(alias.of()),
-            _ => Some(ref_),
-        }
-    }
-
-    /// Resolves a chain of aliases to the original type.
-    ///
-    /// This **never** returns [`TypeRef::Alias`]
-    #[inline]
-    pub fn resolve_type(&self, name: &str) -> Option<TypeRef<'a, '_>> {
-        let ref_ = self.find(name)?;
-        let ty = ref_.as_type_ref()?;
-
-        match ty {
-            TypeRef::Alias(alias) => self.resolve_type(alias.of()),
-            _ => Some(ty),
-        }
-    }
-
     fn extension(&mut self, extension: &'a vk_parse::Extension) {
-        let disabled = extension
+        let mut disabled = extension
             .supported
             .as_ref()
             .map(|s| s == "disabled")
             .unwrap_or_default();
+
+        if EXTENSION_BLOCK_LIST.iter().any(|s| extension.name.starts_with(s)) {
+            warn!("Blocked extension: {}", extension.name);
+            disabled = true;
+        }
 
         let name = Cow::Borrowed(&extension.name as &str);
         let id = extension.number.expect("an extension should have an id");
@@ -635,19 +582,81 @@ impl<'a> Source<'a> {
             deprecation_status,
         ));
 
-        self.assign_origin_extension(extension);
+        self.assign_origin_extension(extension, disabled);
+    }
+
+
+    /// Finds a value defined in the Vulkan spefification and returns it if it exists.
+    #[inline]
+    pub fn find(&self, name: &str) -> Option<Ref<'a, '_>> {
+        if let Some((_, _, ty, idx)) = self.global.get_by_either(name) {
+            match ty {
+                SourceType::Vendor => self.vendors.get(*idx).map(Ref::Vendor),
+                SourceType::Extension => self.extensions.get(*idx).map(Ref::Extension),
+                SourceType::Tag => self.tags.get(*idx).map(Ref::Tag),
+                SourceType::Opaque => self.opaque_types.get(*idx).map(Ref::OpaqueType),
+                SourceType::Alias => self.aliases.get(*idx).map(Ref::Alias),
+                SourceType::Struct => self.structs.get(*idx).map(Ref::Struct),
+                SourceType::Union => self.unions.get(*idx).map(Ref::Union),
+                SourceType::Handle => self.handles.get(*idx).map(Ref::Handle),
+                SourceType::FunctionPointer => self.funcpointers.get(*idx).map(Ref::FunctionPointer),
+                SourceType::BaseType => self.basetypes.get(*idx).map(Ref::Basetype),
+                SourceType::Bitmask => self.bitmasks.get(*idx).map(Ref::Bitmask),
+                SourceType::Constant => self.constants.get(*idx).map(Ref::Const),
+                SourceType::ConstantAlias => self.constant_aliases.get(*idx).map(Ref::ConstAlias),
+                SourceType::Bitflag => self.bitflags.get(*idx).map(Ref::BitFlag),
+                SourceType::Enum => self.enums.get(*idx).map(Ref::Enum),
+                SourceType::CommandAlias => self.command_aliases.get(*idx).map(Ref::CommandAlias),
+                SourceType::Function => self.functions.get(*idx).map(Ref::Function),
+                SourceType::Command => self.commands.get(*idx).map(|f| Ref::Function(f)),
+            }
+        } else if let Some(v) = self.origins.get_by_either(name) {
+            Some(Ref::Origin(v))
+        } else {
+            None
+        }
+    }
+
+    /// Finds a value defined in the Vulkan spefification and returns it if it exists.
+    /// Only applies for types
+    pub fn find_type(&self, name: &str) -> Option<TypeRef<'a, '_>> {
+        self.find(name).and_then(Ref::as_type_ref)
+    }
+
+    /// Resolves a chain of aliases to the original reference.
+    ///
+    /// This **never** returns [`Ref::Alias`], [`Ref::ConstAlias`], [`Ref::CommandAlias`]
+    #[inline]
+    pub fn resolve(&self, name: &str) -> Option<Ref<'a, '_>> {
+        let ref_ = self.find(name)?;
+
+        match ref_ {
+            Ref::Alias(alias) => self.resolve(alias.of()),
+            Ref::ConstAlias(alias) => self.resolve(alias.of()),
+            Ref::CommandAlias(alias) => self.resolve(alias.of()),
+            _ => Some(ref_),
+        }
+    }
+
+    /// Resolves a chain of aliases to the original type.
+    ///
+    /// This **never** returns [`TypeRef::Alias`]
+    #[inline]
+    pub fn resolve_type(&self, name: &str) -> Option<TypeRef<'a, '_>> {
+        let ref_ = self.find(name)?;
+        let ty = ref_.as_type_ref()?;
+
+        match ty {
+            TypeRef::Alias(alias) => self.resolve_type(alias.of()),
+            _ => Some(ty),
+        }
     }
 
     fn extensions(&mut self, extensions: &'a CommentedChildren<vk_parse::Extension>) {
         extensions.children.iter().for_each(|ext| self.extension(ext));
     }
 
-    fn assign_origin_extension(&mut self, extension: &'a vk_parse::Extension) {
-        let disabled = extension
-            .supported
-            .as_ref()
-            .map(|s| s == "disabled")
-            .unwrap_or_default();
+    fn assign_origin_extension(&mut self, extension: &'a vk_parse::Extension, disabled: bool) {
         let origin = Origin::Extension(Cow::Borrowed(&extension.name), extension.number.unwrap(), disabled);
 
         self.origins.push(origin.clone());

@@ -2,7 +2,9 @@ use std::borrow::Cow;
 
 use proc_macro2::{Ident, Span};
 
-use crate::{origin::Origin, symbols::SymbolName};
+use crate::{doc::Queryable, origin::Origin, symbols::SymbolName};
+
+use super::Source;
 
 /// An opaque external type, usually represented by a void pointer.
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -73,5 +75,11 @@ impl<'a> SymbolName<'a> for OpaqueType<'a> {
 
     fn pretty_name(&self) -> String {
         self.name().to_string()
+    }
+}
+
+impl<'a> Queryable<'a> for OpaqueType<'a> {
+    fn find(&self, _: &Source<'a>, _: &str) -> Option<&'a str> {
+        None
     }
 }

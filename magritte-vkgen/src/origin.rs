@@ -10,8 +10,10 @@ use std::{
 use heck::{ToLowerCamelCase, ToSnakeCase};
 use proc_macro2::{Ident, Span, TokenStream};
 use quote::{quote, ToTokens};
+use smallvec::{smallvec, SmallVec};
 
 use crate::{
+    doc::Queryable,
     imports::Imports,
     source::{DeprecationStatus, Source},
     symbols::SymbolName,
@@ -263,9 +265,42 @@ impl<'a> Origin<'a> {
         }
     }
 
+    /// Turns the origin into a tokenized rust path
+    pub fn as_string_path(&self) -> String {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core => "crate::core".to_string(),
+            Origin::Extension(name, _, _) => {
+                format!("crate::extensions::{}", name.trim_start_matches("VK_").to_snake_case())
+            },
+            Origin::Vulkan1_0 => "crate::vulkan1_0".to_string(),
+            Origin::Vulkan1_1 => "crate::vulkan1_1".to_string(),
+            Origin::Vulkan1_2 => "crate::vulkan1_2".to_string(),
+            Origin::Vulkan1_3 => "crate::vulkan1_3".to_string(),
+            Origin::Opaque => "crate::native".to_string(),
+        }
+    }
+
     /// As a file path of the output file for this origin
-    pub fn as_file_path(&self, path: &Path) -> PathBuf {
-        let mut path = PathBuf::from(path);
+    pub fn as_dir_path<P: AsRef<Path>>(&self, path: P) -> PathBuf {
+        let path = PathBuf::from(path.as_ref());
+
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core
+            | Origin::Vulkan1_0
+            | Origin::Vulkan1_1
+            | Origin::Vulkan1_2
+            | Origin::Vulkan1_3
+            | Origin::Opaque => path,
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(_, _, _) => path.join("extensions/"),
+        }
+    }
+
+    /// As a file path of the output file for this origin
+    pub fn as_file_path<P: AsRef<Path>>(&self, path: P) -> PathBuf {
+        let mut path = PathBuf::from(path.as_ref());
 
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
@@ -350,12 +385,9 @@ impl<'a> Origin<'a> {
                     }),
                 }
             },
-            Origin::Core
-            | Origin::Opaque
-            | Origin::Vulkan1_0
-            | Origin::Vulkan1_1
-            | Origin::Vulkan1_2
-            | Origin::Vulkan1_3 => None,
+            Origin::Core | Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
+            Origin::Vulkan1_2 => Some(quote! { #[cfg(feature = "VULKAN_1_2" )]}),
+            Origin::Vulkan1_3 => Some(quote! { #[cfg(feature = "VULKAN_1_3" )]}),
         }
     }
 
@@ -380,12 +412,9 @@ impl<'a> Origin<'a> {
                     }),
                 }
             },
-            Origin::Core
-            | Origin::Opaque
-            | Origin::Vulkan1_0
-            | Origin::Vulkan1_1
-            | Origin::Vulkan1_2
-            | Origin::Vulkan1_3 => None,
+            Origin::Core | Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
+            Origin::Vulkan1_2 => Some(quote! { #[cfg(not(feature = "VULKAN_1_2" ))]}),
+            Origin::Vulkan1_3 => Some(quote! { #[cfg(not(feature = "VULKAN_1_3" ))]}),
         }
     }
 
@@ -401,23 +430,61 @@ impl<'a> Origin<'a> {
                     | DeprecationStatus::Obsoleted(_)
                     | DeprecationStatus::ObsoletedVersion(_)
                     | DeprecationStatus::DeprecatedVersion(_)
-                    | DeprecationStatus::Deprecated(_)
-                    | DeprecationStatus::PromotedVersion(_) => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+                    | DeprecationStatus::Deprecated(_) => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+                    DeprecationStatus::PromotedVersion(by) => match by {
+                        Self::Vulkan1_2 | Self::Vulkan1_3 => Some(format!(
+                            "#[cfg(any(feature = \"{}\", feature = \"{}\"))]\n",
+                            ext,
+                            by.name()
+                        )),
+                        _ => Some(format!("#[cfg(feature = \"{}\")]\n", ext)),
+                    },
                     DeprecationStatus::Promoted(by) => {
                         Some(format!("#[cfg(any(feature = \"{}\", feature = \"{}\"))]\n", ext, by))
                     },
                 }
             },
-            Origin::Core
+            /*Origin::Core
             | Origin::Opaque
             | Origin::Vulkan1_0
             | Origin::Vulkan1_1
             | Origin::Vulkan1_2
-            | Origin::Vulkan1_3 => None,
-            /*Origin::Vulkan1_1 => None,
+            | Origin::Vulkan1_3 => None,*/
+            Origin::Core | Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
             Origin::Vulkan1_2 => Some("#[cfg(feature = \"VULKAN_1_2\")]\n".to_string()),
             Origin::Vulkan1_3 => Some("#[cfg(feature = \"VULKAN_1_3\")]\n".to_string()),
-            Origin::Opaque => None,*/
+        }
+    }
+
+    /// Generate the feature gate (if any) for this origin
+    pub fn feature_flag<'b>(&self, source: &Source<'b>) -> Option<SmallVec<[String; 2]>> {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => {
+                let extension = source.extensions.get_by_name(ext).expect("unknown extension");
+                match extension.deprecation_status() {
+                    DeprecationStatus::Current
+                    | DeprecationStatus::Obsoleted(_)
+                    | DeprecationStatus::ObsoletedVersion(_)
+                    | DeprecationStatus::DeprecatedVersion(_)
+                    | DeprecationStatus::Deprecated(_) => Some(smallvec![ext.to_string()]),
+                    DeprecationStatus::PromotedVersion(by) => match by {
+                        Self::Vulkan1_2 | Self::Vulkan1_3 => Some(smallvec![ext.to_string(), by.name().to_string()]),
+                        _ => Some(smallvec![ext.to_string()]),
+                    },
+                    DeprecationStatus::Promoted(by) => Some(smallvec![ext.to_string(), by.to_string()]),
+                }
+            },
+            /*Origin::Core
+            | Origin::Opaque
+            | Origin::Vulkan1_0
+            | Origin::Vulkan1_1
+            | Origin::Vulkan1_2
+            | Origin::Vulkan1_3 => None,*/
+            Origin::Core | Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
+            Origin::Vulkan1_2 => Some(smallvec!["VULKAN_1_2".to_owned()]),
+            Origin::Vulkan1_3 => Some(smallvec!["VULKAN_1_3".to_owned()]),
         }
     }
 
@@ -560,5 +627,11 @@ impl<'a> SymbolName<'a> for Origin<'a> {
 
     fn pretty_name(&self) -> String {
         self.name().to_string()
+    }
+}
+
+impl<'a> Queryable<'a> for Origin<'a> {
+    fn find<'b>(&'b self, _source: &'b Source<'a>, _name: &str) -> Option<&'b str> {
+        None
     }
 }

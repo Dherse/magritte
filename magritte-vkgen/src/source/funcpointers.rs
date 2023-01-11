@@ -110,6 +110,10 @@ impl<'a> FunctionPointer<'a> {
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.arguments.iter().any(|a| a.has_lifetime(source, false))
     }
+
+    pub fn has_opaque(&self, source: &Source<'a>) -> bool {
+        self.arguments().iter().any(|a| a.is_opaque(source))
+    }
 }
 
 impl<'a> SymbolName<'a> for FunctionPointer<'a> {
@@ -173,7 +177,12 @@ impl<'a> FunctionPointerArgument<'a> {
 
     /// Checks whether the argument needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>, pointer_has_lifetime: bool) -> bool {
-        self.ty().has_lifetime(source, pointer_has_lifetime)
+        todo!()
+        // self.ty().has_lifetime(source, pointer_has_lifetime)
+    }
+
+    pub fn is_opaque(&self, source: &Source<'a>) -> bool {
+        self.ty().is_opaque(source)
     }
 }
 

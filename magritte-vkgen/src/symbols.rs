@@ -3,11 +3,11 @@
 
 use std::{
     borrow::Cow,
+    collections::HashMap,
     fmt::{self, Debug, Formatter},
     mem::replace,
-    ops::{Index, Range, RangeFull, RangeInclusive, RangeTo, RangeToInclusive}, collections::HashMap,
+    ops::{Index, Range, RangeFull, RangeInclusive, RangeTo, RangeToInclusive},
 };
-
 
 use rayon::prelude::*;
 use smallvec::SmallVec;

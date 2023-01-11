@@ -80,7 +80,7 @@ impl<'a> Union<'a> {
         self.origin = origin;
     }
 
-    /// Checks if this union needs a lifetime
+    /*/// Checks if this union needs a lifetime
     pub fn has_lifetime(&self, source: &Source<'a>) -> bool {
         self.fields.iter().any(|f| f.has_lifetime(source, false))
     }
@@ -88,6 +88,15 @@ impl<'a> Union<'a> {
     /// Checks if this union is copy
     pub fn is_copy(&self, source: &Source<'a>) -> bool {
         self.fields().iter().all(|f| f.is_copy(source))
+    }
+
+    /// Checks if this union is copy
+    pub fn is_clone(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().all(|f| f.is_clone(source))
+    }*/
+
+    pub fn has_opaque(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().any(|f| f.is_opaque(source))
     }
 }
 

@@ -17,7 +17,7 @@ Magritte is a set of Vulkan bindings designed to be easier to use and enable mor
 
 ## Build instructions
 
-Detailing binding generation instructions are present in `BUILD.md` and an overview of the project's structure is available in `STRUCTURE.md`.
+Detailing binding generation instructions are present in `doc/BUILD.md` and an overview of the project's structure is available in `doc/STRUCTURE.md`.
 Note that to generate the bindings, you will need docker and python. However, for Magritte itself, you don't need anything.
 ## What magritte is and is not
 
@@ -79,6 +79,10 @@ The main additions are the following:
 Those are [OpenGL](https://www.opengl.org//) bindings and not *Vulkan* bindings. This means they are (very broad statements ahead that depend on the version of *OpenGL* and how the individual crates are built) higher-level, single-threaded, full of legacy code (*OpenGL* is at fault here). Magritte gives the following advantages:
 - Magritte uses *Vulkan* not *OpenGL* ;
 - Magritte has support for advanced features found in *Vulkan* that are not available in *OpenGL* ;
+
+## Support for Vulkan Video
+
+Currently, Magritte does not support Vulkan video extensions, while this is planned in the far future when it is fully supported and documented and I know enough about how it works to provide adequate support for it.
 
 ## Features
 
