@@ -1,0 +1,1 @@
+[`layer_count`] is the number of layers to clear.

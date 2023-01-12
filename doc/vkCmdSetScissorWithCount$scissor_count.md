@@ -1,0 +1,1 @@
+[`scissor_count`] specifies the scissor count.

@@ -1,0 +1,1 @@
+`data.valueBool` represents [`Bool32`] data.

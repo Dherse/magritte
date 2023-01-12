@@ -1,0 +1,1 @@
+[`p_info`] describes the image view to query and type of handle.

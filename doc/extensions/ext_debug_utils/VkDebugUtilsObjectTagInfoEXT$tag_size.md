@@ -1,0 +1,1 @@
+[`tag_size`] is the number of bytes of data to attach to the object.

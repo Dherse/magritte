@@ -1,0 +1,1 @@
+[`color_space`] value of the Sysmem `ColorSpaceType`

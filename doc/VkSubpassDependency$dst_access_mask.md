@@ -1,0 +1,2 @@
+[`dst_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a
+[destination access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).

@@ -1,0 +1,1 @@
+[`allocation_size`] is the size of the allocation in bytes.

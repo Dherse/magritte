@@ -1,0 +1,1 @@
+[`instance`] is the instance the messenger will be used with.

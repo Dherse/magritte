@@ -1,0 +1,1 @@
+[`count_buffer`] is the buffer containing the draw count.

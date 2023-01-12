@@ -30,18 +30,23 @@ impl OpaqueType<'static> {
 }
 
 impl<'a> OpaqueType<'a> {
-    /// Get a reference to the alias's original name.
+    /// Get a reference to the opaque type's original name.
     pub fn original_name(&self) -> &str {
         self.original_name.as_ref()
     }
 
-    /// Get a reference to the alias's origin.
+    /// Get a reference to the opaque type's original name.
+    pub fn name(&self) -> &str {
+        self.original_name()
+    }
+
+    /// Get a reference to the opaque type's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
         &self.origin
     }
 
-    /// Set the alias's origin.
+    /// Set the opaque type's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         // Gate that ensures that we don't "downgrade" origins
         if self.origin.is_vulkan() {
@@ -51,7 +56,7 @@ impl<'a> OpaqueType<'a> {
         self.origin = origin;
     }
 
-    /// Get a reference to the alias's requires.
+    /// Get a reference to the opaque type's required header file.
     pub fn requires(&self) -> &str {
         self.requires.as_ref()
     }

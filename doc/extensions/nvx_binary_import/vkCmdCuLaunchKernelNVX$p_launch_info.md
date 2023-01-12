@@ -1,0 +1,1 @@
+[`p_launch_info`] **must**  be a valid pointer to a valid [`CuLaunchInfoNVX`] structure

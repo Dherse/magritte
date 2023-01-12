@@ -1,0 +1,1 @@
+[`p_fences`] is a pointer to an array of fence handles to reset.

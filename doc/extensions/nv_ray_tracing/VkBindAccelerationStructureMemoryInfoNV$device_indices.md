@@ -1,0 +1,1 @@
+[`device_indices`] is a pointer to an array of device indices.

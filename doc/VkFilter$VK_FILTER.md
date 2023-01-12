@@ -1,0 +1,1 @@
+[`VK_FILTER`] specifies nearest filtering.

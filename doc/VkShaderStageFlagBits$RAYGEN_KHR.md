@@ -1,0 +1,1 @@
+[`RAYGEN_KHR`] specifies the ray generation stage.

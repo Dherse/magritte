@@ -1,0 +1,1 @@
+[`semaphore`] is [`crate::Handle::null`] or a semaphore to signal.

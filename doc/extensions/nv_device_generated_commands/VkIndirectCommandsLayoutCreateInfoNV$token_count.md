@@ -1,0 +1,1 @@
+[`token_count`] is the length of the individual command sequence.

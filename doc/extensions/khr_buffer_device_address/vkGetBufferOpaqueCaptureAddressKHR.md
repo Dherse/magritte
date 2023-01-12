@@ -1,0 +1,1 @@
+See [`crate::vulkan1_2::get_buffer_opaque_capture_address.rs`] for more information

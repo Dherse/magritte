@@ -1,0 +1,1 @@
+[`command_pool`] is the command pool to reset.

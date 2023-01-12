@@ -1,0 +1,1 @@
+[`device_mask`] is the new value of the current device mask.

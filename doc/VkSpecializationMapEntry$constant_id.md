@@ -1,0 +1,1 @@
+[`constant_id`] is the ID of the specialization constant in SPIR-V.

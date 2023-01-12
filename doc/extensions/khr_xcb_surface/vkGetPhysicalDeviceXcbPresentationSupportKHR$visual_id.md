@@ -1,0 +1,1 @@
+[`visual_id`] is an X11 visual (`xcb_visualid_t`).

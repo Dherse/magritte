@@ -1,0 +1,1 @@
+[`MEMORY_PLANE1_EXT`] specifies *memory plane* 1.

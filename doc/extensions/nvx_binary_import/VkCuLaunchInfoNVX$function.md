@@ -1,0 +1,1 @@
+[`function`] **must**  be a valid [`CuFunctionNVX`] handle

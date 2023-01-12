@@ -1,0 +1,1 @@
+[`first_index`] is the first index to draw.

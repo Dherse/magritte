@@ -1,0 +1,1 @@
+[`p_module`] **must**  be a valid pointer to a [`CuModuleNVX`] handle

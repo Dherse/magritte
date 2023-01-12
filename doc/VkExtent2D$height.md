@@ -1,0 +1,1 @@
+[`height`] is the height of the extent.

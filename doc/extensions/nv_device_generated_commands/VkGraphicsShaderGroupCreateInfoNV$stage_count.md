@@ -1,0 +1,1 @@
+[`stage_count`] is the number of entries in the [`stages`] array.

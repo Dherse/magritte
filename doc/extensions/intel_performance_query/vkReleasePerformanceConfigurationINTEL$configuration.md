@@ -1,0 +1,1 @@
+[`configuration`] is the configuration object to release.

@@ -1,0 +1,1 @@
+[`swapchain`] is the swapchain from which to query the counter value.

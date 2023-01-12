@@ -1,0 +1,1 @@
+[`base_array_layer`] is the first layer to be cleared.

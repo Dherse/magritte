@@ -1,0 +1,1 @@
+[`color_attachment_count`] is the number of color attachments.

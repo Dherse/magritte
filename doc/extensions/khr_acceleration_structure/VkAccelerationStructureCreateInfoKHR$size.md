@@ -1,0 +1,1 @@
+[`size`] is the size required for the acceleration structure.

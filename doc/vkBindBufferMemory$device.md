@@ -1,0 +1,1 @@
+[`device`] is the logical device that owns the buffer and memory.

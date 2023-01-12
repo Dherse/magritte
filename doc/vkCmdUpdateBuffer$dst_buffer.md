@@ -1,0 +1,1 @@
+[`dst_buffer`] is a handle to the buffer to be updated.

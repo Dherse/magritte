@@ -1,0 +1,1 @@
+[`cmd_resolve_image2`] and [`cmd_resolve_image`]

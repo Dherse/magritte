@@ -1,0 +1,1 @@
+[`index_type`] is the [`IndexType`] of each index element.

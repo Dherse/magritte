@@ -1,0 +1,1 @@
+[`VK_DESCRIPTOR_TYPE`] specifies a [sampler descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler).

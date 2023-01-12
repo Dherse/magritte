@@ -1,0 +1,1 @@
+[`info_type`] describes what kind of information is being queried.

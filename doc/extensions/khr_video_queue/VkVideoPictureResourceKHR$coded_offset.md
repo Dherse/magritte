@@ -1,0 +1,1 @@
+[`coded_offset`] is the offset to be used for the picture resource.

@@ -1,0 +1,1 @@
+[`binding`] is the binding number that this structure describes.

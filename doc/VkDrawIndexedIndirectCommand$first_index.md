@@ -1,0 +1,1 @@
+[`first_index`] is the base index within the index buffer.

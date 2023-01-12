@@ -1,0 +1,1 @@
+[`base_mip_level`] is the first mipmap level accessible to the view.

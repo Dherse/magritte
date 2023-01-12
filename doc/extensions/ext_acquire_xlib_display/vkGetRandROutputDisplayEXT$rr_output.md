@@ -1,0 +1,1 @@
+[`rr_output`] An X11 RandR output ID.

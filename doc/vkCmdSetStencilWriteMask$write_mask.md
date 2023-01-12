@@ -1,0 +1,1 @@
+[`write_mask`] is the new value to use as the stencil write mask.

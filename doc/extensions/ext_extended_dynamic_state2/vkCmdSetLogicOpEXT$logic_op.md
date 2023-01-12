@@ -1,0 +1,1 @@
+[`logic_op`] specifies the logical operation to apply for blend state.

@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::trim_command_pool.rs`] for more information

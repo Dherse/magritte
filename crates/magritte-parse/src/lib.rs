@@ -7,7 +7,8 @@ mod processor;
 mod string;
 mod ty;
 
-use expr::parse_expr;
+pub use expr::parse_expr;
+pub use ty::native_raw;
 pub use magritte_types::*;
 
 use std::{
@@ -254,7 +255,7 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
     Ok(out)
 }
 
-pub trait Visitor<'a> {
+trait Visitor<'a> {
     fn update_symbol_table(&mut self);
 
     fn visit_vendor_id(&mut self, vendor: vk_parse::VendorId);

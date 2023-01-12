@@ -1,0 +1,1 @@
+[`vertex_stride`] is the stride in bytes between each vertex.

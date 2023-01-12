@@ -1,0 +1,1 @@
+[`resource_offset`] is the offset into the resource.

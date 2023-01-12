@@ -1,0 +1,1 @@
+[`p_function`] **must**  be a valid pointer to a [`CuFunctionNVX`] handle

@@ -1,0 +1,1 @@
+[`format`] is the format whose properties are queried.

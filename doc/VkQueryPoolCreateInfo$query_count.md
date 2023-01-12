@@ -1,0 +1,1 @@
+[`query_count`] is the number of queries managed by the pool.

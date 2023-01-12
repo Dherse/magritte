@@ -1,0 +1,1 @@
+[`correlated_view_mask_count`] is the number of correlation masks.

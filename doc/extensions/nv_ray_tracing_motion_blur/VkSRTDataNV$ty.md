@@ -1,0 +1,1 @@
+[`ty`] is the y component of the post-rotation translation

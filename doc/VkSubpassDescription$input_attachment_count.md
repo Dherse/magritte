@@ -1,0 +1,1 @@
+[`input_attachment_count`] is the number of input attachments.

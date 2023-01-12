@@ -1,0 +1,1 @@
+[`tx`] is the x component of the post-rotation translation

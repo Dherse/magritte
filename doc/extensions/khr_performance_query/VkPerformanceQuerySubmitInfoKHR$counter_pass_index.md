@@ -1,0 +1,1 @@
+[`counter_pass_index`] specifies which counter pass index is active.

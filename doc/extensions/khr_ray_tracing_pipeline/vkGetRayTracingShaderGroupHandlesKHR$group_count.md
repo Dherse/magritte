@@ -1,0 +1,1 @@
+[`group_count`] is the number of shader handles to retrieve.

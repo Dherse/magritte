@@ -1,0 +1,1 @@
+[`min_z`] is the z position of one opposing corner of a bounding box.

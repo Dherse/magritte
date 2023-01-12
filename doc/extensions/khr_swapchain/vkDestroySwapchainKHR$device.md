@@ -1,0 +1,1 @@
+[`device`] is the [`Device`] associated with [`swapchain`].

@@ -1,0 +1,1 @@
+[`flags`] are sparse memory binding flags.

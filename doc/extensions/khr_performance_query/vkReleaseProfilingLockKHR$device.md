@@ -1,0 +1,1 @@
+[`device`] is the logical device to cease profiling on.

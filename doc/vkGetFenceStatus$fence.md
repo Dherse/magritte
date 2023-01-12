@@ -1,0 +1,1 @@
+[`fence`] is the handle of the fence to query.

@@ -1,0 +1,1 @@
+the number of elements in [`buffer_info`]

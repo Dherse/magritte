@@ -1,0 +1,1 @@
+[`physical_device`] The physical device to query the display from.

@@ -1,0 +1,1 @@
+[`sx`] is the x component of the scale of the transform

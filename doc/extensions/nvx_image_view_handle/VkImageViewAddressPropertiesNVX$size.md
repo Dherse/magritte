@@ -1,0 +1,1 @@
+[`size`] is the size in bytes of the image view device memory.

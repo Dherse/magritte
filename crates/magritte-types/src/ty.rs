@@ -327,6 +327,36 @@ pub enum Native {
     NullTerminatedString,
 }
 
+impl Native {
+    pub fn name(&self) -> &'static str {
+        match self {
+            Native::Void => "std::ffi::c_void",
+            Native::UInt(size) => match size {
+                1 => "u8",
+                2 => "u16",
+                4 => "u32",
+                8 => "u64",
+                other => unreachable!("unsupported size: {other}")
+            },
+            Native::Int(size) =>  match size {
+                1 => "i8",
+                2 => "i16",
+                4 => "i32",
+                8 => "i64",
+                other => unreachable!("unsupported size: {other}")
+            },
+            Native::USize => "usize",
+            Native::SSize => "isize",
+            Native::Char => "std::ffi::c_char",
+            Native::UChar => "std::ffi::c_uchar",
+            Native::Float => "f32",
+            Native::Double => "f64",
+            Native::Bool => "bool",
+            Native::NullTerminatedString => "std::ffi::CStr",
+        }
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum Mutability {
     /// Is mutable

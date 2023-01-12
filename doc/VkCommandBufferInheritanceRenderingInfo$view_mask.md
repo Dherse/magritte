@@ -1,0 +1,1 @@
+[`view_mask`] is the view mask used for rendering.

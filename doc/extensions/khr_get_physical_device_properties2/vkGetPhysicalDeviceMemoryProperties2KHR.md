@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_physical_device_memory_properties2.rs`] for more information

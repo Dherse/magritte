@@ -1,0 +1,1 @@
+[`visible_region`] is the 2D extents of the visible region.

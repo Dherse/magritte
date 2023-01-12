@@ -1,0 +1,1 @@
+[`color_space_count`] the element count of [`color_spaces`]

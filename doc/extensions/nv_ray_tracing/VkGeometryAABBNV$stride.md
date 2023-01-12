@@ -1,0 +1,1 @@
+[`stride`] is the stride in bytes between AABBs in [`aabb_data`].

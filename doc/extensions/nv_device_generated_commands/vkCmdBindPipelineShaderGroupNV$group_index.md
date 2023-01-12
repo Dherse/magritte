@@ -1,0 +1,1 @@
+[`group_index`] is the shader group to be bound.

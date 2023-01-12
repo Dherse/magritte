@@ -1,0 +1,1 @@
+[`width`] is the width of the extent.

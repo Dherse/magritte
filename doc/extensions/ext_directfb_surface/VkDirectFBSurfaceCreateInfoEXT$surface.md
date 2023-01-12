@@ -1,0 +1,1 @@
+[`surface`] is a pointer to a `IDirectFBSurface` surface interface.

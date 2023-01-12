@@ -1,0 +1,1 @@
+[`min_lod`] is used to clamp the [minimum of the computed LOD value](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-level-of-detail-operation).

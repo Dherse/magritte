@@ -1,0 +1,1 @@
+[`pipeline`] is a [`Pipeline`] handle.

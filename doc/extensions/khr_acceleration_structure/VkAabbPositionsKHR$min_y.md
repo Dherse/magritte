@@ -1,0 +1,1 @@
+[`min_y`] is the y position of one opposing corner of a bounding box.

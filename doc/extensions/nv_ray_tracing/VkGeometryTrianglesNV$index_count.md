@@ -1,0 +1,1 @@
+[`index_count`] is the number of indices to include in this geometry.

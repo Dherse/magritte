@@ -1,0 +1,1 @@
+[`query_pool`] is the query pool to destroy.

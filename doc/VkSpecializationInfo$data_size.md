@@ -1,0 +1,1 @@
+[`data_size`] is the byte size of the [`data`] buffer.

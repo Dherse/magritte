@@ -1,0 +1,1 @@
+[`src_image`] is the source image.

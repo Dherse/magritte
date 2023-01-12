@@ -1,0 +1,1 @@
+[`swapchain_count`] is the number of swapchains to create.

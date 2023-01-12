@@ -1,0 +1,1 @@
+[`ANY_HIT_KHR`] specifies the any-hit stage.

@@ -1,0 +1,1 @@
+[`p_next`] is a pointer to a structure extending this structure.

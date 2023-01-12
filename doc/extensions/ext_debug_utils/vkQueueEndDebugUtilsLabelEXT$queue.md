@@ -1,0 +1,1 @@
+[`queue`] is the queue in which a debug label region should be closed.

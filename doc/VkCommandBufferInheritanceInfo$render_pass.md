@@ -1,0 +1,2 @@
+[`render_pass`] is a [`RenderPass`] object defining which render
+passes the [`CommandBuffer`] will be [compatible](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-compatibility) with and  **can**  be executed within.

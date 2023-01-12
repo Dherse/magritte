@@ -1,0 +1,1 @@
+[`m_size`] is the number of rows in matrices A, C, and D.

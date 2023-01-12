@@ -1,0 +1,1 @@
+[`plane_stack_index`] is the z-order of the plane.

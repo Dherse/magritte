@@ -1,0 +1,1 @@
+[`capabilities`] is a [`DisplayPlaneCapabilitiesKHR`] structure.

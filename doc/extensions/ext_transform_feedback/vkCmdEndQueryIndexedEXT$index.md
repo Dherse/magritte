@@ -1,0 +1,1 @@
+[`index`] is the query type specific index.

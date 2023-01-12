@@ -1,0 +1,1 @@
+[`token_type`] specifies the token command type.

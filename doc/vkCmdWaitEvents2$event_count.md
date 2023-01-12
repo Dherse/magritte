@@ -1,0 +1,1 @@
+[`event_count`] is the length of the [`p_events`] array.

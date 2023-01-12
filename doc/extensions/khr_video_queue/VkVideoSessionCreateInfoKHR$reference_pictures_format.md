@@ -1,0 +1,2 @@
+[`reference_pictures_format`] is the format of the [DPB](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#dpb) image
+views representing the [Reference Pictures](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#reference-picture).

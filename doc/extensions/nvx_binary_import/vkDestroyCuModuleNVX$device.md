@@ -1,0 +1,1 @@
+[`device`] **must**  be a valid [`Device`] handle

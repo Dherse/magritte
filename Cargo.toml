@@ -4,6 +4,7 @@ members = [
     "crates/magritte-common",
     "crates/magritte-types",
     "crates/magritte-utils",
+    "crates/magritte-build",
     "bins/magritte-ron-build",
     "bins/magritte-doc-build",
     "host/magritte-native-host",
@@ -13,3 +14,6 @@ members = [
     "magritte",
     "magritte-vkgen",
 ]
+
+[profile.release]
+debug = true

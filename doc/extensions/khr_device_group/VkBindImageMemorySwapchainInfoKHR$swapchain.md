@@ -1,0 +1,1 @@
+[`swapchain`] is [`crate::Handle::null`] or a swapchain handle.

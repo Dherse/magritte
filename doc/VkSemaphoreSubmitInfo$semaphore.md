@@ -1,0 +1,1 @@
+[`semaphore`] is a [`Semaphore`] affected by this operation.

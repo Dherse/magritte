@@ -1,0 +1,2 @@
+[`INDIRECT_BINDABLE_NV`] specifies that the
+pipeline can be used in combination with [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-generated-commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-generated-commands).

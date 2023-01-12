@@ -1,0 +1,1 @@
+[`coded_extent`] is the extent to be used for the picture resource.

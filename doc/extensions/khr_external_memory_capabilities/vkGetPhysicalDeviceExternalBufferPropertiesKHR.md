@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_physical_device_external_buffer_properties.rs`] for more information

@@ -1,0 +1,1 @@
+[`CUBIC_EXT`] specifies cubic filtering.

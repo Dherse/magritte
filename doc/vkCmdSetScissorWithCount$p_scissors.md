@@ -1,0 +1,1 @@
+[`p_scissors`] specifies the scissors to use for drawing.

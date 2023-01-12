@@ -1,0 +1,1 @@
+[`y`] is the vertical coordinate of the sample’s location.

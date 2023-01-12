@@ -1,0 +1,1 @@
+[`modes`] is a bitfield of modes that the swapchain  **can**  be used with.

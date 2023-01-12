@@ -1,0 +1,1 @@
+[`p_strides`] is `NULL` or a pointer to an array of buffer strides.

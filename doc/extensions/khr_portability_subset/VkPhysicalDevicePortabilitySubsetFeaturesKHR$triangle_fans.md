@@ -1,0 +1,2 @@
+[`triangle_fans`] indicates whether this
+implementation supports [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans) primitive topology.

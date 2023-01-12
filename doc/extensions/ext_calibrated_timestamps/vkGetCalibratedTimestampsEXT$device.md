@@ -1,0 +1,1 @@
+[`device`] is the logical device used to perform the query.

@@ -1,0 +1,1 @@
+[`device_address`] is the device address of the image view.

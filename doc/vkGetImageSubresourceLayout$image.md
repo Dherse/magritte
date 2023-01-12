@@ -1,0 +1,1 @@
+[`image`] is the image whose layout is being queried.

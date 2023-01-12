@@ -1,0 +1,2 @@
+[`vulkan_memory_model_availability_visibility_chains`] indicates whether
+the Vulkan Memory Model can use [availability and visibility chains](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model-availability-visibility) with more than one element.

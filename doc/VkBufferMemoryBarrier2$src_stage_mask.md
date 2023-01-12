@@ -1,0 +1,2 @@
+[`src_stage_mask`] is a [`PipelineStageFlags2`] mask of pipeline
+stages to be included in the [first synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).

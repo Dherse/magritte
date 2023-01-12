@@ -1,0 +1,1 @@
+[`size`] is the requested size of an allocation.

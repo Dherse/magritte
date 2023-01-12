@@ -1,0 +1,1 @@
+[`instance`] is the debug stream’s [`Instance`].

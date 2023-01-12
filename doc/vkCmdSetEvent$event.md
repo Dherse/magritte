@@ -1,0 +1,1 @@
+[`event`] is the event that will be signaled.

@@ -1,0 +1,1 @@
+[`x`] is the horizontal coordinate of the sample’s location.

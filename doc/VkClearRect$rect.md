@@ -1,0 +1,1 @@
+[`rect`] is the two-dimensional region to be cleared.

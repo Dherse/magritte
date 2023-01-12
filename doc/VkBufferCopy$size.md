@@ -1,0 +1,1 @@
+[`size`] is the number of bytes to copy.

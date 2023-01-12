@@ -1,0 +1,1 @@
+[`VK_FORMAT`] specifies that the format is not specified.

@@ -1,0 +1,1 @@
+[`device`] is the logical device containing the ray tracing pipeline.

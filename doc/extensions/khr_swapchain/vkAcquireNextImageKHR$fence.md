@@ -1,0 +1,1 @@
+[`fence`] is [`crate::Handle::null`] or a fence to signal.

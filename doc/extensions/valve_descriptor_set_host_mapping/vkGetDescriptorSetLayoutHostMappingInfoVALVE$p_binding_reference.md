@@ -1,0 +1,1 @@
+[`p_binding_reference`] **must**  be a valid pointer to a valid [`DescriptorSetBindingReferenceVALVE`] structure

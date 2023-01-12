@@ -1,0 +1,1 @@
+[`image_index`] is an image index within [`swapchain`].

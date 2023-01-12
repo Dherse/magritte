@@ -1,0 +1,1 @@
+[`framebuffer`] is the handle of the framebuffer to destroy.

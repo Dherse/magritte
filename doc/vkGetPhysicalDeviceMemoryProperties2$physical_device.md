@@ -1,0 +1,1 @@
+[`physical_device`] is the handle to the device to query.

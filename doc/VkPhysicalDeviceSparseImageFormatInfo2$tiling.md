@@ -1,0 +1,1 @@
+[`tiling`] is the tiling arrangement of the texel blocks in memory.

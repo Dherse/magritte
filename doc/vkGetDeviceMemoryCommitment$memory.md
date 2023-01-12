@@ -1,0 +1,1 @@
+[`memory`] is the memory object being queried.

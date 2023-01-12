@@ -1,0 +1,1 @@
+[`p_info`] is either `NULL` or a pointer to a buffer.

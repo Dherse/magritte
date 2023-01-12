@@ -1,0 +1,1 @@
+[`VK_ACCESS_FLAG_BITS2`] specifies no accesses.

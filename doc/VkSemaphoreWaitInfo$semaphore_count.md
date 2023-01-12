@@ -1,0 +1,1 @@
+[`semaphore_count`] is the number of semaphores to wait on.

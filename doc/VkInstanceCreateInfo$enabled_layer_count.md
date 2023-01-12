@@ -1,0 +1,1 @@
+[`enabled_layer_count`] is the number of global layers to enable.

@@ -1,0 +1,1 @@
+If [`param_count`] is not `0`, [`params`] **must**  be a valid pointer to an array of [`param_count`] bytes

@@ -1,0 +1,1 @@
+[`display_properties`] is a [`DisplayPropertiesKHR`] structure.

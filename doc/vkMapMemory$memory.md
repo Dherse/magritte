@@ -1,0 +1,1 @@
+[`memory`] is the [`DeviceMemory`] object to be mapped.

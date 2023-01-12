@@ -1,0 +1,1 @@
+[`memory`] is the memory object to be unmapped.

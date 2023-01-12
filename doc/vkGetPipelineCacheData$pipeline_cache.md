@@ -1,0 +1,1 @@
+[`pipeline_cache`] is the pipeline cache to retrieve data from.

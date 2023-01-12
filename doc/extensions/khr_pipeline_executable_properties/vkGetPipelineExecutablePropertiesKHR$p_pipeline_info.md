@@ -1,0 +1,1 @@
+[`p_pipeline_info`] describes the pipeline being queried.

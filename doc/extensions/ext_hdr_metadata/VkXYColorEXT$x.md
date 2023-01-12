@@ -1,0 +1,1 @@
+[`x`] is the x chromaticity coordinate.

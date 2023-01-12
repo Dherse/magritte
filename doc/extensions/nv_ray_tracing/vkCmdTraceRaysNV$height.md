@@ -1,0 +1,1 @@
+[`height`] is height of the ray trace query dimensions.

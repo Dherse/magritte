@@ -1,0 +1,1 @@
+[`num_aab_bs`] is the number of AABBs in this geometry.

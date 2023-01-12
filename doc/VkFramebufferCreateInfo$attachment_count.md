@@ -1,0 +1,1 @@
+[`attachment_count`] is the number of attachments.

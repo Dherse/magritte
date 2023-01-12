@@ -1,0 +1,1 @@
+[`src`] is the source acceleration structure for the copy.

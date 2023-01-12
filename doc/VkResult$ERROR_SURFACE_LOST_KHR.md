@@ -1,0 +1,1 @@
+[`ERROR_SURFACE_LOST_KHR`] A surface is no longer available.

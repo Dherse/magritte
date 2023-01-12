@@ -1,0 +1,1 @@
+[`info_count`] is the number of acceleration structures to build.

@@ -1,0 +1,1 @@
+[`p_offsets`] is a pointer to an array of buffer offsets.

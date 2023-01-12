@@ -192,28 +192,33 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
     }
 
     /// Gets the name of the reference
-    #[inline]
-    pub fn name(&self) -> &'b str {
+    pub fn name(&self) -> String {
         match self {
             Self::Vendor(_) => panic!("a vendor cannot be made into a name"),
-            Self::Extension(r) => r.name(),
+            Self::Extension(r) => r.name().to_owned(),
             Self::Tag(_) => panic!("a tag cannot be made into a name"),
-            Self::OpaqueType(r) => r.original_name(),
-            Self::Alias(r) => r.name(),
-            Self::Struct(r) => r.name(),
-            Self::Union(r) => r.name(),
-            Self::Handle(r) => r.name(),
-            Self::FunctionPointer(r) => r.name(),
-            Self::Basetype(r) => r.name(),
-            Self::Bitmask(r) => r.name(),
-            Self::Const(r) => r.name(),
-            Self::ConstAlias(r) => r.name(),
-            Self::Bitflag(r) => r.name(),
-            Self::Enum(r) => r.name(),
-            Self::CommandAlias(r) => r.name(),
-            Self::Function(r) => r.name(),
-            Self::Origin(_) => panic!("an origin cannot be made into a name"),
+            Self::OpaqueType(r) => r.original_name().to_owned(),
+            Self::Alias(r) => r.name().to_owned(),
+            Self::Struct(r) => r.name().to_owned(),
+            Self::Union(r) => r.name().to_owned(),
+            Self::Handle(r) => r.name().to_owned(),
+            Self::FunctionPointer(r) => r.name().to_owned(),
+            Self::Basetype(r) => r.name().to_owned(),
+            Self::Bitmask(r) => r.name().to_owned(),
+            Self::Const(r) => r.name().to_owned(),
+            Self::ConstAlias(r) => r.name().to_owned(),
+            Self::Bitflag(r) => r.name().to_owned(),
+            Self::Enum(r) => r.name().to_owned(),
+            Self::CommandAlias(r) => r.name().to_owned(),
+            Self::Function(r) => r.name().to_owned(),
+            Self::Origin(origin) => origin.as_name(),
         }
+    }
+
+    /// Gets the rust path with a given crate prefix for this object
+    #[inline]
+    pub fn as_rust_path(&self, prefix: &str) -> String {
+        format!("{}::{}.rs", self.origin().as_rust_path(prefix), self.name())
     }
 
     ref_function! {

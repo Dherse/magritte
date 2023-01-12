@@ -1,0 +1,1 @@
+[`timestamp_count`] is the number of timestamps to query.

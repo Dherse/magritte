@@ -1,0 +1,1 @@
+[`stream_count`] defines the number of input streams

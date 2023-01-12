@@ -1,0 +1,2 @@
+[`p_dependency_infos`] is a pointer to an array of [`event_count`][`DependencyInfo`] structures, defining the second
+[synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes).

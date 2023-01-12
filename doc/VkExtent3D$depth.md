@@ -1,0 +1,1 @@
+[`depth`] is the depth of the extent.

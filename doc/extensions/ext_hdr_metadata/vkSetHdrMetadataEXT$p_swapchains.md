@@ -1,0 +1,1 @@
+[`p_swapchains`] is a pointer to an array of [`swapchain_count`][`SwapchainKHR`] handles.

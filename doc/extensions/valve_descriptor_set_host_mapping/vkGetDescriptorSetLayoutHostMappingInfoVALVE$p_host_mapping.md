@@ -1,0 +1,1 @@
+[`p_host_mapping`] **must**  be a valid pointer to a [`DescriptorSetLayoutHostMappingInfoVALVE`] structure

@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_physical_device_queue_family_properties2.rs`] for more information

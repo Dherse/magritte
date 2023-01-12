@@ -1,0 +1,1 @@
+[`NONE_KHR`] specifies that no indices are provided.

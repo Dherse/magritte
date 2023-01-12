@@ -1,0 +1,1 @@
+[`validation_cache`] is the handle of the validation cache to destroy.

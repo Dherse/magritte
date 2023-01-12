@@ -1,0 +1,1 @@
+[`buffer_view`] is the buffer view to destroy.

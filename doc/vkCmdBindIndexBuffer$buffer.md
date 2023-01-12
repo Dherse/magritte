@@ -1,0 +1,1 @@
+[`buffer`] is the buffer being bound.

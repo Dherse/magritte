@@ -1,0 +1,1 @@
+[`array_layers`] is the number of layers in the image.

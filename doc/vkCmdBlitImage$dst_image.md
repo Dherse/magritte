@@ -1,0 +1,1 @@
+[`dst_image`] is the destination image.

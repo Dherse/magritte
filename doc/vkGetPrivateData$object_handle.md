@@ -1,0 +1,1 @@
+[`object_handle`] is a handle to the object data is associated with.

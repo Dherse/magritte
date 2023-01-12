@@ -1,0 +1,1 @@
+[`operation`] is the operation whose deferred result is being queried.

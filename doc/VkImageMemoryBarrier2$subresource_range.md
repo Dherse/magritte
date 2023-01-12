@@ -1,0 +1,2 @@
+[`subresource_range`] describes the [image
+subresource range](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views) within [`image`] that is affected by this barrier.

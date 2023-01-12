@@ -1,0 +1,1 @@
+[`group_shader`] is the type of shader from the group to query.

@@ -1,0 +1,1 @@
+[`device`] is the device the video session was created with.

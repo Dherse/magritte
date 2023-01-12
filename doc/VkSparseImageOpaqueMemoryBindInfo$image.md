@@ -1,0 +1,1 @@
+[`image`] is the [`Image`] object to be bound.

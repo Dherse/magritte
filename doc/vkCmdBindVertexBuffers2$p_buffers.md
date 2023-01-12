@@ -1,0 +1,1 @@
+[`p_buffers`] is a pointer to an array of buffer handles.

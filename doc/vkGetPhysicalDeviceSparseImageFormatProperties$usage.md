@@ -1,0 +1,1 @@
+[`usage`] is a bitmask describing the intended usage of the image.

@@ -1,0 +1,1 @@
+[`semaphore`] is the handle of the semaphore to destroy.

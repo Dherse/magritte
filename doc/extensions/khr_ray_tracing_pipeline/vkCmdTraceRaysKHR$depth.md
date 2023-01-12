@@ -1,0 +1,1 @@
+[`depth`] is depth of the ray trace query dimensions.

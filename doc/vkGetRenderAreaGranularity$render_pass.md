@@ -1,0 +1,1 @@
+[`render_pass`] is a handle to a render pass.

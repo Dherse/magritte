@@ -1,0 +1,1 @@
+[`pipeline`] is the handle of the pipeline to destroy.

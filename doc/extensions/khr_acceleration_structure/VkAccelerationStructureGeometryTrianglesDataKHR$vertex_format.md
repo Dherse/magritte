@@ -1,0 +1,1 @@
+[`vertex_format`] is the [`Format`] of each vertex element.

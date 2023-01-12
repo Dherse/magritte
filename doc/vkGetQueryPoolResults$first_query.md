@@ -1,0 +1,1 @@
+[`first_query`] is the initial query index.

@@ -1,0 +1,1 @@
+[`first_vertex`] is the index of the first vertex to draw.

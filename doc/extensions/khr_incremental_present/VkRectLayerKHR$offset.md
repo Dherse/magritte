@@ -1,0 +1,1 @@
+[`offset`] is the origin of the rectangle, in pixels.

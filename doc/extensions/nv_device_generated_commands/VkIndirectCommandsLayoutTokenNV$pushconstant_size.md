@@ -1,0 +1,1 @@
+[`pushconstant_size`] is the size used for the push constant command.

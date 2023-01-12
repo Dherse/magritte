@@ -1,0 +1,1 @@
+[`device`] is the logical device that destroys the Y′C<sub>B</sub>C<sub>R</sub> conversion.

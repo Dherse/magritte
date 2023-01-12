@@ -1,0 +1,1 @@
+[`coded_extent`] is the coded size of the decode operations.

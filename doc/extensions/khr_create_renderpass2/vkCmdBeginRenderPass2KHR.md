@@ -1,0 +1,1 @@
+See [`crate::vulkan1_2::cmd_begin_render_pass2.rs`] for more information

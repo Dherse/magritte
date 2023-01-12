@@ -1,0 +1,1 @@
+[`instance`] is the instance the callback will be logged on.

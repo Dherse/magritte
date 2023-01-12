@@ -1,0 +1,1 @@
+[`video_profile`] is a pointer to a [`VideoProfileKHR`] structure.

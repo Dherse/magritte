@@ -1,0 +1,1 @@
+[`offset`] is the offset in bytes of the first AABB in [`aabb_data`].

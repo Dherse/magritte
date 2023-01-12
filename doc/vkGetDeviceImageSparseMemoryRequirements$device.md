@@ -1,0 +1,1 @@
+[`device`] is the logical device intended to own the image.

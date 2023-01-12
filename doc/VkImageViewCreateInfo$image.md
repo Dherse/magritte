@@ -1,0 +1,1 @@
+[`image`] is a [`Image`] on which the view will be created.

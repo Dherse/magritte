@@ -2,7 +2,7 @@
 //! An origin is **where** a Vulkan spec element comes from.
 //! This can be the base spec, a specific Vulkan version or an extension.
 
-use std::borrow::Cow;
+use std::{borrow::Cow, path::{PathBuf, Path}};
 
 use heck::ToSnakeCase;
 use serde::{Deserialize, Serialize};
@@ -147,7 +147,6 @@ impl<'a> Origin<'a> {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Core => "core".to_string(),
-            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_snake_case(),
             Origin::Vulkan1_0 => "vulkan1_0".to_string(),
             Origin::Vulkan1_1 => "vulkan1_1".to_string(),
@@ -255,6 +254,62 @@ impl<'a> Origin<'a> {
             },
             _ => false,
         }
+    }
+    
+    /// Turns the origin into a tokenized rust path
+    pub fn as_rust_path(&self, prefix: &str) -> String {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(name, _, _) => {
+                format!("{prefix}::extensions::{}", name.trim_start_matches("VK_").to_snake_case())
+            },
+
+            Origin::Core => format!("{prefix}::core"),
+            Origin::Vulkan1_0 => format!("{prefix}::vulkan1_0"),
+            Origin::Vulkan1_1 => format!("{prefix}::vulkan1_1"),
+            Origin::Vulkan1_2 => format!("{prefix}::vulkan1_2"),
+            Origin::Vulkan1_3 => format!("{prefix}::vulkan1_3"),
+            Origin::Opaque => format!("{prefix}::native"),
+        }
+    }
+
+    /// As a file path of the output file for this origin
+    pub fn as_mod_file_path<P: AsRef<Path>>(&self, path: &P) -> PathBuf {
+        let mut path: PathBuf = path.as_ref().into();
+
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Core => path.push("core.rs"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => path.push(format!(
+                "extensions/{}.rs",
+                ext.trim_start_matches("VK_").to_snake_case()
+            )),
+            Origin::Vulkan1_0 => path.push("vulkan1_0.rs"),
+            Origin::Vulkan1_1 => path.push("vulkan1_1.rs"),
+            Origin::Vulkan1_2 => path.push("vulkan1_2.rs"),
+            Origin::Vulkan1_3 => path.push("vulkan1_3.rs"),
+            Origin::Opaque => path.push("native.rs"),
+        }
+
+        path
+    }
+
+    /// As a file path of the output file for this origin
+    pub fn as_mod_dir_path<P: AsRef<Path>>(&self, path: &P) -> PathBuf {
+        let mut path: PathBuf = path.as_ref().into();
+
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => path.push(format!(
+                "extensions/{}",
+                ext.trim_start_matches("VK_").to_snake_case()
+            )),
+            Origin::Vulkan1_0 | Origin::Vulkan1_1 | Origin::Vulkan1_2 | Origin::Vulkan1_3 | Origin::Opaque | Origin::Core => (),
+        }
+
+        path
     }
 }
 

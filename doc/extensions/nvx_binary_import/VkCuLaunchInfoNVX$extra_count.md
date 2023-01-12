@@ -1,0 +1,1 @@
+If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of [`extra_count`] bytes

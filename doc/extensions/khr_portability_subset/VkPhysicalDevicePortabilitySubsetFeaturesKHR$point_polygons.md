@@ -1,0 +1,2 @@
+[`point_polygons`] indicates whether this
+implementation supports [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast) using a *point*[https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-polygonmode](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-polygonmode).

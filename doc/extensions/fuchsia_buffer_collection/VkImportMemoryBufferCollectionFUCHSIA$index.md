@@ -1,0 +1,1 @@
+[`index`] the index of the buffer to import from [`collection`]

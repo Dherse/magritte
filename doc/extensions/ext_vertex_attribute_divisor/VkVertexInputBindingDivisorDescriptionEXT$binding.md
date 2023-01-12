@@ -1,0 +1,1 @@
+[`binding`] is the binding number for which the divisor is specified.

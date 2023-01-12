@@ -1,0 +1,1 @@
+[`display`] is the display whose power state is modified.

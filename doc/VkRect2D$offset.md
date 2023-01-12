@@ -1,0 +1,1 @@
+[`offset`] is a [`Offset2D`] specifying the rectangle offset.

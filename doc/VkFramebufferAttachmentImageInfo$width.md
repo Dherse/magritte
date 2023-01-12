@@ -1,0 +1,1 @@
+[`width`] is the width of the image view used for rendering.

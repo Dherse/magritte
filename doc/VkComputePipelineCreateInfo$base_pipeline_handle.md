@@ -1,0 +1,1 @@
+[`base_pipeline_handle`] is a pipeline to derive from

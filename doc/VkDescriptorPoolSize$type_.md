@@ -1,0 +1,1 @@
+[`type_`] is the type of descriptor.

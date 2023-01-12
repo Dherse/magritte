@@ -1,0 +1,1 @@
+[`vertex_count`] is the number of valid vertices.

@@ -1,0 +1,1 @@
+[`p_metadata`] is a pointer to an array of [`swapchain_count`][`HdrMetadataEXT`] structures.

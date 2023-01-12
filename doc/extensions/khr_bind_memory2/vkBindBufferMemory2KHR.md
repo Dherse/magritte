@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::bind_buffer_memory2.rs`] for more information

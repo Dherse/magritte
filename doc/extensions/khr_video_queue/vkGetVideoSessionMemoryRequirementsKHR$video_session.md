@@ -1,0 +1,1 @@
+[`video_session`] is the video session to query.

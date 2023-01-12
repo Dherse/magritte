@@ -1,0 +1,1 @@
+[`swapchain`] is the swapchain to obtain the refresh duration for.

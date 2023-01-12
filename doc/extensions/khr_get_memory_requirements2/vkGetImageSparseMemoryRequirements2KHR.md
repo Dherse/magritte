@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_image_sparse_memory_requirements2.rs`] for more information

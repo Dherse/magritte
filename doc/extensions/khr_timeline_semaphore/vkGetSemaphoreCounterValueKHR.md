@@ -1,0 +1,1 @@
+See [`crate::vulkan1_2::get_semaphore_counter_value.rs`] for more information

@@ -1,0 +1,1 @@
+[`device_mask`] is the device mask for the render pass instance.

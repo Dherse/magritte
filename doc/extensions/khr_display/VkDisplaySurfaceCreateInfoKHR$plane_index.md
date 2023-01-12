@@ -1,0 +1,1 @@
+[`plane_index`] is the plane on which this surface appears.

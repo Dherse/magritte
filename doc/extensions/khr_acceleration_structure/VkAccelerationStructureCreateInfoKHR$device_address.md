@@ -1,0 +1,2 @@
+[`device_address`] is the device address requested for the acceleration
+structure if the [`accelerationStructureCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-accelerationStructureCaptureReplay) feature is being used.

@@ -1,0 +1,1 @@
+[`size`] is the size of the memory region to be bound.

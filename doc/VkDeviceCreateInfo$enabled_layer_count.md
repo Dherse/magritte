@@ -1,0 +1,1 @@
+[`enabled_layer_count`] is deprecated and ignored.

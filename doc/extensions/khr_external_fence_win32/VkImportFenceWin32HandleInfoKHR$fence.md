@@ -1,0 +1,1 @@
+[`fence`] is the fence into which the state will be imported.

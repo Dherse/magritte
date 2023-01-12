@@ -1,0 +1,1 @@
+[`render_pass`] is the handle of the render pass to destroy.

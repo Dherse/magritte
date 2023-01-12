@@ -1,0 +1,2 @@
+[`dst_queue_family_index`] is the destination queue family for a
+[queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).

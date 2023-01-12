@@ -1,0 +1,1 @@
+[`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies no stages of execution.

@@ -1,0 +1,1 @@
+[`shader`] is the index of the shader to compile.

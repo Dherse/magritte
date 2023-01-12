@@ -1,0 +1,1 @@
+[`instance`] is the handle of the instance to destroy.

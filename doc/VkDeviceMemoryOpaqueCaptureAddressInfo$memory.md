@@ -1,0 +1,1 @@
+[`memory`] specifies the memory whose address is being queried.

@@ -1,0 +1,1 @@
+[`image`] is a handle to the image affected by this barrier.

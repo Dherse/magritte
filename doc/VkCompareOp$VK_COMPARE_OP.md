@@ -1,0 +1,1 @@
+[`VK_COMPARE_OP`] specifies that the test evaluates to false.

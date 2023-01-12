@@ -1,0 +1,1 @@
+[`buffer`] is a [`Buffer`] on which the view will be created.

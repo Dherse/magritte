@@ -1,0 +1,1 @@
+[`image_bind_count`] is the number of sparse image bindings to perform.

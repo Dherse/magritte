@@ -1,0 +1,1 @@
+[`preserve_attachment_count`] is the number of preserved attachments.

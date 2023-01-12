@@ -1,0 +1,1 @@
+[`vertex_data`] is the buffer containing vertex data for this geometry.

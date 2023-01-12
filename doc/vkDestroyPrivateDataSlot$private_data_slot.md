@@ -1,0 +1,1 @@
+[`private_data_slot`] is the private data slot to destroy.

@@ -1,0 +1,1 @@
+[`correlation_mask_count`] is zero or the number of correlation masks.

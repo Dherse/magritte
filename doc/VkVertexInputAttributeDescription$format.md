@@ -1,0 +1,1 @@
+[`format`] is the size and type of the vertex attribute data.

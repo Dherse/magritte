@@ -1,0 +1,1 @@
+[`handle_type`] is the type of handle requested.

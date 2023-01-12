@@ -1,0 +1,1 @@
+[`device`] is the logical device that the buffer was created on.

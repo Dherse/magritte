@@ -1,0 +1,1 @@
+[`descriptor_pool`] is the pool which the sets will be allocated from.

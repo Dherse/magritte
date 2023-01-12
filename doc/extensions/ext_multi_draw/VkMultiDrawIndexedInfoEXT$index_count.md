@@ -1,0 +1,1 @@
+[`index_count`] is the number of vertices to draw.

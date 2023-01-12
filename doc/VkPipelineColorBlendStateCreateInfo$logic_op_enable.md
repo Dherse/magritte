@@ -1,0 +1,1 @@
+[`logic_op_enable`] controls whether to apply [Logical Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-logicop).

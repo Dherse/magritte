@@ -1,0 +1,2 @@
+[`deferred_operation`] is [`crate::Handle::null`] or the handle of a valid
+[`DeferredOperationKHR`][request deferral](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#deferred-host-operations-requesting) object for this command.

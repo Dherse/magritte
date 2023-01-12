@@ -1,0 +1,1 @@
+[`module`] **must**  be a valid [`CuModuleNVX`] handle

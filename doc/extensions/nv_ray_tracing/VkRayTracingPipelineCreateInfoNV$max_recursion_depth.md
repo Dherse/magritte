@@ -1,0 +1,2 @@
+[`max_recursion_depth`] is the [maximum
+recursion depth](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#ray-tracing-recursion-depth) of shaders executed by this pipeline.

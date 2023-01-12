@@ -1,0 +1,1 @@
+[`descriptor_set_layout`] is the descriptor set layout to destroy.

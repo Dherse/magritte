@@ -1,0 +1,1 @@
+[`shader_group_handle_size`] is the size in bytes of the shader header.

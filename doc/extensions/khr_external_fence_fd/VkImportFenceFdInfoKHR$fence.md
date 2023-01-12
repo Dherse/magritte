@@ -1,0 +1,1 @@
+[`fence`] is the fence into which the payload will be imported.

@@ -1,0 +1,1 @@
+See [`crate::vulkan1_3::cmd_resolve_image2.rs`] for more information

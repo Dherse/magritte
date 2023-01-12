@@ -1,0 +1,1 @@
+[`flags`] is a bitmask indicating behavior of the queue.

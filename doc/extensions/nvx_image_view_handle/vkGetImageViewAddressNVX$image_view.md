@@ -1,0 +1,1 @@
+[`image_view`] is a handle to the image view.

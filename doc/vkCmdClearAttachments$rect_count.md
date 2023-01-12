@@ -1,0 +1,1 @@
+[`rect_count`] is the number of entries in the [`p_rects`] array.

@@ -1,0 +1,1 @@
+[`command_pool`] is the handle of the command pool to destroy.

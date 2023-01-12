@@ -1,0 +1,2 @@
+[`clear_value`] is the color or depth/stencil value to clear the
+attachment to, as described in [Clear Values](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears-values) below.

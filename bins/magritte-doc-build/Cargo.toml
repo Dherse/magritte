@@ -6,3 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+clap = { version = "4.0.32", features = ["derive"] }
+ego-tree = "0.6.2"
+lazy_static = "1.4.0"
+magritte-build = { version = "0.1.0", path = "../../crates/magritte-build" }
+magritte-parse = { version = "0.1.0", path = "../../crates/magritte-parse" }
+magritte-types = { version = "0.1.0", path = "../../crates/magritte-types" }
+nom = "7.1.2"
+regex = "1.7.1"
+ron = "0.8.0"
+scraper = "0.14.0"

@@ -1,0 +1,1 @@
+[`discard_rectangle_count`] is the number of discard rectangles to use.

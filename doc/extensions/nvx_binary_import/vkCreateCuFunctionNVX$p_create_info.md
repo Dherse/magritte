@@ -1,0 +1,1 @@
+[`p_create_info`] **must**  be a valid pointer to a valid [`CuFunctionCreateInfoNVX`] structure

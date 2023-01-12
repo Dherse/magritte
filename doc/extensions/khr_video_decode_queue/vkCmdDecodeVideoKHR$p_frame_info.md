@@ -1,0 +1,1 @@
+[`p_frame_info`] is a pointer to a [`VideoDecodeInfoKHR`] structure.

@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_physical_device_sparse_image_format_properties2.rs`] for more information

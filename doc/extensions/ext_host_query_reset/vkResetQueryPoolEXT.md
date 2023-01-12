@@ -1,0 +1,1 @@
+See [`crate::vulkan1_2::reset_query_pool.rs`] for more information

@@ -1,0 +1,1 @@
+[`pool_size_count`] is the number of elements in [`pool_sizes`].

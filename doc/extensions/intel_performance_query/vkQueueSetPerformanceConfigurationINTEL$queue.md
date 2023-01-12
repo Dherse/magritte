@@ -1,0 +1,1 @@
+[`queue`] is the queue on which the configuration will be used.

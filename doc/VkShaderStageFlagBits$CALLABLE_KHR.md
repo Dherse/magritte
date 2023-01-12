@@ -1,0 +1,1 @@
+[`CALLABLE_KHR`] specifies the callable stage.

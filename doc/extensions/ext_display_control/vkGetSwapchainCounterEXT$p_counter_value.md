@@ -1,0 +1,1 @@
+[`p_counter_value`] will return the current value of the counter.

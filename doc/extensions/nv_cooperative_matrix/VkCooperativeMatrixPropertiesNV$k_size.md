@@ -1,0 +1,1 @@
+[`k_size`] is the number of columns in matrix A and rows in matrix B.

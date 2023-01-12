@@ -1,0 +1,1 @@
+[`flags`] is a bitmask of [`RenderingFlagBits`].

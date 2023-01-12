@@ -1,0 +1,1 @@
+[`sz`] is the z component of the scale of the transform

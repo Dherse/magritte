@@ -1,0 +1,1 @@
+[`sampler`] is the sampler to destroy.

@@ -1,0 +1,1 @@
+The [`CommandPool`] that [`command_buffer`] was allocated from  **must**  support graphics, or compute operations

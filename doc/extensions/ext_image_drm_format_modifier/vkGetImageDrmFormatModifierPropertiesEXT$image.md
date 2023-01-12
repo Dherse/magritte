@@ -1,0 +1,1 @@
+[`image`] is the queried image.

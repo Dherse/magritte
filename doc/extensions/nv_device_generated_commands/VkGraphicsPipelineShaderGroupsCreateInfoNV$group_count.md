@@ -1,0 +1,1 @@
+[`group_count`] is the number of elements in the [`groups`] array.

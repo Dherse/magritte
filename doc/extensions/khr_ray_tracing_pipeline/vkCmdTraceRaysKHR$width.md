@@ -1,0 +1,1 @@
+[`width`] is the width of the ray trace query dimensions.

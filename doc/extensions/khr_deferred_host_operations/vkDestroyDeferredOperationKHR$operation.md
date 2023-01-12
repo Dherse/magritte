@@ -1,0 +1,1 @@
+[`operation`] is the completed operation to be destroyed.

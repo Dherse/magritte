@@ -1,0 +1,1 @@
+[`size`] is the size in bytes of the buffer to be created.

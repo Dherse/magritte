@@ -1,0 +1,1 @@
+[`subpasses`] is a pointer to an array of [`subpass_count`][`SubpassDescription`] structures describing each subpass.

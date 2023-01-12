@@ -1,0 +1,27 @@
+[`shader_storage_image_extended_formats`] specifies whether all the
+“storage image extended formats” below are supported; if this feature
+is supported, then the `VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT` **must** 
+be supported in `optimalTilingFeatures` for the following formats:
+ - `VK_FORMAT_R16G16_SFLOAT`
+ - `VK_FORMAT_B10G11R11_UFLOAT_PACK32`
+ - `VK_FORMAT_R16_SFLOAT`
+ - `VK_FORMAT_R16G16B16A16_UNORM`
+ - `VK_FORMAT_A2B10G10R10_UNORM_PACK32`
+ - `VK_FORMAT_R16G16_UNORM`
+ - `VK_FORMAT_R8G8_UNORM`
+ - `VK_FORMAT_R16_UNORM`
+ - `VK_FORMAT_R8_UNORM`
+ - `VK_FORMAT_R16G16B16A16_SNORM`
+ - `VK_FORMAT_R16G16_SNORM`
+ - `VK_FORMAT_R8G8_SNORM`
+ - `VK_FORMAT_R16_SNORM`
+ - `VK_FORMAT_R8_SNORM`
+ - `VK_FORMAT_R16G16_SINT`
+ - `VK_FORMAT_R8G8_SINT`
+ - `VK_FORMAT_R16_SINT`
+ - `VK_FORMAT_R8_SINT`
+ - `VK_FORMAT_A2B10G10R10_UINT_PACK32`
+ - `VK_FORMAT_R16G16_UINT`
+ - `VK_FORMAT_R8G8_UINT`
+ - `VK_FORMAT_R16_UINT`
+ - `VK_FORMAT_R8_UINT`

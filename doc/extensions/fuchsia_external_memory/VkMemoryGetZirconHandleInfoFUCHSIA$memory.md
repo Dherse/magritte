@@ -1,0 +1,1 @@
+[`memory`] the [`DeviceMemory`] being exported.

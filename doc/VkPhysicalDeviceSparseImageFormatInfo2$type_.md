@@ -1,0 +1,1 @@
+[`type_`] is the dimensionality of image.

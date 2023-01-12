@@ -1,0 +1,1 @@
+[`aabb_data`] is the buffer containing axis-aligned bounding box data.

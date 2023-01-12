@@ -1,0 +1,1 @@
+[`depth_bias_enable`] controls whether to bias fragment depth values.

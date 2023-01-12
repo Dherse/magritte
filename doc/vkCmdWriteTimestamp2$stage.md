@@ -1,0 +1,1 @@
+[`stage`] specifies a stage of the pipeline.

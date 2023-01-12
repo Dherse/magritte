@@ -1,0 +1,1 @@
+[`n_size`] is the number of columns in matrices B, C, D.

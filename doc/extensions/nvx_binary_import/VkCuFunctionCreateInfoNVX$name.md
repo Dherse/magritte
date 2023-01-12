@@ -1,0 +1,1 @@
+[`name`] **must**  be a null-terminated UTF-8 string

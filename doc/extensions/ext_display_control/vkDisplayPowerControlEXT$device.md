@@ -1,0 +1,1 @@
+[`device`] is a logical device associated with [`display`].

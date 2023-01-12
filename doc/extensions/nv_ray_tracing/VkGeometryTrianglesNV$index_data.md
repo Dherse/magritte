@@ -1,0 +1,1 @@
+[`index_data`] is the buffer containing index data for this geometry.

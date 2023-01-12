@@ -1,0 +1,1 @@
+[`max_content_light_level`] is content’s maximum luminance in nits

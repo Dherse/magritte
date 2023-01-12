@@ -1,0 +1,1 @@
+[`VK_SHADER_STAGE_FLAG_BITS`] specifies the vertex stage.

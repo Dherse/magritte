@@ -1,0 +1,1 @@
+[`cull_mode`] specifies the cull mode property to use for drawing.

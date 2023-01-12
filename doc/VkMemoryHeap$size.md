@@ -1,0 +1,1 @@
+[`size`] is the total memory size in bytes in the heap.

@@ -1,0 +1,1 @@
+[`VK_SCOPE_NV`] corresponds to SPIR-V [`Device`] scope.

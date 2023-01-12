@@ -1,0 +1,1 @@
+[`dst_subresource`] is the subresource to blit into.

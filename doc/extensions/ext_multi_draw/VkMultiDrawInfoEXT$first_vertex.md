@@ -1,0 +1,1 @@
+[`first_vertex`] is the first vertex to draw.

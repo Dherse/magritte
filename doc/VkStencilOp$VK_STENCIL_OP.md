@@ -1,0 +1,1 @@
+[`VK_STENCIL_OP`] keeps the current value.

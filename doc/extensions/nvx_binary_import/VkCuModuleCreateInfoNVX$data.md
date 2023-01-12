@@ -1,0 +1,1 @@
+[`data`] **must**  be a valid pointer to an array of [`data_size`] bytes

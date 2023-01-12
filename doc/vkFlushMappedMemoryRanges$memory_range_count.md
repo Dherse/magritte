@@ -1,0 +1,1 @@
+[`memory_range_count`] is the length of the [`p_memory_ranges`] array.

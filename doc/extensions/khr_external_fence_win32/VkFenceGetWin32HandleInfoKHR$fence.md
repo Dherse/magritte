@@ -1,0 +1,1 @@
+[`fence`] is the fence from which state will be exported.

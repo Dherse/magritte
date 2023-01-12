@@ -1,0 +1,1 @@
+[`clear_value_count`] is the number of elements in [`clear_values`].

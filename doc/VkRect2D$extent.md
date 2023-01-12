@@ -1,0 +1,1 @@
+[`extent`] is a [`Extent2D`] specifying the rectangle extent.

@@ -1,0 +1,1 @@
+[`device`] is a logical device on which the event  **may**  occur.

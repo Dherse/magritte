@@ -1,0 +1,1 @@
+[`p_sample_locations_info`] is the sample locations state to set.

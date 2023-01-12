@@ -1,0 +1,2 @@
+[`device`] is the logical device that owns the validation cache
+objects.

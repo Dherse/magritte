@@ -1,0 +1,1 @@
+See [`crate::vulkan1_1::get_buffer_memory_requirements2.rs`] for more information

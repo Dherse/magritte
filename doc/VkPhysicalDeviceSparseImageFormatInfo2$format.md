@@ -1,0 +1,1 @@
+[`format`] is the image format.

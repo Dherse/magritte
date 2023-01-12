@@ -1,0 +1,1 @@
+[`NONE`] specifies no stages of execution.

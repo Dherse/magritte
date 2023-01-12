@@ -1,0 +1,1 @@
+[`draw_count`] is the number of draws to execute, and  **can**  be zero.

@@ -1,0 +1,1 @@
+[`s_type`] is the type of this structure.

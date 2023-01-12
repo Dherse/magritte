@@ -1,0 +1,1 @@
+[`handle`] is `NULL` or the external handle to import.

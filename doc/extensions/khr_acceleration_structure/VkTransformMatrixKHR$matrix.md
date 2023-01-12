@@ -1,0 +1,1 @@
+[`matrix`] is a 3x4 row-major affine transformation matrix.
