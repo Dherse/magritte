@@ -22,7 +22,7 @@ typedef struct VkStridedDeviceAddressRegionKHR {
 -    If [`size`] is not zero, [`stride`] **must**  be less than or equal to the size of the buffer from which [`device_address`] was queried
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`DeviceAddress`]
 - [`DeviceSize`]
 - [`cmd_trace_rays_indirect_khr`]

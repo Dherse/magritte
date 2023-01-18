@@ -23,8 +23,8 @@ typedef VkDescriptorSetLayoutSupport VkDescriptorSetLayoutSupportKHR;
 - [`supported`] specifies whether the descriptor set layout  **can**  be created.
 
 # Description
-[`supported`] is set to `VK_TRUE` if the descriptor set  **can**  be
-created, or else is set to `VK_FALSE`.
+[`supported`] is set to [`TRUE`] if the descriptor set  **can**  be
+created, or else is set to [`FALSE`].
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_SUPPORT`
 -  [`p_next`] **must**  be `NULL` or a pointer to a valid instance of [`DescriptorSetVariableDescriptorCountLayoutSupport`]

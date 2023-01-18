@@ -7,7 +7,7 @@ typedef VkFlags VkVideoEndCodingFlagsKHR;
 ```
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`VideoEndCodingInfoKHR`]
 
 # Notes and documentation

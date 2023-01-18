@@ -22,8 +22,8 @@ typedef VkTransformMatrixKHR VkTransformMatrixNV;
 -    The first three columns of [`matrix`] **must**  define an invertible 3x3 matrix
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureInstanceKHR`]
 - [`AccelerationStructureMatrixMotionInstanceNV`]
 

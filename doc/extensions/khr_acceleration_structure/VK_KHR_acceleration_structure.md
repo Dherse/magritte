@@ -18,9 +18,9 @@ spatially sorted, in order to quickly identify such potential intersections.This
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`ext_descriptor_indexing`]`
-- Requires `[`khr_buffer_device_address`]`
-- Requires `[`khr_deferred_host_operations`]`
+- Requires `[`VK_EXT_descriptor_indexing`]`
+- Requires `[`VK_KHR_buffer_device_address`]`
+- Requires `[`VK_KHR_deferred_host_operations`]`
 
 # Contacts
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_acceleration_structure] @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_acceleration_structure extension>>)
@@ -85,14 +85,14 @@ spatially sorted, in order to quickly identify such potential intersections.This
 - [`GeometryTypeKHR`]
 
 # New bitmasks
-- [VkAccelerationStructureCreateFlagsKHR]()
-- [VkBuildAccelerationStructureFlagsKHR]()
-- [VkGeometryFlagsKHR]()
-- [VkGeometryInstanceFlagsKHR]()
+- [`AccelerationStructureCreateFlagsKHR`]
+- [`BuildAccelerationStructureFlagsKHR`]
+- [`GeometryFlagsKHR`]
+- [`GeometryInstanceFlagsKHR`]
 
 # New constants
-- `VK_KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME`
-- `VK_KHR_ACCELERATION_STRUCTURE_SPEC_VERSION`
+- [`KHR_ACCELERATION_STRUCTURE_EXTENSION_NAME`]
+- [`KHR_ACCELERATION_STRUCTURE_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_KHR`  - `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_KHR` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR`  - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR` 
 - Extending [`DebugReportObjectTypeEXT`]:  - `VK_DEBUG_REPORT_OBJECT_TYPE_ACCELERATION_STRUCTURE_KHR_EXT` 
@@ -103,7 +103,7 @@ spatially sorted, in order to quickly identify such potential intersections.This
 - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` 
 - Extending [`QueryType`]:  - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR`  - `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_GEOMETRY_INFO_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_DEVICE_ADDRESS_INFO_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_AABBS_DATA_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_INSTANCES_DATA_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_TRIANGLES_DATA_KHR`  - `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`  - `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_INFO_KHR`  - `VK_STRUCTURE_TYPE_COPY_ACCELERATION_STRUCTURE_TO_MEMORY_INFO_KHR`  - `VK_STRUCTURE_TYPE_COPY_MEMORY_TO_ACCELERATION_STRUCTURE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_ACCELERATION_STRUCTURE_KHR` 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`
 
 # Known issues & F.A.Q.
@@ -122,7 +122,7 @@ VK_KHR_acceleration_structure and VK_NV_ray_tracing:
 (2) Can you give a more detailed comparision of differences and similarities
 between VK_NV_ray_tracing and VK_KHR_acceleration_structure? **DISCUSSION** :The following is a more detailed comparision of which commands, structures,
 and enums are aliased, changed, or removed.
-- Aliased functionality — enums, structures, and commands that are considered equivalent:  - [`GeometryTypeNV`] ↔ [`GeometryTypeKHR`]  - [`AccelerationStructureTypeNV`] ↔ [`AccelerationStructureTypeKHR`]  - [`CopyAccelerationStructureModeNV`] ↔ [`CopyAccelerationStructureModeKHR`]  - [`GeometryFlagsNV`] ↔ [VkGeometryFlagsKHR]()  - [`GeometryFlagBitsNV`] ↔ [`GeometryFlagBitsKHR`]  - [`GeometryInstanceFlagsNV`] ↔ [VkGeometryInstanceFlagsKHR]()  - [`GeometryInstanceFlagBitsNV`] ↔ [`GeometryInstanceFlagBitsKHR`]  - [`BuildAccelerationStructureFlagsNV`] ↔ [VkBuildAccelerationStructureFlagsKHR]()  - [`BuildAccelerationStructureFlagBitsNV`] ↔ [`BuildAccelerationStructureFlagBitsKHR`]  - [`TransformMatrixNV`] ↔ [`TransformMatrixKHR`] (added to VK_NV_ray_tracing for descriptive purposes)  - [`AabbPositionsNV`] ↔ [`AabbPositionsKHR`] (added to VK_NV_ray_tracing for descriptive purposes)  - [`AccelerationStructureInstanceNV`] ↔ [`AccelerationStructureInstanceKHR`] (added to VK_NV_ray_tracing for descriptive purposes) 
+- Aliased functionality — enums, structures, and commands that are considered equivalent:  - [`GeometryTypeNV`] ↔ [`GeometryTypeKHR`]  - [`AccelerationStructureTypeNV`] ↔ [`AccelerationStructureTypeKHR`]  - [`CopyAccelerationStructureModeNV`] ↔ [`CopyAccelerationStructureModeKHR`]  - [`GeometryFlagsNV`] ↔ [`GeometryFlagsKHR`]  - [`GeometryFlagBitsNV`] ↔ [`GeometryFlagBitsKHR`]  - [`GeometryInstanceFlagsNV`] ↔ [`GeometryInstanceFlagsKHR`]  - [`GeometryInstanceFlagBitsNV`] ↔ [`GeometryInstanceFlagBitsKHR`]  - [`BuildAccelerationStructureFlagsNV`] ↔ [`BuildAccelerationStructureFlagsKHR`]  - [`BuildAccelerationStructureFlagBitsNV`] ↔ [`BuildAccelerationStructureFlagBitsKHR`]  - [`TransformMatrixNV`] ↔ [`TransformMatrixKHR`] (added to VK_NV_ray_tracing for descriptive purposes)  - [`AabbPositionsNV`] ↔ [`AabbPositionsKHR`] (added to VK_NV_ray_tracing for descriptive purposes)  - [`AccelerationStructureInstanceNV`] ↔ [`AccelerationStructureInstanceKHR`] (added to VK_NV_ray_tracing for descriptive purposes) 
 - Changed enums, structures, and commands:  - renamed `VK_GEOMETRY_INSTANCE_TRIANGLE_CULL_DISABLE_BIT_NV` → `VK_GEOMETRY_INSTANCE_TRIANGLE_FACING_CULL_DISABLE_BIT_KHR` in [`GeometryInstanceFlagBitsKHR`]  - [`GeometryTrianglesNV`] → [`AccelerationStructureGeometryTrianglesDataKHR`] (device or host address instead of buffer+offset)  - [`GeometryAabbNV`] → [`AccelerationStructureGeometryAabbsDataKHR`] (device or host address instead of buffer+offset)  - [`GeometryDataNV`] → [`AccelerationStructureGeometryDataKHR`] (union of triangle/aabbs/instances)  - [`GeometryNV`] → [`AccelerationStructureGeometryKHR`] (changed type of geometry)  - [`AccelerationStructureCreateInfoNV`] → [`AccelerationStructureCreateInfoKHR`] (reshuffle geometry layout/information)  - [`PhysicalDeviceRayTracingPropertiesNV`] → [`PhysicalDeviceAccelerationStructurePropertiesKHR`] (for acceleration structure properties, renamed `maxTriangleCount` to `maxPrimitiveCount`, added per stage and update after bind limits) and [`PhysicalDeviceRayTracingPipelinePropertiesKHR`] (for ray tracing pipeline properties)  - [`AccelerationStructureMemoryRequirementsInfoNV`] (deleted - replaced by allocating on top of [`Buffer`])  - [`WriteDescriptorSetAccelerationStructureNV`] → [`WriteDescriptorSetAccelerationStructureKHR`] (different acceleration structure type)  - [`create_acceleration_structure_nv`] → [`create_acceleration_structure_khr`] (device address, different geometry layout/information)  - [`get_acceleration_structure_memory_requirements_nv`] (deleted - replaced by allocating on top of [`Buffer`])  - [`cmd_build_acceleration_structure_nv`] → [`cmd_build_acceleration_structures_khr`] (params moved to structs, layout differences)  - [`cmd_copy_acceleration_structure_nv`] → [`cmd_copy_acceleration_structure_khr`] (params to struct, extendable)  - [`get_acceleration_structure_handle_nv`] → [`get_acceleration_structure_device_address_khr`] (device address instead of handle)  - [`AccelerationStructureMemoryRequirementsTypeNV`] → size queries for scratch space moved to [`get_acceleration_structure_build_sizes_khr`]  - [`destroy_acceleration_structure_nv`] → [`destroy_acceleration_structure_khr`] (different acceleration structure types)  - [`cmd_write_acceleration_structures_properties_nv`] → [`cmd_write_acceleration_structures_properties_khr`] (different acceleration structure types) 
 - Added enums, structures and commands:  - `VK_GEOMETRY_TYPE_INSTANCES_KHR` to [`GeometryTypeKHR`] enum  - `VK_COPY_ACCELERATION_STRUCTURE_MODE_SERIALIZE_KHR`, `VK_COPY_ACCELERATION_STRUCTURE_MODE_DESERIALIZE_KHR` to [`CopyAccelerationStructureModeKHR`] enum  - [`PhysicalDeviceAccelerationStructureFeaturesKHR`] structure  - [`AccelerationStructureBuildTypeKHR`] enum  - [`BuildAccelerationStructureModeKHR`] enum  - [`DeviceOrHostAddressKHR`] and [`DeviceOrHostAddressConstKHR`] unions  - [`AccelerationStructureBuildRangeInfoKHR`] struct  - [`AccelerationStructureGeometryInstancesDataKHR`] struct  - [`AccelerationStructureDeviceAddressInfoKHR`] struct  - [`AccelerationStructureVersionInfoKHR`] struct  - [`StridedDeviceAddressRegionKHR`] struct  - [`CopyAccelerationStructureToMemoryInfoKHR`] struct  - [`CopyMemoryToAccelerationStructureInfoKHR`] struct  - [`CopyAccelerationStructureInfoKHR`] struct  - [`build_acceleration_structures_khr`] command (host build)  - [`copy_acceleration_structure_khr`] command (host copy)  - [`copy_acceleration_structure_to_memory_khr`] (host serialize)  - [`copy_memory_to_acceleration_structure_khr`] (host deserialize)  - [`write_acceleration_structures_properties_khr`] (host properties)  - [`cmd_copy_acceleration_structure_to_memory_khr`] (device serialize)  - [`cmd_copy_memory_to_acceleration_structure_khr`] (device deserialize)  - [`get_device_acceleration_structure_compatibility_khr`] (serialization) 
 (3) What are the changes between the public provisional (VK_KHR_ray_tracing
@@ -131,21 +131,21 @@ v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
 - added `minAccelerationStructureScratchOffsetAlignment` property to VkPhysicalDeviceRayTracingPropertiesKHR
 - fix naming and return enum from [`get_device_acceleration_structure_compatibility_khr`]  - renamed `VkAccelerationStructureVersionKHR` to [`AccelerationStructureVersionInfoKHR`]  - renamed `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_KHR` to `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`  - removed `VK_ERROR_INCOMPATIBLE_VERSION_KHR`  - added [`AccelerationStructureCompatibilityKHR`] enum  - remove return value from [`get_device_acceleration_structure_compatibility_khr`] and added return enum parameter 
 - Require Vulkan 1.1
-- added creation time capture and replay flags  - added [`AccelerationStructureCreateFlagBitsKHR`] and [VkAccelerationStructureCreateFlagsKHR]()  - renamed the `flags` member of [`AccelerationStructureCreateInfoKHR`] to `buildFlags` (later removed) and added the `createFlags` member 
+- added creation time capture and replay flags  - added [`AccelerationStructureCreateFlagBitsKHR`] and [`AccelerationStructureCreateFlagsKHR`]  - renamed the `flags` member of [`AccelerationStructureCreateInfoKHR`] to `buildFlags` (later removed) and added the `createFlags` member 
 - change [`cmd_build_acceleration_structures_indirect_khr`] to use buffer device address for indirect parameter
-- make `[`khr_deferred_host_operations`]` an interaction instead of a required extension (later went back on this)
+- make `[`VK_KHR_deferred_host_operations`]` an interaction instead of a required extension (later went back on this)
 - renamed `VkAccelerationStructureBuildOffsetInfoKHR` to [`AccelerationStructureBuildRangeInfoKHR`]  - renamed the `ppOffsetInfos` parameter of [`cmd_build_acceleration_structures_khr`] to `ppBuildRangeInfos` 
 - Re-unify geometry description between build and create  - remove `VkAccelerationStructureCreateGeometryTypeInfoKHR` and `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_CREATE_GEOMETRY_TYPE_INFO_KHR`  - added `VkAccelerationStructureCreateSizeInfoKHR` structure (later removed)  - change type of the `pGeometryInfos` member of [`AccelerationStructureCreateInfoKHR`] from `VkAccelerationStructureCreateGeometryTypeInfoKHR` to [`AccelerationStructureGeometryKHR`] (later removed)  - added `pCreateSizeInfos` member to [`AccelerationStructureCreateInfoKHR`] (later removed) 
 - Fix ppGeometries ambiguity, add pGeometries  - remove `geometryArrayOfPointers` member of VkAccelerationStructureBuildGeometryInfoKHR  - disambiguate two meanings of `ppGeometries` by explicitly adding `pGeometries` to the [`AccelerationStructureBuildGeometryInfoKHR`] structure and require one of them be `NULL` 
 - added [nullDescriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-nullDescriptor) support for acceleration structures
 - changed the `update` member of [`AccelerationStructureBuildGeometryInfoKHR`] from a bool to the `mode`[`BuildAccelerationStructureModeKHR`] enum which allows future extensibility in update types
-- Clarify deferred host ops for pipeline creation  - [`DeferredOperationKHR`] is now a top-level parameter for [`build_acceleration_structures_khr`], [`create_ray_tracing_pipelines_khr`], [`copy_acceleration_structure_to_memory_khr`], [`copy_acceleration_structure_khr`], and [`copy_memory_to_acceleration_structure_khr`]  - removed `VkDeferredOperationInfoKHR` structure  - change deferred host creation/return parameter behavior such that the implementation can modify such parameters until the deferred host operation completes  - `[`khr_deferred_host_operations`]` is required again 
+- Clarify deferred host ops for pipeline creation  - [`DeferredOperationKHR`] is now a top-level parameter for [`build_acceleration_structures_khr`], [`create_ray_tracing_pipelines_khr`], [`copy_acceleration_structure_to_memory_khr`], [`copy_acceleration_structure_khr`], and [`copy_memory_to_acceleration_structure_khr`]  - removed `VkDeferredOperationInfoKHR` structure  - change deferred host creation/return parameter behavior such that the implementation can modify such parameters until the deferred host operation completes  - `[`VK_KHR_deferred_host_operations`]` is required again 
 - Change acceleration structure build to always be sized  - de-alias [`AccelerationStructureMemoryRequirementsTypeNV`] and `VkAccelerationStructureMemoryRequirementsTypeKHR`, and remove `VkAccelerationStructureMemoryRequirementsTypeKHR`  - add [`get_acceleration_structure_build_sizes_khr`] command and [`AccelerationStructureBuildSizesInfoKHR`] structure and `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_BUILD_SIZES_INFO_KHR` enum to query sizes for acceleration structures and scratch storage  - move size queries for scratch space to [`get_acceleration_structure_build_sizes_khr`]  - remove `compactedSize`, `buildFlags`, `maxGeometryCount`, `pGeometryInfos`, `pCreateSizeInfos` members of [`AccelerationStructureCreateInfoKHR`] and add the `size` member  - add `maxVertex` member to [`AccelerationStructureGeometryTrianglesDataKHR`] structure  - remove `VkAccelerationStructureCreateSizeInfoKHR` structure 
 (4) What are the changes between the internal provisional
 (VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 v11) release?
-- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages) 
-- clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` is left alone in `[`nv_ray_tracing`]` (required on `scratch` and `instanceData`)  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` in `[`khr_ray_tracing_pipeline`]` and is required on shader binding table buffers  - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR` is added in `[`khr_acceleration_structure`]` for all vertex, index, transform, aabb, and instance buffer data referenced by device build commands  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used for `scratchData` 
+- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages) 
+- clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` is left alone in `[`VK_NV_ray_tracing`]` (required on `scratch` and `instanceData`)  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` in `[`VK_KHR_ray_tracing_pipeline`]` and is required on shader binding table buffers  - `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_BUILD_INPUT_READ_ONLY_BIT_KHR` is added in `[`VK_KHR_acceleration_structure`]` for all vertex, index, transform, aabb, and instance buffer data referenced by device build commands  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used for `scratchData` 
 - add max primitive counts (`ppMaxPrimitiveCounts`) to [`cmd_build_acceleration_structures_indirect_khr`]
 - Allocate acceleration structures from `VkBuffers` and add a mode to constrain the device address  - de-alias [`BindAccelerationStructureMemoryInfoNV`] and [`bind_acceleration_structure_memory_nv`], and remove `VkBindAccelerationStructureMemoryInfoKHR`, `VkAccelerationStructureMemoryRequirementsInfoKHR`, and `vkGetAccelerationStructureMemoryRequirementsKHR`  - acceleration structures now take a [`Buffer`] and offset at creation time for memory placement  - add a new `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR` buffer usage for such buffers  - add a new `VK_ACCELERATION_STRUCTURE_TYPE_GENERIC_KHR` acceleration structure type for layering 
 - move `VK_GEOMETRY_TYPE_INSTANCES_KHR` to main enum instead of being added via extension
@@ -175,7 +175,7 @@ Applications which are written directly for Vulkan should not use it.
 - Revision 10, 2020-07-03 (Mathieu Robart, Daniel Koch, Eric Werness, Tobias Hector)  - Decomposition of the specification, from VK_KHR_ray_tracing to VK_KHR_acceleration_structure (#1918,!3912)  - clarify buffer usage flags for ray tracing (#2181,!3939)  - add max primitive counts to build indirect command (#2233,!3944)  - Allocate acceleration structures from VkBuffers and add a mode to constrain the device address (#2131,!3936)  - Move VK_GEOMETRY_TYPE_INSTANCES_KHR to main enum (#2243,!3952)  - make build commands more consistent (#2247,!3958)  - add interactions with UPDATE_AFTER_BIND (#2128,!3986)  - correct and expand build command VUs (!4020)  - fix copy command VUs (!4018)  - added various alignment requirements (#2229,!3943)  - fix valid usage for arrays of geometryCount items (#2198,!4010)  - define what is allowed to change on RTAS updates and relevant VUs (#2177,!3961) 
 - Revision 11, 2020-11-12 (Eric Werness, Josh Barczak, Daniel Koch, Tobias Hector)  - de-alias NV and KHR acceleration structure types and associated commands (#2271,!4035)  - specify alignment for host copy commands (#2273,!4037)  - document `VK_FORMAT_FEATURE_ACCELERATION_STRUCTURE_VERTEX_BUFFER_BIT_KHR`  - specify that acceleration structures are non-linear (#2289,!4068)  - add several missing VUs for strides, vertexFormat, and indexType (#2315,!4069)  - restore VUs for VkAccelerationStructureBuildGeometryInfoKHR (#2337,!4098)  - ban multi-instance memory for host operations (#2324,!4102)  - allow dstAccelerationStructure to be null for vkGetAccelerationStructureBuildSizesKHR (#2330,!4111)  - more build VU cleanup (#2138,#4130)  - specify host endianness for AS serialization (#2261,!4136)  - add invertible transform matrix VU (#1710,!4140)  - require geometryCount to be 1 for TLAS builds (!4145)  - improved validity conditions for build addresses (#4142)  - add single statement SPIR-V VUs, build limit VUs (!4158)  - document limits for vertex and aabb strides (#2390,!4184)  - specify that `VK_PIPELINE_STAGE_ACCELERATION_STRUCTURE_BUILD_BIT_KHR` applies to AS copies (#2382,#4173)  - define sync for AS build inputs and indirect buffer (#2407,!4208) 
 - Revision 12, 2021-08-06 (Samuel Bourasseau)  - rename VK_GEOMETRY_INSTANCE_TRIANGLE_FRONT_COUNTERCLOCKWISE_BIT_KHR to VK_GEOMETRY_INSTANCE_TRIANGLE_FLIP_FACING_BIT_KHR (keep previous as alias).  - Clarify description and add note. 
-- Revision 13, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to `vk.xml`
+- Revision 13, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 
 # Other information
 * 2021-09-30
@@ -189,7 +189,7 @@ Applications which are written directly for Vulkan should not use it.
 - [`AccelerationStructureBuildTypeKHR`]
 - [`AccelerationStructureCompatibilityKHR`]
 - [`AccelerationStructureCreateFlagBitsKHR`]
-- [VkAccelerationStructureCreateFlagsKHR]()
+- [`AccelerationStructureCreateFlagsKHR`]
 - [`AccelerationStructureCreateInfoKHR`]
 - [`AccelerationStructureDeviceAddressInfoKHR`]
 - [`AccelerationStructureGeometryAabbsDataKHR`]
@@ -202,7 +202,7 @@ Applications which are written directly for Vulkan should not use it.
 - [`AccelerationStructureTypeKHR`]
 - [`AccelerationStructureVersionInfoKHR`]
 - [`BuildAccelerationStructureFlagBitsKHR`]
-- [VkBuildAccelerationStructureFlagsKHR]()
+- [`BuildAccelerationStructureFlagsKHR`]
 - [`BuildAccelerationStructureModeKHR`]
 - [`CopyAccelerationStructureInfoKHR`]
 - [`CopyAccelerationStructureModeKHR`]
@@ -211,9 +211,9 @@ Applications which are written directly for Vulkan should not use it.
 - [`DeviceOrHostAddressConstKHR`]
 - [`DeviceOrHostAddressKHR`]
 - [`GeometryFlagBitsKHR`]
-- [VkGeometryFlagsKHR]()
+- [`GeometryFlagsKHR`]
 - [`GeometryInstanceFlagBitsKHR`]
-- [VkGeometryInstanceFlagsKHR]()
+- [`GeometryInstanceFlagsKHR`]
 - [`GeometryTypeKHR`]
 - [`PhysicalDeviceAccelerationStructureFeaturesKHR`]
 - [`PhysicalDeviceAccelerationStructurePropertiesKHR`]

@@ -49,7 +49,7 @@ include [`AccelerationStructureMotionInfoNV`] as an extension structure
 in [`p_next`] with the number of instances as metadata for the object.
 ## Valid Usage
 -    If [`device_address`] is not zero, [`create_flags`] **must**  include `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`
--    If [`create_flags`] includes `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`, [`PhysicalDeviceAccelerationStructureFeaturesKHR::acceleration_structure_capture_replay`] **must**  be `VK_TRUE`
+-    If [`create_flags`] includes `VK_ACCELERATION_STRUCTURE_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR`, [`PhysicalDeviceAccelerationStructureFeaturesKHR::acceleration_structure_capture_replay`] **must**  be [`TRUE`]
 -  [`buffer`] **must**  have been created with a `usage` value containing `VK_BUFFER_USAGE_ACCELERATION_STRUCTURE_STORAGE_BIT_KHR`
 -  [`buffer`] **must**  not have been created with `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`
 -    The sum of [`offset`] and [`size`] **must**  be less than the size of [`buffer`]
@@ -66,8 +66,8 @@ in [`p_next`] with the number of instances as metadata for the object.
 -  [`type_`] **must**  be a valid [`AccelerationStructureTypeKHR`] value
 
 # Related
-- [`khr_acceleration_structure`]
-- [VkAccelerationStructureCreateFlagsKHR]()
+- [`VK_KHR_acceleration_structure`]
+- [`AccelerationStructureCreateFlagsKHR`]
 - [`AccelerationStructureTypeKHR`]
 - [`Buffer`]
 - [`DeviceAddress`]

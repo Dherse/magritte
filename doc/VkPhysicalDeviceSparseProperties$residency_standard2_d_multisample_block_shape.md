@@ -1,4 +1,4 @@
-[`residency_standard2_d_multisample_block_shape`] is `VK_TRUE` if the
+[`residency_standard2_d_multisample_block_shape`] is [`TRUE`] if the
 physical device will access all multisample 2D sparse resources using
 the standard sparse image block shapes (based on image format), as
 described in the [Standard Sparse

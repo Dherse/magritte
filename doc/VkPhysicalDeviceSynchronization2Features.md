@@ -23,7 +23,7 @@ This structure describes the following feature:
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 
-- [`synchronization2`] indicates whether the implementation supports the new set of synchronization commands introduced in `[`khr_synchronization2`]`.
+- [`synchronization2`] indicates whether the implementation supports the new set of synchronization commands introduced in `[`VK_KHR_synchronization2`]`.
 If the [`PhysicalDeviceSynchronization2Features`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to
 [`get_physical_device_features2`], it is filled in to indicate whether each
@@ -34,7 +34,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SYNCHRONIZATION_2_FEATURES`
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

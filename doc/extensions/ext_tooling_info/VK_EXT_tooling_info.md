@@ -45,14 +45,14 @@ out.
 - [`ToolPurposeFlagsEXT`]
 
 # New constants
-- `VK_EXT_TOOLING_INFO_EXTENSION_NAME`
-- `VK_EXT_TOOLING_INFO_SPEC_VERSION`
+- [`EXT_TOOLING_INFO_EXTENSION_NAME`]
+- [`EXT_TOOLING_INFO_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TOOL_PROPERTIES_EXT` 
-If [`ext_debug_marker`] is supported:
+If [`VK_EXT_debug_marker`] is supported:
 - Extending [`ToolPurposeFlagBits`]:  - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT` 
-If [`ext_debug_report`] is supported:
+If [`VK_EXT_debug_report`] is supported:
 - Extending [`ToolPurposeFlagBits`]:  - `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT` 
-If [`ext_debug_utils`] is supported:
+If [`VK_EXT_debug_utils`] is supported:
 - Extending [`ToolPurposeFlagBits`]:  - `VK_TOOL_PURPOSE_DEBUG_MARKERS_BIT_EXT`  - `VK_TOOL_PURPOSE_DEBUG_REPORTING_BIT_EXT`
 
 # Known issues & F.A.Q.

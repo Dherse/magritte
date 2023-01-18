@@ -32,7 +32,7 @@ typedef struct VkCopyAccelerationStructureToMemoryInfoKHR {
 -  [`mode`] **must**  be a valid [`CopyAccelerationStructureModeKHR`] value
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`CopyAccelerationStructureModeKHR`]
 - [`DeviceOrHostAddressKHR`]

@@ -50,7 +50,7 @@ extended.
 -  [`image_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`CopyBufferToImageInfo2`]
 - [`CopyImageToBufferInfo2`]

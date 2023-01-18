@@ -42,7 +42,7 @@ be used by that implementation.
 -  [`tag_size`] **must**  be greater than `0`
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`DebugReportObjectTypeEXT`]
 - [`StructureType`]
 - [`debug_marker_set_object_tag_ext`]

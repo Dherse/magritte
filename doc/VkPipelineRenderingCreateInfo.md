@@ -61,7 +61,7 @@ valid to set the attachment to `NULL` when beginning rendering.
 -  [`stencil_attachment_format`] **must**  be a valid [`Format`] value
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`Format`]
 - [`StructureType`]

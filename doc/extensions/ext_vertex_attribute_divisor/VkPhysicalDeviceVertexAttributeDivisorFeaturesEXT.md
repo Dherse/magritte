@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT`
 
 # Related
-- [`ext_vertex_attribute_divisor`]
+- [`VK_EXT_vertex_attribute_divisor`]
 - [`Bool32`]
 - [`StructureType`]
 

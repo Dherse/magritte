@@ -22,7 +22,7 @@ typedef struct VkCuFunctionCreateInfoNVX {
 -  [`name`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`CuModuleNVX`]
 - [`StructureType`]
 - [`create_cu_function_nvx`]

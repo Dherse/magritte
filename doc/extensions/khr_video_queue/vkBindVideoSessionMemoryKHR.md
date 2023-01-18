@@ -30,7 +30,7 @@ VkResult vkBindVideoSessionMemoryKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`Device`]
 - [`VideoBindMemoryKHR`]
 - [`VideoSessionKHR`]

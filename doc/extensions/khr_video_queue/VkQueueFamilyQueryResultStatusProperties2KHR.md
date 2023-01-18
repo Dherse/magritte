@@ -15,14 +15,14 @@ typedef struct VkQueueFamilyQueryResultStatusProperties2KHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`supported`] reports `VK_TRUE` if query type `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` and use of `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` are supported.
+- [`supported`] reports [`TRUE`] if query type `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` and use of `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` are supported.
 
 # Description
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_QUERY_RESULT_STATUS_PROPERTIES_2_KHR`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`Bool32`]
 - [`StructureType`]
 

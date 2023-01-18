@@ -12,7 +12,6 @@ use bytemuck::{Pod, Zeroable};
 /// Utilities for pretty printing Vulkan versions
 #[derive(Copy, Clone, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct Version(pub u32);
 

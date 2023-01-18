@@ -26,11 +26,11 @@ and the values of all other [`PipelineCreationFeedback`] data members
 are undefined.
 
 # Related
-- [`ext_pipeline_creation_feedback`]
+- [`VK_EXT_pipeline_creation_feedback`]
 - [`crate::vulkan1_3`]
 - [`PipelineCreationFeedbackCreateInfo`]
 - [`PipelineCreationFeedbackFlagBits`]
-- [VkPipelineCreationFeedbackFlags]()
+- [`PipelineCreationFeedbackFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

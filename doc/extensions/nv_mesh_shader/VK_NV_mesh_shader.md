@@ -23,7 +23,7 @@ Vulkan:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_mesh_shader] @pixeljetstream%0A<<Here describe the issue or question you have about the VK_NV_mesh_shader extension>>)
@@ -39,8 +39,8 @@ Vulkan:
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMeshShaderPropertiesNV`]
 
 # New constants
-- `VK_NV_MESH_SHADER_EXTENSION_NAME`
-- `VK_NV_MESH_SHADER_SPEC_VERSION`
+- [`NV_MESH_SHADER_EXTENSION_NAME`]
+- [`NV_MESH_SHADER_SPEC_VERSION`]
 - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_MESH_SHADER_BIT_NV`  - `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV` 
 - Extending [`ShaderStageFlagBits`]:  - `VK_SHADER_STAGE_MESH_BIT_NV`  - `VK_SHADER_STAGE_TASK_BIT_NV` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`

@@ -37,7 +37,7 @@ transitions performed implicitly by a render pass instance.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_sample_locations] @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_sample_locations extension>>)
@@ -57,8 +57,8 @@ transitions performed implicitly by a render pass instance.
 - Extending [`RenderPassBeginInfo`]:  - [`RenderPassSampleLocationsBeginInfoEXT`]
 
 # New constants
-- `VK_EXT_SAMPLE_LOCATIONS_EXTENSION_NAME`
-- `VK_EXT_SAMPLE_LOCATIONS_SPEC_VERSION`
+- [`EXT_SAMPLE_LOCATIONS_EXTENSION_NAME`]
+- [`EXT_SAMPLE_LOCATIONS_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` 
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MULTISAMPLE_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_SAMPLE_LOCATIONS_STATE_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_RENDER_PASS_SAMPLE_LOCATIONS_BEGIN_INFO_EXT`  - `VK_STRUCTURE_TYPE_SAMPLE_LOCATIONS_INFO_EXT`

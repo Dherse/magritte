@@ -1,14 +1,14 @@
 [VK_KHR_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_surface.html) - instance extension
 
 # Description
-The [`khr_surface`] extension is an instance extension.
+The [`VK_KHR_surface`] extension is an instance extension.
 It introduces [`SurfaceKHR`] objects, which abstract native platform
 surface or window objects for use with Vulkan.
 It also provides a way to determine whether a queue family in a physical
 device supports presenting to particular surface.Separate extensions for each platform provide the mechanisms for creating
 [`SurfaceKHR`] objects, but once created they may be used in this and
 other platform-independent extensions, in particular the
-`[`khr_swapchain`]` extension.
+`[`VK_KHR_swapchain`]` extension.
 
 # Registered extension number
 1
@@ -44,11 +44,11 @@ other platform-independent extensions, in particular the
 - [`SurfaceTransformFlagBitsKHR`]
 
 # New bitmasks
-- [VkCompositeAlphaFlagsKHR]()
+- [`CompositeAlphaFlagsKHR`]
 
 # New constants
-- `VK_KHR_SURFACE_EXTENSION_NAME`
-- `VK_KHR_SURFACE_SPEC_VERSION`
+- [`KHR_SURFACE_EXTENSION_NAME`]
+- [`KHR_SURFACE_SPEC_VERSION`]
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_SURFACE_KHR` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`
 
@@ -67,7 +67,7 @@ section of the desktop they exist on.2) Should the [`get_physical_device_surface
 [`get_physical_device_surface_formats_khr`], and
 [`get_physical_device_surface_present_modes_khr`] functions be in this
 extension and operate on physical devices, rather than being in
-`[`khr_swapchain`]` (i.e. device extension) and being dependent on
+`[`VK_KHR_swapchain`]` (i.e. device extension) and being dependent on
 [`Device`]? **RESOLVED** : Yes.
 While it might be useful to depend on [`Device`] (and therefore on
 enabled extensions and features) for the queries, Vulkan was released only
@@ -127,7 +127,7 @@ extension to be written in the future.
 # Related
 - [`ColorSpaceKHR`]
 - [`CompositeAlphaFlagBitsKHR`]
-- [VkCompositeAlphaFlagsKHR]()
+- [`CompositeAlphaFlagsKHR`]
 - [`PresentModeKHR`]
 - [`SurfaceCapabilitiesKHR`]
 - [`SurfaceFormatKHR`]

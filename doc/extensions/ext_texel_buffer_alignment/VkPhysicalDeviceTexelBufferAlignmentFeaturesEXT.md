@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_FEATURES_EXT`
 
 # Related
-- [`ext_texel_buffer_alignment`]
+- [`VK_EXT_texel_buffer_alignment`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -15,30 +15,30 @@ swapchain.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
-- Requires `[`khr_maintenance2`]`
-- Requires `[`khr_image_format_list`]`
+- Requires `[`VK_KHR_swapchain`]`
+- Requires `[`VK_KHR_maintenance2`]`
+- Requires `[`VK_KHR_image_format_list`]`
 
 # Contacts
 - Daniel Rakos [drakos-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain_mutable_format] @drakos-arm%0A<<Here describe the issue or question you have about the VK_KHR_swapchain_mutable_format extension>>)
 
 # New constants
-- `VK_KHR_SWAPCHAIN_MUTABLE_FORMAT_EXTENSION_NAME`
-- `VK_KHR_SWAPCHAIN_MUTABLE_FORMAT_SPEC_VERSION`
+- [`KHR_SWAPCHAIN_MUTABLE_FORMAT_EXTENSION_NAME`]
+- [`KHR_SWAPCHAIN_MUTABLE_FORMAT_SPEC_VERSION`]
 - Extending [`SwapchainCreateFlagBitsKHR`]:  - `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR`
 
 # Known issues & F.A.Q.
 1) Are there any new capabilities needed? **RESOLVED** : No.
 It is expected that all implementations exposing this extension support
 swapchain image format mutability.2) Do we need a separate `VK_SWAPCHAIN_CREATE_EXTENDED_USAGE_BIT_KHR`? **RESOLVED** : No.
-This extension requires [`khr_maintenance2`] and presentable images of
+This extension requires [`VK_KHR_maintenance2`] and presentable images of
 swapchains created with `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR` are
 created internally in a way equivalent to specifying both
 `VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT` and
 `VK_IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR`.3) Do we need a separate structure to allow specifying an image format list
 for swapchains? **RESOLVED** : No.
 We simply use the same [`ImageFormatListCreateInfoKHR`] structure
-introduced by [`khr_image_format_list`].
+introduced by [`VK_KHR_image_format_list`].
 The structure is required to be included in the `pNext` chain of
 [`SwapchainCreateInfoKHR`] for swapchains created with
 `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR`.

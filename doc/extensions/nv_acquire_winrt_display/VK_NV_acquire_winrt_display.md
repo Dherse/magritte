@@ -23,7 +23,7 @@ already acquired the display.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_direct_mode_display`]`
+- Requires `[`VK_EXT_direct_mode_display`]`
 
 # Contacts
 - Jeff Juliano [jjuliano](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_acquire_winrt_display] @jjuliano%0A<<Here describe the issue or question you have about the VK_NV_acquire_winrt_display extension>>)
@@ -33,8 +33,8 @@ already acquired the display.
 - [`get_winrt_display_nv`]
 
 # New constants
-- `VK_NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME`
-- `VK_NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION`
+- [`NV_ACQUIRE_WINRT_DISPLAY_EXTENSION_NAME`]
+- [`NV_ACQUIRE_WINRT_DISPLAY_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) What should the platform substring be for this extension: **RESOLVED** : The platform substring is “Winrt”.The substring “Winrt” matches the fact that the OS API exposing the

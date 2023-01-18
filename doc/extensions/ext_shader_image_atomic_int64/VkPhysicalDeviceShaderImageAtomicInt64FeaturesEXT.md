@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT`
 
 # Related
-- [`ext_shader_image_atomic_int64`]
+- [`VK_EXT_shader_image_atomic_int64`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -20,7 +20,7 @@ typedef struct VkPerformanceCounterKHR {
 - [`unit`] is a [`PerformanceCounterUnitKHR`] specifying the unit that the counter data will record.
 - [`scope`] is a [`PerformanceCounterScopeKHR`] specifying the scope that the counter belongs to.
 - [`storage`] is a [`PerformanceCounterStorageKHR`] specifying the storage type that the counter’s data uses.
-- [`uuid`] is an array of size `VK_UUID_SIZE`, containing 8-bit values that represent a universally unique identifier for the counter of the physical device.
+- [`uuid`] is an array of size [`UUID_SIZE`], containing 8-bit values that represent a universally unique identifier for the counter of the physical device.
 
 # Description
 ## Valid Usage (Implicit)
@@ -28,7 +28,7 @@ typedef struct VkPerformanceCounterKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`PerformanceCounterScopeKHR`]
 - [`PerformanceCounterStorageKHR`]
 - [`PerformanceCounterUnitKHR`]

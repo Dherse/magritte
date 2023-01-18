@@ -5,8 +5,11 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use magritte_build::{Visitor, OriginVisitor};
-use magritte_parse::{Source, Origin, Extension, Const, ConstAlias, OpaqueType, Alias, Struct, Union, Handle, FunctionPointer, Basetype, Bitmask, Bitflag, Enum, CommandAlias, Function};
+use magritte_build::{OriginVisitor, Visitor};
+use magritte_parse::{
+    Alias, Basetype, Bitflag, Bitmask, CommandAlias, Const, ConstAlias, Enum, Extension, Function, FunctionPointer,
+    Handle, OpaqueType, Origin, Source, Struct, Union,
+};
 
 use crate::doc::Documentation;
 
@@ -31,14 +34,14 @@ impl Visitor for DocVisitor {
 
     type ExtensionVisitor<'parent> = () where Self: 'parent;
 
-    fn visit_origin<'a>(&mut self, _source: &Source<'a>, _origin: &Origin<'a>) -> Self::OriginVisitor<'_> {
-        DocOriginVisitor {
+    fn visit_origin<'a>(&mut self, _source: &Source<'a>, _origin: &Origin<'a>) -> Option<Self::OriginVisitor<'_>> {
+        Some(DocOriginVisitor {
             parent: self,
             buffer: String::with_capacity(1 << 20),
-        }
+        })
     }
 
-    fn visit_version<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Self::VersionVisitor<'_> {
+    fn visit_version<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Option<Self::VersionVisitor<'_>> {
         let doc_name = match origin {
             Origin::Vulkan1_0 => "VK_VERSION_1_0",
             Origin::Vulkan1_1 => "VK_VERSION_1_1",
@@ -67,10 +70,14 @@ impl Visitor for DocVisitor {
             std::fs::write(&path, &buffer).expect("Failed to write documentation");
         }
 
-        ()
+        None
     }
 
-    fn visit_extension<'a>(&mut self, source: &Source<'a>, extension: &Extension<'a>) -> Self::ExtensionVisitor<'_> {
+    fn visit_extension<'a>(
+        &mut self,
+        source: &Source<'a>,
+        extension: &Extension<'a>,
+    ) -> Option<Self::ExtensionVisitor<'_>> {
         if let Some(mut doc) = self.doc.find(extension.name()) {
             let name = doc.name(source, extension);
             let desc = doc.description(source, extension, None);
@@ -93,7 +100,7 @@ impl Visitor for DocVisitor {
             let path = root.join(format!("{}.md", extension.name()));
             std::fs::write(&path, &buffer).expect("Failed to write documentation");
         }
-        ()
+        None
     }
 }
 
@@ -169,12 +176,10 @@ macro_rules! doc {
             let path = root.join(format!("{}.md", $var.original_name()));
             std::fs::write(&path, &$this.buffer).expect("Failed to write documentation");
 
-            fields
-                .into_iter()
-                .for_each(|(name, doc)| {
-                    let path = root.join(format!("{}${}.md", $var.original_name(), name));
-                    std::fs::write(&path, &doc).expect("Failed to write field documentation");
-                });
+            fields.into_iter().for_each(|(name, doc)| {
+                let path = root.join(format!("{}${}.md", $var.original_name(), name));
+                std::fs::write(&path, &doc).expect("Failed to write field documentation");
+            });
         }
     };
 
@@ -204,12 +209,10 @@ macro_rules! doc {
             let path = root.join(format!("{}.md", $var.original_name()));
             std::fs::write(&path, &$this.buffer).expect("Failed to write documentation");
 
-            members
-                .into_iter()
-                .for_each(|(name, doc)| {
-                    let path = root.join(format!("{}${}.md", $var.original_name(), name));
-                    std::fs::write(&path, &doc).expect("Failed to write field documentation");
-                });
+            members.into_iter().for_each(|(name, doc)| {
+                let path = root.join(format!("{}${}.md", $var.original_name(), name));
+                std::fs::write(&path, &doc).expect("Failed to write field documentation");
+            });
         }
     };
 
@@ -237,12 +240,10 @@ macro_rules! doc {
             let path = root.join(format!("{}.md", $var.original_name()));
             std::fs::write(&path, &$this.buffer).expect("Failed to write documentation");
 
-            members
-                .into_iter()
-                .for_each(|(name, doc)| {
-                    let path = root.join(format!("{}${}.md", $var.original_name(), name));
-                    std::fs::write(&path, &doc).expect("Failed to write field documentation");
-                });
+            members.into_iter().for_each(|(name, doc)| {
+                let path = root.join(format!("{}${}.md", $var.original_name(), name));
+                std::fs::write(&path, &doc).expect("Failed to write field documentation");
+            });
         }
     };
 }

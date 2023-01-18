@@ -25,11 +25,11 @@ typedef VkDescriptorSetLayoutBindingFlagsCreateInfo VkDescriptorSetLayoutBinding
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`binding_count`] is zero or the number of elements in [`binding_flags`].
-- [`binding_flags`] is a pointer to an array of [VkDescriptorBindingFlags]() bitfields, one for each descriptor set layout binding.
+- [`binding_flags`] is a pointer to an array of [`DescriptorBindingFlags`] bitfields, one for each descriptor set layout binding.
 
 # Description
 If [`binding_count`] is zero or if this structure is not included in the
-[`p_next`] chain, the [VkDescriptorBindingFlags]() for each descriptor
+[`p_next`] chain, the [`DescriptorBindingFlags`] for each descriptor
 set layout binding is considered to be zero.
 Otherwise, the descriptor set layout binding at
 [`DescriptorSetLayoutCreateInfo::bindings`][i] uses the flags in
@@ -57,9 +57,9 @@ Otherwise, the descriptor set layout binding at
 -    If [`binding_count`] is not `0`, [`binding_flags`] **must**  be a valid pointer to an array of [`binding_count`] valid combinations of [`DescriptorBindingFlagBits`] values
 
 # Related
-- [`ext_descriptor_indexing`]
+- [`VK_EXT_descriptor_indexing`]
 - [`crate::vulkan1_2`]
-- [VkDescriptorBindingFlags]()
+- [`DescriptorBindingFlags`]
 - [`StructureType`]
 
 # Notes and documentation

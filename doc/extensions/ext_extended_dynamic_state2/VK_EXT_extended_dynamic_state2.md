@@ -12,7 +12,7 @@ need to reduce the number of pipeline state objects they compile and bind.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -31,8 +31,8 @@ need to reduce the number of pipeline state objects they compile and bind.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceExtendedDynamicState2FeaturesEXT`]
 
 # New constants
-- `VK_EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME`
-- `VK_EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION`
+- [`EXT_EXTENDED_DYNAMIC_STATE_2_EXTENSION_NAME`]
+- [`EXT_EXTENDED_DYNAMIC_STATE_2_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_DEPTH_BIAS_ENABLE_EXT`  - `VK_DYNAMIC_STATE_LOGIC_OP_EXT`  - `VK_DYNAMIC_STATE_PATCH_CONTROL_POINTS_EXT`  - `VK_DYNAMIC_STATE_PRIMITIVE_RESTART_ENABLE_EXT`  - `VK_DYNAMIC_STATE_RASTERIZER_DISCARD_ENABLE_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_2_FEATURES_EXT`
 

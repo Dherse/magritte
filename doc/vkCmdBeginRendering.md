@@ -43,7 +43,7 @@ suspended earlier in [submission order](https://www.khronos.org/registry/vulkan/
 ## Command Properties
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`RenderingInfo`]

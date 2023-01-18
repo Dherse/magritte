@@ -57,12 +57,12 @@ typedef VkSubmitInfo2 VkSubmitInfo2KHR;
 -    If [`signal_semaphore_info_count`] is not `0`, [`signal_semaphore_infos`] **must**  be a valid pointer to an array of [`signal_semaphore_info_count`] valid [`SemaphoreSubmitInfo`] structures
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`CommandBufferSubmitInfo`]
 - [`SemaphoreSubmitInfo`]
 - [`StructureType`]
-- [VkSubmitFlags]()
+- [`SubmitFlags`]
 - [`queue_submit2`]
 - [`queue_submit2_khr`]
 

@@ -14,7 +14,7 @@ VkBool32 vkGetPhysicalDeviceDirectFBPresentationSupportEXT(
 # Parameters
 - [`physical_device`] is the physical device.
 - [`queue_family_index`] is the queue family index.
-- [`dfb`] is a pointer to the `IDirectFB` main interface of DirectFB.
+- [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
 
 # Description
 This platform-specific function  **can**  be called prior to creating a surface.
@@ -23,10 +23,10 @@ This platform-specific function  **can**  be called prior to creating a surface.
 
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`dfb`] **must**  be a valid pointer to an `IDirectFB` value
+-  [`dfb`] **must**  be a valid pointer to an [`IDirectFB`] value
 
 # Related
-- [`ext_directfb_surface`]
+- [`VK_EXT_directfb_surface`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

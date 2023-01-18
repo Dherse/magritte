@@ -64,8 +64,8 @@ typedef enum VkDebugReportObjectTypeEXT {
 ```
 
 # Related
-- [`ext_debug_marker`]
-- [`ext_debug_report`]
+- [`VK_EXT_debug_marker`]
+- [`VK_EXT_debug_report`]
 - [`DebugMarkerObjectNameInfoEXT`]
 - [`DebugMarkerObjectTagInfoEXT`]
 - [`debug_report_message_ext`]

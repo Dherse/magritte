@@ -23,8 +23,8 @@ typedef VkSamplerYcbcrRange VkSamplerYcbcrRangeKHR;
 ```
 
 # Description
-- [`VK_SAMPLER_YCBCR_RANGE`] specifies that the full range of the encoded values are valid and interpreted according to the ITU “full range” quantization rules.
-- [`VK_SAMPLER_YCBCR_RANGE`] specifies that headroom and foot room are reserved in the numerical range of encoded values, and the remaining values are expanded according to the ITU “narrow range” quantization rules.
+- [`ITU_FULL`] specifies that the full range of the encoded values are valid and interpreted according to the ITU “full range” quantization rules.
+- [`ITU_NARROW`] specifies that headroom and foot room are reserved in the numerical range of encoded values, and the remaining values are expanded according to the ITU “narrow range” quantization rules.
 The formulae for these conversions is described in the
 [Sampler Y′C<sub>B</sub>C<sub>R</sub> Range
 Expansion](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-sampler-YCbCr-conversion-rangeexpand) section of the [Image Operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures) chapter.No range modification takes place if `ycbcrModel` is

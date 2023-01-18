@@ -23,7 +23,7 @@ typedef struct VkPhysicalDeviceSampleLocationsPropertiesEXT {
 - [`max_sample_location_grid_size`] is the maximum size of the pixel grid in which sample locations  **can**  vary that is supported for all sample counts in [`sample_location_sample_counts`].
 - [`sample_location_coordinate_range`][2] is the range of supported sample location coordinates.
 - [`sample_location_sub_pixel_bits`] is the number of bits of subpixel precision for sample locations.
-- [`variable_sample_locations`] specifies whether the sample locations used by all pipelines that will be bound to a command buffer during a subpass  **must**  match. If set to `VK_TRUE`, the implementation supports variable sample locations in a subpass. If set to `VK_FALSE`, then the sample locations  **must**  stay constant in each subpass.
+- [`variable_sample_locations`] specifies whether the sample locations used by all pipelines that will be bound to a command buffer during a subpass  **must**  match. If set to [`TRUE`], the implementation supports variable sample locations in a subpass. If set to [`FALSE`], then the sample locations  **must**  stay constant in each subpass.
 
 # Description
 If the [`PhysicalDeviceSampleLocationsPropertiesEXT`] structure is included in the [`p_next`] chain of the
@@ -34,10 +34,10 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLE_LOCATIONS_PROPERTIES_EXT`
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`Bool32`]
 - [`Extent2D`]
-- [VkSampleCountFlags]()
+- [`SampleCountFlags`]
 - [`StructureType`]
 
 # Notes and documentation

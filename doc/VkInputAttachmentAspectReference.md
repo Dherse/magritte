@@ -38,7 +38,7 @@ pCreateInfo->pSubpasses[subpass].pInputAttachments[inputAttachmentIndex]
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`RenderPassInputAttachmentAspectCreateInfo`]
 
 # Notes and documentation

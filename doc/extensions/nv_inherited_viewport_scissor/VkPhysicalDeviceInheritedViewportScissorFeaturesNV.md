@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
 
 # Related
-- [`nv_inherited_viewport_scissor`]
+- [`VK_NV_inherited_viewport_scissor`]
 - [`Bool32`]
 - [`StructureType`]
 

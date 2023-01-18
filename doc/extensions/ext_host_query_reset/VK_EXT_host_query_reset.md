@@ -11,7 +11,7 @@ This extension adds a new function to reset queries from the host.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -26,8 +26,8 @@ This extension adds a new function to reset queries from the host.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceHostQueryResetFeaturesEXT`]
 
 # New constants
-- `VK_EXT_HOST_QUERY_RESET_EXTENSION_NAME`
-- `VK_EXT_HOST_QUERY_RESET_SPEC_VERSION`
+- [`EXT_HOST_QUERY_RESET_EXTENSION_NAME`]
+- [`EXT_HOST_QUERY_RESET_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES_EXT`
 
 # Version history

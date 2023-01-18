@@ -7,7 +7,7 @@ typedef VkFlags VkViSurfaceCreateFlagsNN;
 ```
 
 # Related
-- [`nn_vi_surface`]
+- [`VK_NN_vi_surface`]
 - [`ViSurfaceCreateInfoNN`]
 
 # Notes and documentation

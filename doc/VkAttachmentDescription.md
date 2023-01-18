@@ -137,7 +137,7 @@ even if other aliases are used in between.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkAttachmentDescriptionFlags]()
+- [`AttachmentDescriptionFlags`]
 - [`AttachmentLoadOp`]
 - [`AttachmentStoreOp`]
 - [`Format`]

@@ -21,7 +21,7 @@ void vkQueueInsertDebugUtilsLabelEXT(
 ## Command Properties
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsLabelEXT`]
 - [`Queue`]
 

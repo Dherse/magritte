@@ -47,7 +47,7 @@ Accesses to [`src`] and [`dst`] **must**  be [synchronized](https://www.khronos.
 ## Command Properties
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureNV`]
 - [`CommandBuffer`]
 - [`CopyAccelerationStructureModeKHR`]

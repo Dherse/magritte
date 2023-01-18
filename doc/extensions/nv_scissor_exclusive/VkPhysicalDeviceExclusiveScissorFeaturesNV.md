@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`
 
 # Related
-- [`nv_scissor_exclusive`]
+- [`VK_NV_scissor_exclusive`]
 - [`Bool32`]
 - [`StructureType`]
 

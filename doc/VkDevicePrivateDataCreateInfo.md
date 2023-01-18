@@ -30,7 +30,7 @@ typedef VkDevicePrivateDataCreateInfo VkDevicePrivateDataCreateInfoEXT;
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_PRIVATE_DATA_CREATE_INFO`
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`StructureType`]
 

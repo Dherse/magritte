@@ -44,10 +44,10 @@ provided.
 - Host access to [`fence`] **must**  be externally synchronized
 
 # Related
-- [`khr_external_fence_fd`]
+- [`VK_KHR_external_fence_fd`]
 - [`ExternalFenceHandleTypeFlagBits`]
 - [`Fence`]
-- [VkFenceImportFlags]()
+- [`FenceImportFlags`]
 - [`StructureType`]
 - [`import_fence_fd_khr`]
 

@@ -35,7 +35,7 @@ entity, the call  **must**  return the error code
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`nv_acquire_winrt_display`]
+- [`VK_NV_acquire_winrt_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

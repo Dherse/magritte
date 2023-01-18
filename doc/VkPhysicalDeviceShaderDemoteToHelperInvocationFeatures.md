@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES`
 
 # Related
-- [`ext_shader_demote_to_helper_invocation`]
+- [`VK_EXT_shader_demote_to_helper_invocation`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

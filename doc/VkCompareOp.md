@@ -18,14 +18,14 @@ typedef enum VkCompareOp {
 ```
 
 # Description
-- [`VK_COMPARE_OP`] specifies that the test evaluates to false.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A < B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A = B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A ≤ B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A > B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A ≠ B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates A ≥ B.
-- [`VK_COMPARE_OP`] specifies that the test evaluates to true.
+- [`NEVER`] specifies that the test evaluates to false.
+- [`LESS`] specifies that the test evaluates A < B.
+- [`EQUAL`] specifies that the test evaluates A = B.
+- [`LESS_OR_EQUAL`] specifies that the test evaluates A ≤ B.
+- [`GREATER`] specifies that the test evaluates A > B.
+- [`NOT_EQUAL`] specifies that the test evaluates A ≠ B.
+- [`GREATER_OR_EQUAL`] specifies that the test evaluates A ≥ B.
+- [`ALWAYS`] specifies that the test evaluates to true.
 
 # Related
 - [`crate::vulkan1_0`]

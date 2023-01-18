@@ -49,7 +49,7 @@ system, or consume device-local memory.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_memory_priority`]`
+- Requires `[`VK_EXT_memory_priority`]`
 
 # Contacts
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pageable_device_local_memory] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_EXT_pageable_device_local_memory extension>>)
@@ -61,8 +61,8 @@ system, or consume device-local memory.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT`]
 
 # New constants
-- `VK_EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME`
-- `VK_EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION`
+- [`EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_EXTENSION_NAME`]
+- [`EXT_PAGEABLE_DEVICE_LOCAL_MEMORY_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
 
 # Version history

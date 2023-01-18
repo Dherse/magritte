@@ -42,7 +42,7 @@ used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_color_write_enable`]
+- [`VK_EXT_color_write_enable`]
 - [`Bool32`]
 - [`CommandBuffer`]
 

@@ -39,7 +39,7 @@ properties of the defined external semaphore handle types.
 -  [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 
 # Related
-- [`khr_external_semaphore_fd`]
+- [`VK_KHR_external_semaphore_fd`]
 - [`ExternalSemaphoreHandleTypeFlagBits`]
 - [`Semaphore`]
 - [`StructureType`]

@@ -26,8 +26,8 @@ void vkCmdTraceRaysIndirectKHR(
 except that the ray trace query dimensions are read by the device from
 [`indirect_device_address`] during execution.
 ## Valid Usage
--    If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and `compareEnable` equal to `VK_FALSE` is used to sample a [`ImageView`] as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
--    If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and `compareEnable` equal to `VK_FALSE` is used to sample a [`ImageView`] as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+-    If a [`Sampler`] created with `magFilter` or `minFilter` equal to `VK_FILTER_LINEAR` and `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
+-    If a [`Sampler`] created with `mipmapMode` equal to `VK_SAMPLER_MIPMAP_MODE_LINEAR` and `compareEnable` equal to [`FALSE`] is used to sample a [`ImageView`] as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT`
 -    If a [`ImageView`] is sampled with [depth comparison](), the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_2_SAMPLED_IMAGE_DEPTH_COMPARISON_BIT`
 -    If a [`ImageView`] is accessed using atomic operations as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT`
 -    If a [`ImageView`] is sampled with `VK_FILTER_CUBIC_EXT` as a result of this command, then the image view’s [format features]() **must**  contain `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_EXT`
@@ -40,7 +40,7 @@ except that the ray trace query dimensions are read by the device from
 -    If the [`maintenance4`]() feature is not enabled, then for each push constant that is statically used by the [`Pipeline`] bound to the pipeline bind point used by this command, a push constant value  **must**  have been set for the same pipeline bind point, with a [`PipelineLayout`] that is compatible for push constants, with the [`PipelineLayout`] used to create the current [`Pipeline`], as described in [[descriptorsets-compatibility]]()
 -    Descriptors in each bound descriptor set, specified via [`cmd_bind_descriptor_sets`],  **must**  be valid if they are statically used by the [`Pipeline`] bound to the pipeline bind point used by this command
 -    A valid pipeline  **must**  be bound to the pipeline bind point used by this command
--    If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any dynamic state, that state  **must**  have been set or inherited (if the `[`nv_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so after any previously bound pipeline with the corresponding state not specified as dynamic
+-    If the [`Pipeline`] object bound to the pipeline bind point used by this command requires any dynamic state, that state  **must**  have been set or inherited (if the `[`VK_NV_inherited_viewport_scissor`]` extension is enabled) for [`command_buffer`], and done so after any previously bound pipeline with the corresponding state not specified as dynamic
 -    There  **must**  not have been any calls to dynamic state setting commands for any state not specified as dynamic in the [`Pipeline`] object bound to the pipeline bind point used by this command, since that pipeline was bound
 -    If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used to sample from any [`Image`] with a [`ImageView`] of the type `VK_IMAGE_VIEW_TYPE_3D`, `VK_IMAGE_VIEW_TYPE_CUBE`, `VK_IMAGE_VIEW_TYPE_1D_ARRAY`, `VK_IMAGE_VIEW_TYPE_2D_ARRAY` or `VK_IMAGE_VIEW_TYPE_CUBE_ARRAY`, in any shader stage
 -    If the [`Pipeline`] object bound to the pipeline bind point used by this command accesses a [`Sampler`] object that uses unnormalized coordinates, that sampler  **must**  not be used with any of the SPIR-V `OpImageSample*` or `OpImageSparseSample*` instructions with `ImplicitLod`, `Dref` or `Proj` in their name, in any shader stage
@@ -114,7 +114,7 @@ except that the ray trace query dimensions are read by the device from
 ## Command Properties
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`CommandBuffer`]
 - [`DeviceAddress`]
 - [`StridedDeviceAddressRegionKHR`]

@@ -37,7 +37,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_FEATURES`
 
 # Related
-- [`ext_subgroup_size_control`]
+- [`VK_EXT_subgroup_size_control`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

@@ -75,7 +75,7 @@ typedef VkResolveImageInfo2 VkResolveImageInfo2KHR;
 -    Both of [`dst_image`], and [`src_image`] **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`Image`]
 - [`ImageLayout`]

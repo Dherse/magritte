@@ -28,7 +28,7 @@ void vkCmdEndVideoCodingKHR(
 ## Command Properties
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`CommandBuffer`]
 - [`VideoEndCodingInfoKHR`]
 

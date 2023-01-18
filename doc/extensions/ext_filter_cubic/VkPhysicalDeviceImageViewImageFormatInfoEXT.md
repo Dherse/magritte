@@ -23,7 +23,7 @@ typedef struct VkPhysicalDeviceImageViewImageFormatInfoEXT {
 -  [`image_view_type`] **must**  be a valid [`ImageViewType`] value
 
 # Related
-- [`ext_filter_cubic`]
+- [`VK_EXT_filter_cubic`]
 - [`ImageViewType`]
 - [`StructureType`]
 

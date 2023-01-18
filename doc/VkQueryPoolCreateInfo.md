@@ -40,7 +40,7 @@ typedef struct VkQueryPoolCreateInfo {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkQueryPipelineStatisticFlags]()
+- [`QueryPipelineStatisticFlags`]
 - [`QueryPoolCreateFlags`]
 - [`QueryType`]
 - [`StructureType`]

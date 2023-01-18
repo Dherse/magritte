@@ -12,12 +12,12 @@ typedef enum VkVideoCapabilityFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_CAPABILITY_FLAG_BITS_KHR`] - the decode or encode session supports protected content.
-- [`VK_VIDEO_CAPABILITY_FLAG_BITS_KHR`] - the DPB or Reconstructed Video Picture Resources for the video session  **may**  be created as a separate [`Image`] for each DPB picture. If not supported, the DPB  **must**  be created as single multi-layered image where each layer represents one of the DPB Video Picture Resources.
+- [`PROTECTED_CONTENT`] - the decode or encode session supports protected content.
+- [`SEPARATE_REFERENCE_IMAGES`] - the DPB or Reconstructed Video Picture Resources for the video session  **may**  be created as a separate [`Image`] for each DPB picture. If not supported, the DPB  **must**  be created as single multi-layered image where each layer represents one of the DPB Video Picture Resources.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoCapabilityFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoCapabilityFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

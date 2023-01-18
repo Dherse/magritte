@@ -34,7 +34,7 @@ typedef VkExportFenceCreateInfo VkExportFenceCreateInfoKHR;
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalFenceHandleTypeFlags]()
+- [`ExternalFenceHandleTypeFlags`]
 - [`StructureType`]
 
 # Notes and documentation

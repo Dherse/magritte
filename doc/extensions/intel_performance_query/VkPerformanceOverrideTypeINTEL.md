@@ -12,11 +12,11 @@ typedef enum VkPerformanceOverrideTypeINTEL {
 ```
 
 # Description
-- [`VK_PERFORMANCE_OVERRIDE_TYPE_INTEL`] turns all rendering operations into noop.
-- [`VK_PERFORMANCE_OVERRIDE_TYPE_INTEL`] stalls the stream of commands until all previously emitted commands have completed and all caches been flushed and invalidated.
+- [`NULL_HARDWARE`] turns all rendering operations into noop.
+- [`FLUSH_GPU_CACHES`] stalls the stream of commands until all previously emitted commands have completed and all caches been flushed and invalidated.
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`PerformanceOverrideInfoINTEL`]
 
 # Notes and documentation

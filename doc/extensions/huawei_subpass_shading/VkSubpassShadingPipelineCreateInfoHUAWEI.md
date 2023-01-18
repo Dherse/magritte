@@ -33,7 +33,7 @@ typedef struct VkSubpassShadingPipelineCreateInfoHUAWEI {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SUBPASS_SHADING_PIPELINE_CREATE_INFO_HUAWEI`
 
 # Related
-- [`huawei_subpass_shading`]
+- [`VK_HUAWEI_subpass_shading`]
 - [`RenderPass`]
 - [`StructureType`]
 

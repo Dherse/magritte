@@ -11,11 +11,11 @@ typedef enum VkDiscardRectangleModeEXT {
 ```
 
 # Description
-- [`VK_DISCARD_RECTANGLE_MODE_EXT`] specifies that the discard rectangle test is inclusive.
-- [`VK_DISCARD_RECTANGLE_MODE_EXT`] specifies that the discard rectangle test is exclusive.
+- [`INCLUSIVE`] specifies that the discard rectangle test is inclusive.
+- [`EXCLUSIVE`] specifies that the discard rectangle test is exclusive.
 
 # Related
-- [`ext_discard_rectangles`]
+- [`VK_EXT_discard_rectangles`]
 - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 
 # Notes and documentation

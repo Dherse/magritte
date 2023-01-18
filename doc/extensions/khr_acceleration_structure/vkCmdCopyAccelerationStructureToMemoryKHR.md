@@ -27,8 +27,8 @@ device address, and is executed on the device rather than the host.
 The output  **may**  not necessarily be bit-for-bit identical, but it can be
 equally used by either [`cmd_copy_memory_to_acceleration_structure_khr`] or
 [`copy_memory_to_acceleration_structure_khr`].The defined header structure for the serialized data consists of:
-- `VK_UUID_SIZE` bytes of data matching [`PhysicalDeviceIdProperties::driver_uuid`]
-- `VK_UUID_SIZE` bytes of data identifying the compatibility for comparison using [`get_device_acceleration_structure_compatibility_khr`]
+- [`UUID_SIZE`] bytes of data matching [`PhysicalDeviceIdProperties::driver_uuid`]
+- [`UUID_SIZE`] bytes of data identifying the compatibility for comparison using [`get_device_acceleration_structure_compatibility_khr`]
 - A 64-bit integer of the total size matching the value queried using `VK_QUERY_TYPE_ACCELERATION_STRUCTURE_SERIALIZATION_SIZE_KHR`
 - A 64-bit integer of the deserialized size to be passed in to [`AccelerationStructureCreateInfoKHR::size`]
 - A 64-bit integer of the count of the number of acceleration structure handles following. This will be zero for a bottom-level acceleration structure. For top-level acceleration structures this number is implementation-dependent; the number of and ordering of the handles may not match the instance descriptions which were used to build the acceleration structure.
@@ -62,7 +62,7 @@ according to the host endianness.
 ## Command Properties
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`CommandBuffer`]
 - [`CopyAccelerationStructureToMemoryInfoKHR`]
 

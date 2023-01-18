@@ -41,7 +41,7 @@ values used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_line_rasterization`]
+- [`VK_EXT_line_rasterization`]
 - [`CommandBuffer`]
 
 # Notes and documentation

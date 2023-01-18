@@ -34,7 +34,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES`
 
 # Related
-- [`ext_scalar_block_layout`]
+- [`VK_EXT_scalar_block_layout`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

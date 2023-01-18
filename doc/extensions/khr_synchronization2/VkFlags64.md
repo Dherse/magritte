@@ -9,7 +9,7 @@ typedef uint64_t VkFlags64;
 ```
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`Flags`]
 
 # Notes and documentation

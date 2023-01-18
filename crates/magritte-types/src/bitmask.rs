@@ -56,6 +56,19 @@ impl<'a> Bitmask<'a> {
         &self.origin
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Set the bitmask's origin.
     pub fn set_origin(&mut self, origin: Origin<'a>) {
         // Gate that ensures that we don't "downgrade" origins
@@ -68,7 +81,7 @@ impl<'a> Bitmask<'a> {
 
     /// Get a reference to the bitmask's of.
     pub fn bits(&self) -> Option<&str> {
-        self.bits.as_ref().map(|s| s as &str)
+        self.bits.as_deref()
     }
 
     /// Gets the storage type of this bitflag

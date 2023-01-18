@@ -39,7 +39,7 @@ This structure describes the following features:
 - [`variable_pointers_storage_buffer`] specifies whether the implementation supports the SPIR-V `VariablePointersStorageBuffer` capability. When this feature is not enabled, shader modules  **must**  not declare the `SPV_KHR_variable_pointers` extension or the `VariablePointersStorageBuffer` capability.
 - [`variable_pointers`] specifies whether the implementation supports the SPIR-V `VariablePointers` capability. When this feature is not enabled, shader modules  **must**  not declare the `VariablePointers` capability.
 - [`protected_memory`] specifies whether protected memory is supported.
-- [`sampler_ycbcr_conversion`] specifies whether the implementation supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](). If [`sampler_ycbcr_conversion`] is `VK_FALSE`, sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub> conversion  **must**  not be used.
+- [`sampler_ycbcr_conversion`] specifies whether the implementation supports [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](). If [`sampler_ycbcr_conversion`] is [`FALSE`], sampler Y′C<sub>B</sub>C<sub>R</sub> conversion is not supported, and samplers using sampler Y′C<sub>B</sub>C<sub>R</sub> conversion  **must**  not be used.
 - [`shader_draw_parameters`] specifies whether the implementation supports the SPIR-V `DrawParameters` capability. When this feature is not enabled, shader modules  **must**  not declare the `SPV_KHR_shader_draw_parameters` extension or the `DrawParameters` capability.
 If the [`PhysicalDeviceVulkan11Features`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to

@@ -67,7 +67,7 @@ Otherwise, this structure describes a set of indexed triangles determined by
 -    Each of [`index_data`], [`transform_data`], and [`vertex_data`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`Format`]

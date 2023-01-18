@@ -26,7 +26,13 @@ pub struct Const<'a> {
 impl Const<'static> {
     /// Creates a new constant from its type and value
     #[inline]
-    pub const fn new(original_name: String, name: String, ty: Ty<'static>, value: Expr<'static>, origin: Origin<'static>) -> Self {
+    pub const fn new(
+        original_name: String,
+        name: String,
+        ty: Ty<'static>,
+        value: Expr<'static>,
+        origin: Origin<'static>,
+    ) -> Self {
         Self {
             original_name: Cow::Owned(original_name),
             name,
@@ -52,6 +58,19 @@ impl<'a> Const<'a> {
     /// Get a reference to the constant's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the constant's origin.
@@ -141,6 +160,19 @@ impl<'a> ConstAlias<'a> {
     /// Get a reference to the alias's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the alias's origin.

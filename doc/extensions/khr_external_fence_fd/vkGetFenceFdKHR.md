@@ -37,7 +37,7 @@ the transference of the specified handle type, as described in
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`khr_external_fence_fd`]
+- [`VK_KHR_external_fence_fd`]
 - [`Device`]
 - [`FenceGetFdInfoKHR`]
 

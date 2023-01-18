@@ -96,7 +96,7 @@ the currently active pipeline.If the bound pipeline state object was also create
 ## Command Properties
 
 # Related
-- [`ext_extended_dynamic_state`]
+- [`VK_EXT_extended_dynamic_state`]
 - [`crate::vulkan1_3`]
 - [`Buffer`]
 - [`CommandBuffer`]

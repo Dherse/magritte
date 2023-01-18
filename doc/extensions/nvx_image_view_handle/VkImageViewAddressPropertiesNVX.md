@@ -24,7 +24,7 @@ typedef struct VkImageViewAddressPropertiesNVX {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`nvx_image_view_handle`]
+- [`VK_NVX_image_view_handle`]
 - [`DeviceAddress`]
 - [`DeviceSize`]
 - [`StructureType`]

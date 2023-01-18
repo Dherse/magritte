@@ -285,26 +285,6 @@ where
         &self.values[..]
     }
 
-    /// Removes the elements from the table if they do not match the predicate
-    pub fn drain_filter<F>(&mut self, predicate: F)
-    where
-        F: Fn(&T) -> bool,
-    {
-        let mut i = 0;
-        while i < self.len() {
-            if predicate(&self.values[i]) {
-                let name = self.values[i].name();
-                let pretty = self.values[i].pretty_name();
-
-                self.values.remove(i);
-                self.symbols.remove(&name);
-                self.symbols_pretty.remove(&pretty);
-            } else {
-                i += 1;
-            }
-        }
-    }
-
     /// Gets a reference to the first element
     pub fn first(&self) -> Option<&'_ T> {
         self.values.first()
@@ -328,6 +308,24 @@ where
     /// Does the symbol table contain an element with a certain key
     pub fn contains_key(&self, key: &str) -> bool {
         self.symbols.contains_key(key) || self.symbols_pretty.contains_key(key)
+    }
+
+    /// Updates the list of symbols of this table.
+    pub fn update_symbols(&mut self) {
+        self.symbols.clear();
+        self.symbols_pretty.clear();
+
+        for (i, value) in self.values.iter().enumerate() {
+            self.symbols.insert(value.name().clone(), i);
+            self.symbols_pretty.insert(value.pretty_name().clone(), i);
+        }
+    }
+
+    /// Keeps only the item validated by the predicate
+    pub fn retain<F: FnMut(&'_ T) -> bool>(&mut self, predicate: F) {
+        self.values.retain(predicate);
+
+        self.update_symbols();
     }
 }
 

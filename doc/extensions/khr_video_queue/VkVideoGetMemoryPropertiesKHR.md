@@ -25,7 +25,7 @@ typedef struct VkVideoGetMemoryPropertiesKHR {
 -  [`memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`MemoryRequirements2`]
 - [`StructureType`]
 - [`get_video_session_memory_requirements_khr`]

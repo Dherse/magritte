@@ -13,13 +13,13 @@ typedef enum VkSparseImageFormatFlagBits {
 ```
 
 # Description
-- [`VK_SPARSE_IMAGE_FORMAT_FLAG_BITS`] specifies that the image uses a single mip tail region for all array layers.
-- [`VK_SPARSE_IMAGE_FORMAT_FLAG_BITS`] specifies that the first mip level whose dimensions are not integer multiples of the corresponding dimensions of the sparse image block begins the mip tail region.
-- [`VK_SPARSE_IMAGE_FORMAT_FLAG_BITS`] specifies that the image uses non-standard sparse image block dimensions, and the `imageGranularity` values do not match the standard sparse image block dimensions for the given format.
+- [`SINGLE_MIPTAIL`] specifies that the image uses a single mip tail region for all array layers.
+- [`ALIGNED_MIP_SIZE`] specifies that the first mip level whose dimensions are not integer multiples of the corresponding dimensions of the sparse image block begins the mip tail region.
+- [`NONSTANDARD_BLOCK_SIZE`] specifies that the image uses non-standard sparse image block dimensions, and the `imageGranularity` values do not match the standard sparse image block dimensions for the given format.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkSparseImageFormatFlags]()
+- [`SparseImageFormatFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

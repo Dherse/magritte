@@ -27,7 +27,7 @@ one bit.The implementation  **must**  not return `DRM_FORMAT_MOD_INVALID` in
 [`drm_format_modifier_plane_count`]) is distinct from its *format planecount*
 (in the sense of [multi-planar](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion)
 Y′C<sub>B</sub>C<sub>R</sub> formats).
-In [VkImageAspectFlags](), each
+In [`ImageAspectFlags`], each
 `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` represents a *memory plane*
 and each `VK_IMAGE_ASPECT_PLANE*_i_*BIT` a *format plane*.An image’s set of *format planes* is an ordered partition of the image’s
  **content**  into separable groups of format components.
@@ -77,9 +77,9 @@ when the API specifies an explicit requirement on
 In all other cases, the *memory planecount* is ignored.
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`DrmFormatModifierPropertiesListEXT`]
-- [VkFormatFeatureFlags]()
+- [`FormatFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

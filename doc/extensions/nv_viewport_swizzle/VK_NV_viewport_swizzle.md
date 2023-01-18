@@ -38,22 +38,22 @@ example in the “Issues” section below.
 - [`PipelineViewportSwizzleStateCreateFlagsNV`]
 
 # New constants
-- `VK_NV_VIEWPORT_SWIZZLE_EXTENSION_NAME`
-- `VK_NV_VIEWPORT_SWIZZLE_SPEC_VERSION`
+- [`NV_VIEWPORT_SWIZZLE_EXTENSION_NAME`]
+- [`NV_VIEWPORT_SWIZZLE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SWIZZLE_STATE_CREATE_INFO_NV`
 
 # Known issues & F.A.Q.
 1) Where does viewport swizzling occur in the pipeline? **RESOLVED** : Despite being associated with the viewport, viewport swizzling
 must happen prior to the viewport transform.
 In particular, it needs to be performed before clipping and perspective
-division.The viewport mask expansion (`[`nv_viewport_array2`]`) and the
+division.The viewport mask expansion (`[`VK_NV_viewport_array2`]`) and the
 viewport swizzle could potentially be performed before or after transform
 feedback, but feeding back several viewports worth of primitives with
 different swizzles does not seem particularly useful.
 This specification applies the viewport mask and swizzle after transform
 feedback, and makes primitive queries only count each primitive once.2) Any interesting examples of how this extension,
-`[`nv_viewport_array2`]`, and
-`[`nv_geometry_shader_passthrough`]` can be used together in practice? **RESOLVED** : One interesting use case for this extension is for single-pass
+`[`VK_NV_viewport_array2`]`, and
+`[`VK_NV_geometry_shader_passthrough`]` can be used together in practice? **RESOLVED** : One interesting use case for this extension is for single-pass
 rendering to a cube map.
 In this example, the application would attach a cube map texture to a
 layered FBO where the six cube faces are treated as layers.

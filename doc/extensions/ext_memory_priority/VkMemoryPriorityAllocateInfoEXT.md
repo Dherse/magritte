@@ -28,7 +28,7 @@ device-local memory when the system is under memory pressure.If this structure i
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`
 
 # Related
-- [`ext_memory_priority`]
+- [`VK_EXT_memory_priority`]
 - [`StructureType`]
 
 # Notes and documentation

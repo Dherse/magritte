@@ -14,18 +14,18 @@ typedef struct VkSurfaceFullScreenExclusiveWin32InfoEXT {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`hmonitor`] is the Win32 `HMONITOR` handle identifying the display to create the surface with.
+- [`hmonitor`] is the Win32 [`HMONITOR`] handle identifying the display to create the surface with.
 
 # Description
 ## Valid Usage
--  [`hmonitor`] **must**  be a valid `HMONITOR`
+-  [`hmonitor`] **must**  be a valid [`HMONITOR`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 
 # Related
-- [`ext_full_screen_exclusive`]
-- [`khr_win32_surface`]
+- [`VK_EXT_full_screen_exclusive`]
+- [`VK_KHR_win32_surface`]
 - [`StructureType`]
 
 # Notes and documentation

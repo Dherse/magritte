@@ -31,7 +31,7 @@ VkResult vkCreateDebugReportCallbackEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_debug_report`]
+- [`VK_EXT_debug_report`]
 - [`AllocationCallbacks`]
 - [`DebugReportCallbackCreateInfoEXT`]
 - [`DebugReportCallbackEXT`]

@@ -20,7 +20,7 @@ identified by [`subpass_index`] was not created with
 `VK_IMAGE_CREATE_SAMPLE_LOCATIONS_COMPATIBLE_DEPTH_BIT_EXT` or if the
 subpass does not use a depth/stencil attachment, and
 [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`]
-is `VK_TRUE` then the values specified in [`sample_locations_info`] are
+is [`TRUE`] then the values specified in [`sample_locations_info`] are
 ignored.
 ## Valid Usage
 -  [`subpass_index`] **must**  be less than the `subpassCount` specified in [`RenderPassCreateInfo`] the render pass specified by [`RenderPassBeginInfo::render_pass`] was created with
@@ -29,7 +29,7 @@ ignored.
 -  [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`RenderPassSampleLocationsBeginInfoEXT`]
 - [`SampleLocationsInfoEXT`]
 

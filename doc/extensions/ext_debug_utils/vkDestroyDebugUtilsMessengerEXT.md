@@ -33,7 +33,7 @@ not executed in parallel with any Vulkan command that is also called with
 [`instance`] or child of [`instance`] as the dispatchable argument.
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`AllocationCallbacks`]
 - [`DebugUtilsMessengerEXT`]
 - [`Instance`]

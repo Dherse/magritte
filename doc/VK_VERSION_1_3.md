@@ -3,29 +3,29 @@
 # Description
 Vulkan Version 1.3 [promoted](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-compatibility-promotion) a
 number of key extensions into the core API:
-- `[`khr_copy_commands2`]`
-- `[`khr_dynamic_rendering`]`
-- `[`khr_format_feature_flags2`]`
-- `[`khr_maintenance4`]`
-- `[`khr_shader_integer_dot_product`]`
-- `[`khr_shader_non_semantic_info`]`
-- `[`khr_shader_terminate_invocation`]`
-- `[`khr_synchronization2`]`
-- `[`khr_zero_initialize_workgroup_memory`]`
-- `[`ext_4444_formats`]`
-- `[`ext_extended_dynamic_state`]`
-- `[`ext_extended_dynamic_state2`]`
-- `[`ext_image_robustness`]`
-- `[`ext_inline_uniform_block`]`
-- `[`ext_pipeline_creation_cache_control`]`
-- `[`ext_pipeline_creation_feedback`]`
-- `[`ext_private_data`]`
-- `[`ext_shader_demote_to_helper_invocation`]`
-- `[`ext_subgroup_size_control`]`
-- `[`ext_texel_buffer_alignment`]`
-- `[`ext_texture_compression_astc_hdr`]`
-- `[`ext_tooling_info`]`
-- `[`ext_ycbcr_2plane_444_formats`]`
+- `[`VK_KHR_copy_commands2`]`
+- `[`VK_KHR_dynamic_rendering`]`
+- `[`VK_KHR_format_feature_flags2`]`
+- `[`VK_KHR_maintenance4`]`
+- `[`VK_KHR_shader_integer_dot_product`]`
+- `[`VK_KHR_shader_non_semantic_info`]`
+- `[`VK_KHR_shader_terminate_invocation`]`
+- `[`VK_KHR_synchronization2`]`
+- `[`VK_KHR_zero_initialize_workgroup_memory`]`
+- `[`VK_EXT_4444_formats`]`
+- `[`VK_EXT_extended_dynamic_state`]`
+- `[`VK_EXT_extended_dynamic_state2`]`
+- `[`VK_EXT_image_robustness`]`
+- `[`VK_EXT_inline_uniform_block`]`
+- `[`VK_EXT_pipeline_creation_cache_control`]`
+- `[`VK_EXT_pipeline_creation_feedback`]`
+- `[`VK_EXT_private_data`]`
+- `[`VK_EXT_shader_demote_to_helper_invocation`]`
+- `[`VK_EXT_subgroup_size_control`]`
+- `[`VK_EXT_texel_buffer_alignment`]`
+- `[`VK_EXT_texture_compression_astc_hdr`]`
+- `[`VK_EXT_tooling_info`]`
+- `[`VK_EXT_ycbcr_2plane_444_formats`]`
 All differences in behavior between these extensions and the corresponding
 Vulkan 1.3 functionality are summarized in the [Vulkan 1.3 specification appendix](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions).
 ### New Macros
@@ -128,12 +128,12 @@ Vulkan 1.3 functionality are summarized in the [Vulkan 1.3 specification appendi
 
 - [`AccessFlags2`]
 - [`FormatFeatureFlags2`]
-- [VkPipelineCreationFeedbackFlags]()
+- [`PipelineCreationFeedbackFlags`]
 - [`PipelineStageFlags2`]
 - [`PrivateDataSlotCreateFlags`]
-- [VkRenderingFlags]()
-- [VkSubmitFlags]()
-- [VkToolPurposeFlags]()
+- [`RenderingFlags`]
+- [`SubmitFlags`]
+- [`ToolPurposeFlags`]
 
 ### New Enum Constants
 

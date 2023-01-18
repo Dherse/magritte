@@ -41,10 +41,10 @@ The handle types supported by [`handle_type`] are:
 - Host access to [`semaphore`] **must**  be externally synchronized
 
 # Related
-- [`fuchsia_external_semaphore`]
+- [`VK_FUCHSIA_external_semaphore`]
 - [`ExternalSemaphoreHandleTypeFlagBits`]
 - [`Semaphore`]
-- [VkSemaphoreImportFlags]()
+- [`SemaphoreImportFlags`]
 - [`StructureType`]
 - [`import_semaphore_zircon_handle_fuchsia`]
 

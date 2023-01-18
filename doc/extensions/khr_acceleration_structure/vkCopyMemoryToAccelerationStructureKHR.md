@@ -40,7 +40,7 @@ This command fulfills the same task as
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`CopyMemoryToAccelerationStructureInfoKHR`]
 - [`DeferredOperationKHR`]
 - [`Device`]

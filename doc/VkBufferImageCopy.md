@@ -34,7 +34,7 @@ Specifically:
 Because depth or stencil aspect buffer to image copies  **may**  require format
 conversions on some implementations, they are not supported on queues that
 do not support graphics.When copying to a depth aspect,
-and the `[`ext_depth_range_unrestricted`]` extension is not enabled,
+and the `[`VK_EXT_depth_range_unrestricted`]` extension is not enabled,
 the data in buffer memory  **must**  be in the range [0,1], or the
 resulting values are undefined.Copies are done layer by layer starting with image layer
 `baseArrayLayer` member of [`image_subresource`].

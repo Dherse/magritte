@@ -29,7 +29,7 @@ extended information via chained output structures.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_get_display_properties2`]
+- [`VK_KHR_get_display_properties2`]
 - [`DisplayProperties2KHR`]
 - [`PhysicalDevice`]
 

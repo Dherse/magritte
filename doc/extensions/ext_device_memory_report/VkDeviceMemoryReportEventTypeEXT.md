@@ -16,14 +16,14 @@ typedef enum VkDeviceMemoryReportEventTypeEXT {
 ```
 
 # Description
-- [`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_EXT`] specifies this event corresponds to the allocation of an internal device memory object or a [`DeviceMemory`].
-- [`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_EXT`] specifies this event corresponds to the deallocation of an internally-allocated device memory object or a [`DeviceMemory`].
-- [`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_EXT`] specifies this event corresponds to the import of an external memory object.
-- [`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_EXT`] specifies this event is the release of an imported external memory object.
-- [`VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_EXT`] specifies this event corresponds to the failed allocation of an internal device memory object or a [`DeviceMemory`].
+- [`ALLOCATE`] specifies this event corresponds to the allocation of an internal device memory object or a [`DeviceMemory`].
+- [`FREE`] specifies this event corresponds to the deallocation of an internally-allocated device memory object or a [`DeviceMemory`].
+- [`IMPORT`] specifies this event corresponds to the import of an external memory object.
+- [`UNIMPORT`] specifies this event is the release of an imported external memory object.
+- [`ALLOCATION_FAILED`] specifies this event corresponds to the failed allocation of an internal device memory object or a [`DeviceMemory`].
 
 # Related
-- [`ext_device_memory_report`]
+- [`VK_EXT_device_memory_report`]
 - [`DeviceMemoryReportCallbackDataEXT`]
 
 # Notes and documentation

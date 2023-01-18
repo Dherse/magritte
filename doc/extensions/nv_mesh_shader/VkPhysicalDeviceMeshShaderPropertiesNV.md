@@ -49,7 +49,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MESH_SHADER_PROPERTIES_NV`
 
 # Related
-- [`nv_mesh_shader`]
+- [`VK_NV_mesh_shader`]
 - [`StructureType`]
 
 # Notes and documentation

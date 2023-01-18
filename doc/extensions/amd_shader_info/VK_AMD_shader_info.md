@@ -33,8 +33,8 @@ information.
 - [`ShaderInfoTypeAMD`]
 
 # New constants
-- `VK_AMD_SHADER_INFO_EXTENSION_NAME`
-- `VK_AMD_SHADER_INFO_SPEC_VERSION`
+- [`AMD_SHADER_INFO_EXTENSION_NAME`]
+- [`AMD_SHADER_INFO_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-10-09 (Jaakko Konttinen)  - Initial revision

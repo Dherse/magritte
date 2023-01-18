@@ -25,7 +25,7 @@ typedef struct VkDebugMarkerMarkerInfoEXT {
 -  [`marker_name`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`StructureType`]
 - [`cmd_debug_marker_begin_ext`]
 - [`cmd_debug_marker_insert_ext`]

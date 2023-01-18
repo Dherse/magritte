@@ -10,7 +10,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSwapchainKHR)
 ```
 
 # Related
-- [`khr_swapchain`]
+- [`VK_KHR_swapchain`]
 - [`AcquireNextImageInfoKHR`]
 - [`BindImageMemorySwapchainInfoKHR`]
 - [`ImageSwapchainCreateInfoKHR`]

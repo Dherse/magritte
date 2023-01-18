@@ -25,17 +25,17 @@ typedef struct VkPipelineViewportShadingRateImageStateCreateInfoNV {
 
 # Description
 If this structure is not present, [`shading_rate_image_enable`] is considered
-to be `VK_FALSE`, and the shading rate image and palettes are not used.
+to be [`FALSE`], and the shading rate image and palettes are not used.
 ## Valid Usage
 -    If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport) feature is not enabled, [`viewport_count`] **must**  be `0` or `1`
 -  [`viewport_count`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_viewports`]
--    If [`shading_rate_image_enable`] is `VK_TRUE`, [`viewport_count`] **must**  be greater or equal to the [`viewport_count`] member of [`PipelineViewportStateCreateInfo`]
+-    If [`shading_rate_image_enable`] is [`TRUE`], [`viewport_count`] **must**  be greater or equal to the [`viewport_count`] member of [`PipelineViewportStateCreateInfo`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_SHADING_RATE_IMAGE_STATE_CREATE_INFO_NV`
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`Bool32`]
 - [`ShadingRatePaletteNV`]
 - [`StructureType`]

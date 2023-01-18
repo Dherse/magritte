@@ -28,7 +28,7 @@ typedef struct VkValidationFlagsEXT {
 -  [`disabled_validation_check_count`] **must**  be greater than `0`
 
 # Related
-- [`ext_validation_flags`]
+- [`VK_EXT_validation_flags`]
 - [`StructureType`]
 - [`ValidationCheckEXT`]
 

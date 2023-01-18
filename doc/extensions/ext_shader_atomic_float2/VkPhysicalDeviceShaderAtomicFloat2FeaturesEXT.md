@@ -52,7 +52,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT`
 
 # Related
-- [`ext_shader_atomic_float2`]
+- [`VK_EXT_shader_atomic_float2`]
 - [`Bool32`]
 - [`StructureType`]
 

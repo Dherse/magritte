@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`
 
 # Related
-- [`ext_line_rasterization`]
+- [`VK_EXT_line_rasterization`]
 - [`StructureType`]
 
 # Notes and documentation

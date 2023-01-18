@@ -1,9 +1,9 @@
 [VK_KHR_xlib_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_xlib_surface.html) - instance extension
 
 # Description
-The [`khr_xlib_surface`] extension is an instance extension.
+The [`VK_KHR_xlib_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to an X11 `Window`,
+the `[`VK_KHR_surface`]` extension) that refers to an X11 [`Window`],
 using the Xlib client-side library, as well as a query to determine support
 for rendering via Xlib.
 
@@ -15,7 +15,7 @@ for rendering via Xlib.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_xlib_surface] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_xlib_surface extension>>)
@@ -32,15 +32,15 @@ for rendering via Xlib.
 - [`XlibSurfaceCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_XLIB_SURFACE_EXTENSION_NAME`
-- `VK_KHR_XLIB_SURFACE_SPEC_VERSION`
+- [`KHR_XLIB_SURFACE_EXTENSION_NAME`]
+- [`KHR_XLIB_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.
 1) Does X11 need a way to query for compatibility between a particular
 physical device and a specific screen? This would be a more general query
 than [`get_physical_device_surface_support_khr`]; if it returned
-`VK_TRUE`, then the physical device could be assumed to support
+[`TRUE`], then the physical device could be assumed to support
 presentation to any window on that screen. **RESOLVED** : Yes, this is needed for toolkits that want to create a
 [`Device`] before creating a window.
 To ensure the query is reliable, it must be made against a particular X

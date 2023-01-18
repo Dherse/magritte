@@ -17,12 +17,12 @@ typedef struct VkWaylandSurfaceCreateInfoKHR {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is reserved for future use.
-- [`display`] and [`surface`] are pointers to the Wayland `wl_display` and `wl_surface` to associate the surface with.
+- [`display`] and [`surface`] are pointers to the Wayland [`wl_display`] and [`wl_surface`] to associate the surface with.
 
 # Description
 ## Valid Usage
--  [`display`] **must**  point to a valid Wayland `wl_display`
--  [`surface`] **must**  point to a valid Wayland `wl_surface`
+-  [`display`] **must**  point to a valid Wayland [`wl_display`]
+-  [`surface`] **must**  point to a valid Wayland [`wl_surface`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
@@ -30,7 +30,7 @@ typedef struct VkWaylandSurfaceCreateInfoKHR {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`khr_wayland_surface`]
+- [`VK_KHR_wayland_surface`]
 - [`StructureType`]
 - [`WaylandSurfaceCreateFlagsKHR`]
 - [`create_wayland_surface_khr`]

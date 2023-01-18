@@ -41,7 +41,7 @@ typedef struct VkBindAccelerationStructureMemoryInfoNV {
 -    Both of [`acceleration_structure`], and [`memory`] **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureNV`]
 - [`DeviceMemory`]
 - [`DeviceSize`]

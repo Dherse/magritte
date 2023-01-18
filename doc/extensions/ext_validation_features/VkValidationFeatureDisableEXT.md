@@ -19,17 +19,17 @@ typedef enum VkValidationFeatureDisableEXT {
 ```
 
 # Description
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that all validation checks are disabled.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that shader validation is disabled. This feature is enabled by default.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that thread safety validation is disabled. This feature is enabled by default.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that stateless parameter validation is disabled. This feature is enabled by default.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that object lifetime validation is disabled. This feature is enabled by default.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that core validation checks are disabled. This feature is enabled by default. If this feature is disabled, the shader validation and GPU-assisted validation features are also disabled.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that protection against duplicate non-dispatchable object handles is disabled. This feature is enabled by default.
-- [`VK_VALIDATION_FEATURE_DISABLE_EXT`] specifies that there will be no caching of shader validation results and every shader will be validated on every application execution. Shader validation caching is enabled by default.
+- [`ALL`] specifies that all validation checks are disabled.
+- [`SHADERS`] specifies that shader validation is disabled. This feature is enabled by default.
+- [`THREAD_SAFETY`] specifies that thread safety validation is disabled. This feature is enabled by default.
+- [`API_PARAMETERS`] specifies that stateless parameter validation is disabled. This feature is enabled by default.
+- [`OBJECT_LIFETIMES`] specifies that object lifetime validation is disabled. This feature is enabled by default.
+- [`CORE_CHECKS`] specifies that core validation checks are disabled. This feature is enabled by default. If this feature is disabled, the shader validation and GPU-assisted validation features are also disabled.
+- [`UNIQUE_HANDLES`] specifies that protection against duplicate non-dispatchable object handles is disabled. This feature is enabled by default.
+- [`SHADER_VALIDATION_CACHE`] specifies that there will be no caching of shader validation results and every shader will be validated on every application execution. Shader validation caching is enabled by default.
 
 # Related
-- [`ext_validation_features`]
+- [`VK_EXT_validation_features`]
 - [`ValidationFeaturesEXT`]
 
 # Notes and documentation

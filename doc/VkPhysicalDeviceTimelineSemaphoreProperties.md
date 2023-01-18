@@ -31,7 +31,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES`
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

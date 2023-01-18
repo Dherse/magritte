@@ -66,7 +66,7 @@ See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/h
 -    If a command recorded into any element of `pCommandBuffers` was a [`cmd_begin_query`] whose `queryPool` was created with a `queryType` of `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, the [profiling lock](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#profiling-lock) **must**  have been held continuously on the [`Device`] that [`queue`] was retrieved from, throughout recording of those command buffers
 -    Any resource created with `VK_SHARING_MODE_EXCLUSIVE` that is read by an operation specified by [`p_submits`] **must**  not be owned by any queue family other than the one which [`queue`] belongs to, at the time it is executed
 -    Any resource created with `VK_SHARING_MODE_CONCURRENT` that is accessed by an operation specified by [`p_submits`] **must**  have included the queue family of [`queue`] at resource creation time
--    If [`queue`] was not created with `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`, there  **must**  be no element of [`p_submits`] that includes an [`ProtectedSubmitInfo`] structure in its `pNext` chain with `protectedSubmit` equal to `VK_TRUE`
+-    If [`queue`] was not created with `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT`, there  **must**  be no element of [`p_submits`] that includes an [`ProtectedSubmitInfo`] structure in its `pNext` chain with `protectedSubmit` equal to [`TRUE`]
 
 ## Valid Usage (Implicit)
 -  [`queue`] **must**  be a valid [`Queue`] handle

@@ -37,8 +37,8 @@ reported in the corresponding element of
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 
 # Related
-- [`ext_image_drm_format_modifier`]
-- [`khr_format_feature_flags2`]
+- [`VK_EXT_image_drm_format_modifier`]
+- [`VK_KHR_format_feature_flags2`]
 - [`DrmFormatModifierProperties2EXT`]
 - [`StructureType`]
 

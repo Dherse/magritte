@@ -40,7 +40,7 @@ typedef struct VkGraphicsShaderGroupCreateInfoNV {
 -  [`stage_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`GraphicsPipelineShaderGroupsCreateInfoNV`]
 - [`PipelineShaderStageCreateInfo`]
 - [`PipelineTessellationStateCreateInfo`]

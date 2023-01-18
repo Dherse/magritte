@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV`
 
 # Related
-- [`nv_compute_shader_derivatives`]
+- [`VK_NV_compute_shader_derivatives`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -31,7 +31,7 @@ void vkDestroyAccelerationStructureKHR(
 - Host access to [`acceleration_structure`] **must**  be externally synchronized
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`AllocationCallbacks`]
 - [`Device`]

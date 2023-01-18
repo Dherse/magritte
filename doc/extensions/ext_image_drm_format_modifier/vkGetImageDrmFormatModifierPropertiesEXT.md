@@ -33,7 +33,7 @@ VkResult vkGetImageDrmFormatModifierPropertiesEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`Device`]
 - [`Image`]
 - [`ImageDrmFormatModifierPropertiesEXT`]

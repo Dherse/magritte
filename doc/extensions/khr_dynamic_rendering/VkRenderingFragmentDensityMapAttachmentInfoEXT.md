@@ -35,8 +35,8 @@ is treated as [`crate::Handle::null`].
 -  [`image_layout`] **must**  be a valid [`ImageLayout`] value
 
 # Related
-- [`ext_fragment_density_map`]
-- [`khr_dynamic_rendering`]
+- [`VK_EXT_fragment_density_map`]
+- [`VK_KHR_dynamic_rendering`]
 - [`ImageLayout`]
 - [`ImageView`]
 - [`StructureType`]

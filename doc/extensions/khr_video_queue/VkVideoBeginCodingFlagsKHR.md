@@ -7,7 +7,7 @@ typedef VkFlags VkVideoBeginCodingFlagsKHR;
 ```
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`VideoBeginCodingInfoKHR`]
 
 # Notes and documentation

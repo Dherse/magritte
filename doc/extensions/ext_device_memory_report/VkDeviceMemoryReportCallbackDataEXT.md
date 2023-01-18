@@ -43,7 +43,7 @@ types.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_device_memory_report`]
+- [`VK_EXT_device_memory_report`]
 - [`DeviceMemoryReportEventTypeEXT`]
 - [`DeviceMemoryReportFlagsEXT`]
 - [`DeviceSize`]

@@ -25,8 +25,8 @@ typedef VkPhysicalDeviceDriverProperties VkPhysicalDeviceDriverPropertiesKHR;
 
 # Description
 - [`driver_id`] is a unique identifier for the driver of the physical device.
-- [`driver_name`] is an array of `VK_MAX_DRIVER_NAME_SIZE``char` containing a null-terminated UTF-8 string which is the name of the driver.
-- [`driver_info`] is an array of `VK_MAX_DRIVER_INFO_SIZE``char` containing a null-terminated UTF-8 string with additional information about the driver.
+- [`driver_name`] is an array of [`MAX_DRIVER_NAME_SIZE`]`char` containing a null-terminated UTF-8 string which is the name of the driver.
+- [`driver_info`] is an array of [`MAX_DRIVER_INFO_SIZE`]`char` containing a null-terminated UTF-8 string with additional information about the driver.
 - [`conformance_version`] is the version of the Vulkan conformance test this driver is conformant against (see [`ConformanceVersion`]).
 If the [`PhysicalDeviceDriverProperties`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceProperties2`] structure passed to
@@ -37,7 +37,7 @@ processes, driver versions, and system reboots.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES`
 
 # Related
-- [`khr_driver_properties`]
+- [`VK_KHR_driver_properties`]
 - [`crate::vulkan1_2`]
 - [`ConformanceVersion`]
 - [`DriverId`]

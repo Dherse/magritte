@@ -45,14 +45,14 @@ typedef struct VkSurfaceCapabilities2EXT {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_display_surface_counter`]
-- [VkCompositeAlphaFlagsKHR]()
+- [`VK_EXT_display_surface_counter`]
+- [`CompositeAlphaFlagsKHR`]
 - [`Extent2D`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`StructureType`]
-- [VkSurfaceCounterFlagsEXT]()
+- [`SurfaceCounterFlagsEXT`]
 - [`SurfaceTransformFlagBitsKHR`]
-- [VkSurfaceTransformFlagsKHR]()
+- [`SurfaceTransformFlagsKHR`]
 - [`get_physical_device_surface_capabilities2_ext`]
 
 # Notes and documentation

@@ -72,7 +72,7 @@ typedef struct VkPipelineShaderStageCreateInfo {
 - [`ComputePipelineCreateInfo`]
 - [`GraphicsPipelineCreateInfo`]
 - [`GraphicsShaderGroupCreateInfoNV`]
-- [VkPipelineShaderStageCreateFlags]()
+- [`PipelineShaderStageCreateFlags`]
 - [`RayTracingPipelineCreateInfoKHR`]
 - [`RayTracingPipelineCreateInfoNV`]
 - [`ShaderModule`]

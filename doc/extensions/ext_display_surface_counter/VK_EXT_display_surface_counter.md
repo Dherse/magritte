@@ -14,7 +14,7 @@ It provides a mechanism to query support for such a counter from a
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_display`]`
+- Requires `[`VK_KHR_display`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_surface_counter] @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_display_surface_counter extension>>)
@@ -29,11 +29,11 @@ It provides a mechanism to query support for such a counter from a
 - [`SurfaceCounterFlagBitsEXT`]
 
 # New bitmasks
-- [VkSurfaceCounterFlagsEXT]()
+- [`SurfaceCounterFlagsEXT`]
 
 # New constants
-- `VK_EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME`
-- `VK_EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION`
+- [`EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME`]
+- [`EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES2_EXT`  - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_EXT`
 
 # Version history
@@ -47,7 +47,7 @@ It provides a mechanism to query support for such a counter from a
 # Related
 - [`SurfaceCapabilities2EXT`]
 - [`SurfaceCounterFlagBitsEXT`]
-- [VkSurfaceCounterFlagsEXT]()
+- [`SurfaceCounterFlagsEXT`]
 - [`get_physical_device_surface_capabilities2_ext`]
 
 # Notes and documentation

@@ -63,12 +63,12 @@ range queries](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html
 -    If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`Extent2D`]
 - [`StructureType`]
-- [VkVideoEncodeFlagsKHR]()
+- [`VideoEncodeFlagsKHR`]
 - [`VideoPictureResourceKHR`]
 - [`VideoReferenceSlotKHR`]
 - [`cmd_encode_video_khr`]

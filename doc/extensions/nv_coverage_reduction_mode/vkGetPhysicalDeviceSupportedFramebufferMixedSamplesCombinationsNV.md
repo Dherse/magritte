@@ -39,7 +39,7 @@ indicate that not all the supported values were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`nv_coverage_reduction_mode`]
+- [`VK_NV_coverage_reduction_mode`]
 - [`FramebufferMixedSamplesCombinationNV`]
 - [`PhysicalDevice`]
 

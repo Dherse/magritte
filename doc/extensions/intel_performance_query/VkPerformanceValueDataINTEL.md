@@ -25,7 +25,7 @@ The correct member of the union is determined by the associated
 [`PerformanceValueTypeINTEL`] value.
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`Bool32`]
 - [`PerformanceValueINTEL`]
 

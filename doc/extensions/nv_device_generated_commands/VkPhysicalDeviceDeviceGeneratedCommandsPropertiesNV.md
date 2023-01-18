@@ -42,7 +42,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`StructureType`]
 
 # Notes and documentation

@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugReportCallbackEXT)
 ```
 
 # Related
-- [`ext_debug_report`]
+- [`VK_EXT_debug_report`]
 - [`create_debug_report_callback_ext`]
 - [`destroy_debug_report_callback_ext`]
 

@@ -34,7 +34,7 @@ features.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM`
 
 # Related
-- [`arm_rasterization_order_attachment_access`]
+- [`VK_ARM_rasterization_order_attachment_access`]
 - [`Bool32`]
 - [`StructureType`]
 

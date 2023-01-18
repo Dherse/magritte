@@ -39,10 +39,10 @@ typedef enum VkImageAspectFlagBits {
 
 # Description
 - [`NONE`] specifies no image aspect, or the image aspect is not applicable.
-- [`VK_IMAGE_ASPECT_FLAG_BITS`] specifies the color aspect.
-- [`VK_IMAGE_ASPECT_FLAG_BITS`] specifies the depth aspect.
-- [`VK_IMAGE_ASPECT_FLAG_BITS`] specifies the stencil aspect.
-- [`VK_IMAGE_ASPECT_FLAG_BITS`] specifies the metadata aspect, used for [sparse resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory) operations.
+- [`COLOR`] specifies the color aspect.
+- [`DEPTH`] specifies the depth aspect.
+- [`STENCIL`] specifies the stencil aspect.
+- [`METADATA`] specifies the metadata aspect, used for [sparse resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory) operations.
 - [`PLANE0`] specifies plane 0 of a *multi-planar* image format.
 - [`PLANE1`] specifies plane 1 of a *multi-planar* image format.
 - [`PLANE2`] specifies plane 2 of a *multi-planar* image format.
@@ -55,7 +55,7 @@ typedef enum VkImageAspectFlagBits {
 - [`crate::vulkan1_0`]
 - [`BindImagePlaneMemoryInfo`]
 - [`DeviceImageMemoryRequirements`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`ImagePlaneMemoryRequirementsInfo`]
 
 # Notes and documentation

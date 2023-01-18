@@ -29,7 +29,7 @@ VkResult vkCreateHeadlessSurfaceEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`ext_headless_surface`]
+- [`VK_EXT_headless_surface`]
 - [`AllocationCallbacks`]
 - [`HeadlessSurfaceCreateInfoEXT`]
 - [`Instance`]

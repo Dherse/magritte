@@ -32,7 +32,7 @@ VkResult vkCreateIndirectCommandsLayoutNV(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`IndirectCommandsLayoutCreateInfoNV`]

@@ -31,7 +31,7 @@ corresponding implementation-dependent property.These are properties of the PCI 
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT`
 
 # Related
-- [`ext_pci_bus_info`]
+- [`VK_EXT_pci_bus_info`]
 - [`StructureType`]
 
 # Notes and documentation

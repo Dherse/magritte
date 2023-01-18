@@ -1,7 +1,7 @@
 [VK_KHR_sampler_mirror_clamp_to_edge](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_sampler_mirror_clamp_to_edge.html) - device extension
 
 # Description
-[`khr_sampler_mirror_clamp_to_edge`] extends the set of sampler address
+[`VK_KHR_sampler_mirror_clamp_to_edge`] extends the set of sampler address
 modes to include an additional mode
 (`VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE`) that effectively uses a
 texture map twice as large as the original image in which the additional
@@ -26,8 +26,8 @@ and r directions.
 - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_sampler_mirror_clamp_to_edge] @tobski%0A<<Here describe the issue or question you have about the VK_KHR_sampler_mirror_clamp_to_edge extension>>)
 
 # New constants
-- `VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME`
-- `VK_KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION`
+- [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_EXTENSION_NAME`]
+- [`KHR_SAMPLER_MIRROR_CLAMP_TO_EDGE_SPEC_VERSION`]
 - Extending [`SamplerAddressMode`]:  - `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE`  - `VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE_KHR`
 
 # Known issues & F.A.Q.

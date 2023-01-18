@@ -24,7 +24,7 @@ typedef struct VkShadingRatePaletteNV {
 -  [`shading_rate_palette_entry_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`PipelineViewportShadingRateImageStateCreateInfoNV`]
 - [`ShadingRatePaletteEntryNV`]
 - [`cmd_set_viewport_shading_rate_palette_nv`]

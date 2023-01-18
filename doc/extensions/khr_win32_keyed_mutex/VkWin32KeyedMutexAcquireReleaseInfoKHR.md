@@ -50,7 +50,7 @@ typedef struct VkWin32KeyedMutexAcquireReleaseInfoKHR {
 -    Both of the elements of [`acquire_syncs`], and the elements of [`release_syncs`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_win32_keyed_mutex`]
+- [`VK_KHR_win32_keyed_mutex`]
 - [`DeviceMemory`]
 - [`StructureType`]
 

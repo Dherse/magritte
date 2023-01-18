@@ -51,7 +51,7 @@ presentation of the first pixel in the new image to the user.
 -  [`swapchain_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_present_id`]
+- [`VK_KHR_present_id`]
 - [`StructureType`]
 
 # Notes and documentation

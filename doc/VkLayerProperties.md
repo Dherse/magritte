@@ -13,10 +13,10 @@ typedef struct VkLayerProperties {
 ```
 
 # Members
-- [`layer_name`] is an array of `VK_MAX_EXTENSION_NAME_SIZE``char` containing a null-terminated UTF-8 string which is the name of the layer. Use this name in the `ppEnabledLayerNames` array passed in the [`InstanceCreateInfo`] structure to enable this layer for an instance.
+- [`layer_name`] is an array of [`MAX_EXTENSION_NAME_SIZE`]`char` containing a null-terminated UTF-8 string which is the name of the layer. Use this name in the `ppEnabledLayerNames` array passed in the [`InstanceCreateInfo`] structure to enable this layer for an instance.
 - [`spec_version`] is the Vulkan version the layer was written to, encoded as described in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-coreversions-versionnumbers).
 - [`implementation_version`] is the version of this layer. It is an integer, increasing with backward compatible changes.
-- [`description`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which provides additional details that  **can**  be used by the application to identify the layer.
+- [`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which provides additional details that  **can**  be used by the application to identify the layer.
 
 # Related
 - [`crate::vulkan1_0`]

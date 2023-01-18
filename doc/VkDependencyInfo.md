@@ -47,10 +47,10 @@ family transfer operations](https://www.khronos.org/registry/vulkan/specs/1.3-ex
 -    If [`image_memory_barrier_count`] is not `0`, [`image_memory_barriers`] **must**  be a valid pointer to an array of [`image_memory_barrier_count`] valid [`ImageMemoryBarrier2`] structures
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`BufferMemoryBarrier2`]
-- [VkDependencyFlags]()
+- [`DependencyFlags`]
 - [`ImageMemoryBarrier2`]
 - [`MemoryBarrier2`]
 - [`StructureType`]

@@ -51,10 +51,10 @@ arguments to [`get_physical_device_image_format_properties`], with
 # Related
 - [`crate::vulkan1_1`]
 - [`Format`]
-- [VkImageCreateFlags]()
+- [`ImageCreateFlags`]
 - [`ImageTiling`]
 - [`ImageType`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`StructureType`]
 - [`get_physical_device_image_format_properties2`]
 - [`get_physical_device_image_format_properties2_khr`]

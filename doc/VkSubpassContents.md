@@ -12,8 +12,8 @@ typedef enum VkSubpassContents {
 ```
 
 # Description
-- [`VK_SUBPASS_CONTENTS`] specifies that the contents of the subpass will be recorded inline in the primary command buffer, and secondary command buffers  **must**  not be executed within the subpass.
-- [`VK_SUBPASS_CONTENTS`] specifies that the contents are recorded in secondary command buffers that will be called from the primary command buffer, and [`cmd_execute_commands`] is the only valid command on the command buffer until [`cmd_next_subpass`] or [`cmd_end_render_pass`].
+- [`INLINE`] specifies that the contents of the subpass will be recorded inline in the primary command buffer, and secondary command buffers  **must**  not be executed within the subpass.
+- [`SECONDARY_COMMAND_BUFFERS`] specifies that the contents are recorded in secondary command buffers that will be called from the primary command buffer, and [`cmd_execute_commands`] is the only valid command on the command buffer until [`cmd_next_subpass`] or [`cmd_end_render_pass`].
 
 # Related
 - [`crate::vulkan1_0`]

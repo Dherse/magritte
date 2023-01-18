@@ -2,4 +2,4 @@
 information for this shader group.
 Ignored if
 [`PhysicalDeviceRayTracingPipelineFeaturesKHR`]::`rayTracingPipelineShaderGroupHandleCaptureReplay`
-is `VK_FALSE`.
+is [`FALSE`].

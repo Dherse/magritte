@@ -37,7 +37,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_FEATURES_KHR`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`Bool32`]
 - [`StructureType`]
 

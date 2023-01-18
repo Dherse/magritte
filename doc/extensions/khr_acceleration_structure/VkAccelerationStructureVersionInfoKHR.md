@@ -20,10 +20,10 @@ typedef struct VkAccelerationStructureVersionInfoKHR {
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_VERSION_INFO_KHR`
 -  [`p_next`] **must**  be `NULL`
--  [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.70625em;vertical-align:-0.09514em;"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord mathtt">E</span></span></span></span></span>`uint8_t` values
+-  [`version_data`] **must**  be a valid pointer to an array of <span class="katex"><span aria-hidden="true" class="katex-html"><span class="base"><span style="height:0.72777em;vertical-align:-0.08333em;" class="strut"></span><span class="mord">2</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span><span class="mbin">×</span><span style="margin-right:0.2222222222222222em;" class="mspace"></span></span><span class="base"><span style="height:0.70625em;vertical-align:-0.09514em;" class="strut"></span><span class="mord"><span class="mord mathtt">V</span><span class="mord mathtt">K</span><span class="mord mathtt">_</span><span class="mord mathtt">U</span><span class="mord mathtt">U</span><span class="mord mathtt">I</span><span class="mord mathtt">D</span><span class="mord mathtt">_</span><span class="mord mathtt">S</span><span class="mord mathtt">I</span><span class="mord mathtt">Z</span><span class="mord mathtt">E</span></span></span></span></span>`uint8_t` values
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`StructureType`]
 - [`get_device_acceleration_structure_compatibility_khr`]
 

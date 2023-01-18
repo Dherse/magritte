@@ -29,12 +29,12 @@ The callback  **may**  be called from multiple threads simultaneously.The callba
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`
 -  [`flags`] **must**  be `0`
--  [`pfn_user_callback`] **must**  be a valid [PFN_vkDeviceMemoryReportCallbackEXT]() value
+-  [`pfn_user_callback`] **must**  be a valid [`PFNDeviceMemoryReportCallbackEXT`] value
 -  [`user_data`] **must**  be a pointer value
 
 # Related
-- [PFN_vkDeviceMemoryReportCallbackEXT]()
-- [`ext_device_memory_report`]
+- [`PFNDeviceMemoryReportCallbackEXT`]
+- [`VK_EXT_device_memory_report`]
 - [`DeviceMemoryReportFlagsEXT`]
 - [`StructureType`]
 

@@ -27,7 +27,7 @@ VkResult vkGetImageViewAddressNVX(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_UNKNOWN`
 
 # Related
-- [`nvx_image_view_handle`]
+- [`VK_NVX_image_view_handle`]
 - [`Device`]
 - [`ImageView`]
 - [`ImageViewAddressPropertiesNVX`]

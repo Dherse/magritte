@@ -23,8 +23,8 @@ typedef VkPointClippingBehavior VkPointClippingBehaviorKHR;
 ```
 
 # Description
-- [`VK_POINT_CLIPPING_BEHAVIOR`] specifies that the primitive is discarded if the vertex lies outside any clip plane, including the planes bounding the view volume.
-- [`VK_POINT_CLIPPING_BEHAVIOR`] specifies that the primitive is discarded only if the vertex lies outside any user clip plane.
+- [`ALL_CLIP_PLANES`] specifies that the primitive is discarded if the vertex lies outside any clip plane, including the planes bounding the view volume.
+- [`USER_CLIP_PLANES_ONLY`] specifies that the primitive is discarded only if the vertex lies outside any user clip plane.
 
 # Related
 - [`crate::vulkan1_1`]

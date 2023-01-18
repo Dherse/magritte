@@ -17,8 +17,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_ballot] @dominikwitczakamd%0A<<Here describe the issue or question you have about the VK_AMD_shader_ballot extension>>)
 
 # New constants
-- `VK_AMD_SHADER_BALLOT_EXTENSION_NAME`
-- `VK_AMD_SHADER_BALLOT_SPEC_VERSION`
+- [`AMD_SHADER_BALLOT_EXTENSION_NAME`]
+- [`AMD_SHADER_BALLOT_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-09-19 (Dominik Witczak)  - Initial draft

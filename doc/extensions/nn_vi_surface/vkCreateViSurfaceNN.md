@@ -44,7 +44,7 @@ matching the result of a call to
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 # Related
-- [`nn_vi_surface`]
+- [`VK_NN_vi_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`SurfaceKHR`]

@@ -40,7 +40,7 @@ than oversubscribing the machine.
 -  [`operation`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`khr_deferred_host_operations`]
+- [`VK_KHR_deferred_host_operations`]
 - [`DeferredOperationKHR`]
 - [`Device`]
 

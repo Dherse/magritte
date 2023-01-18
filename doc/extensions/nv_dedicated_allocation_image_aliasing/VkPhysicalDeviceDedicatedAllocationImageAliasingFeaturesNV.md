@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
 
 # Related
-- [`nv_dedicated_allocation_image_aliasing`]
+- [`VK_NV_dedicated_allocation_image_aliasing`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -4,4 +4,4 @@
  **must**  be set dynamically with [`cmd_set_line_stipple_ext`] before any
 draws are performed with a pipeline state with
 [`PipelineRasterizationLineStateCreateInfoEXT`] member
-`stippledLineEnable` set to `VK_TRUE`.
+`stippledLineEnable` set to [`TRUE`].

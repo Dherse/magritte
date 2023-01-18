@@ -1,0 +1,1 @@
+[`PIPELINE_STAGE2_NONE`] specifies no stages of execution.

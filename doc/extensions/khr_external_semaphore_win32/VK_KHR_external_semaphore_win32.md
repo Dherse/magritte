@@ -14,7 +14,7 @@ import semaphore payload from Windows handles.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_semaphore`]`
+- Requires `[`VK_KHR_external_semaphore`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_win32] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_external_semaphore_win32 extension>>)
@@ -30,8 +30,8 @@ import semaphore payload from Windows handles.
 - Extending [`SubmitInfo`]:  - [`D3d12FenceSubmitInfoKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION`
+- [`KHR_EXTERNAL_SEMAPHORE_WIN32_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_SEMAPHORE_WIN32_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_D3D12_FENCE_SUBMIT_INFO_KHR`  - `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_SEMAPHORE_GET_WIN32_HANDLE_INFO_KHR`
 
 # Known issues & F.A.Q.

@@ -31,7 +31,7 @@ added for extensibility.
 - Host access to [`mode`] **must**  be externally synchronized
 
 # Related
-- [`khr_get_display_properties2`]
+- [`VK_KHR_get_display_properties2`]
 - [`DisplayModeKHR`]
 - [`StructureType`]
 - [`get_display_plane_capabilities2_khr`]

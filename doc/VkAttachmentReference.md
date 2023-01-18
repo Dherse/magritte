@@ -11,12 +11,12 @@ typedef struct VkAttachmentReference {
 ```
 
 # Members
-- [`attachment`] is either an integer value identifying an attachment at the corresponding index in [`RenderPassCreateInfo::attachments`], or `VK_ATTACHMENT_UNUSED` to signify that this attachment is not used.
+- [`attachment`] is either an integer value identifying an attachment at the corresponding index in [`RenderPassCreateInfo::attachments`], or [`ATTACHMENT_UNUSED`] to signify that this attachment is not used.
 - [`layout`] is a [`ImageLayout`] value specifying the layout the attachment uses during the subpass.
 
 # Description
 ## Valid Usage
--    If [`attachment`] is not `VK_ATTACHMENT_UNUSED`, [`layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`, `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
+-    If [`attachment`] is not [`ATTACHMENT_UNUSED`], [`layout`] **must**  not be `VK_IMAGE_LAYOUT_UNDEFINED`, `VK_IMAGE_LAYOUT_PREINITIALIZED`, `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR`, `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL`, `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL`, `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL`, or `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL`
 
 ## Valid Usage (Implicit)
 -  [`layout`] **must**  be a valid [`ImageLayout`] value

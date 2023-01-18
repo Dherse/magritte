@@ -1,4 +1,4 @@
-[`persistent`]: If this is `VK_TRUE`, the display engine will
+[`persistent`]: If this is [`TRUE`], the display engine will
 enable buffered mode on displays that support it.
 This allows the display engine to stop sending content to the display
 until a new image is presented.

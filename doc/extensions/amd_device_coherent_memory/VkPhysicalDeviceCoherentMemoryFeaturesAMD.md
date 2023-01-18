@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
 
 # Related
-- [`amd_device_coherent_memory`]
+- [`VK_AMD_device_coherent_memory`]
 - [`Bool32`]
 - [`StructureType`]
 

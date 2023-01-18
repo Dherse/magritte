@@ -17,7 +17,7 @@ VkResult vkWaitForFences(
 - [`device`] is the logical device that owns the fences.
 - [`fence_count`] is the number of fences to wait on.
 - [`p_fences`] is a pointer to an array of [`fence_count`] fence handles.
-- [`wait_all`] is the condition that  **must**  be satisfied to successfully unblock the wait. If [`wait_all`] is `VK_TRUE`, then the condition is that all fences in [`p_fences`] are signaled. Otherwise, the condition is that at least one fence in [`p_fences`] is signaled.
+- [`wait_all`] is the condition that  **must**  be satisfied to successfully unblock the wait. If [`wait_all`] is [`TRUE`], then the condition is that all fences in [`p_fences`] are signaled. Otherwise, the condition is that at least one fence in [`p_fences`] is signaled.
 - [`timeout`] is the timeout period in units of nanoseconds. [`timeout`] is adjusted to the closest value allowed by the implementation-dependent timeout accuracy, which  **may**  be substantially longer than one nanosecond, and  **may**  be longer than the requested period.
 
 # Description

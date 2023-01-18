@@ -15,7 +15,7 @@ VkResult vkGetDeviceGroupSurfacePresentModes2EXT(
 # Parameters
 - [`device`] is the logical device.
 - [`p_surface_info`] is a pointer to a [`PhysicalDeviceSurfaceInfo2KHR`] structure describing the surface and other fixed parameters that would be consumed by [`create_swapchain_khr`].
-- [`p_modes`] is a pointer to a [VkDeviceGroupPresentModeFlagsKHR]() in which the supported device group present modes for the surface are returned.
+- [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported device group present modes for the surface are returned.
 
 # Description
 [`get_device_group_surface_present_modes2_ext`] behaves similarly to
@@ -27,18 +27,18 @@ extended inputs via chained input structures.
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
 -  [`p_surface_info`] **must**  be a valid pointer to a valid [`PhysicalDeviceSurfaceInfo2KHR`] structure
--  [`p_modes`] **must**  be a valid pointer to a [VkDeviceGroupPresentModeFlagsKHR]() value
+-  [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
 
 ## Return Codes
 *   - `VK_SUCCESS` 
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`ext_full_screen_exclusive`]
-- [`khr_device_group`]
+- [`VK_EXT_full_screen_exclusive`]
+- [`VK_KHR_device_group`]
 - [`crate::vulkan1_1`]
 - [`Device`]
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 - [`PhysicalDeviceSurfaceInfo2KHR`]
 
 # Notes and documentation

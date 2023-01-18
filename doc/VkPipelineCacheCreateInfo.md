@@ -34,7 +34,7 @@ typedef struct VkPipelineCacheCreateInfo {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkPipelineCacheCreateFlags]()
+- [`PipelineCacheCreateFlags`]
 - [`StructureType`]
 - [`create_pipeline_cache`]
 

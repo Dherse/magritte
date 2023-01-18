@@ -38,8 +38,8 @@ are used to determine the memory that the image is bound to, instead of
 - Host access to [`swapchain`] **must**  be externally synchronized
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`StructureType`]
 - [`SwapchainKHR`]

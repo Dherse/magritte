@@ -42,7 +42,7 @@ void vkCmdBindPipelineShaderGroupNV(
 ## Command Properties
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`CommandBuffer`]
 - [`Pipeline`]
 - [`PipelineBindPoint`]

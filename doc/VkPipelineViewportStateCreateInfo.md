@@ -36,7 +36,7 @@ typedef struct VkPipelineViewportStateCreateInfo {
 -    If the graphics pipeline is being created without `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` and `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set then [`scissor_count`] and [`viewport_count`] **must**  be identical
 -    If the graphics pipeline is being created with `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT` set then [`viewport_count`] **must**  be `0`, otherwise it  **must**  be greater than `0`
 -    If the graphics pipeline is being created with `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT` set then [`scissor_count`] **must**  be `0`, otherwise it  **must**  be greater than `0`
--    If the `viewportWScalingEnable` member of a [`PipelineViewportWScalingStateCreateInfoNV`] structure included in the [`p_next`] chain is `VK_TRUE`, the [`viewport_count`] member of the [`PipelineViewportWScalingStateCreateInfoNV`] structure  **must**  be greater than or equal to [`PipelineViewportStateCreateInfo`]::[`viewport_count`]
+-    If the `viewportWScalingEnable` member of a [`PipelineViewportWScalingStateCreateInfoNV`] structure included in the [`p_next`] chain is [`TRUE`], the [`viewport_count`] member of the [`PipelineViewportWScalingStateCreateInfoNV`] structure  **must**  be greater than or equal to [`PipelineViewportStateCreateInfo`]::[`viewport_count`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO`

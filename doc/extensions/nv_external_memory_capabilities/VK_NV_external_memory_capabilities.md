@@ -17,7 +17,7 @@ a given set of use cases.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`khr_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+- *Deprecated* by `[`VK_KHR_external_memory_capabilities`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_capabilities] @cubanismo%0A<<Here describe the issue or question you have about the VK_NV_external_memory_capabilities extension>>)
@@ -33,12 +33,12 @@ a given set of use cases.
 - [`ExternalMemoryHandleTypeFlagBitsNV`]
 
 # New bitmasks
-- [VkExternalMemoryFeatureFlagsNV]()
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`ExternalMemoryFeatureFlagsNV`]
+- [`ExternalMemoryHandleTypeFlagsNV`]
 
 # New constants
-- `VK_NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`
-- `VK_NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`
+- [`NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
+- [`NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) Why do so many external memory capabilities need to be queried on a
@@ -67,15 +67,15 @@ the core spec and some in extensions
 # Other information
 * 2016-08-19
 * No known IP claims.
-*   - Interacts with Vulkan 1.1.  - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts with `[`nv_dedicated_allocation`]`. 
+*   - Interacts with Vulkan 1.1.  - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts with `[`VK_NV_dedicated_allocation`]`. 
 *   - James Jones, NVIDIA
 
 # Related
 - [`ExternalImageFormatPropertiesNV`]
 - [`ExternalMemoryFeatureFlagBitsNV`]
-- [VkExternalMemoryFeatureFlagsNV]()
+- [`ExternalMemoryFeatureFlagsNV`]
 - [`ExternalMemoryHandleTypeFlagBitsNV`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`ExternalMemoryHandleTypeFlagsNV`]
 - [`get_physical_device_external_image_format_properties_nv`]
 
 # Notes and documentation

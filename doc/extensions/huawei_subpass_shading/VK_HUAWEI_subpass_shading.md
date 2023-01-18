@@ -16,7 +16,7 @@ implementation.The `GlobalInvocationId.xy` of a subpass shading pipeline is equa
 the [`Rect2D`] of the
 [`RenderPassBeginInfo::render_area`].
 `GlobalInvocationId.z` is mapped to the Layer if
-`[`ext_shader_viewport_index_layer`]` is supported.
+`[`VK_EXT_shader_viewport_index_layer`]` is supported.
 The `GlobalInvocationId.xy` is equal to the index of the local workgroup
 multiplied by the size of the local workgroup plus the
 `LocalInvocationId` and the [`Rect2D`] of the
@@ -31,8 +31,8 @@ multiplied by the size of the local workgroup plus the
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_create_renderpass2`]`
-- Requires `[`khr_synchronization2`]`
+- Requires `[`VK_KHR_create_renderpass2`]`
+- Requires `[`VK_KHR_synchronization2`]`
 
 # Contacts
 - Hueilong Wang [wyvernathuawei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_subpass_shading] @wyvernathuawei%0A<<Here describe the issue or question you have about the VK_HUAWEI_subpass_shading extension>>)
@@ -47,8 +47,8 @@ multiplied by the size of the local workgroup plus the
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceSubpassShadingPropertiesHUAWEI`]
 
 # New constants
-- `VK_HUAWEI_SUBPASS_SHADING_EXTENSION_NAME`
-- `VK_HUAWEI_SUBPASS_SHADING_SPEC_VERSION`
+- [`HUAWEI_SUBPASS_SHADING_EXTENSION_NAME`]
+- [`HUAWEI_SUBPASS_SHADING_SPEC_VERSION`]
 - Extending [`PipelineBindPoint`]:  - `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI` 
 - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_SUBPASS_SHADING_BIT_HUAWEI` 
 - Extending [`ShaderStageFlagBits`]:  - `VK_SHADER_STAGE_SUBPASS_SHADING_BIT_HUAWEI` 

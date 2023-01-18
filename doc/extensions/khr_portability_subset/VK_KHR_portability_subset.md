@@ -30,7 +30,7 @@ for non-conformant portable behavior.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 -  **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header) of provisional header files for enablement and stability details.**
 
 # Contacts
@@ -41,8 +41,8 @@ for non-conformant portable behavior.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePortabilitySubsetPropertiesKHR`]
 
 # New constants
-- `VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME`
-- `VK_KHR_PORTABILITY_SUBSET_SPEC_VERSION`
+- [`KHR_PORTABILITY_SUBSET_EXTENSION_NAME`]
+- [`KHR_PORTABILITY_SUBSET_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_PROPERTIES_KHR`
 
 # Known issues & F.A.Q.

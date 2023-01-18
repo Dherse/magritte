@@ -52,7 +52,7 @@ while the last label in each list will be the most recent.
 -    If [`object_count`] is not `0`, [`objects`] **must**  be a valid pointer to an array of [`object_count`] valid [`DebugUtilsObjectNameInfoEXT`] structures
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsLabelEXT`]
 - [`DebugUtilsMessengerCallbackDataFlagsEXT`]
 - [`DebugUtilsObjectNameInfoEXT`]

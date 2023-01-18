@@ -26,7 +26,7 @@ typedef struct VkViewportSwizzleNV {
 -  [`w`] **must**  be a valid [`ViewportCoordinateSwizzleNV`] value
 
 # Related
-- [`nv_viewport_swizzle`]
+- [`VK_NV_viewport_swizzle`]
 - [`PipelineViewportSwizzleStateCreateInfoNV`]
 - [`ViewportCoordinateSwizzleNV`]
 

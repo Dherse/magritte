@@ -52,7 +52,7 @@ values used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`nv_scissor_exclusive`]
+- [`VK_NV_scissor_exclusive`]
 - [`CommandBuffer`]
 - [`Rect2D`]
 

@@ -21,7 +21,7 @@ as the similarly named parameters of [`cmd_draw_mesh_tasks_nv`].
 -  [`task_count`] **must**  be less than or equal to [`PhysicalDeviceMeshShaderPropertiesNV::max_draw_mesh_tasks_count`]
 
 # Related
-- [`nv_mesh_shader`]
+- [`VK_NV_mesh_shader`]
 - [`cmd_draw_mesh_tasks_indirect_nv`]
 
 # Notes and documentation

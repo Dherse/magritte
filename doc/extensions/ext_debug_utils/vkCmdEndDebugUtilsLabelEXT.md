@@ -43,7 +43,7 @@ within the command buffer being actively recorded.
 ## Command Properties
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`CommandBuffer`]
 
 # Notes and documentation

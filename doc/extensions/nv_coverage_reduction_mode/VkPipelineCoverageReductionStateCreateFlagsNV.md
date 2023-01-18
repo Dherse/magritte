@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineCoverageReductionStateCreateFlagsNV;
 ```
 
 # Related
-- [`nv_coverage_reduction_mode`]
+- [`VK_NV_coverage_reduction_mode`]
 - [`PipelineCoverageReductionStateCreateInfoNV`]
 
 # Notes and documentation

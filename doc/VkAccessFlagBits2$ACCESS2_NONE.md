@@ -1,0 +1,1 @@
+[`ACCESS2_NONE`] specifies no accesses.

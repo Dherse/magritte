@@ -43,8 +43,8 @@ the corresponding fields of
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
-- [`khr_format_feature_flags2`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
+- [`VK_KHR_format_feature_flags2`]
 - [`ChromaLocation`]
 - [`ComponentMapping`]
 - [`Format`]

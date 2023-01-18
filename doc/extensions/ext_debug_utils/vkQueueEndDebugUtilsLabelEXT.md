@@ -23,7 +23,7 @@ The calls to [`queue_begin_debug_utils_label_ext`] and
 ## Command Properties
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`Queue`]
 
 # Notes and documentation

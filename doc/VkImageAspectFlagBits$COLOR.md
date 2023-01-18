@@ -1,0 +1,1 @@
+[`COLOR`] specifies the color aspect.

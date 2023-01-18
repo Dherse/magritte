@@ -17,7 +17,7 @@ The members of the [`PhysicalDeviceDepthClipControlFeaturesEXT`]
 structure describe the following features:
 
 # Description
-- [`depth_clip_control`] indicates that the implementation supports setting [`PipelineViewportDepthClipControlCreateInfoEXT::negative_one_to_one`] to `VK_TRUE`.
+- [`depth_clip_control`] indicates that the implementation supports setting [`PipelineViewportDepthClipControlCreateInfoEXT::negative_one_to_one`] to [`TRUE`].
 If the [`PhysicalDeviceDepthClipControlFeaturesEXT`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to
 [`get_physical_device_features2`], it is filled in to indicate whether each
@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`
 
 # Related
-- [`ext_depth_clip_control`]
+- [`VK_EXT_depth_clip_control`]
 - [`Bool32`]
 - [`StructureType`]
 

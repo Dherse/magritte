@@ -26,7 +26,7 @@ typedef VkSubpassEndInfo VkSubpassEndInfoKHR;
 -    The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 
 # Related
-- [`khr_create_renderpass2`]
+- [`VK_KHR_create_renderpass2`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 - [`cmd_end_render_pass2`]

@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PAGEABLE_DEVICE_LOCAL_MEMORY_FEATURES_EXT`
 
 # Related
-- [`ext_pageable_device_local_memory`]
+- [`VK_EXT_pageable_device_local_memory`]
 - [`Bool32`]
 - [`StructureType`]
 

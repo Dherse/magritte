@@ -25,7 +25,7 @@ typedef struct VkShaderModuleValidationCacheCreateInfoEXT {
 -  [`validation_cache`] **must**  be a valid [`ValidationCacheEXT`] handle
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`StructureType`]
 - [`ValidationCacheEXT`]
 

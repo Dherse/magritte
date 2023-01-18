@@ -27,7 +27,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
 
 # Related
-- [`ext_robustness2`]
+- [`VK_EXT_robustness2`]
 - [`DeviceSize`]
 - [`StructureType`]
 

@@ -12,11 +12,11 @@ typedef enum VkAccelerationStructureCompatibilityKHR {
 ```
 
 # Description
-- [`VK_ACCELERATION_STRUCTURE_COMPATIBILITY_KHR`] if the `pVersionData` version acceleration structure is compatible with `device`.
-- [`VK_ACCELERATION_STRUCTURE_COMPATIBILITY_KHR`] if the `pVersionData` version acceleration structure is not compatible with `device`.
+- [`COMPATIBLE`] if the `pVersionData` version acceleration structure is compatible with `device`.
+- [`INCOMPATIBLE`] if the `pVersionData` version acceleration structure is not compatible with `device`.
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`get_device_acceleration_structure_compatibility_khr`]
 
 # Notes and documentation

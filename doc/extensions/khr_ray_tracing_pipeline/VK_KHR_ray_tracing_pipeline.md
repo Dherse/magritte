@@ -23,8 +23,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`khr_spirv_1_4`]`
-- Requires `[`khr_acceleration_structure`]`
+- Requires `[`VK_KHR_spirv_1_4`]`
+- Requires `[`VK_KHR_acceleration_structure`]`
 
 # Contacts
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_tracing_pipeline] @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_tracing_pipeline extension>>)
@@ -52,9 +52,9 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - [`ShaderGroupShaderKHR`]
 
 # New constants
-- `VK_KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME`
-- `VK_KHR_RAY_TRACING_PIPELINE_SPEC_VERSION`
-- `VK_SHADER_UNUSED_KHR`
+- [`KHR_RAY_TRACING_PIPELINE_EXTENSION_NAME`]
+- [`KHR_RAY_TRACING_PIPELINE_SPEC_VERSION`]
+- [`SHADER_UNUSED_KHR`]
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` 
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` 
 - Extending [`PipelineBindPoint`]:  - `VK_PIPELINE_BIND_POINT_RAY_TRACING_KHR` 
@@ -84,28 +84,28 @@ and enums are aliased, changed, or removed.
 - Aliased functionality — enums, structures, and commands that are considered equivalent:  - [`RayTracingShaderGroupTypeNV`] ↔ [`RayTracingShaderGroupTypeKHR`]  - [`get_ray_tracing_shader_group_handles_nv`] ↔ [`get_ray_tracing_shader_group_handles_khr`] 
 - Changed enums, structures, and commands:  - [`RayTracingShaderGroupCreateInfoNV`] → [`RayTracingShaderGroupCreateInfoKHR`] (added `pShaderGroupCaptureReplayHandle`)  - [`RayTracingPipelineCreateInfoNV`] → [`RayTracingPipelineCreateInfoKHR`] (changed type of `pGroups`, added `libraries`, `pLibraryInterface`, and `pDynamicState`)  - [`PhysicalDeviceRayTracingPropertiesNV`] → VkPhysicalDeviceRayTracingPropertiesKHR (renamed `maxTriangleCount` to `maxPrimitiveCount`, added `shaderGroupHandleCaptureReplaySize`)  - [`cmd_trace_rays_nv`] → [`cmd_trace_rays_khr`] (params to struct)  - [`create_ray_tracing_pipelines_nv`] → [`create_ray_tracing_pipelines_khr`] (different struct, changed functionality) 
 - Added enums, structures and commands:  - `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR``VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`, `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR` to [`PipelineCreateFlagBits`]  - [`PhysicalDeviceRayTracingPipelineFeaturesKHR`] structure  - [`DeviceOrHostAddressKHR`] and [`DeviceOrHostAddressConstKHR`] unions  - [`PipelineLibraryCreateInfoKHR`] struct  - [`RayTracingPipelineInterfaceCreateInfoKHR`] struct  - [`StridedDeviceAddressRegionKHR`] struct  - [`cmd_trace_rays_indirect_khr`] command and [`TraceRaysIndirectCommandKHR`] struct  - [`get_ray_tracing_capture_replay_shader_group_handles_khr`] (shader group capture/replay)  - [`cmd_set_ray_tracing_pipeline_stack_size_khr`] and [`get_ray_tracing_shader_group_stack_size_khr`] commands for stack size control 
-- Functionality removed:  - `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`  - [`compile_deferred_nv`] command (replaced with `[`khr_deferred_host_operations`]`) 
+- Functionality removed:  - `VK_PIPELINE_CREATE_DEFER_COMPILE_BIT_NV`  - [`compile_deferred_nv`] command (replaced with `[`VK_KHR_deferred_host_operations`]`) 
 (3) What are the changes between the public provisional (VK_KHR_ray_tracing
 v8) release and the internal provisional (VK_KHR_ray_tracing v9) release?
 - Require Vulkan 1.1 and SPIR-V 1.4
-- Added interactions with Vulkan 1.2 and `[`khr_vulkan_memory_model`]`
+- Added interactions with Vulkan 1.2 and `[`VK_KHR_vulkan_memory_model`]`
 - added creation time capture and replay flags  - added `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR` to [`PipelineCreateFlagBits`] 
 - replace `VkStridedBufferRegionKHR` with [`StridedDeviceAddressRegionKHR`] and change [`cmd_trace_rays_khr`], [`cmd_trace_rays_indirect_khr`], to take these for the shader binding table and use device addresses instead of buffers.
 - require the shader binding table buffers to have the `VK_BUFFER_USAGE_RAY_TRACING_BIT_KHR` set
-- make `[`khr_pipeline_library`]` an interaction instead of required extension
+- make `[`VK_KHR_pipeline_library`]` an interaction instead of required extension
 - rename the `libraries` member of [`RayTracingPipelineCreateInfoKHR`] to `pLibraryInfo` and make it a pointer
-- make `[`khr_deferred_host_operations`]` an interaction instead of a required extension (later went back on this)
+- make `[`VK_KHR_deferred_host_operations`]` an interaction instead of a required extension (later went back on this)
 - added explicit stack size management for ray tracing pipelines  - removed the `maxCallableSize` member of [`RayTracingPipelineInterfaceCreateInfoKHR`]  - added the `pDynamicState` member to [`RayTracingPipelineCreateInfoKHR`]  - added `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR` dynamic state for ray tracing pipelines  - added [`get_ray_tracing_shader_group_stack_size_khr`] and [`cmd_set_ray_tracing_pipeline_stack_size_khr`] commands  - added [`ShaderGroupShaderKHR`] enum 
 - Added `maxRayDispatchInvocationCount` limit to [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
 - Added `shaderGroupHandleAlignment` property to [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
 - Added `maxRayHitAttributeSize` property to [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
-- Clarify deferred host ops for pipeline creation  - [`DeferredOperationKHR`] is now a top-level parameter for [`create_ray_tracing_pipelines_khr`]  - removed `VkDeferredOperationInfoKHR` structure  - change deferred host creation/return parameter behavior such that the implementation can modify such parameters until the deferred host operation completes  - `[`khr_deferred_host_operations`]` is required again 
+- Clarify deferred host ops for pipeline creation  - [`DeferredOperationKHR`] is now a top-level parameter for [`create_ray_tracing_pipelines_khr`]  - removed `VkDeferredOperationInfoKHR` structure  - change deferred host creation/return parameter behavior such that the implementation can modify such parameters until the deferred host operation completes  - `[`VK_KHR_deferred_host_operations`]` is required again 
 (4) What are the changes between the internal provisional
 (VK_KHR_ray_tracing v9) release and the final (VK_KHR_acceleration_structure
 v11 / VK_KHR_ray_tracing_pipeline v1) release?
-- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages) 
+- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages) 
 - Require `Volatile` for the following builtins in the ray generation, closest hit, miss, intersection, and callable shader stages:  - `SubgroupSize`, `SubgroupLocalInvocationId`, `SubgroupEqMask`, `SubgroupGeMask`, `SubgroupGtMask`, `SubgroupLeMask`, `SubgroupLtMask`  - `SMIDNV`, `WarpIDNV` 
-- clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` and is required on shader binding table buffers  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used in `[`khr_acceleration_structure`]` for `scratchData` 
+- clarify buffer usage flags for ray tracing  - `VK_BUFFER_USAGE_SHADER_BINDING_TABLE_BIT_KHR` is added as an alias of `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` and is required on shader binding table buffers  - `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` is used in `[`VK_KHR_acceleration_structure`]` for `scratchData` 
 - rename `maxRecursionDepth` to `maxRayPipelineRecursionDepth` (pipeline creation) and `maxRayRecursionDepth` (limit) to reduce confusion
 - Add queryable `maxRayHitAttributeSize` limit and rename members of [`RayTracingPipelineInterfaceCreateInfoKHR`] to `maxPipelineRayPayloadSize` and `maxPipelineRayHitAttributeSize` for clarity
 - Update SPIRV capabilities to use `RayTracingKHR`
@@ -127,11 +127,11 @@ There are two main reasons for the difference here:
 
 # Other information
 * 2020-11-12
-*   - This extension requires [`SPV_KHR_ray_tracing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_ray_tracing.html)  - This extension provides API support for [`GLSL_EXT_ray_tracing`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_ray_tracing.txt)  - This extension interacts with [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2) and `[`khr_vulkan_memory_model`]`, adding the [shader-call-related](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-related) relation of invocations, [shader-call-order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-order) partial order of dynamic instances of instructions, and the [`ShaderCallKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-shadercall) scope.  - This extension interacts with `[`khr_pipeline_library`]`, enabling pipeline libraries to be used with ray tracing pipelines and enabling usage of [`RayTracingPipelineInterfaceCreateInfoKHR`]. 
+*   - This extension requires [`SPV_KHR_ray_tracing`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_ray_tracing.html)  - This extension provides API support for [`GLSL_EXT_ray_tracing`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/ext/GLSL_EXT_ray_tracing.txt)  - This extension interacts with [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2) and `[`VK_KHR_vulkan_memory_model`]`, adding the [shader-call-related](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-related) relation of invocations, [shader-call-order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shader-call-order) partial order of dynamic instances of instructions, and the [`ShaderCallKHR`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#shaders-scope-shadercall) scope.  - This extension interacts with `[`VK_KHR_pipeline_library`]`, enabling pipeline libraries to be used with ray tracing pipelines and enabling usage of [`RayTracingPipelineInterfaceCreateInfoKHR`]. 
 *   - Matthäus Chajdas, AMD  - Greg Grebe, AMD  - Nicolai Hähnle, AMD  - Tobias Hector, AMD  - Dave Oldcorn, AMD  - Skyler Saleh, AMD  - Mathieu Robart, Arm  - Marius Bjorge, Arm  - Tom Olson, Arm  - Sebastian Tafuri, EA  - Henrik Rydgard, Embark  - Juan Cañada, Epic Games  - Patrick Kelly, Epic Games  - Yuriy O’Donnell, Epic Games  - Michael Doggett, Facebook/Oculus  - Andrew Garrard, Imagination  - Don Scorgie, Imagination  - Dae Kim, Imagination  - Joshua Barczak, Intel  - Slawek Grajewski, Intel  - Jeff Bolz, NVIDIA  - Pascal Gautron, NVIDIA  - Daniel Koch, NVIDIA  - Christoph Kubisch, NVIDIA  - Ashwin Lele, NVIDIA  - Robert Stepinski, NVIDIA  - Martin Stich, NVIDIA  - Nuno Subtil, NVIDIA  - Eric Werness, NVIDIA  - Jon Leech, Khronos  - Jeroen van Schijndel, OTOY  - Juul Joosten, OTOY  - Alex Bourd, Qualcomm  - Roman Larionov, Qualcomm  - David McAllister, Qualcomm  - Spencer Fricke, Samsung  - Lewis Gordon, Samsung  - Ralph Potter, Samsung  - Jasper Bekkers, Traverse Research  - Jesse Barker, Unity  - Baldur Karlsson, Valve
 
 # Related
-- [VK_SHADER_UNUSED_KHR]()
+- [`SHADER_UNUSED_KHR`]
 - [`PhysicalDeviceRayTracingPipelineFeaturesKHR`]
 - [`PhysicalDeviceRayTracingPipelinePropertiesKHR`]
 - [`RayTracingPipelineCreateInfoKHR`]

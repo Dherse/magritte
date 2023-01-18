@@ -2,7 +2,7 @@
 
 # Description
 This extension exposes additional shader core properties for a target
-physical device through the `[`khr_get_physical_device_properties2`]`
+physical device through the `[`VK_KHR_get_physical_device_properties2`]`
 extension.
 
 # Registered extension number
@@ -13,7 +13,7 @@ extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`amd_shader_core_properties`]`
+- Requires `[`VK_AMD_shader_core_properties`]`
 
 # Contacts
 - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_core_properties2] @anteru%0A<<Here describe the issue or question you have about the VK_AMD_shader_core_properties2 extension>>)
@@ -25,11 +25,11 @@ extension.
 - [`ShaderCorePropertiesFlagBitsAMD`]
 
 # New bitmasks
-- [VkShaderCorePropertiesFlagsAMD]()
+- [`ShaderCorePropertiesFlagsAMD`]
 
 # New constants
-- `VK_AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME`
-- `VK_AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION`
+- [`AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME`]
+- [`AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
 
 # Version history
@@ -43,7 +43,7 @@ extension.
 # Related
 - [`PhysicalDeviceShaderCoreProperties2AMD`]
 - [`ShaderCorePropertiesFlagBitsAMD`]
-- [VkShaderCorePropertiesFlagsAMD]()
+- [`ShaderCorePropertiesFlagsAMD`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

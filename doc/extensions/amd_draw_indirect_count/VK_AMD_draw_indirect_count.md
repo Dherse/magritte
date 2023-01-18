@@ -16,7 +16,7 @@ commands and execute them without host intervention.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Promoted* to `[`khr_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+- *Promoted* to `[`VK_KHR_draw_indirect_count`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 
 # Contacts
 - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_draw_indirect_count] @drakos-amd%0A<<Here describe the issue or question you have about the VK_AMD_draw_indirect_count extension>>)
@@ -26,8 +26,8 @@ commands and execute them without host intervention.
 - [`cmd_draw_indirect_count_amd`]
 
 # New constants
-- `VK_AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME`
-- `VK_AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION`
+- [`AMD_DRAW_INDIRECT_COUNT_EXTENSION_NAME`]
+- [`AMD_DRAW_INDIRECT_COUNT_SPEC_VERSION`]
 
 # Version history
 - Revision 2, 2016-08-23 (Dominik Witczak)  - Minor fixes 
@@ -35,7 +35,7 @@ commands and execute them without host intervention.
 
 # Other information
 * 2016-08-23
-*   - Promoted to `[`khr_draw_indirect_count`]` 
+*   - Promoted to `[`VK_KHR_draw_indirect_count`]` 
 * No known IP claims.
 *   - Matthaeus G. Chajdas, AMD  - Derrick Owens, AMD  - Graham Sellers, AMD  - Daniel Rakos, AMD  - Dominik Witczak, AMD
 

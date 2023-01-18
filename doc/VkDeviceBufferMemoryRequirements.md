@@ -28,7 +28,7 @@ typedef VkDeviceBufferMemoryRequirements VkDeviceBufferMemoryRequirementsKHR;
 -  [`create_info`] **must**  be a valid pointer to a valid [`BufferCreateInfo`] structure
 
 # Related
-- [`khr_maintenance4`]
+- [`VK_KHR_maintenance4`]
 - [`crate::vulkan1_3`]
 - [`BufferCreateInfo`]
 - [`StructureType`]

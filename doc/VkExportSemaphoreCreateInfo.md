@@ -34,7 +34,7 @@ typedef VkExportSemaphoreCreateInfo VkExportSemaphoreCreateInfoKHR;
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalSemaphoreHandleTypeFlags]()
+- [`ExternalSemaphoreHandleTypeFlags`]
 - [`StructureType`]
 
 # Notes and documentation

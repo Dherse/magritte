@@ -12,7 +12,7 @@ need to reduce the number of pipeline state objects they compile and bind.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -38,8 +38,8 @@ need to reduce the number of pipeline state objects they compile and bind.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceExtendedDynamicStateFeaturesEXT`]
 
 # New constants
-- `VK_EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME`
-- `VK_EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION`
+- [`EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME`]
+- [`EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_CULL_MODE_EXT`  - `VK_DYNAMIC_STATE_DEPTH_BOUNDS_TEST_ENABLE_EXT`  - `VK_DYNAMIC_STATE_DEPTH_COMPARE_OP_EXT`  - `VK_DYNAMIC_STATE_DEPTH_TEST_ENABLE_EXT`  - `VK_DYNAMIC_STATE_DEPTH_WRITE_ENABLE_EXT`  - `VK_DYNAMIC_STATE_FRONT_FACE_EXT`  - `VK_DYNAMIC_STATE_PRIMITIVE_TOPOLOGY_EXT`  - `VK_DYNAMIC_STATE_SCISSOR_WITH_COUNT_EXT`  - `VK_DYNAMIC_STATE_STENCIL_OP_EXT`  - `VK_DYNAMIC_STATE_STENCIL_TEST_ENABLE_EXT`  - `VK_DYNAMIC_STATE_VERTEX_INPUT_BINDING_STRIDE_EXT`  - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTENDED_DYNAMIC_STATE_FEATURES_EXT`
 

@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR`
 
 # Related
-- [`khr_present_wait`]
+- [`VK_KHR_present_wait`]
 - [`Bool32`]
 - [`StructureType`]
 

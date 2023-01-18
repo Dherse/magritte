@@ -30,7 +30,7 @@ VkResult vkCreateXcbSurfaceKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_xcb_surface`]
+- [`VK_KHR_xcb_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`SurfaceKHR`]

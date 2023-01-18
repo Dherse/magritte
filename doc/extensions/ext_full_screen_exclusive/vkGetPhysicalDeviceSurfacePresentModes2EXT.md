@@ -23,7 +23,7 @@ VkResult vkGetPhysicalDeviceSurfacePresentModes2EXT(
 [`get_physical_device_surface_present_modes_khr`], with the ability to specify
 extended inputs via chained input structures.
 ## Valid Usage
--    If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface` **must**  be a valid [`SurfaceKHR`] handle
+-    If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface` **must**  be a valid [`SurfaceKHR`] handle
 -    If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
 
 ## Valid Usage (Implicit)
@@ -37,7 +37,7 @@ extended inputs via chained input structures.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`PhysicalDevice`]
 - [`PhysicalDeviceSurfaceInfo2KHR`]
 - [`PresentModeKHR`]

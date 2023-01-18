@@ -21,7 +21,7 @@ combined.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -37,8 +37,8 @@ combined.
 - [`SamplerReductionModeEXT`]
 
 # New constants
-- `VK_EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME`
-- `VK_EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION`
+- [`EXT_SAMPLER_FILTER_MINMAX_EXTENSION_NAME`]
+- [`EXT_SAMPLER_FILTER_MINMAX_SPEC_VERSION`]
 - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT_EXT` 
 - Extending [`SamplerReductionMode`]:  - `VK_SAMPLER_REDUCTION_MODE_MAX_EXT`  - `VK_SAMPLER_REDUCTION_MODE_MIN_EXT`  - `VK_SAMPLER_REDUCTION_MODE_WEIGHTED_AVERAGE_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_SAMPLER_REDUCTION_MODE_CREATE_INFO_EXT`

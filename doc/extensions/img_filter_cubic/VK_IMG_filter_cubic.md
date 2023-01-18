@@ -1,7 +1,7 @@
 [VK_IMG_filter_cubic](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_IMG_filter_cubic.html) - device extension
 
 # Description
-[`img_filter_cubic`] adds an additional, high quality cubic filtering mode
+[`VK_IMG_filter_cubic`] adds an additional, high quality cubic filtering mode
 to Vulkan, using a Catmull-Rom bicubic filter.
 Performing this kind of filtering can be done in a shader by using 16
 samples and a number of instructions, but this can be inefficient.
@@ -21,8 +21,8 @@ using fixed texture sampling functionality.
 - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_IMG_filter_cubic] @tobski%0A<<Here describe the issue or question you have about the VK_IMG_filter_cubic extension>>)
 
 # New constants
-- `VK_IMG_FILTER_CUBIC_EXTENSION_NAME`
-- `VK_IMG_FILTER_CUBIC_SPEC_VERSION`
+- [`IMG_FILTER_CUBIC_EXTENSION_NAME`]
+- [`IMG_FILTER_CUBIC_SPEC_VERSION`]
 - Extending [`Filter`]:  - `VK_FILTER_CUBIC_IMG` 
 - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_CUBIC_BIT_IMG`
 

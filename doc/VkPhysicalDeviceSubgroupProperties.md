@@ -35,9 +35,9 @@ or [`shaderSubgroupUniformControlFlow`](https://www.khronos.org/registry/vulkan/
 # Related
 - [`crate::vulkan1_1`]
 - [`Bool32`]
-- [VkShaderStageFlags]()
+- [`ShaderStageFlags`]
 - [`StructureType`]
-- [VkSubgroupFeatureFlags]()
+- [`SubgroupFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

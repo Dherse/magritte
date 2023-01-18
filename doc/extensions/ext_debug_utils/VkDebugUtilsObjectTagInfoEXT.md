@@ -41,7 +41,7 @@ be used by that implementation.
 -  [`tag_size`] **must**  be greater than `0`
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`ObjectType`]
 - [`StructureType`]
 - [`set_debug_utils_object_tag_ext`]

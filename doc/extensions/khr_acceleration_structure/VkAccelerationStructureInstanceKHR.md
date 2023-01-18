@@ -47,10 +47,10 @@ pattern.
 -  [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureMotionInstanceDataNV`]
-- [VkGeometryInstanceFlagsKHR]()
+- [`GeometryInstanceFlagsKHR`]
 - [`TransformMatrixKHR`]
 
 # Notes and documentation

@@ -24,7 +24,7 @@ allocation will be bound to.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`khr_dedicated_allocation`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+- *Deprecated* by `[`VK_KHR_dedicated_allocation`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_dedicated_allocation] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NV_dedicated_allocation extension>>)
@@ -35,8 +35,8 @@ allocation will be bound to.
 - Extending [`MemoryAllocateInfo`]:  - [`DedicatedAllocationMemoryAllocateInfoNV`]
 
 # New constants
-- `VK_NV_DEDICATED_ALLOCATION_EXTENSION_NAME`
-- `VK_NV_DEDICATED_ALLOCATION_SPEC_VERSION`
+- [`NV_DEDICATED_ALLOCATION_EXTENSION_NAME`]
+- [`NV_DEDICATED_ALLOCATION_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_MEMORY_ALLOCATE_INFO_NV`
 
 # Version history

@@ -33,8 +33,8 @@ zero.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalFenceFeatureFlags]()
-- [VkExternalFenceHandleTypeFlags]()
+- [`ExternalFenceFeatureFlags`]
+- [`ExternalFenceHandleTypeFlags`]
 - [`StructureType`]
 - [`get_physical_device_external_fence_properties`]
 - [`get_physical_device_external_fence_properties_khr`]

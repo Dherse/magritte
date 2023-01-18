@@ -32,7 +32,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES`
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

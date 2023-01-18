@@ -50,9 +50,9 @@ indicates that this build is a motion top level acceleration structure.
 A motion top level uses instances of format
 [`AccelerationStructureMotionInstanceNV`] if
 [`AccelerationStructureGeometryInstancesDataKHR::array_of_pointers`]
-is `VK_FALSE`.If
+is [`FALSE`].If
 [`AccelerationStructureGeometryInstancesDataKHR::array_of_pointers`]
-is `VK_TRUE`, the pointer for any given element of the array of instance
+is [`TRUE`], the pointer for any given element of the array of instance
 pointers consists of 4 bits of
 [`AccelerationStructureMotionInstanceTypeNV`] in the low 4 bits of the
 pointer identifying the type of structure at the pointer.
@@ -94,11 +94,11 @@ not modified.
 -    Both of [`dst_acceleration_structure`], and [`src_acceleration_structure`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureGeometryKHR`]
 - [`AccelerationStructureKHR`]
 - [`AccelerationStructureTypeKHR`]
-- [VkBuildAccelerationStructureFlagsKHR]()
+- [`BuildAccelerationStructureFlagsKHR`]
 - [`BuildAccelerationStructureModeKHR`]
 - [`DeviceOrHostAddressKHR`]
 - [`StructureType`]

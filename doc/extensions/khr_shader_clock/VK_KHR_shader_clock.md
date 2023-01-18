@@ -18,7 +18,7 @@ timing functions map to the `OpReadClockKHR` instruction with a scope of
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Aaron Hagan [ahagan](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_clock] @ahagan%0A<<Here describe the issue or question you have about the VK_KHR_shader_clock extension>>)
@@ -27,8 +27,8 @@ timing functions map to the `OpReadClockKHR` instruction with a scope of
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderClockFeaturesKHR`]
 
 # New constants
-- `VK_KHR_SHADER_CLOCK_EXTENSION_NAME`
-- `VK_KHR_SHADER_CLOCK_SPEC_VERSION`
+- [`KHR_SHADER_CLOCK_EXTENSION_NAME`]
+- [`KHR_SHADER_CLOCK_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR`
 
 # Version history

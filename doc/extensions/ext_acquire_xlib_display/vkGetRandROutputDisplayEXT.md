@@ -27,7 +27,7 @@ If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
 [`p_display`].
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`dpy`] **must**  be a valid pointer to a `Display` value
+-  [`dpy`] **must**  be a valid pointer to a [`Display`] value
 -  [`p_display`] **must**  be a valid pointer to a [`DisplayKHR`] handle
 
 ## Return Codes
@@ -35,7 +35,7 @@ If there is no [`DisplayKHR`] corresponding to [`rr_output`] on
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_acquire_xlib_display`]
+- [`VK_EXT_acquire_xlib_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

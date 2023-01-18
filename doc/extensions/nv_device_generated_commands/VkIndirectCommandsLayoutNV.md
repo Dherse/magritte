@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkIndirectCommandsLayoutNV)
 ```
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`GeneratedCommandsInfoNV`]
 - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 - [`create_indirect_commands_layout_nv`]

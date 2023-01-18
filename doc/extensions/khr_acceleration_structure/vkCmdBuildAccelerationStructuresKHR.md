@@ -99,9 +99,9 @@ and
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_AABBS_KHR`, `geometry.aabbs.data.deviceAddress` **must**  be a valid device address obtained from [`get_buffer_device_address`]
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_AABBS_KHR`, if `geometry.aabbs.data.deviceAddress` is the address of a non-sparse buffer then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_AABBS_KHR`, `geometry.aabbs.data.deviceAddress` **must**  be aligned to `8` bytes
--    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is `VK_FALSE`, `geometry.instances.data.deviceAddress` **must**  be aligned to `16` bytes
--    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is `VK_TRUE`, `geometry.instances.data.deviceAddress` **must**  be aligned to `8` bytes
--    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is `VK_TRUE`, each element of `geometry.instances.data.deviceAddress` in device memory  **must**  be aligned to `16` bytes
+-    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is [`FALSE`], `geometry.instances.data.deviceAddress` **must**  be aligned to `16` bytes
+-    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is [`TRUE`], `geometry.instances.data.deviceAddress` **must**  be aligned to `8` bytes
+-    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.arrayOfPointers` is [`TRUE`], each element of `geometry.instances.data.deviceAddress` in device memory  **must**  be aligned to `16` bytes
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, `geometry.instances.data.deviceAddress` **must**  be a valid device address obtained from [`get_buffer_device_address`]
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, if `geometry.instances.data.deviceAddress` is the address of a non-sparse buffer then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    For any element of [`p_infos`][i].`pGeometries` or [`p_infos`][i].`ppGeometries` with a `geometryType` of `VK_GEOMETRY_TYPE_INSTANCES_KHR`, each [`AccelerationStructureInstanceKHR::acceleration_structure_reference`] value in `geometry.instances.data.deviceAddress` **must**  be a valid device address containing a value obtained from [`get_acceleration_structure_device_address_khr`]
@@ -125,7 +125,7 @@ and
 ## Command Properties
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`AccelerationStructureBuildRangeInfoKHR`]
 - [`CommandBuffer`]

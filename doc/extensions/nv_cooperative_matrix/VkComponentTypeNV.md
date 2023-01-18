@@ -20,20 +20,20 @@ typedef enum VkComponentTypeNV {
 ```
 
 # Description
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeFloat` 16.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeFloat` 32.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeFloat` 64.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 8 1.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 16 1.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 32 1.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 64 1.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 8 0.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 16 0.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 32 0.
-- [`VK_COMPONENT_TYPE_NV`] corresponds to SPIR-V `OpTypeInt` 64 0.
+- [`FLOAT16`] corresponds to SPIR-V `OpTypeFloat` 16.
+- [`FLOAT32`] corresponds to SPIR-V `OpTypeFloat` 32.
+- [`FLOAT64`] corresponds to SPIR-V `OpTypeFloat` 64.
+- [`SINT8`] corresponds to SPIR-V `OpTypeInt` 8 1.
+- [`SINT16`] corresponds to SPIR-V `OpTypeInt` 16 1.
+- [`SINT32`] corresponds to SPIR-V `OpTypeInt` 32 1.
+- [`SINT64`] corresponds to SPIR-V `OpTypeInt` 64 1.
+- [`UINT8`] corresponds to SPIR-V `OpTypeInt` 8 0.
+- [`UINT16`] corresponds to SPIR-V `OpTypeInt` 16 0.
+- [`UINT32`] corresponds to SPIR-V `OpTypeInt` 32 0.
+- [`UINT64`] corresponds to SPIR-V `OpTypeInt` 64 0.
 
 # Related
-- [`nv_cooperative_matrix`]
+- [`VK_NV_cooperative_matrix`]
 - [`CooperativeMatrixPropertiesNV`]
 
 # Notes and documentation

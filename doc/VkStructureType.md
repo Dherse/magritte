@@ -8,9 +8,9 @@ by taking the name of the structure, stripping the leading `Vk`,
 prefixing each capital letter with `_`, converting the entire resulting
 string to upper case, and prefixing it with `VK_STRUCTURE_TYPE_`.
 For example, structures of type [`ImageCreateInfo`] correspond to a
-[`StructureType`] of [`VK_STRUCTURE_TYPE`], and thus
-its `sType` member  **must**  equal that when it is passed to the API.The values [`VK_STRUCTURE_TYPE`] and
-[`VK_STRUCTURE_TYPE`] are reserved for internal
+[`StructureType`] of [`IMAGE_CREATE_INFO`], and thus
+its `sType` member  **must**  equal that when it is passed to the API.The values [`LOADER_INSTANCE_CREATE_INFO`] and
+[`LOADER_DEVICE_CREATE_INFO`] are reserved for internal
 use by the loader, and do not have corresponding Vulkan structures in this
 Specification.Structure types supported by the Vulkan API include:
 ```c

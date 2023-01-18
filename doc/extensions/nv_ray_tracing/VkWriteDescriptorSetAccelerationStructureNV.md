@@ -31,7 +31,7 @@ typedef struct VkWriteDescriptorSetAccelerationStructureNV {
 -  [`acceleration_structure_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureNV`]
 - [`StructureType`]
 

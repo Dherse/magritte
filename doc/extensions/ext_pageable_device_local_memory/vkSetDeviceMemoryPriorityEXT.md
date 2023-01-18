@@ -27,7 +27,7 @@ device-local memory when the system is under memory pressure.
 -  [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`ext_pageable_device_local_memory`]
+- [`VK_EXT_pageable_device_local_memory`]
 - [`Device`]
 - [`DeviceMemory`]
 

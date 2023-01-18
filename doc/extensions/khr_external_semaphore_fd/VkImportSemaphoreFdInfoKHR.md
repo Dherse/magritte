@@ -47,10 +47,10 @@ provided.
 - Host access to [`semaphore`] **must**  be externally synchronized
 
 # Related
-- [`khr_external_semaphore_fd`]
+- [`VK_KHR_external_semaphore_fd`]
 - [`ExternalSemaphoreHandleTypeFlagBits`]
 - [`Semaphore`]
-- [VkSemaphoreImportFlags]()
+- [`SemaphoreImportFlags`]
 - [`StructureType`]
 - [`import_semaphore_fd_khr`]
 

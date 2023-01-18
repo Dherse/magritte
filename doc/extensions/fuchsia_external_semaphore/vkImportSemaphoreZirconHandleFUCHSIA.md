@@ -32,7 +32,7 @@ times into a given Vulkan instance.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`fuchsia_external_semaphore`]
+- [`VK_FUCHSIA_external_semaphore`]
 - [`Device`]
 - [`ImportSemaphoreZirconHandleInfoFUCHSIA`]
 

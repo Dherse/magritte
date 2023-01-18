@@ -14,7 +14,7 @@ VkBool32 vkGetPhysicalDeviceWaylandPresentationSupportKHR(
 # Parameters
 - [`physical_device`] is the physical device.
 - [`queue_family_index`] is the queue family index.
-- [`display`] is a pointer to the `wl_display` associated with a Wayland compositor.
+- [`display`] is a pointer to the [`wl_display`] associated with a Wayland compositor.
 
 # Description
 This platform-specific function  **can**  be called prior to creating a surface.
@@ -23,10 +23,10 @@ This platform-specific function  **can**  be called prior to creating a surface.
 
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`display`] **must**  be a valid pointer to a `wl_display` value
+-  [`display`] **must**  be a valid pointer to a [`wl_display`] value
 
 # Related
-- [`khr_wayland_surface`]
+- [`VK_KHR_wayland_surface`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

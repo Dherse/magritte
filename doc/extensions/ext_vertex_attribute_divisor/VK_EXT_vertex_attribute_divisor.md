@@ -13,7 +13,7 @@ instanced rendering is enabled.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Vikram Kushwaha [vkushwaha](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_vertex_attribute_divisor] @vkushwaha%0A<<Here describe the issue or question you have about the VK_EXT_vertex_attribute_divisor extension>>)
@@ -25,8 +25,8 @@ instanced rendering is enabled.
 - Extending [`PipelineVertexInputStateCreateInfo`]:  - [`PipelineVertexInputDivisorStateCreateInfoEXT`]
 
 # New constants
-- `VK_EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME`
-- `VK_EXT_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION`
+- [`EXT_VERTEX_ATTRIBUTE_DIVISOR_EXTENSION_NAME`]
+- [`EXT_VERTEX_ATTRIBUTE_DIVISOR_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_DIVISOR_STATE_CREATE_INFO_EXT`
 
 # Known issues & F.A.Q.

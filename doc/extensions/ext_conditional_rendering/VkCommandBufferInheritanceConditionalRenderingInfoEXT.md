@@ -19,19 +19,19 @@ typedef struct VkCommandBufferInheritanceConditionalRenderingInfoEXT {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`conditional_rendering_enable`] specifies whether the command buffer  **can**  be executed while conditional rendering is active in the primary command buffer. If this is `VK_TRUE`, then this command buffer  **can**  be executed whether the primary command buffer has active conditional rendering or not. If this is `VK_FALSE`, then the primary command buffer  **must**  not have conditional rendering active.
+- [`conditional_rendering_enable`] specifies whether the command buffer  **can**  be executed while conditional rendering is active in the primary command buffer. If this is [`TRUE`], then this command buffer  **can**  be executed whether the primary command buffer has active conditional rendering or not. If this is [`FALSE`], then the primary command buffer  **must**  not have conditional rendering active.
 
 # Description
 If this structure is not present, the behavior is as if
-[`conditional_rendering_enable`] is `VK_FALSE`.
+[`conditional_rendering_enable`] is [`FALSE`].
 ## Valid Usage
--    If the [inherited conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedConditionalRendering) feature is not enabled, [`conditional_rendering_enable`] **must**  be `VK_FALSE`
+-    If the [inherited conditional rendering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedConditionalRendering) feature is not enabled, [`conditional_rendering_enable`] **must**  be [`FALSE`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_CONDITIONAL_RENDERING_INFO_EXT`
 
 # Related
-- [`ext_conditional_rendering`]
+- [`VK_EXT_conditional_rendering`]
 - [`Bool32`]
 - [`StructureType`]
 

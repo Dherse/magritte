@@ -34,7 +34,7 @@ typedef enum VkSubpassDescriptionFlagBits {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkSubpassDescriptionFlags]()
+- [`SubpassDescriptionFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
 
 # Related
-- [`nv_device_diagnostics_config`]
+- [`VK_NV_device_diagnostics_config`]
 - [`Bool32`]
 - [`StructureType`]
 

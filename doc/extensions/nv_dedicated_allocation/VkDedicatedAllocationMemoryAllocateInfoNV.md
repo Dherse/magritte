@@ -24,8 +24,8 @@ typedef struct VkDedicatedAllocationMemoryAllocateInfoNV {
 # Description
 ## Valid Usage
 -    At least one of [`image`] and [`buffer`] **must**  be [`crate::Handle::null`]
--    If [`image`] is not [`crate::Handle::null`], the image  **must**  have been created with [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to `VK_TRUE`
--    If [`buffer`] is not [`crate::Handle::null`], the buffer  **must**  have been created with [`DedicatedAllocationBufferCreateInfoNV::dedicated_allocation`] equal to `VK_TRUE`
+-    If [`image`] is not [`crate::Handle::null`], the image  **must**  have been created with [`DedicatedAllocationImageCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
+-    If [`buffer`] is not [`crate::Handle::null`], the buffer  **must**  have been created with [`DedicatedAllocationBufferCreateInfoNV::dedicated_allocation`] equal to [`TRUE`]
 -    If [`image`] is not [`crate::Handle::null`], [`MemoryAllocateInfo::allocation_size`] **must**  equal the [`MemoryRequirements::size`] of the image
 -    If [`buffer`] is not [`crate::Handle::null`], [`MemoryAllocateInfo::allocation_size`] **must**  equal the [`MemoryRequirements::size`] of the buffer
 -    If [`image`] is not [`crate::Handle::null`] and [`MemoryAllocateInfo`] defines a memory import operation, the memory being imported  **must**  also be a dedicated image allocation and [`image`] **must**  be identical to the image associated with the imported memory
@@ -38,7 +38,7 @@ typedef struct VkDedicatedAllocationMemoryAllocateInfoNV {
 -    Both of [`buffer`], and [`image`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_dedicated_allocation`]
+- [`VK_NV_dedicated_allocation`]
 - [`Buffer`]
 - [`Image`]
 - [`StructureType`]

@@ -3,29 +3,29 @@
 # Description
 Vulkan Version 1.1 [promoted](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-compatibility-promotion) a
 number of key extensions into the core API:
-- `[`khr_16bit_storage`]`
-- `[`khr_bind_memory2`]`
-- `[`khr_dedicated_allocation`]`
-- `[`khr_descriptor_update_template`]`
-- `[`khr_device_group`]`
-- `[`khr_device_group_creation`]`
-- `[`khr_external_fence`]`
-- `[`khr_external_fence_capabilities`]`
-- `[`khr_external_memory`]`
-- `[`khr_external_memory_capabilities`]`
-- `[`khr_external_semaphore`]`
-- `[`khr_external_semaphore_capabilities`]`
-- `[`khr_get_memory_requirements2`]`
-- `[`khr_get_physical_device_properties2`]`
-- `[`khr_maintenance1`]`
-- `[`khr_maintenance2`]`
-- `[`khr_maintenance3`]`
-- `[`khr_multiview`]`
-- `[`khr_relaxed_block_layout`]`
-- `[`khr_sampler_ycbcr_conversion`]`
-- `[`khr_shader_draw_parameters`]`
-- `[`khr_storage_buffer_storage_class`]`
-- `[`khr_variable_pointers`]`
+- `[`VK_KHR_16bit_storage`]`
+- `[`VK_KHR_bind_memory2`]`
+- `[`VK_KHR_dedicated_allocation`]`
+- `[`VK_KHR_descriptor_update_template`]`
+- `[`VK_KHR_device_group`]`
+- `[`VK_KHR_device_group_creation`]`
+- `[`VK_KHR_external_fence`]`
+- `[`VK_KHR_external_fence_capabilities`]`
+- `[`VK_KHR_external_memory`]`
+- `[`VK_KHR_external_memory_capabilities`]`
+- `[`VK_KHR_external_semaphore`]`
+- `[`VK_KHR_external_semaphore_capabilities`]`
+- `[`VK_KHR_get_memory_requirements2`]`
+- `[`VK_KHR_get_physical_device_properties2`]`
+- `[`VK_KHR_maintenance1`]`
+- `[`VK_KHR_maintenance2`]`
+- `[`VK_KHR_maintenance3`]`
+- `[`VK_KHR_multiview`]`
+- `[`VK_KHR_relaxed_block_layout`]`
+- `[`VK_KHR_sampler_ycbcr_conversion`]`
+- `[`VK_KHR_shader_draw_parameters`]`
+- `[`VK_KHR_storage_buffer_storage_class`]`
+- `[`VK_KHR_variable_pointers`]`
 All differences in behavior between these extensions and the corresponding
 Vulkan 1.1 functionality are summarized in the [Vulkan 1.1 specification appendix](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions).
 ### New Macros
@@ -147,23 +147,23 @@ Vulkan 1.1 functionality are summarized in the [Vulkan 1.1 specification appendi
 
 - [`CommandPoolTrimFlags`]
 - [`DescriptorUpdateTemplateCreateFlags`]
-- [VkExternalFenceFeatureFlags]()
-- [VkExternalFenceHandleTypeFlags]()
-- [VkExternalMemoryFeatureFlags]()
-- [VkExternalMemoryHandleTypeFlags]()
-- [VkExternalSemaphoreFeatureFlags]()
-- [VkExternalSemaphoreHandleTypeFlags]()
-- [VkFenceImportFlags]()
-- [VkMemoryAllocateFlags]()
-- [VkPeerMemoryFeatureFlags]()
-- [VkSemaphoreImportFlags]()
-- [VkSubgroupFeatureFlags]()
+- [`ExternalFenceFeatureFlags`]
+- [`ExternalFenceHandleTypeFlags`]
+- [`ExternalMemoryFeatureFlags`]
+- [`ExternalMemoryHandleTypeFlags`]
+- [`ExternalSemaphoreFeatureFlags`]
+- [`ExternalSemaphoreHandleTypeFlags`]
+- [`FenceImportFlags`]
+- [`MemoryAllocateFlags`]
+- [`PeerMemoryFeatureFlags`]
+- [`SemaphoreImportFlags`]
+- [`SubgroupFeatureFlags`]
 
 ### New Enum Constants
 
-- `VK_LUID_SIZE`
-- `VK_MAX_DEVICE_GROUP_SIZE`
-- `VK_QUEUE_FAMILY_EXTERNAL`
+- [`LUID_SIZE`]
+- [`MAX_DEVICE_GROUP_SIZE`]
+- [`QUEUE_FAMILY_EXTERNAL`]
 - Extending [`BufferCreateFlagBits`]:  - `VK_BUFFER_CREATE_PROTECTED_BIT` 
 - Extending [`CommandPoolCreateFlagBits`]:  - `VK_COMMAND_POOL_CREATE_PROTECTED_BIT` 
 - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT`  - `VK_DEPENDENCY_VIEW_LOCAL_BIT` 

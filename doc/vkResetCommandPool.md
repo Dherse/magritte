@@ -42,7 +42,7 @@ into it, becomes [invalid](https://www.khronos.org/registry/vulkan/specs/1.3-ext
 # Related
 - [`crate::vulkan1_0`]
 - [`CommandPool`]
-- [VkCommandPoolResetFlags]()
+- [`CommandPoolResetFlags`]
 - [`Device`]
 
 # Notes and documentation

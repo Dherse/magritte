@@ -1,7 +1,7 @@
 [VkAccelerationStructureNV](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureNV.html) - Opaque handle to an acceleration structure object
 
 # C Specifications
-Acceleration structures for the [`nv_ray_tracing`] extension are
+Acceleration structures for the [`VK_NV_ray_tracing`] extension are
 represented by the similar [`AccelerationStructureNV`] handles:
 ```c
 // Provided by VK_NV_ray_tracing
@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureNV)
 ```
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureMemoryRequirementsInfoNV`]
 - [`BindAccelerationStructureMemoryInfoNV`]
 - [`WriteDescriptorSetAccelerationStructureNV`]

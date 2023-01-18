@@ -18,7 +18,7 @@ VkResult vkBeginCommandBuffer(
 -  [`command_buffer`] **must**  not be in the [recording or pending state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
 -    If [`command_buffer`] was allocated from a [`CommandPool`] which did not have the `VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT` flag set, [`command_buffer`] **must**  be in the [initial state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle)
 -    If [`command_buffer`] is a secondary command buffer, the `pInheritanceInfo` member of [`p_begin_info`] **must**  be a valid [`CommandBufferInheritanceInfo`] structure
--    If [`command_buffer`] is a secondary command buffer and either the `occlusionQueryEnable` member of the `pInheritanceInfo` member of [`p_begin_info`] is `VK_FALSE`, or the precise occlusion queries feature is not enabled, then `pBeginInfo->pInheritanceInfo->queryFlags` **must**  not contain `VK_QUERY_CONTROL_PRECISE_BIT`
+-    If [`command_buffer`] is a secondary command buffer and either the `occlusionQueryEnable` member of the `pInheritanceInfo` member of [`p_begin_info`] is [`FALSE`], or the precise occlusion queries feature is not enabled, then `pBeginInfo->pInheritanceInfo->queryFlags` **must**  not contain `VK_QUERY_CONTROL_PRECISE_BIT`
 -    If [`command_buffer`] is a primary command buffer, then `pBeginInfo->flags` **must**  not set both the `VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT` and the `VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT` flags
 
 ## Valid Usage (Implicit)

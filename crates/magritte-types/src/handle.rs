@@ -92,6 +92,18 @@ impl<'a> Handle<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
     /// Get a reference to the handle's fields.
     pub fn parent(&self) -> Option<&str> {
         self.parent.as_ref().map(|s| &**s)
@@ -110,7 +122,7 @@ impl<'a> Handle<'a> {
 
     #[inline]
     pub fn rename(&self) -> Option<&str> {
-        self.rename.as_ref().map(|s| s as &str)
+        self.rename.as_deref()
     }
 
     /// Get a reference to the handle's origin.

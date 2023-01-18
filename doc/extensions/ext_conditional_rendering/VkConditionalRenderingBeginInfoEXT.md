@@ -18,7 +18,7 @@ typedef struct VkConditionalRenderingBeginInfoEXT {
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`buffer`] is a buffer containing the predicate for conditional rendering.
 - [`offset`] is the byte offset into [`buffer`] where the predicate is located.
-- [`flags`] is a bitmask of [VkConditionalRenderingFlagsEXT]() specifying the behavior of conditional rendering.
+- [`flags`] is a bitmask of [`ConditionalRenderingFlagsEXT`] specifying the behavior of conditional rendering.
 
 # Description
 If the 32-bit value at [`offset`] in [`buffer`] memory is zero, then the
@@ -42,9 +42,9 @@ command.
 -  [`flags`] **must**  be a valid combination of [`ConditionalRenderingFlagBitsEXT`] values
 
 # Related
-- [`ext_conditional_rendering`]
+- [`VK_EXT_conditional_rendering`]
 - [`Buffer`]
-- [VkConditionalRenderingFlagsEXT]()
+- [`ConditionalRenderingFlagsEXT`]
 - [`DeviceSize`]
 - [`StructureType`]
 - [`cmd_begin_conditional_rendering_ext`]

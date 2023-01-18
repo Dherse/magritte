@@ -38,7 +38,7 @@ void vkDestroyPrivateDataSlotEXT(
 - Host access to [`private_data_slot`] **must**  be externally synchronized
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`AllocationCallbacks`]
 - [`Device`]

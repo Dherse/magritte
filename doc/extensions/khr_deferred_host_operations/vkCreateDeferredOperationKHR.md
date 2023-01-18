@@ -26,7 +26,7 @@ VkResult vkCreateDeferredOperationKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`khr_deferred_host_operations`]
+- [`VK_KHR_deferred_host_operations`]
 - [`AllocationCallbacks`]
 - [`DeferredOperationKHR`]
 - [`Device`]

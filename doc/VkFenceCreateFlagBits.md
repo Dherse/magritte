@@ -9,11 +9,11 @@ typedef enum VkFenceCreateFlagBits {
 ```
 
 # Description
-- [`VK_FENCE_CREATE_FLAG_BITS`] specifies that the fence object is created in the signaled state. Otherwise, it is created in the unsignaled state.
+- [`SIGNALED`] specifies that the fence object is created in the signaled state. Otherwise, it is created in the unsignaled state.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkFenceCreateFlags]()
+- [`FenceCreateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

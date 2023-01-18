@@ -27,7 +27,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_VIEW_MIN_LOD_FEATURES_EXT`
 
 # Related
-- [`ext_image_view_min_lod`]
+- [`VK_EXT_image_view_min_lod`]
 - [`Bool32`]
 - [`StructureType`]
 

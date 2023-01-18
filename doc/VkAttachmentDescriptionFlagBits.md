@@ -11,11 +11,11 @@ typedef enum VkAttachmentDescriptionFlagBits {
 ```
 
 # Description
-- [`VK_ATTACHMENT_DESCRIPTION_FLAG_BITS`] specifies that the attachment aliases the same device memory as other attachments.
+- [`MAY_ALIAS`] specifies that the attachment aliases the same device memory as other attachments.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkAttachmentDescriptionFlags]()
+- [`AttachmentDescriptionFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

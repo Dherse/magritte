@@ -31,7 +31,7 @@ changes it.
 -    Both of [`device`], and the elements of [`p_swapchains`] **must**  have been created, allocated, or retrieved from the same [`Instance`]
 
 # Related
-- [`ext_hdr_metadata`]
+- [`VK_EXT_hdr_metadata`]
 - [`Device`]
 - [`HdrMetadataEXT`]
 - [`SwapchainKHR`]

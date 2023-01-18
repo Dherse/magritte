@@ -141,7 +141,7 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
     #[inline]
     pub const fn origin(&self) -> &'b Origin<'a> {
         match self {
-            Self::Vendor(_) | Self::Tag(_) => &Origin::Core,
+            Self::Vendor(_) | Self::Tag(_) => &Origin::Vulkan1_0,
             Self::Extension(r) => r.origin(),
             Self::OpaqueType(r) => r.origin(),
             Self::Alias(r) => r.origin(),
@@ -191,6 +191,27 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
         matches!(self, Self::Alias(_) | Self::ConstAlias(_) | Self::CommandAlias(_))
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        match self {
+            Ref::Vendor(_) | Ref::Extension(_) | Ref::Tag(_) | Ref::Origin(_) => unreachable!("cannot be made into an identifier"),
+            Ref::OpaqueType(ty) => ty.as_ident(),
+            Ref::Alias(alias) => alias.as_ident(),
+            Ref::Struct(struct_) => struct_.as_ident(),
+            Ref::Union(union_) => union_.as_ident(),
+            Ref::Handle(handle) => handle.as_ident(),
+            Ref::FunctionPointer(fpn) => fpn.as_ident(),
+            Ref::Basetype(base_type) => base_type.as_ident(),
+            Ref::Bitmask(bitmask) => bitmask.as_ident(),
+            Ref::Const(const_) => const_.as_ident(),
+            Ref::ConstAlias(const_alias) => const_alias.as_ident(),
+            Ref::Bitflag(bitflag) => bitflag.as_ident(),
+            Ref::Enum(enum_) => enum_.as_ident(),
+            Ref::CommandAlias(command_alias) => command_alias.as_ident(),
+            Ref::Function(function) => function.as_ident(),
+        }
+    }
+
     /// Gets the name of the reference
     pub fn name(&self) -> String {
         match self {
@@ -221,12 +242,24 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
         format!("{}::{}.rs", self.origin().as_rust_path(prefix), self.name())
     }
 
+    /// Gets the rust path with a given crate prefix for this object
+    #[inline]
+    #[cfg(feature = "codegen")]
+    pub fn as_rust_path_tokens(&self, prefix: &str) -> proc_macro2::TokenStream {
+        let origin = self.origin().as_rust_path_tokens(prefix);
+        let name = proc_macro2::Ident::new(&self.name(), proc_macro2::Span::call_site());
+
+        quote::quote! {
+            #origin :: #name
+        }
+    }
+
     ref_function! {
         Vendor: is_vendor, as_vendor, as_vendor_unchecked, try_as_vendor;
         Extension: is_extension, as_extension, as_extension_unchecked, try_as_extension;
         Tag: is_tag, as_tag, as_tag_unchecked, try_as_tag;
         OpaqueType: is_opaque_type, as_opaque_type, as_opaque_type_unchecked, try_as_opaque_type;
-        Alias: is_alias, as_alias, as_alias_unchecked, try_as_alias;
+        Alias: is_type_alias, as_type_alias, as_type_alias_unchecked, try_as_type_alias;
         Struct: is_struct, as_struct, as_struct_unchecked, try_as_struct;
         Union: is_union, as_union, as_union_unchecked, try_as_union;
         Handle: is_handle, as_handle, as_handle_unchecked, try_as_handle;
@@ -307,7 +340,7 @@ impl<'a: 'b, 'b> RefMut<'a, 'b> {
         Extension: is_extension, as_extension, as_extension_unchecked, try_as_extension;
         Tag: is_tag, as_tag, as_tag_unchecked, try_as_tag;
         OpaqueType: is_opaque_type, as_opaque_type, as_opaque_type_unchecked, try_as_opaque_type;
-        Alias: is_alias, as_alias, as_alias_unchecked, try_as_alias;
+        Alias: is_alias, as_type_alias, as_alias_unchecked, try_as_alias;
         Struct: is_struct, as_struct, as_struct_unchecked, try_as_struct;
         Union: is_union, as_union, as_union_unchecked, try_as_union;
         Handle: is_handle, as_handle, as_handle_unchecked, try_as_handle;
@@ -406,7 +439,7 @@ pub enum TypeRef<'a: 'b, 'b> {
 impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     ref_function! {
         OpaqueType: is_opaque_type, as_opaque_type, as_opaque_type_unchecked, try_as_opaque_type;
-        Alias: is_alias, as_alias, as_alias_unchecked, try_as_alias;
+        Alias: is_type_alias, as_type_alias, as_type_alias_unchecked, try_as_type_alias;
         Struct: is_struct, as_struct, as_struct_unchecked, try_as_struct;
         Union: is_union, as_union, as_union_unchecked, try_as_union;
         Handle: is_handle, as_handle, as_handle_unchecked, try_as_handle;
@@ -494,6 +527,36 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             Self::Bitflag(r) => r.name(),
             Self::Enum(r) => r.name(),
         }
+    }
+
+    /// Gets a reference to the name
+    #[inline]
+    pub fn original_name(&self) -> &'b str {
+        match self {
+            Self::OpaqueType(r) => r.original_name(),
+            Self::Alias(r) => r.original_name(),
+            Self::Struct(r) => r.original_name(),
+            Self::Union(r) => r.original_name(),
+            Self::Handle(r) => r.original_name(),
+            Self::FunctionPointer(r) => r.original_name(),
+            Self::Basetype(r) => r.original_name(),
+            Self::Bitmask(r) => r.original_name(),
+            Self::Bitflag(r) => r.original_name(),
+            Self::Enum(r) => r.original_name(),
+        }
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Turns a type ref into a reference

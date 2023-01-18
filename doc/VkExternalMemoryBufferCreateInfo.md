@@ -30,7 +30,7 @@ typedef VkExternalMemoryBufferCreateInfo VkExternalMemoryBufferCreateInfoKHR;
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalMemoryHandleTypeFlags]()
+- [`ExternalMemoryHandleTypeFlags`]
 - [`StructureType`]
 
 # Notes and documentation

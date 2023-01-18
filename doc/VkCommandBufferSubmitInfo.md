@@ -34,7 +34,7 @@ typedef VkCommandBufferSubmitInfo VkCommandBufferSubmitInfoKHR;
 -  [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`StructureType`]

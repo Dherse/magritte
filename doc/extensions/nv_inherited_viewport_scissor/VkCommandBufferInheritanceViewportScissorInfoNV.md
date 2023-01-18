@@ -18,7 +18,7 @@ typedef struct VkCommandBufferInheritanceViewportScissorInfoNV {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`viewport_scissor2_d`] specifies whether the listed dynamic state is inherited.
-- [`viewport_depth_count`] specifies the maximum number of viewports to inherit. When [`viewport_scissor2_d`] is `VK_FALSE`, the behavior is as if this value is zero.
+- [`viewport_depth_count`] specifies the maximum number of viewports to inherit. When [`viewport_scissor2_d`] is [`FALSE`], the behavior is as if this value is zero.
 - [`viewport_depths`] is a pointer to a [`Viewport`] structure specifying the expected depth range for each inherited viewport.
 
 # Description
@@ -33,10 +33,10 @@ as well as the following state, with restrictions on inherited depth values
 and viewport count:
 - `VK_DYNAMIC_STATE_VIEWPORT`
 - `VK_DYNAMIC_STATE_VIEWPORT_WITH_COUNT`
-If [`viewport_scissor2_d`] is `VK_FALSE`, then the command buffer does
+If [`viewport_scissor2_d`] is [`FALSE`], then the command buffer does
 not inherit the listed dynamic state, and  **should**  set this state itself.
 If this structure is not present, the behavior is as if
-[`viewport_scissor2_d`] is `VK_FALSE`.If [`viewport_scissor2_d`] is `VK_TRUE`, then the listed dynamic state
+[`viewport_scissor2_d`] is [`FALSE`].If [`viewport_scissor2_d`] is [`TRUE`], then the listed dynamic state
 is inherited, and the command buffer  **must**  not set this
 state, except that the viewport and scissor count  **may**  be set by binding a
 graphics pipeline that does not specify this state as dynamic.When the command buffer is executed as part of a the execution of a
@@ -51,17 +51,17 @@ multiple values (e.g. multiple viewports).
 - If the provisional inherited state passes both checks, then it becomes the actual inherited state.
 
 ## Valid Usage
--    If the [inherited viewport scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedViewportScissor2D) feature is not enabled, [`viewport_scissor2_d`] **must**  be `VK_FALSE`
--    If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport) feature is not enabled and [`viewport_scissor2_d`] is `VK_TRUE`, then [`viewport_depth_count`] **must**  be `1`
--    If [`viewport_scissor2_d`] is `VK_TRUE`, then [`viewport_depth_count`] **must**  be greater than `0`
--    If [`viewport_scissor2_d`] is `VK_TRUE`, then [`viewport_depths`] **must**  be a valid pointer to an array of [`viewport_depth_count`] valid [`Viewport`] structures, except any requirements on `x`, `y`, `width`, and `height` do not apply
--    If [`viewport_scissor2_d`] is `VK_TRUE`, then the command buffer  **must**  be recorded with the `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
+-    If the [inherited viewport scissor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-inheritedViewportScissor2D) feature is not enabled, [`viewport_scissor2_d`] **must**  be [`FALSE`]
+-    If the [multiple viewports](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-multiViewport) feature is not enabled and [`viewport_scissor2_d`] is [`TRUE`], then [`viewport_depth_count`] **must**  be `1`
+-    If [`viewport_scissor2_d`] is [`TRUE`], then [`viewport_depth_count`] **must**  be greater than `0`
+-    If [`viewport_scissor2_d`] is [`TRUE`], then [`viewport_depths`] **must**  be a valid pointer to an array of [`viewport_depth_count`] valid [`Viewport`] structures, except any requirements on `x`, `y`, `width`, and `height` do not apply
+-    If [`viewport_scissor2_d`] is [`TRUE`], then the command buffer  **must**  be recorded with the `VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`
 
 # Related
-- [`nv_inherited_viewport_scissor`]
+- [`VK_NV_inherited_viewport_scissor`]
 - [`Bool32`]
 - [`StructureType`]
 - [`Viewport`]

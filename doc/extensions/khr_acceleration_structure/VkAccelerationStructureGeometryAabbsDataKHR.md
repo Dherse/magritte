@@ -29,7 +29,7 @@ typedef struct VkAccelerationStructureGeometryAabbsDataKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureGeometryDataKHR`]
 - [`DeviceOrHostAddressConstKHR`]
 - [`DeviceSize`]

@@ -16,7 +16,7 @@ outside the scope of the Vulkan logical device that created them.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory_capabilities`]`
+- Requires `[`VK_KHR_external_memory_capabilities`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -30,16 +30,16 @@ outside the scope of the Vulkan logical device that created them.
 - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryAllocateInfoKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_MEMORY_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_MEMORY_SPEC_VERSION`
-- `VK_QUEUE_FAMILY_EXTERNAL_KHR`
+- [`KHR_EXTERNAL_MEMORY_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_MEMORY_SPEC_VERSION`]
+- [`QUEUE_FAMILY_EXTERNAL_KHR`]
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_BUFFER_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.
 1) How do applications correlate two physical devices across process or
 Vulkan instance boundaries? **RESOLVED** : New device ID fields have been introduced by
-`[`khr_external_memory_capabilities`]`.
+`[`VK_KHR_external_memory_capabilities`]`.
 These fields, combined with the existing
 [`PhysicalDeviceProperties::driver_version`] field can be used to
 identify compatible devices across processes, drivers, and APIs.
@@ -76,8 +76,8 @@ transitioning memory between address spaces and other APIs, instances, or
 processes which may operate in a separate address space.
 Options for defining this transition include:
 - A new structure that can be added to the `pNext` list in [`MemoryBarrier`], [`BufferMemoryBarrier`], and [`ImageMemoryBarrier`].
-- A new bit in [VkAccessFlags]() that can be set to indicate an “external” access.
-- A new bit in [VkDependencyFlags]()
+- A new bit in [`AccessFlags`] that can be set to indicate an “external” access.
+- A new bit in [`DependencyFlags`]
 - A new special queue family that represents an “external” queue.
 A new structure has the advantage that the type of external transition can
 be described in as much detail as necessary.
@@ -93,11 +93,11 @@ purpose.
 However, there is no obvious pipeline stage that would correspond to an
 external access, and therefore no clear way to use
 `VK_ACCESS_MEMORY_READ_BIT` or `VK_ACCESS_MEMORY_WRITE_BIT`.
-[VkDependencyFlags]() and [VkPipelineStageFlags]() operate at command
+[`DependencyFlags`] and [`PipelineStageFlags`] operate at command
 granularity rather than image or buffer granularity, which would make an
 entire pipeline barrier an internal→external or external→internal barrier.
 This may not be a problem in practice, but seems like the wrong scope.
-Another downside of [VkDependencyFlags]() is that it lacks inherent
+Another downside of [`DependencyFlags`] is that it lacks inherent
 directionality: there are no `src` and `dst` variants of it in the
 barrier or dependency description semantics, so two bits might need to be
 added to describe both internal→external and external→internal
@@ -108,11 +108,11 @@ operations ideally include scheduling a barrier on both sides of the
 transition: Both the releasing and the acquiring queue or process.
 Using a special queue family requires adding an additional reserved queue
 family index.
-Re-using `VK_QUEUE_FAMILY_IGNORED` would have left it unclear how to
+Re-using [`QUEUE_FAMILY_IGNORED`] would have left it unclear how to
 transition a concurrent usage resource from one process to another, since
 the semantics would have likely been equivalent to the currently-ignored
 transition of
-`VK_QUEUE_FAMILY_IGNORED` → `VK_QUEUE_FAMILY_IGNORED`.
+[`QUEUE_FAMILY_IGNORED`] → [`QUEUE_FAMILY_IGNORED`].
 Fortunately, creating a new reserved queue family index is not invasive.Based on the above analysis, the approach of transitioning to a special
 “external” queue family was chosen.5) Do internal driver memory arrangements and/or other internal driver image
 properties need to be exported and imported when sharing images across
@@ -191,11 +191,11 @@ specified by the application.
 # Other information
 * 2016-10-20
 * No known IP claims.
-*   - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts with `[`nv_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core 
+*   - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts with `[`VK_NV_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core 
 *   - Jason Ekstrand, Intel  - Ian Elliot, Google  - Jesse Hall, Google  - Tobias Hector, Imagination Technologies  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Matthew Netsch, Qualcomm Technologies, Inc.  - Daniel Rakos, AMD  - Carsten Rohde, NVIDIA  - Ray Smith, ARM  - Chad Versace, Google
 
 # Related
-- [VK_QUEUE_FAMILY_EXTERNAL_KHR]()
+- [`QUEUE_FAMILY_EXTERNAL_KHR`]
 - [`ExportMemoryAllocateInfoKHR`]
 - [`ExternalMemoryBufferCreateInfoKHR`]
 - [`ExternalMemoryImageCreateInfoKHR`]

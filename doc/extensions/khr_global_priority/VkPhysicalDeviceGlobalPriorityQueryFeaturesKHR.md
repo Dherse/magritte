@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`
 
 # Related
-- [`khr_global_priority`]
+- [`VK_KHR_global_priority`]
 - [`Bool32`]
 - [`StructureType`]
 

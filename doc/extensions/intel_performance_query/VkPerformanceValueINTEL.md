@@ -20,7 +20,7 @@ typedef struct VkPerformanceValueINTEL {
 -    If [`type_`] is `VK_PERFORMANCE_VALUE_TYPE_STRING_INTEL`, the `valueString` member of [`data`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`PerformanceValueDataINTEL`]
 - [`PerformanceValueTypeINTEL`]
 - [`get_performance_parameter_intel`]

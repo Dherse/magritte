@@ -35,7 +35,7 @@ return `VK_ERROR_FORMAT_NOT_SUPPORTED`.
 *   - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionFUCHSIA`]
 - [`BufferConstraintsInfoFUCHSIA`]
 - [`Device`]

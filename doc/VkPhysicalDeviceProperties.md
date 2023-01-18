@@ -23,8 +23,8 @@ typedef struct VkPhysicalDeviceProperties {
 - [`vendor_id`] is a unique identifier for the *vendor* (see below) of the physical device.
 - [`device_id`] is a unique identifier for the physical device among devices available from the vendor.
 - [`device_type`] is a [`PhysicalDeviceType`] specifying the type of device.
-- [`device_name`] is an array of `VK_MAX_PHYSICAL_DEVICE_NAME_SIZE``char` containing a null-terminated UTF-8 string which is the name of the device.
-- [`pipeline_cache_uuid`] is an array of `VK_UUID_SIZE``uint8_t` values representing a universally unique identifier for the device.
+- [`device_name`] is an array of [`MAX_PHYSICAL_DEVICE_NAME_SIZE`]`char` containing a null-terminated UTF-8 string which is the name of the device.
+- [`pipeline_cache_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique identifier for the device.
 - [`limits`] is the [`PhysicalDeviceLimits`] structure specifying device-specific limits of the physical device. See [Limits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits) for details.
 - [`sparse_properties`] is the [`PhysicalDeviceSparseProperties`] structure specifying various sparse related properties of the physical device. See [Sparse Properties](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory-physicalprops) for details.
 

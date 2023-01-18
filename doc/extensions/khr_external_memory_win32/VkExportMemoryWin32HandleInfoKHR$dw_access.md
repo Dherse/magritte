@@ -1,1 +1,1 @@
-[`dw_access`] is a `DWORD` specifying access rights of the handle.
+[`dw_access`] is a [`DWORD`] specifying access rights of the handle.

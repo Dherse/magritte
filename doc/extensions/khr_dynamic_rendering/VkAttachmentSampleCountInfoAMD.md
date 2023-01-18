@@ -61,9 +61,9 @@ parameters of this structure are ignored.
 -    If [`depth_stencil_attachment_samples`] is not `0`, [`depth_stencil_attachment_samples`] **must**  be a valid [`SampleCountFlagBits`] value
 
 # Related
-- [`amd_mixed_attachment_samples`]
-- [`khr_dynamic_rendering`]
-- [`nv_framebuffer_mixed_samples`]
+- [`VK_AMD_mixed_attachment_samples`]
+- [`VK_KHR_dynamic_rendering`]
+- [`VK_NV_framebuffer_mixed_samples`]
 - [`SampleCountFlagBits`]
 - [`StructureType`]
 

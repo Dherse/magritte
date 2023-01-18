@@ -1,7 +1,7 @@
 [VK_KHR_shared_presentable_image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_shared_presentable_image.html) - device extension
 
 # Description
-This extension extends `[`khr_swapchain`]` to enable creation of a
+This extension extends `[`VK_KHR_swapchain`]` to enable creation of a
 shared presentable image.
 This allows the application to use the image while the presention engine is
 accessing it, in order to reduce the latency between rendering and
@@ -15,9 +15,9 @@ presentation.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_get_surface_capabilities2`]`
+- Requires `[`VK_KHR_swapchain`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_surface_capabilities2`]`
 
 # Contacts
 - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shared_presentable_image] @alonorbach%0A<<Here describe the issue or question you have about the VK_KHR_shared_presentable_image extension>>)
@@ -29,8 +29,8 @@ presentation.
 - Extending [`SurfaceCapabilities2KHR`]:  - [`SharedPresentSurfaceCapabilitiesKHR`]
 
 # New constants
-- `VK_KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME`
-- `VK_KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION`
+- [`KHR_SHARED_PRESENTABLE_IMAGE_EXTENSION_NAME`]
+- [`KHR_SHARED_PRESENTABLE_IMAGE_SPEC_VERSION`]
 - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR` 
 - Extending [`PresentModeKHR`]:  - `VK_PRESENT_MODE_SHARED_CONTINUOUS_REFRESH_KHR`  - `VK_PRESENT_MODE_SHARED_DEMAND_REFRESH_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`

@@ -24,7 +24,7 @@ typedef struct VkEventCreateInfo {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkEventCreateFlags]()
+- [`EventCreateFlags`]
 - [`StructureType`]
 - [`create_event`]
 

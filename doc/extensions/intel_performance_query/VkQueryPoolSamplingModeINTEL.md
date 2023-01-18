@@ -12,10 +12,10 @@ typedef enum VkQueryPoolSamplingModeINTEL {
 ```
 
 # Description
-- [`VK_QUERY_POOL_SAMPLING_MODE_INTEL`] is the default mode in which the application calls [`cmd_begin_query`] and [`cmd_end_query`] to record performance data.
+- [`MANUAL`] is the default mode in which the application calls [`cmd_begin_query`] and [`cmd_end_query`] to record performance data.
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`QueryPoolPerformanceQueryCreateInfoINTEL`]
 
 # Notes and documentation

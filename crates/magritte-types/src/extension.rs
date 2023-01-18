@@ -59,7 +59,6 @@ impl Extension<'static> {
             origin,
         }
     }
-
 }
 
 impl<'a> Extension<'a> {
@@ -71,6 +70,11 @@ impl<'a> Extension<'a> {
     /// Trims and makes the name into an rustified name.
     pub fn simple_name(&self) -> String {
         self.name().trim_start_matches("VK_").to_snake_case()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(&self.simple_name(), proc_macro2::Span::call_site())
     }
 
     /// Get a reference to the extension's disabled.

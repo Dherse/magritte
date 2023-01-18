@@ -17,8 +17,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - Qun Lin [linqun](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_trinary_minmax] @linqun%0A<<Here describe the issue or question you have about the VK_AMD_shader_trinary_minmax extension>>)
 
 # New constants
-- `VK_AMD_SHADER_TRINARY_MINMAX_EXTENSION_NAME`
-- `VK_AMD_SHADER_TRINARY_MINMAX_SPEC_VERSION`
+- [`AMD_SHADER_TRINARY_MINMAX_EXTENSION_NAME`]
+- [`AMD_SHADER_TRINARY_MINMAX_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-05-10 (Daniel Rakos)  - Initial draft

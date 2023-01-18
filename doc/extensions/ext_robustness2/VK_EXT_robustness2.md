@@ -31,8 +31,8 @@ robustness.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceRobustness2PropertiesEXT`]
 
 # New constants
-- `VK_EXT_ROBUSTNESS_2_EXTENSION_NAME`
-- `VK_EXT_ROBUSTNESS_2_SPEC_VERSION`
+- [`EXT_ROBUSTNESS_2_EXTENSION_NAME`]
+- [`EXT_ROBUSTNESS_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_PROPERTIES_EXT`
 
 # Known issues & F.A.Q.

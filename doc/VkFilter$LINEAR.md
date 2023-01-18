@@ -1,0 +1,1 @@
+[`LINEAR`] specifies linear filtering.

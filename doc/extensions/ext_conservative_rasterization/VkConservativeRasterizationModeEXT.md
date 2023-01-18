@@ -14,12 +14,12 @@ typedef enum VkConservativeRasterizationModeEXT {
 ```
 
 # Description
-- [`VK_CONSERVATIVE_RASTERIZATION_MODE_EXT`] specifies that conservative rasterization is disabled and rasterization proceeds as normal.
-- [`VK_CONSERVATIVE_RASTERIZATION_MODE_EXT`] specifies that conservative rasterization is enabled in overestimation mode.
-- [`VK_CONSERVATIVE_RASTERIZATION_MODE_EXT`] specifies that conservative rasterization is enabled in underestimation mode.
+- [`DISABLED`] specifies that conservative rasterization is disabled and rasterization proceeds as normal.
+- [`OVERESTIMATE`] specifies that conservative rasterization is enabled in overestimation mode.
+- [`UNDERESTIMATE`] specifies that conservative rasterization is enabled in underestimation mode.
 
 # Related
-- [`ext_conservative_rasterization`]
+- [`VK_EXT_conservative_rasterization`]
 - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 
 # Notes and documentation

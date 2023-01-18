@@ -29,14 +29,14 @@ typedef enum VkVideoCodecOperationFlagBitsKHR {
 # Description
 Each decode or encode codec-specific extension extends this enumeration with
 the appropriate bit corresponding to the extension’s codec operation:
-- [`VK_VIDEO_CODEC_OPERATION_FLAG_BITS_KHR`] - No video operations are supported for this queue family.
+- [`INVALID`] - No video operations are supported for this queue family.
 - [`ENCODE_H264_EXT`] - H.264 video encode operations are supported by this queue family.
 - [`DECODE_H264_EXT`] - H.264 video decode operations are supported by this queue family.
 - [`DECODE_H265_EXT`] - H.265 video decode operations are supported by this queue family.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoCodecOperationFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoCodecOperationFlagsKHR`]
 - [`VideoProfileKHR`]
 
 # Notes and documentation

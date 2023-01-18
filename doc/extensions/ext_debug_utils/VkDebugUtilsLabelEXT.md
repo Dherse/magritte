@@ -25,7 +25,7 @@ typedef struct VkDebugUtilsLabelEXT {
 -  [`label_name`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsMessengerCallbackDataEXT`]
 - [`StructureType`]
 - [`cmd_begin_debug_utils_label_ext`]

@@ -47,7 +47,7 @@ typedef struct VkDescriptorSetLayoutCreateInfo {
 # Related
 - [`crate::vulkan1_0`]
 - [`DescriptorSetLayoutBinding`]
-- [VkDescriptorSetLayoutCreateFlags]()
+- [`DescriptorSetLayoutCreateFlags`]
 - [`StructureType`]
 - [`create_descriptor_set_layout`]
 - [`get_descriptor_set_layout_support`]

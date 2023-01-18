@@ -100,6 +100,19 @@ impl<'a> Function<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Get a reference to the function's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {
@@ -234,9 +247,22 @@ impl<'a> FunctionArgument<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Gets a reference to the argument's length.
     pub fn len(&self) -> Option<&str> {
-        self.len.as_ref().map(|s| s as &str)
+        self.len.as_deref()
     }
 
     /// Get a reference to the function argument's optionality.
@@ -387,6 +413,29 @@ impl<'a> CommandAlias<'a> {
     /// Get a reference to the alias's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    /// Get a reference to the alias's function pointer-like name.
+    pub fn as_fn_pointer_name(&self) -> String {
+        format!("FN{}", self.name().to_upper_camel_case())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_fn_pointer_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(&self.as_fn_pointer_name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the alias's origin.

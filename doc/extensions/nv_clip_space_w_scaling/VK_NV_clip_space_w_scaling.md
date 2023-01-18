@@ -50,8 +50,8 @@ resolution will fall off linearly from the center of the image to its edges.
 - Extending [`PipelineViewportStateCreateInfo`]:  - [`PipelineViewportWScalingStateCreateInfoNV`]
 
 # New constants
-- `VK_NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME`
-- `VK_NV_CLIP_SPACE_W_SCALING_SPEC_VERSION`
+- [`NV_CLIP_SPACE_W_SCALING_EXTENSION_NAME`]
+- [`NV_CLIP_SPACE_W_SCALING_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_VIEWPORT_W_SCALING_NV` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_W_SCALING_STATE_CREATE_INFO_NV`
 

@@ -22,7 +22,7 @@ typedef struct VkMemoryWin32HandlePropertiesKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_external_memory_win32`]
+- [`VK_KHR_external_memory_win32`]
 - [`StructureType`]
 - [`get_memory_win32_handle_properties_khr`]
 

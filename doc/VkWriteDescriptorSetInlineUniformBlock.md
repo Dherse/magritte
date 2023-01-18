@@ -37,7 +37,7 @@ typedef VkWriteDescriptorSetInlineUniformBlock VkWriteDescriptorSetInlineUniform
 -  [`data_size`] **must**  be greater than `0`
 
 # Related
-- [`ext_inline_uniform_block`]
+- [`VK_EXT_inline_uniform_block`]
 - [`crate::vulkan1_3`]
 - [`StructureType`]
 

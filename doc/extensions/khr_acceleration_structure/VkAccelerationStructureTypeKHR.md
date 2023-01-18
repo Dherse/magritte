@@ -25,13 +25,13 @@ typedef VkAccelerationStructureTypeKHR VkAccelerationStructureTypeNV;
 ```
 
 # Description
-- [`VK_ACCELERATION_STRUCTURE_TYPE_KHR`] is a top-level acceleration structure containing instance data referring to bottom-level acceleration structures.
-- [`VK_ACCELERATION_STRUCTURE_TYPE_KHR`] is a bottom-level acceleration structure containing the AABBs or geometry to be intersected.
-- [`VK_ACCELERATION_STRUCTURE_TYPE_KHR`] is an acceleration structure whose type is determined at build time used for special circumstances.
+- [`TOP_LEVEL`] is a top-level acceleration structure containing instance data referring to bottom-level acceleration structures.
+- [`BOTTOM_LEVEL`] is a bottom-level acceleration structure containing the AABBs or geometry to be intersected.
+- [`GENERIC`] is an acceleration structure whose type is determined at build time used for special circumstances.
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`AccelerationStructureCreateInfoKHR`]
 - [`AccelerationStructureInfoNV`]

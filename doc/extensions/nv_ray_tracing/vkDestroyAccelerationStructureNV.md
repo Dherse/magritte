@@ -31,7 +31,7 @@ void vkDestroyAccelerationStructureNV(
 - Host access to [`acceleration_structure`] **must**  be externally synchronized
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureNV`]
 - [`AllocationCallbacks`]
 - [`Device`]

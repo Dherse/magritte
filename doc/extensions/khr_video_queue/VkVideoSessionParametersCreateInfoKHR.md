@@ -32,7 +32,7 @@ typedef struct VkVideoSessionParametersCreateInfoKHR {
 -    Both of [`video_session`], and [`video_session_parameters_template`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
 - [`VideoSessionKHR`]
 - [`VideoSessionParametersKHR`]

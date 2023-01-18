@@ -30,8 +30,8 @@ mode.
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_post_depth_coverage] @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_post_depth_coverage extension>>)
 
 # New constants
-- `VK_EXT_POST_DEPTH_COVERAGE_EXTENSION_NAME`
-- `VK_EXT_POST_DEPTH_COVERAGE_SPEC_VERSION`
+- [`EXT_POST_DEPTH_COVERAGE_EXTENSION_NAME`]
+- [`EXT_POST_DEPTH_COVERAGE_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-07-17 (Daniel Koch)  - Internal revisions

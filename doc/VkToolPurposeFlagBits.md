@@ -30,18 +30,18 @@ typedef VkToolPurposeFlagBits VkToolPurposeFlagBitsEXT;
 ```
 
 # Description
-- [`VK_TOOL_PURPOSE_FLAG_BITS`] specifies that the tool provides validation of API usage.
-- [`VK_TOOL_PURPOSE_FLAG_BITS`] specifies that the tool provides profiling of API usage.
-- [`VK_TOOL_PURPOSE_FLAG_BITS`] specifies that the tool is capturing data about the application’s API usage, including anything from simple logging to capturing data for later replay.
-- [`VK_TOOL_PURPOSE_FLAG_BITS`] specifies that the tool provides additional API features/extensions on top of the underlying implementation.
-- [`VK_TOOL_PURPOSE_FLAG_BITS`] specifies that the tool modifies the API features/limits/extensions presented to the application.
+- [`VALIDATION`] specifies that the tool provides validation of API usage.
+- [`PROFILING`] specifies that the tool provides profiling of API usage.
+- [`TRACING`] specifies that the tool is capturing data about the application’s API usage, including anything from simple logging to capturing data for later replay.
+- [`ADDITIONAL_FEATURES`] specifies that the tool provides additional API features/extensions on top of the underlying implementation.
+- [`MODIFYING_FEATURES`] specifies that the tool modifies the API features/limits/extensions presented to the application.
 - [`DEBUG_REPORTING_EXT`] specifies that the tool reports additional information to the application via callbacks specified by [`create_debug_report_callback_ext`] or [`create_debug_utils_messenger_ext`]
 - [`DEBUG_MARKERS_EXT`] specifies that the tool consumes [debug markers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-debug-markers) or [object debug annotation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-object-debug-annotation), [queue labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-queue-labels), or [command buffer labels](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debugging-command-buffer-labels)
 
 # Related
-- [`ext_tooling_info`]
+- [`VK_EXT_tooling_info`]
 - [`crate::vulkan1_3`]
-- [VkToolPurposeFlags]()
+- [`ToolPurposeFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

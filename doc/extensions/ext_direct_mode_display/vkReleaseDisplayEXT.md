@@ -23,7 +23,7 @@ VkResult vkReleaseDisplayEXT(
 *   - `VK_SUCCESS`
 
 # Related
-- [`ext_direct_mode_display`]
+- [`VK_EXT_direct_mode_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

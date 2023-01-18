@@ -23,7 +23,7 @@ This platform-specific function  **can**  be called prior to creating a surface.
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
 
 # Related
-- [`khr_win32_surface`]
+- [`VK_KHR_win32_surface`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

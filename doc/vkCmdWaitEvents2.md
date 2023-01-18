@@ -76,7 +76,7 @@ are applied to operations that occurred later in
 ## Command Properties
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`DependencyInfo`]

@@ -36,7 +36,7 @@ is made.
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`khr_external_memory_fd`]
+- [`VK_KHR_external_memory_fd`]
 - [`Device`]
 - [`MemoryGetFdInfoKHR`]
 

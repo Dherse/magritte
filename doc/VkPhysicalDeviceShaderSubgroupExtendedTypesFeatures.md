@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES`
 
 # Related
-- [`khr_shader_subgroup_extended_types`]
+- [`VK_KHR_shader_subgroup_extended_types`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

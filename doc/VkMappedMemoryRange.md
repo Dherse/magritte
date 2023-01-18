@@ -18,16 +18,16 @@ typedef struct VkMappedMemoryRange {
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`memory`] is the memory object to which this range belongs.
 - [`offset`] is the zero-based byte offset from the beginning of the memory object.
-- [`size`] is either the size of range, or `VK_WHOLE_SIZE` to affect the range from [`offset`] to the end of the current mapping of the allocation.
+- [`size`] is either the size of range, or [`WHOLE_SIZE`] to affect the range from [`offset`] to the end of the current mapping of the allocation.
 
 # Description
 ## Valid Usage
 -  [`memory`] **must**  be currently host mapped
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`offset`] and [`size`] **must**  specify a range contained within the currently mapped range of [`memory`]
--    If [`size`] is equal to `VK_WHOLE_SIZE`, [`offset`] **must**  be within the currently mapped range of [`memory`]
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`offset`] and [`size`] **must**  specify a range contained within the currently mapped range of [`memory`]
+-    If [`size`] is equal to [`WHOLE_SIZE`], [`offset`] **must**  be within the currently mapped range of [`memory`]
 -  [`offset`] **must**  be a multiple of [`PhysicalDeviceLimits::non_coherent_atom_size`]
--    If [`size`] is equal to `VK_WHOLE_SIZE`, the end of the current mapping of [`memory`] **must**  either be a multiple of [`PhysicalDeviceLimits::non_coherent_atom_size`] bytes from the beginning of the memory object, or be equal to the end of the memory object
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  either be a multiple of [`PhysicalDeviceLimits::non_coherent_atom_size`], or [`offset`] plus [`size`] **must**  equal the size of [`memory`]
+-    If [`size`] is equal to [`WHOLE_SIZE`], the end of the current mapping of [`memory`] **must**  either be a multiple of [`PhysicalDeviceLimits::non_coherent_atom_size`] bytes from the beginning of the memory object, or be equal to the end of the memory object
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  either be a multiple of [`PhysicalDeviceLimits::non_coherent_atom_size`], or [`offset`] plus [`size`] **must**  equal the size of [`memory`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MAPPED_MEMORY_RANGE`

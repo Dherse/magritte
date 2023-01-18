@@ -22,7 +22,7 @@ typedef struct VkCuModuleCreateInfoNVX {
 -  [`data_size`] **must**  be greater than `0`
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`StructureType`]
 - [`create_cu_module_nvx`]
 

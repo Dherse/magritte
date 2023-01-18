@@ -15,8 +15,8 @@ typedef enum VkPipelineColorBlendStateCreateFlagBits {
 - [`RASTERIZATION_ORDER_ATTACHMENT_ACCESS_ARM`] indicates that access to color and input attachments will have implicit framebuffer-local memory dependencies, allowing applications to express custom blending operations in a fragment shader. See [renderpass feedback loops](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-feedbackloop) for more information.
 
 # Related
-- [`arm_rasterization_order_attachment_access`]
-- [VkPipelineColorBlendStateCreateFlags]()
+- [`VK_ARM_rasterization_order_attachment_access`]
+- [`PipelineColorBlendStateCreateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

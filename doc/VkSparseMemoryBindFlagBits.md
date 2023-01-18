@@ -11,11 +11,11 @@ typedef enum VkSparseMemoryBindFlagBits {
 ```
 
 # Description
-- [`VK_SPARSE_MEMORY_BIND_FLAG_BITS`] specifies that the memory being bound is only for the metadata aspect.
+- [`METADATA`] specifies that the memory being bound is only for the metadata aspect.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkSparseMemoryBindFlags]()
+- [`SparseMemoryBindFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

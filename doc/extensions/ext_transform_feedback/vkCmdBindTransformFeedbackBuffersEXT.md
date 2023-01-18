@@ -20,7 +20,7 @@ void vkCmdBindTransformFeedbackBuffersEXT(
 - [`binding_count`] is the number of transform feedback bindings whose state is updated by the command.
 - [`p_buffers`] is a pointer to an array of buffer handles.
 - [`p_offsets`] is a pointer to an array of buffer offsets.
-- [`p_sizes`] is `NULL` or a pointer to an array of [`DeviceSize`] buffer sizes, specifying the maximum number of bytes to capture to the corresponding transform feedback buffer. If [`p_sizes`] is `NULL`, or the value of the [`p_sizes`] array element is `VK_WHOLE_SIZE`, then the maximum number of bytes captured will be the size of the corresponding buffer minus the buffer offset.
+- [`p_sizes`] is `NULL` or a pointer to an array of [`DeviceSize`] buffer sizes, specifying the maximum number of bytes to capture to the corresponding transform feedback buffer. If [`p_sizes`] is `NULL`, or the value of the [`p_sizes`] array element is [`WHOLE_SIZE`], then the maximum number of bytes captured will be the size of the corresponding buffer minus the buffer offset.
 
 # Description
 The values taken from elements i of [`p_buffers`], [`p_offsets`] and
@@ -36,9 +36,9 @@ by [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
 -    All elements of [`p_offsets`] **must**  be less than the size of the corresponding element in [`p_buffers`]
 -    All elements of [`p_offsets`] **must**  be a multiple of 4
 -    All elements of [`p_buffers`] **must**  have been created with the `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT` flag
--    If the optional `pSize` array is specified, each element of [`p_sizes`] **must**  either be `VK_WHOLE_SIZE`, or be less than or equal to [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_buffer_size`]
--    All elements of [`p_sizes`] **must**  be either `VK_WHOLE_SIZE`, or less than or equal to the size of the corresponding buffer in [`p_buffers`]
--    All elements of [`p_offsets`] plus [`p_sizes`], where the [`p_sizes`], element is not `VK_WHOLE_SIZE`,  **must**  be less than or equal to the size of the corresponding buffer in [`p_buffers`]
+-    If the optional `pSize` array is specified, each element of [`p_sizes`] **must**  either be [`WHOLE_SIZE`], or be less than or equal to [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_buffer_size`]
+-    All elements of [`p_sizes`] **must**  be either [`WHOLE_SIZE`], or less than or equal to the size of the corresponding buffer in [`p_buffers`]
+-    All elements of [`p_offsets`] plus [`p_sizes`], where the [`p_sizes`], element is not [`WHOLE_SIZE`],  **must**  be less than or equal to the size of the corresponding buffer in [`p_buffers`]
 -    Each element of [`p_buffers`] that is non-sparse  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    Transform feedback  **must**  not be active when the [`cmd_bind_transform_feedback_buffers_ext`] command is recorded
 
@@ -58,7 +58,7 @@ by [`p_offsets`][i] from the start of the buffer [`p_buffers`][i].
 ## Command Properties
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`Buffer`]
 - [`CommandBuffer`]
 - [`DeviceSize`]

@@ -23,7 +23,7 @@ form 4m+{0,1,2,3}.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_compute_shader_derivatives] @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_compute_shader_derivatives extension>>)
@@ -32,8 +32,8 @@ form 4m+{0,1,2,3}.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceComputeShaderDerivativesFeaturesNV`]
 
 # New constants
-- `VK_NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME`
-- `VK_NV_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION`
+- [`NV_COMPUTE_SHADER_DERIVATIVES_EXTENSION_NAME`]
+- [`NV_COMPUTE_SHADER_DERIVATIVES_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COMPUTE_SHADER_DERIVATIVES_FEATURES_NV`
 
 # Known issues & F.A.Q.

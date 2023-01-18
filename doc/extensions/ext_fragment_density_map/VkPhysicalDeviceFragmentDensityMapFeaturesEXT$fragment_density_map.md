@@ -4,4 +4,4 @@ density map attachment.
 If this feature is not enabled and the [`p_next`] chain of
 [`RenderPassCreateInfo`] includes a
 [`RenderPassFragmentDensityMapCreateInfoEXT`] structure,
-`fragmentDensityMapAttachment` **must**  be `VK_ATTACHMENT_UNUSED`.
+`fragmentDensityMapAttachment` **must**  be [`ATTACHMENT_UNUSED`].

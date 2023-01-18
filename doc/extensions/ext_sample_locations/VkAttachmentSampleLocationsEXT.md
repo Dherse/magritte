@@ -26,7 +26,7 @@ values specified in [`sample_locations_info`] are ignored.
 -  [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`RenderPassSampleLocationsBeginInfoEXT`]
 - [`SampleLocationsInfoEXT`]
 

@@ -29,8 +29,8 @@ Behaviour of these variables is extended as described in the
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_viewport_index_layer] @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_shader_viewport_index_layer extension>>)
 
 # New constants
-- `VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME`
-- `VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_SPEC_VERSION`
+- [`EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME`]
+- [`EXT_SHADER_VIEWPORT_INDEX_LAYER_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-08-08 (Daniel Koch)  - Internal drafts

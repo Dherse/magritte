@@ -19,7 +19,7 @@ VkResult vkReleaseFullScreenExclusiveModeEXT(
 -  [`swapchain`] **must**  be a swapchain created with a [`SurfaceFullScreenExclusiveInfoEXT`] structure, with `fullScreenExclusive` set to `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`Device`]
 - [`SwapchainKHR`]
 

@@ -33,10 +33,10 @@ typedef struct VkGeometryNV {
 -  [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureInfoNV`]
 - [`GeometryDataNV`]
-- [VkGeometryFlagsKHR]()
+- [`GeometryFlagsKHR`]
 - [`GeometryTypeKHR`]
 - [`StructureType`]
 

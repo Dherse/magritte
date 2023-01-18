@@ -31,9 +31,9 @@ parameters correspond to parameters that would be consumed by
 supported for images, then [`get_physical_device_image_format_properties`]
 returns `VK_ERROR_FORMAT_NOT_SUPPORTED`.The limitations on an image format that are reported by
 [`get_physical_device_image_format_properties`] have the following property:
-if `usage1` and `usage2` of type [VkImageUsageFlags]() are such that
+if `usage1` and `usage2` of type [`ImageUsageFlags`] are such that
 the bits set in `usage1` are a subset of the bits set in `usage2`, and
-`flags1` and `flags2` of type [VkImageCreateFlags]() are such that
+`flags1` and `flags2` of type [`ImageCreateFlags`] are such that
 the bits set in `flags1` are a subset of the bits set in `flags2`,
 then the limitations for `usage1` and `flags1` **must**  be no more strict
 than the limitations for `usage2` and `flags2`, for all values of
@@ -58,11 +58,11 @@ than the limitations for `usage2` and `flags2`, for all values of
 # Related
 - [`crate::vulkan1_0`]
 - [`Format`]
-- [VkImageCreateFlags]()
+- [`ImageCreateFlags`]
 - [`ImageFormatProperties`]
 - [`ImageTiling`]
 - [`ImageType`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

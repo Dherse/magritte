@@ -1,1 +1,0 @@
-[`VK_RESOLVE_MODE_FLAG_BITS`] indicates that no resolve operation is done.

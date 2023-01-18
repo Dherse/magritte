@@ -28,9 +28,9 @@ typedef struct VkSwapchainCounterCreateInfoEXT {
 -  [`surface_counters`] **must**  be a valid combination of [`SurfaceCounterFlagBitsEXT`] values
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`StructureType`]
-- [VkSurfaceCounterFlagsEXT]()
+- [`SurfaceCounterFlagsEXT`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

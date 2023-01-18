@@ -1,0 +1,1 @@
+[`EVENT_RESET`] An event is unsignaled

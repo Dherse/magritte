@@ -29,12 +29,12 @@ If the value of [`p_present_mode_count`] is less than the number of
 presentation modes supported, at most [`p_present_mode_count`] values will be
 written, and `VK_INCOMPLETE` will be returned instead of
 `VK_SUCCESS`, to indicate that not all the available modes were
-returned.If the `[`google_surfaceless_query`]` extension is enabled, the values
+returned.If the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, the values
 returned in [`p_present_modes`] will be identical for every valid surface
 created on this physical device, and so [`surface`] **can**  be
 [`crate::Handle::null`].
 ## Valid Usage
--    If the `[`google_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+-    If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 -    If [`surface`] is not [`crate::Handle::null`], it  **must**  be supported by [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
 
 ## Valid Usage (Implicit)
@@ -49,7 +49,7 @@ created on this physical device, and so [`surface`] **can**  be
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`PhysicalDevice`]
 - [`PresentModeKHR`]
 - [`SurfaceKHR`]

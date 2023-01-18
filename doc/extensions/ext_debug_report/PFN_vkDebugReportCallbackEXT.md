@@ -30,15 +30,15 @@ typedef VkBool32 (VKAPI_PTR *PFN_vkDebugReportCallbackEXT)(
 # Description
 The callback  **must**  not call [`destroy_debug_report_callback_ext`].The callback returns a [`Bool32`], which is interpreted in a
 layer-specified manner.
-The application  **should**  always return `VK_FALSE`.
-The `VK_TRUE` value is reserved for use in layer development.[`object`] **must**  be a Vulkan object or [`crate::Handle::null`].
+The application  **should**  always return [`FALSE`].
+The [`TRUE`] value is reserved for use in layer development.[`object`] **must**  be a Vulkan object or [`crate::Handle::null`].
 If [`object_type`] is not `VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT` and
 [`object`] is not [`crate::Handle::null`], [`object`] **must**  be a Vulkan
 object of the corresponding type associated with [`object_type`] as defined
 in [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#debug-report-object-types).
 
 # Related
-- [`ext_debug_report`]
+- [`VK_EXT_debug_report`]
 - [`DebugReportCallbackCreateInfoEXT`]
 
 # Notes and documentation

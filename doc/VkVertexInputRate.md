@@ -12,8 +12,8 @@ typedef enum VkVertexInputRate {
 ```
 
 # Description
-- [`VK_VERTEX_INPUT_RATE`] specifies that vertex attribute addressing is a function of the vertex index.
-- [`VK_VERTEX_INPUT_RATE`] specifies that vertex attribute addressing is a function of the instance index.
+- [`VERTEX`] specifies that vertex attribute addressing is a function of the vertex index.
+- [`INSTANCE`] specifies that vertex attribute addressing is a function of the instance index.
 
 # Related
 - [`crate::vulkan1_0`]

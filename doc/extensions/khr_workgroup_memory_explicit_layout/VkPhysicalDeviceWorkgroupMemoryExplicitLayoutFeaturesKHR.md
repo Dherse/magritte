@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
 
 # Related
-- [`khr_workgroup_memory_explicit_layout`]
+- [`VK_KHR_workgroup_memory_explicit_layout`]
 - [`Bool32`]
 - [`StructureType`]
 

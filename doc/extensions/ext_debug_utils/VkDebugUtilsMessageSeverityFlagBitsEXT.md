@@ -15,14 +15,14 @@ typedef enum VkDebugUtilsMessageSeverityFlagBitsEXT {
 ```
 
 # Description
-- [`VK_DEBUG_UTILS_MESSAGE_SEVERITY_FLAG_BITS_EXT`] specifies the most verbose output indicating all diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
-- [`VK_DEBUG_UTILS_MESSAGE_SEVERITY_FLAG_BITS_EXT`] specifies an informational message such as resource details that may be handy when debugging an application.
-- [`VK_DEBUG_UTILS_MESSAGE_SEVERITY_FLAG_BITS_EXT`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a location with no attachment. Other cases  **may**  point to behavior that is almost certainly bad when unintended such as using an image whose memory has not been filled. In general if you see a warning but you know that the behavior is intended/desired, then simply ignore the warning.
-- [`VK_DEBUG_UTILS_MESSAGE_SEVERITY_FLAG_BITS_EXT`] specifies that the application has violated a valid usage condition of the specification.
+- [`VERBOSE`] specifies the most verbose output indicating all diagnostic messages from the Vulkan loader, layers, and drivers should be captured.
+- [`INFO`] specifies an informational message such as resource details that may be handy when debugging an application.
+- [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a location with no attachment. Other cases  **may**  point to behavior that is almost certainly bad when unintended such as using an image whose memory has not been filled. In general if you see a warning but you know that the behavior is intended/desired, then simply ignore the warning.
+- [`ERROR`] specifies that the application has violated a valid usage condition of the specification.
 
 # Related
-- [`ext_debug_utils`]
-- [VkDebugUtilsMessageSeverityFlagsEXT]()
+- [`VK_EXT_debug_utils`]
+- [`DebugUtilsMessageSeverityFlagsEXT`]
 - [`submit_debug_utils_message_ext`]
 
 # Notes and documentation

@@ -43,7 +43,7 @@ An application that desires its target IPD to always be the same as
 satisfactory.
 
 # Related
-- [`google_display_timing`]
+- [`VK_GOOGLE_display_timing`]
 - [`get_past_presentation_timing_google`]
 
 # Notes and documentation

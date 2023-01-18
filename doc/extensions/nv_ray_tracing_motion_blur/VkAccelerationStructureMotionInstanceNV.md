@@ -30,7 +30,7 @@ typedef struct VkAccelerationStructureMotionInstanceNV {
 -    If [`type_`] is `VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_SRT_MOTION_NV`, the `srtMotionInstance` member of [`data`] **must**  be a valid [`AccelerationStructureSrtMotionInstanceNV`] structure
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureMotionInstanceDataNV`]
 - [`AccelerationStructureMotionInstanceFlagsNV`]
 - [`AccelerationStructureMotionInstanceTypeNV`]

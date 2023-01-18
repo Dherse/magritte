@@ -20,7 +20,7 @@ and `OpAtomicFMaxEXT`.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_shader_atomic_float`]`
+- Requires `[`VK_EXT_shader_atomic_float`]`
 
 # Contacts
 - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_atomic_float2] @jekstrand%0A<<Here describe the issue or question you have about the VK_EXT_shader_atomic_float2 extension>>)
@@ -29,8 +29,8 @@ and `OpAtomicFMaxEXT`.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderAtomicFloat2FeaturesEXT`]
 
 # New constants
-- `VK_EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME`
-- `VK_EXT_SHADER_ATOMIC_FLOAT_2_SPEC_VERSION`
+- [`EXT_SHADER_ATOMIC_FLOAT_2_EXTENSION_NAME`]
+- [`EXT_SHADER_ATOMIC_FLOAT_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_2_FEATURES_EXT`
 
 # Known issues & F.A.Q.

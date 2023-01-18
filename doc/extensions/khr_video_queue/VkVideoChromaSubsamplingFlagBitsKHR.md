@@ -14,14 +14,14 @@ typedef enum VkVideoChromaSubsamplingFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_CHROMA_SUBSAMPLING_FLAG_BITS_KHR`] - the format is monochrome.
-- [`VK_VIDEO_CHROMA_SUBSAMPLING_FLAG_BITS_KHR`] - the format is 4:2:0 chroma subsampled. The two chroma components are each subsampled at a factor of 2 both horizontally and vertically.
-- [`VK_VIDEO_CHROMA_SUBSAMPLING_FLAG_BITS_KHR`] - the format is 4:2:2 chroma subsampled. The two chroma components are sampled at half the sample rate of luma. The horizontal chroma resolution is halved.
-- [`VK_VIDEO_CHROMA_SUBSAMPLING_FLAG_BITS_KHR`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same sample rate, thus there is no chroma subsampling.
+- [`MONOCHROME`] - the format is monochrome.
+- [`420`] - the format is 4:2:0 chroma subsampled. The two chroma components are each subsampled at a factor of 2 both horizontally and vertically.
+- [`422`] - the format is 4:2:2 chroma subsampled. The two chroma components are sampled at half the sample rate of luma. The horizontal chroma resolution is halved.
+- [`444`] - the format is 4:4:4 chroma sampled. Each of the three YCbCr components have the same sample rate, thus there is no chroma subsampling.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoChromaSubsamplingFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoChromaSubsamplingFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

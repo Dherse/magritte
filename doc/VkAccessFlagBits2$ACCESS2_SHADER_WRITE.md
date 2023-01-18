@@ -1,0 +1,2 @@
+[`ACCESS2_SHADER_WRITE`] is equivalent to
+[`ACCESS2_SHADER_STORAGE_WRITE`].

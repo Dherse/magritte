@@ -32,17 +32,17 @@ typedef enum VkDescriptorType {
 ```
 
 # Description
-- [`VK_DESCRIPTOR_TYPE`] specifies a [sampler descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [combined image sampler descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [sampled image descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [storage image descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [uniform texel buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [storage texel buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [uniform buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [storage buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [dynamic uniform buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic).
-- [`VK_DESCRIPTOR_TYPE`] specifies a [dynamic storage buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic).
-- [`VK_DESCRIPTOR_TYPE`] specifies an [input attachment descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment).
+- [`SAMPLER`] specifies a [sampler descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampler).
+- [`COMBINED_IMAGE_SAMPLER`] specifies a [combined image sampler descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-combinedimagesampler).
+- [`SAMPLED_IMAGE`] specifies a [sampled image descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-sampledimage).
+- [`STORAGE_IMAGE`] specifies a [storage image descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storageimage).
+- [`UNIFORM_TEXEL_BUFFER`] specifies a [uniform texel buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformtexelbuffer).
+- [`STORAGE_TEXEL_BUFFER`] specifies a [storage texel buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagetexelbuffer).
+- [`UNIFORM_BUFFER`] specifies a [uniform buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbuffer).
+- [`STORAGE_BUFFER`] specifies a [storage buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebuffer).
+- [`UNIFORM_BUFFER_DYNAMIC`] specifies a [dynamic uniform buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-uniformbufferdynamic).
+- [`STORAGE_BUFFER_DYNAMIC`] specifies a [dynamic storage buffer descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-storagebufferdynamic).
+- [`INPUT_ATTACHMENT`] specifies an [input attachment descriptor](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inputattachment).
 - [`INLINE_UNIFORM_BLOCK`] specifies an [inline uniform block](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-inlineuniformblock).
 - [`MUTABLE_VALVE`] specifies a [descriptor of mutable type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#descriptorsets-mutable).
 When a descriptor set is updated via elements of [`WriteDescriptorSet`],
@@ -50,11 +50,11 @@ members of `pImageInfo`, `pBufferInfo` and `pTexelBufferView`
 are only accessed by the implementation when they correspond to descriptor
 type being defined - otherwise they are ignored.
 The members accessed are as follows for each descriptor type:
-- For [`VK_DESCRIPTOR_TYPE`], only the `sampler` member of each element of [`WriteDescriptorSet::image_info`] is accessed.
-- For [`VK_DESCRIPTOR_TYPE`], [`VK_DESCRIPTOR_TYPE`], or [`VK_DESCRIPTOR_TYPE`], only the `imageView` and `imageLayout` members of each element of [`WriteDescriptorSet::image_info`] are accessed.
-- For [`VK_DESCRIPTOR_TYPE`], all members of each element of [`WriteDescriptorSet::image_info`] are accessed.
-- For [`VK_DESCRIPTOR_TYPE`], [`VK_DESCRIPTOR_TYPE`], [`VK_DESCRIPTOR_TYPE`], or [`VK_DESCRIPTOR_TYPE`], all members of each element of [`WriteDescriptorSet::buffer_info`] are accessed.
-- For [`VK_DESCRIPTOR_TYPE`] or [`VK_DESCRIPTOR_TYPE`], each element of [`WriteDescriptorSet::texel_buffer_view`] is accessed.
+- For [`SAMPLER`], only the `sampler` member of each element of [`WriteDescriptorSet::image_info`] is accessed.
+- For [`SAMPLED_IMAGE`], [`STORAGE_IMAGE`], or [`INPUT_ATTACHMENT`], only the `imageView` and `imageLayout` members of each element of [`WriteDescriptorSet::image_info`] are accessed.
+- For [`COMBINED_IMAGE_SAMPLER`], all members of each element of [`WriteDescriptorSet::image_info`] are accessed.
+- For [`UNIFORM_BUFFER`], [`STORAGE_BUFFER`], [`UNIFORM_BUFFER_DYNAMIC`], or [`STORAGE_BUFFER_DYNAMIC`], all members of each element of [`WriteDescriptorSet::buffer_info`] are accessed.
+- For [`UNIFORM_TEXEL_BUFFER`] or [`STORAGE_TEXEL_BUFFER`], each element of [`WriteDescriptorSet::texel_buffer_view`] is accessed.
 When updating descriptors with a `descriptorType` of
 [`INLINE_UNIFORM_BLOCK`], none of the `pImageInfo`,
 `pBufferInfo`, or `pTexelBufferView` members are accessed, instead

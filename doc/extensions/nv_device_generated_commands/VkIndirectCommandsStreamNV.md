@@ -25,7 +25,7 @@ typedef struct VkIndirectCommandsStreamNV {
 -  [`buffer`] **must**  be a valid [`Buffer`] handle
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`GeneratedCommandsInfoNV`]

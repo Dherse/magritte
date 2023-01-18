@@ -37,8 +37,8 @@ available, at most [`p_checkpoint_data_count`] structures will be written.
 -    If the value referenced by [`p_checkpoint_data_count`] is not `0`, and [`p_checkpoint_data`] is not `NULL`, [`p_checkpoint_data`] **must**  be a valid pointer to an array of [`p_checkpoint_data_count`][`CheckpointData2NV`] structures
 
 # Related
-- [`khr_synchronization2`]
-- [`nv_device_diagnostic_checkpoints`]
+- [`VK_KHR_synchronization2`]
+- [`VK_NV_device_diagnostic_checkpoints`]
 - [`CheckpointData2NV`]
 - [`Queue`]
 

@@ -42,8 +42,8 @@ application is making Vulkan calls from multiple threads).
 
 # Related
 - [`PFNDebugReportCallbackEXT`]
-- [`ext_debug_report`]
-- [VkDebugReportFlagsEXT]()
+- [`VK_EXT_debug_report`]
+- [`DebugReportFlagsEXT`]
 - [`StructureType`]
 - [`create_debug_report_callback_ext`]
 

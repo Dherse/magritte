@@ -37,16 +37,16 @@ Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
 ## Valid Usage
 -  `geometryCount` **must**  be less than or equal to [`PhysicalDeviceRayTracingPropertiesNV::max_geometry_count`]
 -  [`dst`] **must**  have been created with compatible [`AccelerationStructureInfoNV`] where [`AccelerationStructureInfoNV::type_`] and [`AccelerationStructureInfoNV::flags`] are identical, [`AccelerationStructureInfoNV::instance_count`] and [`AccelerationStructureInfoNV::geometry_count`] for [`dst`] are greater than or equal to the build size and each geometry in [`AccelerationStructureInfoNV::geometries`] for [`dst`] has greater than or equal to the number of vertices, indices, and AABBs
--    If [`update`] is `VK_TRUE`, [`src`] **must**  not be [`crate::Handle::null`]
--    If [`update`] is `VK_TRUE`, [`src`] **must**  have previously been constructed with `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV` set in [`AccelerationStructureInfoNV::flags`] in the original build
--    If [`update`] is `VK_FALSE`, the `size` member of the [`MemoryRequirements`] structure returned from a call to [`get_acceleration_structure_memory_requirements_nv`] with [`AccelerationStructureMemoryRequirementsInfoNV::acceleration_structure`] set to [`dst`] and [`AccelerationStructureMemoryRequirementsInfoNV::type_`] set to `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV` **must**  be less than or equal to the size of [`scratch`] minus [`scratch_offset`]
--    If [`update`] is `VK_TRUE`, the `size` member of the [`MemoryRequirements`] structure returned from a call to [`get_acceleration_structure_memory_requirements_nv`] with [`AccelerationStructureMemoryRequirementsInfoNV::acceleration_structure`] set to [`dst`] and [`AccelerationStructureMemoryRequirementsInfoNV::type_`] set to `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV` **must**  be less than or equal to the size of [`scratch`] minus [`scratch_offset`]
+-    If [`update`] is [`TRUE`], [`src`] **must**  not be [`crate::Handle::null`]
+-    If [`update`] is [`TRUE`], [`src`] **must**  have previously been constructed with `VK_BUILD_ACCELERATION_STRUCTURE_ALLOW_UPDATE_BIT_NV` set in [`AccelerationStructureInfoNV::flags`] in the original build
+-    If [`update`] is [`FALSE`], the `size` member of the [`MemoryRequirements`] structure returned from a call to [`get_acceleration_structure_memory_requirements_nv`] with [`AccelerationStructureMemoryRequirementsInfoNV::acceleration_structure`] set to [`dst`] and [`AccelerationStructureMemoryRequirementsInfoNV::type_`] set to `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV` **must**  be less than or equal to the size of [`scratch`] minus [`scratch_offset`]
+-    If [`update`] is [`TRUE`], the `size` member of the [`MemoryRequirements`] structure returned from a call to [`get_acceleration_structure_memory_requirements_nv`] with [`AccelerationStructureMemoryRequirementsInfoNV::acceleration_structure`] set to [`dst`] and [`AccelerationStructureMemoryRequirementsInfoNV::type_`] set to `VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV` **must**  be less than or equal to the size of [`scratch`] minus [`scratch_offset`]
 -  [`scratch`] **must**  have been created with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
 -    If [`instance_data`] is not [`crate::Handle::null`], [`instance_data`] **must**  have been created with `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` usage flag
 -    Each [`AccelerationStructureInstanceKHR::acceleration_structure_reference`] value in [`instance_data`] **must**  be a valid device address containing a value obtained from [`get_acceleration_structure_handle_nv`]
--    If [`update`] is `VK_TRUE`, then objects that were previously active  **must**  not be made inactive as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
--    If [`update`] is `VK_TRUE`, then objects that were previously inactive  **must**  not be made active as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
--    If [`update`] is `VK_TRUE`, the [`src`] and [`dst`] objects  **must**  either be the same object or not have any [memory aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing)
+-    If [`update`] is [`TRUE`], then objects that were previously active  **must**  not be made inactive as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
+-    If [`update`] is [`TRUE`], then objects that were previously inactive  **must**  not be made active as per [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-inactive-prims)
+-    If [`update`] is [`TRUE`], the [`src`] and [`dst`] objects  **must**  either be the same object or not have any [memory aliasing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-memory-aliasing)
 
 ## Valid Usage (Implicit)
 -  [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
@@ -67,7 +67,7 @@ Accesses to [`dst`], [`src`], and [`scratch`] **must**  be
 ## Command Properties
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureInfoNV`]
 - [`AccelerationStructureNV`]
 - [`Bool32`]

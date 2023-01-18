@@ -31,8 +31,8 @@ decorations:
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_draw_parameters] @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_shader_draw_parameters extension>>)
 
 # New constants
-- `VK_KHR_SHADER_DRAW_PARAMETERS_EXTENSION_NAME`
-- `VK_KHR_SHADER_DRAW_PARAMETERS_SPEC_VERSION`
+- [`KHR_SHADER_DRAW_PARAMETERS_EXTENSION_NAME`]
+- [`KHR_SHADER_DRAW_PARAMETERS_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) Is this the same functionality as `GL_ARB_shader_draw_parameters`? **RESOLVED** : It is actually a superset, as it also adds in support for

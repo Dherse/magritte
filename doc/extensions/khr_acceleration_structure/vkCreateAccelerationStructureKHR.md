@@ -51,7 +51,7 @@ as an input or as scratch without affecting the results of ray traversal.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS_KHR`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureCreateInfoKHR`]
 - [`AccelerationStructureKHR`]
 - [`AllocationCallbacks`]

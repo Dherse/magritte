@@ -14,14 +14,14 @@ can be more efficient than writing descriptors into descriptor sets.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_push_descriptor] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_KHR_push_descriptor extension>>)
 
 # New commands
 - [`cmd_push_descriptor_set_khr`]
-If [`khr_descriptor_update_template`] is supported:
+If [`VK_KHR_descriptor_update_template`] is supported:
 - [`cmd_push_descriptor_set_with_template_khr`]
 If [Version 1.1]() is supported:
 - [`cmd_push_descriptor_set_with_template_khr`]
@@ -30,11 +30,11 @@ If [Version 1.1]() is supported:
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePushDescriptorPropertiesKHR`]
 
 # New constants
-- `VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME`
-- `VK_KHR_PUSH_DESCRIPTOR_SPEC_VERSION`
+- [`KHR_PUSH_DESCRIPTOR_EXTENSION_NAME`]
+- [`KHR_PUSH_DESCRIPTOR_SPEC_VERSION`]
 - Extending [`DescriptorSetLayoutCreateFlagBits`]:  - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR` 
-If [`khr_descriptor_update_template`] is supported:
+If [`VK_KHR_descriptor_update_template`] is supported:
 - Extending [`DescriptorUpdateTemplateType`]:  - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR` 
 If [Version 1.1]() is supported:
 - Extending [`DescriptorUpdateTemplateType`]:  - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`

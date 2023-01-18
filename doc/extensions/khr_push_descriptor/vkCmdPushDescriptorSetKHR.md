@@ -79,7 +79,7 @@ pipeline layout.
 ## Command Properties
 
 # Related
-- [`khr_push_descriptor`]
+- [`VK_KHR_push_descriptor`]
 - [`CommandBuffer`]
 - [`PipelineBindPoint`]
 - [`PipelineLayout`]

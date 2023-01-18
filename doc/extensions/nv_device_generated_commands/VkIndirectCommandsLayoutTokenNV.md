@@ -65,14 +65,14 @@ typedef struct VkIndirectCommandsLayoutTokenNV {
 -    If [`index_type_count`] is not `0`, [`index_type_values`] **must**  be a valid pointer to an array of [`index_type_count`]`uint32_t` values
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`Bool32`]
 - [`IndexType`]
 - [`IndirectCommandsLayoutCreateInfoNV`]
 - [`IndirectCommandsTokenTypeNV`]
-- [VkIndirectStateFlagsNV]()
+- [`IndirectStateFlagsNV`]
 - [`PipelineLayout`]
-- [VkShaderStageFlags]()
+- [`ShaderStageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

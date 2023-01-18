@@ -24,7 +24,7 @@ This extension is primarily intended to be useful for API layering efforts.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_maintenance3`]`
+- Requires `[`VK_KHR_maintenance3`]`
 
 # Contacts
 - Joshua Ashton [Joshua-Ashton](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_VALVE_mutable_descriptor_type] @Joshua-Ashton%0A<<Here describe the issue or question you have about the VK_VALVE_mutable_descriptor_type extension>>)
@@ -36,8 +36,8 @@ This extension is primarily intended to be useful for API layering efforts.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceMutableDescriptorTypeFeaturesVALVE`]
 
 # New constants
-- `VK_VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME`
-- `VK_VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION`
+- [`VALVE_MUTABLE_DESCRIPTOR_TYPE_EXTENSION_NAME`]
+- [`VALVE_MUTABLE_DESCRIPTOR_TYPE_SPEC_VERSION`]
 - Extending [`DescriptorPoolCreateFlagBits`]:  - `VK_DESCRIPTOR_POOL_CREATE_HOST_ONLY_BIT_VALVE` 
 - Extending [`DescriptorSetLayoutCreateFlagBits`]:  - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_HOST_ONLY_POOL_BIT_VALVE` 
 - Extending [`DescriptorType`]:  - `VK_DESCRIPTOR_TYPE_MUTABLE_VALVE` 

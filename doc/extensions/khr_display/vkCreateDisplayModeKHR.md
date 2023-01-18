@@ -36,7 +36,7 @@ VkResult vkCreateDisplayModeKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`AllocationCallbacks`]
 - [`DisplayKHR`]
 - [`DisplayModeCreateInfoKHR`]

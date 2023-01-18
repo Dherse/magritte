@@ -15,14 +15,14 @@ typedef enum VkCompositeAlphaFlagBitsKHR {
 
 # Description
 These values are described as follows:
-- [`VK_COMPOSITE_ALPHA_FLAG_BITS_KHR`]: The alpha component, if it exists, of the images is ignored in the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
-- [`VK_COMPOSITE_ALPHA_FLAG_BITS_KHR`]: The alpha component, if it exists, of the images is respected in the compositing process. The non-alpha components of the image are expected to already be multiplied by the alpha component by the application.
-- [`VK_COMPOSITE_ALPHA_FLAG_BITS_KHR`]: The alpha component, if it exists, of the images is respected in the compositing process. The non-alpha components of the image are not expected to already be multiplied by the alpha component by the application; instead, the compositor will multiply the non-alpha components of the image by the alpha component during compositing.
-- [`VK_COMPOSITE_ALPHA_FLAG_BITS_KHR`]: The way in which the presentation engine treats the alpha component in the images is unknown to the Vulkan API. Instead, the application is responsible for setting the composite alpha blending mode using native window system commands. If the application does not set the blending mode using native window system commands, then a platform-specific default will be used.
+- [`OPAQUE`]: The alpha component, if it exists, of the images is ignored in the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
+- [`PRE_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the compositing process. The non-alpha components of the image are expected to already be multiplied by the alpha component by the application.
+- [`POST_MULTIPLIED`]: The alpha component, if it exists, of the images is respected in the compositing process. The non-alpha components of the image are not expected to already be multiplied by the alpha component by the application; instead, the compositor will multiply the non-alpha components of the image by the alpha component during compositing.
+- [`INHERIT`]: The way in which the presentation engine treats the alpha component in the images is unknown to the Vulkan API. Instead, the application is responsible for setting the composite alpha blending mode using native window system commands. If the application does not set the blending mode using native window system commands, then a platform-specific default will be used.
 
 # Related
-- [`khr_surface`]
-- [VkCompositeAlphaFlagsKHR]()
+- [`VK_KHR_surface`]
+- [`CompositeAlphaFlagsKHR`]
 - [`SwapchainCreateInfoKHR`]
 
 # Notes and documentation

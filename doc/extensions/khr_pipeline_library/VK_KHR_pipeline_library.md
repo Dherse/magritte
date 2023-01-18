@@ -24,8 +24,8 @@ This is left to additional dependent extensions.
 - [`PipelineLibraryCreateInfoKHR`]
 
 # New constants
-- `VK_KHR_PIPELINE_LIBRARY_EXTENSION_NAME`
-- `VK_KHR_PIPELINE_LIBRARY_SPEC_VERSION`
+- [`KHR_PIPELINE_LIBRARY_EXTENSION_NAME`]
+- [`KHR_PIPELINE_LIBRARY_SPEC_VERSION`]
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_LIBRARY_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_LIBRARY_CREATE_INFO_KHR`
 
@@ -35,7 +35,7 @@ This is left to additional dependent extensions.
 # Other information
 * 2020-01-08
 * No known IP claims.
-*   - See contributors to `[`khr_ray_tracing_pipeline`]`
+*   - See contributors to `[`VK_KHR_ray_tracing_pipeline`]`
 
 # Related
 - [`PipelineLibraryCreateInfoKHR`]

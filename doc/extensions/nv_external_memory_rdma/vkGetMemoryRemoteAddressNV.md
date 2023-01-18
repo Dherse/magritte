@@ -31,7 +31,7 @@ requested from the vendors of the devices.
 *   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`nv_external_memory_rdma`]
+- [`VK_NV_external_memory_rdma`]
 - [`Device`]
 - [`MemoryGetRemoteAddressInfoNV`]
 - [`RemoteAddressNV`]

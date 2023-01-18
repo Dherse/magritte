@@ -17,8 +17,8 @@ support a separate layout for stencil.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_create_renderpass2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_create_renderpass2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -32,8 +32,8 @@ support a separate layout for stencil.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceSeparateDepthStencilLayoutsFeaturesKHR`]
 
 # New constants
-- `VK_KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_EXTENSION_NAME`
-- `VK_KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION`
+- [`KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_EXTENSION_NAME`]
+- [`KHR_SEPARATE_DEPTH_STENCIL_LAYOUTS_SPEC_VERSION`]
 - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_OPTIMAL_KHR`  - `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_OPTIMAL_KHR`  - `VK_IMAGE_LAYOUT_STENCIL_ATTACHMENT_OPTIMAL_KHR`  - `VK_IMAGE_LAYOUT_STENCIL_READ_ONLY_OPTIMAL_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_STENCIL_LAYOUT_KHR`  - `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_STENCIL_LAYOUT_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES_KHR`
 

@@ -37,10 +37,10 @@ specificiation.
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_viewport_array2] @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_viewport_array2 extension>>)
 
 # New constants
-- `VK_NV_VIEWPORT_ARRAY2_EXTENSION_NAME`
-- `VK_NV_VIEWPORT_ARRAY2_SPEC_VERSION`
-- `VK_NV_VIEWPORT_ARRAY_2_EXTENSION_NAME`
-- `VK_NV_VIEWPORT_ARRAY_2_SPEC_VERSION`
+- [`NV_VIEWPORT_ARRAY2_EXTENSION_NAME`]
+- [`NV_VIEWPORT_ARRAY2_SPEC_VERSION`]
+- [`NV_VIEWPORT_ARRAY_2_EXTENSION_NAME`]
+- [`NV_VIEWPORT_ARRAY_2_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-02-15 (Daniel Koch)  - Internal revisions

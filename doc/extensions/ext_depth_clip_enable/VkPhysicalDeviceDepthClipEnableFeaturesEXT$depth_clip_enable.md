@@ -4,4 +4,4 @@ via the [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
 pipeline state.
 Otherwise depth clipping is only enabled when
 [`PipelineRasterizationStateCreateInfo`]::`depthClampEnable` is
-set to `VK_FALSE`.
+set to [`FALSE`].

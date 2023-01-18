@@ -26,7 +26,7 @@ typedef struct VkCoarseSampleLocationNV {
 -  [`sample`] **must**  be less than the number of coverage samples in each pixel belonging to the fragment
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`CoarseSampleOrderCustomNV`]
 
 # Notes and documentation

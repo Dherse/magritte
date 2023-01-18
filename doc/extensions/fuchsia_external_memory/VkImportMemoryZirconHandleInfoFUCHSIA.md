@@ -16,7 +16,7 @@ typedef struct VkImportMemoryZirconHandleInfoFUCHSIA {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of [`handle`].
-- [`handle`] is a `zx_handle_t` (Zircon) handle to the external memory.
+- [`handle`] is a [`zx_handle_t`] (Zircon) handle to the external memory.
 
 # Description
 ## Valid Usage
@@ -28,7 +28,7 @@ typedef struct VkImportMemoryZirconHandleInfoFUCHSIA {
 -    If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`fuchsia_external_memory`]
+- [`VK_FUCHSIA_external_memory`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]
 

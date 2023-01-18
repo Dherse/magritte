@@ -45,7 +45,7 @@ including unknown and invalid modifier values.
 -  [`sharing_mode`] **must**  be a valid [`SharingMode`] value
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`SharingMode`]
 - [`StructureType`]
 

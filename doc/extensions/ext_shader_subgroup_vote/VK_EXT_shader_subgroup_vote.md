@@ -78,8 +78,8 @@ specific value for one of its inputs (`do_fast_path`).
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_subgroup_vote] @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_shader_subgroup_vote extension>>)
 
 # New constants
-- `VK_EXT_SHADER_SUBGROUP_VOTE_EXTENSION_NAME`
-- `VK_EXT_SHADER_SUBGROUP_VOTE_SPEC_VERSION`
+- [`EXT_SHADER_SUBGROUP_VOTE_EXTENSION_NAME`]
+- [`EXT_SHADER_SUBGROUP_VOTE_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-11-28 (Daniel Koch)  - Initial draft

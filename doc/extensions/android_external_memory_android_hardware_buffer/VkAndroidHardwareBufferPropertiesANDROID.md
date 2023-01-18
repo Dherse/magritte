@@ -26,7 +26,7 @@ typedef struct VkAndroidHardwareBufferPropertiesANDROID {
 -    The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`DeviceSize`]
 - [`StructureType`]
 - [`get_android_hardware_buffer_properties_android`]

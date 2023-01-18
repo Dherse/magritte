@@ -59,7 +59,7 @@ If some types are preferred over other types (e.g. for performance), they
 -  [`scope`] **must**  be a valid [`ScopeNV`] value
 
 # Related
-- [`nv_cooperative_matrix`]
+- [`VK_NV_cooperative_matrix`]
 - [`ComponentTypeNV`]
 - [`ScopeNV`]
 - [`StructureType`]

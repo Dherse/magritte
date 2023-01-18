@@ -1,0 +1,23 @@
+[VkStencilFaceFlags](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkStencilFaceFlags.html) - Bitmask of VkStencilFaceFlagBits
+
+# C Specifications
+```c
+// Provided by VK_VERSION_1_0
+typedef VkFlags VkStencilFaceFlags;
+```
+
+# Related
+- [`crate::vulkan1_0`]
+- [`StencilFaceFlagBits`]
+- [`cmd_set_stencil_compare_mask`]
+- [`cmd_set_stencil_op`]
+- [`cmd_set_stencil_op_ext`]
+- [`cmd_set_stencil_reference`]
+- [`cmd_set_stencil_write_mask`]
+
+# Notes and documentation
+For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)
+This documentation is generated from the Vulkan specification and documentation.
+The documentation is copyrighted by *The Khronos Group Inc.* and is licensed under *Creative Commons Attribution 4.0 International*.
+his license explicitely allows adapting the source material as long as proper credit is given.
+        

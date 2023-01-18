@@ -8,7 +8,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDeferredOperationKHR)
 ```
 
 # Related
-- [`khr_deferred_host_operations`]
+- [`VK_KHR_deferred_host_operations`]
 - [`build_acceleration_structures_khr`]
 - [`copy_acceleration_structure_khr`]
 - [`copy_acceleration_structure_to_memory_khr`]

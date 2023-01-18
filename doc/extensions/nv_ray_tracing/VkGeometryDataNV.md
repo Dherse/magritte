@@ -21,7 +21,7 @@ typedef struct VkGeometryDataNV {
 -  [`aabbs`] **must**  be a valid [`GeometryAabbNV`] structure
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`GeometryAabbNV`]
 - [`GeometryNV`]
 - [`GeometryTrianglesNV`]

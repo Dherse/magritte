@@ -23,31 +23,31 @@ typedef enum VkFragmentShadingRateNV {
 ```
 
 # Description
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x1 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x2 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 2x1 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 2x2 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 2x4 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 4x2 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 4x4 pixels.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x1 pixels, with two fragment shader invocations per fragment.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x1 pixels, with four fragment shader invocations per fragment.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x1 pixels, with eight fragment shader invocations per fragment.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies a fragment size of 1x1 pixels, with sixteen fragment shader invocations per fragment.
-- [`VK_FRAGMENT_SHADING_RATE_NV`] specifies that any portions of a primitive that use that shading rate should be discarded without invoking any fragment shader.
+- [`1_INVOCATION_PER_PIXEL`] specifies a fragment size of 1x1 pixels.
+- [`1_INVOCATION_PER1X2_PIXELS`] specifies a fragment size of 1x2 pixels.
+- [`1_INVOCATION_PER2X1_PIXELS`] specifies a fragment size of 2x1 pixels.
+- [`1_INVOCATION_PER2X2_PIXELS`] specifies a fragment size of 2x2 pixels.
+- [`1_INVOCATION_PER2X4_PIXELS`] specifies a fragment size of 2x4 pixels.
+- [`1_INVOCATION_PER4X2_PIXELS`] specifies a fragment size of 4x2 pixels.
+- [`1_INVOCATION_PER4X4_PIXELS`] specifies a fragment size of 4x4 pixels.
+- [`2_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with two fragment shader invocations per fragment.
+- [`4_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with four fragment shader invocations per fragment.
+- [`8_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with eight fragment shader invocations per fragment.
+- [`16_INVOCATIONS_PER_PIXEL`] specifies a fragment size of 1x1 pixels, with sixteen fragment shader invocations per fragment.
+- [`NO_INVOCATIONS`] specifies that any portions of a primitive that use that shading rate should be discarded without invoking any fragment shader.
 To use the shading rates
-[`VK_FRAGMENT_SHADING_RATE_NV`],
-[`VK_FRAGMENT_SHADING_RATE_NV`],
-[`VK_FRAGMENT_SHADING_RATE_NV`], and
-[`VK_FRAGMENT_SHADING_RATE_NV`] as a pipeline,
+[`2_INVOCATIONS_PER_PIXEL`],
+[`4_INVOCATIONS_PER_PIXEL`],
+[`8_INVOCATIONS_PER_PIXEL`], and
+[`16_INVOCATIONS_PER_PIXEL`] as a pipeline,
 primitive, or attachment shading rate, the
 `supersampleFragmentShadingRates` feature  **must**  be enabled.
-To use the shading rate [`VK_FRAGMENT_SHADING_RATE_NV`] as
+To use the shading rate [`NO_INVOCATIONS`] as
 a pipeline, primitive, or attachment shading rate, the
 `noInvocationFragmentShadingRates` feature  **must**  be enabled.
 
 # Related
-- [`nv_fragment_shading_rate_enums`]
+- [`VK_NV_fragment_shading_rate_enums`]
 - [`PipelineFragmentShadingRateEnumStateCreateInfoNV`]
 - [`cmd_set_fragment_shading_rate_enum_nv`]
 

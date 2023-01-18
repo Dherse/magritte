@@ -12,7 +12,7 @@ typedef VkFormatFeatureFlags2 VkFormatFeatureFlags2KHR;
 ```
 
 # Related
-- [`khr_format_feature_flags2`]
+- [`VK_KHR_format_feature_flags2`]
 - [`crate::vulkan1_3`]
 - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 - [`DrmFormatModifierProperties2EXT`]

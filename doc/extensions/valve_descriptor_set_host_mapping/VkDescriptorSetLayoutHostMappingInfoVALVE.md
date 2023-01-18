@@ -20,7 +20,7 @@ typedef struct VkDescriptorSetLayoutHostMappingInfoVALVE {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`valve_descriptor_set_host_mapping`]
+- [`VK_VALVE_descriptor_set_host_mapping`]
 - [`StructureType`]
 - [`get_descriptor_set_layout_host_mapping_info_valve`]
 

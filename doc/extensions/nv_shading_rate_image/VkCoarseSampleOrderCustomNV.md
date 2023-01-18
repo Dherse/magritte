@@ -29,7 +29,7 @@ specifies a specific pixel location and
 multi-pixel fragment.
 ## Valid Usage
 -  [`shading_rate`] **must**  be a shading rate that generates fragments with more than one pixel
--  [`sample_count`] **must**  correspond to a sample count enumerated in [VkSampleCountFlags]() whose corresponding bit is set in [`PhysicalDeviceLimits::framebuffer_no_attachments_sample_counts`]
+-  [`sample_count`] **must**  correspond to a sample count enumerated in [`SampleCountFlags`] whose corresponding bit is set in [`PhysicalDeviceLimits::framebuffer_no_attachments_sample_counts`]
 -  [`sample_location_count`] **must**  be equal to the product of [`sample_count`], the fragment width for [`shading_rate`], and the fragment height for [`shading_rate`]
 -  [`sample_location_count`] **must**  be less than or equal to the value of [`PhysicalDeviceShadingRateImagePropertiesNV::shading_rate_max_coarse_samples`]
 -    The array [`sample_locations`] **must**  contain exactly one entry for every combination of valid values for `pixelX`, `pixelY`, and `sample` in the structure [`CoarseSampleOrderCustomNV`]
@@ -40,7 +40,7 @@ multi-pixel fragment.
 -  [`sample_location_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`CoarseSampleLocationNV`]
 - [`PipelineViewportCoarseSampleOrderStateCreateInfoNV`]
 - [`ShadingRatePaletteEntryNV`]

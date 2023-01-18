@@ -32,7 +32,7 @@ If there is no [`DisplayKHR`] corresponding to [`device_relative_id`] on
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`nv_acquire_winrt_display`]
+- [`VK_NV_acquire_winrt_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

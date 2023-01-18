@@ -48,7 +48,7 @@ layout.
 -    Both of the elements of [`swapchains`], and the elements of [`wait_semaphores`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Instance`]
 
 # Related
-- [`khr_swapchain`]
+- [`VK_KHR_swapchain`]
 - [`VulkanResultCodes`]
 - [`Semaphore`]
 - [`StructureType`]

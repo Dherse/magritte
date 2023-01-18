@@ -45,7 +45,7 @@ In such cases, allocated memory is tracked on a per-device and per-heap
 basis.
 Some platforms allow overallocation into other heaps.
 The overallocation behavior  **can**  be specified through the
-`[`amd_memory_overallocation_behavior`]` extension.If the
+`[`VK_AMD_memory_overallocation_behavior`]` extension.If the
 [`PhysicalDevicePageableDeviceLocalMemoryFeaturesEXT::pageable_device_local_memory`]
 feature is enabled, memory allocations made from a heap that includes
 `VK_MEMORY_HEAP_DEVICE_LOCAL_BIT` in [`MemoryHeap::flags`] **may**  be transparently moved to host-local memory allowing multiple

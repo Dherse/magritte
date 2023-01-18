@@ -25,7 +25,7 @@ typedef struct VkPipelineCoverageToColorStateCreateInfoNV {
 If the [`p_next`] chain of [`PipelineMultisampleStateCreateInfo`]
 includes a [`PipelineCoverageToColorStateCreateInfoNV`] structure, then
 that structure controls whether the fragment coverage is substituted for a
-fragment color output and, if so, which output is replaced.If [`coverage_to_color_enable`] is `VK_TRUE`, the
+fragment color output and, if so, which output is replaced.If [`coverage_to_color_enable`] is [`TRUE`], the
 [coverage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-multisampling-coverage-mask) replaces the first
 component of the color value corresponding to the fragment shader output
 location with `Location` equal to [`coverage_to_color_location`] and
@@ -33,19 +33,19 @@ location with `Location` equal to [`coverage_to_color_location`] and
 If the color attachment format has fewer bits than the coverage mask, the
 low bits of the sample coverage mask are taken without any clamping.
 If the color attachment format has more bits than the coverage mask, the
-high bits of the sample coverage mask are filled with zeros.If [`coverage_to_color_enable`] is `VK_FALSE`, these operations are
+high bits of the sample coverage mask are filled with zeros.If [`coverage_to_color_enable`] is [`FALSE`], these operations are
 skipped.
 If this structure is not included in the [`p_next`] chain, it is as if
-[`coverage_to_color_enable`] is `VK_FALSE`.
+[`coverage_to_color_enable`] is [`FALSE`].
 ## Valid Usage
--    If [`coverage_to_color_enable`] is `VK_TRUE`, then the render pass subpass indicated by [`GraphicsPipelineCreateInfo::render_pass`] and [`GraphicsPipelineCreateInfo::subpass`] **must**  have a color attachment at the location selected by [`coverage_to_color_location`], with a [`Format`] of `VK_FORMAT_R8_UINT`, `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`, `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or `VK_FORMAT_R32_SINT`
+-    If [`coverage_to_color_enable`] is [`TRUE`], then the render pass subpass indicated by [`GraphicsPipelineCreateInfo::render_pass`] and [`GraphicsPipelineCreateInfo::subpass`] **must**  have a color attachment at the location selected by [`coverage_to_color_location`], with a [`Format`] of `VK_FORMAT_R8_UINT`, `VK_FORMAT_R8_SINT`, `VK_FORMAT_R16_UINT`, `VK_FORMAT_R16_SINT`, `VK_FORMAT_R32_UINT`, or `VK_FORMAT_R32_SINT`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_TO_COLOR_STATE_CREATE_INFO_NV`
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`nv_fragment_coverage_to_color`]
+- [`VK_NV_fragment_coverage_to_color`]
 - [`Bool32`]
 - [`PipelineCoverageToColorStateCreateFlagsNV`]
 - [`StructureType`]

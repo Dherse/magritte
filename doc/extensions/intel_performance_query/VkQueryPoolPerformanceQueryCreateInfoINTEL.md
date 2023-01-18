@@ -34,7 +34,7 @@ To create a pool for Intel performance queries, set
 -  [`performance_counters_sampling`] **must**  be a valid [`QueryPoolSamplingModeINTEL`] value
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`QueryPoolSamplingModeINTEL`]
 - [`StructureType`]
 

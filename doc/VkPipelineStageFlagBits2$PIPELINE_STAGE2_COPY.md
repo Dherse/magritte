@@ -1,0 +1,2 @@
+[`PIPELINE_STAGE2_COPY`] specifies the execution of all
+[copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`cmd_copy_query_pool_results`].

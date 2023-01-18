@@ -26,7 +26,7 @@ typedef struct VkDisplayModeCreateInfoKHR {
 -  [`parameters`] **must**  be a valid [`DisplayModeParametersKHR`] structure
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModeCreateFlagsKHR`]
 - [`DisplayModeParametersKHR`]
 - [`StructureType`]

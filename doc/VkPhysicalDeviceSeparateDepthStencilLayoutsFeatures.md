@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SEPARATE_DEPTH_STENCIL_LAYOUTS_FEATURES`
 
 # Related
-- [`khr_separate_depth_stencil_layouts`]
+- [`VK_KHR_separate_depth_stencil_layouts`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

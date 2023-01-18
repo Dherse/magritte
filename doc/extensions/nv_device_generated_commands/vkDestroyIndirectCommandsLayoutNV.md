@@ -32,7 +32,7 @@ void vkDestroyIndirectCommandsLayoutNV(
 - Host access to [`indirect_commands_layout`] **must**  be externally synchronized
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`IndirectCommandsLayoutNV`]

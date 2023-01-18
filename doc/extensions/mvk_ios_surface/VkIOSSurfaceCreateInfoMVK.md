@@ -29,7 +29,7 @@ typedef struct VkIOSSurfaceCreateInfoMVK {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`mvk_ios_surface`]
+- [`VK_MVK_ios_surface`]
 - [`IosSurfaceCreateFlagsMVK`]
 - [`StructureType`]
 - [`create_ios_surface_mvk`]

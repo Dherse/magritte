@@ -26,7 +26,7 @@ typedef struct VkPipelineRasterizationProvokingVertexStateCreateInfoEXT {
 If this struct is not provided when creating the pipeline, the pipeline will
 use the `VK_PROVOKING_VERTEX_MODE_FIRST_VERTEX_EXT` mode.If the
 [provokingVertexModePerPipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-provokingVertexModePerPipeline)
-limit is `VK_FALSE`, then all pipelines bound within a render pass
+limit is [`FALSE`], then all pipelines bound within a render pass
 instance  **must**  have the same [`provoking_vertex_mode`].
 ## Valid Usage
 -    If [`provoking_vertex_mode`] is `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`, then the [provokingVertexLast](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-provokingVertexLast) feature  **must**  be enabled
@@ -36,7 +36,7 @@ instance  **must**  have the same [`provoking_vertex_mode`].
 -  [`provoking_vertex_mode`] **must**  be a valid [`ProvokingVertexModeEXT`] value
 
 # Related
-- [`ext_provoking_vertex`]
+- [`VK_EXT_provoking_vertex`]
 - [`ProvokingVertexModeEXT`]
 - [`StructureType`]
 

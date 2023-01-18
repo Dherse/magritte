@@ -19,13 +19,13 @@ typedef struct VkPipelineViewportDepthClipControlCreateInfoEXT {
 
 # Description
 ## Valid Usage
--    If [depthClipControl](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClipControl) is not enabled, [`negative_one_to_one`] **must**  be `VK_FALSE`
+-    If [depthClipControl](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClipControl) is not enabled, [`negative_one_to_one`] **must**  be [`FALSE`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
 
 # Related
-- [`ext_depth_clip_control`]
+- [`VK_EXT_depth_clip_control`]
 - [`Bool32`]
 - [`StructureType`]
 

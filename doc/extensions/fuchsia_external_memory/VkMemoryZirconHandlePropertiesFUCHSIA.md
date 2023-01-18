@@ -22,7 +22,7 @@ typedef struct VkMemoryZirconHandlePropertiesFUCHSIA {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`fuchsia_external_memory`]
+- [`VK_FUCHSIA_external_memory`]
 - [`StructureType`]
 - [`get_memory_zircon_handle_properties_fuchsia`]
 

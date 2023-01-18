@@ -35,16 +35,16 @@ typedef VkBuildAccelerationStructureFlagBitsKHR VkBuildAccelerationStructureFlag
 ```
 
 # Description
-- [`VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_KHR`] indicates     that the specified acceleration structure  **can**  be updated with     a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in     [`AccelerationStructureBuildGeometryInfoKHR`] or     an `update` of `VK_TRUE` in     [`cmd_build_acceleration_structure_nv`]     .
-- [`VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_KHR`] indicates that the specified acceleration structure  **can**  act as the source for a copy acceleration structure command with `mode` of `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a compacted acceleration structure.
-- [`VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_KHR`] indicates that the given acceleration structure build  **should**  prioritize trace performance over build time.
-- [`VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_KHR`] indicates that the given acceleration structure build  **should**  prioritize build time over trace performance.
-- [`VK_BUILD_ACCELERATION_STRUCTURE_FLAG_BITS_KHR`] indicates that this acceleration structure  **should**  minimize the size of the scratch memory and the final result acceleration structure, potentially at the expense of build time or trace performance.
+- [`ALLOW_UPDATE`] indicates     that the specified acceleration structure  **can**  be updated with     a `mode` of `VK_BUILD_ACCELERATION_STRUCTURE_MODE_UPDATE_KHR` in     [`AccelerationStructureBuildGeometryInfoKHR`] or     an `update` of [`TRUE`] in     [`cmd_build_acceleration_structure_nv`]     .
+- [`ALLOW_COMPACTION`] indicates that the specified acceleration structure  **can**  act as the source for a copy acceleration structure command with `mode` of `VK_COPY_ACCELERATION_STRUCTURE_MODE_COMPACT_KHR` to produce a compacted acceleration structure.
+- [`PREFER_FAST_TRACE`] indicates that the given acceleration structure build  **should**  prioritize trace performance over build time.
+- [`PREFER_FAST_BUILD`] indicates that the given acceleration structure build  **should**  prioritize build time over trace performance.
+- [`LOW_MEMORY`] indicates that this acceleration structure  **should**  minimize the size of the scratch memory and the final result acceleration structure, potentially at the expense of build time or trace performance.
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
-- [VkBuildAccelerationStructureFlagsKHR]()
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
+- [`BuildAccelerationStructureFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

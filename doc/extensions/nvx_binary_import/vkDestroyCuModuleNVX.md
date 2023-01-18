@@ -20,7 +20,7 @@ void vkDestroyCuModuleNVX(
 -  [`module`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`AllocationCallbacks`]
 - [`CuModuleNVX`]
 - [`Device`]

@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`
 
 # Related
-- [`nv_coverage_reduction_mode`]
+- [`VK_NV_coverage_reduction_mode`]
 - [`Bool32`]
 - [`StructureType`]
 

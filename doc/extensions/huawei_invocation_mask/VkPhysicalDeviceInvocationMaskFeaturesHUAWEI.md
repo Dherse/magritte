@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INVOCATION_MASK_FEATURES_HUAWEI`
 
 # Related
-- [`huawei_invocation_mask`]
+- [`VK_HUAWEI_invocation_mask`]
 - [`Bool32`]
 - [`StructureType`]
 

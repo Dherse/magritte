@@ -37,7 +37,7 @@ implementation  **may**  return `VK_ERROR_OUT_OF_DATE_KHR`.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`Device`]
 - [`SurfaceCounterFlagBitsEXT`]
 - [`SwapchainKHR`]

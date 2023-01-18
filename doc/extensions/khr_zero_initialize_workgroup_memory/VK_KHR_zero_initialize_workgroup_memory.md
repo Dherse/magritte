@@ -15,7 +15,7 @@ content (e.g. web browsers) as way of defeating memory-scraping attacks.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -27,8 +27,8 @@ content (e.g. web browsers) as way of defeating memory-scraping attacks.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeaturesKHR`]
 
 # New constants
-- `VK_KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME`
-- `VK_KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION`
+- [`KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_EXTENSION_NAME`]
+- [`KHR_ZERO_INITIALIZE_WORKGROUP_MEMORY_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES_KHR`
 
 # Version history

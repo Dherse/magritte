@@ -47,8 +47,8 @@ antialiasing is applied and there is no corruption on these edges.The key featur
 - [`PipelineCoverageModulationStateCreateFlagsNV`]
 
 # New constants
-- `VK_NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME`
-- `VK_NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION`
+- [`NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME`]
+- [`NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_MODULATION_STATE_CREATE_INFO_NV`
 
 # Version history

@@ -46,9 +46,9 @@ In this scenario `VK_ERROR_INITIALIZATION_FAILED` is returned.
 - [`QueueGlobalPriorityKHR`]
 
 # New constants
-- `VK_KHR_GLOBAL_PRIORITY_EXTENSION_NAME`
-- `VK_KHR_GLOBAL_PRIORITY_SPEC_VERSION`
-- `VK_MAX_GLOBAL_PRIORITY_SIZE_KHR`
+- [`KHR_GLOBAL_PRIORITY_EXTENSION_NAME`]
+- [`KHR_GLOBAL_PRIORITY_SPEC_VERSION`]
+- [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_NOT_PERMITTED_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_QUEUE_GLOBAL_PRIORITY_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GLOBAL_PRIORITY_QUERY_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_GLOBAL_PRIORITY_PROPERTIES_KHR`
 
@@ -71,10 +71,10 @@ that particular queue configuration requested.
 
 # Other information
 * 2021-10-22
-*   - Tobias Hector, AMD  - Contributors to [`ext_global_priority`]  - Contributors to [`ext_global_priority_query`]
+*   - Tobias Hector, AMD  - Contributors to [`VK_EXT_global_priority`]  - Contributors to [`VK_EXT_global_priority_query`]
 
 # Related
-- [VK_MAX_GLOBAL_PRIORITY_SIZE_KHR]()
+- [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
 - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
 - [`PhysicalDeviceGlobalPriorityQueryFeaturesKHR`]
 - [`QueueFamilyGlobalPriorityPropertiesKHR`]

@@ -32,7 +32,7 @@ typedef struct VkImageSubresourceLayers {
 - [`crate::vulkan1_0`]
 - [`BufferImageCopy`]
 - [`BufferImageCopy2`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`ImageBlit`]
 - [`ImageBlit2`]
 - [`ImageCopy`]

@@ -15,7 +15,7 @@ typedef struct VkDeviceGroupPresentCapabilitiesKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`present_mask`] is an array of `VK_MAX_DEVICE_GROUP_SIZE``uint32_t` masks, where the mask at element i is non-zero if physical device i has a presentation engine, and where bit j is set in element i if physical device i **can**  present swapchain images from physical device j. If element i is non-zero, then bit i **must**  be set.
+- [`present_mask`] is an array of [`MAX_DEVICE_GROUP_SIZE`]`uint32_t` masks, where the mask at element i is non-zero if physical device i has a presentation engine, and where bit j is set in element i if physical device i **can**  present swapchain images from physical device j. If element i is non-zero, then bit i **must**  be set.
 - [`modes`] is a bitmask of [`DeviceGroupPresentModeFlagBitsKHR`] indicating which device group presentation modes are supported.
 
 # Description
@@ -26,11 +26,11 @@ typedef struct VkDeviceGroupPresentCapabilitiesKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_device_group`]
-- [`khr_surface`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_surface`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 - [`StructureType`]
 - [`get_device_group_present_capabilities_khr`]
 

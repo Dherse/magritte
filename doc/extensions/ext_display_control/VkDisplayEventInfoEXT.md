@@ -23,7 +23,7 @@ typedef struct VkDisplayEventInfoEXT {
 -  [`display_event`] **must**  be a valid [`DisplayEventTypeEXT`] value
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`DisplayEventTypeEXT`]
 - [`StructureType`]
 - [`register_display_event_ext`]

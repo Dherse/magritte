@@ -51,8 +51,8 @@ include all physical devices in the logical device.
 - Host access to [`fence`] **must**  be externally synchronized
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`Fence`]
 - [`Semaphore`]

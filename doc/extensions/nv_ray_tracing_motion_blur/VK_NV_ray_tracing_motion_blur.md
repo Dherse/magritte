@@ -28,7 +28,7 @@ multiple transforms in the instance using
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_ray_tracing_pipeline`]`
+- Requires `[`VK_KHR_ray_tracing_pipeline`]`
 
 # Contacts
 - Eric Werness
@@ -53,8 +53,8 @@ multiple transforms in the instance using
 - [`AccelerationStructureMotionInstanceFlagsNV`]
 
 # New constants
-- `VK_NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME`
-- `VK_NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION`
+- [`NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME`]
+- [`NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION`]
 - Extending [`AccelerationStructureCreateFlagBitsKHR`]:  - `VK_ACCELERATION_STRUCTURE_CREATE_MOTION_BIT_NV` 
 - Extending [`BuildAccelerationStructureFlagBitsKHR`]:  - `VK_BUILD_ACCELERATION_STRUCTURE_MOTION_BIT_NV` 
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_RAY_TRACING_ALLOW_MOTION_BIT_NV` 

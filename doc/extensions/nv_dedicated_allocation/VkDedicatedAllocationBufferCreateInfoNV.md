@@ -24,7 +24,7 @@ typedef struct VkDedicatedAllocationBufferCreateInfoNV {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_BUFFER_CREATE_INFO_NV`
 
 # Related
-- [`nv_dedicated_allocation`]
+- [`VK_NV_dedicated_allocation`]
 - [`Bool32`]
 - [`StructureType`]
 

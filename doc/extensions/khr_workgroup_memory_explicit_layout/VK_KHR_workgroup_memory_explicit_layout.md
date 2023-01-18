@@ -20,7 +20,7 @@ layering OpenCL on top of Vulkan.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Caio Marcelo de Oliveira Filho [cmarcelo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_workgroup_memory_explicit_layout] @cmarcelo%0A<<Here describe the issue or question you have about the VK_KHR_workgroup_memory_explicit_layout extension>>)
@@ -29,8 +29,8 @@ layering OpenCL on top of Vulkan.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR`]
 
 # New constants
-- `VK_KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME`
-- `VK_KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION`
+- [`KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_EXTENSION_NAME`]
+- [`KHR_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_WORKGROUP_MEMORY_EXPLICIT_LAYOUT_FEATURES_KHR`
 
 # Version history

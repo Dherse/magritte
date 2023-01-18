@@ -3,30 +3,30 @@
 # Description
 Vulkan Version 1.2 [promoted](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#extendingvulkan-compatibility-promotion) a
 number of key extensions into the core API:
-- `[`khr_8bit_storage`]`
-- `[`khr_buffer_device_address`]`
-- `[`khr_create_renderpass2`]`
-- `[`khr_depth_stencil_resolve`]`
-- `[`khr_draw_indirect_count`]`
-- `[`khr_driver_properties`]`
-- `[`khr_image_format_list`]`
-- `[`khr_imageless_framebuffer`]`
-- `[`khr_sampler_mirror_clamp_to_edge`]`
-- `[`khr_separate_depth_stencil_layouts`]`
-- `[`khr_shader_atomic_int64`]`
-- `[`khr_shader_float16_int8`]`
-- `[`khr_shader_float_controls`]`
-- `[`khr_shader_subgroup_extended_types`]`
-- `[`khr_spirv_1_4`]`
-- `[`khr_timeline_semaphore`]`
-- `[`khr_uniform_buffer_standard_layout`]`
-- `[`khr_vulkan_memory_model`]`
-- `[`ext_descriptor_indexing`]`
-- `[`ext_host_query_reset`]`
-- `[`ext_sampler_filter_minmax`]`
-- `[`ext_scalar_block_layout`]`
-- `[`ext_separate_stencil_usage`]`
-- `[`ext_shader_viewport_index_layer`]`
+- `[`VK_KHR_8bit_storage`]`
+- `[`VK_KHR_buffer_device_address`]`
+- `[`VK_KHR_create_renderpass2`]`
+- `[`VK_KHR_depth_stencil_resolve`]`
+- `[`VK_KHR_draw_indirect_count`]`
+- `[`VK_KHR_driver_properties`]`
+- `[`VK_KHR_image_format_list`]`
+- `[`VK_KHR_imageless_framebuffer`]`
+- `[`VK_KHR_sampler_mirror_clamp_to_edge`]`
+- `[`VK_KHR_separate_depth_stencil_layouts`]`
+- `[`VK_KHR_shader_atomic_int64`]`
+- `[`VK_KHR_shader_float16_int8`]`
+- `[`VK_KHR_shader_float_controls`]`
+- `[`VK_KHR_shader_subgroup_extended_types`]`
+- `[`VK_KHR_spirv_1_4`]`
+- `[`VK_KHR_timeline_semaphore`]`
+- `[`VK_KHR_uniform_buffer_standard_layout`]`
+- `[`VK_KHR_vulkan_memory_model`]`
+- `[`VK_EXT_descriptor_indexing`]`
+- `[`VK_EXT_host_query_reset`]`
+- `[`VK_EXT_sampler_filter_minmax`]`
+- `[`VK_EXT_scalar_block_layout`]`
+- `[`VK_EXT_separate_stencil_usage`]`
+- `[`VK_EXT_shader_viewport_index_layer`]`
 All differences in behavior between these extensions and the corresponding
 Vulkan 1.2 functionality are summarized in the [Vulkan 1.2 specification appendix](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions).
 ### New Macros
@@ -94,14 +94,14 @@ Vulkan 1.2 functionality are summarized in the [Vulkan 1.2 specification appendi
 
 ### New Bitmasks
 
-- [VkDescriptorBindingFlags]()
-- [VkResolveModeFlags]()
-- [VkSemaphoreWaitFlags]()
+- [`DescriptorBindingFlags`]
+- [`ResolveModeFlags`]
+- [`SemaphoreWaitFlags`]
 
 ### New Enum Constants
 
-- `VK_MAX_DRIVER_INFO_SIZE`
-- `VK_MAX_DRIVER_NAME_SIZE`
+- [`MAX_DRIVER_INFO_SIZE`]
+- [`MAX_DRIVER_NAME_SIZE`]
 - Extending [`BufferCreateFlagBits`]:  - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` 
 - Extending [`DescriptorPoolCreateFlagBits`]:  - `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT` 

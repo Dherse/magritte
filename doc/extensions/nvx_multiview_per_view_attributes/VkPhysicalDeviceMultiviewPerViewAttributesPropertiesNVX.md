@@ -15,7 +15,7 @@ typedef struct VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`per_view_position_all_components`] is `VK_TRUE` if the implementation supports per-view position values that differ in components other than the X component.
+- [`per_view_position_all_components`] is [`TRUE`] if the implementation supports per-view position values that differ in components other than the X component.
 
 # Description
 If the [`PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX`] structure is included in the [`p_next`] chain of the
@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX`
 
 # Related
-- [`nvx_multiview_per_view_attributes`]
+- [`VK_NVX_multiview_per_view_attributes`]
 - [`Bool32`]
 - [`StructureType`]
 

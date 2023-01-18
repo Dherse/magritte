@@ -38,7 +38,7 @@ properties of the defined external semaphore handle types.
 -  [`handle_type`] **must**  be a valid [`ExternalSemaphoreHandleTypeFlagBits`] value
 
 # Related
-- [`fuchsia_external_semaphore`]
+- [`VK_FUCHSIA_external_semaphore`]
 - [`ExternalSemaphoreHandleTypeFlagBits`]
 - [`Semaphore`]
 - [`StructureType`]

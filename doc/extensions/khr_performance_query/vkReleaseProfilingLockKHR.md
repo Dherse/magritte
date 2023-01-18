@@ -19,7 +19,7 @@ void vkReleaseProfilingLockKHR(
 -  [`device`] **must**  be a valid [`Device`] handle
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`Device`]
 
 # Notes and documentation

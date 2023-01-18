@@ -2,7 +2,7 @@
 
 # C Specifications
 Fuchsia’s FIDL-based Sysmem service interoperates with Vulkan via the
-`[`fuchsia_buffer_collection`]` extension.A buffer collection is a set of one or more buffers which were allocated
+`[`VK_FUCHSIA_buffer_collection`]` extension.A buffer collection is a set of one or more buffers which were allocated
 together as a group and which all have the same properties.
 These properties describe the buffers' internal representation, such as its
 dimensions and memory layout.
@@ -17,7 +17,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkBufferCollectionFUCHSIA)
 ```
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionBufferCreateInfoFUCHSIA`]
 - [`BufferCollectionImageCreateInfoFUCHSIA`]
 - [`ImportMemoryBufferCollectionFUCHSIA`]

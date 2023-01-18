@@ -15,7 +15,7 @@ VkResult vkGetMemoryZirconHandlePropertiesFUCHSIA(
 # Parameters
 - [`device`] is the [`Device`].
 - [`handle_type`] is a [`ExternalMemoryHandleTypeFlagBits`] value specifying the type of [`zircon_handle`]
-- [`zircon_handle`] is a `zx_handle_t` (Zircon) handle to the external resource.
+- [`zircon_handle`] is a [`zx_handle_t`] (Zircon) handle to the external resource.
 - [`p_memory_zircon_handle_properties`] is a pointer to a [`MemoryZirconHandlePropertiesFUCHSIA`] structure in which the result will be stored.
 
 # Description
@@ -33,7 +33,7 @@ VkResult vkGetMemoryZirconHandlePropertiesFUCHSIA(
 *   - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`fuchsia_external_memory`]
+- [`VK_FUCHSIA_external_memory`]
 - [`Device`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`MemoryZirconHandlePropertiesFUCHSIA`]

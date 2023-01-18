@@ -34,7 +34,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIVATE_DATA_FEATURES`
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

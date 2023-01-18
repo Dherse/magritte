@@ -43,7 +43,7 @@ parameters, allowing them to be more easily extended.
 ## Command Properties
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`ResolveImageInfo2`]

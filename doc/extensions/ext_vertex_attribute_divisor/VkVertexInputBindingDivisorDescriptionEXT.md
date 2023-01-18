@@ -27,7 +27,7 @@ then the divisor has a logical default value of 1.
 -  [`VertexInputBindingDescription::input_rate`] **must**  be of type `VK_VERTEX_INPUT_RATE_INSTANCE` for this [`binding`]
 
 # Related
-- [`ext_vertex_attribute_divisor`]
+- [`VK_EXT_vertex_attribute_divisor`]
 - [`PipelineVertexInputDivisorStateCreateInfoEXT`]
 
 # Notes and documentation

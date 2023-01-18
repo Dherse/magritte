@@ -1,4 +1,4 @@
-use std::{path::PathBuf, error::Error};
+use std::{error::Error, path::PathBuf};
 
 use clap::Parser;
 use ron::ser::PrettyConfig;

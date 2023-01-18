@@ -11,10 +11,10 @@ typedef enum VkDisplayEventTypeEXT {
 ```
 
 # Description
-- [`VK_DISPLAY_EVENT_TYPE_EXT`] specifies that the fence is signaled when the first pixel of the next display refresh cycle leaves the display engine for the display.
+- [`FIRST_PIXEL_OUT`] specifies that the fence is signaled when the first pixel of the next display refresh cycle leaves the display engine for the display.
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`DisplayEventInfoEXT`]
 
 # Notes and documentation

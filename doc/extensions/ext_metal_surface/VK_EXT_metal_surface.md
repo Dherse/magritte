@@ -1,9 +1,9 @@
 [VK_EXT_metal_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_metal_surface.html) - instance extension
 
 # Description
-The [`ext_metal_surface`] extension is an instance extension.
+The [`VK_EXT_metal_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) from [`CaMetalLayer`], which is
+the `[`VK_KHR_surface`]` extension) from [`CaMetalLayer`], which is
 the native rendering surface of Apple’s Metal framework.
 
 # Registered extension number
@@ -14,7 +14,7 @@ the native rendering surface of Apple’s Metal framework.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Dzmitry Malyshau [kvark](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_metal_surface] @kvark%0A<<Here describe the issue or question you have about the VK_EXT_metal_surface extension>>)
@@ -32,8 +32,8 @@ the native rendering surface of Apple’s Metal framework.
 - [`MetalSurfaceCreateFlagsEXT`]
 
 # New constants
-- `VK_EXT_METAL_SURFACE_EXTENSION_NAME`
-- `VK_EXT_METAL_SURFACE_SPEC_VERSION`
+- [`EXT_METAL_SURFACE_EXTENSION_NAME`]
+- [`EXT_METAL_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_METAL_SURFACE_CREATE_INFO_EXT`
 
 # Version history

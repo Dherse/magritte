@@ -29,7 +29,7 @@ VkResult vkCreateImagePipeSurfaceFUCHSIA(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`fuchsia_imagepipe_surface`]
+- [`VK_FUCHSIA_imagepipe_surface`]
 - [`AllocationCallbacks`]
 - [`ImagePipeSurfaceCreateInfoFUCHSIA`]
 - [`Instance`]

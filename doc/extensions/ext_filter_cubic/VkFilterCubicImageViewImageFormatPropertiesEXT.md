@@ -27,7 +27,7 @@ typedef struct VkFilterCubicImageViewImageFormatPropertiesEXT {
 -    If the [`p_next`] chain of the [`ImageFormatProperties2`] structure includes a [`FilterCubicImageViewImageFormatPropertiesEXT`] structure, the [`p_next`] chain of the [`PhysicalDeviceImageFormatInfo2`] structure  **must**  include a [`PhysicalDeviceImageViewImageFormatInfoEXT`] structure with an `imageViewType` that is compatible with `imageType`
 
 # Related
-- [`ext_filter_cubic`]
+- [`VK_EXT_filter_cubic`]
 - [`Bool32`]
 - [`StructureType`]
 

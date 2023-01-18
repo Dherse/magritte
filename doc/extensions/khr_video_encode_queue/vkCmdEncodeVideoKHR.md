@@ -28,7 +28,7 @@ void vkCmdEncodeVideoKHR(
 ## Command Properties
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`CommandBuffer`]
 - [`VideoEncodeInfoKHR`]
 

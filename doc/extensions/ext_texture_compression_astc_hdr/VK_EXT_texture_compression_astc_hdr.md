@@ -14,7 +14,7 @@ Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspe
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -26,8 +26,8 @@ Formats](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspe
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceTextureCompressionAstchdrFeaturesEXT`]
 
 # New constants
-- `VK_EXT_TEXTURE_COMPRESSION_ASTC_HDR_EXTENSION_NAME`
-- `VK_EXT_TEXTURE_COMPRESSION_ASTC_HDR_SPEC_VERSION`
+- [`EXT_TEXTURE_COMPRESSION_ASTC_HDR_EXTENSION_NAME`]
+- [`EXT_TEXTURE_COMPRESSION_ASTC_HDR_SPEC_VERSION`]
 - Extending [`Format`]:  - `VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_10x5_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_10x6_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_10x8_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK_EXT`  - `VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES_EXT`
 

@@ -26,7 +26,7 @@ This structure describes the following features:
 - [`rectangular_lines`] indicates whether the implementation supports [rectangular line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines).
 - [`bresenham_lines`] indicates whether the implementation supports [Bresenham-style line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-bresenham).
 - [`smooth_lines`] indicates whether the implementation supports [smooth line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-smooth).
-- [`stippled_rectangular_lines`] indicates whether the implementation supports [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT` lines, or with `VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT` lines if [`PhysicalDeviceLimits::strict_lines`] is `VK_TRUE`.
+- [`stippled_rectangular_lines`] indicates whether the implementation supports [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT` lines, or with `VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT` lines if [`PhysicalDeviceLimits::strict_lines`] is [`TRUE`].
 - [`stippled_bresenham_lines`] indicates whether the implementation supports [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with `VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT` lines.
 - [`stippled_smooth_lines`] indicates whether the implementation supports [stippled line rasterization](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-lines-stipple) with `VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT` lines.
 If the [`PhysicalDeviceLineRasterizationFeaturesEXT`] structure is included in the [`p_next`] chain of the
@@ -39,7 +39,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`
 
 # Related
-- [`ext_line_rasterization`]
+- [`VK_EXT_line_rasterization`]
 - [`Bool32`]
 - [`StructureType`]
 

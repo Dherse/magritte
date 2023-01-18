@@ -47,7 +47,7 @@ create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`CoarseSampleOrderCustomNV`]
 - [`CoarseSampleOrderTypeNV`]
 - [`CommandBuffer`]

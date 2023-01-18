@@ -34,11 +34,11 @@ typedef struct VkVideoProfileKHR {
 -  [`chroma_bit_depth`] **must**  not be `0`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
-- [VkVideoChromaSubsamplingFlagsKHR]()
+- [`VideoChromaSubsamplingFlagsKHR`]
 - [`VideoCodecOperationFlagBitsKHR`]
-- [VkVideoComponentBitDepthFlagsKHR]()
+- [`VideoComponentBitDepthFlagsKHR`]
 - [`VideoProfilesKHR`]
 - [`VideoSessionCreateInfoKHR`]
 - [`get_physical_device_video_capabilities_khr`]

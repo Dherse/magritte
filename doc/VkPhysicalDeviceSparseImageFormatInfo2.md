@@ -48,7 +48,7 @@ typedef VkPhysicalDeviceSparseImageFormatInfo2 VkPhysicalDeviceSparseImageFormat
 - [`Format`]
 - [`ImageTiling`]
 - [`ImageType`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`SampleCountFlagBits`]
 - [`StructureType`]
 - [`get_physical_device_sparse_image_format_properties2`]

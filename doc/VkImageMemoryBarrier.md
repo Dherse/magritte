@@ -65,9 +65,9 @@ including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
 (for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`.
 ## Valid Usage
 -  `subresourceRange.baseMipLevel` **must**  be less than the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
--    If `subresourceRange.levelCount` is not `VK_REMAINING_MIP_LEVELS`, `subresourceRange.baseMipLevel` +  `subresourceRange.levelCount` **must**  be less than or equal to the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
+-    If `subresourceRange.levelCount` is not [`REMAINING_MIP_LEVELS`], `subresourceRange.baseMipLevel` +  `subresourceRange.levelCount` **must**  be less than or equal to the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
 -  `subresourceRange.baseArrayLayer` **must**  be less than the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
--    If `subresourceRange.layerCount` is not `VK_REMAINING_ARRAY_LAYERS`, `subresourceRange.baseArrayLayer` +  `subresourceRange.layerCount` **must**  be less than or equal to the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
+-    If `subresourceRange.layerCount` is not [`REMAINING_ARRAY_LAYERS`], `subresourceRange.baseArrayLayer` +  `subresourceRange.layerCount` **must**  be less than or equal to the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
 -    If [`image`] is non-sparse then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers) or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions), and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL` then [`image`] **must**  have been created with `VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT`
 -    If [`src_queue_family_index`] and [`dst_queue_family_index`] define a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers) or [`old_layout`] and [`new_layout`] define an [image layout transition](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-image-layout-transitions), and [`old_layout`] or [`new_layout`] is `VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL` then [`image`] **must**  have been created with `VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT`
@@ -92,9 +92,9 @@ including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
 -    If [`image`] has a depth/stencil format with both depth and stencil and the [separateDepthStencilLayouts](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is enabled, then the `aspectMask` member of [`subresource_range`] **must**  include either or both `VK_IMAGE_ASPECT_DEPTH_BIT` and `VK_IMAGE_ASPECT_STENCIL_BIT`
 -    If [`image`] has a depth/stencil format with both depth and stencil and the [separateDepthStencilLayouts](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-separateDepthStencilLayouts) feature is not enabled, then the `aspectMask` member of [`subresource_range`] **must**  include both `VK_IMAGE_ASPECT_DEPTH_BIT` and `VK_IMAGE_ASPECT_STENCIL_BIT`
 -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one  **must**  not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
--    If [`image`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family values reserved for external memory transfers, the other  **must**  be `VK_QUEUE_FAMILY_IGNORED`
+-    If [`image`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family values reserved for external memory transfers, the other  **must**  be [`QUEUE_FAMILY_IGNORED`]
 -    If [`image`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
--    If the [`synchronization2` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2) is not enabled, and [`image`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, at least one of [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be `VK_QUEUE_FAMILY_IGNORED`
+-    If the [`synchronization2` feature](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-synchronization2) is not enabled, and [`image`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, at least one of [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be [`QUEUE_FAMILY_IGNORED`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_MEMORY_BARRIER`
@@ -107,7 +107,7 @@ including `VK_IMAGE_ASPECT_COLOR_BIT` in the `aspectMask` member of
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkAccessFlags]()
+- [`AccessFlags`]
 - [`Image`]
 - [`ImageLayout`]
 - [`ImageSubresourceRange`]

@@ -137,7 +137,7 @@ by this structure include only operations and memory accesses specified by
 -  [`dst_access_mask`] **must**  be a valid combination of [`AccessFlagBits2`] values
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`AccessFlags2`]
 - [`DependencyInfo`]

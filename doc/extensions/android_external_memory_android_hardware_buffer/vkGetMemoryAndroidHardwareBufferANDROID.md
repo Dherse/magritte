@@ -39,7 +39,7 @@ hardware buffer object.
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`Device`]
 - [`MemoryGetAndroidHardwareBufferInfoANDROID`]
 

@@ -13,11 +13,11 @@ typedef enum VkSurfaceCounterFlagBitsEXT {
 ```
 
 # Description
-- [`VK_SURFACE_COUNTER_FLAG_BITS_EXT`] specifies a counter incrementing once every time a vertical blanking period occurs on the display associated with the surface.
+- [`VBLANK`] specifies a counter incrementing once every time a vertical blanking period occurs on the display associated with the surface.
 
 # Related
-- [`ext_display_surface_counter`]
-- [VkSurfaceCounterFlagsEXT]()
+- [`VK_EXT_display_surface_counter`]
+- [`SurfaceCounterFlagsEXT`]
 - [`get_swapchain_counter_ext`]
 
 # Notes and documentation

@@ -1,7 +1,7 @@
 [VK_KHR_maintenance2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance2.html) - device extension
 
 # Description
-[`khr_maintenance2`] adds a collection of minor features that were
+[`VK_KHR_maintenance2`] adds a collection of minor features that were
 intentionally left out or overlooked from the original Vulkan 1.0 release.The new features are as follows:
 - Allow the application to specify which aspect of an input attachment might be read for a given subpass.
 - Allow implementations to express the clipping behavior of points.
@@ -37,10 +37,10 @@ intentionally left out or overlooked from the original Vulkan 1.0 release.The ne
 - [`TessellationDomainOriginKHR`]
 
 # New constants
-- `VK_KHR_MAINTENANCE2_EXTENSION_NAME`
-- `VK_KHR_MAINTENANCE2_SPEC_VERSION`
-- `VK_KHR_MAINTENANCE_2_EXTENSION_NAME`
-- `VK_KHR_MAINTENANCE_2_SPEC_VERSION`
+- [`KHR_MAINTENANCE2_EXTENSION_NAME`]
+- [`KHR_MAINTENANCE2_SPEC_VERSION`]
+- [`KHR_MAINTENANCE_2_EXTENSION_NAME`]
+- [`KHR_MAINTENANCE_2_SPEC_VERSION`]
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_BLOCK_TEXEL_VIEW_COMPATIBLE_BIT_KHR`  - `VK_IMAGE_CREATE_EXTENDED_USAGE_BIT_KHR` 
 - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL_KHR`  - `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL_KHR` 
 - Extending [`PointClippingBehavior`]:  - `VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES_KHR`  - `VK_POINT_CLIPPING_BEHAVIOR_USER_CLIP_PLANES_ONLY_KHR` 

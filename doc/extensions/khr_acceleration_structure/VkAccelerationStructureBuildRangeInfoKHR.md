@@ -33,7 +33,7 @@ depending on the [`GeometryTypeKHR`] used:
 -    For geometries of type `VK_GEOMETRY_TYPE_INSTANCES_KHR`, the offset [`primitive_offset`] from [`AccelerationStructureGeometryInstancesDataKHR::data`] **must**  be a multiple of 16
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`build_acceleration_structures_khr`]
 - [`cmd_build_acceleration_structures_khr`]
 

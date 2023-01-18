@@ -37,7 +37,7 @@ information via chained output structures.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_get_surface_capabilities2`]
+- [`VK_KHR_get_surface_capabilities2`]
 - [`PhysicalDevice`]
 - [`PhysicalDeviceSurfaceInfo2KHR`]
 - [`SurfaceCapabilities2KHR`]

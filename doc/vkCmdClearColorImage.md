@@ -33,9 +33,9 @@ Each specified range in [`p_ranges`] is cleared to the value specified by
 -  [`image_layout`] **must**  be `VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL`, `VK_IMAGE_LAYOUT_GENERAL`, or `VK_IMAGE_LAYOUT_SHARED_PRESENT_KHR`
 -    The [`ImageSubresourceRange::aspect_mask`] members of the elements of the [`p_ranges`] array  **must**  each only include `VK_IMAGE_ASPECT_COLOR_BIT`
 -    The [`ImageSubresourceRange::base_mip_level`] members of the elements of the [`p_ranges`] array  **must**  each be less than the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
--    For each [`ImageSubresourceRange`] element of [`p_ranges`], if the `levelCount` member is not `VK_REMAINING_MIP_LEVELS`, then `baseMipLevel` +  `levelCount` **must**  be less than the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
+-    For each [`ImageSubresourceRange`] element of [`p_ranges`], if the `levelCount` member is not [`REMAINING_MIP_LEVELS`], then `baseMipLevel` +  `levelCount` **must**  be less than the `mipLevels` specified in [`ImageCreateInfo`] when [`image`] was created
 -    The [`ImageSubresourceRange::base_array_layer`] members of the elements of the [`p_ranges`] array  **must**  each be less than the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
--    For each [`ImageSubresourceRange`] element of [`p_ranges`], if the `layerCount` member is not `VK_REMAINING_ARRAY_LAYERS`, then `baseArrayLayer` +  `layerCount` **must**  be less than the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
+-    For each [`ImageSubresourceRange`] element of [`p_ranges`], if the `layerCount` member is not [`REMAINING_ARRAY_LAYERS`], then `baseArrayLayer` +  `layerCount` **must**  be less than the `arrayLayers` specified in [`ImageCreateInfo`] when [`image`] was created
 -  [`image`] **must**  not have a compressed or depth/stencil format
 -  [`p_color`] **must**  be a valid pointer to a [`ClearColorValue`] union
 -    If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-protectedNoFault) is not supported, [`image`] **must**  not be a protected image

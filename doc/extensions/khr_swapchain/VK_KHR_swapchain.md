@@ -1,8 +1,8 @@
 [VK_KHR_swapchain](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_swapchain.html) - device extension
 
 # Description
-The [`khr_swapchain`] extension is the device-level companion to the
-`[`khr_surface`]` extension.
+The [`VK_KHR_swapchain`] extension is the device-level companion to the
+`[`VK_KHR_surface`]` extension.
 It introduces [`SwapchainKHR`] objects, which provide the ability to
 present rendering results to a surface.
 
@@ -14,7 +14,7 @@ present rendering results to a surface.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_swapchain] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_swapchain extension>>)
@@ -52,13 +52,13 @@ If [Version 1.1]() is supported:
 - [`DeviceGroupPresentModeFlagBitsKHR`]
 
 # New bitmasks
-- [VkSwapchainCreateFlagsKHR]()
+- [`SwapchainCreateFlagsKHR`]
 If [Version 1.1]() is supported:
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 
 # New constants
-- `VK_KHR_SWAPCHAIN_EXTENSION_NAME`
-- `VK_KHR_SWAPCHAIN_SPEC_VERSION`
+- [`KHR_SWAPCHAIN_EXTENSION_NAME`]
+- [`KHR_SWAPCHAIN_SPEC_VERSION`]
 - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_PRESENT_SRC_KHR` 
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_SWAPCHAIN_KHR` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_SUBOPTIMAL_KHR` 
@@ -378,7 +378,7 @@ requirement is only sensible at the swapchain level.
 # Related
 - [`PresentInfoKHR`]
 - [`SwapchainCreateFlagBitsKHR`]
-- [VkSwapchainCreateFlagsKHR]()
+- [`SwapchainCreateFlagsKHR`]
 - [`SwapchainCreateInfoKHR`]
 - [`SwapchainKHR`]
 - [`acquire_next_image_khr`]

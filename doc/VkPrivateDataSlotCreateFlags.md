@@ -12,7 +12,7 @@ typedef VkPrivateDataSlotCreateFlags VkPrivateDataSlotCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`PrivateDataSlotCreateInfo`]
 

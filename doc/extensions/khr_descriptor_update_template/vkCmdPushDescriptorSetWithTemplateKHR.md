@@ -88,8 +88,8 @@ vkCmdPushDescriptorSetWithTemplateKHR(myCmdBuffer, myDescriptorUpdateTemplate, m
 ```
 
 # Related
-- [`khr_descriptor_update_template`]
-- [`khr_push_descriptor`]
+- [`VK_KHR_descriptor_update_template`]
+- [`VK_KHR_push_descriptor`]
 - [`crate::vulkan1_1`]
 - [`CommandBuffer`]
 - [`DescriptorUpdateTemplate`]

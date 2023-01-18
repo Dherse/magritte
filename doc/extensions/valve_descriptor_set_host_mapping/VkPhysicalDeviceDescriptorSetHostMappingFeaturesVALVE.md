@@ -18,7 +18,7 @@ typedef struct VkPhysicalDeviceDescriptorSetHostMappingFeaturesVALVE {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_SET_HOST_MAPPING_FEATURES_VALVE`
 
 # Related
-- [`valve_descriptor_set_host_mapping`]
+- [`VK_VALVE_descriptor_set_host_mapping`]
 - [`Bool32`]
 - [`StructureType`]
 

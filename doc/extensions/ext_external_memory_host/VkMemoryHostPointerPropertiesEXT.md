@@ -24,7 +24,7 @@ identify memory types which are host visible.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_external_memory_host`]
+- [`VK_EXT_external_memory_host`]
 - [`StructureType`]
 - [`get_memory_host_pointer_properties_ext`]
 

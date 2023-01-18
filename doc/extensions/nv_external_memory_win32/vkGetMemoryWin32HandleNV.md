@@ -18,7 +18,7 @@ VkResult vkGetMemoryWin32HandleNV(
 - [`device`] is the logical device that owns the memory.
 - [`memory`] is the [`DeviceMemory`] object.
 - [`handle_type`] is a bitmask of [`ExternalMemoryHandleTypeFlagBitsNV`] containing a single bit specifying the type of handle requested.
-- `handle` is a pointer to a Windows `HANDLE` in which the handle is returned.
+- `handle` is a pointer to a Windows [`HANDLE`] in which the handle is returned.
 
 # Description
 ## Valid Usage
@@ -29,7 +29,7 @@ VkResult vkGetMemoryWin32HandleNV(
 -  [`memory`] **must**  be a valid [`DeviceMemory`] handle
 -  [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`] values
 -  [`handle_type`] **must**  not be `0`
--  [`p_handle`] **must**  be a valid pointer to a `HANDLE` value
+-  [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
 -  [`memory`] **must**  have been created, allocated, or retrieved from [`device`]
 
 ## Return Codes
@@ -37,10 +37,10 @@ VkResult vkGetMemoryWin32HandleNV(
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`nv_external_memory_win32`]
+- [`VK_NV_external_memory_win32`]
 - [`Device`]
 - [`DeviceMemory`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`ExternalMemoryHandleTypeFlagsNV`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -26,8 +26,8 @@ The details of these mappings are explained fully in the new structures.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_multiview`]`
-- Requires `[`khr_maintenance2`]`
+- Requires `[`VK_KHR_multiview`]`
+- Requires `[`VK_KHR_maintenance2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -51,8 +51,8 @@ The details of these mappings are explained fully in the new structures.
 - [`SubpassEndInfoKHR`]
 
 # New constants
-- `VK_KHR_CREATE_RENDERPASS_2_EXTENSION_NAME`
-- `VK_KHR_CREATE_RENDERPASS_2_SPEC_VERSION`
+- [`KHR_CREATE_RENDERPASS_2_EXTENSION_NAME`]
+- [`KHR_CREATE_RENDERPASS_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_DESCRIPTION_2_KHR`  - `VK_STRUCTURE_TYPE_ATTACHMENT_REFERENCE_2_KHR`  - `VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO_2_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_BEGIN_INFO_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_DEPENDENCY_2_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_2_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_END_INFO_KHR`
 
 # Version history

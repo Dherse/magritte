@@ -35,7 +35,7 @@ likelihood of `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS` errors.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_OPAQUE_CAPTURE_ADDRESS_CREATE_INFO`
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

@@ -23,8 +23,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_get_memory_requirements2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_memory_requirements2`]`
 
 # Contacts
 - Eric Werness [ewerness-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_ray_tracing] @ewerness-nv%0A<<Here describe the issue or question you have about the VK_NV_ray_tracing extension>>)
@@ -80,9 +80,9 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - [`GeometryInstanceFlagsNV`]
 
 # New constants
-- `VK_NV_RAY_TRACING_EXTENSION_NAME`
-- `VK_NV_RAY_TRACING_SPEC_VERSION`
-- `VK_SHADER_UNUSED_NV`
+- [`NV_RAY_TRACING_EXTENSION_NAME`]
+- [`NV_RAY_TRACING_SPEC_VERSION`]
+- [`SHADER_UNUSED_NV`]
 - Extending [`AccelerationStructureTypeKHR`]:  - `VK_ACCELERATION_STRUCTURE_TYPE_BOTTOM_LEVEL_NV`  - `VK_ACCELERATION_STRUCTURE_TYPE_TOP_LEVEL_NV` 
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_ACCELERATION_STRUCTURE_READ_BIT_NV`  - `VK_ACCESS_ACCELERATION_STRUCTURE_WRITE_BIT_NV` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_RAY_TRACING_BIT_NV` 
@@ -117,7 +117,7 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 *   - Eric Werness, NVIDIA  - Ashwin Lele, NVIDIA  - Robert Stepinski, NVIDIA  - Nuno Subtil, NVIDIA  - Christoph Kubisch, NVIDIA  - Martin Stich, NVIDIA  - Daniel Koch, NVIDIA  - Jeff Bolz, NVIDIA  - Joshua Barczak, Intel  - Tobias Hector, AMD  - Henrik Rydgard, NVIDIA  - Pascal Gautron, NVIDIA
 
 # Related
-- [VK_SHADER_UNUSED_NV]()
+- [`SHADER_UNUSED_NV`]
 - [`AabbPositionsNV`]
 - [`AccelerationStructureCreateInfoNV`]
 - [`AccelerationStructureInfoNV`]

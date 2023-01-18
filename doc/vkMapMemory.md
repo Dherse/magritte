@@ -18,7 +18,7 @@ VkResult vkMapMemory(
 - [`device`] is the logical device that owns the memory.
 - [`memory`] is the [`DeviceMemory`] object to be mapped.
 - [`offset`] is a zero-based byte offset from the beginning of the memory object.
-- [`size`] is the size of the memory range to map, or `VK_WHOLE_SIZE` to map from [`offset`] to the end of the allocation.
+- [`size`] is the size of the memory range to map, or [`WHOLE_SIZE`] to map from [`offset`] to the end of the allocation.
 - [`flags`] is reserved for future use.
 - [`pp_data`] is a pointer to a `void *` variable in which is returned a host-accessible pointer to the beginning of the mapped range. This pointer minus [`offset`] **must**  be aligned to at least [`PhysicalDeviceLimits::min_memory_map_alignment`].
 
@@ -44,8 +44,8 @@ range.
 ## Valid Usage
 -  [`memory`] **must**  not be currently host mapped
 -  [`offset`] **must**  be less than the size of [`memory`]
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be greater than `0`
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be less than or equal to the size of the [`memory`] minus [`offset`]
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be greater than `0`
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be less than or equal to the size of the [`memory`] minus [`offset`]
 -  [`memory`] **must**  have been created with a memory type that reports `VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT`
 -  [`memory`] **must**  not have been allocated with multiple instances
 

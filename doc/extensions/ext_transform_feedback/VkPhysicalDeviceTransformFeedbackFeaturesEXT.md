@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_FEATURES_EXT`
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -20,7 +20,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkAccelerationStructureKHR)
 ```
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`AccelerationStructureDeviceAddressInfoKHR`]
 - [`CopyAccelerationStructureInfoKHR`]

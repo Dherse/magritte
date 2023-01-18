@@ -21,8 +21,8 @@ typedef struct VkSharedPresentSurfaceCapabilitiesKHR {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SHARED_PRESENT_SURFACE_CAPABILITIES_KHR`
 
 # Related
-- [`khr_shared_presentable_image`]
-- [VkImageUsageFlags]()
+- [`VK_KHR_shared_presentable_image`]
+- [`ImageUsageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

@@ -17,8 +17,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_shader_image_load_store_lod] @dominikwitczakamd%0A<<Here describe the issue or question you have about the VK_AMD_shader_image_load_store_lod extension>>)
 
 # New constants
-- `VK_AMD_SHADER_IMAGE_LOAD_STORE_LOD_EXTENSION_NAME`
-- `VK_AMD_SHADER_IMAGE_LOAD_STORE_LOD_SPEC_VERSION`
+- [`AMD_SHADER_IMAGE_LOAD_STORE_LOD_EXTENSION_NAME`]
+- [`AMD_SHADER_IMAGE_LOAD_STORE_LOD_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-08-21 (Dominik Witczak)  - Initial draft

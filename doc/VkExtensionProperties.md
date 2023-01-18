@@ -11,7 +11,7 @@ typedef struct VkExtensionProperties {
 ```
 
 # Members
-- [`extension_name`] is an array of `VK_MAX_EXTENSION_NAME_SIZE``char` containing a null-terminated UTF-8 string which is the name of the extension.
+- [`extension_name`] is an array of [`MAX_EXTENSION_NAME_SIZE`]`char` containing a null-terminated UTF-8 string which is the name of the extension.
 - [`spec_version`] is the version of this extension. It is an integer, incremented with backward compatible changes.
 
 # Related

@@ -31,7 +31,7 @@ includes a mode controlling how texture filtering combines texel values.If this 
 -  [`reduction_mode`] **must**  be a valid [`SamplerReductionMode`] value
 
 # Related
-- [`ext_sampler_filter_minmax`]
+- [`VK_EXT_sampler_filter_minmax`]
 - [`crate::vulkan1_2`]
 - [`SamplerReductionMode`]
 - [`StructureType`]

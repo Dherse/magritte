@@ -26,8 +26,8 @@ Otherwise, this state is specified by the
 [`PipelineDepthStencilStateCreateInfo`]::[`max_depth_bounds`] values
 used to create the currently active pipeline.
 ## Valid Usage
--    Unless the `[`ext_depth_range_unrestricted`]` extension is enabled [`min_depth_bounds`] **must**  be between `0.0` and `1.0`, inclusive
--    Unless the `[`ext_depth_range_unrestricted`]` extension is enabled [`max_depth_bounds`] **must**  be between `0.0` and `1.0`, inclusive
+-    Unless the `[`VK_EXT_depth_range_unrestricted`]` extension is enabled [`min_depth_bounds`] **must**  be between `0.0` and `1.0`, inclusive
+-    Unless the `[`VK_EXT_depth_range_unrestricted`]` extension is enabled [`max_depth_bounds`] **must**  be between `0.0` and `1.0`, inclusive
 
 ## Valid Usage (Implicit)
 -  [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle

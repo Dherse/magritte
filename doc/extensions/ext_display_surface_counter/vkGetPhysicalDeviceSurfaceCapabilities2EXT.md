@@ -36,7 +36,7 @@ of its [`p_surface_capabilities`] parameter.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`ext_display_surface_counter`]
+- [`VK_EXT_display_surface_counter`]
 - [`PhysicalDevice`]
 - [`SurfaceCapabilities2EXT`]
 - [`SurfaceKHR`]

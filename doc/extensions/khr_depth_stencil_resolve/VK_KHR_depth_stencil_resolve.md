@@ -33,7 +33,7 @@ for depth/stencil resolve.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_create_renderpass2`]`
+- Requires `[`VK_KHR_create_renderpass2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -52,8 +52,8 @@ for depth/stencil resolve.
 - [`ResolveModeFlagsKHR`]
 
 # New constants
-- `VK_KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME`
-- `VK_KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION`
+- [`KHR_DEPTH_STENCIL_RESOLVE_EXTENSION_NAME`]
+- [`KHR_DEPTH_STENCIL_RESOLVE_SPEC_VERSION`]
 - Extending [`ResolveModeFlagBits`]:  - `VK_RESOLVE_MODE_AVERAGE_BIT_KHR`  - `VK_RESOLVE_MODE_MAX_BIT_KHR`  - `VK_RESOLVE_MODE_MIN_BIT_KHR`  - `VK_RESOLVE_MODE_NONE_KHR`  - `VK_RESOLVE_MODE_SAMPLE_ZERO_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_STENCIL_RESOLVE_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_SUBPASS_DESCRIPTION_DEPTH_STENCIL_RESOLVE_KHR`
 

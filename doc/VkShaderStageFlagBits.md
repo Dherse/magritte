@@ -48,14 +48,14 @@ typedef enum VkShaderStageFlagBits {
 ```
 
 # Description
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the vertex stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the tessellation control stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the tessellation evaluation stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the geometry stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the fragment stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] specifies the compute stage.
-- [`VK_SHADER_STAGE_FLAG_BITS`] is a combination of bits used as shorthand to specify all graphics stages defined above (excluding the compute stage).
-- [`VK_SHADER_STAGE_FLAG_BITS`] is a combination of bits used as shorthand to specify all shader stages supported by the device, including all additional stages which are introduced by extensions.
+- [`VERTEX`] specifies the vertex stage.
+- [`TESSELLATION_CONTROL`] specifies the tessellation control stage.
+- [`TESSELLATION_EVALUATION`] specifies the tessellation evaluation stage.
+- [`GEOMETRY`] specifies the geometry stage.
+- [`FRAGMENT`] specifies the fragment stage.
+- [`COMPUTE`] specifies the compute stage.
+- [`ALL_GRAPHICS`] is a combination of bits used as shorthand to specify all graphics stages defined above (excluding the compute stage).
+- [`ALL`] is a combination of bits used as shorthand to specify all shader stages supported by the device, including all additional stages which are introduced by extensions.
 - [`TASK_NV`] specifies the task stage.
 - [`MESH_NV`] specifies the mesh stage.
 - [`RAYGEN_KHR`] specifies the ray generation stage.
@@ -68,7 +68,7 @@ typedef enum VkShaderStageFlagBits {
 # Related
 - [`crate::vulkan1_0`]
 - [`PipelineShaderStageCreateInfo`]
-- [VkShaderStageFlags]()
+- [`ShaderStageFlags`]
 - [`get_shader_info_amd`]
 
 # Notes and documentation

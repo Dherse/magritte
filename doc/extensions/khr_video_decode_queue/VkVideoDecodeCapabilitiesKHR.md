@@ -25,9 +25,9 @@ typedef struct VkVideoDecodeCapabilitiesKHR {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_DECODE_CAPABILITIES_KHR`
 
 # Related
-- [`khr_video_decode_queue`]
+- [`VK_KHR_video_decode_queue`]
 - [`StructureType`]
-- [VkVideoDecodeCapabilityFlagsKHR]()
+- [`VideoDecodeCapabilityFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

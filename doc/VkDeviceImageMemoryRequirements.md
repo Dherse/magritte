@@ -37,7 +37,7 @@ typedef VkDeviceImageMemoryRequirements VkDeviceImageMemoryRequirementsKHR;
 -    If [`plane_aspect`] is not `0`, [`plane_aspect`] **must**  be a valid [`ImageAspectFlagBits`] value
 
 # Related
-- [`khr_maintenance4`]
+- [`VK_KHR_maintenance4`]
 - [`crate::vulkan1_3`]
 - [`ImageAspectFlagBits`]
 - [`ImageCreateInfo`]

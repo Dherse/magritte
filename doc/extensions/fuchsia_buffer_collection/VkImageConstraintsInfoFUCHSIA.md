@@ -41,9 +41,9 @@ typedef struct VkImageConstraintsInfoFUCHSIA {
 -  [`format_constraints_count`] **must**  be greater than `0`
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionConstraintsInfoFUCHSIA`]
-- [VkImageConstraintsInfoFlagsFUCHSIA]()
+- [`ImageConstraintsInfoFlagsFUCHSIA`]
 - [`ImageFormatConstraintsInfoFUCHSIA`]
 - [`StructureType`]
 - [`set_buffer_collection_image_constraints_fuchsia`]

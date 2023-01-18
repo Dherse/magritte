@@ -16,16 +16,16 @@ typedef enum VkCullModeFlagBits {
 ```
 
 # Description
-- [`VK_CULL_MODE_FLAG_BITS`] specifies that no triangles are discarded
-- [`VK_CULL_MODE_FLAG_BITS`] specifies that front-facing triangles are discarded
-- [`VK_CULL_MODE_FLAG_BITS`] specifies that back-facing triangles are discarded
-- [`VK_CULL_MODE_FLAG_BITS`] specifies that all triangles are discarded.
+- [`NONE`] specifies that no triangles are discarded
+- [`FRONT`] specifies that front-facing triangles are discarded
+- [`BACK`] specifies that back-facing triangles are discarded
+- [`FRONT_AND_BACK`] specifies that all triangles are discarded.
 Following culling, fragments are produced for any triangles which have not
 been discarded.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkCullModeFlags]()
+- [`CullModeFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

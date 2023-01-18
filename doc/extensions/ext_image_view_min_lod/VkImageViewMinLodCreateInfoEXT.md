@@ -29,7 +29,7 @@ typedef struct VkImageViewMinLodCreateInfoEXT {
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGE_VIEW_MIN_LOD_CREATE_INFO_EXT`
 
 # Related
-- [`ext_image_view_min_lod`]
+- [`VK_EXT_image_view_min_lod`]
 - [`StructureType`]
 
 # Notes and documentation

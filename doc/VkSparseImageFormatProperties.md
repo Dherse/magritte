@@ -19,8 +19,8 @@ typedef struct VkSparseImageFormatProperties {
 # Related
 - [`crate::vulkan1_0`]
 - [`Extent3D`]
-- [VkImageAspectFlags]()
-- [VkSparseImageFormatFlags]()
+- [`ImageAspectFlags`]
+- [`SparseImageFormatFlags`]
 - [`SparseImageFormatProperties2`]
 - [`SparseImageMemoryRequirements`]
 - [`get_physical_device_sparse_image_format_properties`]

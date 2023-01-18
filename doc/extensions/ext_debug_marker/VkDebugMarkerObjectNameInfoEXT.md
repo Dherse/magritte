@@ -37,7 +37,7 @@ empty string.
 -  [`object_name`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`DebugReportObjectTypeEXT`]
 - [`StructureType`]
 - [`debug_marker_set_object_name_ext`]

@@ -1,10 +1,10 @@
 [VK_KHR_wayland_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_wayland_surface.html) - instance extension
 
 # Description
-The [`khr_wayland_surface`] extension is an instance extension.
+The [`VK_KHR_wayland_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to a Wayland
-`wl_surface`, as well as a query to determine support for rendering to a
+the `[`VK_KHR_surface`]` extension) that refers to a Wayland
+[`wl_surface`], as well as a query to determine support for rendering to a
 Wayland compositor.
 
 # Registered extension number
@@ -15,7 +15,7 @@ Wayland compositor.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_wayland_surface] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_wayland_surface extension>>)
@@ -32,15 +32,15 @@ Wayland compositor.
 - [`WaylandSurfaceCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME`
-- `VK_KHR_WAYLAND_SURFACE_SPEC_VERSION`
+- [`KHR_WAYLAND_SURFACE_EXTENSION_NAME`]
+- [`KHR_WAYLAND_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WAYLAND_SURFACE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.
 1) Does Wayland need a way to query for compatibility between a particular
 physical device and a specific Wayland display? This would be a more general
 query than [`get_physical_device_surface_support_khr`]: if the
-Wayland-specific query returned `VK_TRUE` for a ([`PhysicalDevice`],
+Wayland-specific query returned [`TRUE`] for a ([`PhysicalDevice`],
 `struct wl_display*`) pair, then the physical device could be assumed to
 support presentation to any [`SurfaceKHR`] for surfaces on the display. **RESOLVED** : Yes.
 [`get_physical_device_wayland_presentation_support_khr`] was added to address

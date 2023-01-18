@@ -11,11 +11,11 @@ typedef enum VkIndirectStateFlagBitsNV {
 ```
 
 # Description
-- [`VK_INDIRECT_STATE_FLAG_BITS_NV`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw operations.
+- [`FLAG_FRONTFACE`] allows to toggle the [`FrontFace`] rasterization state for subsequent draw operations.
 
 # Related
-- [`nv_device_generated_commands`]
-- [VkIndirectStateFlagsNV]()
+- [`VK_NV_device_generated_commands`]
+- [`IndirectStateFlagsNV`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

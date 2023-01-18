@@ -7,7 +7,7 @@ typedef VkFlags VkAccelerationStructureMotionInfoFlagsNV;
 ```
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureMotionInfoNV`]
 
 # Notes and documentation

@@ -1,0 +1,1 @@
+[`8`] specifies an image with 8 samples per pixel.

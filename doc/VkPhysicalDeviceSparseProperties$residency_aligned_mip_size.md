@@ -1,4 +1,4 @@
-[`residency_aligned_mip_size`] is `VK_TRUE` if images with mip level
+[`residency_aligned_mip_size`] is [`TRUE`] if images with mip level
 dimensions that are not integer multiples of the corresponding
 dimensions of the sparse image block  **may**  be placed in the mip tail.
 If this property is not reported, only mip levels with dimensions

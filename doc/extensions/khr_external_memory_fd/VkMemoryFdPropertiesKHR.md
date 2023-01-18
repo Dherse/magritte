@@ -22,7 +22,7 @@ typedef struct VkMemoryFdPropertiesKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_external_memory_fd`]
+- [`VK_KHR_external_memory_fd`]
 - [`StructureType`]
 - [`get_memory_fd_properties_khr`]
 

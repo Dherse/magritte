@@ -14,13 +14,13 @@ typedef enum VkShaderGroupShaderKHR {
 ```
 
 # Description
-- [`VK_SHADER_GROUP_SHADER_KHR`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::general_shader`]
-- [`VK_SHADER_GROUP_SHADER_KHR`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::closest_hit_shader`]
-- [`VK_SHADER_GROUP_SHADER_KHR`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::any_hit_shader`]
-- [`VK_SHADER_GROUP_SHADER_KHR`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::intersection_shader`]
+- [`GENERAL`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::general_shader`]
+- [`CLOSEST_HIT`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::closest_hit_shader`]
+- [`ANY_HIT`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::any_hit_shader`]
+- [`INTERSECTION`] uses the shader specified in the group with [`RayTracingShaderGroupCreateInfoKHR::intersection_shader`]
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`get_ray_tracing_shader_group_stack_size_khr`]
 
 # Notes and documentation

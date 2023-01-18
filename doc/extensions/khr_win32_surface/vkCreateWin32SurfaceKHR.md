@@ -29,7 +29,7 @@ VkResult vkCreateWin32SurfaceKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_win32_surface`]
+- [`VK_KHR_win32_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`SurfaceKHR`]

@@ -4,8 +4,8 @@
 This extension provides new entry points to query device display properties
 and capabilities in a way that can be easily extended by other extensions,
 without introducing any further entry points.
-This extension can be considered the `[`khr_display`]` equivalent of
-the `[`khr_get_physical_device_properties2`]` extension.
+This extension can be considered the `[`VK_KHR_display`]` equivalent of
+the `[`VK_KHR_get_physical_device_properties2`]` extension.
 
 # Registered extension number
 122
@@ -15,7 +15,7 @@ the `[`khr_get_physical_device_properties2`]` extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_display`]`
+- Requires `[`VK_KHR_display`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_display_properties2] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_get_display_properties2 extension>>)
@@ -34,12 +34,12 @@ the `[`khr_get_physical_device_properties2`]` extension.
 - [`DisplayProperties2KHR`]
 
 # New constants
-- `VK_KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME`
-- `VK_KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION`
+- [`KHR_GET_DISPLAY_PROPERTIES_2_EXTENSION_NAME`]
+- [`KHR_GET_DISPLAY_PROPERTIES_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_MODE_PROPERTIES_2_KHR`  - `VK_STRUCTURE_TYPE_DISPLAY_PLANE_CAPABILITIES_2_KHR`  - `VK_STRUCTURE_TYPE_DISPLAY_PLANE_INFO_2_KHR`  - `VK_STRUCTURE_TYPE_DISPLAY_PLANE_PROPERTIES_2_KHR`  - `VK_STRUCTURE_TYPE_DISPLAY_PROPERTIES_2_KHR`
 
 # Known issues & F.A.Q.
-1) What should this extension be named? **RESOLVED** : [`khr_get_display_properties2`].
+1) What should this extension be named? **RESOLVED** : [`VK_KHR_get_display_properties2`].
 Other alternatives:
 - `VK_KHR_display2`
 - One extension, combined with `VK_KHR_surface_capabilites2`.

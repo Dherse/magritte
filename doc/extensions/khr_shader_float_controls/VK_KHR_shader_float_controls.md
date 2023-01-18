@@ -1,7 +1,7 @@
 [VK_KHR_shader_float_controls](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_float_controls.html) - device extension
 
 # Description
-The [`khr_shader_float_controls`] extension enables efficient use of
+The [`VK_KHR_shader_float_controls`] extension enables efficient use of
 floating-point computations through the ability to query and override the
 implementation’s default behavior for rounding modes, denormals, signed
 zero, and infinity.
@@ -14,7 +14,7 @@ zero, and infinity.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -29,8 +29,8 @@ zero, and infinity.
 - [`ShaderFloatControlsIndependenceKHR`]
 
 # New constants
-- `VK_KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME`
-- `VK_KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION`
+- [`KHR_SHADER_FLOAT_CONTROLS_EXTENSION_NAME`]
+- [`KHR_SHADER_FLOAT_CONTROLS_SPEC_VERSION`]
 - Extending [`ShaderFloatControlsIndependence`]:  - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_32_BIT_ONLY_KHR`  - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_ALL_KHR`  - `VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE_NONE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FLOAT_CONTROLS_PROPERTIES_KHR`
 

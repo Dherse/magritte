@@ -21,13 +21,13 @@ typedef struct VkDedicatedAllocationImageCreateInfoNV {
 
 # Description
 ## Valid Usage
--    If [`dedicated_allocation`] is `VK_TRUE`, [`ImageCreateInfo::flags`] **must**  not include `VK_IMAGE_CREATE_SPARSE_BINDING_BIT`, `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT`, or `VK_IMAGE_CREATE_SPARSE_ALIASED_BIT`
+-    If [`dedicated_allocation`] is [`TRUE`], [`ImageCreateInfo::flags`] **must**  not include `VK_IMAGE_CREATE_SPARSE_BINDING_BIT`, `VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT`, or `VK_IMAGE_CREATE_SPARSE_ALIASED_BIT`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEDICATED_ALLOCATION_IMAGE_CREATE_INFO_NV`
 
 # Related
-- [`nv_dedicated_allocation`]
+- [`VK_NV_dedicated_allocation`]
 - [`Bool32`]
 - [`StructureType`]
 

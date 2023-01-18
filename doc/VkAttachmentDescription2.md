@@ -91,9 +91,9 @@ in the [`p_next`] chain.
 -  [`final_layout`] **must**  be a valid [`ImageLayout`] value
 
 # Related
-- [`khr_create_renderpass2`]
+- [`VK_KHR_create_renderpass2`]
 - [`crate::vulkan1_2`]
-- [VkAttachmentDescriptionFlags]()
+- [`AttachmentDescriptionFlags`]
 - [`AttachmentLoadOp`]
 - [`AttachmentStoreOp`]
 - [`Format`]

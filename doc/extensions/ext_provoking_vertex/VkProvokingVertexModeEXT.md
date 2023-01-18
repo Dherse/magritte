@@ -13,13 +13,13 @@ typedef enum VkProvokingVertexModeEXT {
 ```
 
 # Description
-- [`VK_PROVOKING_VERTEX_MODE_EXT`] specifies that the provoking vertex is the first non-adjacency vertex in the list of vertices used by a primitive.
-- [`VK_PROVOKING_VERTEX_MODE_EXT`] specifies that the provoking vertex is the last non-adjacency vertex in the list of vertices used by a primitive.
+- [`FIRST_VERTEX`] specifies that the provoking vertex is the first non-adjacency vertex in the list of vertices used by a primitive.
+- [`LAST_VERTEX`] specifies that the provoking vertex is the last non-adjacency vertex in the list of vertices used by a primitive.
 These modes are described more precisely in
 [Primitive Topologies](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-topologies).
 
 # Related
-- [`ext_provoking_vertex`]
+- [`VK_EXT_provoking_vertex`]
 - [`PipelineRasterizationProvokingVertexStateCreateInfoEXT`]
 
 # Notes and documentation

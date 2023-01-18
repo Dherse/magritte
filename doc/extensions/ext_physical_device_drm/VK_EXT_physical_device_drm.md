@@ -23,7 +23,7 @@ engine without a display subsystem).To query DRM properties for a physical devic
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Simon Ser [emersion](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_physical_device_drm] @emersion%0A<<Here describe the issue or question you have about the VK_EXT_physical_device_drm extension>>)
@@ -32,8 +32,8 @@ engine without a display subsystem).To query DRM properties for a physical devic
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceDrmPropertiesEXT`]
 
 # New constants
-- `VK_EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME`
-- `VK_EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION`
+- [`EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME`]
+- [`EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT`
 
 # Version history

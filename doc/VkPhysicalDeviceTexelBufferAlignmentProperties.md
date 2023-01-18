@@ -32,9 +32,9 @@ typedef VkPhysicalDeviceTexelBufferAlignmentProperties VkPhysicalDeviceTexelBuff
 If the [`PhysicalDeviceTexelBufferAlignmentProperties`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceProperties2`] structure passed to
 [`get_physical_device_properties2`], it is filled in with each
-corresponding implementation-dependent property.If the single texel alignment property is `VK_FALSE`, then the buffer
+corresponding implementation-dependent property.If the single texel alignment property is [`FALSE`], then the buffer
 view’s offset  **must**  be aligned to the corresponding byte alignment value.
-If the single texel alignment property is `VK_TRUE`, then the buffer
+If the single texel alignment property is [`TRUE`], then the buffer
 view’s offset  **must**  be aligned to the lesser of the corresponding byte
 alignment value or the size of a single texel, based on
 [`BufferViewCreateInfo::format`].
@@ -47,7 +47,7 @@ format that supports use as a texel buffer.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXEL_BUFFER_ALIGNMENT_PROPERTIES`
 
 # Related
-- [`ext_texel_buffer_alignment`]
+- [`VK_EXT_texel_buffer_alignment`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`DeviceSize`]

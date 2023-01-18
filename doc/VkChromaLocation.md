@@ -21,8 +21,8 @@ typedef VkChromaLocation VkChromaLocationKHR;
 ```
 
 # Description
-- [`VK_CHROMA_LOCATION`] specifies that downsampled chroma samples are aligned with luma samples with even coordinates.
-- [`VK_CHROMA_LOCATION`] specifies that downsampled chroma samples are located half way between each even luma sample and the nearest higher odd luma sample.
+- [`COSITED_EVEN`] specifies that downsampled chroma samples are aligned with luma samples with even coordinates.
+- [`MIDPOINT`] specifies that downsampled chroma samples are located half way between each even luma sample and the nearest higher odd luma sample.
 
 # Related
 - [`crate::vulkan1_1`]

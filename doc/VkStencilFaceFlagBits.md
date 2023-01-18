@@ -13,13 +13,13 @@ typedef enum VkStencilFaceFlagBits {
 ```
 
 # Description
-- [`VK_STENCIL_FACE_FLAG_BITS`] specifies that only the front set of stencil state is updated.
-- [`VK_STENCIL_FACE_FLAG_BITS`] specifies that only the back set of stencil state is updated.
-- [`VK_STENCIL_FACE_FLAG_BITS`] is the combination of [`VK_STENCIL_FACE_FLAG_BITS`] and [`VK_STENCIL_FACE_FLAG_BITS`], and specifies that both sets of stencil state are updated.
+- [`FRONT`] specifies that only the front set of stencil state is updated.
+- [`BACK`] specifies that only the back set of stencil state is updated.
+- [`FRONT_AND_BACK`] is the combination of [`FRONT`] and [`BACK`], and specifies that both sets of stencil state are updated.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkStencilFaceFlags]()
+- [`StencilFaceFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

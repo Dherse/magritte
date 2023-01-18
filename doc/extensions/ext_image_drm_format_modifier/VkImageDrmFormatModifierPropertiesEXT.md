@@ -32,7 +32,7 @@ creation in
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`StructureType`]
 - [`get_image_drm_format_modifier_properties_ext`]
 

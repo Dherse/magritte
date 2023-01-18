@@ -13,14 +13,14 @@ typedef enum VkScopeNV {
 ```
 
 # Description
-- [`VK_SCOPE_NV`] corresponds to SPIR-V [`Device`] scope.
-- [`VK_SCOPE_NV`] corresponds to SPIR-V `Workgroup` scope.
-- [`VK_SCOPE_NV`] corresponds to SPIR-V `Subgroup` scope.
-- [`VK_SCOPE_NV`] corresponds to SPIR-V `QueueFamily` scope.
+- [`DEVICE`] corresponds to SPIR-V [`Device`] scope.
+- [`WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.
+- [`SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.
+- [`QUEUE_FAMILY`] corresponds to SPIR-V `QueueFamily` scope.
 All enum values match the corresponding SPIR-V value.
 
 # Related
-- [`nv_cooperative_matrix`]
+- [`VK_NV_cooperative_matrix`]
 - [`CooperativeMatrixPropertiesNV`]
 
 # Notes and documentation

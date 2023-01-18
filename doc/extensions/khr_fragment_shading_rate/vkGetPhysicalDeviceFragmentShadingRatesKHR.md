@@ -57,7 +57,7 @@ system to get the supported rates for that transform.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`khr_fragment_shading_rate`]
+- [`VK_KHR_fragment_shading_rate`]
 - [`PhysicalDevice`]
 - [`PhysicalDeviceFragmentShadingRateKHR`]
 

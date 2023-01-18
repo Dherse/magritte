@@ -1,7 +1,7 @@
 [VK_EXT_debug_marker](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_marker.html) - device extension
 
 # Description
-The [`ext_debug_marker`] extension is a device extension.
+The [`VK_EXT_debug_marker`] extension is a device extension.
 It introduces concepts of object naming and tagging, for better tracking of
 Vulkan objects, as well as additional commands for recording annotations of
 named sections of a workload to aid organization and offline analysis in
@@ -15,10 +15,10 @@ external tools.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_debug_report`]`
+- Requires `[`VK_EXT_debug_report`]`
 
 # Deprecation state
-- *Promoted* to `[`ext_debug_utils`]` extension
+- *Promoted* to `[`VK_EXT_debug_utils`]` extension
 
 # Contacts
 - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_marker] @baldurk%0A<<Here describe the issue or question you have about the VK_EXT_debug_marker extension>>)
@@ -39,8 +39,8 @@ external tools.
 - [`DebugReportObjectTypeEXT`]
 
 # New constants
-- `VK_EXT_DEBUG_MARKER_EXTENSION_NAME`
-- `VK_EXT_DEBUG_MARKER_SPEC_VERSION`
+- [`EXT_DEBUG_MARKER_EXTENSION_NAME`]
+- [`EXT_DEBUG_MARKER_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEBUG_MARKER_MARKER_INFO_EXT`  - `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_NAME_INFO_EXT`  - `VK_STRUCTURE_TYPE_DEBUG_MARKER_OBJECT_TAG_INFO_EXT`
 
 # Known issues & F.A.Q.

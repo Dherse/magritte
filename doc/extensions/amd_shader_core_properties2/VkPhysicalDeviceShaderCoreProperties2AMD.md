@@ -27,8 +27,8 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_2_AMD`
 
 # Related
-- [`amd_shader_core_properties2`]
-- [VkShaderCorePropertiesFlagsAMD]()
+- [`VK_AMD_shader_core_properties2`]
+- [`ShaderCorePropertiesFlagsAMD`]
 - [`StructureType`]
 
 # Notes and documentation

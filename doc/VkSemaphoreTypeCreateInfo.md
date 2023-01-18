@@ -38,7 +38,7 @@ will have a default [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_BINARY`.
 -  [`semaphore_type`] **must**  be a valid [`SemaphoreType`] value
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`SemaphoreType`]
 - [`StructureType`]

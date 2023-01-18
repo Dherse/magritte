@@ -37,7 +37,7 @@ scalar alignment of any of the block’s members.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`RayTracingPipelineCreateInfoKHR`]
 - [`StructureType`]
 

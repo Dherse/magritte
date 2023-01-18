@@ -29,7 +29,7 @@ returned by the original command if the operation had not been deferred.
 *   - `VK_SUCCESS`  - `VK_NOT_READY`
 
 # Related
-- [`khr_deferred_host_operations`]
+- [`VK_KHR_deferred_host_operations`]
 - [`DeferredOperationKHR`]
 - [`Device`]
 

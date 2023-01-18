@@ -1,0 +1,1 @@
+[`DEPTH`] specifies the depth aspect.

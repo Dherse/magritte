@@ -14,7 +14,7 @@ import semaphore payload from POSIX file descriptors.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_semaphore`]`
+- Requires `[`VK_KHR_external_semaphore`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_semaphore_fd] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_external_semaphore_fd extension>>)
@@ -28,8 +28,8 @@ import semaphore payload from POSIX file descriptors.
 - [`SemaphoreGetFdInfoKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION`
+- [`KHR_EXTERNAL_SEMAPHORE_FD_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_SEMAPHORE_FD_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_FD_INFO_KHR`  - `VK_STRUCTURE_TYPE_SEMAPHORE_GET_FD_INFO_KHR`
 
 # Known issues & F.A.Q.

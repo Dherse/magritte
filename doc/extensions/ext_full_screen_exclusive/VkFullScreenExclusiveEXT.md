@@ -14,13 +14,13 @@ typedef enum VkFullScreenExclusiveEXT {
 ```
 
 # Description
-- [`VK_FULL_SCREEN_EXCLUSIVE_EXT`] indicates the implementation  **should**  determine the appropriate full-screen method by whatever means it deems appropriate.
-- [`VK_FULL_SCREEN_EXCLUSIVE_EXT`] indicates the implementation  **may**  use full-screen exclusive mechanisms when available. Such mechanisms  **may**  result in better performance and/or the availability of different presentation capabilities, but  **may**  require a more disruptive transition during swapchain initialization, first presentation and/or destruction.
-- [`VK_FULL_SCREEN_EXCLUSIVE_EXT`] indicates the implementation  **should**  avoid using full-screen mechanisms which rely on disruptive transitions.
-- [`VK_FULL_SCREEN_EXCLUSIVE_EXT`] indicates the application will manage full-screen exclusive mode by using the [`acquire_full_screen_exclusive_mode_ext`] and [`release_full_screen_exclusive_mode_ext`] commands.
+- [`DEFAULT`] indicates the implementation  **should**  determine the appropriate full-screen method by whatever means it deems appropriate.
+- [`ALLOWED`] indicates the implementation  **may**  use full-screen exclusive mechanisms when available. Such mechanisms  **may**  result in better performance and/or the availability of different presentation capabilities, but  **may**  require a more disruptive transition during swapchain initialization, first presentation and/or destruction.
+- [`DISALLOWED`] indicates the implementation  **should**  avoid using full-screen mechanisms which rely on disruptive transitions.
+- [`APPLICATION_CONTROLLED`] indicates the application will manage full-screen exclusive mode by using the [`acquire_full_screen_exclusive_mode_ext`] and [`release_full_screen_exclusive_mode_ext`] commands.
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`SurfaceFullScreenExclusiveInfoEXT`]
 
 # Notes and documentation

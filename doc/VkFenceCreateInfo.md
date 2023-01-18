@@ -25,7 +25,7 @@ typedef struct VkFenceCreateInfo {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkFenceCreateFlags]()
+- [`FenceCreateFlags`]
 - [`StructureType`]
 - [`create_fence`]
 

@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineRasterizationStateStreamCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`PipelineRasterizationStateStreamCreateInfoEXT`]
 
 # Notes and documentation

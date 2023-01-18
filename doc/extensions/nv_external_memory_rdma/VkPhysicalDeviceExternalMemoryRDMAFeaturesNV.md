@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`
 
 # Related
-- [`nv_external_memory_rdma`]
+- [`VK_NV_external_memory_rdma`]
 - [`Bool32`]
 - [`StructureType`]
 

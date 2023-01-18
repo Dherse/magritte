@@ -1,7 +1,7 @@
 [VK_KHR_maintenance4](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance4.html) - device extension
 
 # Description
-[`khr_maintenance4`] adds a collection of minor features, none of which
+[`VK_KHR_maintenance4`] adds a collection of minor features, none of which
 would warrant an entire extension of their own.The new features are as follows:
 - Allow the application to destroy their [`PipelineLayout`] object immediately after it was used to create another object. It is no longer necessary to keep its handle valid while the created object is in use.
 - Add a new [`maxBufferSize`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxBufferSize) implementation-defined limit for the maximum size [`Buffer`] that  **can**  be created.
@@ -39,8 +39,8 @@ would warrant an entire extension of their own.The new features are as follows:
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMaintenance4PropertiesKHR`]
 
 # New constants
-- `VK_KHR_MAINTENANCE_4_EXTENSION_NAME`
-- `VK_KHR_MAINTENANCE_4_SPEC_VERSION`
+- [`KHR_MAINTENANCE_4_EXTENSION_NAME`]
+- [`KHR_MAINTENANCE_4_SPEC_VERSION`]
 - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_NONE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_BUFFER_MEMORY_REQUIREMENTS_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_IMAGE_MEMORY_REQUIREMENTS_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES_KHR`
 

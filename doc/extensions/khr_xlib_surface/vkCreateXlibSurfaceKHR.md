@@ -30,7 +30,7 @@ VkResult vkCreateXlibSurfaceKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_xlib_surface`]
+- [`VK_KHR_xlib_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`SurfaceKHR`]

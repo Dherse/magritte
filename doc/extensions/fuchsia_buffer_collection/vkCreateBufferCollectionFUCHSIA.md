@@ -34,7 +34,7 @@ externally synchronized with the exception of
 [`create_buffer_collection_fuchsia`].
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`AllocationCallbacks`]
 - [`BufferCollectionCreateInfoFUCHSIA`]
 - [`BufferCollectionFUCHSIA`]

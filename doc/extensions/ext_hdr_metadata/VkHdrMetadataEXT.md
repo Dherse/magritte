@@ -36,7 +36,7 @@ typedef struct VkHdrMetadataEXT {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_hdr_metadata`]
+- [`VK_EXT_hdr_metadata`]
 - [`StructureType`]
 - [`XyColorEXT`]
 - [`set_hdr_metadata_ext`]

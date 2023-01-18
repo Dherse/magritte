@@ -37,7 +37,7 @@ and z values followed by the maximum x, y, and z values.
 -    If [`aabb_data`] is not [`crate::Handle::null`], [`aabb_data`] **must**  be a valid [`Buffer`] handle
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`GeometryDataNV`]

@@ -23,7 +23,7 @@ typedef struct VkPipelineInfoKHR {
 -  [`pipeline`] **must**  be a valid [`Pipeline`] handle
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`Pipeline`]
 - [`StructureType`]
 - [`get_pipeline_executable_properties_khr`]

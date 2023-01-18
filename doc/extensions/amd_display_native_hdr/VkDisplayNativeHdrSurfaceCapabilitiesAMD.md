@@ -14,14 +14,14 @@ typedef struct VkDisplayNativeHdrSurfaceCapabilitiesAMD {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`local_dimming_support`] specifies whether the surface supports local dimming. If this is `VK_TRUE`, [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to explicitly enable or disable local dimming for the surface. Local dimming may also be overriden by [`set_local_dimming_amd`] during the lifetime of the swapchain.
+- [`local_dimming_support`] specifies whether the surface supports local dimming. If this is [`TRUE`], [`SwapchainDisplayNativeHdrCreateInfoAMD`] **can**  be used to explicitly enable or disable local dimming for the surface. Local dimming may also be overriden by [`set_local_dimming_amd`] during the lifetime of the swapchain.
 
 # Description
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`
 
 # Related
-- [`amd_display_native_hdr`]
+- [`VK_AMD_display_native_hdr`]
 - [`Bool32`]
 - [`StructureType`]
 

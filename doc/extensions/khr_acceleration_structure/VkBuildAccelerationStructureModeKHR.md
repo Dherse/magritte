@@ -11,11 +11,11 @@ typedef enum VkBuildAccelerationStructureModeKHR {
 ```
 
 # Description
-- [`VK_BUILD_ACCELERATION_STRUCTURE_MODE_KHR`] specifies that the destination acceleration structure will be built using the specified geometries.
-- [`VK_BUILD_ACCELERATION_STRUCTURE_MODE_KHR`] specifies that the destination acceleration structure will be built using data in a source acceleration structure, updated by the specified geometries.
+- [`BUILD`] specifies that the destination acceleration structure will be built using the specified geometries.
+- [`UPDATE`] specifies that the destination acceleration structure will be built using data in a source acceleration structure, updated by the specified geometries.
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 
 # Notes and documentation

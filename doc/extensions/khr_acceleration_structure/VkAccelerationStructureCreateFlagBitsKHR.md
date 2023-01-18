@@ -14,11 +14,11 @@ typedef enum VkAccelerationStructureCreateFlagBitsKHR {
 ```
 
 # Description
-- [`VK_ACCELERATION_STRUCTURE_CREATE_FLAG_BITS_KHR`] specifies that the acceleration structure’s address  **can**  be saved and reused on a subsequent run.
+- [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the acceleration structure’s address  **can**  be saved and reused on a subsequent run.
 
 # Related
-- [`khr_acceleration_structure`]
-- [VkAccelerationStructureCreateFlagsKHR]()
+- [`VK_KHR_acceleration_structure`]
+- [`AccelerationStructureCreateFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

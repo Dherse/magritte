@@ -27,7 +27,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINEAR_COLOR_ATTACHMENT_FEATURES_NV`
 
 # Related
-- [`nv_linear_color_attachment`]
+- [`VK_NV_linear_color_attachment`]
 - [`Bool32`]
 - [`StructureType`]
 

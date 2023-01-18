@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_CREATION_CACHE_CONTROL_FEATURES`
 
 # Related
-- [`ext_pipeline_creation_cache_control`]
+- [`VK_EXT_pipeline_creation_cache_control`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

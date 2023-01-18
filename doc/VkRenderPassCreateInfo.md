@@ -30,15 +30,15 @@ typedef struct VkRenderPassCreateInfo {
 
 # Description
 ## Valid Usage
--    If the `attachment` member of any element of `pInputAttachments`, `pColorAttachments`, `pResolveAttachments` or `pDepthStencilAttachment`, or any element of `pPreserveAttachments` in any element of [`subpasses`] is not `VK_ATTACHMENT_UNUSED`, then it  **must**  be less than [`attachment_count`]
--    If the pNext chain includes a [`RenderPassFragmentDensityMapCreateInfoEXT`] structure and the `fragmentDensityMapAttachment` member is not `VK_ATTACHMENT_UNUSED`, then `attachment` **must**  be less than [`attachment_count`]
+-    If the `attachment` member of any element of `pInputAttachments`, `pColorAttachments`, `pResolveAttachments` or `pDepthStencilAttachment`, or any element of `pPreserveAttachments` in any element of [`subpasses`] is not [`ATTACHMENT_UNUSED`], then it  **must**  be less than [`attachment_count`]
+-    If the pNext chain includes a [`RenderPassFragmentDensityMapCreateInfoEXT`] structure and the `fragmentDensityMapAttachment` member is not [`ATTACHMENT_UNUSED`], then `attachment` **must**  be less than [`attachment_count`]
 -    For any member of [`attachments`] with a `loadOp` equal to `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment  **must**  not specify a `layout` equal to `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` or `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 -    For any member of [`attachments`] with a `stencilLoadOp` equal to `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment  **must**  not specify a `layout` equal to `VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL` or `VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL`
 -    For any member of [`attachments`] with a `loadOp` equal to `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment  **must**  not specify a `layout` equal to `VK_IMAGE_LAYOUT_DEPTH_READ_ONLY_STENCIL_ATTACHMENT_OPTIMAL`
 -    For any member of [`attachments`] with a `stencilLoadOp` equal to `VK_ATTACHMENT_LOAD_OP_CLEAR`, the first use of that attachment  **must**  not specify a `layout` equal to `VK_IMAGE_LAYOUT_DEPTH_ATTACHMENT_STENCIL_READ_ONLY_OPTIMAL`
 -    If the [`p_next`] chain includes a [`RenderPassInputAttachmentAspectCreateInfo`] structure, the `subpass` member of each element of its `pAspectReferences` member  **must**  be less than [`subpass_count`]
 -    If the [`p_next`] chain includes a [`RenderPassInputAttachmentAspectCreateInfo`] structure, the `inputAttachmentIndex` member of each element of its `pAspectReferences` member  **must**  be less than the value of `inputAttachmentCount` in the element of [`subpasses`] identified by its `subpass` member
--    If the [`p_next`] chain includes a [`RenderPassInputAttachmentAspectCreateInfo`] structure, for any element of the `pInputAttachments` member of any element of [`subpasses`] where the `attachment` member is not `VK_ATTACHMENT_UNUSED`, the `aspectMask` member of the corresponding element of [`RenderPassInputAttachmentAspectCreateInfo::aspect_references`] **must**  only include aspects that are present in images of the format specified by the element of [`attachments`] at `attachment`
+-    If the [`p_next`] chain includes a [`RenderPassInputAttachmentAspectCreateInfo`] structure, for any element of the `pInputAttachments` member of any element of [`subpasses`] where the `attachment` member is not [`ATTACHMENT_UNUSED`], the `aspectMask` member of the corresponding element of [`RenderPassInputAttachmentAspectCreateInfo::aspect_references`] **must**  only include aspects that are present in images of the format specified by the element of [`attachments`] at `attachment`
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, and its [`subpass_count`] member is not zero, that member  **must**  be equal to the value of [`subpass_count`]
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, if its [`dependency_count`] member is not zero, it  **must**  be equal to [`dependency_count`]
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, for each non-zero element of `pViewOffsets`, the `srcSubpass` and `dstSubpass` members of [`dependencies`] at the same index  **must**  not be equal
@@ -46,8 +46,8 @@ typedef struct VkRenderPassCreateInfo {
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, elements of its `pViewMasks` member  **must**  either all be `0`, or all not be `0`
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, and each element of its `pViewMasks` member is `0`, the `dependencyFlags` member of each element of [`dependencies`] **must**  not include `VK_DEPENDENCY_VIEW_LOCAL_BIT`
 -    If the [`p_next`] chain includes a [`RenderPassMultiviewCreateInfo`] structure, and each element of its `pViewMasks` member is `0`, its `correlationMaskCount` member  **must**  be `0`
--    For any element of [`dependencies`], if the `srcSubpass` is not `VK_SUBPASS_EXTERNAL`, all stage flags included in the `srcStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the source subpass
--    For any element of [`dependencies`], if the `dstSubpass` is not `VK_SUBPASS_EXTERNAL`, all stage flags included in the `dstStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the destination subpass
+-    For any element of [`dependencies`], if the `srcSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `srcStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the source subpass
+-    For any element of [`dependencies`], if the `dstSubpass` is not [`SUBPASS_EXTERNAL`], all stage flags included in the `dstStageMask` member of that dependency  **must**  be a pipeline stage supported by the [pipeline](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-types) identified by the `pipelineBindPoint` member of the destination subpass
 -    The `srcSubpass` member of each element of [`dependencies`] **must**  be less than [`subpass_count`]
 -    The `dstSubpass` member of each element of [`dependencies`] **must**  be less than [`subpass_count`]
 
@@ -64,7 +64,7 @@ typedef struct VkRenderPassCreateInfo {
 # Related
 - [`crate::vulkan1_0`]
 - [`AttachmentDescription`]
-- [VkRenderPassCreateFlags]()
+- [`RenderPassCreateFlags`]
 - [`StructureType`]
 - [`SubpassDependency`]
 - [`SubpassDescription`]

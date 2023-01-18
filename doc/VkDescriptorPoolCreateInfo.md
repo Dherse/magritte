@@ -97,7 +97,7 @@ The application  **must**  ensure that partial overlap does not exist in
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkDescriptorPoolCreateFlags]()
+- [`DescriptorPoolCreateFlags`]
 - [`DescriptorPoolSize`]
 - [`StructureType`]
 - [`create_descriptor_pool`]

@@ -41,7 +41,7 @@ name in [`PhysicalDeviceRayTracingPropertiesNV`].
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_PIPELINE_PROPERTIES_KHR`
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`StructureType`]
 
 # Notes and documentation

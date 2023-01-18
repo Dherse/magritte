@@ -45,7 +45,7 @@ choose the sample locations for the fragment and the contents of
 -    If [`sample_locations_count`] is not `0`, [`sample_locations`] **must**  be a valid pointer to an array of [`sample_locations_count`][`SampleLocationEXT`] structures
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`AttachmentSampleLocationsEXT`]
 - [`Extent2D`]
 - [`PipelineSampleLocationsStateCreateInfoEXT`]

@@ -21,9 +21,9 @@ typedef enum VkBufferCreateFlagBits {
 ```
 
 # Description
-- [`VK_BUFFER_CREATE_FLAG_BITS`] specifies that the buffer will be backed using sparse memory binding.
-- [`VK_BUFFER_CREATE_FLAG_BITS`] specifies that the buffer  **can**  be partially backed using sparse memory binding. Buffers created with this flag  **must**  also be created with the [`VK_BUFFER_CREATE_FLAG_BITS`] flag.
-- [`VK_BUFFER_CREATE_FLAG_BITS`] specifies that the buffer will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another buffer (or another portion of the same buffer). Buffers created with this flag  **must**  also be created with the [`VK_BUFFER_CREATE_FLAG_BITS`] flag.
+- [`SPARSE_BINDING`] specifies that the buffer will be backed using sparse memory binding.
+- [`SPARSE_RESIDENCY`] specifies that the buffer  **can**  be partially backed using sparse memory binding. Buffers created with this flag  **must**  also be created with the [`SPARSE_BINDING`] flag.
+- [`SPARSE_ALIASED`] specifies that the buffer will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another buffer (or another portion of the same buffer). Buffers created with this flag  **must**  also be created with the [`SPARSE_BINDING`] flag.
 - [`PROTECTED`] specifies that the buffer is a protected buffer.
 - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the buffer’s address  **can**  be saved and reused on a subsequent run (e.g. for trace capture and replay), see [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
 See [Sparse Resource Features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory-sparseresourcefeatures) and
@@ -32,7 +32,7 @@ features supported on a device.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkBufferCreateFlags]()
+- [`BufferCreateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

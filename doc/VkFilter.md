@@ -17,8 +17,8 @@ typedef enum VkFilter {
 ```
 
 # Description
-- [`VK_FILTER`] specifies nearest filtering.
-- [`VK_FILTER`] specifies linear filtering.
+- [`NEAREST`] specifies nearest filtering.
+- [`LINEAR`] specifies linear filtering.
 - [`CUBIC_EXT`] specifies cubic filtering.
 These filters are described in detail in [Texel
 Filtering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-texel-filtering).

@@ -14,7 +14,7 @@ size of their components, without additional requirements.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -26,8 +26,8 @@ size of their components, without additional requirements.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceScalarBlockLayoutFeaturesEXT`]
 
 # New constants
-- `VK_EXT_SCALAR_BLOCK_LAYOUT_EXTENSION_NAME`
-- `VK_EXT_SCALAR_BLOCK_LAYOUT_SPEC_VERSION`
+- [`EXT_SCALAR_BLOCK_LAYOUT_EXTENSION_NAME`]
+- [`EXT_SCALAR_BLOCK_LAYOUT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SCALAR_BLOCK_LAYOUT_FEATURES_EXT`
 
 # Version history

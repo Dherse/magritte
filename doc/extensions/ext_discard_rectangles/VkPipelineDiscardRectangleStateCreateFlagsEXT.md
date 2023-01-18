@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineDiscardRectangleStateCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_discard_rectangles`]
+- [`VK_EXT_discard_rectangles`]
 - [`PipelineDiscardRectangleStateCreateInfoEXT`]
 
 # Notes and documentation

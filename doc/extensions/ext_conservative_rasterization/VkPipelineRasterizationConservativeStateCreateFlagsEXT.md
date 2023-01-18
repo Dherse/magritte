@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineRasterizationConservativeStateCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_conservative_rasterization`]
+- [`VK_EXT_conservative_rasterization`]
 - [`PipelineRasterizationConservativeStateCreateInfoEXT`]
 
 # Notes and documentation

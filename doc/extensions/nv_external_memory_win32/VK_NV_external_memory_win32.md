@@ -18,10 +18,10 @@ created in the Direct3D API to Vulkan memory objects.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`nv_external_memory`]`
+- Requires `[`VK_NV_external_memory`]`
 
 # Deprecation state
-- *Deprecated* by `[`khr_external_memory_win32`]` extension
+- *Deprecated* by `[`VK_KHR_external_memory_win32`]` extension
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_win32] @cubanismo%0A<<Here describe the issue or question you have about the VK_NV_external_memory_win32 extension>>)
@@ -33,8 +33,8 @@ created in the Direct3D API to Vulkan memory objects.
 - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryWin32HandleInfoNV`]  - [`ImportMemoryWin32HandleInfoNV`]
 
 # New constants
-- `VK_NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`
-- `VK_NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`
+- [`NV_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`]
+- [`NV_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_NV`
 
 # Known issues & F.A.Q.

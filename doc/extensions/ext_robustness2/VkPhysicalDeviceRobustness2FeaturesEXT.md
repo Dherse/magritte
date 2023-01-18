@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ROBUSTNESS_2_FEATURES_EXT`
 
 # Related
-- [`ext_robustness2`]
+- [`VK_EXT_robustness2`]
 - [`Bool32`]
 - [`StructureType`]
 

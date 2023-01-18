@@ -30,7 +30,7 @@ void vkDestroyValidationCacheEXT(
 - Host access to [`validation_cache`] **must**  be externally synchronized
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`ValidationCacheEXT`]

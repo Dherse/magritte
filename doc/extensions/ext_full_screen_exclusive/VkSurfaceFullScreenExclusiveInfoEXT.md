@@ -26,7 +26,7 @@ be `VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT`.
 -  [`full_screen_exclusive`] **must**  be a valid [`FullScreenExclusiveEXT`] value
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`FullScreenExclusiveEXT`]
 - [`StructureType`]
 

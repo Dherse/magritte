@@ -31,7 +31,7 @@ void vkGetDeviceGroupPeerMemoryFeaturesKHR(
 - [`heap_index`] is the index of the memory heap from which the memory is allocated.
 - [`local_device_index`] is the device index of the physical device that performs the memory access.
 - [`remote_device_index`] is the device index of the physical device that the memory is allocated for.
-- [`p_peer_memory_features`] is a pointer to a [VkPeerMemoryFeatureFlags]() bitmask indicating which types of memory accesses are supported for the combination of heap, local, and remote devices.
+- [`p_peer_memory_features`] is a pointer to a [`PeerMemoryFeatureFlags`] bitmask indicating which types of memory accesses are supported for the combination of heap, local, and remote devices.
 
 # Description
 ## Valid Usage
@@ -42,12 +42,12 @@ void vkGetDeviceGroupPeerMemoryFeaturesKHR(
 
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
--  [`p_peer_memory_features`] **must**  be a valid pointer to a [VkPeerMemoryFeatureFlags]() value
+-  [`p_peer_memory_features`] **must**  be a valid pointer to a [`PeerMemoryFeatureFlags`] value
 
 # Related
 - [`crate::vulkan1_1`]
 - [`Device`]
-- [VkPeerMemoryFeatureFlags]()
+- [`PeerMemoryFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

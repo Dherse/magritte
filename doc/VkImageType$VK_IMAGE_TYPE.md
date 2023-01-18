@@ -1,1 +1,0 @@
-[`VK_IMAGE_TYPE`] specifies a one-dimensional image.

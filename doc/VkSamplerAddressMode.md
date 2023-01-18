@@ -21,11 +21,11 @@ typedef enum VkSamplerAddressMode {
 ```
 
 # Description
-- [`VK_SAMPLER_ADDRESS_MODE`] specifies that the repeat wrap mode will be used.
-- [`VK_SAMPLER_ADDRESS_MODE`] specifies that the mirrored repeat wrap mode will be used.
-- [`VK_SAMPLER_ADDRESS_MODE`] specifies that the clamp to edge wrap mode will be used.
-- [`VK_SAMPLER_ADDRESS_MODE`] specifies that the clamp to border wrap mode will be used.
-- [`MIRROR_CLAMP_TO_EDGE`] specifies that the     mirror clamp to edge wrap mode will be used.     This is only valid if [samplerMirrorClampToEdge](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-samplerMirrorClampToEdge) is enabled, or if     the `[`khr_sampler_mirror_clamp_to_edge`]` extension is enabled.
+- [`REPEAT`] specifies that the repeat wrap mode will be used.
+- [`MIRRORED_REPEAT`] specifies that the mirrored repeat wrap mode will be used.
+- [`CLAMP_TO_EDGE`] specifies that the clamp to edge wrap mode will be used.
+- [`CLAMP_TO_BORDER`] specifies that the clamp to border wrap mode will be used.
+- [`MIRROR_CLAMP_TO_EDGE`] specifies that the     mirror clamp to edge wrap mode will be used.     This is only valid if [samplerMirrorClampToEdge](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-samplerMirrorClampToEdge) is enabled, or if     the `[`VK_KHR_sampler_mirror_clamp_to_edge`]` extension is enabled.
 
 # Related
 - [`crate::vulkan1_0`]

@@ -32,7 +32,7 @@ concurrently.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_TIMEOUT`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`AcquireProfilingLockInfoKHR`]
 - [`Device`]
 

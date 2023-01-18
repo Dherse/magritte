@@ -34,7 +34,7 @@ typedef struct VkPipelineViewportSwizzleStateCreateInfoNV {
 -  [`viewport_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_viewport_swizzle`]
+- [`VK_NV_viewport_swizzle`]
 - [`PipelineViewportSwizzleStateCreateFlagsNV`]
 - [`StructureType`]
 - [`ViewportSwizzleNV`]

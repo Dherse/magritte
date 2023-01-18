@@ -41,7 +41,7 @@ shader image instructions when the border color is used.
 -  [`components`] **must**  be a valid [`ComponentMapping`] structure
 
 # Related
-- [`ext_border_color_swizzle`]
+- [`VK_EXT_border_color_swizzle`]
 - [`Bool32`]
 - [`ComponentMapping`]
 - [`StructureType`]

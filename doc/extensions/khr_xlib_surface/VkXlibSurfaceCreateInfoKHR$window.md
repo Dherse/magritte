@@ -1,1 +1,1 @@
-[`window`] is an Xlib `Window` to associate the surface with.
+[`window`] is an Xlib [`Window`] to associate the surface with.

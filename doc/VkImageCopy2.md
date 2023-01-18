@@ -41,7 +41,7 @@ typedef VkImageCopy2 VkImageCopy2KHR;
 -  [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`CopyImageInfo2`]
 - [`Extent3D`]

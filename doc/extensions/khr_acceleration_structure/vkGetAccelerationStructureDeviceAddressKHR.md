@@ -36,7 +36,7 @@ creation.
 -  [`p_info`] **must**  be a valid pointer to a valid [`AccelerationStructureDeviceAddressInfoKHR`] structure
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureDeviceAddressInfoKHR`]
 - [`Device`]
 

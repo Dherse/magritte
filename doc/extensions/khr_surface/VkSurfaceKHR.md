@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkSurfaceKHR)
 ```
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`PhysicalDeviceSurfaceInfo2KHR`]
 - [`SwapchainCreateInfoKHR`]
 - [`create_android_surface_khr`]

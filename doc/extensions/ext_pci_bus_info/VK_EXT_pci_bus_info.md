@@ -19,7 +19,7 @@ availability of the extension on any given platform.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_pci_bus_info] @anteru%0A<<Here describe the issue or question you have about the VK_EXT_pci_bus_info extension>>)
@@ -28,8 +28,8 @@ availability of the extension on any given platform.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDevicePciBusInfoPropertiesEXT`]
 
 # New constants
-- `VK_EXT_PCI_BUS_INFO_EXTENSION_NAME`
-- `VK_EXT_PCI_BUS_INFO_SPEC_VERSION`
+- [`EXT_PCI_BUS_INFO_EXTENSION_NAME`]
+- [`EXT_PCI_BUS_INFO_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PCI_BUS_INFO_PROPERTIES_EXT`
 
 # Version history

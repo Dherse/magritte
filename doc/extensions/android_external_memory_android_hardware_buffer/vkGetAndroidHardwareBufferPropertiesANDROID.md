@@ -30,7 +30,7 @@ VkResult vkGetAndroidHardwareBufferPropertiesANDROID(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE_KHR`
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`AndroidHardwareBufferPropertiesANDROID`]
 - [`Device`]
 

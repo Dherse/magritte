@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
 
 # Related
-- [`ext_memory_priority`]
+- [`VK_EXT_memory_priority`]
 - [`Bool32`]
 - [`StructureType`]
 

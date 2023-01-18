@@ -24,25 +24,25 @@ typedef enum VkSurfaceTransformFlagBitsKHR {
 ```
 
 # Description
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is presented without being transformed.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is rotated 90 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is rotated 180 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is rotated 270 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is mirrored horizontally.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is mirrored horizontally, then rotated 90 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is mirrored horizontally, then rotated 180 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that image content is mirrored horizontally, then rotated 270 degrees clockwise.
-- [`VK_SURFACE_TRANSFORM_FLAG_BITS_KHR`] specifies that the presentation transform is not specified, and is instead determined by platform-specific considerations and mechanisms outside Vulkan.
+- [`IDENTITY`] specifies that image content is presented without being transformed.
+- [`ROTATE90`] specifies that image content is rotated 90 degrees clockwise.
+- [`ROTATE180`] specifies that image content is rotated 180 degrees clockwise.
+- [`ROTATE270`] specifies that image content is rotated 270 degrees clockwise.
+- [`HORIZONTAL_MIRROR`] specifies that image content is mirrored horizontally.
+- [`HORIZONTAL_MIRROR_ROTATE90`] specifies that image content is mirrored horizontally, then rotated 90 degrees clockwise.
+- [`HORIZONTAL_MIRROR_ROTATE180`] specifies that image content is mirrored horizontally, then rotated 180 degrees clockwise.
+- [`HORIZONTAL_MIRROR_ROTATE270`] specifies that image content is mirrored horizontally, then rotated 270 degrees clockwise.
+- [`INHERIT`] specifies that the presentation transform is not specified, and is instead determined by platform-specific considerations and mechanisms outside Vulkan.
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`CommandBufferInheritanceRenderPassTransformInfoQCOM`]
 - [`CopyCommandTransformInfoQCOM`]
 - [`DisplaySurfaceCreateInfoKHR`]
 - [`RenderPassTransformBeginInfoQCOM`]
 - [`SurfaceCapabilities2EXT`]
 - [`SurfaceCapabilitiesKHR`]
-- [VkSurfaceTransformFlagsKHR]()
+- [`SurfaceTransformFlagsKHR`]
 - [`SwapchainCreateInfoKHR`]
 
 # Notes and documentation

@@ -21,7 +21,7 @@ typedef struct VkVertexInputBindingDescription {
 ## Valid Usage
 -  [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
 -  [`stride`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_vertex_input_binding_stride`]
--    If the `[`khr_portability_subset`]` extension is enabled, [`stride`] **must**  be a multiple of, and at least as large as, [`PhysicalDevicePortabilitySubsetPropertiesKHR::min_vertex_input_binding_stride_alignment`]
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, [`stride`] **must**  be a multiple of, and at least as large as, [`PhysicalDevicePortabilitySubsetPropertiesKHR::min_vertex_input_binding_stride_alignment`]
 
 ## Valid Usage (Implicit)
 -  [`input_rate`] **must**  be a valid [`VertexInputRate`] value

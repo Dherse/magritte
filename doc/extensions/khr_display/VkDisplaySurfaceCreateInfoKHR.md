@@ -33,7 +33,7 @@ typedef struct VkDisplaySurfaceCreateInfoKHR {
 # Description
 ## Valid Usage
 -  [`plane_index`] **must**  be less than the number of display planes supported by the device as determined by calling [`get_physical_device_display_plane_properties_khr`]
--    If the `planeReorderPossible` member of the [`DisplayPropertiesKHR`] structure returned by [`get_physical_device_display_properties_khr`] for the display corresponding to [`display_mode`] is `VK_TRUE` then [`plane_stack_index`] **must**  be less than the number of display planes supported by the device as determined by calling [`get_physical_device_display_plane_properties_khr`]; otherwise [`plane_stack_index`] **must**  equal the `currentStackIndex` member of [`DisplayPlanePropertiesKHR`] returned by [`get_physical_device_display_plane_properties_khr`] for the display plane corresponding to [`display_mode`]
+-    If the `planeReorderPossible` member of the [`DisplayPropertiesKHR`] structure returned by [`get_physical_device_display_properties_khr`] for the display corresponding to [`display_mode`] is [`TRUE`] then [`plane_stack_index`] **must**  be less than the number of display planes supported by the device as determined by calling [`get_physical_device_display_plane_properties_khr`]; otherwise [`plane_stack_index`] **must**  equal the `currentStackIndex` member of [`DisplayPlanePropertiesKHR`] returned by [`get_physical_device_display_plane_properties_khr`] for the display plane corresponding to [`display_mode`]
 -    If [`alpha_mode`] is `VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR` then [`global_alpha`] **must**  be between `0` and `1`, inclusive
 -  [`alpha_mode`] **must**  be one of the bits present in the `supportedAlpha` member of [`DisplayPlaneCapabilitiesKHR`] for the display plane corresponding to [`display_mode`]
 -    The `width` and `height` members of [`image_extent`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_image_dimension2_d`]
@@ -47,7 +47,7 @@ typedef struct VkDisplaySurfaceCreateInfoKHR {
 -  [`alpha_mode`] **must**  be a valid [`DisplayPlaneAlphaFlagBitsKHR`] value
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModeKHR`]
 - [`DisplayPlaneAlphaFlagBitsKHR`]
 - [`DisplaySurfaceCreateFlagsKHR`]

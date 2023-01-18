@@ -67,7 +67,7 @@ with the `aspectMask` set to `VK_IMAGE_ASPECT_DEPTH_BIT` |
 - [`Format`]
 - [`ImageTiling`]
 - [`ImageType`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`PhysicalDevice`]
 - [`SampleCountFlagBits`]
 - [`SparseImageFormatProperties`]

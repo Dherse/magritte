@@ -20,7 +20,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkValidationCacheEXT)
 ```
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`ShaderModuleValidationCacheCreateInfoEXT`]
 - [`create_validation_cache_ext`]
 - [`destroy_validation_cache_ext`]

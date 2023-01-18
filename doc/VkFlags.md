@@ -10,7 +10,7 @@ typedef uint32_t VkFlags;
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkColorComponentFlags]()
+- [`ColorComponentFlags`]
 - [`Flags64`]
 
 # Notes and documentation

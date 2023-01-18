@@ -13,7 +13,7 @@ typedef VkPrivateDataSlot VkPrivateDataSlotEXT;
 ```
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`create_private_data_slot`]
 - [`create_private_data_slot_ext`]

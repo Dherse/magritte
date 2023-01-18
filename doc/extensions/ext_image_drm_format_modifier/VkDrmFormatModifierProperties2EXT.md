@@ -21,8 +21,8 @@ typedef struct VkDrmFormatModifierProperties2EXT {
 - [`drm_format_modifier_tiling_features`] is a bitmask of [`FormatFeatureFlagBits2`] that are supported by any image created with `format` and [`drm_format_modifier`].
 
 # Related
-- [`ext_image_drm_format_modifier`]
-- [`khr_format_feature_flags2`]
+- [`VK_EXT_image_drm_format_modifier`]
+- [`VK_KHR_format_feature_flags2`]
 - [`DrmFormatModifierPropertiesList2EXT`]
 - [`FormatFeatureFlags2`]
 

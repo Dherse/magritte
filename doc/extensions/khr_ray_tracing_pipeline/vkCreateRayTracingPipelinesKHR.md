@@ -57,7 +57,7 @@ is enabled.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INVALID_OPAQUE_CAPTURE_ADDRESS`
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`AllocationCallbacks`]
 - [`DeferredOperationKHR`]
 - [`Device`]

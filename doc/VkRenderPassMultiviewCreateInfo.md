@@ -82,7 +82,7 @@ The only supported per-view attributes are position and viewport mask, and
 per-view position and viewport masks are written to output array variables
 decorated with `PositionPerViewNV` and `ViewportMaskPerViewNV`,
 respectively.
-If `[`nv_viewport_array2`]` is not supported and enabled,
+If `[`VK_NV_viewport_array2`]` is not supported and enabled,
 `ViewportMaskPerViewNV` **must**  not be used.
 Values written to elements of `PositionPerViewNV` and
 `ViewportMaskPerViewNV` **must**  not depend on the `ViewIndex`.

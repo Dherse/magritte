@@ -19,8 +19,8 @@ typedef struct VkExportSemaphoreWin32HandleInfoKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`attributes`] is a pointer to a Windows `SECURITY_ATTRIBUTES` structure specifying security attributes of the handle.
-- [`dw_access`] is a `DWORD` specifying access rights of the handle.
+- [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security attributes of the handle.
+- [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 - [`name`] is a null-terminated UTF-16 string to associate with the underlying synchronization primitive referenced by NT handles exported from the created semaphore.
 
 # Description
@@ -42,10 +42,10 @@ operations on the semaphore.For handles of the following types:`VK_EXTERNAL_SEMA
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_SEMAPHORE_WIN32_HANDLE_INFO_KHR`
--    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid `SECURITY_ATTRIBUTES` value
+-    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid [`SECURITY_ATTRIBUTES`] value
 
 # Related
-- [`khr_external_semaphore_win32`]
+- [`VK_KHR_external_semaphore_win32`]
 - [`StructureType`]
 
 # Notes and documentation

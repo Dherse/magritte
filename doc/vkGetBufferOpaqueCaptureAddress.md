@@ -34,7 +34,7 @@ return value  **must**  be the same address.
 -  [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`BufferDeviceAddressInfo`]
 - [`Device`]

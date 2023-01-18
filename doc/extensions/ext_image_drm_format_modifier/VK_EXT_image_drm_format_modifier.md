@@ -19,10 +19,10 @@ more explicit control of image creation.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_bind_memory2`]`
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_image_format_list`]`
-- Requires `[`khr_sampler_ycbcr_conversion`]`
+- Requires `[`VK_KHR_bind_memory2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_image_format_list`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
 
 # Contacts
 - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_image_drm_format_modifier] @chadversary%0A<<Here describe the issue or question you have about the VK_EXT_image_drm_format_modifier extension>>)
@@ -36,18 +36,18 @@ more explicit control of image creation.
 - Extending [`FormatProperties2`]:  - [`DrmFormatModifierPropertiesListEXT`] 
 - Extending [`ImageCreateInfo`]:  - [`ImageDrmFormatModifierExplicitCreateInfoEXT`]  - [`ImageDrmFormatModifierListCreateInfoEXT`] 
 - Extending [`PhysicalDeviceImageFormatInfo2`]:  - [`PhysicalDeviceImageDrmFormatModifierInfoEXT`] 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - [`DrmFormatModifierProperties2EXT`]
 - Extending [`FormatProperties2`]:  - [`DrmFormatModifierPropertiesList2EXT`]
 
 # New constants
-- `VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME`
-- `VK_EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION`
+- [`EXT_IMAGE_DRM_FORMAT_MODIFIER_EXTENSION_NAME`]
+- [`EXT_IMAGE_DRM_FORMAT_MODIFIER_SPEC_VERSION`]
 - Extending [`ImageAspectFlagBits`]:  - `VK_IMAGE_ASPECT_MEMORY_PLANE_0_BIT_EXT`  - `VK_IMAGE_ASPECT_MEMORY_PLANE_1_BIT_EXT`  - `VK_IMAGE_ASPECT_MEMORY_PLANE_2_BIT_EXT`  - `VK_IMAGE_ASPECT_MEMORY_PLANE_3_BIT_EXT` 
 - Extending [`ImageTiling`]:  - `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_DRM_FORMAT_MODIFIER_PLANE_LAYOUT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`  - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_EXPLICIT_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_LIST_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_IMAGE_DRM_FORMAT_MODIFIER_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_DRM_FORMAT_MODIFIER_INFO_EXT` 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_2_EXT`
 
 # Known issues & F.A.Q.
@@ -81,8 +81,8 @@ Instead, the APIs infer each plane’s size from the import parameters, which
 include the image’s pixel format and a dma_buf, offset, and row pitch for
 each plane.However, Vulkan differs from EGL and GBM with regards to image creation in
 the following ways:
--  **Undedicated allocation by default.**  When importing or exporting a set of dma_bufs as an `EGLImage` or `gbm_bo`, common practice mandates that each dma_buf’s memory be dedicated (in the sense of [`khr_dedicated_allocation`]) to the image (though not necessarily dedicated to a single plane). In particular, neither the GBM documentation nor the EGL extension specifications explicitly state this requirement, but in light of common practice this is likely due to under-specification rather than intentional omission. In contrast, [`ext_image_drm_format_modifier`] permits, but does not require, the implementation to require dedicated allocations for images created with `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`.
--  **Separation of image creation and memory allocation.**  When importing a set of dma_bufs as an `EGLImage` or `gbm_bo`, EGL and GBM create the image resource and bind it to memory (the dma_bufs) simultaneously. This allows EGL and GBM to query each dma_buf’s size during image creation. In Vulkan, image creation and memory allocation are independent unless a dedicated allocation is used (as in [`khr_dedicated_allocation`]). Therefore, without requiring dedicated allocation, Vulkan cannot query the size of each dma_buf (or other external handle) when calculating the image’s memory layout. Even if dedication allocation were required, Vulkan cannot calculate the image’s memory layout until after the image is bound to its dma_ufs.
+-  **Undedicated allocation by default.**  When importing or exporting a set of dma_bufs as an `EGLImage` or `gbm_bo`, common practice mandates that each dma_buf’s memory be dedicated (in the sense of [`VK_KHR_dedicated_allocation`]) to the image (though not necessarily dedicated to a single plane). In particular, neither the GBM documentation nor the EGL extension specifications explicitly state this requirement, but in light of common practice this is likely due to under-specification rather than intentional omission. In contrast, [`VK_EXT_image_drm_format_modifier`] permits, but does not require, the implementation to require dedicated allocations for images created with `VK_IMAGE_TILING_DRM_FORMAT_MODIFIER_EXT`.
+-  **Separation of image creation and memory allocation.**  When importing a set of dma_bufs as an `EGLImage` or `gbm_bo`, EGL and GBM create the image resource and bind it to memory (the dma_bufs) simultaneously. This allows EGL and GBM to query each dma_buf’s size during image creation. In Vulkan, image creation and memory allocation are independent unless a dedicated allocation is used (as in [`VK_KHR_dedicated_allocation`]). Therefore, without requiring dedicated allocation, Vulkan cannot query the size of each dma_buf (or other external handle) when calculating the image’s memory layout. Even if dedication allocation were required, Vulkan cannot calculate the image’s memory layout until after the image is bound to its dma_ufs.
 The above differences complicate the potential inference of plane size in
 Vulkan.
 Consider the following problematic cases:
@@ -145,7 +145,7 @@ To prevent implementations from relying on sideband data, this extension
 ### Version History
 
 - Revision 1, 2018-08-29 (Chad Versace)  - First stable revision 
-- Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to `vk.xml`
+- Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 
 # Other information
 * 2021-09-30

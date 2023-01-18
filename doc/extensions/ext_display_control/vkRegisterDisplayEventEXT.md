@@ -34,7 +34,7 @@ VkResult vkRegisterDisplayEventEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`DisplayEventInfoEXT`]

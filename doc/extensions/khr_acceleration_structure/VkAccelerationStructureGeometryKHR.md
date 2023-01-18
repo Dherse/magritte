@@ -31,10 +31,10 @@ typedef struct VkAccelerationStructureGeometryKHR {
 -  [`flags`] **must**  be a valid combination of [`GeometryFlagBitsKHR`] values
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`AccelerationStructureGeometryDataKHR`]
-- [VkGeometryFlagsKHR]()
+- [`GeometryFlagsKHR`]
 - [`GeometryTypeKHR`]
 - [`StructureType`]
 

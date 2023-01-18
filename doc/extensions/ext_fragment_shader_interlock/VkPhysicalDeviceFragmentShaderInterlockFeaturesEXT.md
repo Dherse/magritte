@@ -33,7 +33,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_INTERLOCK_FEATURES_EXT`
 
 # Related
-- [`ext_fragment_shader_interlock`]
+- [`VK_EXT_fragment_shader_interlock`]
 - [`Bool32`]
 - [`StructureType`]
 

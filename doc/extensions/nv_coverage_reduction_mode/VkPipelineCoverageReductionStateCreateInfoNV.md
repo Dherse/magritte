@@ -23,9 +23,9 @@ typedef struct VkPipelineCoverageReductionStateCreateInfoNV {
 If this structure is not included in the [`p_next`] chain, or if the
 extension is not enabled, the default coverage reduction mode is inferred as
 follows:
-- If the `[`nv_framebuffer_mixed_samples`]` extension is enabled, then it is as if the [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_MERGE_NV`.
-- If the `[`amd_mixed_attachment_samples`]` extension is enabled, then it is as if the [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV`.
-- If both `[`nv_framebuffer_mixed_samples`]` and `[`amd_mixed_attachment_samples`]` are enabled, then the default coverage reduction mode is implementation-dependent.
+- If the `[`VK_NV_framebuffer_mixed_samples`]` extension is enabled, then it is as if the [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_MERGE_NV`.
+- If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, then it is as if the [`coverage_reduction_mode`] is `VK_COVERAGE_REDUCTION_MODE_TRUNCATE_NV`.
+- If both `[`VK_NV_framebuffer_mixed_samples`]` and `[`VK_AMD_mixed_attachment_samples`]` are enabled, then the default coverage reduction mode is implementation-dependent.
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
@@ -33,7 +33,7 @@ follows:
 -  [`coverage_reduction_mode`] **must**  be a valid [`CoverageReductionModeNV`] value
 
 # Related
-- [`nv_coverage_reduction_mode`]
+- [`VK_NV_coverage_reduction_mode`]
 - [`CoverageReductionModeNV`]
 - [`PipelineCoverageReductionStateCreateFlagsNV`]
 - [`StructureType`]

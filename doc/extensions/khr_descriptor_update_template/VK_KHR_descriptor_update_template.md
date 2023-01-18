@@ -32,7 +32,7 @@ describing the new descriptors.
 - [`create_descriptor_update_template_khr`]
 - [`destroy_descriptor_update_template_khr`]
 - [`update_descriptor_set_with_template_khr`]
-If [`khr_push_descriptor`] is supported:
+If [`VK_KHR_push_descriptor`] is supported:
 - [`cmd_push_descriptor_set_with_template_khr`]
 
 # New structures
@@ -46,14 +46,14 @@ If [`khr_push_descriptor`] is supported:
 - [`DescriptorUpdateTemplateCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME`
-- `VK_KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION`
+- [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_EXTENSION_NAME`]
+- [`KHR_DESCRIPTOR_UPDATE_TEMPLATE_SPEC_VERSION`]
 - Extending [`DescriptorUpdateTemplateType`]:  - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR` 
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_CREATE_INFO_KHR` 
-If [`ext_debug_report`] is supported:
+If [`VK_EXT_debug_report`] is supported:
 - Extending [`DebugReportObjectTypeEXT`]:  - `VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_UPDATE_TEMPLATE_KHR_EXT` 
-If [`khr_push_descriptor`] is supported:
+If [`VK_KHR_push_descriptor`] is supported:
 - Extending [`DescriptorUpdateTemplateType`]:  - `VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR`
 
 # Version history
@@ -62,7 +62,7 @@ If [`khr_push_descriptor`] is supported:
 # Other information
 * 2017-09-05
 * No known IP claims.
-*   - Interacts with `[`khr_push_descriptor`]`  - Promoted to Vulkan 1.1 Core 
+*   - Interacts with `[`VK_KHR_push_descriptor`]`  - Promoted to Vulkan 1.1 Core 
 *   - Jeff Bolz, NVIDIA  - Michael Worcester, Imagination Technologies
 
 # Related

@@ -13,7 +13,7 @@ typedef struct VkRefreshCycleDurationGOOGLE {
 - [`refresh_duration`] is the number of nanoseconds from the start of one refresh cycle to the next.
 
 # Related
-- [`google_display_timing`]
+- [`VK_GOOGLE_display_timing`]
 - [`get_refresh_cycle_duration_google`]
 
 # Notes and documentation

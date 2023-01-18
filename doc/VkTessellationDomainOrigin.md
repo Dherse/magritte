@@ -21,8 +21,8 @@ typedef VkTessellationDomainOrigin VkTessellationDomainOriginKHR;
 ```
 
 # Description
-- [`VK_TESSELLATION_DOMAIN_ORIGIN`] specifies that the origin of the domain space is in the upper left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul).
-- [`VK_TESSELLATION_DOMAIN_ORIGIN`] specifies that the origin of the domain space is in the lower left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll).
+- [`UPPER_LEFT`] specifies that the origin of the domain space is in the upper left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ul).
+- [`LOWER_LEFT`] specifies that the origin of the domain space is in the lower left corner, as shown in figure [https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#img-tessellation-topology-ll).
 This enum affects how the `VertexOrderCw` and `VertexOrderCcw`
 tessellation execution modes are interpreted, since the winding is defined
 relative to the orientation of the domain.

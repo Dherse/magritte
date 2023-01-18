@@ -2,7 +2,7 @@
 
 # C Specifications
 To retrieve a handle to a [`Queue`] object with specific
-[VkDeviceQueueCreateFlags]() creation flags, call:
+[`DeviceQueueCreateFlags`] creation flags, call:
 ```c
 // Provided by VK_VERSION_1_1
 void vkGetDeviceQueue2(

@@ -1,7 +1,7 @@
 [VK_KHR_maintenance1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance1.html) - device extension
 
 # Description
-[`khr_maintenance1`] adds a collection of minor features that were
+[`VK_KHR_maintenance1`] adds a collection of minor features that were
 intentionally left out or overlooked from the original Vulkan 1.0 release.The new features are as follows:
 - Allow 2D and 2D array image views to be created from 3D images, which can then be used as color framebuffer attachments. This allows applications to render to slices of a 3D image.
 - Support [`cmd_copy_image`] between 2D array layers and 3D slices. This extension allows copying from layers of a 2D array image to slices of a 3D image and vice versa.
@@ -34,10 +34,10 @@ intentionally left out or overlooked from the original Vulkan 1.0 release.The ne
 - [`CommandPoolTrimFlagsKHR`]
 
 # New constants
-- `VK_KHR_MAINTENANCE1_EXTENSION_NAME`
-- `VK_KHR_MAINTENANCE1_SPEC_VERSION`
-- `VK_KHR_MAINTENANCE_1_EXTENSION_NAME`
-- `VK_KHR_MAINTENANCE_1_SPEC_VERSION`
+- [`KHR_MAINTENANCE1_EXTENSION_NAME`]
+- [`KHR_MAINTENANCE1_SPEC_VERSION`]
+- [`KHR_MAINTENANCE_1_EXTENSION_NAME`]
+- [`KHR_MAINTENANCE_1_SPEC_VERSION`]
 - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_TRANSFER_DST_BIT_KHR`  - `VK_FORMAT_FEATURE_TRANSFER_SRC_BIT_KHR` 
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_OUT_OF_POOL_MEMORY_KHR`

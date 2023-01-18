@@ -39,7 +39,7 @@ time domains were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`ext_calibrated_timestamps`]
+- [`VK_EXT_calibrated_timestamps`]
 - [`PhysicalDevice`]
 - [`TimeDomainEXT`]
 

@@ -61,7 +61,7 @@ Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/v
 # Related
 - [`crate::vulkan1_0`]
 - [`Pipeline`]
-- [VkPipelineCreateFlags]()
+- [`PipelineCreateFlags`]
 - [`PipelineLayout`]
 - [`PipelineShaderStageCreateInfo`]
 - [`StructureType`]

@@ -36,7 +36,7 @@ properties of the defined external fence handle types.
 -  [`handle_type`] **must**  be a valid [`ExternalFenceHandleTypeFlagBits`] value
 
 # Related
-- [`khr_external_fence_fd`]
+- [`VK_KHR_external_fence_fd`]
 - [`ExternalFenceHandleTypeFlagBits`]
 - [`Fence`]
 - [`StructureType`]

@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COLOR_WRITE_ENABLE_FEATURES_EXT`
 
 # Related
-- [`ext_color_write_enable`]
+- [`VK_EXT_color_write_enable`]
 - [`Bool32`]
 - [`StructureType`]
 

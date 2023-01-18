@@ -39,7 +39,7 @@ typedef VkImageResolve2 VkImageResolve2KHR;
 -  [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`Extent3D`]
 - [`ImageSubresourceLayers`]

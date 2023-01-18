@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL`
 
 # Related
-- [`intel_shader_integer_functions2`]
+- [`VK_INTEL_shader_integer_functions2`]
 - [`Bool32`]
 - [`StructureType`]
 

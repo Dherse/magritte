@@ -23,7 +23,7 @@ The [`first_index`], [`index_count`], and [`vertex_offset`] members of
 respectively, of [`cmd_draw_indexed`].
 
 # Related
-- [`ext_multi_draw`]
+- [`VK_EXT_multi_draw`]
 - [`cmd_draw_multi_indexed_ext`]
 
 # Notes and documentation

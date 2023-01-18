@@ -24,7 +24,7 @@ specified shader as called from the specified shader group.
 ## Valid Usage
 -  [`pipeline`] **must**  be a ray tracing pipeline
 -    The value of [`group`] must be less than the number of shader groups in [`pipeline`]
--    The shader identified by [`group_shader`] in [`group`] **must**  not be `VK_SHADER_UNUSED_KHR`
+-    The shader identified by [`group_shader`] in [`group`] **must**  not be [`SHADER_UNUSED_KHR`]
 
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
@@ -33,7 +33,7 @@ specified shader as called from the specified shader group.
 -  [`pipeline`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`Device`]
 - [`Pipeline`]
 - [`ShaderGroupShaderKHR`]

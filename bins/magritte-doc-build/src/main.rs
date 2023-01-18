@@ -1,10 +1,14 @@
 #![feature(fs_try_exists)]
 
-pub(crate) mod html;
 pub(crate) mod doc;
+pub(crate) mod html;
 mod visitor;
 
-use std::{path::{PathBuf, Path}, error::Error, collections::HashMap};
+use std::{
+    collections::HashMap,
+    error::Error,
+    path::{Path, PathBuf},
+};
 
 use clap::Parser;
 use doc::Documentation;
@@ -69,7 +73,7 @@ pub fn parse_documentation<P: AsRef<Path>>(root: P) -> Result<Documentation, Box
 
             let html = Html::parse_document(&string);
 
-            Some((name,  html))
+            Some((name, html))
         })
         .collect::<HashMap<String, Html>>();
 

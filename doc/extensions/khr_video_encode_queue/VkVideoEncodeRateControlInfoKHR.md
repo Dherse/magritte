@@ -53,9 +53,9 @@ call to [`cmd_control_video_coding_khr`], and only impacts
 -  [`layer_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`StructureType`]
-- [VkVideoEncodeRateControlFlagsKHR]()
+- [`VideoEncodeRateControlFlagsKHR`]
 - [`VideoEncodeRateControlLayerInfoKHR`]
 - [`VideoEncodeRateControlModeFlagBitsKHR`]
 

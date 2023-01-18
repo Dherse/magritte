@@ -3,7 +3,7 @@
 # Description
 Due to the nature of the Vulkan interface, there is very little error
 information available to the developer and application.
-By enabling optional validation layers and using the [`ext_debug_report`]
+By enabling optional validation layers and using the [`VK_EXT_debug_report`]
 extension, developers  **can**  obtain much more detailed feedback on the
 application’s use of Vulkan.
 This extension defines a way for layers and the implementation to call back
@@ -19,7 +19,7 @@ to the application for events of interest to the application.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`ext_debug_utils`]` extension
+- *Deprecated* by `[`VK_EXT_debug_utils`]` extension
 
 # Contacts
 - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_debug_report] @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_debug_report extension>>)
@@ -40,11 +40,11 @@ to the application for events of interest to the application.
 - [`DebugReportObjectTypeEXT`]
 
 # New bitmasks
-- [VkDebugReportFlagsEXT]()
+- [`DebugReportFlagsEXT`]
 
 # New constants
-- `VK_EXT_DEBUG_REPORT_EXTENSION_NAME`
-- `VK_EXT_DEBUG_REPORT_SPEC_VERSION`
+- [`EXT_DEBUG_REPORT_EXTENSION_NAME`]
+- [`EXT_DEBUG_REPORT_SPEC_VERSION`]
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DEBUG_REPORT_CALLBACK_EXT` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_VALIDATION_FAILED_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEBUG_REPORT_CALLBACK_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_DEBUG_REPORT_CREATE_INFO_EXT` 
@@ -111,7 +111,7 @@ handles differently.
 - [`DebugReportCallbackCreateInfoEXT`]
 - [`DebugReportCallbackEXT`]
 - [`DebugReportFlagBitsEXT`]
-- [VkDebugReportFlagsEXT]()
+- [`DebugReportFlagsEXT`]
 - [`DebugReportObjectTypeEXT`]
 - [`create_debug_report_callback_ext`]
 - [`debug_report_message_ext`]

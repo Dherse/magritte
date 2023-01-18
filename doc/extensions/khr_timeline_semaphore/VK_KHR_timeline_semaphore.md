@@ -18,7 +18,7 @@ Such timeline semaphores support the following operations:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -47,15 +47,15 @@ Such timeline semaphores support the following operations:
 - [`SemaphoreWaitFlagsKHR`]
 
 # New constants
-- `VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME`
-- `VK_KHR_TIMELINE_SEMAPHORE_SPEC_VERSION`
+- [`KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME`]
+- [`KHR_TIMELINE_SEMAPHORE_SPEC_VERSION`]
 - Extending [`SemaphoreType`]:  - `VK_SEMAPHORE_TYPE_BINARY_KHR`  - `VK_SEMAPHORE_TYPE_TIMELINE_KHR` 
 - Extending [`SemaphoreWaitFlagBits`]:  - `VK_SEMAPHORE_WAIT_ANY_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TIMELINE_SEMAPHORE_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_SEMAPHORE_SIGNAL_INFO_KHR`  - `VK_STRUCTURE_TYPE_SEMAPHORE_TYPE_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_SEMAPHORE_WAIT_INFO_KHR`  - `VK_STRUCTURE_TYPE_TIMELINE_SEMAPHORE_SUBMIT_INFO_KHR`
 
 # Known issues & F.A.Q.
 1) Do we need a new object type for this? **RESOLVED** : No, we just introduce a new type of semaphore object, as
-[`khr_external_semaphore_win32`] already uses semaphores as the destination
+[`VK_KHR_external_semaphore_win32`] already uses semaphores as the destination
 for importing D3D12 fence objects, which are semantically close/identical to
 the proposed synchronization primitive.2) What type of payload the new synchronization primitive has? **RESOLVED** : A 64-bit unsigned integer that can only be set to strictly
 increasing values by signal operations and is not changed by wait
@@ -67,7 +67,7 @@ problematic.
 Applications looking for reset behavior should create a new instance of the
 sychronization primitive instead.5) How do we enable host waits on the synchronization primitive? **RESOLVED** : Both a non-blocking query of the current payload value of the
 synchronization primitive, and a blocking wait operation are provided.6) How do we enable device waits and signals on the synchronization
-primitive? **RESOLVED** : Similar to [`khr_external_semaphore_win32`], this extension
+primitive? **RESOLVED** : Similar to [`VK_KHR_external_semaphore_win32`], this extension
 introduces a new structure that can be chained to [`SubmitInfo`] to
 specify the values signaled semaphores should be set to, and the values
 waited semaphores need to reach.7) Can the new synchronization primitive be used to synchronize presentation
@@ -106,7 +106,7 @@ new feature bit is required.
 # Other information
 * 2019-06-12
 * No known IP claims.
-*   - This extension interacts with `[`khr_external_semaphore_capabilities`]`  - This extension interacts with `[`khr_external_semaphore`]`  - This extension interacts with `[`khr_external_semaphore_win32`]`  - Promoted to Vulkan 1.2 Core 
+*   - This extension interacts with `[`VK_KHR_external_semaphore_capabilities`]`  - This extension interacts with `[`VK_KHR_external_semaphore`]`  - This extension interacts with `[`VK_KHR_external_semaphore_win32`]`  - Promoted to Vulkan 1.2 Core 
 *   - Jeff Bolz, NVIDIA  - Yuriy O’Donnell, Epic Games  - Jason Ekstrand, Intel  - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Daniel Rakos, AMD  - Ray Smith, Arm
 
 # Related

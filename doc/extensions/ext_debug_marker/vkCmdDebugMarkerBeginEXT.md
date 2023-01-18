@@ -27,7 +27,7 @@ void vkCmdDebugMarkerBeginEXT(
 ## Command Properties
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`CommandBuffer`]
 - [`DebugMarkerMarkerInfoEXT`]
 

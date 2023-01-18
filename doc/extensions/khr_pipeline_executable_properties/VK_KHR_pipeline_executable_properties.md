@@ -19,7 +19,7 @@ be useful to developers for debugging or performance analysis.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jason Ekstrand [jekstrand](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_pipeline_executable_properties] @jekstrand%0A<<Here describe the issue or question you have about the VK_KHR_pipeline_executable_properties extension>>)
@@ -44,8 +44,8 @@ be useful to developers for debugging or performance analysis.
 - [`PipelineExecutableStatisticFormatKHR`]
 
 # New constants
-- `VK_KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME`
-- `VK_KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION`
+- [`KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME`]
+- [`KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION`]
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_CAPTURE_INTERNAL_REPRESENTATIONS_BIT_KHR`  - `VK_PIPELINE_CREATE_CAPTURE_STATISTICS_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_INTERNAL_REPRESENTATION_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_EXECUTABLE_STATISTIC_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_INFO_KHR`
 

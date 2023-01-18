@@ -18,7 +18,7 @@ This structure describes the following feature:
 # Description
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`advanced_blend_coherent_operations`] specifies whether blending using [advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced) is guaranteed to execute atomically and in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order). If this is `VK_TRUE`, `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT` is treated the same as `VK_ACCESS_COLOR_ATTACHMENT_READ_BIT`, and advanced blending needs no additional synchronization over basic blending. If this is `VK_FALSE`, then memory dependencies are required to guarantee order between two advanced blending operations that occur on the same sample.
+- [`advanced_blend_coherent_operations`] specifies whether blending using [advanced blend operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced) is guaranteed to execute atomically and in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order). If this is [`TRUE`], `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT` is treated the same as `VK_ACCESS_COLOR_ATTACHMENT_READ_BIT`, and advanced blending needs no additional synchronization over basic blending. If this is [`FALSE`], then memory dependencies are required to guarantee order between two advanced blending operations that occur on the same sample.
 If the [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to
 [`get_physical_device_features2`], it is filled in to indicate whether each
@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`
 
 # Related
-- [`ext_blend_operation_advanced`]
+- [`VK_EXT_blend_operation_advanced`]
 - [`Bool32`]
 - [`StructureType`]
 

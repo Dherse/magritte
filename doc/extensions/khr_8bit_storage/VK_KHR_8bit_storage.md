@@ -1,7 +1,7 @@
 [VK_KHR_8bit_storage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_8bit_storage.html) - device extension
 
 # Description
-The [`khr_8bit_storage`] extension allows use of 8-bit types in uniform and
+The [`VK_KHR_8bit_storage`] extension allows use of 8-bit types in uniform and
 storage buffers, and push constant blocks.
 This extension introduces several new optional features which map to SPIR-V
 capabilities and allow access to 8-bit data in `Block`-decorated objects
@@ -18,8 +18,8 @@ The other capabilities are optional.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_storage_buffer_storage_class`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_storage_buffer_storage_class`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -31,8 +31,8 @@ The other capabilities are optional.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDevice8BitStorageFeaturesKHR`]
 
 # New constants
-- `VK_KHR_8BIT_STORAGE_EXTENSION_NAME`
-- `VK_KHR_8BIT_STORAGE_SPEC_VERSION`
+- [`KHR_8BIT_STORAGE_EXTENSION_NAME`]
+- [`KHR_8BIT_STORAGE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES_KHR`
 
 # Version history

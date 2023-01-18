@@ -87,7 +87,7 @@ See [Lost Device](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/h
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`Fence`]
 - [`Queue`]

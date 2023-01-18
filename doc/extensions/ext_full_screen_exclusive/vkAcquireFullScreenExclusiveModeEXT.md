@@ -41,7 +41,7 @@ swapchain command.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`Device`]
 - [`SwapchainKHR`]
 

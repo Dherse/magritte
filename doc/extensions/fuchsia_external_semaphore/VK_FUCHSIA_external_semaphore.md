@@ -14,8 +14,8 @@ import semaphore payload from Zircon event handles.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_semaphore_capabilities`]`
-- Requires `[`khr_external_semaphore`]`
+- Requires `[`VK_KHR_external_semaphore_capabilities`]`
+- Requires `[`VK_KHR_external_semaphore`]`
 
 # Contacts
 - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_semaphore] @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_external_semaphore extension>>)
@@ -29,8 +29,8 @@ import semaphore payload from Zircon event handles.
 - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 
 # New constants
-- `VK_FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME`
-- `VK_FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION`
+- [`FUCHSIA_EXTERNAL_SEMAPHORE_EXTENSION_NAME`]
+- [`FUCHSIA_EXTERNAL_SEMAPHORE_SPEC_VERSION`]
 - Extending [`ExternalSemaphoreHandleTypeFlagBits`]:  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_ZIRCON_EVENT_BIT_FUCHSIA` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_SEMAPHORE_ZIRCON_HANDLE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_SEMAPHORE_GET_ZIRCON_HANDLE_INFO_FUCHSIA`
 

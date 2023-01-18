@@ -23,8 +23,8 @@ Finally it removes the restriction on the `depth` value in
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_depth_range_unrestricted] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_EXT_depth_range_unrestricted extension>>)
 
 # New constants
-- `VK_EXT_DEPTH_RANGE_UNRESTRICTED_EXTENSION_NAME`
-- `VK_EXT_DEPTH_RANGE_UNRESTRICTED_SPEC_VERSION`
+- [`EXT_DEPTH_RANGE_UNRESTRICTED_EXTENSION_NAME`]
+- [`EXT_DEPTH_RANGE_UNRESTRICTED_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) How do [`Viewport`]`minDepth` and `maxDepth` values outside

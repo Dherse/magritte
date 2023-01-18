@@ -36,8 +36,8 @@ typedef VkPhysicalDeviceExternalBufferInfo VkPhysicalDeviceExternalBufferInfoKHR
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkBufferCreateFlags]()
-- [VkBufferUsageFlags]()
+- [`BufferCreateFlags`]
+- [`BufferUsageFlags`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]
 - [`get_physical_device_external_buffer_properties`]

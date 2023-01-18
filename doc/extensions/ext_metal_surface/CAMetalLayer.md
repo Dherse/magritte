@@ -14,7 +14,7 @@ typedef void CAMetalLayer;
 ```
 
 # Related
-- [`ext_metal_surface`]
+- [`VK_EXT_metal_surface`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

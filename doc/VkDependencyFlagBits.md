@@ -19,13 +19,13 @@ typedef enum VkDependencyFlagBits {
 ```
 
 # Description
-- [`VK_DEPENDENCY_FLAG_BITS`] specifies that dependencies will be [framebuffer-local](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions).
+- [`BY_REGION`] specifies that dependencies will be [framebuffer-local](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions).
 - [`VIEW_LOCAL`] specifies that a [subpass has more than one view](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-barriers-subpass-self-dependencies).
 - [`DEVICE_GROUP`] specifies that dependencies are [non-device-local](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-device-local-dependencies).
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkDependencyFlags]()
+- [`DependencyFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

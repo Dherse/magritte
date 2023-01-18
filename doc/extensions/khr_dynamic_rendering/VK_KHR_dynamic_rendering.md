@@ -5,7 +5,7 @@ This extension allows applications to create single-pass render pass
 instances without needing to create render pass objects or framebuffers.
 Dynamic render passes can also span across multiple primary command buffers,
 rather than relying on secondary command buffers.This extension also incorporates `VK_ATTACHMENT_STORE_OP_NONE_KHR` from
-[`qcom_render_pass_store_ops`], enabling
+[`VK_QCOM_render_pass_store_ops`], enabling
 applications to avoid unnecessary synchronization when an attachment is not
 written during a render pass.
 
@@ -17,7 +17,7 @@ written during a render pass.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -35,15 +35,15 @@ written during a render pass.
 - Extending [`CommandBufferInheritanceInfo`]:  - [`CommandBufferInheritanceRenderingInfoKHR`] 
 - Extending [`GraphicsPipelineCreateInfo`]:  - [`PipelineRenderingCreateInfoKHR`] 
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceDynamicRenderingFeaturesKHR`] 
-If [`amd_mixed_attachment_samples`] is supported:
+If [`VK_AMD_mixed_attachment_samples`] is supported:
 - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:  - [`AttachmentSampleCountInfoAMD`] 
-If [`ext_fragment_density_map`] is supported:
+If [`VK_EXT_fragment_density_map`] is supported:
 - Extending [`RenderingInfo`]:  - [`RenderingFragmentDensityMapAttachmentInfoEXT`] 
-If [`khr_fragment_shading_rate`] is supported:
+If [`VK_KHR_fragment_shading_rate`] is supported:
 - Extending [`RenderingInfo`]:  - [`RenderingFragmentShadingRateAttachmentInfoKHR`] 
-If [`nv_framebuffer_mixed_samples`] is supported:
+If [`VK_NV_framebuffer_mixed_samples`] is supported:
 - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`]:  - [`AttachmentSampleCountInfoNV`] 
-If [`nvx_multiview_per_view_attributes`] is supported:
+If [`VK_NVX_multiview_per_view_attributes`] is supported:
 - Extending [`CommandBufferInheritanceInfo`], [`GraphicsPipelineCreateInfo`], [`RenderingInfo`]:  - [`MultiviewPerViewAttributesInfoNVX`]
 
 # New enums
@@ -53,21 +53,21 @@ If [`nvx_multiview_per_view_attributes`] is supported:
 - [`RenderingFlagsKHR`]
 
 # New constants
-- `VK_KHR_DYNAMIC_RENDERING_EXTENSION_NAME`
-- `VK_KHR_DYNAMIC_RENDERING_SPEC_VERSION`
+- [`KHR_DYNAMIC_RENDERING_EXTENSION_NAME`]
+- [`KHR_DYNAMIC_RENDERING_SPEC_VERSION`]
 - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_RENDERING_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DYNAMIC_RENDERING_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_RENDERING_ATTACHMENT_INFO_KHR`  - `VK_STRUCTURE_TYPE_RENDERING_INFO_KHR` 
-If [`amd_mixed_attachment_samples`] is supported:
+If [`VK_AMD_mixed_attachment_samples`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_AMD` 
-If [`ext_fragment_density_map`] is supported:
+If [`VK_EXT_fragment_density_map`] is supported:
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT`  - `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_DENSITY_MAP_ATTACHMENT_BIT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_INFO_EXT` 
-If [`khr_fragment_shading_rate`] is supported:
+If [`VK_KHR_fragment_shading_rate`] is supported:
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR`  - `VK_PIPELINE_RASTERIZATION_STATE_CREATE_FRAGMENT_SHADING_RATE_ATTACHMENT_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_INFO_KHR` 
-If [`nv_framebuffer_mixed_samples`] is supported:
+If [`VK_NV_framebuffer_mixed_samples`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ATTACHMENT_SAMPLE_COUNT_INFO_NV` 
-If [`nvx_multiview_per_view_attributes`] is supported:
+If [`VK_NVX_multiview_per_view_attributes`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 
 # Version history

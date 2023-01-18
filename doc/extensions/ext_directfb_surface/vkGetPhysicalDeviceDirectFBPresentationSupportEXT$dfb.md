@@ -1,1 +1,1 @@
-[`dfb`] is a pointer to the `IDirectFB` main interface of DirectFB.
+[`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.

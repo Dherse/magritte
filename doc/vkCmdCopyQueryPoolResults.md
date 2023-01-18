@@ -75,7 +75,7 @@ before using the results.
 -  [`dst_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
 -    If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    If the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_TIMESTAMP`, [`flags`] **must**  not contain `VK_QUERY_RESULT_PARTIAL_BIT`
--    If the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, [`PhysicalDevicePerformanceQueryPropertiesKHR::allow_command_buffer_query_copies`] **must**  be `VK_TRUE`
+-    If the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, [`PhysicalDevicePerformanceQueryPropertiesKHR::allow_command_buffer_query_copies`] **must**  be [`TRUE`]
 -    If the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, [`flags`] **must**  not contain `VK_QUERY_RESULT_WITH_AVAILABILITY_BIT`, `VK_QUERY_RESULT_PARTIAL_BIT` or `VK_QUERY_RESULT_64_BIT`
 -    If the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR`, the [`query_pool`] **must**  have been submitted once for each pass as retrieved via a call to [`get_physical_device_queue_family_performance_query_passes_khr`]
 -  [`cmd_copy_query_pool_results`] **must**  not be called if the `queryType` used to create [`query_pool`] was `VK_QUERY_TYPE_PERFORMANCE_QUERY_INTEL`
@@ -102,7 +102,7 @@ before using the results.
 - [`CommandBuffer`]
 - [`DeviceSize`]
 - [`QueryPool`]
-- [VkQueryResultFlags]()
+- [`QueryResultFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -70,10 +70,10 @@ pass.
 -    If [`rasterization_samples`] is not `0`, [`rasterization_samples`] **must**  be a valid [`SampleCountFlagBits`] value
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`Format`]
-- [VkRenderingFlags]()
+- [`RenderingFlags`]
 - [`SampleCountFlagBits`]
 - [`StructureType`]
 

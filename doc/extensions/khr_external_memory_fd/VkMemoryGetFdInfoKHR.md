@@ -34,7 +34,7 @@ properties of the defined external memory handle types.
 -  [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`khr_external_memory_fd`]
+- [`VK_KHR_external_memory_fd`]
 - [`DeviceMemory`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]

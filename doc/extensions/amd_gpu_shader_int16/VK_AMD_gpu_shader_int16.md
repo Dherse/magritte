@@ -13,14 +13,14 @@ This extension adds support for using 16-bit integer variables in shaders.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`khr_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+- *Deprecated* by `[`VK_KHR_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 
 # Contacts
 - Qun Lin [linqun](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_gpu_shader_int16] @linqun%0A<<Here describe the issue or question you have about the VK_AMD_gpu_shader_int16 extension>>)
 
 # New constants
-- `VK_AMD_GPU_SHADER_INT16_EXTENSION_NAME`
-- `VK_AMD_GPU_SHADER_INT16_SPEC_VERSION`
+- [`AMD_GPU_SHADER_INT16_EXTENSION_NAME`]
+- [`AMD_GPU_SHADER_INT16_SPEC_VERSION`]
 
 # Version history
 - Revision 2, 2019-04-11 (Tobias Hector)  - Marked as deprecated 

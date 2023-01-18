@@ -25,7 +25,7 @@ typedef struct VkPerformanceOverrideInfoINTEL {
 -  [`type_`] **must**  be a valid [`PerformanceOverrideTypeINTEL`] value
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`Bool32`]
 - [`PerformanceOverrideTypeINTEL`]
 - [`StructureType`]

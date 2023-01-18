@@ -43,7 +43,7 @@ respectively.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shading_rate_image] @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_shading_rate_image extension>>)
@@ -66,8 +66,8 @@ respectively.
 - [`ShadingRatePaletteEntryNV`]
 
 # New constants
-- `VK_NV_SHADING_RATE_IMAGE_EXTENSION_NAME`
-- `VK_NV_SHADING_RATE_IMAGE_SPEC_VERSION`
+- [`NV_SHADING_RATE_IMAGE_EXTENSION_NAME`]
+- [`NV_SHADING_RATE_IMAGE_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_SHADING_RATE_IMAGE_READ_BIT_NV` 
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_VIEWPORT_COARSE_SAMPLE_ORDER_NV`  - `VK_DYNAMIC_STATE_VIEWPORT_SHADING_RATE_PALETTE_NV` 
 - Extending [`ImageLayout`]:  - `VK_IMAGE_LAYOUT_SHADING_RATE_OPTIMAL_NV` 

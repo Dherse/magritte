@@ -1,0 +1,1 @@
+[`3D`] specifies a three-dimensional image.

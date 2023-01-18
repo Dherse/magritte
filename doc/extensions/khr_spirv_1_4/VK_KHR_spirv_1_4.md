@@ -11,7 +11,7 @@ available via `SPV_KHR_float_controls`.
 Implementations are not required to support all of these new capabilities;
 support can be queried using
 [`PhysicalDeviceFloatControlsPropertiesKHR`] from the
-`[`khr_shader_float_controls`]` extension.
+`[`VK_KHR_shader_float_controls`]` extension.
 
 # Registered extension number
 237
@@ -21,7 +21,7 @@ support can be queried using
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`khr_shader_float_controls`]`
+- Requires `[`VK_KHR_shader_float_controls`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -30,8 +30,8 @@ support can be queried using
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_spirv_1_4] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_spirv_1_4 extension>>)
 
 # New constants
-- `VK_KHR_SPIRV_1_4_EXTENSION_NAME`
-- `VK_KHR_SPIRV_1_4_SPEC_VERSION`
+- [`KHR_SPIRV_1_4_EXTENSION_NAME`]
+- [`KHR_SPIRV_1_4_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1.
@@ -65,14 +65,14 @@ However, when the functionality that is now core in SPIR-V 1.4 is optionally
 supported, the query for support is provided by a Vulkan extension, and that
 query can only be used if the extension is enabled.This applies to any SPIR-V version; specifically for SPIR-V 1.4 this only
 applies to the functionality from `SPV_KHR_float_controls`, which was made
-available in Vulkan by `[`khr_shader_float_controls`]`.
+available in Vulkan by `[`VK_KHR_shader_float_controls`]`.
 Even though the extension was promoted in SPIR-V 1.4, the capabilities are
-still optional in implementations that support [`khr_spirv_1_4`].A SPIR-V 1.4 module does not need to enable `SPV_KHR_float_controls` in
+still optional in implementations that support [`VK_KHR_spirv_1_4`].A SPIR-V 1.4 module does not need to enable `SPV_KHR_float_controls` in
 order to use the capabilities, so if the application has *a priori*
 knowledge that the implementation supports the capabilities, it does not
-need to enable `[`khr_shader_float_controls`]`.
+need to enable `[`VK_KHR_shader_float_controls`]`.
 However, if it does not have this knowledge and has to query for support at
-runtime, it must enable `[`khr_shader_float_controls`]` in order to
+runtime, it must enable `[`VK_KHR_shader_float_controls`]` in order to
 use [`PhysicalDeviceFloatControlsPropertiesKHR`].
 
 # Version history

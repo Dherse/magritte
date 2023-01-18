@@ -13,9 +13,9 @@ typedef enum VkImageType {
 ```
 
 # Description
-- [`VK_IMAGE_TYPE`] specifies a one-dimensional image.
-- [`VK_IMAGE_TYPE`] specifies a two-dimensional image.
-- [`VK_IMAGE_TYPE`] specifies a three-dimensional image.
+- [`1D`] specifies a one-dimensional image.
+- [`2D`] specifies a two-dimensional image.
+- [`3D`] specifies a three-dimensional image.
 
 # Related
 - [`crate::vulkan1_0`]

@@ -24,8 +24,8 @@ Additional queue family information can be queried by setting
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_2_NV`
 
 # Related
-- [`khr_synchronization2`]
-- [`nv_device_diagnostic_checkpoints`]
+- [`VK_KHR_synchronization2`]
+- [`VK_NV_device_diagnostic_checkpoints`]
 - [`PipelineStageFlags2`]
 - [`StructureType`]
 

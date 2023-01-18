@@ -24,7 +24,7 @@ When [`p_layer_name`] is the name of a layer, the device extensions provided
 by that layer are returned.Implementations  **must**  not advertise any pair of extensions that cannot be
 enabled together due to behavioral differences, or any extension that cannot
 be enabled against the advertised version.Implementations claiming support for the [Roadmap 2022](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#roadmap-2022)
-profile  **must**  advertise the [`khr_global_priority`] extension in
+profile  **must**  advertise the [`VK_KHR_global_priority`] extension in
 [`p_properties`].
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle

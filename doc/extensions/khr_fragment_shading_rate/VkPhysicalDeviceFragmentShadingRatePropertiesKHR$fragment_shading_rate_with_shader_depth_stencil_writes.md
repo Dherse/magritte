@@ -2,5 +2,5 @@
 the implementation supports writing `FragDepth`
 or `FragStencilRefEXT`
 from a fragment shader for multi-pixel fragments.
-If this value is `VK_FALSE`, writing to those built-ins will clamp
+If this value is [`FALSE`], writing to those built-ins will clamp
 the fragment shading rate to (1,1).

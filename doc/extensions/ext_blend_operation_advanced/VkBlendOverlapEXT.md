@@ -24,12 +24,12 @@ typedef enum VkBlendOverlapEXT {
 ```
 
 # Description
-- [`VK_BLEND_OVERLAP_EXT`] specifies that there is no correlation between the source and destination coverage.
-- [`VK_BLEND_OVERLAP_EXT`] specifies that the source and destination coverage are considered to have maximal overlap.
-- [`VK_BLEND_OVERLAP_EXT`] specifies that the source and destination coverage are considered to have minimal overlap.
+- [`UNCORRELATED`] specifies that there is no correlation between the source and destination coverage.
+- [`CONJOINT`] specifies that the source and destination coverage are considered to have maximal overlap.
+- [`DISJOINT`] specifies that the source and destination coverage are considered to have minimal overlap.
 
 # Related
-- [`ext_blend_operation_advanced`]
+- [`VK_EXT_blend_operation_advanced`]
 - [`PipelineColorBlendAdvancedStateCreateInfoEXT`]
 
 # Notes and documentation

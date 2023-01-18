@@ -1,2 +1,2 @@
-[`flags`] is a bitmask of [VkVideoCodingControlFlagsKHR]()
+[`flags`] is a bitmask of [`VideoCodingControlFlagsKHR`]
 specifying control flags.

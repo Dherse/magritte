@@ -20,8 +20,8 @@ in SPIR-V shader modules.
 - Baldur Karlsson [baldurk](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_shader_non_semantic_info] @baldurk%0A<<Here describe the issue or question you have about the VK_KHR_shader_non_semantic_info extension>>)
 
 # New constants
-- `VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME`
-- `VK_KHR_SHADER_NON_SEMANTIC_INFO_SPEC_VERSION`
+- [`KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME`]
+- [`KHR_SHADER_NON_SEMANTIC_INFO_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2019-10-16 (Baldur Karlsson)  - Initial revision

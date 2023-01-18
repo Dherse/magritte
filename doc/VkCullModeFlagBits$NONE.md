@@ -1,0 +1,1 @@
+[`NONE`] specifies that no triangles are discarded

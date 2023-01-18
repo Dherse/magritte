@@ -10,7 +10,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkCuFunctionNVX)
 ```
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`CuLaunchInfoNVX`]
 - [`create_cu_function_nvx`]
 - [`destroy_cu_function_nvx`]

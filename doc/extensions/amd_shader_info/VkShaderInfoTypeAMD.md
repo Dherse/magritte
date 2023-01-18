@@ -13,12 +13,12 @@ typedef enum VkShaderInfoTypeAMD {
 ```
 
 # Description
-- [`VK_SHADER_INFO_TYPE_AMD`] specifies that device resources used by a shader will be queried.
-- [`VK_SHADER_INFO_TYPE_AMD`] specifies that implementation-specific information will be queried.
-- [`VK_SHADER_INFO_TYPE_AMD`] specifies that human-readable dissassembly of a shader.
+- [`STATISTICS`] specifies that device resources used by a shader will be queried.
+- [`BINARY`] specifies that implementation-specific information will be queried.
+- [`DISASSEMBLY`] specifies that human-readable dissassembly of a shader.
 
 # Related
-- [`amd_shader_info`]
+- [`VK_AMD_shader_info`]
 - [`get_shader_info_amd`]
 
 # Notes and documentation

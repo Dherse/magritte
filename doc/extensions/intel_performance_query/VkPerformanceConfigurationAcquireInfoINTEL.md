@@ -24,7 +24,7 @@ typedef struct VkPerformanceConfigurationAcquireInfoINTEL {
 -  [`type_`] **must**  be a valid [`PerformanceConfigurationTypeINTEL`] value
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`PerformanceConfigurationTypeINTEL`]
 - [`StructureType`]
 - [`acquire_performance_configuration_intel`]

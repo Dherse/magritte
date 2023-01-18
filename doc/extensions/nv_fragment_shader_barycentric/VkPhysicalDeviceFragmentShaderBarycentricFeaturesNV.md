@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADER_BARYCENTRIC_FEATURES_NV`
 
 # Related
-- [`nv_fragment_shader_barycentric`]
+- [`VK_NV_fragment_shader_barycentric`]
 - [`Bool32`]
 - [`StructureType`]
 

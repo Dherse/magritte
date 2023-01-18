@@ -58,7 +58,7 @@ Accesses to any of the acceleration structures listed in
 ## Command Properties
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`CommandBuffer`]
 - [`QueryPool`]

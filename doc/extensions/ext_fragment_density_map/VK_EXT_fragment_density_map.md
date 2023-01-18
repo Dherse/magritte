@@ -16,7 +16,7 @@ the periphery of a user’s gaze.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Matthew Netsch [mnetsch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_fragment_density_map] @mnetsch%0A<<Here describe the issue or question you have about the VK_EXT_fragment_density_map extension>>)
@@ -27,8 +27,8 @@ the periphery of a user’s gaze.
 - Extending [`RenderPassCreateInfo`], [`RenderPassCreateInfo2`]:  - [`RenderPassFragmentDensityMapCreateInfoEXT`]
 
 # New constants
-- `VK_EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME`
-- `VK_EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`
+- [`EXT_FRAGMENT_DENSITY_MAP_EXTENSION_NAME`]
+- [`EXT_FRAGMENT_DENSITY_MAP_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_FRAGMENT_DENSITY_MAP_READ_BIT_EXT` 
 - Extending [`FormatFeatureFlagBits`]:  - `VK_FORMAT_FEATURE_FRAGMENT_DENSITY_MAP_BIT_EXT` 
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_SUBSAMPLED_BIT_EXT` 
@@ -38,12 +38,12 @@ the periphery of a user’s gaze.
 - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` 
 - Extending [`SamplerCreateFlagBits`]:  - `VK_SAMPLER_CREATE_SUBSAMPLED_BIT_EXT`  - `VK_SAMPLER_CREATE_SUBSAMPLED_COARSE_RECONSTRUCTION_BIT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT` 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - Extending [`FormatFeatureFlagBits2`]:  - `VK_FORMAT_FEATURE_2_FRAGMENT_DENSITY_MAP_BIT_EXT`
 
 # Version history
 - Revision 1, 2018-09-25 (Matthew Netsch)  - Initial version 
-- Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to `vk.xml`
+- Revision 2, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml`
 
 # Other information
 * 2021-09-30

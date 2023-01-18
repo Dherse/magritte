@@ -15,7 +15,7 @@ typedef struct VkPhysicalDevicePerformanceQueryPropertiesKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`allow_command_buffer_query_copies`] is `VK_TRUE` if the performance query pools are allowed to be used with [`cmd_copy_query_pool_results`].
+- [`allow_command_buffer_query_copies`] is [`TRUE`] if the performance query pools are allowed to be used with [`cmd_copy_query_pool_results`].
 
 # Description
 If the [`PhysicalDevicePerformanceQueryPropertiesKHR`] structure is included in the [`p_next`] chain of the
@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`Bool32`]
 - [`StructureType`]
 

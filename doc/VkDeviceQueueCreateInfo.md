@@ -41,7 +41,7 @@ typedef struct VkDeviceQueueCreateInfo {
 # Related
 - [`crate::vulkan1_0`]
 - [`DeviceCreateInfo`]
-- [VkDeviceQueueCreateFlags]()
+- [`DeviceQueueCreateFlags`]
 - [`StructureType`]
 
 # Notes and documentation

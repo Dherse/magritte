@@ -53,7 +53,7 @@ feedback buffer will not be captured.
 ## Command Properties
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`Buffer`]
 - [`CommandBuffer`]
 - [`DeviceSize`]

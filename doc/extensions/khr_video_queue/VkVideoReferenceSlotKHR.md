@@ -26,7 +26,7 @@ typedef struct VkVideoReferenceSlotKHR {
 -  [`picture_resource`] **must**  be a valid pointer to a valid [`VideoPictureResourceKHR`] structure
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
 - [`VideoBeginCodingInfoKHR`]
 - [`VideoDecodeInfoKHR`]

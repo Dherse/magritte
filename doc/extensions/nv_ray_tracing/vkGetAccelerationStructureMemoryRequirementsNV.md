@@ -29,7 +29,7 @@ void vkGetAccelerationStructureMemoryRequirementsNV(
 -  [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2KHR`] structure
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureMemoryRequirementsInfoNV`]
 - [`Device`]
 - [`MemoryRequirements2KHR`]

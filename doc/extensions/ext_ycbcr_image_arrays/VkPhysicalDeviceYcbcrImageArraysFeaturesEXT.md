@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
 
 # Related
-- [`ext_ycbcr_image_arrays`]
+- [`VK_EXT_ycbcr_image_arrays`]
 - [`Bool32`]
 - [`StructureType`]
 

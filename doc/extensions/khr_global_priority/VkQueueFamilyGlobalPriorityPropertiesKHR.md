@@ -21,7 +21,7 @@ typedef VkQueueFamilyGlobalPriorityPropertiesKHR VkQueueFamilyGlobalPriorityProp
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`priority_count`] is the number of supported global queue priorities in this queue family, and it  **must**  be greater than 0.
-- [`priorities`] is an array of `VK_MAX_GLOBAL_PRIORITY_SIZE_EXT`[`QueueGlobalPriorityEXT`] enums representing all supported global queue priorities in this queue family. The first [`priority_count`] elements of the array will be valid.
+- [`priorities`] is an array of [`MAX_GLOBAL_PRIORITY_SIZE_EXT`][`QueueGlobalPriorityEXT`] enums representing all supported global queue priorities in this queue family. The first [`priority_count`] elements of the array will be valid.
 
 # Description
 If the [`QueueFamilyGlobalPriorityPropertiesKHR`] structure is included
@@ -35,7 +35,7 @@ values.The valid elements of [`priorities`] **must**  be a continuous sequence o
 -    Any given element of [`priorities`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 
 # Related
-- [`khr_global_priority`]
+- [`VK_KHR_global_priority`]
 - [`QueueGlobalPriorityKHR`]
 - [`StructureType`]
 

@@ -57,7 +57,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR`
 
 # Related
-- [`khr_portability_subset`]
+- [`VK_KHR_portability_subset`]
 - [`Bool32`]
 - [`StructureType`]
 

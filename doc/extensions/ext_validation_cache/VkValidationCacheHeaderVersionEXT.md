@@ -12,10 +12,10 @@ typedef enum VkValidationCacheHeaderVersionEXT {
 ```
 
 # Description
-- [`VK_VALIDATION_CACHE_HEADER_VERSION_EXT`] specifies version one of the validation cache.
+- [`ONE`] specifies version one of the validation cache.
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`create_validation_cache_ext`]
 - [`get_validation_cache_data_ext`]
 

@@ -41,7 +41,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_FLOAT16_INT8_FEATURES`
 
 # Related
-- [`khr_shader_float16_int8`]
+- [`VK_KHR_shader_float16_int8`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

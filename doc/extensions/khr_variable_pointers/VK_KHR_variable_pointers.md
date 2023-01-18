@@ -1,7 +1,7 @@
 [VK_KHR_variable_pointers](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_variable_pointers.html) - device extension
 
 # Description
-The [`khr_variable_pointers`] extension allows implementations to indicate
+The [`VK_KHR_variable_pointers`] extension allows implementations to indicate
 their level of support for the `SPV_KHR_variable_pointers` SPIR-V extension.
 The SPIR-V extension allows shader modules to use invocation-private
 pointers into uniform and/or storage buffers, where the pointer values can
@@ -18,8 +18,8 @@ The second, `VariablePointers`, is optional.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_storage_buffer_storage_class`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_storage_buffer_storage_class`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -31,8 +31,8 @@ The second, `VariablePointers`, is optional.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceVariablePointerFeaturesKHR`]  - [`PhysicalDeviceVariablePointersFeaturesKHR`]
 
 # New constants
-- `VK_KHR_VARIABLE_POINTERS_EXTENSION_NAME`
-- `VK_KHR_VARIABLE_POINTERS_SPEC_VERSION`
+- [`KHR_VARIABLE_POINTERS_EXTENSION_NAME`]
+- [`KHR_VARIABLE_POINTERS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTER_FEATURES_KHR`
 
 # Known issues & F.A.Q.

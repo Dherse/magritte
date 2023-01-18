@@ -53,7 +53,7 @@ then [`cmd_bind_vertex_buffers2`] can be used instead of
 ## Command Properties
 
 # Related
-- [`ext_vertex_input_dynamic_state`]
+- [`VK_EXT_vertex_input_dynamic_state`]
 - [`CommandBuffer`]
 - [`VertexInputAttributeDescription2EXT`]
 - [`VertexInputBindingDescription2EXT`]

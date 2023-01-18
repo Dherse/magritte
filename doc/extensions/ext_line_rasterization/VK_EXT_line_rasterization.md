@@ -15,7 +15,7 @@ three line rasterization modes.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_line_rasterization] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_line_rasterization extension>>)
@@ -32,8 +32,8 @@ three line rasterization modes.
 - [`LineRasterizationModeEXT`]
 
 # New constants
-- `VK_EXT_LINE_RASTERIZATION_EXTENSION_NAME`
-- `VK_EXT_LINE_RASTERIZATION_SPEC_VERSION`
+- [`EXT_LINE_RASTERIZATION_EXTENSION_NAME`]
+- [`EXT_LINE_RASTERIZATION_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_LINE_STIPPLE_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LINE_RASTERIZATION_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_LINE_STATE_CREATE_INFO_EXT`
 

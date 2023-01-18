@@ -29,7 +29,7 @@ typedef struct VkRenderPassSampleLocationsBeginInfoEXT {
 - [`attachment_initial_sample_locations_count`] is the number of elements in the [`attachment_initial_sample_locations`] array.
 - [`attachment_initial_sample_locations`] is a pointer to an array of [`attachment_initial_sample_locations_count`][`AttachmentSampleLocationsEXT`] structures specifying the attachment indices and their corresponding sample location state. Each element of [`attachment_initial_sample_locations`] **can**  specify the sample location state to use in the automatic layout transition performed to transition a depth/stencil attachment from the initial layout of the attachment to the image layout specified for the attachment in the first subpass using it.
 - [`post_subpass_sample_locations_count`] is the number of elements in the [`post_subpass_sample_locations`] array.
-- [`post_subpass_sample_locations`] is a pointer to an array of [`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`] structures specifying the subpass indices and their corresponding sample location state. Each element of [`post_subpass_sample_locations`] **can**  specify the sample location state to use in the automatic layout transition performed to transition the depth/stencil attachment used by the specified subpass to the image layout specified in a dependent subpass or to the final layout of the attachment in case the specified subpass is the last subpass using that attachment. In addition, if [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is `VK_FALSE`, each element of [`post_subpass_sample_locations`] **must**  specify the sample location state that matches the sample locations used by all pipelines that will be bound to a command buffer during the specified subpass. If `variableSampleLocations` is `VK_TRUE`, the sample locations used for rasterization do not depend on [`post_subpass_sample_locations`].
+- [`post_subpass_sample_locations`] is a pointer to an array of [`post_subpass_sample_locations_count`][`SubpassSampleLocationsEXT`] structures specifying the subpass indices and their corresponding sample location state. Each element of [`post_subpass_sample_locations`] **can**  specify the sample location state to use in the automatic layout transition performed to transition the depth/stencil attachment used by the specified subpass to the image layout specified in a dependent subpass or to the final layout of the attachment in case the specified subpass is the last subpass using that attachment. In addition, if [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is [`FALSE`], each element of [`post_subpass_sample_locations`] **must**  specify the sample location state that matches the sample locations used by all pipelines that will be bound to a command buffer during the specified subpass. If `variableSampleLocations` is [`TRUE`], the sample locations used for rasterization do not depend on [`post_subpass_sample_locations`].
 
 # Description
 ## Valid Usage (Implicit)
@@ -38,7 +38,7 @@ typedef struct VkRenderPassSampleLocationsBeginInfoEXT {
 -    If [`post_subpass_sample_locations_count`] is not `0`, [`post_subpass_sample_locations`] **must**  be a valid pointer to an array of [`post_subpass_sample_locations_count`] valid [`SubpassSampleLocationsEXT`] structures
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`AttachmentSampleLocationsEXT`]
 - [`StructureType`]
 - [`SubpassSampleLocationsEXT`]

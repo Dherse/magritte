@@ -25,7 +25,7 @@ intermediate decoding precision.Three decoding options are provided:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_astc_decode_mode] @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the VK_EXT_astc_decode_mode extension>>)
@@ -35,8 +35,8 @@ intermediate decoding precision.Three decoding options are provided:
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceAstcDecodeFeaturesEXT`]
 
 # New constants
-- `VK_EXT_ASTC_DECODE_MODE_EXTENSION_NAME`
-- `VK_EXT_ASTC_DECODE_MODE_SPEC_VERSION`
+- [`EXT_ASTC_DECODE_MODE_EXTENSION_NAME`]
+- [`EXT_ASTC_DECODE_MODE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_VIEW_ASTC_DECODE_MODE_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
 
 # Known issues & F.A.Q.

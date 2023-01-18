@@ -59,7 +59,7 @@ operations within the same subpass](https://www.khronos.org/registry/vulkan/spec
 ## Command Properties
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`DependencyInfo`]

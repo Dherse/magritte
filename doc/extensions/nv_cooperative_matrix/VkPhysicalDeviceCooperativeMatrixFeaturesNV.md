@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`
 
 # Related
-- [`nv_cooperative_matrix`]
+- [`VK_NV_cooperative_matrix`]
 - [`Bool32`]
 - [`StructureType`]
 

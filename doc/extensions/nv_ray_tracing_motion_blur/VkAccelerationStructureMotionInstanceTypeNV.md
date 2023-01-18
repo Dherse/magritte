@@ -13,12 +13,12 @@ typedef enum VkAccelerationStructureMotionInstanceTypeNV {
 ```
 
 # Description
-- [`VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_NV`] specifies that the instance is a static instance with no instance motion.
-- [`VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_NV`] specifies that the instance is a motion instance with motion specified by interpolation between two matrices.
-- [`VK_ACCELERATION_STRUCTURE_MOTION_INSTANCE_TYPE_NV`] specifies that the instance is a motion instance with motion specified by interpolation in the SRT decomposition.
+- [`STATIC`] specifies that the instance is a static instance with no instance motion.
+- [`MATRIX_MOTION`] specifies that the instance is a motion instance with motion specified by interpolation between two matrices.
+- [`SRT_MOTION`] specifies that the instance is a motion instance with motion specified by interpolation in the SRT decomposition.
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureMotionInstanceNV`]
 
 # Notes and documentation

@@ -13,16 +13,16 @@ typedef enum VkVideoDecodeCapabilityFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_DECODE_CAPABILITY_FLAG_BITS_KHR`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
-- [`VK_VIDEO_DECODE_CAPABILITY_FLAG_BITS_KHR`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+- [`DPB_AND_OUTPUT_COINCIDE`] - reports the implementation supports using the same [Video Picture Resource](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
+- [`DPB_AND_OUTPUT_DISTINCT`] - reports the implementation supports using distinct [Video Picture Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-picture-resources) for decode DPB and decode output.
 An implementation  **must**  report at least one of
-[`VK_VIDEO_DECODE_CAPABILITY_FLAG_BITS_KHR`] or
-[`VK_VIDEO_DECODE_CAPABILITY_FLAG_BITS_KHR`] as
+[`DPB_AND_OUTPUT_COINCIDE`] or
+[`DPB_AND_OUTPUT_DISTINCT`] as
 supported.
 
 # Related
-- [`khr_video_decode_queue`]
-- [VkVideoDecodeCapabilityFlagsKHR]()
+- [`VK_KHR_video_decode_queue`]
+- [`VideoDecodeCapabilityFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

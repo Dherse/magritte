@@ -19,7 +19,7 @@ void vkGetDescriptorSetLayoutHostMappingInfoVALVE(
 -  [`p_host_mapping`] **must**  be a valid pointer to a [`DescriptorSetLayoutHostMappingInfoVALVE`] structure
 
 # Related
-- [`valve_descriptor_set_host_mapping`]
+- [`VK_VALVE_descriptor_set_host_mapping`]
 - [`DescriptorSetBindingReferenceVALVE`]
 - [`DescriptorSetLayoutHostMappingInfoVALVE`]
 - [`Device`]

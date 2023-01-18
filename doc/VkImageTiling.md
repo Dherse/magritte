@@ -14,8 +14,8 @@ typedef enum VkImageTiling {
 ```
 
 # Description
-- [`VK_IMAGE_TILING`] specifies optimal tiling (texels are laid out in an implementation-dependent arrangement, for more efficient memory access).
-- [`VK_IMAGE_TILING`] specifies linear tiling (texels are laid out in memory in row-major order, possibly with some padding on each row).
+- [`OPTIMAL`] specifies optimal tiling (texels are laid out in an implementation-dependent arrangement, for more efficient memory access).
+- [`LINEAR`] specifies linear tiling (texels are laid out in memory in row-major order, possibly with some padding on each row).
 - [`DRM_FORMAT_MODIFIER_EXT`] indicates that the image’s tiling is defined by a [Linux DRM format modifier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#glossary-drm-format-modifier). The modifier is specified at image creation with [`ImageDrmFormatModifierListCreateInfoEXT`] or [`ImageDrmFormatModifierExplicitCreateInfoEXT`], and  **can**  be queried with [`get_image_drm_format_modifier_properties_ext`].
 
 # Related

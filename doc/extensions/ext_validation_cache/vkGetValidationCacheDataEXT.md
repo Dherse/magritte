@@ -61,7 +61,7 @@ nothing will be written to [`p_data`] and zero will be written to
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`Device`]
 - [`ValidationCacheEXT`]
 

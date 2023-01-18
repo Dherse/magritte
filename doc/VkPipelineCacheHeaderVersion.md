@@ -11,7 +11,7 @@ typedef enum VkPipelineCacheHeaderVersion {
 ```
 
 # Description
-- [`VK_PIPELINE_CACHE_HEADER_VERSION`] specifies version one of the pipeline cache.
+- [`ONE`] specifies version one of the pipeline cache.
 
 # Related
 - [`crate::vulkan1_0`]

@@ -19,8 +19,8 @@ typedef struct VkExportMemoryWin32HandleInfoNV {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`attributes`] is a pointer to a Windows `SECURITY_ATTRIBUTES` structure specifying security attributes of the handle.
-- [`dw_access`] is a `DWORD` specifying access rights of the handle.
+- [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security attributes of the handle.
+- [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 
 # Description
 If this structure is not present, or if [`attributes`] is set to `NULL`,
@@ -32,10 +32,10 @@ Further, if the structure is not present, the access rights will be`DXGI_SHARED_
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_NV`
--    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid `SECURITY_ATTRIBUTES` value
+-    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid [`SECURITY_ATTRIBUTES`] value
 
 # Related
-- [`nv_external_memory_win32`]
+- [`VK_NV_external_memory_win32`]
 - [`StructureType`]
 
 # Notes and documentation

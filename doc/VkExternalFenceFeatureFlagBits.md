@@ -22,12 +22,12 @@ typedef VkExternalFenceFeatureFlagBits VkExternalFenceFeatureFlagBitsKHR;
 ```
 
 # Description
-- [`VK_EXTERNAL_FENCE_FEATURE_FLAG_BITS`] specifies handles of this type  **can**  be exported from Vulkan fence objects.
-- [`VK_EXTERNAL_FENCE_FEATURE_FLAG_BITS`] specifies handles of this type  **can**  be imported to Vulkan fence objects.
+- [`EXPORTABLE`] specifies handles of this type  **can**  be exported from Vulkan fence objects.
+- [`IMPORTABLE`] specifies handles of this type  **can**  be imported to Vulkan fence objects.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalFenceFeatureFlags]()
+- [`ExternalFenceFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -31,7 +31,7 @@ Otherwise, the `image` will have the specified external format.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`StructureType`]
 
 # Notes and documentation

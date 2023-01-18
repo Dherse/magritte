@@ -22,20 +22,20 @@ typedef enum VkPerformanceCounterUnitKHR {
 ```
 
 # Description
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a generic data point.
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a percentage (%).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of nanoseconds (ns).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of bytes.
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of bytes/s.
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a temperature reported in Kelvin.
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of watts (W).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of volts (V).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of amps (A).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of hertz (Hz).
-- [`VK_PERFORMANCE_COUNTER_UNIT_KHR`] - the performance counter unit is a value of cycles.
+- [`GENERIC`] - the performance counter unit is a generic data point.
+- [`PERCENTAGE`] - the performance counter unit is a percentage (%).
+- [`NANOSECONDS`] - the performance counter unit is a value of nanoseconds (ns).
+- [`BYTES`] - the performance counter unit is a value of bytes.
+- [`BYTES_PER_SECOND`] - the performance counter unit is a value of bytes/s.
+- [`KELVIN`] - the performance counter unit is a temperature reported in Kelvin.
+- [`WATTS`] - the performance counter unit is a value of watts (W).
+- [`VOLTS`] - the performance counter unit is a value of volts (V).
+- [`AMPS`] - the performance counter unit is a value of amps (A).
+- [`HERTZ`] - the performance counter unit is a value of hertz (Hz).
+- [`CYCLES`] - the performance counter unit is a value of cycles.
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`PerformanceCounterKHR`]
 
 # Notes and documentation

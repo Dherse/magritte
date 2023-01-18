@@ -41,7 +41,7 @@ used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_extended_dynamic_state`]
+- [`VK_EXT_extended_dynamic_state`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`CommandBuffer`]

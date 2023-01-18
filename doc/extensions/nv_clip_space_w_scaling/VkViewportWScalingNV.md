@@ -14,7 +14,7 @@ typedef struct VkViewportWScalingNV {
 - [`xcoeff`] and [`ycoeff`] are the viewport’s W scaling factor for x and y respectively.
 
 # Related
-- [`nv_clip_space_w_scaling`]
+- [`VK_NV_clip_space_w_scaling`]
 - [`PipelineViewportWScalingStateCreateInfoNV`]
 - [`cmd_set_viewport_w_scaling_nv`]
 

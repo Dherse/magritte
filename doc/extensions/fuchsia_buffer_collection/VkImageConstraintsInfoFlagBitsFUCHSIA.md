@@ -17,19 +17,19 @@ typedef enum VkImageConstraintsInfoFlagBitsFUCHSIA {
 # Description
 General hints about the type of memory that should be allocated by Sysmem
 based on the expected usage of the images in the buffer collection include:
-- [`VK_IMAGE_CONSTRAINTS_INFO_FLAG_BITS_FUCHSIA`]
-- [`VK_IMAGE_CONSTRAINTS_INFO_FLAG_BITS_FUCHSIA`]
-- [`VK_IMAGE_CONSTRAINTS_INFO_FLAG_BITS_FUCHSIA`]
-- [`VK_IMAGE_CONSTRAINTS_INFO_FLAG_BITS_FUCHSIA`]
+- [`CPU_READ_RARELY`]
+- [`CPU_READ_OFTEN`]
+- [`CPU_WRITE_RARELY`]
+- [`CPU_WRITE_OFTEN`]
 For protected memory:
-- [`VK_IMAGE_CONSTRAINTS_INFO_FLAG_BITS_FUCHSIA`] specifies that protected memory is optional for the buffer collection.
+- [`PROTECTED_OPTIONAL`] specifies that protected memory is optional for the buffer collection.
 Note that if all participants in the buffer collection (Vulkan or otherwise)
 specify that protected memory is optional, Sysmem will not allocate
 protected memory.
 
 # Related
-- [`fuchsia_buffer_collection`]
-- [VkImageConstraintsInfoFlagsFUCHSIA]()
+- [`VK_FUCHSIA_buffer_collection`]
+- [`ImageConstraintsInfoFlagsFUCHSIA`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -1,9 +1,9 @@
 [VK_KHR_win32_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_win32_surface.html) - instance extension
 
 # Description
-The [`khr_win32_surface`] extension is an instance extension.
+The [`VK_KHR_win32_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to a Win32 `HWND`, as
+the `[`VK_KHR_surface`]` extension) that refers to a Win32 [`HWND`], as
 well as a query to determine support for rendering to the windows desktop.
 
 # Registered extension number
@@ -14,7 +14,7 @@ well as a query to determine support for rendering to the windows desktop.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_win32_surface] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_win32_surface extension>>)
@@ -31,8 +31,8 @@ well as a query to determine support for rendering to the windows desktop.
 - [`Win32SurfaceCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_WIN32_SURFACE_EXTENSION_NAME`
-- `VK_KHR_WIN32_SURFACE_SPEC_VERSION`
+- [`KHR_WIN32_SURFACE_EXTENSION_NAME`]
+- [`KHR_WIN32_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_SURFACE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.
@@ -43,7 +43,7 @@ However, there is not an obvious way to identify a screen without already
 having a window on the screen. **RESOLVED** : No.
 While it may be useful, there is not a clear way to do this on Win32.
 However, a method was added to query support for presenting to the windows
-desktop as a whole.2) If a native window object (`HWND`) is used by one graphics API, and
+desktop as a whole.2) If a native window object ([`HWND`]) is used by one graphics API, and
 then is later used by a different graphics API (one of which is Vulkan), can
 these uses interfere with each other? **RESOLVED** : Yes.Uses of a window object by multiple graphics APIs results in undefined
 behavior.

@@ -70,6 +70,19 @@ impl<'a> FunctionPointer<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Gets a reference to the optional return type
     #[inline]
     pub fn return_type(&self) -> Option<&Ty<'a>> {
@@ -150,6 +163,19 @@ impl<'a> FunctionPointerArgument<'a> {
     /// Get a reference to the function pointer argument's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the function pointer argument's ty.

@@ -28,7 +28,7 @@ typedef struct VkMemoryGetAndroidHardwareBufferInfoANDROID {
 -  [`memory`] **must**  be a valid [`DeviceMemory`] handle
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`DeviceMemory`]
 - [`StructureType`]
 - [`get_memory_android_hardware_buffer_android`]

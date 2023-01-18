@@ -31,7 +31,7 @@ alternative techniques of using the GPU to process and capture vertex data.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_transform_feedback] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_EXT_transform_feedback extension>>)
@@ -53,8 +53,8 @@ alternative techniques of using the GPU to process and capture vertex data.
 - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
 
 # New constants
-- `VK_EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME`
-- `VK_EXT_TRANSFORM_FEEDBACK_SPEC_VERSION`
+- [`EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME`]
+- [`EXT_TRANSFORM_FEEDBACK_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_READ_BIT_EXT`  - `VK_ACCESS_TRANSFORM_FEEDBACK_COUNTER_WRITE_BIT_EXT`  - `VK_ACCESS_TRANSFORM_FEEDBACK_WRITE_BIT_EXT` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_BUFFER_BIT_EXT`  - `VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT` 
 - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_TRANSFORM_FEEDBACK_BIT_EXT` 

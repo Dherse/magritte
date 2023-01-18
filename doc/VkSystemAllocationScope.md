@@ -18,24 +18,24 @@ typedef enum VkSystemAllocationScope {
 ```
 
 # Description
-- [`VK_SYSTEM_ALLOCATION_SCOPE`] specifies that the allocation is scoped to the duration of the Vulkan command.
-- [`VK_SYSTEM_ALLOCATION_SCOPE`] specifies that the allocation is scoped to the lifetime of the Vulkan object that is being created or used.
-- [`VK_SYSTEM_ALLOCATION_SCOPE`] specifies that the allocation is scoped to the lifetime of a [`PipelineCache`] or [`ValidationCacheEXT`] object.
-- [`VK_SYSTEM_ALLOCATION_SCOPE`] specifies that the allocation is scoped to the lifetime of the Vulkan device.
-- [`VK_SYSTEM_ALLOCATION_SCOPE`] specifies that the allocation is scoped to the lifetime of the Vulkan instance.
+- [`COMMAND`] specifies that the allocation is scoped to the duration of the Vulkan command.
+- [`OBJECT`] specifies that the allocation is scoped to the lifetime of the Vulkan object that is being created or used.
+- [`CACHE`] specifies that the allocation is scoped to the lifetime of a [`PipelineCache`] or [`ValidationCacheEXT`] object.
+- [`DEVICE`] specifies that the allocation is scoped to the lifetime of the Vulkan device.
+- [`INSTANCE`] specifies that the allocation is scoped to the lifetime of the Vulkan instance.
 Most Vulkan commands operate on a single object, or there is a sole object
 that is being created or manipulated.
 When an allocation uses an allocation scope of
-[`VK_SYSTEM_ALLOCATION_SCOPE`] or
-[`VK_SYSTEM_ALLOCATION_SCOPE`], the allocation is scoped to the
+[`OBJECT`] or
+[`CACHE`], the allocation is scoped to the
 object being created or manipulated.When an implementation requires host memory, it will make callbacks to the
 application using the most specific allocator and allocation scope
 available:
-- If an allocation is scoped to the duration of a command, the allocator will use the [`VK_SYSTEM_ALLOCATION_SCOPE`] allocation scope. The most specific allocator available is used: if the object being created or manipulated has an allocator, that object’s allocator will be used, else if the parent [`Device`] has an allocator it will be used, else if the parent [`Instance`] has an allocator it will be used. Else,
-- If an allocation is associated with a [`ValidationCacheEXT`] or [`PipelineCache`] object, the allocator will use the [`VK_SYSTEM_ALLOCATION_SCOPE`] allocation scope. The most specific allocator available is used (cache, else device, else instance). Else,
-- If an allocation is scoped to the lifetime of an object, that object is being created or manipulated by the command, and that object’s type is not [`Device`] or [`Instance`], the allocator will use an allocation scope of [`VK_SYSTEM_ALLOCATION_SCOPE`]. The most specific allocator available is used (object, else device, else instance). Else,
-- If an allocation is scoped to the lifetime of a device, the allocator will use an allocation scope of [`VK_SYSTEM_ALLOCATION_SCOPE`]. The most specific allocator available is used (device, else instance). Else,
-- If the allocation is scoped to the lifetime of an instance and the instance has an allocator, its allocator will be used with an allocation scope of [`VK_SYSTEM_ALLOCATION_SCOPE`].
+- If an allocation is scoped to the duration of a command, the allocator will use the [`COMMAND`] allocation scope. The most specific allocator available is used: if the object being created or manipulated has an allocator, that object’s allocator will be used, else if the parent [`Device`] has an allocator it will be used, else if the parent [`Instance`] has an allocator it will be used. Else,
+- If an allocation is associated with a [`ValidationCacheEXT`] or [`PipelineCache`] object, the allocator will use the [`CACHE`] allocation scope. The most specific allocator available is used (cache, else device, else instance). Else,
+- If an allocation is scoped to the lifetime of an object, that object is being created or manipulated by the command, and that object’s type is not [`Device`] or [`Instance`], the allocator will use an allocation scope of [`OBJECT`]. The most specific allocator available is used (object, else device, else instance). Else,
+- If an allocation is scoped to the lifetime of a device, the allocator will use an allocation scope of [`DEVICE`]. The most specific allocator available is used (device, else instance). Else,
+- If the allocation is scoped to the lifetime of an instance and the instance has an allocator, its allocator will be used with an allocation scope of [`INSTANCE`].
 - Otherwise an implementation will allocate memory through an alternative mechanism that is unspecified.
 
 # Related

@@ -12,7 +12,7 @@ remote direct memory access (RDMA) from other devices.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory`]`
+- Requires `[`VK_KHR_external_memory`]`
 
 # Contacts
 - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory_rdma] @crohde%0A<<Here describe the issue or question you have about the VK_NV_external_memory_rdma extension>>)
@@ -28,8 +28,8 @@ remote direct memory access (RDMA) from other devices.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceExternalMemoryRdmaFeaturesNV`]
 
 # New constants
-- `VK_NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME`
-- `VK_NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION`
+- [`NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME`]
+- [`NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION`]
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_RDMA_ADDRESS_BIT_NV` 
 - Extending [`MemoryPropertyFlagBits`]:  - `VK_MEMORY_PROPERTY_RDMA_CAPABLE_BIT_NV` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_GET_REMOTE_ADDRESS_INFO_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_RDMA_FEATURES_NV`

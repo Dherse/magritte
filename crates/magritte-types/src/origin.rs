@@ -2,7 +2,10 @@
 //! An origin is **where** a Vulkan spec element comes from.
 //! This can be the base spec, a specific Vulkan version or an extension.
 
-use std::{borrow::Cow, path::{PathBuf, Path}};
+use std::{
+    borrow::Cow,
+    path::{Path, PathBuf},
+};
 
 use heck::ToSnakeCase;
 use serde::{Deserialize, Serialize};
@@ -14,9 +17,6 @@ use crate::{DeprecationStatus, Queryable, Source, SymbolName};
 pub enum Origin<'a> {
     /// The origin is unknown
     Unknown,
-
-    /// The core Vulkan specification
-    Core,
 
     /// An extension with its name and whether it is disabled or not
     Extension(Cow<'a, str>, i64, bool),
@@ -99,7 +99,7 @@ impl<'a> Origin<'a> {
     pub const fn is_vulkan(&self) -> bool {
         matches!(
             self,
-            Self::Core | Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3
+            Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3
         )
     }
 
@@ -116,14 +116,14 @@ impl<'a> Origin<'a> {
 
     /// Is this type always present (i.e it's part of the base Vulkan spec)
     pub fn always(&self) -> bool {
-        matches!(self, Origin::Core | Origin::Vulkan1_0)
+        matches!(self, Origin::Vulkan1_0 | Origin::Vulkan1_1)
     }
 
     /// Gets the ID of an extension, panics otherwise.
     pub fn id(&self) -> i64 {
         match self {
             Self::Extension(_, id, _) => *id,
-            Self::Core | Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3 => 0,
+            Self::Vulkan1_0 | Self::Vulkan1_1 | Self::Vulkan1_2 | Self::Vulkan1_3 => 0,
             other => panic!("not an extension: {:?}", other),
         }
     }
@@ -132,7 +132,6 @@ impl<'a> Origin<'a> {
     pub fn to_static(&self) -> Origin<'static> {
         match self {
             Origin::Unknown => Origin::Unknown,
-            Origin::Core => Origin::Core,
             Origin::Extension(name, id, disabled) => Origin::Extension(Cow::Owned(name.to_string()), *id, *disabled),
             Origin::Vulkan1_0 => Origin::Vulkan1_0,
             Origin::Vulkan1_1 => Origin::Vulkan1_1,
@@ -146,13 +145,12 @@ impl<'a> Origin<'a> {
     pub fn as_name(&self) -> String {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
-            Origin::Core => "core".to_string(),
             Origin::Extension(ext, _, _) => ext.trim_start_matches("VK_").to_snake_case(),
             Origin::Vulkan1_0 => "vulkan1_0".to_string(),
             Origin::Vulkan1_1 => "vulkan1_1".to_string(),
             Origin::Vulkan1_2 => "vulkan1_2".to_string(),
             Origin::Vulkan1_3 => "vulkan1_3".to_string(),
-            Origin::Opaque => "native".to_string(),
+            Origin::Opaque => "opaque".to_string(),
         }
     }
 
@@ -182,7 +180,7 @@ impl<'a> Origin<'a> {
             | Origin::Vulkan1_1
             | Origin::Vulkan1_2
             | Origin::Vulkan1_3 => None,*/
-            Origin::Core | Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
+            Origin::Opaque | Origin::Vulkan1_0 | Origin::Vulkan1_1 => None,
             Origin::Vulkan1_2 => Some(vec!["VULKAN_1_2".to_owned()]),
             Origin::Vulkan1_3 => Some(vec!["VULKAN_1_3".to_owned()]),
         }
@@ -255,21 +253,55 @@ impl<'a> Origin<'a> {
             _ => false,
         }
     }
-    
+
     /// Turns the origin into a tokenized rust path
     pub fn as_rust_path(&self, prefix: &str) -> String {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(name, _, _) => {
-                format!("{prefix}::extensions::{}", name.trim_start_matches("VK_").to_snake_case())
+                format!(
+                    "{prefix}::extensions::{}",
+                    name.trim_start_matches("VK_").to_snake_case()
+                )
             },
 
-            Origin::Core => format!("{prefix}::core"),
             Origin::Vulkan1_0 => format!("{prefix}::vulkan1_0"),
             Origin::Vulkan1_1 => format!("{prefix}::vulkan1_1"),
             Origin::Vulkan1_2 => format!("{prefix}::vulkan1_2"),
             Origin::Vulkan1_3 => format!("{prefix}::vulkan1_3"),
-            Origin::Opaque => format!("{prefix}::native"),
+            Origin::Opaque => format!("{prefix}::opaque"),
+        }
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_rust_path_tokens(&self, prefix: &str) -> proc_macro2::TokenStream {
+        let prefix = proc_macro2::Ident::new(prefix, proc_macro2::Span::call_site());
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(name, _, _) => {
+                let name = proc_macro2::Ident::new(
+                    &name.trim_start_matches("VK_").to_snake_case(),
+                    proc_macro2::Span::call_site(),
+                );
+                quote::quote!(
+                    #prefix :: extensions :: #name
+                )
+            },
+            Origin::Vulkan1_0 => quote::quote!(
+                #prefix :: vulkan1_0
+            ),
+            Origin::Vulkan1_1 => quote::quote!(
+                #prefix :: vulkan1_1
+            ),
+            Origin::Vulkan1_2 => quote::quote!(
+                #prefix :: vulkan1_2
+            ),
+            Origin::Vulkan1_3 => quote::quote!(
+                #prefix :: vulkan1_3
+            ),
+            Origin::Opaque => quote::quote!(
+                #prefix :: opaque
+            ),
         }
     }
 
@@ -278,18 +310,59 @@ impl<'a> Origin<'a> {
         let mut path: PathBuf = path.as_ref().into();
 
         match self {
-            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
-            Origin::Core => path.push("core.rs"),
-            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => path.push(format!(
-                "extensions/{}.rs",
-                ext.trim_start_matches("VK_").to_snake_case()
-            )),
             Origin::Vulkan1_0 => path.push("vulkan1_0.rs"),
             Origin::Vulkan1_1 => path.push("vulkan1_1.rs"),
             Origin::Vulkan1_2 => path.push("vulkan1_2.rs"),
             Origin::Vulkan1_3 => path.push("vulkan1_3.rs"),
-            Origin::Opaque => path.push("native.rs"),
+            Origin::Opaque => path.push("opaque.rs"),
+            Origin::Extension(ext, _, false) => path.push(format!(
+                "extensions/{}.rs",
+                ext.trim_start_matches("VK_").to_snake_case()
+            )),
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+        }
+
+        path
+    }
+
+    /// As a file path of the output file for this origin
+    pub fn as_mod_doc_file_path<P: AsRef<Path>>(&self, path: &P) -> PathBuf {
+        let mut path: PathBuf = path.as_ref().into();
+
+        match self {
+            Origin::Vulkan1_0 => path.push("VK_VERSION_1_0.md"),
+            Origin::Vulkan1_1 => path.push("VK_VERSION_1_1.md"),
+            Origin::Vulkan1_2 => path.push("VK_VERSION_1_2.md"),
+            Origin::Vulkan1_3 => path.push("VK_VERSION_1_3.md"),
+            Origin::Opaque => path.push("opaque.md"),
+            Origin::Extension(ext, _, false) => path.push(format!(
+                "extensions/{}.md",
+                ext
+            )),
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+        }
+
+        path
+    }
+
+    /// As a file path of the output file for this origin
+    pub fn as_mod_doc_file_string<P: Into<String>>(&self, path: P) -> String {
+        let mut path: String = path.into();
+
+        match self {
+            Origin::Vulkan1_0 => path.push_str("/VK_VERSION_1_0.md"),
+            Origin::Vulkan1_1 => path.push_str("/VK_VERSION_1_1.md"),
+            Origin::Vulkan1_2 => path.push_str("/VK_VERSION_1_2.md"),
+            Origin::Vulkan1_3 => path.push_str("/VK_VERSION_1_3.md"),
+            Origin::Opaque => path.push_str("/opaque.md"),
+            Origin::Extension(ext, _, false) => path.push_str(&format!(
+                "/extensions/{}.md",
+                ext
+            )),
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
         }
 
         path
@@ -302,14 +375,26 @@ impl<'a> Origin<'a> {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
-            Origin::Extension(ext, _, _) => path.push(format!(
-                "extensions/{}",
-                ext.trim_start_matches("VK_").to_snake_case()
-            )),
-            Origin::Vulkan1_0 | Origin::Vulkan1_1 | Origin::Vulkan1_2 | Origin::Vulkan1_3 | Origin::Opaque | Origin::Core => (),
+            Origin::Extension(ext, _, _) => {
+                path.push(format!("extensions/{}", ext.trim_start_matches("VK_").to_snake_case()))
+            },
+            Origin::Vulkan1_0 | Origin::Vulkan1_1 | Origin::Vulkan1_2 | Origin::Vulkan1_3 | Origin::Opaque => (),
         }
 
         path
+    }
+
+    pub fn as_mod_dir_string(&self, path: &str) -> String {
+        match self {
+            Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
+            Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
+            Origin::Extension(ext, _, _) => {
+                format!("{}/extensions/{}", path, ext.trim_start_matches("VK_").to_snake_case())
+            },
+            Origin::Vulkan1_0 | Origin::Vulkan1_1 | Origin::Vulkan1_2 | Origin::Vulkan1_3 | Origin::Opaque => {
+                path.to_string()
+            },
+        }
     }
 }
 
@@ -323,7 +408,6 @@ impl<'a> SymbolName<'a> for Origin<'a> {
     fn name(&self) -> Cow<'a, str> {
         match self {
             Origin::Unknown => panic!("Unknown origin cannot be turned into a name"),
-            Origin::Core => Cow::Borrowed("CORE"),
             Origin::Extension(ext, _, _) => ext.clone(),
             Origin::Vulkan1_0 => Cow::Borrowed("VULKAN_1_0"),
             Origin::Vulkan1_1 => Cow::Borrowed("VULKAN_1_1"),

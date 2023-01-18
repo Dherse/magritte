@@ -28,10 +28,10 @@ typedef struct VkFramebufferMixedSamplesCombinationNV {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`nv_coverage_reduction_mode`]
+- [`VK_NV_coverage_reduction_mode`]
 - [`CoverageReductionModeNV`]
 - [`SampleCountFlagBits`]
-- [VkSampleCountFlags]()
+- [`SampleCountFlags`]
 - [`StructureType`]
 - [`get_physical_device_supported_framebuffer_mixed_samples_combinations_nv`]
 

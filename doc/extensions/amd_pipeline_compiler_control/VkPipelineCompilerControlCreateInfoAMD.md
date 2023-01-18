@@ -25,8 +25,8 @@ typedef struct VkPipelineCompilerControlCreateInfoAMD {
 -  [`compiler_control_flags`] **must**  be `0`
 
 # Related
-- [`amd_pipeline_compiler_control`]
-- [VkPipelineCompilerControlFlagsAMD]()
+- [`VK_AMD_pipeline_compiler_control`]
+- [`PipelineCompilerControlFlagsAMD`]
 - [`StructureType`]
 
 # Notes and documentation

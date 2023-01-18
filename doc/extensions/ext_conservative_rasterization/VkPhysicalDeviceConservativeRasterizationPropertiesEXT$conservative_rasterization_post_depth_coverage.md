@@ -1,4 +1,4 @@
-[`conservative_rasterization_post_depth_coverage`] is `VK_TRUE` if the
+[`conservative_rasterization_post_depth_coverage`] is [`TRUE`] if the
 implementation supports conservative rasterization with the
 `PostDepthCoverage` execution mode enabled.
 Otherwise the `PostDepthCoverage` execution mode  **must**  not be used

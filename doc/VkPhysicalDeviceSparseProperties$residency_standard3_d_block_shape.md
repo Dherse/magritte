@@ -1,4 +1,4 @@
-[`residency_standard3_d_block_shape`] is `VK_TRUE` if the physical
+[`residency_standard3_d_block_shape`] is [`TRUE`] if the physical
 device will access all 3D sparse resources using the standard sparse
 image block shapes (based on image format), as described in the
 [Standard Sparse Image Block

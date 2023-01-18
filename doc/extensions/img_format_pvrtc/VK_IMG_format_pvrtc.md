@@ -1,7 +1,7 @@
 [VK_IMG_format_pvrtc](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_IMG_format_pvrtc.html) - device extension
 
 # Description
-[`img_format_pvrtc`] provides additional texture compression functionality
+[`VK_IMG_format_pvrtc`] provides additional texture compression functionality
 specific to Imagination Technologies PowerVR Texture compression format
 (called PVRTC).
 
@@ -18,8 +18,8 @@ specific to Imagination Technologies PowerVR Texture compression format
 - Stuart Smith
 
 # New constants
-- `VK_IMG_FORMAT_PVRTC_EXTENSION_NAME`
-- `VK_IMG_FORMAT_PVRTC_SPEC_VERSION`
+- [`IMG_FORMAT_PVRTC_EXTENSION_NAME`]
+- [`IMG_FORMAT_PVRTC_SPEC_VERSION`]
 - Extending [`Format`]:  - `VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG`  - `VK_FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG`  - `VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG`  - `VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG`  - `VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG`
 
 # Version history

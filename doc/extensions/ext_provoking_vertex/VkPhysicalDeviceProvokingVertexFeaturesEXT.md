@@ -20,7 +20,7 @@ This structure describes the following feature:
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`provoking_vertex_last`] indicates whether the implementation supports the `VK_PROVOKING_VERTEX_MODE_LAST_VERTEX_EXT`[`ProvokingVertexModeEXT`] for flat shading.
-- [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is `VK_FALSE`. [`transform_feedback_preserves_provoking_vertex`] **must**  be `VK_FALSE` when the [`ext_transform_feedback`] extension is not supported.
+- [`transform_feedback_preserves_provoking_vertex`] indicates that the order of vertices within each primitive written by transform feedback will preserve the provoking vertex. This does not apply to triangle fan primitives when [`transformFeedbackPreservesTriangleFanProvokingVertex`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-transformFeedbackPreservesTriangleFanProvokingVertex) is [`FALSE`]. [`transform_feedback_preserves_provoking_vertex`] **must**  be [`FALSE`] when the [`VK_EXT_transform_feedback`] extension is not supported.
 If the [`PhysicalDeviceProvokingVertexFeaturesEXT`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to
 [`get_physical_device_features2`], it is filled in to indicate whether each
@@ -34,7 +34,7 @@ the value of [`transform_feedback_preserves_provoking_vertex`] is ignored.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`
 
 # Related
-- [`ext_provoking_vertex`]
+- [`VK_EXT_provoking_vertex`]
 - [`Bool32`]
 - [`StructureType`]
 

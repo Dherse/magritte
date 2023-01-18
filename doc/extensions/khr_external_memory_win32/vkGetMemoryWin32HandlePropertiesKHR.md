@@ -35,7 +35,7 @@ VkResult vkGetMemoryWin32HandlePropertiesKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`khr_external_memory_win32`]
+- [`VK_KHR_external_memory_win32`]
 - [`Device`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`MemoryWin32HandlePropertiesKHR`]

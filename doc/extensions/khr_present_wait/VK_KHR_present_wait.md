@@ -2,7 +2,7 @@
 
 # Description
 This device extension allows an application that uses the
-`[`khr_swapchain`]` extension to wait for present operations to
+`[`VK_KHR_swapchain`]` extension to wait for present operations to
 complete.
 An application can use this to monitor and control the pacing of the
 application by managing the number of outstanding images yet to be
@@ -16,8 +16,8 @@ presented.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
-- Requires `[`khr_present_id`]`
+- Requires `[`VK_KHR_swapchain`]`
+- Requires `[`VK_KHR_present_id`]`
 
 # Contacts
 - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_wait] @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_wait extension>>)
@@ -29,8 +29,8 @@ presented.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDevicePresentWaitFeaturesKHR`]
 
 # New constants
-- `VK_KHR_PRESENT_WAIT_EXTENSION_NAME`
-- `VK_KHR_PRESENT_WAIT_SPEC_VERSION`
+- [`KHR_PRESENT_WAIT_EXTENSION_NAME`]
+- [`KHR_PRESENT_WAIT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_WAIT_FEATURES_KHR`
 
 # Known issues & F.A.Q.

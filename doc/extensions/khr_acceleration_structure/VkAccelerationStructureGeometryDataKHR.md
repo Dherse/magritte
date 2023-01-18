@@ -17,7 +17,7 @@ typedef union VkAccelerationStructureGeometryDataKHR {
 - [`instances`] is a [`AccelerationStructureGeometryInstancesDataKHR`] structure.
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureGeometryAabbsDataKHR`]
 - [`AccelerationStructureGeometryInstancesDataKHR`]
 - [`AccelerationStructureGeometryKHR`]

@@ -22,8 +22,8 @@ GLSL, and compile it appropriately.
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_glsl_shader] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_NV_glsl_shader extension>>)
 
 # New constants
-- `VK_NV_GLSL_SHADER_EXTENSION_NAME`
-- `VK_NV_GLSL_SHADER_SPEC_VERSION`
+- [`NV_GLSL_SHADER_EXTENSION_NAME`]
+- [`NV_GLSL_SHADER_SPEC_VERSION`]
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_SHADER_NV`
 
 # Version history

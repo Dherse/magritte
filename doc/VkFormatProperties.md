@@ -23,7 +23,7 @@ and [`optimal_tiling_features`] **must**  not contain
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkFormatFeatureFlags]()
+- [`FormatFeatureFlags`]
 - [`FormatProperties2`]
 - [`get_physical_device_format_properties`]
 

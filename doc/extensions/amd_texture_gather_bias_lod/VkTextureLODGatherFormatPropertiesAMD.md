@@ -18,14 +18,14 @@ typedef struct VkTextureLODGatherFormatPropertiesAMD {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`supports_texture_gather_lod_bias_amd`] tells if the image format can be used with texture gather bias/LOD functions, as introduced by the `[`amd_texture_gather_bias_lod`]` extension. This field is set by the implementation. User-specified value is ignored.
+- [`supports_texture_gather_lod_bias_amd`] tells if the image format can be used with texture gather bias/LOD functions, as introduced by the `[`VK_AMD_texture_gather_bias_lod`]` extension. This field is set by the implementation. User-specified value is ignored.
 
 # Description
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
 
 # Related
-- [`amd_texture_gather_bias_lod`]
+- [`VK_AMD_texture_gather_bias_lod`]
 - [`Bool32`]
 - [`StructureType`]
 

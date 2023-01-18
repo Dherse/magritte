@@ -37,7 +37,7 @@ attempting to do it may result in undefined behaviour.
 *   - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`ext_acquire_drm_display`]
+- [`VK_EXT_acquire_drm_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

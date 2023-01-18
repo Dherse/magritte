@@ -38,8 +38,8 @@ typedef struct VkImageFormatConstraintsInfoFUCHSIA {
 -  [`color_space_count`] **must**  be greater than `0`
 
 # Related
-- [`fuchsia_buffer_collection`]
-- [VkFormatFeatureFlags]()
+- [`VK_FUCHSIA_buffer_collection`]
+- [`FormatFeatureFlags`]
 - [`ImageConstraintsInfoFUCHSIA`]
 - [`ImageCreateInfo`]
 - [`ImageFormatConstraintsFlagsFUCHSIA`]

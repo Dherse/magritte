@@ -18,12 +18,12 @@ typedef VkSemaphoreWaitFlagBits VkSemaphoreWaitFlagBitsKHR;
 ```
 
 # Description
-- [`VK_SEMAPHORE_WAIT_FLAG_BITS`] specifies that the semaphore wait condition is that at least one of the semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the corresponding element of [`SemaphoreWaitInfo::values`]. If [`VK_SEMAPHORE_WAIT_FLAG_BITS`] is not set, the semaphore wait condition is that all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding element of [`SemaphoreWaitInfo::values`].
+- [`ANY`] specifies that the semaphore wait condition is that at least one of the semaphores in [`SemaphoreWaitInfo::semaphores`] has reached the value specified by the corresponding element of [`SemaphoreWaitInfo::values`]. If [`ANY`] is not set, the semaphore wait condition is that all of the semaphores in [`SemaphoreWaitInfo::semaphores`] have reached the value specified by the corresponding element of [`SemaphoreWaitInfo::values`].
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
-- [VkSemaphoreWaitFlags]()
+- [`SemaphoreWaitFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

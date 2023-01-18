@@ -19,14 +19,14 @@ typedef enum VkStencilOp {
 ```
 
 # Description
-- [`VK_STENCIL_OP`] keeps the current value.
-- [`VK_STENCIL_OP`] sets the value to 0.
-- [`VK_STENCIL_OP`] sets the value to `reference`.
-- [`VK_STENCIL_OP`] increments the current value and clamps to the maximum representable unsigned value.
-- [`VK_STENCIL_OP`] decrements the current value and clamps to 0.
-- [`VK_STENCIL_OP`] bitwise-inverts the current value.
-- [`VK_STENCIL_OP`] increments the current value and wraps to 0 when the maximum value would have been exceeded.
-- [`VK_STENCIL_OP`] decrements the current value and wraps to the maximum possible value when the value would go below 0.
+- [`KEEP`] keeps the current value.
+- [`ZERO`] sets the value to 0.
+- [`REPLACE`] sets the value to `reference`.
+- [`INCREMENT_AND_CLAMP`] increments the current value and clamps to the maximum representable unsigned value.
+- [`DECREMENT_AND_CLAMP`] decrements the current value and clamps to 0.
+- [`INVERT`] bitwise-inverts the current value.
+- [`INCREMENT_AND_WRAP`] increments the current value and wraps to 0 when the maximum value would have been exceeded.
+- [`DECREMENT_AND_WRAP`] decrements the current value and wraps to the maximum possible value when the value would go below 0.
 For purposes of increment and decrement, the stencil bits are considered as
 an unsigned integer.
 

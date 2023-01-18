@@ -30,7 +30,7 @@ If `format` uses sRGB encoding then the [`decode_mode`] has no effect.
 -  [`decode_mode`] **must**  be a valid [`Format`] value
 
 # Related
-- [`ext_astc_decode_mode`]
+- [`VK_EXT_astc_decode_mode`]
 - [`Format`]
 - [`StructureType`]
 

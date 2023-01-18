@@ -20,7 +20,7 @@ chromaticity coordinates” (Section 7.3) and are limited to between 0 and 1
 for real colors for the reference monitor.
 
 # Related
-- [`ext_hdr_metadata`]
+- [`VK_EXT_hdr_metadata`]
 - [`HdrMetadataEXT`]
 
 # Notes and documentation

@@ -23,7 +23,7 @@ that  **can**  be queried using
 [`PhysicalDeviceSampleLocationsPropertiesEXT`].
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`SampleLocationsInfoEXT`]
 
 # Notes and documentation

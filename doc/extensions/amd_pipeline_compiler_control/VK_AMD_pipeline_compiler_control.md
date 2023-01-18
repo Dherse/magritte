@@ -24,11 +24,11 @@ specify additional flags that affect pipeline compilation.
 - [`PipelineCompilerControlFlagBitsAMD`]
 
 # New bitmasks
-- [VkPipelineCompilerControlFlagsAMD]()
+- [`PipelineCompilerControlFlagsAMD`]
 
 # New constants
-- `VK_AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME`
-- `VK_AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION`
+- [`AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME`]
+- [`AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PIPELINE_COMPILER_CONTROL_CREATE_INFO_AMD`
 
 # Known issues & F.A.Q.
@@ -45,7 +45,7 @@ None.
 # Related
 - [`PipelineCompilerControlCreateInfoAMD`]
 - [`PipelineCompilerControlFlagBitsAMD`]
-- [VkPipelineCompilerControlFlagsAMD]()
+- [`PipelineCompilerControlFlagsAMD`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

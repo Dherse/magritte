@@ -27,14 +27,14 @@ typedef VkQueueGlobalPriorityKHR VkQueueGlobalPriorityEXT;
 Priority values are sorted in ascending order.
 A comparison operation on the enum values can be used to determine the
 priority order.
-- [`VK_QUEUE_GLOBAL_PRIORITY_KHR`] is below the system default. Useful for non-interactive tasks.
-- [`VK_QUEUE_GLOBAL_PRIORITY_KHR`] is the system default priority.
-- [`VK_QUEUE_GLOBAL_PRIORITY_KHR`] is above the system default.
-- [`VK_QUEUE_GLOBAL_PRIORITY_KHR`] is the highest priority. Useful for critical tasks.
+- [`LOW`] is below the system default. Useful for non-interactive tasks.
+- [`MEDIUM`] is the system default priority.
+- [`HIGH`] is above the system default.
+- [`REALTIME`] is the highest priority. Useful for critical tasks.
 
 # Related
-- [`ext_global_priority`]
-- [`khr_global_priority`]
+- [`VK_EXT_global_priority`]
+- [`VK_KHR_global_priority`]
 - [`DeviceQueueGlobalPriorityCreateInfoKHR`]
 - [`QueueFamilyGlobalPriorityPropertiesKHR`]
 

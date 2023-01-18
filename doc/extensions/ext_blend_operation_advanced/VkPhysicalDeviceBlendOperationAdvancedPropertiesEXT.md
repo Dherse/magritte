@@ -22,9 +22,9 @@ typedef struct VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT {
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`advanced_blend_max_color_attachments`] is one greater than the highest color attachment index that  **can**  be used in a subpass, for a pipeline that uses an [advanced blend operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-blend-advanced).
 - [`advanced_blend_independent_blend`] specifies whether advanced blend operations  **can**  vary per-attachment.
-- [`advanced_blend_non_premultiplied_src_color`] specifies whether the source color  **can**  be treated as non-premultiplied. If this is `VK_FALSE`, then [`PipelineColorBlendAdvancedStateCreateInfoEXT::src_premultiplied`] **must**  be `VK_TRUE`.
-- [`advanced_blend_non_premultiplied_dst_color`] specifies whether the destination color  **can**  be treated as non-premultiplied. If this is `VK_FALSE`, then [`PipelineColorBlendAdvancedStateCreateInfoEXT::dst_premultiplied`] **must**  be `VK_TRUE`.
-- [`advanced_blend_correlated_overlap`] specifies whether the overlap mode  **can**  be treated as correlated. If this is `VK_FALSE`, then [`PipelineColorBlendAdvancedStateCreateInfoEXT::blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
+- [`advanced_blend_non_premultiplied_src_color`] specifies whether the source color  **can**  be treated as non-premultiplied. If this is [`FALSE`], then [`PipelineColorBlendAdvancedStateCreateInfoEXT::src_premultiplied`] **must**  be [`TRUE`].
+- [`advanced_blend_non_premultiplied_dst_color`] specifies whether the destination color  **can**  be treated as non-premultiplied. If this is [`FALSE`], then [`PipelineColorBlendAdvancedStateCreateInfoEXT::dst_premultiplied`] **must**  be [`TRUE`].
+- [`advanced_blend_correlated_overlap`] specifies whether the overlap mode  **can**  be treated as correlated. If this is [`FALSE`], then [`PipelineColorBlendAdvancedStateCreateInfoEXT::blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
 - [`advanced_blend_all_operations`] specifies whether all advanced blend operation enums are supported. See the valid usage of [`PipelineColorBlendAttachmentState`].
 
 # Description
@@ -36,7 +36,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`
 
 # Related
-- [`ext_blend_operation_advanced`]
+- [`VK_EXT_blend_operation_advanced`]
 - [`Bool32`]
 - [`StructureType`]
 

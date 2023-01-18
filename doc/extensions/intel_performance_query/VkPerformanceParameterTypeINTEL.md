@@ -12,11 +12,11 @@ typedef enum VkPerformanceParameterTypeINTEL {
 ```
 
 # Description
-- [`VK_PERFORMANCE_PARAMETER_TYPE_INTEL`] has a boolean result which tells whether hardware counters can be captured.
-- [`VK_PERFORMANCE_PARAMETER_TYPE_INTEL`] has a 32 bits integer result which tells how many bits can be written into the [`PerformanceValueINTEL`] value.
+- [`HW_COUNTERS_SUPPORTED`] has a boolean result which tells whether hardware counters can be captured.
+- [`STREAM_MARKER_VALID_BITS`] has a 32 bits integer result which tells how many bits can be written into the [`PerformanceValueINTEL`] value.
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`get_performance_parameter_intel`]
 
 # Notes and documentation

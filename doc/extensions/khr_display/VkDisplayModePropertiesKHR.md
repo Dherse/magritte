@@ -15,7 +15,7 @@ typedef struct VkDisplayModePropertiesKHR {
 - [`parameters`] is a [`DisplayModeParametersKHR`] structure describing the display parameters associated with [`display_mode`].
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModeKHR`]
 - [`DisplayModeParametersKHR`]
 - [`DisplayModeProperties2KHR`]

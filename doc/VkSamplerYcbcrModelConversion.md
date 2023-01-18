@@ -31,11 +31,11 @@ typedef VkSamplerYcbcrModelConversion VkSamplerYcbcrModelConversionKHR;
 ```
 
 # Description
-- [`VK_SAMPLER_YCBCR_MODEL_CONVERSION`] specifies that the input values to the conversion are unmodified.
-- [`VK_SAMPLER_YCBCR_MODEL_CONVERSION`] specifies no model conversion but the inputs are range expanded as for Y′C<sub>B</sub>C<sub>R</sub>.
-- [`VK_SAMPLER_YCBCR_MODEL_CONVERSION`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.709 and described in the “BT.709 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
-- [`VK_SAMPLER_YCBCR_MODEL_CONVERSION`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.601 and described in the “BT.601 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
-- [`VK_SAMPLER_YCBCR_MODEL_CONVERSION`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.2020 and described in the “BT.2020 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
+- [`RGB_IDENTITY`] specifies that the input values to the conversion are unmodified.
+- [`YCBCR_IDENTITY`] specifies no model conversion but the inputs are range expanded as for Y′C<sub>B</sub>C<sub>R</sub>.
+- [`YCBCR709`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.709 and described in the “BT.709 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
+- [`YCBCR601`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.601 and described in the “BT.601 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
+- [`YCBCR2020`] specifies the color model conversion from Y′C<sub>B</sub>C<sub>R</sub> to R′G′B′ defined in BT.2020 and described in the “BT.2020 Y′C<sub>B</sub>C<sub>R</sub> conversion” section of the [Khronos Data Format Specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#data-format).
 In the `VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_*` color models, for the
 input to the sampler Y′C<sub>B</sub>C<sub>R</sub> range expansion and model conversion:
 - the Y (Y′ luma) component corresponds to the G component of an RGB image.

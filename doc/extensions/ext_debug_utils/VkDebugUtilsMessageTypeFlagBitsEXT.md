@@ -14,13 +14,13 @@ typedef enum VkDebugUtilsMessageTypeFlagBitsEXT {
 ```
 
 # Description
-- [`VK_DEBUG_UTILS_MESSAGE_TYPE_FLAG_BITS_EXT`] specifies that some general event has occurred. This is typically a non-specification, non-performance event.
-- [`VK_DEBUG_UTILS_MESSAGE_TYPE_FLAG_BITS_EXT`] specifies that something has occurred during validation against the Vulkan specification that may indicate invalid behavior.
-- [`VK_DEBUG_UTILS_MESSAGE_TYPE_FLAG_BITS_EXT`] specifies a potentially non-optimal use of Vulkan, e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+- [`GENERAL`] specifies that some general event has occurred. This is typically a non-specification, non-performance event.
+- [`VALIDATION`] specifies that something has occurred during validation against the Vulkan specification that may indicate invalid behavior.
+- [`PERFORMANCE`] specifies a potentially non-optimal use of Vulkan, e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
 
 # Related
-- [`ext_debug_utils`]
-- [VkDebugUtilsMessageTypeFlagsEXT]()
+- [`VK_EXT_debug_utils`]
+- [`DebugUtilsMessageTypeFlagsEXT`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

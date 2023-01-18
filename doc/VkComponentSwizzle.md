@@ -17,13 +17,13 @@ typedef enum VkComponentSwizzle {
 ```
 
 # Description
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to the identity swizzle.
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to zero.
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to either 1 or 1.0, depending on whether the type of the image view format is integer or floating-point respectively, as determined by the [Format Definition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-definition) section for each [`Format`].
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to the value of the R component of the image.
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to the value of the G component of the image.
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to the value of the B component of the image.
-- [`VK_COMPONENT_SWIZZLE`] specifies that the component is set to the value of the A component of the image.
+- [`IDENTITY`] specifies that the component is set to the identity swizzle.
+- [`ZERO`] specifies that the component is set to zero.
+- [`ONE`] specifies that the component is set to either 1 or 1.0, depending on whether the type of the image view format is integer or floating-point respectively, as determined by the [Format Definition](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-definition) section for each [`Format`].
+- [`R`] specifies that the component is set to the value of the R component of the image.
+- [`G`] specifies that the component is set to the value of the G component of the image.
+- [`B`] specifies that the component is set to the value of the B component of the image.
+- [`A`] specifies that the component is set to the value of the A component of the image.
 Setting the identity swizzle on a component is equivalent to setting the
 identity mapping on that component.
 That is:

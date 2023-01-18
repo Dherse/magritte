@@ -24,7 +24,7 @@ state.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_discard_rectangles] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_EXT_discard_rectangles extension>>)
@@ -43,8 +43,8 @@ state.
 - [`PipelineDiscardRectangleStateCreateFlagsEXT`]
 
 # New constants
-- `VK_EXT_DISCARD_RECTANGLES_EXTENSION_NAME`
-- `VK_EXT_DISCARD_RECTANGLES_SPEC_VERSION`
+- [`EXT_DISCARD_RECTANGLES_EXTENSION_NAME`]
+- [`EXT_DISCARD_RECTANGLES_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_DISCARD_RECTANGLE_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_DISCARD_RECTANGLE_STATE_CREATE_INFO_EXT`
 
@@ -53,7 +53,7 @@ state.
 
 # Other information
 * 2016-12-22
-*   - Interacts with `[`khr_device_group`]`  - Interacts with Vulkan 1.1 
+*   - Interacts with `[`VK_KHR_device_group`]`  - Interacts with Vulkan 1.1 
 *   - Daniel Koch, NVIDIA  - Jeff Bolz, NVIDIA
 
 # Related

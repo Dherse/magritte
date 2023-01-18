@@ -24,19 +24,19 @@ typedef enum VkSubgroupFeatureFlagBits {
 ```
 
 # Description
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniform` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformVote` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformArithmetic` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformBallot` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformShuffle` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformShuffleRelative` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformClustered` capability.
-- [`VK_SUBGROUP_FEATURE_FLAG_BITS`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformQuad` capability.
+- [`BASIC`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniform` capability.
+- [`VOTE`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformVote` capability.
+- [`ARITHMETIC`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformArithmetic` capability.
+- [`BALLOT`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformBallot` capability.
+- [`SHUFFLE`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformShuffle` capability.
+- [`SHUFFLE_RELATIVE`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformShuffleRelative` capability.
+- [`CLUSTERED`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformClustered` capability.
+- [`QUAD`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformQuad` capability.
 - [`PARTITIONED_NV`] specifies the device will accept SPIR-V shader modules containing the `GroupNonUniformPartitionedNV` capability.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkSubgroupFeatureFlags]()
+- [`SubgroupFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

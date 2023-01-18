@@ -26,8 +26,8 @@ typedef VkSubpassDependency2 VkSubpassDependency2KHR;
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`src_subpass`] is the subpass index of the first subpass in the dependency, or `VK_SUBPASS_EXTERNAL`.
-- [`dst_subpass`] is the subpass index of the second subpass in the dependency, or `VK_SUBPASS_EXTERNAL`.
+- [`src_subpass`] is the subpass index of the first subpass in the dependency, or [`SUBPASS_EXTERNAL`].
+- [`dst_subpass`] is the subpass index of the second subpass in the dependency, or [`SUBPASS_EXTERNAL`].
 - [`src_stage_mask`] is a bitmask of [`PipelineStageFlagBits`] specifying the [source stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks).
 - [`dst_stage_mask`] is a bitmask of [`PipelineStageFlagBits`] specifying the [destination stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks)
 - [`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a [source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
@@ -64,13 +64,13 @@ of [`MemoryBarrier2`].
 -    If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader) feature is not enabled, [`dst_stage_mask`] **must**  not contain `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV`
 -    If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage) feature is not enabled, [`dst_stage_mask`] **must**  not contain `VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV`
 -    If the [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-synchronization2) feature is not enabled, [`dst_stage_mask`] **must**  not be `0`
--  [`src_subpass`] **must**  be less than or equal to [`dst_subpass`], unless one of them is `VK_SUBPASS_EXTERNAL`, to avoid cyclic dependencies and ensure a valid execution order
--  [`src_subpass`] and [`dst_subpass`] **must**  not both be equal to `VK_SUBPASS_EXTERNAL`
+-  [`src_subpass`] **must**  be less than or equal to [`dst_subpass`], unless one of them is [`SUBPASS_EXTERNAL`], to avoid cyclic dependencies and ensure a valid execution order
+-  [`src_subpass`] and [`dst_subpass`] **must**  not both be equal to [`SUBPASS_EXTERNAL`]
 -    If [`src_subpass`] is equal to [`dst_subpass`] and not all of the stages in [`src_stage_mask`] and [`dst_stage_mask`] are [framebuffer-space stages](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), the [logically latest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) pipeline stage in [`src_stage_mask`] **must**  be [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) than or equal to the [logically earliest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) pipeline stage in [`dst_stage_mask`]
 -    Any access flag included in [`src_access_mask`] **must**  be supported by one of the pipeline stages in [`src_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
 -    Any access flag included in [`dst_access_mask`] **must**  be supported by one of the pipeline stages in [`dst_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
--    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`] **must**  not be equal to `VK_SUBPASS_EXTERNAL`
--    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`] **must**  not be equal to `VK_SUBPASS_EXTERNAL`
+-    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`] **must**  not be equal to [`SUBPASS_EXTERNAL`]
+-    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`] **must**  not be equal to [`SUBPASS_EXTERNAL`]
 -    If [`src_subpass`] equals [`dst_subpass`], and [`src_stage_mask`] and [`dst_stage_mask`] both include a [framebuffer-space stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), then [`dependency_flags`] **must**  include `VK_DEPENDENCY_BY_REGION_BIT`
 -    If [`view_offset`] is not equal to `0`, [`src_subpass`] **must**  not be equal to [`dst_subpass`]
 -    If [`dependency_flags`] does not include `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`view_offset`] **must**  be `0`
@@ -86,11 +86,11 @@ of [`MemoryBarrier2`].
 -  [`dependency_flags`] **must**  be a valid combination of [`DependencyFlagBits`] values
 
 # Related
-- [`khr_create_renderpass2`]
+- [`VK_KHR_create_renderpass2`]
 - [`crate::vulkan1_2`]
-- [VkAccessFlags]()
-- [VkDependencyFlags]()
-- [VkPipelineStageFlags]()
+- [`AccessFlags`]
+- [`DependencyFlags`]
+- [`PipelineStageFlags`]
 - [`RenderPassCreateInfo2`]
 - [`StructureType`]
 

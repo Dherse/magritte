@@ -23,7 +23,7 @@ typedef struct VkSurfaceCapabilities2KHR {
 -    The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 
 # Related
-- [`khr_get_surface_capabilities2`]
+- [`VK_KHR_get_surface_capabilities2`]
 - [`StructureType`]
 - [`SurfaceCapabilitiesKHR`]
 - [`get_physical_device_surface_capabilities2_khr`]

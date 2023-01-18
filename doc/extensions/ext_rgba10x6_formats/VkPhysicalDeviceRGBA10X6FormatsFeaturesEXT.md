@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
 
 # Related
-- [`ext_rgba10x6_formats`]
+- [`VK_EXT_rgba10x6_formats`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -15,12 +15,12 @@ typedef enum VkPerformanceCounterDescriptionFlagBitsKHR {
 ```
 
 # Description
-- [`VK_PERFORMANCE_COUNTER_DESCRIPTION_FLAG_BITS_KHR`] specifies that recording the counter  **may**  have a noticeable performance impact.
-- [`VK_PERFORMANCE_COUNTER_DESCRIPTION_FLAG_BITS_KHR`] specifies that concurrently recording the counter while other submitted command buffers are running  **may**  impact the accuracy of the recording.
+- [`PERFORMANCE_IMPACTING`] specifies that recording the counter  **may**  have a noticeable performance impact.
+- [`CONCURRENTLY_IMPACTED`] specifies that concurrently recording the counter while other submitted command buffers are running  **may**  impact the accuracy of the recording.
 
 # Related
-- [`khr_performance_query`]
-- [VkPerformanceCounterDescriptionFlagsKHR]()
+- [`VK_KHR_performance_query`]
+- [`PerformanceCounterDescriptionFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

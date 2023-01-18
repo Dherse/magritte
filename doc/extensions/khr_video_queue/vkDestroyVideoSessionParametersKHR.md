@@ -22,7 +22,7 @@ void vkDestroyVideoSessionParametersKHR(
 -    If [`p_allocator`] is not `NULL`, [`p_allocator`] **must**  be a valid pointer to a valid [`AllocationCallbacks`] structure
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`VideoSessionParametersKHR`]

@@ -45,7 +45,7 @@ VkResult vkSetPrivateDataEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`Device`]
 - [`ObjectType`]

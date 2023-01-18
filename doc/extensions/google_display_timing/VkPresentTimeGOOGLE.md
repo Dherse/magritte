@@ -19,7 +19,7 @@ typedef struct VkPresentTimeGOOGLE {
 ```
 
 # Related
-- [`google_display_timing`]
+- [`VK_GOOGLE_display_timing`]
 - [`PresentTimesInfoGOOGLE`]
 
 # Notes and documentation

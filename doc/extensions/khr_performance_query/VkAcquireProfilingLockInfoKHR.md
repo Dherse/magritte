@@ -29,8 +29,8 @@ If [`timeout`] is `UINT64_MAX`, the function will not return until the
 profiling lock was acquired.
 
 # Related
-- [`khr_performance_query`]
-- [VkAcquireProfilingLockFlagsKHR]()
+- [`VK_KHR_performance_query`]
+- [`AcquireProfilingLockFlagsKHR`]
 - [`StructureType`]
 - [`acquire_profiling_lock_khr`]
 

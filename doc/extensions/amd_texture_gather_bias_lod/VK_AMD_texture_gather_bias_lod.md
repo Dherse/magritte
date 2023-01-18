@@ -15,7 +15,7 @@ extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Rex Xu [amdrexu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_texture_gather_bias_lod] @amdrexu%0A<<Here describe the issue or question you have about the VK_AMD_texture_gather_bias_lod extension>>)
@@ -24,8 +24,8 @@ extension.
 - Extending [`ImageFormatProperties2`]:  - [`TextureLodGatherFormatPropertiesAMD`]
 
 # New constants
-- `VK_AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME`
-- `VK_AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION`
+- [`AMD_TEXTURE_GATHER_BIAS_LOD_EXTENSION_NAME`]
+- [`AMD_TEXTURE_GATHER_BIAS_LOD_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_TEXTURE_LOD_GATHER_FORMAT_PROPERTIES_AMD`
 
 # Version history

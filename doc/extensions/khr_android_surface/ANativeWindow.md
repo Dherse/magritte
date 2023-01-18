@@ -9,7 +9,7 @@ struct ANativeWindow;
 ```
 
 # Related
-- [`khr_android_surface`]
+- [`VK_KHR_android_surface`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

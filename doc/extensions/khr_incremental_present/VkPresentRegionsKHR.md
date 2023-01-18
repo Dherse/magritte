@@ -1,7 +1,7 @@
 [VkPresentRegionsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentRegionsKHR.html) - Structure hint of rectangular regions changed by vkQueuePresentKHR
 
 # C Specifications
-When the [`khr_incremental_present`] extension is enabled, additional
+When the [`VK_KHR_incremental_present`] extension is enabled, additional
 fields  **can**  be specified that allow an application to specify that only
 certain rectangular regions of the presentable images of a swapchain are
 changed.
@@ -38,7 +38,7 @@ typedef struct VkPresentRegionsKHR {
 -  [`swapchain_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_incremental_present`]
+- [`VK_KHR_incremental_present`]
 - [`PresentRegionKHR`]
 - [`StructureType`]
 

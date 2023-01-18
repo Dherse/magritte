@@ -3,7 +3,7 @@
 # Description
 This extension provides functionality to use a logical device that consists
 of multiple physical devices, as created with the
-`[`khr_device_group_creation`]` extension.
+`[`VK_KHR_device_group_creation`]` extension.
 A device group can allocate memory across the subdevices, bind memory from
 one subdevice to a resource on another subdevice, record command buffers
 where some work executes on an arbitrary subset of the subdevices, and
@@ -17,7 +17,7 @@ potentially present a swapchain image from one or more subdevices.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_device_group_creation`]`
+- Requires `[`VK_KHR_device_group_creation`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -29,11 +29,11 @@ potentially present a swapchain image from one or more subdevices.
 - [`cmd_dispatch_base_khr`]
 - [`cmd_set_device_mask_khr`]
 - [`get_device_group_peer_memory_features_khr`]
-If [`khr_surface`] is supported:
+If [`VK_KHR_surface`] is supported:
 - [`get_device_group_present_capabilities_khr`]
 - [`get_device_group_surface_present_modes_khr`]
 - [`get_physical_device_present_rectangles_khr`]
-If [`khr_swapchain`] is supported:
+If [`VK_KHR_swapchain`] is supported:
 - [`acquire_next_image2_khr`]
 
 # New structures
@@ -42,12 +42,12 @@ If [`khr_swapchain`] is supported:
 - Extending [`MemoryAllocateInfo`]:  - [`MemoryAllocateFlagsInfoKHR`] 
 - Extending [`RenderPassBeginInfo`], [`RenderingInfo`]:  - [`DeviceGroupRenderPassBeginInfoKHR`] 
 - Extending [`SubmitInfo`]:  - [`DeviceGroupSubmitInfoKHR`] 
-If [`khr_bind_memory2`] is supported:
+If [`VK_KHR_bind_memory2`] is supported:
 - Extending [`BindBufferMemoryInfo`]:  - [`BindBufferMemoryDeviceGroupInfoKHR`] 
 - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemoryDeviceGroupInfoKHR`] 
-If [`khr_surface`] is supported:
+If [`VK_KHR_surface`] is supported:
 - [`DeviceGroupPresentCapabilitiesKHR`]
-If [`khr_swapchain`] is supported:
+If [`VK_KHR_swapchain`] is supported:
 - [`AcquireNextImageInfoKHR`]
 - Extending [`BindImageMemoryInfo`]:  - [`BindImageMemorySwapchainInfoKHR`] 
 - Extending [`ImageCreateInfo`]:  - [`ImageSwapchainCreateInfoKHR`] 
@@ -57,29 +57,29 @@ If [`khr_swapchain`] is supported:
 # New enums
 - [`MemoryAllocateFlagBitsKHR`]
 - [`PeerMemoryFeatureFlagBitsKHR`]
-If [`khr_surface`] is supported:
+If [`VK_KHR_surface`] is supported:
 - [`DeviceGroupPresentModeFlagBitsKHR`]
 
 # New bitmasks
 - [`MemoryAllocateFlagsKHR`]
 - [`PeerMemoryFeatureFlagsKHR`]
-If [`khr_surface`] is supported:
-- [VkDeviceGroupPresentModeFlagsKHR]()
+If [`VK_KHR_surface`] is supported:
+- [`DeviceGroupPresentModeFlagsKHR`]
 
 # New constants
-- `VK_KHR_DEVICE_GROUP_EXTENSION_NAME`
-- `VK_KHR_DEVICE_GROUP_SPEC_VERSION`
+- [`KHR_DEVICE_GROUP_EXTENSION_NAME`]
+- [`KHR_DEVICE_GROUP_SPEC_VERSION`]
 - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_DEVICE_GROUP_BIT_KHR` 
 - Extending [`MemoryAllocateFlagBits`]:  - `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT_KHR` 
 - Extending [`PeerMemoryFeatureFlagBits`]:  - `VK_PEER_MEMORY_FEATURE_COPY_DST_BIT_KHR`  - `VK_PEER_MEMORY_FEATURE_COPY_SRC_BIT_KHR`  - `VK_PEER_MEMORY_FEATURE_GENERIC_DST_BIT_KHR`  - `VK_PEER_MEMORY_FEATURE_GENERIC_SRC_BIT_KHR` 
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_DISPATCH_BASE_KHR`  - `VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_BIND_SPARSE_INFO_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_COMMAND_BUFFER_BEGIN_INFO_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_RENDER_PASS_BEGIN_INFO_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_SUBMIT_INFO_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_FLAGS_INFO_KHR` 
-If [`khr_bind_memory2`] is supported:
+If [`VK_KHR_bind_memory2`] is supported:
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BIND_BUFFER_MEMORY_DEVICE_GROUP_INFO_KHR`  - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_DEVICE_GROUP_INFO_KHR` 
-If [`khr_surface`] is supported:
+If [`VK_KHR_surface`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_CAPABILITIES_KHR` 
-If [`khr_swapchain`] is supported:
+If [`VK_KHR_swapchain`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACQUIRE_NEXT_IMAGE_INFO_KHR`  - `VK_STRUCTURE_TYPE_BIND_IMAGE_MEMORY_SWAPCHAIN_INFO_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_PRESENT_INFO_KHR`  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_SWAPCHAIN_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_IMAGE_SWAPCHAIN_CREATE_INFO_KHR` 
 - Extending [`SwapchainCreateFlagBitsKHR`]:  - `VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR`
 

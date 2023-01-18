@@ -25,8 +25,8 @@ typedef struct VkDeviceDiagnosticsConfigCreateInfoNV {
 -  [`flags`] **must**  be a valid combination of [`DeviceDiagnosticsConfigFlagBitsNV`] values
 
 # Related
-- [`nv_device_diagnostics_config`]
-- [VkDeviceDiagnosticsConfigFlagsNV]()
+- [`VK_NV_device_diagnostics_config`]
+- [`DeviceDiagnosticsConfigFlagsNV`]
 - [`StructureType`]
 
 # Notes and documentation

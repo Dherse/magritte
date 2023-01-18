@@ -11,14 +11,14 @@ To be done.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_swapchain_colorspace] @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_swapchain_colorspace extension>>)
 
 # New constants
-- `VK_EXT_SWAPCHAIN_COLOR_SPACE_EXTENSION_NAME`
-- `VK_EXT_SWAPCHAIN_COLOR_SPACE_SPEC_VERSION`
+- [`EXT_SWAPCHAIN_COLOR_SPACE_EXTENSION_NAME`]
+- [`EXT_SWAPCHAIN_COLOR_SPACE_SPEC_VERSION`]
 - Extending [`ColorSpaceKHR`]:  - `VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT`  - `VK_COLOR_SPACE_ADOBERGB_NONLINEAR_EXT`  - `VK_COLOR_SPACE_BT2020_LINEAR_EXT`  - `VK_COLOR_SPACE_BT709_LINEAR_EXT`  - `VK_COLOR_SPACE_BT709_NONLINEAR_EXT`  - `VK_COLOR_SPACE_DCI_P3_LINEAR_EXT`  - `VK_COLOR_SPACE_DCI_P3_NONLINEAR_EXT`  - `VK_COLOR_SPACE_DISPLAY_P3_LINEAR_EXT`  - `VK_COLOR_SPACE_DISPLAY_P3_NONLINEAR_EXT`  - `VK_COLOR_SPACE_DOLBYVISION_EXT`  - `VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT`  - `VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT`  - `VK_COLOR_SPACE_HDR10_HLG_EXT`  - `VK_COLOR_SPACE_HDR10_ST2084_EXT`  - `VK_COLOR_SPACE_PASS_THROUGH_EXT`
 
 # Known issues & F.A.Q.

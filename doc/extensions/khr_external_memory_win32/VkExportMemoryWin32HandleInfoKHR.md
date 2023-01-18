@@ -19,8 +19,8 @@ typedef struct VkExportMemoryWin32HandleInfoKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`attributes`] is a pointer to a Windows `SECURITY_ATTRIBUTES` structure specifying security attributes of the handle.
-- [`dw_access`] is a `DWORD` specifying access rights of the handle.
+- [`attributes`] is a pointer to a Windows [`SECURITY_ATTRIBUTES`] structure specifying security attributes of the handle.
+- [`dw_access`] is a [`DWORD`] specifying access rights of the handle.
 - [`name`] is a null-terminated UTF-16 string to associate with the payload referenced by NT handles exported from the created memory.
 
 # Description
@@ -44,10 +44,10 @@ access to the memory.
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`
--    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid `SECURITY_ATTRIBUTES` value
+-    If [`attributes`] is not `NULL`, [`attributes`] **must**  be a valid pointer to a valid [`SECURITY_ATTRIBUTES`] value
 
 # Related
-- [`khr_external_memory_win32`]
+- [`VK_KHR_external_memory_win32`]
 - [`StructureType`]
 
 # Notes and documentation

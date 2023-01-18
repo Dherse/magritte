@@ -12,14 +12,14 @@ typedef enum VkVideoEncodeRateControlModeFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_FLAG_BITS_KHR`] for disabling rate control.
-- [`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_FLAG_BITS_KHR`] for constant bitrate rate control mode.
-- [`VK_VIDEO_ENCODE_RATE_CONTROL_MODE_FLAG_BITS_KHR`] for variable bitrate rate control mode.
+- [`NONE`] for disabling rate control.
+- [`CBR`] for constant bitrate rate control mode.
+- [`VBR`] for variable bitrate rate control mode.
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`VideoEncodeRateControlInfoKHR`]
-- [VkVideoEncodeRateControlModeFlagsKHR]()
+- [`VideoEncodeRateControlModeFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

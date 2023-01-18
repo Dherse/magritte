@@ -6,8 +6,8 @@ be used to perform new color blending operations, many of which are more
 complex than the standard blend modes provided by unextended Vulkan.
 This extension requires different styles of usage, depending on the level of
 hardware support and the enabled features:
-- If [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT::advanced_blend_coherent_operations`] is `VK_FALSE`, the new blending operations are supported, but a memory dependency  **must**  separate each advanced blend operation on a given sample. `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT` is used to synchronize reads using advanced blend operations.
-- If [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT::advanced_blend_coherent_operations`] is `VK_TRUE`, advanced blend operations obey primitive order just like basic blend operations.
+- If [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT::advanced_blend_coherent_operations`] is [`FALSE`], the new blending operations are supported, but a memory dependency  **must**  separate each advanced blend operation on a given sample. `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT` is used to synchronize reads using advanced blend operations.
+- If [`PhysicalDeviceBlendOperationAdvancedFeaturesEXT::advanced_blend_coherent_operations`] is [`TRUE`], advanced blend operations obey primitive order just like basic blend operations.
 In unextended Vulkan, the set of blending operations is limited, and  **can**  be
 expressed very simply.
 The `VK_BLEND_OP_MIN` and `VK_BLEND_OP_MAX` blend operations simply
@@ -84,8 +84,8 @@ components.
 - [`BlendOverlapEXT`]
 
 # New constants
-- `VK_EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME`
-- `VK_EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION`
+- [`EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME`]
+- [`EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_COLOR_ATTACHMENT_READ_NONCOHERENT_BIT_EXT` 
 - Extending [`BlendOp`]:  - `VK_BLEND_OP_BLUE_EXT`  - `VK_BLEND_OP_COLORBURN_EXT`  - `VK_BLEND_OP_COLORDODGE_EXT`  - `VK_BLEND_OP_CONTRAST_EXT`  - `VK_BLEND_OP_DARKEN_EXT`  - `VK_BLEND_OP_DIFFERENCE_EXT`  - `VK_BLEND_OP_DST_ATOP_EXT`  - `VK_BLEND_OP_DST_EXT`  - `VK_BLEND_OP_DST_IN_EXT`  - `VK_BLEND_OP_DST_OUT_EXT`  - `VK_BLEND_OP_DST_OVER_EXT`  - `VK_BLEND_OP_EXCLUSION_EXT`  - `VK_BLEND_OP_GREEN_EXT`  - `VK_BLEND_OP_HARDLIGHT_EXT`  - `VK_BLEND_OP_HARDMIX_EXT`  - `VK_BLEND_OP_HSL_COLOR_EXT`  - `VK_BLEND_OP_HSL_HUE_EXT`  - `VK_BLEND_OP_HSL_LUMINOSITY_EXT`  - `VK_BLEND_OP_HSL_SATURATION_EXT`  - `VK_BLEND_OP_INVERT_EXT`  - `VK_BLEND_OP_INVERT_OVG_EXT`  - `VK_BLEND_OP_INVERT_RGB_EXT`  - `VK_BLEND_OP_LIGHTEN_EXT`  - `VK_BLEND_OP_LINEARBURN_EXT`  - `VK_BLEND_OP_LINEARDODGE_EXT`  - `VK_BLEND_OP_LINEARLIGHT_EXT`  - `VK_BLEND_OP_MINUS_CLAMPED_EXT`  - `VK_BLEND_OP_MINUS_EXT`  - `VK_BLEND_OP_MULTIPLY_EXT`  - `VK_BLEND_OP_OVERLAY_EXT`  - `VK_BLEND_OP_PINLIGHT_EXT`  - `VK_BLEND_OP_PLUS_CLAMPED_ALPHA_EXT`  - `VK_BLEND_OP_PLUS_CLAMPED_EXT`  - `VK_BLEND_OP_PLUS_DARKER_EXT`  - `VK_BLEND_OP_PLUS_EXT`  - `VK_BLEND_OP_RED_EXT`  - `VK_BLEND_OP_SCREEN_EXT`  - `VK_BLEND_OP_SOFTLIGHT_EXT`  - `VK_BLEND_OP_SRC_ATOP_EXT`  - `VK_BLEND_OP_SRC_EXT`  - `VK_BLEND_OP_SRC_IN_EXT`  - `VK_BLEND_OP_SRC_OUT_EXT`  - `VK_BLEND_OP_SRC_OVER_EXT`  - `VK_BLEND_OP_VIVIDLIGHT_EXT`  - `VK_BLEND_OP_XOR_EXT`  - `VK_BLEND_OP_ZERO_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BLEND_OPERATION_ADVANCED_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_ADVANCED_STATE_CREATE_INFO_EXT`

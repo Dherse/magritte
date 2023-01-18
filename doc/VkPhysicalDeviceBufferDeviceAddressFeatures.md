@@ -39,7 +39,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES`
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

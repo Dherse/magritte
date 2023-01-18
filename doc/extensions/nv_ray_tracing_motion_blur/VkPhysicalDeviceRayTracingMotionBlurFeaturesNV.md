@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_TRACING_MOTION_BLUR_FEATURES_NV`
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`Bool32`]
 - [`StructureType`]
 

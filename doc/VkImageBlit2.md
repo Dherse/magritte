@@ -42,7 +42,7 @@ for the specified source and destination regions.
 -  [`dst_subresource`] **must**  be a valid [`ImageSubresourceLayers`] structure
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`BlitImageInfo2`]
 - [`ImageSubresourceLayers`]

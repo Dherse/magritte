@@ -39,9 +39,9 @@ These values  **may**  further be limited by implementations due to performance
 optimizations where register pressure is a bottleneck.
 
 # Related
-- [`amd_shader_info`]
+- [`VK_AMD_shader_info`]
 - [`ShaderResourceUsageAMD`]
-- [VkShaderStageFlags]()
+- [`ShaderStageFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

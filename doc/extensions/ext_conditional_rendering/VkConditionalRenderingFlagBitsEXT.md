@@ -12,11 +12,11 @@ typedef enum VkConditionalRenderingFlagBitsEXT {
 ```
 
 # Description
-- [`VK_CONDITIONAL_RENDERING_FLAG_BITS_EXT`] specifies the condition used to determine whether to discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are discarded.
+- [`INVERTED`] specifies the condition used to determine whether to discard rendering commands or not. That is, if the 32-bit predicate read from `buffer` memory at `offset` is zero, the rendering commands are not discarded, and if non zero, then they are discarded.
 
 # Related
-- [`ext_conditional_rendering`]
-- [VkConditionalRenderingFlagsEXT]()
+- [`VK_EXT_conditional_rendering`]
+- [`ConditionalRenderingFlagsEXT`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

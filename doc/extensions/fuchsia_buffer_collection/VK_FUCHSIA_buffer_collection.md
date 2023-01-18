@@ -24,8 +24,8 @@ applications to interoperate with the Sysmem service on Fuchsia.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`fuchsia_external_memory`]`
-- Requires `[`khr_sampler_ycbcr_conversion`]`
+- Requires `[`VK_FUCHSIA_external_memory`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
 
 # Contacts
 - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_buffer_collection] @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_buffer_collection extension>>)
@@ -56,12 +56,12 @@ applications to interoperate with the Sysmem service on Fuchsia.
 - [`ImageConstraintsInfoFlagBitsFUCHSIA`]
 
 # New bitmasks
-- [VkImageConstraintsInfoFlagsFUCHSIA]()
+- [`ImageConstraintsInfoFlagsFUCHSIA`]
 - [`ImageFormatConstraintsFlagsFUCHSIA`]
 
 # New constants
-- `VK_FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME`
-- `VK_FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION`
+- [`FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME`]
+- [`FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION`]
 - Extending [`DebugReportObjectTypeEXT`]:  - `VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA_EXT` 
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_BUFFER_COLLECTION_FUCHSIA` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_BUFFER_CREATE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CONSTRAINTS_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_IMAGE_CREATE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_PROPERTIES_FUCHSIA`  - `VK_STRUCTURE_TYPE_BUFFER_CONSTRAINTS_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_IMAGE_CONSTRAINTS_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_IMAGE_FORMAT_CONSTRAINTS_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_BUFFER_COLLECTION_FUCHSIA`  - `VK_STRUCTURE_TYPE_SYSMEM_COLOR_SPACE_FUCHSIA`
@@ -74,7 +74,7 @@ Specifying a NULL `pFormatConstraints` results in logical complexity of
 interpreting the relationship between the
 [`ImageCreateInfo::usage`] settings of the elements of the
 `pImageCreateInfos` array and the implied or desired
-[VkFormatFeatureFlags]().The explicit requirement for `pFormatConstraints` to be non-NULL
+[`FormatFeatureFlags`].The explicit requirement for `pFormatConstraints` to be non-NULL
 simplifies the implied logic of the implementation and expectations for the
 Vulkan application.
 
@@ -97,7 +97,7 @@ Vulkan application.
 - [`BufferConstraintsInfoFUCHSIA`]
 - [`ImageConstraintsInfoFUCHSIA`]
 - [`ImageConstraintsInfoFlagBitsFUCHSIA`]
-- [VkImageConstraintsInfoFlagsFUCHSIA]()
+- [`ImageConstraintsInfoFlagsFUCHSIA`]
 - [`ImageFormatConstraintsFlagsFUCHSIA`]
 - [`ImageFormatConstraintsInfoFUCHSIA`]
 - [`ImportMemoryBufferCollectionFUCHSIA`]

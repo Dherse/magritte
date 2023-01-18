@@ -79,11 +79,11 @@ parameters.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`ChromaLocation`]
 - [`ComponentMapping`]
 - [`Format`]
-- [VkFormatFeatureFlags]()
+- [`FormatFeatureFlags`]
 - [`SamplerYcbcrModelConversion`]
 - [`SamplerYcbcrRange`]
 - [`StructureType`]

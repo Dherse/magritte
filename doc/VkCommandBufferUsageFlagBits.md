@@ -13,13 +13,13 @@ typedef enum VkCommandBufferUsageFlagBits {
 ```
 
 # Description
-- [`VK_COMMAND_BUFFER_USAGE_FLAG_BITS`] specifies that each recording of the command buffer will only be submitted once, and the command buffer will be reset and recorded again between each submission.
-- [`VK_COMMAND_BUFFER_USAGE_FLAG_BITS`] specifies that a secondary command buffer is considered to be entirely inside a render pass. If this is a primary command buffer, then this bit is ignored.
-- [`VK_COMMAND_BUFFER_USAGE_FLAG_BITS`] specifies that a command buffer  **can**  be resubmitted to a queue while it is in the *pending state*, and recorded into multiple primary command buffers.
+- [`ONE_TIME_SUBMIT`] specifies that each recording of the command buffer will only be submitted once, and the command buffer will be reset and recorded again between each submission.
+- [`RENDER_PASS_CONTINUE`] specifies that a secondary command buffer is considered to be entirely inside a render pass. If this is a primary command buffer, then this bit is ignored.
+- [`SIMULTANEOUS_USE`] specifies that a command buffer  **can**  be resubmitted to a queue while it is in the *pending state*, and recorded into multiple primary command buffers.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkCommandBufferUsageFlags]()
+- [`CommandBufferUsageFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

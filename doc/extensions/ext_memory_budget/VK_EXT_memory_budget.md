@@ -19,7 +19,7 @@ From here the application can notice if it is over budget and decide how it
 wants to handle the memory situation (free it, move to host memory, changing
 mipmap levels, etc).
 This extension is designed to be used in concert with
-`[`ext_memory_priority`]` to help with this part of memory management.
+`[`VK_EXT_memory_priority`]` to help with this part of memory management.
 
 # Registered extension number
 238
@@ -29,7 +29,7 @@ This extension is designed to be used in concert with
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_budget] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_budget extension>>)
@@ -38,8 +38,8 @@ This extension is designed to be used in concert with
 - Extending [`PhysicalDeviceMemoryProperties2`]:  - [`PhysicalDeviceMemoryBudgetPropertiesEXT`]
 
 # New constants
-- `VK_EXT_MEMORY_BUDGET_EXTENSION_NAME`
-- `VK_EXT_MEMORY_BUDGET_SPEC_VERSION`
+- [`EXT_MEMORY_BUDGET_EXTENSION_NAME`]
+- [`EXT_MEMORY_BUDGET_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_BUDGET_PROPERTIES_EXT`
 
 # Version history

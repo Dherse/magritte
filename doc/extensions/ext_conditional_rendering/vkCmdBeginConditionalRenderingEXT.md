@@ -30,7 +30,7 @@ void vkCmdBeginConditionalRenderingEXT(
 ## Command Properties
 
 # Related
-- [`ext_conditional_rendering`]
+- [`VK_EXT_conditional_rendering`]
 - [`CommandBuffer`]
 - [`ConditionalRenderingBeginInfoEXT`]
 

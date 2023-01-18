@@ -34,8 +34,8 @@ typedef VkAabbPositionsKHR VkAabbPositionsNV;
 -  [`min_z`] **must**  be less than or equal to [`max_z`]
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -12,7 +12,7 @@ quasi simultaneously from two time domains.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_calibrated_timestamps] @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_calibrated_timestamps extension>>)
@@ -28,8 +28,8 @@ quasi simultaneously from two time domains.
 - [`TimeDomainEXT`]
 
 # New constants
-- `VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME`
-- `VK_EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION`
+- [`EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME`]
+- [`EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CALIBRATED_TIMESTAMP_INFO_EXT`
 
 # Known issues & F.A.Q.

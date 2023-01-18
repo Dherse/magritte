@@ -12,7 +12,7 @@ a given device.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display extension>>)
@@ -45,13 +45,13 @@ a given device.
 
 # New bitmasks
 - [`DisplayModeCreateFlagsKHR`]
-- [VkDisplayPlaneAlphaFlagsKHR]()
+- [`DisplayPlaneAlphaFlagsKHR`]
 - [`DisplaySurfaceCreateFlagsKHR`]
-- [VkSurfaceTransformFlagsKHR]()
+- [`SurfaceTransformFlagsKHR`]
 
 # New constants
-- `VK_KHR_DISPLAY_EXTENSION_NAME`
-- `VK_KHR_DISPLAY_SPEC_VERSION`
+- [`KHR_DISPLAY_EXTENSION_NAME`]
+- [`KHR_DISPLAY_SPEC_VERSION`]
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_DISPLAY_KHR`  - `VK_OBJECT_TYPE_DISPLAY_MODE_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_MODE_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_DISPLAY_SURFACE_CREATE_INFO_KHR`
 
@@ -100,7 +100,7 @@ structure used to query their properties? **PROPOSED RESOLUTION** : Yes.7) Is th
 the present queues of a device? If yes, how do we determine which displays
 work with which present queues? **PROPOSED RESOLUTION** : No known hardware has such limitations, but
 determining such limitations is supported automatically using the existing
-`[`khr_surface`]` and `[`khr_swapchain`]` query mechanisms.8) Should all presentation need to be done relative to an overlay plane, or
+`[`VK_KHR_surface`]` and `[`VK_KHR_swapchain`]` query mechanisms.8) Should all presentation need to be done relative to an overlay plane, or
 can a display mode + display be used alone to target an output? **PROPOSED RESOLUTION** : Require specifying a plane explicitly.9) Should displays have an associated window system display, such as an
 `HDC` or `Display*`? **PROPOSED RESOLUTION** : No.
 Displays are independent of any windowing system in use on the system.
@@ -179,13 +179,13 @@ creation time, or on a per-present basis. **RESOLVED** : On a per-present basis.
 - [`DisplayModeParametersKHR`]
 - [`DisplayModePropertiesKHR`]
 - [`DisplayPlaneAlphaFlagBitsKHR`]
-- [VkDisplayPlaneAlphaFlagsKHR]()
+- [`DisplayPlaneAlphaFlagsKHR`]
 - [`DisplayPlaneCapabilitiesKHR`]
 - [`DisplayPlanePropertiesKHR`]
 - [`DisplayPropertiesKHR`]
 - [`DisplaySurfaceCreateFlagsKHR`]
 - [`DisplaySurfaceCreateInfoKHR`]
-- [VkSurfaceTransformFlagsKHR]()
+- [`SurfaceTransformFlagsKHR`]
 - [`create_display_mode_khr`]
 - [`create_display_plane_surface_khr`]
 - [`get_display_mode_properties_khr`]

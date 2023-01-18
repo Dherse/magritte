@@ -15,7 +15,7 @@ well.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -28,8 +28,8 @@ well.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceShaderIntegerDotProductPropertiesKHR`]
 
 # New constants
-- `VK_KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME`
-- `VK_KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION`
+- [`KHR_SHADER_INTEGER_DOT_PRODUCT_EXTENSION_NAME`]
+- [`KHR_SHADER_INTEGER_DOT_PRODUCT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_PROPERTIES_KHR`
 
 # Version history
@@ -37,7 +37,7 @@ well.
 
 # Other information
 * 2021-06-16
-*   - Promoted to Vulkan 1.3 Core  - This extension requires [`SPV_KHR_integer_dot_product`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_integer_dot_product.html).  - This extension interacts with `[`khr_shader_float16_int8`]`. 
+*   - Promoted to Vulkan 1.3 Core  - This extension requires [`SPV_KHR_integer_dot_product`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/KHR/SPV_KHR_integer_dot_product.html).  - This extension interacts with `[`VK_KHR_shader_float16_int8`]`. 
 * No known IP claims.
 *   - Kévin Petit, Arm Ltd.  - Jeff Bolz, NVidia  - Spencer Fricke, Samsung  - Jesse Hall, Google  - John Kessenich, Google  - Graeme Leese, Broadcom  - Einar Hov, Arm Ltd.  - Stuart Brady, Arm Ltd.  - Pablo Cascon, Arm Ltd.  - Tobias Hector, AMD  - Jeff Leger, Qualcomm  - Ruihao Zhang, Qualcomm  - Pierre Boudier, NVidia  - Jon Leech, The Khronos Group  - Tom Olson, Arm Ltd.
 

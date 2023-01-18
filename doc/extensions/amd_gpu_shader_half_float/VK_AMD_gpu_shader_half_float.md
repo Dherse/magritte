@@ -13,14 +13,14 @@ This extension adds support for using half float variables in shaders.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`khr_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+- *Deprecated* by `[`VK_KHR_shader_float16_int8`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 
 # Contacts
 - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_gpu_shader_half_float] @dominikwitczakamd%0A<<Here describe the issue or question you have about the VK_AMD_gpu_shader_half_float extension>>)
 
 # New constants
-- `VK_AMD_GPU_SHADER_HALF_FLOAT_EXTENSION_NAME`
-- `VK_AMD_GPU_SHADER_HALF_FLOAT_SPEC_VERSION`
+- [`AMD_GPU_SHADER_HALF_FLOAT_EXTENSION_NAME`]
+- [`AMD_GPU_SHADER_HALF_FLOAT_SPEC_VERSION`]
 
 # Version history
 - Revision 2, 2019-04-11 (Tobias Hector)  - Marked as deprecated 

@@ -1,0 +1,12 @@
+[package]
+name = "magritte-native-backend-build"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.0.32", features = ["derive"] }
+magritte-build = { version = "0.1.0", path = "../../crates/magritte-build" }
+magritte-types = { version = "0.1.0", path = "../../crates/magritte-types", features = [ "codegen" ]}
+ron = "0.8.0"
+proc-macro2 = "1.0.49"
+quote = "1.0.23"

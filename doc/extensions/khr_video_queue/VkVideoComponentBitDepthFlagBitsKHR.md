@@ -13,13 +13,13 @@ typedef enum VkVideoComponentBitDepthFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_COMPONENT_BIT_DEPTH_FLAG_BITS_KHR`] - the format component bit depth is 8 bits.
-- [`VK_VIDEO_COMPONENT_BIT_DEPTH_FLAG_BITS_KHR`] - the format component bit depth is 10 bits.
-- [`VK_VIDEO_COMPONENT_BIT_DEPTH_FLAG_BITS_KHR`] - the format component bit depth is 12 bits.
+- [`VIDEO_COMPONENT_DEPTH8`] - the format component bit depth is 8 bits.
+- [`VIDEO_COMPONENT_DEPTH10`] - the format component bit depth is 10 bits.
+- [`VIDEO_COMPONENT_DEPTH12`] - the format component bit depth is 12 bits.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoComponentBitDepthFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoComponentBitDepthFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

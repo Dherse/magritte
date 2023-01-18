@@ -35,7 +35,7 @@ corresponding implementation-dependent property.These are properties of the DRM 
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRM_PROPERTIES_EXT`
 
 # Related
-- [`ext_physical_device_drm`]
+- [`VK_EXT_physical_device_drm`]
 - [`Bool32`]
 - [`StructureType`]
 

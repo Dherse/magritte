@@ -44,7 +44,7 @@ sets the status of query indices [[`first_query`], [`first_query`]
 -  [`query_pool`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`ext_host_query_reset`]
+- [`VK_EXT_host_query_reset`]
 - [`crate::vulkan1_2`]
 - [`Device`]
 - [`QueryPool`]

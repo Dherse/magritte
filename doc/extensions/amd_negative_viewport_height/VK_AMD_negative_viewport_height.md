@@ -15,14 +15,14 @@ The result is that the viewport transformation will flip along the y-axis.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Obsoleted* by `[`khr_maintenance1`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+- *Obsoleted* by `[`VK_KHR_maintenance1`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 
 # Contacts
 - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_negative_viewport_height] @anteru%0A<<Here describe the issue or question you have about the VK_AMD_negative_viewport_height extension>>)
 
 # New constants
-- `VK_AMD_NEGATIVE_VIEWPORT_HEIGHT_EXTENSION_NAME`
-- `VK_AMD_NEGATIVE_VIEWPORT_HEIGHT_SPEC_VERSION`
+- [`AMD_NEGATIVE_VIEWPORT_HEIGHT_EXTENSION_NAME`]
+- [`AMD_NEGATIVE_VIEWPORT_HEIGHT_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-09-02 (Matthaeus Chajdas)  - Initial draft

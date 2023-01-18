@@ -25,9 +25,9 @@ VkResult vkGetDeviceGroupPresentCapabilitiesKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_device_group`]
-- [`khr_surface`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_surface`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`Device`]
 - [`DeviceGroupPresentCapabilitiesKHR`]

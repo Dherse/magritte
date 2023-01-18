@@ -14,7 +14,7 @@ one to one mapping between them in either of the above modes.The new command
 be used to query the various raster, color, depth/stencil sample count and
 reduction mode combinations that are supported by the implementation.
 This extension would allow an implementation to support the behavior of both
-[`nv_framebuffer_mixed_samples`] and [`amd_mixed_attachment_samples`]
+[`VK_NV_framebuffer_mixed_samples`] and [`VK_AMD_mixed_attachment_samples`]
 extensions simultaneously.
 
 # Registered extension number
@@ -25,7 +25,7 @@ extensions simultaneously.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`nv_framebuffer_mixed_samples`]`
+- Requires `[`VK_NV_framebuffer_mixed_samples`]`
 
 # Contacts
 - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_coverage_reduction_mode] @kthangudu%0A<<Here describe the issue or question you have about the VK_NV_coverage_reduction_mode extension>>)
@@ -45,8 +45,8 @@ extensions simultaneously.
 - [`PipelineCoverageReductionStateCreateFlagsNV`]
 
 # New constants
-- `VK_NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME`
-- `VK_NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION`
+- [`NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME`]
+- [`NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_MIXED_SAMPLES_COMBINATION_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COVERAGE_REDUCTION_MODE_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PIPELINE_COVERAGE_REDUCTION_STATE_CREATE_INFO_NV`
 
 # Version history

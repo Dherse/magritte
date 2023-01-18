@@ -30,7 +30,7 @@ It is up to the implementation to determine how to make use of the metadata.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - Courtney Goeltzenleuchter [courtney-g](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_hdr_metadata] @courtney-g%0A<<Here describe the issue or question you have about the VK_EXT_hdr_metadata extension>>)
@@ -43,8 +43,8 @@ It is up to the implementation to determine how to make use of the metadata.
 - [`XyColorEXT`]
 
 # New constants
-- `VK_EXT_HDR_METADATA_EXTENSION_NAME`
-- `VK_EXT_HDR_METADATA_SPEC_VERSION`
+- [`EXT_HDR_METADATA_EXTENSION_NAME`]
+- [`EXT_HDR_METADATA_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_HDR_METADATA_EXT`
 
 # Known issues & F.A.Q.

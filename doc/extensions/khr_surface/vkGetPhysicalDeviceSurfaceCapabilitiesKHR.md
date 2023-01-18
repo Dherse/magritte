@@ -32,7 +32,7 @@ VkResult vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`PhysicalDevice`]
 - [`SurfaceCapabilitiesKHR`]
 - [`SurfaceKHR`]

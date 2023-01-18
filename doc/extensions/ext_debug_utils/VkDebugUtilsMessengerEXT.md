@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDebugUtilsMessengerEXT)
 ```
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`create_debug_utils_messenger_ext`]
 - [`destroy_debug_utils_messenger_ext`]
 

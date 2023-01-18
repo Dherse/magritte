@@ -20,7 +20,7 @@ typedef struct VkPresentRegionKHR {
 -    If [`rectangle_count`] is not `0`, and [`rectangles`] is not `NULL`, [`rectangles`] **must**  be a valid pointer to an array of [`rectangle_count`] valid [`RectLayerKHR`] structures
 
 # Related
-- [`khr_incremental_present`]
+- [`VK_KHR_incremental_present`]
 - [`PresentRegionsKHR`]
 - [`RectLayerKHR`]
 

@@ -1,7 +1,7 @@
 [VK_KHR_relaxed_block_layout](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_relaxed_block_layout.html) - device extension
 
 # Description
-The [`khr_relaxed_block_layout`] extension allows implementations to
+The [`VK_KHR_relaxed_block_layout`] extension allows implementations to
 indicate they can support more variation in block `Offset` decorations.
 For example, placing a vector of three floats at an offset of
 16×N +  4.See [Offset and Stride Assignment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#interfaces-resources-layout) for
@@ -23,8 +23,8 @@ details.
 - John Kessenich [johnkslang](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_relaxed_block_layout] @johnkslang%0A<<Here describe the issue or question you have about the VK_KHR_relaxed_block_layout extension>>)
 
 # New constants
-- `VK_KHR_RELAXED_BLOCK_LAYOUT_EXTENSION_NAME`
-- `VK_KHR_RELAXED_BLOCK_LAYOUT_SPEC_VERSION`
+- [`KHR_RELAXED_BLOCK_LAYOUT_EXTENSION_NAME`]
+- [`KHR_RELAXED_BLOCK_LAYOUT_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-03-26 (JohnK)

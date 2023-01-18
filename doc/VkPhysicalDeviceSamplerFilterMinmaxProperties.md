@@ -28,7 +28,7 @@ typedef VkPhysicalDeviceSamplerFilterMinmaxProperties VkPhysicalDeviceSamplerFil
 If the [`PhysicalDeviceSamplerFilterMinmaxProperties`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceProperties2`] structure passed to
 [`get_physical_device_properties2`], it is filled in with each
-corresponding implementation-dependent property.If [`filter_minmax_single_component_formats`] is `VK_TRUE`, the following
+corresponding implementation-dependent property.If [`filter_minmax_single_component_formats`] is [`TRUE`], the following
 formats  **must**  support the
 `VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_MINMAX_BIT` feature with
 `VK_IMAGE_TILING_OPTIMAL`, if they support
@@ -48,19 +48,19 @@ formats  **must**  support the
 If the format is a depth/stencil format, this bit only specifies that the
 depth aspect (not the stencil aspect) of an image of this format supports
 min/max filtering, and that min/max filtering of the depth aspect is
-supported when depth compare is disabled in the sampler.If [`filter_minmax_image_component_mapping`] is `VK_FALSE` the component
+supported when depth compare is disabled in the sampler.If [`filter_minmax_image_component_mapping`] is [`FALSE`] the component
 mapping of the image view used with min/max filtering  **must**  have been
 created with the `r` component set to the
 [identity swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-views-identity-mappings).
 Only the `r` component of the sampled image value is defined and the
 other component values are undefined.
-If [`filter_minmax_image_component_mapping`] is `VK_TRUE` this restriction
+If [`filter_minmax_image_component_mapping`] is [`TRUE`] this restriction
 does not apply and image component mapping works as normal.
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SAMPLER_FILTER_MINMAX_PROPERTIES`
 
 # Related
-- [`ext_sampler_filter_minmax`]
+- [`VK_EXT_sampler_filter_minmax`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

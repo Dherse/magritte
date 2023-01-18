@@ -32,17 +32,17 @@ typedef VkResolveModeFlagBits VkResolveModeFlagBitsKHR;
 ```
 
 # Description
-- [`VK_RESOLVE_MODE_FLAG_BITS`] indicates that no resolve operation is done.
-- [`VK_RESOLVE_MODE_FLAG_BITS`] indicates that result of the resolve operation is equal to the value of sample 0.
-- [`VK_RESOLVE_MODE_FLAG_BITS`] indicates that result of the resolve operation is the average of the sample values.
-- [`VK_RESOLVE_MODE_FLAG_BITS`] indicates that result of the resolve operation is the minimum of the sample values.
-- [`VK_RESOLVE_MODE_FLAG_BITS`] indicates that result of the resolve operation is the maximum of the sample values.
+- [`NONE`] indicates that no resolve operation is done.
+- [`SAMPLE_ZERO`] indicates that result of the resolve operation is equal to the value of sample 0.
+- [`AVERAGE`] indicates that result of the resolve operation is the average of the sample values.
+- [`MIN`] indicates that result of the resolve operation is the minimum of the sample values.
+- [`MAX`] indicates that result of the resolve operation is the maximum of the sample values.
 
 # Related
-- [`khr_depth_stencil_resolve`]
+- [`VK_KHR_depth_stencil_resolve`]
 - [`crate::vulkan1_2`]
 - [`RenderingAttachmentInfo`]
-- [VkResolveModeFlags]()
+- [`ResolveModeFlags`]
 - [`SubpassDescriptionDepthStencilResolve`]
 
 # Notes and documentation

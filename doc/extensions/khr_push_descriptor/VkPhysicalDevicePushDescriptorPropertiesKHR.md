@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PUSH_DESCRIPTOR_PROPERTIES_KHR`
 
 # Related
-- [`khr_push_descriptor`]
+- [`VK_KHR_push_descriptor`]
 - [`StructureType`]
 
 # Notes and documentation

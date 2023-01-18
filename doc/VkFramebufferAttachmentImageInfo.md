@@ -46,12 +46,12 @@ parameters that are identical to those specified here.
 -    If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array of [`view_format_count`] valid [`Format`] values
 
 # Related
-- [`khr_imageless_framebuffer`]
+- [`VK_KHR_imageless_framebuffer`]
 - [`crate::vulkan1_2`]
 - [`Format`]
 - [`FramebufferAttachmentsCreateInfo`]
-- [VkImageCreateFlags]()
-- [VkImageUsageFlags]()
+- [`ImageCreateFlags`]
+- [`ImageUsageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

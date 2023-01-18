@@ -16,7 +16,7 @@ handles an implementation supports for a given set of use cases.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -44,9 +44,9 @@ handles an implementation supports for a given set of use cases.
 - [`ExternalMemoryHandleTypeFlagsKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`
-- `VK_LUID_SIZE_KHR`
+- [`KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION`]
+- [`LUID_SIZE_KHR`]
 - Extending [`ExternalMemoryFeatureFlagBits`]:  - `VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_KHR`  - `VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_KHR`  - `VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_KHR` 
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D11_TEXTURE_KMT_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_HEAP_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_D3D12_RESOURCE_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_FD_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXTERNAL_BUFFER_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_EXTERNAL_IMAGE_FORMAT_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_BUFFER_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_IMAGE_FORMAT_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR`
@@ -98,11 +98,11 @@ builds.
 # Other information
 * 2016-10-17
 * No known IP claims.
-*   - Interacts with `[`khr_dedicated_allocation`]`.  - Interacts with `[`nv_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core 
+*   - Interacts with `[`VK_KHR_dedicated_allocation`]`.  - Interacts with `[`VK_NV_dedicated_allocation`]`.  - Promoted to Vulkan 1.1 Core 
 *   - Ian Elliot, Google  - Jesse Hall, Google  - James Jones, NVIDIA
 
 # Related
-- [VK_LUID_SIZE_KHR]()
+- [`LUID_SIZE_KHR`]
 - [`ExternalBufferPropertiesKHR`]
 - [`ExternalImageFormatPropertiesKHR`]
 - [`ExternalMemoryFeatureFlagBitsKHR`]

@@ -26,13 +26,13 @@ typedef VkMemoryAllocateFlagBits VkMemoryAllocateFlagBitsKHR;
 ```
 
 # Description
-- [`VK_MEMORY_ALLOCATE_FLAG_BITS`] specifies that memory will be allocated for the devices in [`MemoryAllocateFlagsInfo::device_mask`].
+- [`DEVICE_MASK`] specifies that memory will be allocated for the devices in [`MemoryAllocateFlagsInfo::device_mask`].
 - [`DEVICE_ADDRESS`] specifies that the memory  **can**  be attached to a buffer object created with the `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT` bit set in `usage`, and that the memory handle  **can**  be used to retrieve an opaque address via [`get_device_memory_opaque_capture_address`].
 - [`DEVICE_ADDRESS_CAPTURE_REPLAY`] specifies that the memory’s address  **can**  be saved and reused on a subsequent run (e.g. for trace capture and replay), see [`BufferOpaqueCaptureAddressCreateInfo`] for more detail.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkMemoryAllocateFlags]()
+- [`MemoryAllocateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

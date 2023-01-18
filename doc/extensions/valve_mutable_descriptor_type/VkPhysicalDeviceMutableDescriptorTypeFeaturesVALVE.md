@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MUTABLE_DESCRIPTOR_TYPE_FEATURES_VALVE`
 
 # Related
-- [`valve_mutable_descriptor_type`]
+- [`VK_VALVE_mutable_descriptor_type`]
 - [`Bool32`]
 - [`StructureType`]
 

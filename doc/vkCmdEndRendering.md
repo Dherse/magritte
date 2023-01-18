@@ -39,7 +39,7 @@ is suspended and will be resumed later in
 ## Command Properties
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 

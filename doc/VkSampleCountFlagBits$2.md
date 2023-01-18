@@ -1,0 +1,1 @@
+[`2`] specifies an image with 2 samples per pixel.

@@ -28,7 +28,7 @@ typedef VkSubpassBeginInfo VkSubpassBeginInfoKHR;
 -  [`contents`] **must**  be a valid [`SubpassContents`] value
 
 # Related
-- [`khr_create_renderpass2`]
+- [`VK_KHR_create_renderpass2`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 - [`SubpassContents`]

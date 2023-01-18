@@ -31,7 +31,7 @@ void vkGetDeviceImageMemoryRequirementsKHR(
 -  [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 
 # Related
-- [`khr_maintenance4`]
+- [`VK_KHR_maintenance4`]
 - [`crate::vulkan1_3`]
 - [`Device`]
 - [`DeviceImageMemoryRequirements`]

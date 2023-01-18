@@ -4,7 +4,7 @@ use vk_parse::Type;
 use crate::Visitor;
 
 pub(crate) fn process_type(out: &mut Source<'static>, type_: Type) {
-    if type_.requires.is_some() {
+    if type_.requires.is_some() && type_.requires.as_ref().map(|s| s.ends_with(".h")).unwrap_or_default() {
         out.visit_opaque(type_);
         return;
     }
@@ -14,7 +14,7 @@ pub(crate) fn process_type(out: &mut Source<'static>, type_: Type) {
         return;
     }
 
-    match type_.category.as_ref().map(|s| s as &str) {
+    match type_.category.as_deref() {
         Some("struct") if type_.name.is_some() => out.visit_struct(type_),
         Some("union") if type_.name.is_some() => out.visit_union(type_),
         Some("handle") if type_.name.is_some() => out.visit_handle(type_),

@@ -13,13 +13,13 @@ typedef enum VkDeviceDiagnosticsConfigFlagBitsNV {
 ```
 
 # Description
-- [`VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_NV`] enables the generation of debug information for shaders.
-- [`VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_NV`] enables driver side tracking of resources (images, buffers, etc.) used to augment the device fault information.
-- [`VK_DEVICE_DIAGNOSTICS_CONFIG_FLAG_BITS_NV`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
+- [`ENABLE_SHADER_DEBUG_INFO`] enables the generation of debug information for shaders.
+- [`ENABLE_RESOURCE_TRACKING`] enables driver side tracking of resources (images, buffers, etc.) used to augment the device fault information.
+- [`ENABLE_AUTOMATIC_CHECKPOINTS`] enables automatic insertion of [diagnostic checkpoints](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#device-diagnostic-checkpoints) for draw calls, dispatches, trace rays, and copies. The CPU call stack at the time of the command will be associated as the marker data for the automatically inserted checkpoints.
 
 # Related
-- [`nv_device_diagnostics_config`]
-- [VkDeviceDiagnosticsConfigFlagsNV]()
+- [`VK_NV_device_diagnostics_config`]
+- [`DeviceDiagnosticsConfigFlagsNV`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

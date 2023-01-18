@@ -63,7 +63,7 @@ and are not further specified by this extension.
 *   - `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`amd_shader_info`]
+- [`VK_AMD_shader_info`]
 - [`Device`]
 - [`Pipeline`]
 - [`ShaderInfoTypeAMD`]

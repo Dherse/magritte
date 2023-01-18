@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineViewportSwizzleStateCreateFlagsNV;
 ```
 
 # Related
-- [`nv_viewport_swizzle`]
+- [`VK_NV_viewport_swizzle`]
 - [`PipelineViewportSwizzleStateCreateInfoNV`]
 
 # Notes and documentation

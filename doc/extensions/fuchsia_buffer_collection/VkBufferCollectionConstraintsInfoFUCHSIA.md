@@ -42,7 +42,7 @@ participants in the collection.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferConstraintsInfoFUCHSIA`]
 - [`ImageConstraintsInfoFUCHSIA`]
 - [`StructureType`]

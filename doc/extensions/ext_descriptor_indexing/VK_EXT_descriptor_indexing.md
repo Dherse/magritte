@@ -37,8 +37,8 @@ in the pipeline layout.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_maintenance3`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_maintenance3`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -60,8 +60,8 @@ in the pipeline layout.
 - [`DescriptorBindingFlagsEXT`]
 
 # New constants
-- `VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME`
-- `VK_EXT_DESCRIPTOR_INDEXING_SPEC_VERSION`
+- [`EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME`]
+- [`EXT_DESCRIPTOR_INDEXING_SPEC_VERSION`]
 - Extending [`DescriptorBindingFlagBits`]:  - `VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT`  - `VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT`  - `VK_DESCRIPTOR_BINDING_UPDATE_UNUSED_WHILE_PENDING_BIT_EXT`  - `VK_DESCRIPTOR_BINDING_VARIABLE_DESCRIPTOR_COUNT_BIT_EXT` 
 - Extending [`DescriptorPoolCreateFlagBits`]:  - `VK_DESCRIPTOR_POOL_CREATE_UPDATE_AFTER_BIND_BIT_EXT` 
 - Extending [`DescriptorSetLayoutCreateFlagBits`]:  - `VK_DESCRIPTOR_SET_LAYOUT_CREATE_UPDATE_AFTER_BIND_POOL_BIT_EXT` 

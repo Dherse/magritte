@@ -14,12 +14,12 @@ typedef enum VkMemoryOverallocationBehaviorAMD {
 ```
 
 # Description
-- [`VK_MEMORY_OVERALLOCATION_BEHAVIOR_AMD`] lets the implementation decide if overallocation is allowed.
-- [`VK_MEMORY_OVERALLOCATION_BEHAVIOR_AMD`] specifies overallocation is allowed if platform permits.
-- [`VK_MEMORY_OVERALLOCATION_BEHAVIOR_AMD`] specifies the application is not allowed to allocate device memory beyond the heap sizes reported by [`PhysicalDeviceMemoryProperties`]. Allocations that are not explicitly made by the application within the scope of the Vulkan instance are not accounted for.
+- [`DEFAULT`] lets the implementation decide if overallocation is allowed.
+- [`ALLOWED`] specifies overallocation is allowed if platform permits.
+- [`DISALLOWED`] specifies the application is not allowed to allocate device memory beyond the heap sizes reported by [`PhysicalDeviceMemoryProperties`]. Allocations that are not explicitly made by the application within the scope of the Vulkan instance are not accounted for.
 
 # Related
-- [`amd_memory_overallocation_behavior`]
+- [`VK_AMD_memory_overallocation_behavior`]
 - [`DeviceMemoryOverallocationCreateInfoAMD`]
 
 # Notes and documentation

@@ -16,7 +16,7 @@ typedef struct VkDeviceQueueInfo2 {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure. The [`p_next`] chain of [`DeviceQueueInfo2`] **can**  be used to provide additional device queue parameters to [`get_device_queue2`].
-- [`flags`] is a [VkDeviceQueueCreateFlags]() value indicating the flags used to create the device queue.
+- [`flags`] is a [`DeviceQueueCreateFlags`] value indicating the flags used to create the device queue.
 - [`queue_family_index`] is the index of the queue family to which the queue belongs.
 - [`queue_index`] is the index within this queue family of the queue to retrieve.
 
@@ -38,7 +38,7 @@ handle returned in `pQueue` **must**  be `NULL`.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkDeviceQueueCreateFlags]()
+- [`DeviceQueueCreateFlags`]
 - [`StructureType`]
 - [`get_device_queue2`]
 

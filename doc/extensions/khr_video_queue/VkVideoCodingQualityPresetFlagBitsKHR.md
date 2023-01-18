@@ -12,13 +12,13 @@ typedef enum VkVideoCodingQualityPresetFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_CODING_QUALITY_PRESET_FLAG_BITS_KHR`] defines normal decode case.
-- [`VK_VIDEO_CODING_QUALITY_PRESET_FLAG_BITS_KHR`] defines power efficient case.
-- [`VK_VIDEO_CODING_QUALITY_PRESET_FLAG_BITS_KHR`] defines quality focus case.
+- [`NORMAL`] defines normal decode case.
+- [`POWER`] defines power efficient case.
+- [`QUALITY`] defines quality focus case.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoCodingQualityPresetFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoCodingQualityPresetFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

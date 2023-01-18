@@ -2,14 +2,14 @@
 
 # Description
 This extension defines a special queue family,
-`VK_QUEUE_FAMILY_FOREIGN_EXT`, which can be used to transfer ownership
+[`QUEUE_FAMILY_FOREIGN_EXT`], which can be used to transfer ownership
 of resources backed by external memory to foreign, external queues.
-This is similar to `VK_QUEUE_FAMILY_EXTERNAL_KHR`, defined in
-`[`khr_external_memory`]`.
+This is similar to [`QUEUE_FAMILY_EXTERNAL_KHR`], defined in
+`[`VK_KHR_external_memory`]`.
 The key differences between the two are:
-- The queues represented by `VK_QUEUE_FAMILY_EXTERNAL_KHR` must share the same physical device and the same driver version as the current [`Instance`]. `VK_QUEUE_FAMILY_FOREIGN_EXT` has no such restrictions. It can represent devices and drivers from other vendors, and can even represent non-Vulkan-capable devices.
-- All resources backed by external memory support `VK_QUEUE_FAMILY_EXTERNAL_KHR`. Support for `VK_QUEUE_FAMILY_FOREIGN_EXT` is more restrictive.
-- Applications should expect transitions to/from `VK_QUEUE_FAMILY_FOREIGN_EXT` to be more expensive than transitions to/from `VK_QUEUE_FAMILY_EXTERNAL_KHR`.
+- The queues represented by [`QUEUE_FAMILY_EXTERNAL_KHR`] must share the same physical device and the same driver version as the current [`Instance`]. [`QUEUE_FAMILY_FOREIGN_EXT`] has no such restrictions. It can represent devices and drivers from other vendors, and can even represent non-Vulkan-capable devices.
+- All resources backed by external memory support [`QUEUE_FAMILY_EXTERNAL_KHR`]. Support for [`QUEUE_FAMILY_FOREIGN_EXT`] is more restrictive.
+- Applications should expect transitions to/from [`QUEUE_FAMILY_FOREIGN_EXT`] to be more expensive than transitions to/from [`QUEUE_FAMILY_EXTERNAL_KHR`].
 
 # Registered extension number
 127
@@ -19,15 +19,15 @@ The key differences between the two are:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory`]`
+- Requires `[`VK_KHR_external_memory`]`
 
 # Contacts
 - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_queue_family_foreign] @chadversary%0A<<Here describe the issue or question you have about the VK_EXT_queue_family_foreign extension>>)
 
 # New constants
-- `VK_EXT_QUEUE_FAMILY_FOREIGN_EXTENSION_NAME`
-- `VK_EXT_QUEUE_FAMILY_FOREIGN_SPEC_VERSION`
-- `VK_QUEUE_FAMILY_FOREIGN_EXT`
+- [`EXT_QUEUE_FAMILY_FOREIGN_EXTENSION_NAME`]
+- [`EXT_QUEUE_FAMILY_FOREIGN_SPEC_VERSION`]
+- [`QUEUE_FAMILY_FOREIGN_EXT`]
 
 # Version history
 - Revision 1, 2017-11-01 (Chad Versace)  - Squashed internal revisions
@@ -38,7 +38,7 @@ The key differences between the two are:
 *   - Chad Versace, Google  - James Jones, NVIDIA  - Jason Ekstrand, Intel  - Jesse Hall, Google  - Daniel Rakos, AMD  - Ray Smith, ARM
 
 # Related
-- [VK_QUEUE_FAMILY_FOREIGN_EXT]()
+- [`QUEUE_FAMILY_FOREIGN_EXT`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

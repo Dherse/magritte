@@ -17,7 +17,7 @@ The supported operations include `OpAtomicFAddEXT`,
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Vikram Kushwaha [vkushwaha-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_atomic_float] @vkushwaha-nv%0A<<Here describe the issue or question you have about the VK_EXT_shader_atomic_float extension>>)
@@ -26,8 +26,8 @@ The supported operations include `OpAtomicFAddEXT`,
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderAtomicFloatFeaturesEXT`]
 
 # New constants
-- `VK_EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME`
-- `VK_EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION`
+- [`EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME`]
+- [`EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_FLOAT_FEATURES_EXT`
 
 # Version history

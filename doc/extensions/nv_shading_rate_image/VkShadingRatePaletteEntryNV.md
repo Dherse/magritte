@@ -26,11 +26,11 @@ The following table indicates the width and height (in pixels) of each
 fragment generated using the indicated shading rate, as well as the maximum
 number of fragment shader invocations launched for each fragment.
 When processing regions of a primitive that have a shading rate of
-[`VK_SHADING_RATE_PALETTE_ENTRY_NV`], no fragments will be
+[`NO_INVOCATIONS`], no fragments will be
 generated in that region.
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`CoarseSampleOrderCustomNV`]
 - [`ShadingRatePaletteNV`]
 

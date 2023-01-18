@@ -25,7 +25,7 @@ VkResult vkCreateCuModuleNVX(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`AllocationCallbacks`]
 - [`CuModuleCreateInfoNVX`]
 - [`CuModuleNVX`]

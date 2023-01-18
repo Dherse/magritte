@@ -38,7 +38,7 @@ of [`combiner_ops`] are considered to be equal to
 -    Any given element of [`combiner_ops`] **must**  be a valid [`FragmentShadingRateCombinerOpKHR`] value
 
 # Related
-- [`nv_fragment_shading_rate_enums`]
+- [`VK_NV_fragment_shading_rate_enums`]
 - [`FragmentShadingRateCombinerOpKHR`]
 - [`FragmentShadingRateNV`]
 - [`FragmentShadingRateTypeNV`]

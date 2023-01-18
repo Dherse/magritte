@@ -29,7 +29,7 @@ VkResult vkCreateMacOSSurfaceMVK(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 # Related
-- [`mvk_macos_surface`]
+- [`VK_MVK_macos_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`MacOsSurfaceCreateInfoMVK`]

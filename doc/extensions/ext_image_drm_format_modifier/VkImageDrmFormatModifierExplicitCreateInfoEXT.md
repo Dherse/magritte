@@ -54,7 +54,7 @@ If this validation fails, then [`create_image`] returns
 -    If [`drm_format_modifier_plane_count`] is not `0`, [`plane_layouts`] **must**  be a valid pointer to an array of [`drm_format_modifier_plane_count`][`SubresourceLayout`] structures
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`StructureType`]
 - [`SubresourceLayout`]
 

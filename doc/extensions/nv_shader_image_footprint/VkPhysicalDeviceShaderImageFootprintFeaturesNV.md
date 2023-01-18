@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_FOOTPRINT_FEATURES_NV`
 
 # Related
-- [`nv_shader_image_footprint`]
+- [`VK_NV_shader_image_footprint`]
 - [`Bool32`]
 - [`StructureType`]
 

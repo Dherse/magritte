@@ -44,7 +44,7 @@ void vkCmdBindInvocationMaskHUAWEI(
 ## Command Properties
 
 # Related
-- [`huawei_invocation_mask`]
+- [`VK_HUAWEI_invocation_mask`]
 - [`CommandBuffer`]
 - [`ImageLayout`]
 - [`ImageView`]

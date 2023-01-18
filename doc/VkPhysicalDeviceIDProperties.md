@@ -25,11 +25,11 @@ typedef VkPhysicalDeviceIDProperties VkPhysicalDeviceIDPropertiesKHR;
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 
 # Description
-- [`device_uuid`] is an array of `VK_UUID_SIZE``uint8_t` values representing a universally unique identifier for the device.
-- [`driver_uuid`] is an array of `VK_UUID_SIZE``uint8_t` values representing a universally unique identifier for the driver build in use by the device.
-- [`device_luid`] is an array of `VK_LUID_SIZE``uint8_t` values representing a locally unique identifier for the device.
+- [`device_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique identifier for the device.
+- [`driver_uuid`] is an array of [`UUID_SIZE`]`uint8_t` values representing a universally unique identifier for the driver build in use by the device.
+- [`device_luid`] is an array of [`LUID_SIZE`]`uint8_t` values representing a locally unique identifier for the device.
 - [`device_node_mask`] is a `uint32_t` bitfield identifying the node within a linked device adapter corresponding to the device.
-- [`device_luid_valid`] is a boolean value that will be `VK_TRUE` if [`device_luid`] contains a valid LUID and [`device_node_mask`] contains a valid node mask, and `VK_FALSE` if they do not.
+- [`device_luid_valid`] is a boolean value that will be [`TRUE`] if [`device_luid`] contains a valid LUID and [`device_node_mask`] contains a valid node mask, and [`FALSE`] if they do not.
 If the [`PhysicalDeviceIdProperties`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceProperties2`] structure passed to
 [`get_physical_device_properties2`], it is filled in with each
@@ -44,13 +44,13 @@ particular object type:
 - [External memory handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-memory-handle-types-compatibility)
 - [External semaphore handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-semaphore-handle-types-compatibility)
 - [External fence handle types compatibility](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#external-fence-handle-types-compatibility)
-If [`device_luid_valid`] is `VK_FALSE`, the values of [`device_luid`]
+If [`device_luid_valid`] is [`FALSE`], the values of [`device_luid`]
 and [`device_node_mask`] are undefined.
-If [`device_luid_valid`] is `VK_TRUE` and Vulkan is running on the
+If [`device_luid_valid`] is [`TRUE`] and Vulkan is running on the
 Windows operating system, the contents of [`device_luid`] **can**  be cast to
 an `LUID` object and  **must**  be equal to the locally unique identifier of a
 `IDXGIAdapter1` object that corresponds to `physicalDevice`.
-If [`device_luid_valid`] is `VK_TRUE`, [`device_node_mask`] **must** 
+If [`device_luid_valid`] is [`TRUE`], [`device_node_mask`] **must** 
 contain exactly one bit.
 If Vulkan is running on an operating system that supports the Direct3D 12
 API and `physicalDevice` corresponds to an individual device in a linked

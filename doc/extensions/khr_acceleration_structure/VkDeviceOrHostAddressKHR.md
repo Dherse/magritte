@@ -15,7 +15,7 @@ typedef union VkDeviceOrHostAddressKHR {
 - [`host_address`] is a host memory address.
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`CopyAccelerationStructureToMemoryInfoKHR`]
 - [`DeviceAddress`]

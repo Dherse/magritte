@@ -7,7 +7,7 @@ typedef VkFlags VkDisplaySurfaceCreateFlagsKHR;
 ```
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplaySurfaceCreateInfoKHR`]
 
 # Notes and documentation

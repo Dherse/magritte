@@ -26,7 +26,7 @@ structure, the batch defaults to use counter pass index 0.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`StructureType`]
 
 # Notes and documentation

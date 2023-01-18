@@ -18,7 +18,7 @@ the `VK_FORMAT_R64_UINT` and `VK_FORMAT_R64_SINT` formats.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Tobias Hector [tobski](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_image_atomic_int64] @tobski%0A<<Here describe the issue or question you have about the VK_EXT_shader_image_atomic_int64 extension>>)
@@ -27,8 +27,8 @@ the `VK_FORMAT_R64_UINT` and `VK_FORMAT_R64_SINT` formats.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderImageAtomicInt64FeaturesEXT`]
 
 # New constants
-- `VK_EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME`
-- `VK_EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION`
+- [`EXT_SHADER_IMAGE_ATOMIC_INT64_EXTENSION_NAME`]
+- [`EXT_SHADER_IMAGE_ATOMIC_INT64_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_IMAGE_ATOMIC_INT64_FEATURES_EXT`
 
 # Version history

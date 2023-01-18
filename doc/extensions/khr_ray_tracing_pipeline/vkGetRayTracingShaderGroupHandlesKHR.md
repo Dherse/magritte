@@ -52,8 +52,8 @@ VkResult vkGetRayTracingShaderGroupHandlesNV(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_ray_tracing_pipeline`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_ray_tracing_pipeline`]
+- [`VK_NV_ray_tracing`]
 - [`Device`]
 - [`Pipeline`]
 

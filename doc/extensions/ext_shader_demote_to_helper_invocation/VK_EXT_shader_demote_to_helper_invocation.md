@@ -20,7 +20,7 @@ This is a better match for the “discard” instruction in HLSL.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -32,8 +32,8 @@ This is a better match for the “discard” instruction in HLSL.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderDemoteToHelperInvocationFeaturesEXT`]
 
 # New constants
-- `VK_EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_EXTENSION_NAME`
-- `VK_EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_SPEC_VERSION`
+- [`EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_EXTENSION_NAME`]
+- [`EXT_SHADER_DEMOTE_TO_HELPER_INVOCATION_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_DEMOTE_TO_HELPER_INVOCATION_FEATURES_EXT`
 
 # Version history

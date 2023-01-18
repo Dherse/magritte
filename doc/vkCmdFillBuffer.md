@@ -16,7 +16,7 @@ void vkCmdFillBuffer(
 - [`command_buffer`] is the command buffer into which the command will be recorded.
 - [`dst_buffer`] is the buffer to be filled.
 - [`dst_offset`] is the byte offset into the buffer at which to start filling, and  **must**  be a multiple of 4.
-- [`size`] is the number of bytes to fill, and  **must**  be either a multiple of 4, or `VK_WHOLE_SIZE` to fill the range from `offset` to the end of the buffer. If `VK_WHOLE_SIZE` is used and the remaining size of the buffer is not a multiple of 4, then the nearest smaller multiple is used.
+- [`size`] is the number of bytes to fill, and  **must**  be either a multiple of 4, or [`WHOLE_SIZE`] to fill the range from `offset` to the end of the buffer. If [`WHOLE_SIZE`] is used and the remaining size of the buffer is not a multiple of 4, then the nearest smaller multiple is used.
 - [`data`] is the 4-byte word written repeatedly to the buffer to fill [`size`] bytes of data. The data word is written to memory according to the host endianness.
 
 # Description
@@ -28,9 +28,9 @@ of [`BufferCreateInfo`] in order for the buffer to be compatible with
 ## Valid Usage
 -  [`dst_offset`] **must**  be less than the size of [`dst_buffer`]
 -  [`dst_offset`] **must**  be a multiple of `4`
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be greater than `0`
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be less than or equal to the size of [`dst_buffer`] minus [`dst_offset`]
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be a multiple of `4`
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be greater than `0`
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be less than or equal to the size of [`dst_buffer`] minus [`dst_offset`]
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be a multiple of `4`
 -  [`dst_buffer`] **must**  have been created with `VK_BUFFER_USAGE_TRANSFER_DST_BIT` usage flag
 -    If [`dst_buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    If [`command_buffer`] is an unprotected command buffer and [`protectedNoFault`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-protectedNoFault) is not supported, [`dst_buffer`] **must**  not be a protected buffer

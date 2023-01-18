@@ -39,7 +39,7 @@ typedef struct VkBufferCreateInfo {
 -    If the [`p_next`] chain includes a [`ExternalMemoryBufferCreateInfo`] structure, its `handleTypes` member  **must**  only contain bits that are also in [`ExternalBufferProperties`]::`externalMemoryProperties.compatibleHandleTypes`, as returned by [`get_physical_device_external_buffer_properties`] with `pExternalBufferInfo->handleType` equal to any one of the handle types specified in [`ExternalMemoryBufferCreateInfo::handle_types`]
 -    If the protected memory feature is not enabled, [`flags`] **must**  not contain `VK_BUFFER_CREATE_PROTECTED_BIT`
 -    If any of the bits `VK_BUFFER_CREATE_SPARSE_BINDING_BIT`, `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`, or `VK_BUFFER_CREATE_SPARSE_ALIASED_BIT` are set, `VK_BUFFER_CREATE_PROTECTED_BIT` **must**  not also be set
--    If the [`p_next`] chain includes a [`DedicatedAllocationBufferCreateInfoNV`] structure, and the `dedicatedAllocation` member of the chained structure is `VK_TRUE`, then [`flags`] **must**  not include `VK_BUFFER_CREATE_SPARSE_BINDING_BIT`, `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`, or `VK_BUFFER_CREATE_SPARSE_ALIASED_BIT`
+-    If the [`p_next`] chain includes a [`DedicatedAllocationBufferCreateInfoNV`] structure, and the `dedicatedAllocation` member of the chained structure is [`TRUE`], then [`flags`] **must**  not include `VK_BUFFER_CREATE_SPARSE_BINDING_BIT`, `VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT`, or `VK_BUFFER_CREATE_SPARSE_ALIASED_BIT`
 -    If [`BufferDeviceAddressCreateInfoEXT::device_address`] is not zero, [`flags`] **must**  include `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT`
 -    If [`BufferOpaqueCaptureAddressCreateInfo::opaque_capture_address`] is not zero, [`flags`] **must**  include `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT`
 -    If [`flags`] includes `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT`, the [bufferDeviceAddressCaptureReplay](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressCaptureReplay) or [[`PhysicalDeviceBufferDeviceAddressFeaturesEXT::buffer_device_address_capture_replay`]](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-bufferDeviceAddressCaptureReplayEXT) feature  **must**  be enabled
@@ -59,8 +59,8 @@ typedef struct VkBufferCreateInfo {
 # Related
 - [`crate::vulkan1_0`]
 - [`BufferConstraintsInfoFUCHSIA`]
-- [VkBufferCreateFlags]()
-- [VkBufferUsageFlags]()
+- [`BufferCreateFlags`]
+- [`BufferUsageFlags`]
 - [`DeviceBufferMemoryRequirements`]
 - [`DeviceSize`]
 - [`SharingMode`]

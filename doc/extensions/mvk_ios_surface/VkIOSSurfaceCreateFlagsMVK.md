@@ -7,7 +7,7 @@ typedef VkFlags VkIOSSurfaceCreateFlagsMVK;
 ```
 
 # Related
-- [`mvk_ios_surface`]
+- [`VK_MVK_ios_surface`]
 - [`IosSurfaceCreateInfoMVK`]
 
 # Notes and documentation

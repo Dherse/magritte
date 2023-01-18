@@ -46,7 +46,7 @@ name in [`PhysicalDeviceRayTracingPropertiesNV`].
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ACCELERATION_STRUCTURE_PROPERTIES_KHR`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`StructureType`]
 
 # Notes and documentation

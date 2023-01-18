@@ -17,8 +17,8 @@ typedef struct VkPipelineExecutableStatisticKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`name`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a short human readable name for this statistic.
-- [`description`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a human readable description for this statistic.
+- [`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a short human readable name for this statistic.
+- [`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a human readable description for this statistic.
 - [`format`] is a [`PipelineExecutableStatisticFormatKHR`] value specifying the format of the data found in [`value`].
 - [`value`] is the value of this statistic.
 
@@ -28,7 +28,7 @@ typedef struct VkPipelineExecutableStatisticKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`PipelineExecutableStatisticFormatKHR`]
 - [`PipelineExecutableStatisticValueKHR`]
 - [`StructureType`]

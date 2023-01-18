@@ -24,9 +24,9 @@ typedef struct VkPhysicalDeviceFragmentShadingRateKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_fragment_shading_rate`]
+- [`VK_KHR_fragment_shading_rate`]
 - [`Extent2D`]
-- [VkSampleCountFlags]()
+- [`SampleCountFlags`]
 - [`StructureType`]
 - [`get_physical_device_fragment_shading_rates_khr`]
 

@@ -32,7 +32,7 @@ void vkDestroyDeferredOperationKHR(
 - Host access to [`operation`] **must**  be externally synchronized
 
 # Related
-- [`khr_deferred_host_operations`]
+- [`VK_KHR_deferred_host_operations`]
 - [`AllocationCallbacks`]
 - [`DeferredOperationKHR`]
 - [`Device`]

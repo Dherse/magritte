@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_2_PLANE_444_FORMATS_FEATURES_EXT`
 
 # Related
-- [`ext_ycbcr_2plane_444_formats`]
+- [`VK_EXT_ycbcr_2plane_444_formats`]
 - [`Bool32`]
 - [`StructureType`]
 

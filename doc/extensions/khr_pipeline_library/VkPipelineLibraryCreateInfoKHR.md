@@ -28,7 +28,7 @@ typedef struct VkPipelineLibraryCreateInfoKHR {
 -    If [`library_count`] is not `0`, [`libraries`] **must**  be a valid pointer to an array of [`library_count`] valid [`Pipeline`] handles
 
 # Related
-- [`khr_pipeline_library`]
+- [`VK_KHR_pipeline_library`]
 - [`Pipeline`]
 - [`RayTracingPipelineCreateInfoKHR`]
 - [`StructureType`]

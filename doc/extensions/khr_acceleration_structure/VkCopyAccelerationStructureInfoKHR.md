@@ -37,7 +37,7 @@ typedef struct VkCopyAccelerationStructureInfoKHR {
 -    Both of [`dst`], and [`src`] **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`CopyAccelerationStructureModeKHR`]
 - [`StructureType`]

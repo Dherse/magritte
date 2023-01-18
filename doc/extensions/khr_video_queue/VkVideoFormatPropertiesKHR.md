@@ -26,7 +26,7 @@ If the `pVideoProfiles` or `imageUsage` provided in input structure
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`Format`]
 - [`StructureType`]
 - [`get_physical_device_video_format_properties_khr`]

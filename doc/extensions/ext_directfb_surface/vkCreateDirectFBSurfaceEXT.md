@@ -29,7 +29,7 @@ VkResult vkCreateDirectFBSurfaceEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`ext_directfb_surface`]
+- [`VK_EXT_directfb_surface`]
 - [`AllocationCallbacks`]
 - [`DirectFBSurfaceCreateInfoEXT`]
 - [`Instance`]

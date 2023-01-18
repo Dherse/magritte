@@ -50,7 +50,7 @@ geometric data to build the acceleration structure with
 -    If [`geometry_count`] is not `0`, [`geometries`] **must**  be a valid pointer to an array of [`geometry_count`] valid [`GeometryNV`] structures
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureCreateInfoNV`]
 - [`AccelerationStructureTypeNV`]
 - [`BuildAccelerationStructureFlagsNV`]

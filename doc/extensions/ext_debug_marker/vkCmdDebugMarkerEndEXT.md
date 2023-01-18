@@ -33,7 +33,7 @@ calls to [`cmd_debug_marker_begin_ext`] and [`cmd_debug_marker_end_ext`] **must*
 ## Command Properties
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`CommandBuffer`]
 
 # Notes and documentation

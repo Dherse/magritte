@@ -37,7 +37,7 @@ variable decorated with a `InputAttachmentIndex` value of  **X** , then it
 uses the attachment provided in [`input_attachments`][ **X** ].
 Input attachments  **must**  also be bound to the pipeline in a descriptor set.
 If the `attachment` member of any element of [`input_attachments`] is
-`VK_ATTACHMENT_UNUSED`, the application  **must**  not read from the
+[`ATTACHMENT_UNUSED`], the application  **must**  not read from the
 corresponding input attachment index.
 Fragment shaders  **can**  use subpass input variables to access the contents of
 an input attachment at the fragment’s (x, y, layer) framebuffer coordinates.
@@ -47,7 +47,7 @@ location in the shader, i.e. if the shader declares an output variable
 decorated with a `Location` value of  **X** , then it uses the attachment
 provided in [`color_attachments`][ **X** ].
 If the `attachment` member of any element of [`color_attachments`] is
-`VK_ATTACHMENT_UNUSED`,
+[`ATTACHMENT_UNUSED`],
 or if [Color Write Enable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-enable) has been
 disabled for the corresponding attachment index,
 then writes to the corresponding location by a fragment shader are
@@ -61,11 +61,11 @@ At the end of each subpass, multisample resolve operations read the
 subpass’s color attachments, and resolve the samples for each pixel within
 the render area to the same pixel location in the corresponding resolve
 attachments, unless the resolve attachment index is
-`VK_ATTACHMENT_UNUSED`.Similarly, if
+[`ATTACHMENT_UNUSED`].Similarly, if
 [`flags`] does not include
 `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and
 [`SubpassDescriptionDepthStencilResolve::depth_stencil_resolve_attachment`]
-is not `NULL` and does not have the value `VK_ATTACHMENT_UNUSED`, it
+is not `NULL` and does not have the value [`ATTACHMENT_UNUSED`], it
 corresponds to the depth/stencil attachment in
 [`depth_stencil_attachment`], and multisample resolve operations for depth
 and stencil are defined by
@@ -95,7 +95,7 @@ multisample resolve operation uses the sample locations state specified in
 the `sampleLocationsInfo` member of the element of the
 [`RenderPassSampleLocationsBeginInfoEXT::post_subpass_sample_locations`]
 for the subpass.If [`depth_stencil_attachment`] is `NULL`, or if its attachment index is
-`VK_ATTACHMENT_UNUSED`, it indicates that no depth/stencil attachment
+[`ATTACHMENT_UNUSED`], it indicates that no depth/stencil attachment
 will be used in the subpass.The contents of an attachment within the render area become undefined at
 the start of a subpass  **S**  if all of the following conditions are true:
 - The attachment is used as a color, depth/stencil, or resolve attachment in any subpass in the render pass.
@@ -116,28 +116,28 @@ attachment.
 -  [`pipeline_bind_point`] **must**  be `VK_PIPELINE_BIND_POINT_GRAPHICS` or `VK_PIPELINE_BIND_POINT_SUBPASS_SHADING_HUAWEI`
 -  [`color_attachment_count`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_color_attachments`]
 -    If the first use of an attachment in this render pass is as an input attachment, and the attachment is not also used as a color or depth/stencil attachment in the same subpass, then `loadOp` **must**  not be `VK_ATTACHMENT_LOAD_OP_CLEAR`
--    If [`resolve_attachments`] is not `NULL`, for each resolve attachment that is not `VK_ATTACHMENT_UNUSED`, the corresponding color attachment  **must**  not be `VK_ATTACHMENT_UNUSED`
--    If [`resolve_attachments`] is not `NULL`, for each resolve attachment that is not `VK_ATTACHMENT_UNUSED`, the corresponding color attachment  **must**  not have a sample count of `VK_SAMPLE_COUNT_1_BIT`
--    If [`resolve_attachments`] is not `NULL`, each resolve attachment that is not `VK_ATTACHMENT_UNUSED` **must**  have a sample count of `VK_SAMPLE_COUNT_1_BIT`
--    If [`resolve_attachments`] is not `NULL`, each resolve attachment that is not `VK_ATTACHMENT_UNUSED` **must**  have the same [`Format`] as its corresponding color attachment
--    All attachments in [`color_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have the same sample count
--    All attachments in [`input_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain at least `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
--    All attachments in [`color_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
--    All attachments in [`resolve_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
--    If [`depth_stencil_attachment`] is not `NULL` and the attachment is not `VK_ATTACHMENT_UNUSED` then it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
--    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`input_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
--    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`color_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
--    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`resolve_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
--    If the `[`amd_mixed_attachment_samples`]` extension is enabled, and all attachments in [`color_attachments`] that are not `VK_ATTACHMENT_UNUSED` **must**  have a sample count that is smaller than or equal to the sample count of [`depth_stencil_attachment`] if it is not `VK_ATTACHMENT_UNUSED`
--    If neither the `[`amd_mixed_attachment_samples`]` nor the `[`nv_framebuffer_mixed_samples`]` extensions are enabled, and if [`depth_stencil_attachment`] is not `VK_ATTACHMENT_UNUSED` and any attachments in [`color_attachments`] are not `VK_ATTACHMENT_UNUSED`, they  **must**  have the same sample count
--    Each element of [`preserve_attachments`] **must**  not be `VK_ATTACHMENT_UNUSED`
+-    If [`resolve_attachments`] is not `NULL`, for each resolve attachment that is not [`ATTACHMENT_UNUSED`], the corresponding color attachment  **must**  not be [`ATTACHMENT_UNUSED`]
+-    If [`resolve_attachments`] is not `NULL`, for each resolve attachment that is not [`ATTACHMENT_UNUSED`], the corresponding color attachment  **must**  not have a sample count of `VK_SAMPLE_COUNT_1_BIT`
+-    If [`resolve_attachments`] is not `NULL`, each resolve attachment that is not [`ATTACHMENT_UNUSED`] **must**  have a sample count of `VK_SAMPLE_COUNT_1_BIT`
+-    If [`resolve_attachments`] is not `NULL`, each resolve attachment that is not [`ATTACHMENT_UNUSED`] **must**  have the same [`Format`] as its corresponding color attachment
+-    All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have the same sample count
+-    All attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain at least `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT` or `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+-    All attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+-    All attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT`
+-    If [`depth_stencil_attachment`] is not `NULL` and the attachment is not [`ATTACHMENT_UNUSED`] then it  **must**  have an image format whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) contain `VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT`
+-    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`input_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+-    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+-    If the [`linearColorAttachment`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-linearColorAttachment) feature is enabled and the image is created with `VK_IMAGE_TILING_LINEAR`, all attachments in [`resolve_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have image formats whose [potential format features](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#potential-format-features) **must**  contain `VK_FORMAT_FEATURE_2_LINEAR_COLOR_ATTACHMENT_BIT_NV`
+-    If the `[`VK_AMD_mixed_attachment_samples`]` extension is enabled, and all attachments in [`color_attachments`] that are not [`ATTACHMENT_UNUSED`] **must**  have a sample count that is smaller than or equal to the sample count of [`depth_stencil_attachment`] if it is not [`ATTACHMENT_UNUSED`]
+-    If neither the `[`VK_AMD_mixed_attachment_samples`]` nor the `[`VK_NV_framebuffer_mixed_samples`]` extensions are enabled, and if [`depth_stencil_attachment`] is not [`ATTACHMENT_UNUSED`] and any attachments in [`color_attachments`] are not [`ATTACHMENT_UNUSED`], they  **must**  have the same sample count
+-    Each element of [`preserve_attachments`] **must**  not be [`ATTACHMENT_UNUSED`]
 -    Each element of [`preserve_attachments`] **must**  not also be an element of any other member of the subpass description
 -    If any attachment is used by more than one [`AttachmentReference`] member, then each use  **must**  use the same `layout`
 -    Each attachment  **must**  follow the [image layout requirements](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#attachment-type-imagelayout) specified for its attachment type
 -    If [`flags`] includes `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`, it  **must**  also include `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX`
--    If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and if [`resolve_attachments`] is not `NULL`, then each resolve attachment  **must**  be `VK_ATTACHMENT_UNUSED`
+-    If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, and if [`resolve_attachments`] is not `NULL`, then each resolve attachment  **must**  be [`ATTACHMENT_UNUSED`]
 -    If [`flags`] includes `VK_SUBPASS_DESCRIPTION_SHADER_RESOLVE_BIT_QCOM`, then the subpass  **must**  be the last subpass in a subpass dependency chain
--    If the render pass is created with `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM` each of the elements of [`input_attachments`] **must**  be `VK_ATTACHMENT_UNUSED`
+-    If the render pass is created with `VK_RENDER_PASS_CREATE_TRANSFORM_BIT_QCOM` each of the elements of [`input_attachments`] **must**  be [`ATTACHMENT_UNUSED`]
 -  [`depth_stencil_attachment`] and [`color_attachments`] must not contain references to the same attachment
 
 ## Valid Usage (Implicit)
@@ -154,7 +154,7 @@ attachment.
 - [`AttachmentReference`]
 - [`PipelineBindPoint`]
 - [`RenderPassCreateInfo`]
-- [VkSubpassDescriptionFlags]()
+- [`SubpassDescriptionFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

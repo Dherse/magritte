@@ -61,7 +61,7 @@ typedef VkDriverId VkDriverIdKHR;
 ```
 
 # Related
-- [`khr_driver_properties`]
+- [`VK_KHR_driver_properties`]
 - [`crate::vulkan1_2`]
 - [`PhysicalDeviceDriverProperties`]
 - [`PhysicalDeviceVulkan12Properties`]

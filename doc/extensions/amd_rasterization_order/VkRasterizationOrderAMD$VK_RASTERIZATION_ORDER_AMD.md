@@ -1,2 +1,0 @@
-[`VK_RASTERIZATION_ORDER_AMD`] specifies that operations for
-each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).

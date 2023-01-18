@@ -1,0 +1,1 @@
+[`NEVER`] specifies that the test evaluates to false.

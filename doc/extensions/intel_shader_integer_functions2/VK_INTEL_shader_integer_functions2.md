@@ -17,7 +17,7 @@ GLSL extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Ian Romanick [ianromanick](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_INTEL_shader_integer_functions2] @ianromanick%0A<<Here describe the issue or question you have about the VK_INTEL_shader_integer_functions2 extension>>)
@@ -26,8 +26,8 @@ GLSL extension.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderIntegerFunctions2FeaturesINTEL`]
 
 # New constants
-- `VK_INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME`
-- `VK_INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION`
+- [`INTEL_SHADER_INTEGER_FUNCTIONS_2_EXTENSION_NAME`]
+- [`INTEL_SHADER_INTEGER_FUNCTIONS_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_FUNCTIONS_2_FEATURES_INTEL`
 
 # Version history

@@ -23,7 +23,7 @@ typedef struct VkHeadlessSurfaceCreateInfoEXT {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_headless_surface`]
+- [`VK_EXT_headless_surface`]
 - [`HeadlessSurfaceCreateFlagsEXT`]
 - [`StructureType`]
 - [`create_headless_surface_ext`]

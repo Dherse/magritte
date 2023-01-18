@@ -29,7 +29,7 @@ typedef struct VkMemoryGetRemoteAddressInfoNV {
 -  [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`nv_external_memory_rdma`]
+- [`VK_NV_external_memory_rdma`]
 - [`DeviceMemory`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]

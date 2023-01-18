@@ -34,8 +34,8 @@ performance.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMultiDrawPropertiesEXT`]
 
 # New constants
-- `VK_EXT_MULTI_DRAW_EXTENSION_NAME`
-- `VK_EXT_MULTI_DRAW_SPEC_VERSION`
+- [`EXT_MULTI_DRAW_EXTENSION_NAME`]
+- [`EXT_MULTI_DRAW_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
 
 # Version history

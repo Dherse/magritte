@@ -27,7 +27,7 @@ implementation-defined and  **can**  be queried by calling
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`nv_device_diagnostic_checkpoints`]
+- [`VK_NV_device_diagnostic_checkpoints`]
 - [`PipelineStageFlagBits`]
 - [`StructureType`]
 - [`get_queue_checkpoint_data_nv`]

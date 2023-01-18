@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_FEATURES_EXT`
 
 # Related
-- [`ext_multi_draw`]
+- [`VK_EXT_multi_draw`]
 - [`Bool32`]
 - [`StructureType`]
 

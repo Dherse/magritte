@@ -47,7 +47,7 @@ If the layout is not supported, then the value written to
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_SET_VARIABLE_DESCRIPTOR_COUNT_LAYOUT_SUPPORT`
 
 # Related
-- [`ext_descriptor_indexing`]
+- [`VK_EXT_descriptor_indexing`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

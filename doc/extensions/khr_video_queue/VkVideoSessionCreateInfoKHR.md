@@ -55,13 +55,13 @@ typedef struct VkVideoSessionCreateInfoKHR {
 -  [`std_header_version`] **must**  be a valid pointer to a valid [`ExtensionProperties`] structure
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`ExtensionProperties`]
 - [`Extent2D`]
 - [`Format`]
 - [`StructureType`]
 - [`VideoProfileKHR`]
-- [VkVideoSessionCreateFlagsKHR]()
+- [`VideoSessionCreateFlagsKHR`]
 - [`create_video_session_khr`]
 
 # Notes and documentation

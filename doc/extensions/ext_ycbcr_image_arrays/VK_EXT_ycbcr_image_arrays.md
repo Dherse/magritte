@@ -13,7 +13,7 @@ created with multiple array layers, which is otherwise restricted.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_sampler_ycbcr_conversion`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
 
 # Contacts
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_ycbcr_image_arrays] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_EXT_ycbcr_image_arrays extension>>)
@@ -22,8 +22,8 @@ created with multiple array layers, which is otherwise restricted.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceYcbcrImageArraysFeaturesEXT`]
 
 # New constants
-- `VK_EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME`
-- `VK_EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION`
+- [`EXT_YCBCR_IMAGE_ARRAYS_EXTENSION_NAME`]
+- [`EXT_YCBCR_IMAGE_ARRAYS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_YCBCR_IMAGE_ARRAYS_FEATURES_EXT`
 
 # Version history

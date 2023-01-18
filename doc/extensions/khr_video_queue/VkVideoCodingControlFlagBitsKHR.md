@@ -12,8 +12,8 @@ typedef enum VkVideoCodingControlFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_CODING_CONTROL_FLAG_BITS_KHR`] indicates a request for the coding control paramaters to be applied to the current state of the bound video session.
-- [`VK_VIDEO_CODING_CONTROL_FLAG_BITS_KHR`] indicates a request for the bound video session device context to be reset before the coding control parameters are applied.
+- [`DEFAULT`] indicates a request for the coding control paramaters to be applied to the current state of the bound video session.
+- [`RESET`] indicates a request for the bound video session device context to be reset before the coding control parameters are applied.
 A newly created video session  **must**  be reset before use for video decode or
 encode operations.
 The reset operation returns all session DPB slots to the unused state (see
@@ -27,8 +27,8 @@ This  **may**  be used when different video sequences are processed with the sam
 session.
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoCodingControlFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoCodingControlFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -32,7 +32,7 @@ typedef struct VkValidationCacheCreateInfoEXT {
 -    If [`initial_data_size`] is not `0`, [`initial_data`] **must**  be a valid pointer to an array of [`initial_data_size`] bytes
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`StructureType`]
 - [`ValidationCacheCreateFlagsEXT`]
 - [`create_validation_cache_ext`]

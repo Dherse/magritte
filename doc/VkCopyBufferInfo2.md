@@ -53,7 +53,7 @@ includes [`s_type`] and [`p_next`] parameters, allowing it to be extended.
 -    Both of [`dst_buffer`], and [`src_buffer`] **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`Buffer`]
 - [`BufferCopy2`]

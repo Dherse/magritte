@@ -24,7 +24,7 @@ through [`get_physical_device_surface_capabilities2_khr`].
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`khr_get_surface_capabilities2`]`
+- Requires `[`VK_KHR_get_surface_capabilities2`]`
 
 # Contacts
 - Sandeep Shinde [sashinde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_surface_protected_capabilities] @sashinde%0A<<Here describe the issue or question you have about the VK_KHR_surface_protected_capabilities extension>>)
@@ -33,8 +33,8 @@ through [`get_physical_device_surface_capabilities2_khr`].
 - Extending [`SurfaceCapabilities2KHR`]:  - [`SurfaceProtectedCapabilitiesKHR`]
 
 # New constants
-- `VK_KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME`
-- `VK_KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION`
+- [`KHR_SURFACE_PROTECTED_CAPABILITIES_EXTENSION_NAME`]
+- [`KHR_SURFACE_PROTECTED_CAPABILITIES_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_PROTECTED_CAPABILITIES_KHR`
 
 # Version history

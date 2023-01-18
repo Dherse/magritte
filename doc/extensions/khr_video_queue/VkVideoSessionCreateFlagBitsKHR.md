@@ -12,11 +12,11 @@ typedef enum VkVideoSessionCreateFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_SESSION_CREATE_FLAG_BITS_KHR`] - create the video session for use with protected video content
+- [`PROTECTED_CONTENT`] - create the video session for use with protected video content
 
 # Related
-- [`khr_video_queue`]
-- [VkVideoSessionCreateFlagsKHR]()
+- [`VK_KHR_video_queue`]
+- [`VideoSessionCreateFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

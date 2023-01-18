@@ -6,7 +6,7 @@ Logical operations are controlled by the `logicOpEnable` and
 It can also be controlled by [`cmd_set_logic_op_ext`] if graphics pipeline
 is created with `VK_DYNAMIC_STATE_LOGIC_OP_EXT` set in
 [`PipelineDynamicStateCreateInfo::dynamic_states`].
-If `logicOpEnable` is `VK_TRUE`, then a logical operation selected
+If `logicOpEnable` is [`TRUE`], then a logical operation selected
 by `logicOp` is applied between each color attachment and the fragment’s
 corresponding output value, and blending of all attachments is treated as if
 it were disabled.

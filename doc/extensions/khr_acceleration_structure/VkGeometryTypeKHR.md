@@ -21,13 +21,13 @@ typedef VkGeometryTypeKHR VkGeometryTypeNV;
 ```
 
 # Description
-- [`VK_GEOMETRY_TYPE_KHR`] specifies a geometry type consisting of triangles.
-- [`VK_GEOMETRY_TYPE_KHR`] specifies a geometry type consisting of axis-aligned bounding boxes.
-- [`VK_GEOMETRY_TYPE_KHR`] specifies a geometry type consisting of acceleration structure instances.
+- [`TRIANGLES`] specifies a geometry type consisting of triangles.
+- [`AABBS`] specifies a geometry type consisting of axis-aligned bounding boxes.
+- [`INSTANCES`] specifies a geometry type consisting of acceleration structure instances.
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureGeometryKHR`]
 - [`GeometryNV`]
 

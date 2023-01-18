@@ -30,10 +30,10 @@ typedef struct VkPhysicalDeviceTransformFeedbackPropertiesEXT {
 - [`max_transform_feedback_stream_data_size`] is the maximum amount of data in bytes for each vertex that captured to one or more transform feedback buffers associated with a specific vertex stream.
 - [`max_transform_feedback_buffer_data_size`] is the maximum amount of data in bytes for each vertex that can be captured to a specific transform feedback buffer.
 - [`max_transform_feedback_buffer_data_stride`] is the maximum stride between each capture of vertex data to the buffer.
-- [`transform_feedback_queries`] is `VK_TRUE` if the implementation supports the `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type. [`transform_feedback_queries`] is `VK_FALSE` if queries of this type  **cannot**  be created.
-- [`transform_feedback_streams_lines_triangles`] is `VK_TRUE` if the implementation supports the geometry shader `OpExecutionMode` of `OutputLineStrip` and `OutputTriangleStrip` in addition to `OutputPoints` when more than one vertex stream is output. If [`transform_feedback_streams_lines_triangles`] is `VK_FALSE` the implementation only supports an `OpExecutionMode` of `OutputPoints` when more than one vertex stream is output from the geometry shader.
-- [`transform_feedback_rasterization_stream_select`] is `VK_TRUE` if the implementation supports the `GeometryStreams` SPIR-V capability and the application can use [`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which vertex stream output is used for rasterization. Otherwise vertex stream `0` **must**  always be used for rasterization.
-- [`transform_feedback_draw`] is `VK_TRUE` if the implementation supports the [`cmd_draw_indirect_byte_count_ext`] function otherwise the function  **must**  not be called.
+- [`transform_feedback_queries`] is [`TRUE`] if the implementation supports the `VK_QUERY_TYPE_TRANSFORM_FEEDBACK_STREAM_EXT` query type. [`transform_feedback_queries`] is [`FALSE`] if queries of this type  **cannot**  be created.
+- [`transform_feedback_streams_lines_triangles`] is [`TRUE`] if the implementation supports the geometry shader `OpExecutionMode` of `OutputLineStrip` and `OutputTriangleStrip` in addition to `OutputPoints` when more than one vertex stream is output. If [`transform_feedback_streams_lines_triangles`] is [`FALSE`] the implementation only supports an `OpExecutionMode` of `OutputPoints` when more than one vertex stream is output from the geometry shader.
+- [`transform_feedback_rasterization_stream_select`] is [`TRUE`] if the implementation supports the `GeometryStreams` SPIR-V capability and the application can use [`PipelineRasterizationStateStreamCreateInfoEXT`] to modify which vertex stream output is used for rasterization. Otherwise vertex stream `0` **must**  always be used for rasterization.
+- [`transform_feedback_draw`] is [`TRUE`] if the implementation supports the [`cmd_draw_indirect_byte_count_ext`] function otherwise the function  **must**  not be called.
 
 # Description
 If the [`PhysicalDeviceTransformFeedbackPropertiesEXT`] structure is included in the [`p_next`] chain of the
@@ -44,7 +44,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TRANSFORM_FEEDBACK_PROPERTIES_EXT`
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`Bool32`]
 - [`DeviceSize`]
 - [`StructureType`]

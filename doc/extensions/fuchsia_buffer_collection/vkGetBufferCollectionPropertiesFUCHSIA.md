@@ -50,7 +50,7 @@ If that occurs, [`get_buffer_collection_properties_fuchsia`] will return
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionFUCHSIA`]
 - [`BufferCollectionPropertiesFUCHSIA`]
 - [`Device`]

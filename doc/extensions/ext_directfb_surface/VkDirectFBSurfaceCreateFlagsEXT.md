@@ -7,7 +7,7 @@ typedef VkFlags VkDirectFBSurfaceCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_directfb_surface`]
+- [`VK_EXT_directfb_surface`]
 - [`DirectFBSurfaceCreateInfoEXT`]
 
 # Notes and documentation

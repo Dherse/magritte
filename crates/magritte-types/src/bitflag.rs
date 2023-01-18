@@ -32,14 +32,19 @@ pub struct Bitflag<'a> {
 impl Bitflag<'static> {
     /// Creates a new bit flags from its flags and type
     #[inline]
-    pub const fn new(
+    pub fn new(
         original_name: String,
         name: String,
         width: u8,
         bits: SymbolTable<'static, Bit<'static>>,
-        aliases: SymbolTable<'static, Alias<'static>>,
+        mut aliases: SymbolTable<'static, Alias<'static>>,
         origin: Origin<'static>,
     ) -> Self {
+        // Remove aliases that are equivalent to some bits.
+        // This is due to the renaming of some bits in the past
+        // that still have aliases to their old names.
+        aliases.retain(|item| !bits.contains_key(item.name()));
+
         Self {
             original_name: Cow::Owned(original_name),
             name,
@@ -52,7 +57,7 @@ impl Bitflag<'static> {
 
     /// Creates a bit flags from its flags and type with a default origin of unknown
     #[inline]
-    pub const fn new_no_origin(
+    pub fn new_no_origin(
         original_name: String,
         name: String,
         width: u8,
@@ -64,6 +69,10 @@ impl Bitflag<'static> {
 }
 
 impl<'a> Bitflag<'a> {
+    pub fn clear_duplicates(&mut self) {
+        self.aliases.iter_mut().filter(|item| self.bits.contains_key(item.name())).for_each(|item| item.name = Cow::Owned(format!("{}_DUP", item.name)));
+    }
+    
     /// Get a reference to the bit flags's original name.
     pub fn original_name(&self) -> &str {
         self.original_name.as_ref()
@@ -72,6 +81,19 @@ impl<'a> Bitflag<'a> {
     /// Get a reference to the bit flags's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the bit flags's origin.
@@ -188,6 +210,23 @@ impl<'a> Bit<'a> {
     /// Get a reference to the bit's name.
     pub fn name(&self) -> &str {
         self.name.as_ref()
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        if self.name().starts_with(char::is_numeric) {
+            quote::format_ident!("N{}", self.name())
+        } else {
+            proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+        }
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
     }
 
     /// Get a reference to the bit's origin.

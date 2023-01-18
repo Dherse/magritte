@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DISCARD_RECTANGLE_PROPERTIES_EXT`
 
 # Related
-- [`ext_discard_rectangles`]
+- [`VK_EXT_discard_rectangles`]
 - [`StructureType`]
 
 # Notes and documentation

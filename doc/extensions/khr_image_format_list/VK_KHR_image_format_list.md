@@ -30,8 +30,8 @@ support all formats in the format compatibility class of the image format.
 - Extending [`ImageCreateInfo`], [`SwapchainCreateInfoKHR`], [`PhysicalDeviceImageFormatInfo2`]:  - [`ImageFormatListCreateInfoKHR`]
 
 # New constants
-- `VK_KHR_IMAGE_FORMAT_LIST_EXTENSION_NAME`
-- `VK_KHR_IMAGE_FORMAT_LIST_SPEC_VERSION`
+- [`KHR_IMAGE_FORMAT_LIST_EXTENSION_NAME`]
+- [`KHR_IMAGE_FORMAT_LIST_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_FORMAT_LIST_CREATE_INFO_KHR`
 
 # Version history

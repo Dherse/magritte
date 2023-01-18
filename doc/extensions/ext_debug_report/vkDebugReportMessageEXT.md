@@ -44,8 +44,8 @@ registered.
 -  [`p_message`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`ext_debug_report`]
-- [VkDebugReportFlagsEXT]()
+- [`VK_EXT_debug_report`]
+- [`DebugReportFlagsEXT`]
 - [`DebugReportObjectTypeEXT`]
 - [`Instance`]
 

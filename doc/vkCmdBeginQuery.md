@@ -66,7 +66,7 @@ are executed are considered active for those secondary command buffers.
 # Related
 - [`crate::vulkan1_0`]
 - [`CommandBuffer`]
-- [VkQueryControlFlags]()
+- [`QueryControlFlags`]
 - [`QueryPool`]
 
 # Notes and documentation

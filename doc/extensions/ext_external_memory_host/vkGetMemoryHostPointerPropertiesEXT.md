@@ -35,7 +35,7 @@ VkResult vkGetMemoryHostPointerPropertiesEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`ext_external_memory_host`]
+- [`VK_EXT_external_memory_host`]
 - [`Device`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`MemoryHostPointerPropertiesEXT`]

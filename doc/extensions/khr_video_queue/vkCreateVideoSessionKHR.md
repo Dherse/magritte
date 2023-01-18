@@ -29,7 +29,7 @@ VkResult vkCreateVideoSessionKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_INCOMPATIBLE_DRIVER`  - `VK_ERROR_FEATURE_NOT_PRESENT`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`VideoSessionCreateInfoKHR`]

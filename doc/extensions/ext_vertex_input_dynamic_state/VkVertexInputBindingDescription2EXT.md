@@ -36,7 +36,7 @@ typedef struct VkVertexInputBindingDescription2EXT {
 -  [`input_rate`] **must**  be a valid [`VertexInputRate`] value
 
 # Related
-- [`ext_vertex_input_dynamic_state`]
+- [`VK_EXT_vertex_input_dynamic_state`]
 - [`StructureType`]
 - [`VertexInputRate`]
 - [`cmd_set_vertex_input_ext`]

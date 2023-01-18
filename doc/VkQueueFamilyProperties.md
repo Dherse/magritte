@@ -37,7 +37,7 @@ queried from the physical device.For physical device feature queries see the [Fe
 - [`crate::vulkan1_0`]
 - [`Extent3D`]
 - [`QueueFamilyProperties2`]
-- [VkQueueFlags]()
+- [`QueueFlags`]
 - [`get_physical_device_queue_family_properties`]
 
 # Notes and documentation

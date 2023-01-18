@@ -21,10 +21,10 @@ convert them to a known color space.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_sampler_ycbcr_conversion`]`
-- Requires `[`khr_external_memory`]`
-- Requires `[`ext_queue_family_foreign`]`
-- Requires `[`khr_dedicated_allocation`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
+- Requires `[`VK_KHR_external_memory`]`
+- Requires `[`VK_EXT_queue_family_foreign`]`
+- Requires `[`VK_KHR_dedicated_allocation`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ANDROID_external_memory_android_hardware_buffer] @critsec%0A<<Here describe the issue or question you have about the VK_ANDROID_external_memory_android_hardware_buffer extension>>)
@@ -43,20 +43,20 @@ convert them to a known color space.
 - Extending [`ImageCreateInfo`], [`SamplerYcbcrConversionCreateInfo`]:  - [`ExternalFormatANDROID`] 
 - Extending [`ImageFormatProperties2`]:  - [`AndroidHardwareBufferUsageANDROID`] 
 - Extending [`MemoryAllocateInfo`]:  - [`ImportAndroidHardwareBufferInfoANDROID`] 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - Extending [`AndroidHardwareBufferPropertiesANDROID`]:  - [`AndroidHardwareBufferFormatProperties2ANDROID`]
 
 # New constants
-- `VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME`
-- `VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION`
+- [`ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME`]
+- [`ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION`]
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ANDROID_HARDWARE_BUFFER_BIT_ANDROID` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_ANDROID`  - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_PROPERTIES_ANDROID`  - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_USAGE_ANDROID`  - `VK_STRUCTURE_TYPE_EXTERNAL_FORMAT_ANDROID`  - `VK_STRUCTURE_TYPE_IMPORT_ANDROID_HARDWARE_BUFFER_INFO_ANDROID`  - `VK_STRUCTURE_TYPE_MEMORY_GET_ANDROID_HARDWARE_BUFFER_INFO_ANDROID` 
-If [`khr_format_feature_flags2`] is supported:
+If [`VK_KHR_format_feature_flags2`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ANDROID_HARDWARE_BUFFER_FORMAT_PROPERTIES_2_ANDROID`
 
 # Known issues & F.A.Q.
 1) Other external memory objects are represented as weakly-typed handles
-(e.g. Win32 `HANDLE` or POSIX file descriptor), and require a handle type
+(e.g. Win32 [`HANDLE`] or POSIX file descriptor), and require a handle type
 parameter along with handles.
 [`AHardwareBuffer`] is strongly typed, so naming the handle type is
 redundant.
@@ -130,7 +130,7 @@ new Android feature.
 
 # Version history
 - Revision 5, 2022-02-04 (Chris Forbes)  - Describe mapping of flags for storage image support 
-- Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`khr_format_feature_flags2`]` to `vk.xml` 
+- Revision 4, 2021-09-30 (Jon Leech)  - Add interaction with `[`VK_KHR_format_feature_flags2`]` to `vk.xml` 
 - Revision 3, 2019-08-27 (Jon Leech)  - Update revision history to correspond to XML version number 
 - Revision 2, 2018-04-09 (Petr Kraus)  - Markup fixes and remove incorrect Draft status 
 - Revision 1, 2018-03-04 (Jesse Hall)  - Initial version

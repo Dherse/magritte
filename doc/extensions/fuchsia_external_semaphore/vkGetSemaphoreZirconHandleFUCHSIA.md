@@ -26,14 +26,14 @@ depending on the transference of the specified handle type, as described in
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
 -  [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid [`SemaphoreGetZirconHandleInfoFUCHSIA`] structure
--  [`p_zircon_handle`] **must**  be a valid pointer to a `zx_handle_t` value
+-  [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
 
 ## Return Codes
 *   - `VK_SUCCESS` 
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`fuchsia_external_semaphore`]
+- [`VK_FUCHSIA_external_semaphore`]
 - [`Device`]
 - [`SemaphoreGetZirconHandleInfoFUCHSIA`]
 

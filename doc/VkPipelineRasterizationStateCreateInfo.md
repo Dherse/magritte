@@ -45,10 +45,10 @@ This structure enables selecting the rasterization order to use when
 rendering with the corresponding graphics pipeline as described in
 [Rasterization Order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-order).
 ## Valid Usage
--    If the [depth clamping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClamp) feature is not enabled, [`depth_clamp_enable`] **must**  be `VK_FALSE`
+-    If the [depth clamping](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthClamp) feature is not enabled, [`depth_clamp_enable`] **must**  be [`FALSE`]
 -    If the [non-solid fill modes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-fillModeNonSolid) feature is not enabled, [`polygon_mode`] **must**  be `VK_POLYGON_MODE_FILL` or `VK_POLYGON_MODE_FILL_RECTANGLE_NV`
--    If the `[`nv_fill_rectangle`]` extension is not enabled, [`polygon_mode`] **must**  not be `VK_POLYGON_MODE_FILL_RECTANGLE_NV`
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::point_polygons`] is `VK_FALSE`, and [`rasterizer_discard_enable`] is `VK_FALSE`, [`polygon_mode`] **must**  not be `VK_POLYGON_MODE_POINT`
+-    If the `[`VK_NV_fill_rectangle`]` extension is not enabled, [`polygon_mode`] **must**  not be `VK_POLYGON_MODE_FILL_RECTANGLE_NV`
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::point_polygons`] is [`FALSE`], and [`rasterizer_discard_enable`] is [`FALSE`], [`polygon_mode`] **must**  not be `VK_POLYGON_MODE_POINT`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO`
@@ -62,7 +62,7 @@ rendering with the corresponding graphics pipeline as described in
 # Related
 - [`crate::vulkan1_0`]
 - [`Bool32`]
-- [VkCullModeFlags]()
+- [`CullModeFlags`]
 - [`FrontFace`]
 - [`GraphicsPipelineCreateInfo`]
 - [`PipelineRasterizationStateCreateFlags`]

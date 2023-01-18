@@ -26,7 +26,7 @@ typedef struct VkCalibratedTimestampInfoEXT {
 -  [`time_domain`] **must**  be a valid [`TimeDomainEXT`] value
 
 # Related
-- [`ext_calibrated_timestamps`]
+- [`VK_EXT_calibrated_timestamps`]
 - [`StructureType`]
 - [`TimeDomainEXT`]
 - [`get_calibrated_timestamps_ext`]

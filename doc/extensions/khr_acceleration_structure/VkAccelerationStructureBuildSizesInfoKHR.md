@@ -28,7 +28,7 @@ typedef struct VkAccelerationStructureBuildSizesInfoKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`DeviceSize`]
 - [`StructureType`]
 - [`get_acceleration_structure_build_sizes_khr`]

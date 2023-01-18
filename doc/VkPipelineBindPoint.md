@@ -18,8 +18,8 @@ typedef enum VkPipelineBindPoint {
 ```
 
 # Description
-- [`VK_PIPELINE_BIND_POINT`] specifies binding as a compute pipeline.
-- [`VK_PIPELINE_BIND_POINT`] specifies binding as a graphics pipeline.
+- [`COMPUTE`] specifies binding as a compute pipeline.
+- [`GRAPHICS`] specifies binding as a graphics pipeline.
 - [`RAY_TRACING_KHR`] specifies binding as a ray tracing pipeline.
 - [`SUBPASS_SHADING_HUAWEI`] specifies binding as a subpass shading pipeline.
 

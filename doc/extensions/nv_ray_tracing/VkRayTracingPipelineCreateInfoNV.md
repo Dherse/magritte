@@ -72,9 +72,9 @@ Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/v
 -    Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`Pipeline`]
-- [VkPipelineCreateFlags]()
+- [`PipelineCreateFlags`]
 - [`PipelineLayout`]
 - [`PipelineShaderStageCreateInfo`]
 - [`RayTracingShaderGroupCreateInfoNV`]

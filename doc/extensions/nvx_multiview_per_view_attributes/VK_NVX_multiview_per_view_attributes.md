@@ -22,7 +22,7 @@ compiled for this subpass will obey this restriction.Shaders that use the new pe
 written  **must**  be such that `gl_Position =
 gl_PositionPerViewNV[gl_ViewIndex]` for all views in the subpass.
 Implementations are free to either use the per-view outputs or the
-non-per-view outputs, whichever would be more efficient.If `[`nv_viewport_array2`]` is not also supported and enabled, the
+non-per-view outputs, whichever would be more efficient.If `[`VK_NV_viewport_array2`]` is not also supported and enabled, the
 per-view viewport mask  **must**  not be used.
 
 # Registered extension number
@@ -33,7 +33,7 @@ per-view viewport mask  **must**  not be used.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_multiview`]`
+- Requires `[`VK_KHR_multiview`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NVX_multiview_per_view_attributes] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NVX_multiview_per_view_attributes extension>>)
@@ -42,8 +42,8 @@ per-view viewport mask  **must**  not be used.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceMultiviewPerViewAttributesPropertiesNVX`]
 
 # New constants
-- `VK_NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME`
-- `VK_NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION`
+- [`NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_EXTENSION_NAME`]
+- [`NVX_MULTIVIEW_PER_VIEW_ATTRIBUTES_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PER_VIEW_ATTRIBUTES_PROPERTIES_NVX` 
 - Extending [`SubpassDescriptionFlagBits`]:  - `VK_SUBPASS_DESCRIPTION_PER_VIEW_ATTRIBUTES_BIT_NVX`  - `VK_SUBPASS_DESCRIPTION_PER_VIEW_POSITION_X_ONLY_BIT_NVX`
 
@@ -53,7 +53,7 @@ per-view viewport mask  **must**  not be used.
 # Other information
 * 2017-01-13
 * No known IP claims.
-*   - This extension requires [`SPV_NVX_multiview_per_view_attributes`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NVX_multiview_per_view_attributes.html)  - This extension provides API support for [`GL_NVX_multiview_per_view_attributes`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt)  - This extension interacts with `[`nv_viewport_array2`]`. 
+*   - This extension requires [`SPV_NVX_multiview_per_view_attributes`](https://htmlpreview.github.io/?https://github.com/KhronosGroup/SPIRV-Registry/blob/master/extensions/NV/SPV_NVX_multiview_per_view_attributes.html)  - This extension provides API support for [`GL_NVX_multiview_per_view_attributes`](https://github.com/KhronosGroup/GLSL/blob/master/extensions/nvx/GL_NVX_multiview_per_view_attributes.txt)  - This extension interacts with `[`VK_NV_viewport_array2`]`. 
 *   - Jeff Bolz, NVIDIA  - Daniel Koch, NVIDIA
 
 # Related

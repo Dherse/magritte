@@ -24,7 +24,7 @@ void vkGetPhysicalDeviceMultisamplePropertiesEXT(
 -  [`p_multisample_properties`] **must**  be a valid pointer to a [`MultisamplePropertiesEXT`] structure
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`MultisamplePropertiesEXT`]
 - [`PhysicalDevice`]
 - [`SampleCountFlagBits`]

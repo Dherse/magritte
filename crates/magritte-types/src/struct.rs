@@ -78,6 +78,19 @@ impl<'a> Struct<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Get a reference to the struct's extends.
     pub fn extends(&self) -> &Vec<Cow<'a, str>> {
         &self.extends
@@ -224,6 +237,19 @@ impl<'a> Field<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Get a reference to the field's original name.
     pub fn original_name(&self) -> &str {
         self.original_name.as_ref()
@@ -271,7 +297,7 @@ impl<'a> Field<'a> {
 
     /// Get a reference to the field's value.
     pub fn value(&self) -> Option<&str> {
-        self.value.as_ref().map(|s| s as &str)
+        self.value.as_deref()
     }
 
     pub fn is_opaque(&self, source: &Source<'a>) -> bool {

@@ -1,1 +1,0 @@
-[`VK_IMAGE_ASPECT_FLAG_BITS`] specifies the color aspect.

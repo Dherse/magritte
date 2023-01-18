@@ -10,7 +10,7 @@ terminate and sets the coverage of shaded samples to `0`; only previously
 executed instructions will have observable effects.
 The `OpTerminateInvocation` instruction, along with the
 `OpDemoteToHelperInvocation` instruction from the
-`[`ext_shader_demote_to_helper_invocation`]` extension, together
+`[`VK_EXT_shader_demote_to_helper_invocation`]` extension, together
 replace the `OpKill` instruction, which could behave like either of these
 instructions.
 `OpTerminateInvocation` provides the behavior required by the GLSL
@@ -25,7 +25,7 @@ and applications that need the GLSL `discard` behavior.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -37,8 +37,8 @@ and applications that need the GLSL `discard` behavior.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderTerminateInvocationFeaturesKHR`]
 
 # New constants
-- `VK_KHR_SHADER_TERMINATE_INVOCATION_EXTENSION_NAME`
-- `VK_KHR_SHADER_TERMINATE_INVOCATION_SPEC_VERSION`
+- [`KHR_SHADER_TERMINATE_INVOCATION_EXTENSION_NAME`]
+- [`KHR_SHADER_TERMINATE_INVOCATION_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_TERMINATE_INVOCATION_FEATURES_KHR`
 
 # Version history

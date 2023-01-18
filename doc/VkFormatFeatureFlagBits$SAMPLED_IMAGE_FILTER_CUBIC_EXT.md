@@ -4,6 +4,6 @@ that [`Image`] **can**  be used with a sampler that has either of
 be the source image for a blit with `filter` set to
 `VK_FILTER_CUBIC_EXT`.
 This bit  **must**  only be exposed for formats that also support the
-[`VK_FORMAT_FEATURE_FLAG_BITS`].
+[`SAMPLED_IMAGE`].
 If the format being queried is a depth/stencil format, this only
 specifies that the depth aspect is cubic filterable.

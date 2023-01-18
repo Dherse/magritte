@@ -36,7 +36,7 @@ typedef VkDescriptorPoolInlineUniformBlockCreateInfo VkDescriptorPoolInlineUnifo
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO`
 
 # Related
-- [`ext_inline_uniform_block`]
+- [`VK_EXT_inline_uniform_block`]
 - [`crate::vulkan1_3`]
 - [`StructureType`]
 

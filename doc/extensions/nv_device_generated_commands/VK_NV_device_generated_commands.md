@@ -45,7 +45,7 @@ specialized shaders, etc.).
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`khr_buffer_device_address`]`
+- Requires `[`VK_KHR_buffer_device_address`]`
 
 # Contacts
 - Christoph Kubisch [pixeljetstream](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_generated_commands] @pixeljetstream%0A<<Here describe the issue or question you have about the VK_NV_device_generated_commands extension>>)
@@ -82,12 +82,12 @@ specialized shaders, etc.).
 - [`IndirectStateFlagBitsNV`]
 
 # New bitmasks
-- [VkIndirectCommandsLayoutUsageFlagsNV]()
-- [VkIndirectStateFlagsNV]()
+- [`IndirectCommandsLayoutUsageFlagsNV`]
+- [`IndirectStateFlagsNV`]
 
 # New constants
-- `VK_NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME`
-- `VK_NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION`
+- [`NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME`]
+- [`NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_COMMAND_PREPROCESS_READ_BIT_NV`  - `VK_ACCESS_COMMAND_PREPROCESS_WRITE_BIT_NV` 
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NV` 
 - Extending [`PipelineCreateFlagBits`]:  - `VK_PIPELINE_CREATE_INDIRECT_BINDABLE_BIT_NV` 
@@ -95,7 +95,7 @@ specialized shaders, etc.).
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_INFO_NV`  - `VK_STRUCTURE_TYPE_GENERATED_COMMANDS_MEMORY_REQUIREMENTS_INFO_NV`  - `VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_SHADER_GROUPS_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_GRAPHICS_SHADER_GROUP_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_INDIRECT_COMMANDS_LAYOUT_TOKEN_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_GENERATED_COMMANDS_PROPERTIES_NV`
 
 # Known issues & F.A.Q.
-1) How to name this extension ?[`nv_device_generated_commands`]As usual, one of the hardest issues ;)Alternatives: `VK_gpu_commands`, `VK_execute_commands`,
+1) How to name this extension ?[`VK_NV_device_generated_commands`]As usual, one of the hardest issues ;)Alternatives: `VK_gpu_commands`, `VK_execute_commands`,
 `VK_device_commands`, `VK_device_execute_commands`, `VK_device_execute`,
 `VK_device_created_commands`, `VK_device_recorded_commands`,
 `VK_device_generated_commands``VK_indirect_generated_commands`2) Should we use a serial stateful token stream or stateless sequence
@@ -164,7 +164,7 @@ the generated commands by [`cmd_execute_generated_commands_nv`], use:
 - `dstStageMask` = `VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT`
 - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`
 When [`cmd_execute_generated_commands_nv`] is used with a
-`isPreprocessed` of `VK_FALSE`, the generated commands are implicitly
+`isPreprocessed` of [`FALSE`], the generated commands are implicitly
 preprocessed, therefore one only needs to synchronize the inputs via:
 - `dstStageMask` = `VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT`
 - `dstAccessMask` = `VK_ACCESS_INDIRECT_COMMAND_READ_BIT`
@@ -201,7 +201,7 @@ VK_KHR_pipeline_library is no longer provisional.
 
 # Other information
 * 2020-02-20
-*   - This extension requires Vulkan 1.1  - This extension requires [`ext_buffer_device_address`] or [`khr_buffer_device_address`] or Vulkan 1.2 for the ability to bind vertex and index buffers on the device.  - This extension interacts with [`nv_mesh_shader`]. If the latter extension is not supported, remove the command token to initiate mesh tasks drawing in this extension. 
+*   - This extension requires Vulkan 1.1  - This extension requires [`VK_EXT_buffer_device_address`] or [`VK_KHR_buffer_device_address`] or Vulkan 1.2 for the ability to bind vertex and index buffers on the device.  - This extension interacts with [`VK_NV_mesh_shader`]. If the latter extension is not supported, remove the command token to initiate mesh tasks drawing in this extension. 
 *   - Christoph Kubisch, NVIDIA  - Pierre Boudier, NVIDIA  - Jeff Bolz, NVIDIA  - Eric Werness, NVIDIA  - Yuriy O’Donnell, Epic Games  - Baldur Karlsson, Valve  - Mathias Schott, NVIDIA  - Tyson Smith, NVIDIA  - Ingo Esser, NVIDIA
 
 # Related
@@ -216,11 +216,11 @@ VK_KHR_pipeline_library is no longer provisional.
 - [`IndirectCommandsLayoutNV`]
 - [`IndirectCommandsLayoutTokenNV`]
 - [`IndirectCommandsLayoutUsageFlagBitsNV`]
-- [VkIndirectCommandsLayoutUsageFlagsNV]()
+- [`IndirectCommandsLayoutUsageFlagsNV`]
 - [`IndirectCommandsStreamNV`]
 - [`IndirectCommandsTokenTypeNV`]
 - [`IndirectStateFlagBitsNV`]
-- [VkIndirectStateFlagsNV]()
+- [`IndirectStateFlagsNV`]
 - [`PhysicalDeviceDeviceGeneratedCommandsFeaturesNV`]
 - [`PhysicalDeviceDeviceGeneratedCommandsPropertiesNV`]
 - [`SetStateFlagsIndirectCommandNV`]

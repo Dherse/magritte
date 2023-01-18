@@ -1,0 +1,1 @@
+[`GEOMETRY`] specifies the geometry stage.

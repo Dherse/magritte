@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
 
 # Related
-- [`khr_ray_query`]
+- [`VK_KHR_ray_query`]
 - [`Bool32`]
 - [`StructureType`]
 

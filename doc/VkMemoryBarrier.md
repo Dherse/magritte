@@ -32,7 +32,7 @@ access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/v
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkAccessFlags]()
+- [`AccessFlags`]
 - [`StructureType`]
 - [`cmd_pipeline_barrier`]
 - [`cmd_wait_events`]

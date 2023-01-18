@@ -31,7 +31,7 @@ typedef struct VkGeneratedCommandsInfoNV {
 - [`stream_count`] defines the number of input streams
 - [`streams`] is a pointer to an array of [`stream_count`][`IndirectCommandsStreamNV`] structures providing the input data for the tokens used in [`indirect_commands_layout`].
 - [`sequences_count`] is the maximum number of sequences to reserve. If [`sequences_count_buffer`] is [`crate::Handle::null`], this is also the actual number of sequences generated.
-- [`preprocess_buffer`] is the [`Buffer`] that is used for preprocessing the input data for execution. If this structure is used with [`cmd_execute_generated_commands_nv`] with its `isPreprocessed` set to `VK_TRUE`, then the preprocessing step is skipped and data is only read from this buffer.
+- [`preprocess_buffer`] is the [`Buffer`] that is used for preprocessing the input data for execution. If this structure is used with [`cmd_execute_generated_commands_nv`] with its `isPreprocessed` set to [`TRUE`], then the preprocessing step is skipped and data is only read from this buffer.
 - [`preprocess_offset`] is the byte offset into [`preprocess_buffer`] where the preprocessed data is stored.
 - [`preprocess_size`] is the maximum byte size within the [`preprocess_buffer`] after the [`preprocess_offset`] that is available for preprocessing.
 - [`sequences_count_buffer`] is a [`Buffer`] in which the actual number of sequences is provided as single `uint32_t` value.
@@ -74,7 +74,7 @@ typedef struct VkGeneratedCommandsInfoNV {
 -    Each of [`indirect_commands_layout`], [`pipeline`], [`preprocess_buffer`], [`sequences_count_buffer`], and [`sequences_index_buffer`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`IndirectCommandsLayoutNV`]

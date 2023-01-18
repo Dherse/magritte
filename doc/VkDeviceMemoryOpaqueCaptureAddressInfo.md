@@ -31,7 +31,7 @@ typedef VkDeviceMemoryOpaqueCaptureAddressInfo VkDeviceMemoryOpaqueCaptureAddres
 -  [`memory`] **must**  be a valid [`DeviceMemory`] handle
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`DeviceMemory`]
 - [`StructureType`]

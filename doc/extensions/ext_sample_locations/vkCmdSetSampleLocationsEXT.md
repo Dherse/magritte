@@ -20,13 +20,13 @@ commands when the graphics pipeline is created with
 `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT` set in
 [`PipelineDynamicStateCreateInfo::dynamic_states`], and when the
 [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_enable`]
-property of the bound graphics pipeline is `VK_TRUE`.
+property of the bound graphics pipeline is [`TRUE`].
 Otherwise, this state is specified by the
 [`PipelineSampleLocationsStateCreateInfoEXT::sample_locations_info`]
 values used to create the currently active pipeline.
 ## Valid Usage
 -    The `sampleLocationsPerPixel` member of [`p_sample_locations_info`] **must**  equal the `rasterizationSamples` member of the [`PipelineMultisampleStateCreateInfo`] structure the bound graphics pipeline has been created with
--    If [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is `VK_FALSE` then the current render pass  **must**  have been begun by specifying a [`RenderPassSampleLocationsBeginInfoEXT`] structure whose `pPostSubpassSampleLocations` member contains an element with a `subpassIndex` matching the current subpass index and the `sampleLocationsInfo` member of that element  **must**  match the sample locations state pointed to by [`p_sample_locations_info`]
+-    If [`PhysicalDeviceSampleLocationsPropertiesEXT::variable_sample_locations`] is [`FALSE`] then the current render pass  **must**  have been begun by specifying a [`RenderPassSampleLocationsBeginInfoEXT`] structure whose `pPostSubpassSampleLocations` member contains an element with a `subpassIndex` matching the current subpass index and the `sampleLocationsInfo` member of that element  **must**  match the sample locations state pointed to by [`p_sample_locations_info`]
 
 ## Valid Usage (Implicit)
 -  [`command_buffer`] **must**  be a valid [`CommandBuffer`] handle
@@ -41,7 +41,7 @@ values used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`CommandBuffer`]
 - [`SampleLocationsInfoEXT`]
 

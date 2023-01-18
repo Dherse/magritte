@@ -4,8 +4,8 @@
 This extension provides new entry points to query device surface
 capabilities in a way that can be easily extended by other extensions,
 without introducing any further entry points.
-This extension can be considered the `[`khr_surface`]` equivalent of
-the `[`khr_get_physical_device_properties2`]` extension.
+This extension can be considered the `[`VK_KHR_surface`]` equivalent of
+the `[`VK_KHR_get_physical_device_properties2`]` extension.
 
 # Registered extension number
 120
@@ -15,7 +15,7 @@ the `[`khr_get_physical_device_properties2`]` extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_get_surface_capabilities2] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_get_surface_capabilities2 extension>>)
@@ -30,12 +30,12 @@ the `[`khr_get_physical_device_properties2`]` extension.
 - [`SurfaceFormat2KHR`]
 
 # New constants
-- `VK_KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME`
-- `VK_KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION`
+- [`KHR_GET_SURFACE_CAPABILITIES_2_EXTENSION_NAME`]
+- [`KHR_GET_SURFACE_CAPABILITIES_2_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`  - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_2_KHR`  - `VK_STRUCTURE_TYPE_SURFACE_FORMAT_2_KHR`
 
 # Known issues & F.A.Q.
-1) What should this extension be named? **RESOLVED** : [`khr_get_surface_capabilities2`].
+1) What should this extension be named? **RESOLVED** : [`VK_KHR_get_surface_capabilities2`].
 Other alternatives:
 - `VK_KHR_surface2`
 - One extension, combining a separate display-specific query extension.

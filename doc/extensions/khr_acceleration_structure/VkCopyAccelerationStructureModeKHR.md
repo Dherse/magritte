@@ -23,14 +23,14 @@ typedef VkCopyAccelerationStructureModeKHR VkCopyAccelerationStructureModeNV;
 ```
 
 # Description
-- [`VK_COPY_ACCELERATION_STRUCTURE_MODE_KHR`] creates a direct copy of the acceleration structure specified in `src` into the one specified by `dst`. The `dst` acceleration structure  **must**  have been created with the same parameters as `src`. If `src` contains references to other acceleration structures, `dst` will reference the same acceleration structures.
-- [`VK_COPY_ACCELERATION_STRUCTURE_MODE_KHR`] creates a more compact version of an acceleration structure `src` into `dst`. The acceleration structure `dst` **must**  have been created with a size at least as large as that returned by [`cmd_write_acceleration_structures_properties_khr`] or [`write_acceleration_structures_properties_khr`] after the build of the acceleration structure specified by `src`. If `src` contains references to other acceleration structures, `dst` will reference the same acceleration structures.
-- [`VK_COPY_ACCELERATION_STRUCTURE_MODE_KHR`] serializes the acceleration structure to a semi-opaque format which can be reloaded on a compatible implementation.
-- [`VK_COPY_ACCELERATION_STRUCTURE_MODE_KHR`] deserializes the semi-opaque serialization format in the buffer to the acceleration structure.
+- [`CLONE`] creates a direct copy of the acceleration structure specified in `src` into the one specified by `dst`. The `dst` acceleration structure  **must**  have been created with the same parameters as `src`. If `src` contains references to other acceleration structures, `dst` will reference the same acceleration structures.
+- [`COMPACT`] creates a more compact version of an acceleration structure `src` into `dst`. The acceleration structure `dst` **must**  have been created with a size at least as large as that returned by [`cmd_write_acceleration_structures_properties_khr`] or [`write_acceleration_structures_properties_khr`] after the build of the acceleration structure specified by `src`. If `src` contains references to other acceleration structures, `dst` will reference the same acceleration structures.
+- [`SERIALIZE`] serializes the acceleration structure to a semi-opaque format which can be reloaded on a compatible implementation.
+- [`DESERIALIZE`] deserializes the semi-opaque serialization format in the buffer to the acceleration structure.
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
 - [`CopyAccelerationStructureInfoKHR`]
 - [`CopyAccelerationStructureToMemoryInfoKHR`]
 - [`CopyMemoryToAccelerationStructureInfoKHR`]

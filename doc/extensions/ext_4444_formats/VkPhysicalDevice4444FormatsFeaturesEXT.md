@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_4444_FORMATS_FEATURES_EXT`
 
 # Related
-- [`ext_4444_formats`]
+- [`VK_EXT_4444_formats`]
 - [`Bool32`]
 - [`StructureType`]
 

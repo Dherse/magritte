@@ -336,14 +336,14 @@ impl Native {
                 2 => "u16",
                 4 => "u32",
                 8 => "u64",
-                other => unreachable!("unsupported size: {other}")
+                other => unreachable!("unsupported size: {other}"),
             },
-            Native::Int(size) =>  match size {
+            Native::Int(size) => match size {
                 1 => "i8",
                 2 => "i16",
                 4 => "i32",
                 8 => "i64",
-                other => unreachable!("unsupported size: {other}")
+                other => unreachable!("unsupported size: {other}"),
             },
             Native::USize => "usize",
             Native::SSize => "isize",
@@ -353,6 +353,71 @@ impl Native {
             Native::Double => "f64",
             Native::Bool => "bool",
             Native::NullTerminatedString => "std::ffi::CStr",
+        }
+    }
+}
+
+#[cfg(feature = "codegen")]
+impl quote::ToTokens for Native {
+    fn to_tokens(&self, mut tokens: &mut proc_macro2::TokenStream) {
+        match self {
+            Native::Void => {
+                quote::quote_each_token!(tokens std::ffi::c_void);
+            },
+            Native::UInt(size) => match size {
+                1 => {
+                    quote::quote_each_token!(tokens u8);
+                },
+                2 => {
+                    quote::quote_each_token!(tokens u16);
+                },
+                4 => {
+                    quote::quote_each_token!(tokens u32);
+                },
+                8 => {
+                    quote::quote_each_token!(tokens u64);
+                },
+                other => unreachable!("unsupported size: {other}"),
+            },
+            Native::Int(size) => match size {
+                1 => {
+                    quote::quote_each_token!(tokens i8);
+                },
+                2 => {
+                    quote::quote_each_token!(tokens i16);
+                },
+                4 => {
+                    quote::quote_each_token!(tokens i32);
+                },
+                8 => {
+                    quote::quote_each_token!(tokens i64);
+                },
+                other => unreachable!("unsupported size: {other}"),
+            },
+            Native::USize => {
+                quote::quote_each_token!(tokens usize);
+            },
+            Native::SSize => {
+                quote::quote_each_token!(tokens isize);
+            },
+            Native::Char => {
+                quote::quote_each_token!(tokens std::ffi::c_char);
+            },
+            Native::UChar => {
+                quote::quote_each_token!(tokens std::ffi::c_uchar);
+            },
+            Native::Float => {
+                quote::quote_each_token!(tokens f32);
+            },
+            Native::Double => {
+                quote::quote_each_token!(tokens f64);
+            },
+            Native::Bool => {
+                quote::quote_each_token!(tokens bool);
+            },
+            Native::NullTerminatedString => {
+                quote::quote_each_token!(tokens std::ffi::CStr);
+            },
         }
     }
 }

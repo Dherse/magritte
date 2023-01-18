@@ -16,15 +16,15 @@ typedef enum VkDebugReportFlagBitsEXT {
 ```
 
 # Description
-- [`VK_DEBUG_REPORT_FLAG_BITS_EXT`] specifies that the application has violated a valid usage condition of the specification.
-- [`VK_DEBUG_REPORT_FLAG_BITS_EXT`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a location with no attachment. Other cases  **may**  point to behavior that is almost certainly bad when unintended such as using an image whose memory has not been filled. In general if you see a warning but you know that the behavior is intended/desired, then simply ignore the warning.
-- [`VK_DEBUG_REPORT_FLAG_BITS_EXT`] specifies a potentially non-optimal use of Vulkan, e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
-- [`VK_DEBUG_REPORT_FLAG_BITS_EXT`] specifies an informational message such as resource details that may be handy when debugging an application.
-- [`VK_DEBUG_REPORT_FLAG_BITS_EXT`] specifies diagnostic information from the implementation and layers.
+- [`ERROR`] specifies that the application has violated a valid usage condition of the specification.
+- [`WARNING`] specifies use of Vulkan that  **may**  expose an app bug. Such cases may not be immediately harmful, such as a fragment shader outputting to a location with no attachment. Other cases  **may**  point to behavior that is almost certainly bad when unintended such as using an image whose memory has not been filled. In general if you see a warning but you know that the behavior is intended/desired, then simply ignore the warning.
+- [`PERFORMANCE_WARNING`] specifies a potentially non-optimal use of Vulkan, e.g. using [`cmd_clear_color_image`] when setting [`AttachmentDescription::load_op`] to `VK_ATTACHMENT_LOAD_OP_CLEAR` would have worked.
+- [`INFORMATION`] specifies an informational message such as resource details that may be handy when debugging an application.
+- [`DEBUG`] specifies diagnostic information from the implementation and layers.
 
 # Related
-- [`ext_debug_report`]
-- [VkDebugReportFlagsEXT]()
+- [`VK_EXT_debug_report`]
+- [`DebugReportFlagsEXT`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

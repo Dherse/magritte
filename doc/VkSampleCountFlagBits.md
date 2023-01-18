@@ -18,13 +18,13 @@ typedef enum VkSampleCountFlagBits {
 ```
 
 # Description
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with one sample per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 2 samples per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 4 samples per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 8 samples per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 16 samples per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 32 samples per pixel.
-- [`VK_SAMPLE_COUNT_FLAG_BITS`] specifies an image with 64 samples per pixel.
+- [`1`] specifies an image with one sample per pixel.
+- [`2`] specifies an image with 2 samples per pixel.
+- [`4`] specifies an image with 4 samples per pixel.
+- [`8`] specifies an image with 8 samples per pixel.
+- [`16`] specifies an image with 16 samples per pixel.
+- [`32`] specifies an image with 32 samples per pixel.
+- [`64`] specifies an image with 64 samples per pixel.
 
 # Related
 - [`crate::vulkan1_0`]
@@ -38,7 +38,7 @@ typedef enum VkSampleCountFlagBits {
 - [`PhysicalDeviceFragmentShadingRatePropertiesKHR`]
 - [`PhysicalDeviceSparseImageFormatInfo2`]
 - [`PipelineMultisampleStateCreateInfo`]
-- [VkSampleCountFlags]()
+- [`SampleCountFlags`]
 - [`SampleLocationsInfoEXT`]
 - [`get_physical_device_multisample_properties_ext`]
 - [`get_physical_device_sparse_image_format_properties`]

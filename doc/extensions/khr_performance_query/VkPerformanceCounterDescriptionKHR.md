@@ -18,9 +18,9 @@ typedef struct VkPerformanceCounterDescriptionKHR {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is a bitmask of [`PerformanceCounterDescriptionFlagBitsKHR`] indicating the usage behavior for the counter.
-- [`name`] is an array of size `VK_MAX_DESCRIPTION_SIZE`, containing a null-terminated UTF-8 string specifying the name of the counter.
-- [`category`] is an array of size `VK_MAX_DESCRIPTION_SIZE`, containing a null-terminated UTF-8 string specifying the category of the counter.
-- [`description`] is an array of size `VK_MAX_DESCRIPTION_SIZE`, containing a null-terminated UTF-8 string specifying the description of the counter.
+- [`name`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated UTF-8 string specifying the name of the counter.
+- [`category`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated UTF-8 string specifying the category of the counter.
+- [`description`] is an array of size [`MAX_DESCRIPTION_SIZE`], containing a null-terminated UTF-8 string specifying the description of the counter.
 
 # Description
 ## Valid Usage (Implicit)
@@ -28,8 +28,8 @@ typedef struct VkPerformanceCounterDescriptionKHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_performance_query`]
-- [VkPerformanceCounterDescriptionFlagsKHR]()
+- [`VK_KHR_performance_query`]
+- [`PerformanceCounterDescriptionFlagsKHR`]
 - [`StructureType`]
 - [`enumerate_physical_device_queue_family_performance_query_counters_khr`]
 

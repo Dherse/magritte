@@ -33,7 +33,7 @@ times into a given Vulkan instance.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`khr_external_fence_win32`]
+- [`VK_KHR_external_fence_win32`]
 - [`Device`]
 - [`ImportFenceWin32HandleInfoKHR`]
 

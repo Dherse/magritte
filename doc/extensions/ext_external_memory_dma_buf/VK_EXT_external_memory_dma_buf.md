@@ -16,14 +16,14 @@ to create [`Buffer`] objects that  **can**  be bound to that memory.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory_fd`]`
+- Requires `[`VK_KHR_external_memory_fd`]`
 
 # Contacts
 - Chad Versace [chadversary](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_dma_buf] @chadversary%0A<<Here describe the issue or question you have about the VK_EXT_external_memory_dma_buf extension>>)
 
 # New constants
-- `VK_EXT_EXTERNAL_MEMORY_DMA_BUF_EXTENSION_NAME`
-- `VK_EXT_EXTERNAL_MEMORY_DMA_BUF_SPEC_VERSION`
+- [`EXT_EXTERNAL_MEMORY_DMA_BUF_EXTENSION_NAME`]
+- [`EXT_EXTERNAL_MEMORY_DMA_BUF_SPEC_VERSION`]
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_DMA_BUF_BIT_EXT`
 
 # Known issues & F.A.Q.
@@ -43,7 +43,7 @@ will be provided by an extension layered atop this one.2) Without the ability to
 images, how is this extension useful? **RESOLVED** : This extension provides exactly one new feature: the ability to
 import/export between `dma_buf` and [`DeviceMemory`].
 This feature, together with features provided by
-`[`khr_external_memory_fd`]`, is sufficient to bind a [`Buffer`]
+`[`VK_KHR_external_memory_fd`]`, is sufficient to bind a [`Buffer`]
 to `dma_buf`.
 
 # Version history

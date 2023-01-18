@@ -35,8 +35,8 @@ set to zero.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalSemaphoreFeatureFlags]()
-- [VkExternalSemaphoreHandleTypeFlags]()
+- [`ExternalSemaphoreFeatureFlags`]
+- [`ExternalSemaphoreHandleTypeFlags`]
 - [`StructureType`]
 - [`get_physical_device_external_semaphore_properties`]
 - [`get_physical_device_external_semaphore_properties_khr`]

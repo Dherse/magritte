@@ -25,8 +25,8 @@ certain scenarios; particularly so for debugging.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceCoherentMemoryFeaturesAMD`]
 
 # New constants
-- `VK_AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME`
-- `VK_AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION`
+- [`AMD_DEVICE_COHERENT_MEMORY_EXTENSION_NAME`]
+- [`AMD_DEVICE_COHERENT_MEMORY_SPEC_VERSION`]
 - Extending [`MemoryPropertyFlagBits`]:  - `VK_MEMORY_PROPERTY_DEVICE_COHERENT_BIT_AMD`  - `VK_MEMORY_PROPERTY_DEVICE_UNCACHED_BIT_AMD` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COHERENT_MEMORY_FEATURES_AMD`
 

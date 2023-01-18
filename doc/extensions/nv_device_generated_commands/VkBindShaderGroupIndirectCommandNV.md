@@ -19,7 +19,7 @@ typedef struct VkBindShaderGroupIndirectCommandNV {
 -    The `index` **must**  be within range of the accessible shader groups of the current bound graphics pipeline. See [`cmd_bind_pipeline_shader_group_nv`] for further details
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

@@ -25,16 +25,16 @@ write state.
 If this structure is not included in the [`p_next`] chain, it is equivalent
 to specifying this structure with [`attachment_count`] equal to the
 [`attachment_count`] member of [`PipelineColorBlendStateCreateInfo`],
-and [`color_write_enables`] pointing to an array of as many `VK_TRUE`
+and [`color_write_enables`] pointing to an array of as many [`TRUE`]
 values.If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled
 on the device, all [`Bool32`] elements in the
-[`color_write_enables`] array  **must**  be `VK_TRUE`.Color Write Enable interacts with the [Color
+[`color_write_enables`] array  **must**  be [`TRUE`].Color Write Enable interacts with the [Color
 Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-mask) as follows:
-- If `colorWriteEnable` is `VK_TRUE`, writes to the attachment are determined by the `colorWriteMask`.
-- If `colorWriteEnable` is `VK_FALSE`, the `colorWriteMask` is ignored and writes to all components of the attachment are disabled. This is equivalent to specifying a `colorWriteMask` of 0.
+- If `colorWriteEnable` is [`TRUE`], writes to the attachment are determined by the `colorWriteMask`.
+- If `colorWriteEnable` is [`FALSE`], the `colorWriteMask` is ignored and writes to all components of the attachment are disabled. This is equivalent to specifying a `colorWriteMask` of 0.
 
 ## Valid Usage
--    If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled, all elements of [`color_write_enables`] **must**  be `VK_TRUE`
+-    If the [colorWriteEnable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-colorWriteEnable) feature is not enabled, all elements of [`color_write_enables`] **must**  be [`TRUE`]
 -  [`attachment_count`] **must**  be equal to the [`attachment_count`] member of the [`PipelineColorBlendStateCreateInfo`] structure specified during pipeline creation
 -  [`attachment_count`] **must**  be less than or equal to the `maxColorAttachments` member of [`PhysicalDeviceLimits`]
 
@@ -43,7 +43,7 @@ Write Mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vk
 -    If [`attachment_count`] is not `0`, [`color_write_enables`] **must**  be a valid pointer to an array of [`attachment_count`][`Bool32`] values
 
 # Related
-- [`ext_color_write_enable`]
+- [`VK_EXT_color_write_enable`]
 - [`Bool32`]
 - [`StructureType`]
 

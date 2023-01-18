@@ -1,7 +1,7 @@
 [VK_GOOGLE_decorate_string](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_GOOGLE_decorate_string.html) - device extension
 
 # Description
-The [`google_decorate_string`] extension allows use of the
+The [`VK_GOOGLE_decorate_string`] extension allows use of the
 `SPV_GOOGLE_decorate_string` extension in SPIR-V shader modules.
 
 # Registered extension number
@@ -17,8 +17,8 @@ The [`google_decorate_string`] extension allows use of the
 - Hai Nguyen [chaoticbob](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_decorate_string] @chaoticbob%0A<<Here describe the issue or question you have about the VK_GOOGLE_decorate_string extension>>)
 
 # New constants
-- `VK_GOOGLE_DECORATE_STRING_EXTENSION_NAME`
-- `VK_GOOGLE_DECORATE_STRING_SPEC_VERSION`
+- [`GOOGLE_DECORATE_STRING_EXTENSION_NAME`]
+- [`GOOGLE_DECORATE_STRING_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2018-07-09 (Neil Henning)  - Initial draft

@@ -24,8 +24,8 @@ vectors of these types.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderSubgroupExtendedTypesFeaturesKHR`]
 
 # New constants
-- `VK_KHR_SHADER_SUBGROUP_EXTENDED_TYPES_EXTENSION_NAME`
-- `VK_KHR_SHADER_SUBGROUP_EXTENDED_TYPES_SPEC_VERSION`
+- [`KHR_SHADER_SUBGROUP_EXTENDED_TYPES_EXTENSION_NAME`]
+- [`KHR_SHADER_SUBGROUP_EXTENDED_TYPES_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_EXTENDED_TYPES_FEATURES_KHR`
 
 # Version history

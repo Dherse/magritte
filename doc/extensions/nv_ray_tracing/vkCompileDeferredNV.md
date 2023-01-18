@@ -31,7 +31,7 @@ VkResult vkCompileDeferredNV(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`Device`]
 - [`Pipeline`]
 

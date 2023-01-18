@@ -18,7 +18,7 @@ will be disabled by the validation layers.
 - Requires Vulkan 1.0
 
 # Deprecation state
-- *Deprecated* by `[`ext_validation_features`]` extension
+- *Deprecated* by `[`VK_EXT_validation_features`]` extension
 
 # Contacts
 - Tobin Ehlis [tobine](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_validation_flags] @tobine%0A<<Here describe the issue or question you have about the VK_EXT_validation_flags extension>>)
@@ -30,8 +30,8 @@ will be disabled by the validation layers.
 - [`ValidationCheckEXT`]
 
 # New constants
-- `VK_EXT_VALIDATION_FLAGS_EXTENSION_NAME`
-- `VK_EXT_VALIDATION_FLAGS_SPEC_VERSION`
+- [`EXT_VALIDATION_FLAGS_EXTENSION_NAME`]
+- [`EXT_VALIDATION_FLAGS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VALIDATION_FLAGS_EXT`
 
 # Version history

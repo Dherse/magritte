@@ -12,11 +12,11 @@ typedef enum VkVideoEncodeCapabilityFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_ENCODE_CAPABILITY_FLAG_BITS_KHR`] reports that the implementation supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
+- [`PRECEDING_EXTERNALLY_ENCODED_BYTES`] reports that the implementation supports use of [`VideoEncodeInfoKHR::preceding_externally_encoded_bytes`].
 
 # Related
-- [`khr_video_encode_queue`]
-- [VkVideoEncodeCapabilityFlagsKHR]()
+- [`VK_KHR_video_encode_queue`]
+- [`VideoEncodeCapabilityFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

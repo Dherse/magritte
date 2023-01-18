@@ -32,7 +32,7 @@ typedef struct VkQueryPoolPerformanceCreateInfoKHR {
 -  [`counter_index_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`StructureType`]
 - [`get_physical_device_queue_family_performance_query_passes_khr`]
 

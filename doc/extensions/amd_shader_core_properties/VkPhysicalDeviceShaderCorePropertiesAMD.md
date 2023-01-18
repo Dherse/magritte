@@ -50,7 +50,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CORE_PROPERTIES_AMD`
 
 # Related
-- [`amd_shader_core_properties`]
+- [`VK_AMD_shader_core_properties`]
 - [`StructureType`]
 
 # Notes and documentation

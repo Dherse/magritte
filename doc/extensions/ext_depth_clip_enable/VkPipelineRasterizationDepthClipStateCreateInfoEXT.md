@@ -28,7 +28,7 @@ typedef struct VkPipelineRasterizationDepthClipStateCreateInfoEXT {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_depth_clip_enable`]
+- [`VK_EXT_depth_clip_enable`]
 - [`Bool32`]
 - [`PipelineRasterizationDepthClipStateCreateFlagsEXT`]
 - [`StructureType`]

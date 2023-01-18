@@ -44,7 +44,7 @@ equally used by either [`cmd_copy_memory_to_acceleration_structure_khr`] or
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`CopyAccelerationStructureToMemoryInfoKHR`]
 - [`DeferredOperationKHR`]
 - [`Device`]

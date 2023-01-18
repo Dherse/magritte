@@ -22,7 +22,7 @@ typedef struct VkPipelineRepresentativeFragmentTestStateCreateInfoNV {
 
 # Description
 If this structure is not included in the [`p_next`] chain,
-[`representative_fragment_test_enable`] is considered to be `VK_FALSE`,
+[`representative_fragment_test_enable`] is considered to be [`FALSE`],
 and the representative fragment test is disabled.If the active fragment shader does not specify the `EarlyFragmentTests`
 execution mode, the representative fragment shader test has no effect, even
 if enabled.
@@ -30,7 +30,7 @@ if enabled.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_REPRESENTATIVE_FRAGMENT_TEST_STATE_CREATE_INFO_NV`
 
 # Related
-- [`nv_representative_fragment_test`]
+- [`VK_NV_representative_fragment_test`]
 - [`Bool32`]
 - [`StructureType`]
 

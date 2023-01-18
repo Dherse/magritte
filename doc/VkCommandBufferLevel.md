@@ -12,8 +12,8 @@ typedef enum VkCommandBufferLevel {
 ```
 
 # Description
-- [`VK_COMMAND_BUFFER_LEVEL`] specifies a primary command buffer.
-- [`VK_COMMAND_BUFFER_LEVEL`] specifies a secondary command buffer.
+- [`PRIMARY`] specifies a primary command buffer.
+- [`SECONDARY`] specifies a secondary command buffer.
 
 # Related
 - [`crate::vulkan1_0`]

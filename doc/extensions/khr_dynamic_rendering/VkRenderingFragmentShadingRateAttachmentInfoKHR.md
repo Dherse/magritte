@@ -47,8 +47,8 @@ was specified with all texels specifying a single pixel per fragment.
 -  [`image_layout`] **must**  be a valid [`ImageLayout`] value
 
 # Related
-- [`khr_dynamic_rendering`]
-- [`khr_fragment_shading_rate`]
+- [`VK_KHR_dynamic_rendering`]
+- [`VK_KHR_fragment_shading_rate`]
 - [`Extent2D`]
 - [`ImageLayout`]
 - [`ImageView`]

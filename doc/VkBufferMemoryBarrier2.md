@@ -35,7 +35,7 @@ typedef VkBufferMemoryBarrier2 VkBufferMemoryBarrier2KHR;
 - [`dst_queue_family_index`] is the destination queue family for a [queue family ownership transfer](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-queue-transfers).
 - [`buffer`] is a handle to the buffer whose backing memory is affected by the barrier.
 - [`offset`] is an offset in bytes into the backing memory for [`buffer`]; this is relative to the base offset as bound to the buffer (see [`bind_buffer_memory`]).
-- [`size`] is a size in bytes of the affected area of backing memory for [`buffer`], or `VK_WHOLE_SIZE` to use the range from [`offset`] to the end of the buffer.
+- [`size`] is a size in bytes of the affected area of backing memory for [`buffer`], or [`WHOLE_SIZE`] to use the range from [`offset`] to the end of the buffer.
 
 # Description
 This structure defines a [memory
@@ -165,11 +165,11 @@ those values.
 -    If [`dst_access_mask`] includes `VK_ACCESS_2_VIDEO_ENCODE_WRITE_BIT_KHR`, [`dst_stage_mask`] **must**  include `VK_PIPELINE_STAGE_2_VIDEO_ENCODE_BIT_KHR`
 
 -  [`offset`] **must**  be less than the size of [`buffer`]
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be greater than `0`
--    If [`size`] is not equal to `VK_WHOLE_SIZE`, [`size`] **must**  be less than or equal to than the size of [`buffer`] minus [`offset`]
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be greater than `0`
+-    If [`size`] is not equal to [`WHOLE_SIZE`], [`size`] **must**  be less than or equal to than the size of [`buffer`] minus [`offset`]
 -    If [`buffer`] is non-sparse then it  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    If [`src_queue_family_index`] is not equal to [`dst_queue_family_index`], at least one  **must**  not be a special queue family reserved for external memory ownership transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
--    If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family values reserved for external memory transfers, the other  **must**  be `VK_QUEUE_FAMILY_IGNORED`
+-    If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_CONCURRENT`, [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, and one of [`src_queue_family_index`] and [`dst_queue_family_index`] is one of the special queue family values reserved for external memory transfers, the other  **must**  be [`QUEUE_FAMILY_IGNORED`]
 -    If [`buffer`] was created with a sharing mode of `VK_SHARING_MODE_EXCLUSIVE`, and [`src_queue_family_index`] and [`dst_queue_family_index`] are not equal, [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  both be valid queue families, or one of the special queue family values reserved for external memory transfers, as described in [[synchronization-queue-transfers]](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#synchronization-queue-transfers)
 -    If either [`src_stage_mask`] or [`dst_stage_mask`] includes `VK_PIPELINE_STAGE_2_HOST_BIT`, [`src_queue_family_index`] and [`dst_queue_family_index`] **must**  be equal
 
@@ -183,7 +183,7 @@ those values.
 -  [`buffer`] **must**  be a valid [`Buffer`] handle
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`AccessFlags2`]
 - [`Buffer`]

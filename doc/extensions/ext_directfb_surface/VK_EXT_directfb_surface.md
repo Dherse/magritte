@@ -1,10 +1,10 @@
 [VK_EXT_directfb_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_directfb_surface.html) - instance extension
 
 # Description
-The [`ext_directfb_surface`] extension is an instance extension.
+The [`VK_EXT_directfb_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to a DirectFB
-`IDirectFBSurface`, as well as a query to determine support for rendering
+the `[`VK_KHR_surface`]` extension) that refers to a DirectFB
+[`IDirectFBSurface`], as well as a query to determine support for rendering
 via DirectFB.
 
 # Registered extension number
@@ -15,7 +15,7 @@ via DirectFB.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Nicolas Caramelli [caramelli](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_directfb_surface] @caramelli%0A<<Here describe the issue or question you have about the VK_EXT_directfb_surface extension>>)
@@ -31,8 +31,8 @@ via DirectFB.
 - [`DirectFBSurfaceCreateFlagsEXT`]
 
 # New constants
-- `VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME`
-- `VK_EXT_DIRECTFB_SURFACE_SPEC_VERSION`
+- [`EXT_DIRECTFB_SURFACE_EXTENSION_NAME`]
+- [`EXT_DIRECTFB_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
 
 # Version history

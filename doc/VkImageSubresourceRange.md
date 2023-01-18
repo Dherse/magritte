@@ -25,8 +25,8 @@ The number of mipmap levels and array layers  **must**  be a subset of the image
 subresources in the image.
 If an application wants to use all mip levels or layers in an image after
 the [`base_mip_level`] or [`base_array_layer`], it  **can**  set [`level_count`]
-and [`layer_count`] to the special values `VK_REMAINING_MIP_LEVELS` and
-`VK_REMAINING_ARRAY_LAYERS` without knowing the exact number of mip
+and [`layer_count`] to the special values [`REMAINING_MIP_LEVELS`] and
+[`REMAINING_ARRAY_LAYERS`] without knowing the exact number of mip
 levels or layers.For cube and cube array image views, the layers of the image view starting
 at [`base_array_layer`] correspond to faces in the order +X, -X, +Y, -Y, +Z,
 -Z.
@@ -35,7 +35,7 @@ number of cube maps in a cube map array view is *[`layer_count`] / 6*, and
 image array layer ([`base_array_layer`] +  i) is face index
 (i mod 6) of cube *i / 6*.
 If the number of layers in the view, whether set explicitly in
-[`layer_count`] or implied by `VK_REMAINING_ARRAY_LAYERS`, is not a
+[`layer_count`] or implied by [`REMAINING_ARRAY_LAYERS`], is not a
 multiple of 6, the last cube map in the array  **must**  not be accessed.[`aspect_mask`] **must**  be only `VK_IMAGE_ASPECT_COLOR_BIT`,
 `VK_IMAGE_ASPECT_DEPTH_BIT` or `VK_IMAGE_ASPECT_STENCIL_BIT` if
 `format` is a color, depth-only or stencil-only format,
@@ -73,8 +73,8 @@ have been created with `VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT`, and the
 `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT` or
 `VK_IMAGE_ASPECT_PLANE_2_BIT`.
 ## Valid Usage
--    If [`level_count`] is not `VK_REMAINING_MIP_LEVELS`, it  **must**  be greater than `0`
--    If [`layer_count`] is not `VK_REMAINING_ARRAY_LAYERS`, it  **must**  be greater than `0`
+-    If [`level_count`] is not [`REMAINING_MIP_LEVELS`], it  **must**  be greater than `0`
+-    If [`layer_count`] is not [`REMAINING_ARRAY_LAYERS`], it  **must**  be greater than `0`
 -    If [`aspect_mask`] includes `VK_IMAGE_ASPECT_COLOR_BIT`, then it  **must**  not include any of `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT`, or `VK_IMAGE_ASPECT_PLANE_2_BIT`
 -  [`aspect_mask`] **must**  not include `VK_IMAGE_ASPECT_MEMORY_PLANE*_i_*BIT_EXT` for any index *i*
 
@@ -84,7 +84,7 @@ have been created with `VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT`, and the
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`ImageMemoryBarrier`]
 - [`ImageMemoryBarrier2`]
 - [`ImageViewCreateInfo`]

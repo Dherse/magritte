@@ -42,7 +42,7 @@ available counters were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`PerformanceCounterDescriptionKHR`]
 - [`PerformanceCounterKHR`]
 - [`PhysicalDevice`]

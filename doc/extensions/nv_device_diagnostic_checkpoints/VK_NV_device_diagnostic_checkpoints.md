@@ -15,7 +15,7 @@ the time and might have caused the failure.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostic_checkpoints] @nsubtil%0A<<Here describe the issue or question you have about the VK_NV_device_diagnostic_checkpoints extension>>)
@@ -29,8 +29,8 @@ the time and might have caused the failure.
 - Extending [`QueueFamilyProperties2`]:  - [`QueueFamilyCheckpointPropertiesNV`]
 
 # New constants
-- `VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME`
-- `VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION`
+- [`NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME`]
+- [`NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_CHECKPOINT_DATA_NV`  - `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
 
 # Version history

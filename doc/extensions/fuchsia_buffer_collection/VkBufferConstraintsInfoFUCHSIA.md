@@ -32,10 +32,10 @@ typedef struct VkBufferConstraintsInfoFUCHSIA {
 -  [`buffer_collection_constraints`] **must**  be a valid [`BufferCollectionConstraintsInfoFUCHSIA`] structure
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionConstraintsInfoFUCHSIA`]
 - [`BufferCreateInfo`]
-- [VkFormatFeatureFlags]()
+- [`FormatFeatureFlags`]
 - [`StructureType`]
 - [`set_buffer_collection_buffer_constraints_fuchsia`]
 

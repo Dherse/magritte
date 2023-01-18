@@ -29,8 +29,8 @@ typedef struct VkPipelineColorBlendStateCreateInfo {
 # Description
 ## Valid Usage
 -    If the [independent blending](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-independentBlend) feature is not enabled, all elements of [`attachments`] **must**  be identical
--    If the [logic operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-logicOp) feature is not enabled, [`logic_op_enable`] **must**  be `VK_FALSE`
--    If [`logic_op_enable`] is `VK_TRUE`, [`logic_op`] **must**  be a valid [`LogicOp`] value
+-    If the [logic operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-logicOp) feature is not enabled, [`logic_op_enable`] **must**  be [`FALSE`]
+-    If [`logic_op_enable`] is [`TRUE`], [`logic_op`] **must**  be a valid [`LogicOp`] value
 -    If the [`rasterizationOrderColorAttachmentAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rasterizationOrderColorAttachmentAccess) feature is not enabled, [`flags`] **must**  not include `VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_ARM`
 
 ## Valid Usage (Implicit)
@@ -46,7 +46,7 @@ typedef struct VkPipelineColorBlendStateCreateInfo {
 - [`GraphicsPipelineCreateInfo`]
 - [`LogicOp`]
 - [`PipelineColorBlendAttachmentState`]
-- [VkPipelineColorBlendStateCreateFlags]()
+- [`PipelineColorBlendStateCreateFlags`]
 - [`StructureType`]
 
 # Notes and documentation

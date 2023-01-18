@@ -19,9 +19,9 @@ typedef struct VkPipelineExecutableInternalRepresentationKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`name`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a short human readable name for this internal representation.
-- [`description`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a human readable description for this internal representation.
-- [`is_text`] specifies whether the returned data is text or opaque data. If [`is_text`] is `VK_TRUE` then the data returned in [`data`] is text and is guaranteed to be a null-terminated UTF-8 string.
+- [`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a short human readable name for this internal representation.
+- [`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a human readable description for this internal representation.
+- [`is_text`] specifies whether the returned data is text or opaque data. If [`is_text`] is [`TRUE`] then the data returned in [`data`] is text and is guaranteed to be a null-terminated UTF-8 string.
 - [`data_size`] is an integer related to the size, in bytes, of the internal representation’s data, as described below.
 - [`data`] is either `NULL` or a pointer to a block of data into which the implementation will write the internal representation.
 
@@ -36,7 +36,7 @@ If [`data_size`] is less than the size, in bytes, of the internal
 representation’s data, at most [`data_size`] bytes of data will be written
 to [`data`], and `VK_INCOMPLETE` will be returned instead of
 `VK_SUCCESS`, to indicate that not all the available representation was
-returned.If [`is_text`] is `VK_TRUE` and [`data`] is not `NULL` and
+returned.If [`is_text`] is [`TRUE`] and [`data`] is not `NULL` and
 [`data_size`] is not zero, the last byte written to [`data`] will be a
 null character.
 ## Valid Usage (Implicit)
@@ -44,7 +44,7 @@ null character.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`Bool32`]
 - [`StructureType`]
 - [`get_pipeline_executable_internal_representations_khr`]

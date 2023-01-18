@@ -15,8 +15,8 @@ VkBool32 vkGetPhysicalDeviceXcbPresentationSupportKHR(
 # Parameters
 - [`physical_device`] is the physical device.
 - [`queue_family_index`] is the queue family index.
-- [`connection`] is a pointer to an `xcb_connection_t` to the X server.
-- [`visual_id`] is an X11 visual (`xcb_visualid_t`).
+- [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
+- [`visual_id`] is an X11 visual ([`xcb_visualid_t`]).
 
 # Description
 This platform-specific function  **can**  be called prior to creating a surface.
@@ -25,10 +25,10 @@ This platform-specific function  **can**  be called prior to creating a surface.
 
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`connection`] **must**  be a valid pointer to an `xcb_connection_t` value
+-  [`connection`] **must**  be a valid pointer to an [`xcb_connection_t`] value
 
 # Related
-- [`khr_xcb_surface`]
+- [`VK_KHR_xcb_surface`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

@@ -26,7 +26,7 @@ void vkSetLocalDimmingAMD(
 -  [`DisplayNativeHdrSurfaceCapabilitiesAMD::local_dimming_support`] **must**  be supported
 
 # Related
-- [`amd_display_native_hdr`]
+- [`VK_AMD_display_native_hdr`]
 - [`Bool32`]
 - [`Device`]
 - [`SwapchainKHR`]

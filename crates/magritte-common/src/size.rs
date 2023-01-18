@@ -16,7 +16,6 @@ use bytemuck::{Pod, Zeroable};
 /// Wrapper around a [`usize`] that allows pretty printing of byte sizes
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Default)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[cfg_attr(feature = "bytemuck", derive(Pod, Zeroable))]
 #[repr(transparent)]
 pub struct Size(pub u64);
 

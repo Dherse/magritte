@@ -36,9 +36,9 @@ registered.
 -  [`p_callback_data`] **must**  be a valid pointer to a valid [`DebugUtilsMessengerCallbackDataEXT`] structure
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsMessageSeverityFlagBitsEXT`]
-- [VkDebugUtilsMessageTypeFlagsEXT]()
+- [`DebugUtilsMessageTypeFlagsEXT`]
 - [`DebugUtilsMessengerCallbackDataEXT`]
 - [`Instance`]
 

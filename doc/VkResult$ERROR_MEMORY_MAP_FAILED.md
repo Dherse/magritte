@@ -1,0 +1,1 @@
+[`ERROR_MEMORY_MAP_FAILED`] Mapping of a memory object has failed.

@@ -17,13 +17,13 @@ typedef struct VkDirectFBSurfaceCreateInfoEXT {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is reserved for future use.
-- [`dfb`] is a pointer to the `IDirectFB` main interface of DirectFB.
-- [`surface`] is a pointer to a `IDirectFBSurface` surface interface.
+- [`dfb`] is a pointer to the [`IDirectFB`] main interface of DirectFB.
+- [`surface`] is a pointer to a [`IDirectFBSurface`] surface interface.
 
 # Description
 ## Valid Usage
--  [`dfb`] **must**  point to a valid DirectFB `IDirectFB`
--  [`surface`] **must**  point to a valid DirectFB `IDirectFBSurface`
+-  [`dfb`] **must**  point to a valid DirectFB [`IDirectFB`]
+-  [`surface`] **must**  point to a valid DirectFB [`IDirectFBSurface`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DIRECTFB_SURFACE_CREATE_INFO_EXT`
@@ -31,7 +31,7 @@ typedef struct VkDirectFBSurfaceCreateInfoEXT {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_directfb_surface`]
+- [`VK_EXT_directfb_surface`]
 - [`DirectFBSurfaceCreateFlagsEXT`]
 - [`StructureType`]
 - [`create_direct_fb_surface_ext`]

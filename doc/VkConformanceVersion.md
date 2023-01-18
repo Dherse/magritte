@@ -25,7 +25,7 @@ typedef VkConformanceVersion VkConformanceVersionKHR;
 - [`patch`] is the patch version number of the conformance test suite.
 
 # Related
-- [`khr_driver_properties`]
+- [`VK_KHR_driver_properties`]
 - [`crate::vulkan1_2`]
 - [`PhysicalDeviceDriverProperties`]
 - [`PhysicalDeviceVulkan12Properties`]

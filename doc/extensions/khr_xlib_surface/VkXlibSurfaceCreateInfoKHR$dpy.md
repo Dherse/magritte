@@ -1,2 +1,2 @@
-[`dpy`] is a pointer to an Xlib `Display` connection to the X
+[`dpy`] is a pointer to an Xlib [`Display`] connection to the X
 server.

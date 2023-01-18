@@ -24,7 +24,7 @@ VkResult vkInitializePerformanceApiINTEL(
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`Device`]
 - [`InitializePerformanceApiInfoINTEL`]
 

@@ -37,7 +37,7 @@ geometries, but does not use the data references in the structures.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureCreateInfoNV`]
 - [`AccelerationStructureNV`]
 - [`AllocationCallbacks`]

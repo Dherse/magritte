@@ -13,7 +13,7 @@ graphics pipeline.
 Enabling these modes also affects line and point rasterization if the
 implementation sets
 [`PhysicalDeviceConservativeRasterizationPropertiesEXT::conservative_point_and_line_rasterization`]
-to `VK_TRUE`.[`PipelineRasterizationConservativeStateCreateInfoEXT`] is defined as:
+to [`TRUE`].[`PipelineRasterizationConservativeStateCreateInfoEXT`] is defined as:
 ```c
 // Provided by VK_EXT_conservative_rasterization
 typedef struct VkPipelineRasterizationConservativeStateCreateInfoEXT {
@@ -42,7 +42,7 @@ typedef struct VkPipelineRasterizationConservativeStateCreateInfoEXT {
 -  [`conservative_rasterization_mode`] **must**  be a valid [`ConservativeRasterizationModeEXT`] value
 
 # Related
-- [`ext_conservative_rasterization`]
+- [`VK_EXT_conservative_rasterization`]
 - [`ConservativeRasterizationModeEXT`]
 - [`PipelineRasterizationConservativeStateCreateFlagsEXT`]
 - [`StructureType`]

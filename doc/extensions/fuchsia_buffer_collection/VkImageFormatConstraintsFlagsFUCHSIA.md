@@ -7,7 +7,7 @@ typedef VkFlags VkImageFormatConstraintsFlagsFUCHSIA;
 ```
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`ImageFormatConstraintsInfoFUCHSIA`]
 
 # Notes and documentation

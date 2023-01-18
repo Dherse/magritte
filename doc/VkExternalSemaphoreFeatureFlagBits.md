@@ -22,12 +22,12 @@ typedef VkExternalSemaphoreFeatureFlagBits VkExternalSemaphoreFeatureFlagBitsKHR
 ```
 
 # Description
-- [`VK_EXTERNAL_SEMAPHORE_FEATURE_FLAG_BITS`] specifies that handles of this type  **can**  be exported from Vulkan semaphore objects.
-- [`VK_EXTERNAL_SEMAPHORE_FEATURE_FLAG_BITS`] specifies that handles of this type  **can**  be imported as Vulkan semaphore objects.
+- [`EXPORTABLE`] specifies that handles of this type  **can**  be exported from Vulkan semaphore objects.
+- [`IMPORTABLE`] specifies that handles of this type  **can**  be imported as Vulkan semaphore objects.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalSemaphoreFeatureFlags]()
+- [`ExternalSemaphoreFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

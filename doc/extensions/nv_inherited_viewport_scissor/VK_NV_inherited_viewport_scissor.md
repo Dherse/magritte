@@ -30,8 +30,8 @@ command buffers must re-specify the inherited depth range values.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceInheritedViewportScissorFeaturesNV`]
 
 # New constants
-- `VK_NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME`
-- `VK_NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION`
+- [`NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME`]
+- [`NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_COMMAND_BUFFER_INHERITANCE_VIEWPORT_SCISSOR_INFO_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INHERITED_VIEWPORT_SCISSOR_FEATURES_NV`
 
 # Known issues & F.A.Q.
@@ -61,7 +61,7 @@ state of [`CommandBuffer`] that must be re-initialized.(2) Why are viewport dept
 struct, rather than a leaner depth-only struct? **DISCUSSION** :We considered adding a new `VkViewportDepthNV` struct containing only
 `minDepth` and `maxDepth`.
 However, as application developers would need to maintain both a
-[`nv_inherited_viewport_scissor`] code path and a fallback code path (at
+[`VK_NV_inherited_viewport_scissor`] code path and a fallback code path (at
 least in the short term), we ultimately chose to continue using the existing
 [`Viewport`] structure.
 Doing so would allow application developers to reuse the same

@@ -27,7 +27,7 @@ typedef struct VkBindIndexBufferIndirectCommandNV {
 -  [`index_type`] **must**  be a valid [`IndexType`] value
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`DeviceAddress`]
 - [`IndexType`]
 

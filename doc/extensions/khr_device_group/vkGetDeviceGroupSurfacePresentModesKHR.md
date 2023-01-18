@@ -15,7 +15,7 @@ VkResult vkGetDeviceGroupSurfacePresentModesKHR(
 # Parameters
 - [`device`] is the logical device.
 - [`surface`] is the surface.
-- [`p_modes`] is a pointer to a [VkDeviceGroupPresentModeFlagsKHR]() in which the supported device group present modes for the surface are returned.
+- [`p_modes`] is a pointer to a [`DeviceGroupPresentModeFlagsKHR`] in which the supported device group present modes for the surface are returned.
 
 # Description
 The modes returned by this command are not invariant, and  **may**  change in
@@ -28,7 +28,7 @@ These modes  **must**  be a subset of the modes returned by
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
 -  [`surface`] **must**  be a valid [`SurfaceKHR`] handle
--  [`p_modes`] **must**  be a valid pointer to a [VkDeviceGroupPresentModeFlagsKHR]() value
+-  [`p_modes`] **must**  be a valid pointer to a [`DeviceGroupPresentModeFlagsKHR`] value
 -    Both of [`device`], and [`surface`] **must**  have been created, allocated, or retrieved from the same [`Instance`]
 
 ## Host Synchronization
@@ -39,12 +39,12 @@ These modes  **must**  be a subset of the modes returned by
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_device_group`]
-- [`khr_surface`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_surface`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`Device`]
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 - [`SurfaceKHR`]
 
 # Notes and documentation

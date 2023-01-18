@@ -32,7 +32,7 @@ typedef struct VkSamplerCustomBorderColorCreateInfoEXT {
 -  [`format`] **must**  be a valid [`Format`] value
 
 # Related
-- [`ext_custom_border_color`]
+- [`VK_EXT_custom_border_color`]
 - [`ClearColorValue`]
 - [`Format`]
 - [`StructureType`]

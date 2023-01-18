@@ -44,10 +44,10 @@ typedef struct VkVideoBeginCodingInfoKHR {
 -    Both of [`video_session`], and [`video_session_parameters`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
 - [`VideoBeginCodingFlagsKHR`]
-- [VkVideoCodingQualityPresetFlagsKHR]()
+- [`VideoCodingQualityPresetFlagsKHR`]
 - [`VideoReferenceSlotKHR`]
 - [`VideoSessionKHR`]
 - [`VideoSessionParametersKHR`]

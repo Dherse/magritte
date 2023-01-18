@@ -39,9 +39,9 @@ includes [`VK_SUBGROUP_FEATURE_QUAD_BIT`](https://www.khronos.org/registry/vulka
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SUBGROUP_SIZE_CONTROL_PROPERTIES`
 
 # Related
-- [`ext_subgroup_size_control`]
+- [`VK_EXT_subgroup_size_control`]
 - [`crate::vulkan1_3`]
-- [VkShaderStageFlags]()
+- [`ShaderStageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

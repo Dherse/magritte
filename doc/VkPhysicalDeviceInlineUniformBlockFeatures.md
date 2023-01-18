@@ -37,7 +37,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES`
 
 # Related
-- [`ext_inline_uniform_block`]
+- [`VK_EXT_inline_uniform_block`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

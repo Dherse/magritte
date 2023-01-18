@@ -34,7 +34,7 @@ typedef VkExportMemoryAllocateInfo VkExportMemoryAllocateInfoKHR;
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalMemoryHandleTypeFlags]()
+- [`ExternalMemoryHandleTypeFlags`]
 - [`StructureType`]
 
 # Notes and documentation

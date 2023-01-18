@@ -1,7 +1,7 @@
 [VK_KHR_performance_query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_performance_query.html) - device extension
 
 # Description
-The [`khr_performance_query`] extension adds a mechanism to allow querying
+The [`VK_KHR_performance_query`] extension adds a mechanism to allow querying
 of performance counters for use in applications and by profiling tools.Each queue family  **may**  expose counters that  **can**  be enabled on a queue of
 that family.
 We extend [`QueryType`] to add a new query type for performance queries,
@@ -16,7 +16,7 @@ performance queries to enable.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Alon Or-bach [alonorbach](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_performance_query] @alonorbach%0A<<Here describe the issue or question you have about the VK_KHR_performance_query extension>>)
@@ -47,12 +47,12 @@ performance queries to enable.
 - [`PerformanceCounterUnitKHR`]
 
 # New bitmasks
-- [VkAcquireProfilingLockFlagsKHR]()
-- [VkPerformanceCounterDescriptionFlagsKHR]()
+- [`AcquireProfilingLockFlagsKHR`]
+- [`PerformanceCounterDescriptionFlagsKHR`]
 
 # New constants
-- `VK_KHR_PERFORMANCE_QUERY_EXTENSION_NAME`
-- `VK_KHR_PERFORMANCE_QUERY_SPEC_VERSION`
+- [`KHR_PERFORMANCE_QUERY_EXTENSION_NAME`]
+- [`KHR_PERFORMANCE_QUERY_SPEC_VERSION`]
 - Extending [`QueryType`]:  - `VK_QUERY_TYPE_PERFORMANCE_QUERY_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ACQUIRE_PROFILING_LOCK_INFO_KHR`  - `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_DESCRIPTION_KHR`  - `VK_STRUCTURE_TYPE_PERFORMANCE_COUNTER_KHR`  - `VK_STRUCTURE_TYPE_PERFORMANCE_QUERY_SUBMIT_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PERFORMANCE_QUERY_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_QUERY_POOL_PERFORMANCE_CREATE_INFO_KHR`
 
@@ -87,10 +87,10 @@ needed.
 
 # Related
 - [`AcquireProfilingLockFlagBitsKHR`]
-- [VkAcquireProfilingLockFlagsKHR]()
+- [`AcquireProfilingLockFlagsKHR`]
 - [`AcquireProfilingLockInfoKHR`]
 - [`PerformanceCounterDescriptionFlagBitsKHR`]
-- [VkPerformanceCounterDescriptionFlagsKHR]()
+- [`PerformanceCounterDescriptionFlagsKHR`]
 - [`PerformanceCounterDescriptionKHR`]
 - [`PerformanceCounterKHR`]
 - [`PerformanceCounterResultKHR`]

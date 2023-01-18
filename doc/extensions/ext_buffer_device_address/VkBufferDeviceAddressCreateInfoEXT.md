@@ -31,7 +31,7 @@ likelihood of `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` errors.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_CREATE_INFO_EXT`
 
 # Related
-- [`ext_buffer_device_address`]
+- [`VK_EXT_buffer_device_address`]
 - [`DeviceAddress`]
 - [`StructureType`]
 

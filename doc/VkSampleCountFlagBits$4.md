@@ -1,0 +1,1 @@
+[`4`] specifies an image with 4 samples per pixel.

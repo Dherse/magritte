@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineCoverageModulationStateCreateFlagsNV;
 ```
 
 # Related
-- [`nv_framebuffer_mixed_samples`]
+- [`VK_NV_framebuffer_mixed_samples`]
 - [`PipelineCoverageModulationStateCreateInfoNV`]
 
 # Notes and documentation

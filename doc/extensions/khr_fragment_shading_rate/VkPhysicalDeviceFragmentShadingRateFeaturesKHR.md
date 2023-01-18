@@ -33,7 +33,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_FEATURES_KHR`
 
 # Related
-- [`khr_fragment_shading_rate`]
+- [`VK_KHR_fragment_shading_rate`]
 - [`Bool32`]
 - [`StructureType`]
 

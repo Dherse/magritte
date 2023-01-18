@@ -24,7 +24,7 @@ typedef struct VkAccelerationStructureMotionInfoNV {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureMotionInfoFlagsNV`]
 - [`StructureType`]
 

@@ -17,13 +17,13 @@ typedef struct VkXcbSurfaceCreateInfoKHR {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is reserved for future use.
-- [`connection`] is a pointer to an `xcb_connection_t` to the X server.
-- [`window`] is the `xcb_window_t` for the X11 window to associate the surface with.
+- [`connection`] is a pointer to an [`xcb_connection_t`] to the X server.
+- [`window`] is the [`xcb_window_t`] for the X11 window to associate the surface with.
 
 # Description
 ## Valid Usage
--  [`connection`] **must**  point to a valid X11 `xcb_connection_t`
--  [`window`] **must**  be a valid X11 `xcb_window_t`
+-  [`connection`] **must**  point to a valid X11 [`xcb_connection_t`]
+-  [`window`] **must**  be a valid X11 [`xcb_window_t`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_XCB_SURFACE_CREATE_INFO_KHR`
@@ -31,7 +31,7 @@ typedef struct VkXcbSurfaceCreateInfoKHR {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`khr_xcb_surface`]
+- [`VK_KHR_xcb_surface`]
 - [`StructureType`]
 - [`XcbSurfaceCreateFlagsKHR`]
 - [`create_xcb_surface_khr`]

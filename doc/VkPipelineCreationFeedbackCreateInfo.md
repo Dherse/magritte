@@ -65,7 +65,7 @@ When chained to [`ComputePipelineCreateInfo`], the first element of
 -  [`pipeline_stage_creation_feedback_count`] **must**  be greater than `0`
 
 # Related
-- [`ext_pipeline_creation_feedback`]
+- [`VK_EXT_pipeline_creation_feedback`]
 - [`crate::vulkan1_3`]
 - [`ComputePipelineCreateInfo`]
 - [`GraphicsPipelineCreateInfo`]

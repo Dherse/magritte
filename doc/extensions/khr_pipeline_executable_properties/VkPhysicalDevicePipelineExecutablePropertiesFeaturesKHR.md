@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PIPELINE_EXECUTABLE_PROPERTIES_FEATURES_KHR`
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`Bool32`]
 - [`StructureType`]
 

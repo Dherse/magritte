@@ -68,8 +68,8 @@ the synchronization scope  **must**  include both [`stage`] and
 ## Command Properties
 
 # Related
-- [`amd_buffer_marker`]
-- [`khr_synchronization2`]
+- [`VK_AMD_buffer_marker`]
+- [`VK_KHR_synchronization2`]
 - [`Buffer`]
 - [`CommandBuffer`]
 - [`DeviceSize`]

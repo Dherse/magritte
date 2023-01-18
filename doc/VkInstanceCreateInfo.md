@@ -42,9 +42,9 @@ or
 [`create_debug_utils_messenger_ext`]
 to create persistent callback objects.
 ## Valid Usage
--    If the [`p_next`] chain of [`InstanceCreateInfo`] includes a [`DebugReportCallbackCreateInfoEXT`] structure, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain [`ext_debug_report`]
--    If the [`p_next`] chain of [`InstanceCreateInfo`] includes a [`DebugUtilsMessengerCreateInfoEXT`] structure, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain [`ext_debug_utils`]
--    If [`flags`] has the `VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR` bit set, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain `[`khr_portability_enumeration`]`
+-    If the [`p_next`] chain of [`InstanceCreateInfo`] includes a [`DebugReportCallbackCreateInfoEXT`] structure, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain [`VK_EXT_debug_report`]
+-    If the [`p_next`] chain of [`InstanceCreateInfo`] includes a [`DebugUtilsMessengerCreateInfoEXT`] structure, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain [`VK_EXT_debug_utils`]
+-    If [`flags`] has the `VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR` bit set, the list of enabled extensions in [`pp_enabled_extension_names`] **must**  contain `[`VK_KHR_portability_enumeration`]`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO`
@@ -58,7 +58,7 @@ to create persistent callback objects.
 # Related
 - [`crate::vulkan1_0`]
 - [`ApplicationInfo`]
-- [VkInstanceCreateFlags]()
+- [`InstanceCreateFlags`]
 - [`StructureType`]
 - [`create_instance`]
 

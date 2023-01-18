@@ -14,7 +14,7 @@ until the display is either released or the connector is unplugged.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_direct_mode_display`]`
+- Requires `[`VK_EXT_direct_mode_display`]`
 
 # Contacts
 - Drew DeVault [sir@cmpwn.com]()
@@ -24,8 +24,8 @@ until the display is either released or the connector is unplugged.
 - [`get_drm_display_ext`]
 
 # New constants
-- `VK_EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME`
-- `VK_EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION`
+- [`EXT_ACQUIRE_DRM_DISPLAY_EXTENSION_NAME`]
+- [`EXT_ACQUIRE_DRM_DISPLAY_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 None.

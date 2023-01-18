@@ -53,14 +53,14 @@ typedef enum VkImageUsageFlagBits {
 ```
 
 # Description
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used as the source of a transfer command.
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used as the destination of a transfer command.
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` or `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, and be sampled by a shader.
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for use as a color or resolve attachment in a [`Framebuffer`].
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for use as a depth/stencil or depth/stencil resolve attachment in a [`Framebuffer`].
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that implementations  **may**  support using [memory allocations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory) with the `VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT` to back an image with this usage. This bit  **can**  be set for any image that  **can**  be used to create a [`ImageView`] suitable for use as a color, resolve, depth/stencil, or input attachment.
-- [`VK_IMAGE_USAGE_FLAG_BITS`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`; be read from a shader as an input attachment; and be used as an input attachment in a framebuffer.
+- [`TRANSFER_SRC`] specifies that the image  **can**  be used as the source of a transfer command.
+- [`TRANSFER_DST`] specifies that the image  **can**  be used as the destination of a transfer command.
+- [`SAMPLED`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE` or `VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER`, and be sampled by a shader.
+- [`STORAGE`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE`.
+- [`COLOR_ATTACHMENT`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for use as a color or resolve attachment in a [`Framebuffer`].
+- [`DEPTH_STENCIL_ATTACHMENT`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for use as a depth/stencil or depth/stencil resolve attachment in a [`Framebuffer`].
+- [`TRANSIENT_ATTACHMENT`] specifies that implementations  **may**  support using [memory allocations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory) with the `VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT` to back an image with this usage. This bit  **can**  be set for any image that  **can**  be used to create a [`ImageView`] suitable for use as a color, resolve, depth/stencil, or input attachment.
+- [`INPUT_ATTACHMENT`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for occupying [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`; be read from a shader as an input attachment; and be used as an input attachment in a framebuffer.
 - [`FRAGMENT_DENSITY_MAP_EXT`] specifies that the image  **can**  be used to create a [`ImageView`] suitable for use as a [fragment density map image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymapops).
 - [`FRAGMENT_SHADING_RATE_ATTACHMENT_KHR`] specifies     that the image  **can**  be used to create a [`ImageView`] suitable for     use as a     [fragment shading rate     attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) or     [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image)
 - [`VIDEO_DECODE_DST_KHR`] specifies that [video decode operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations) **can**  use the image as an output picture for video decode operations.
@@ -72,7 +72,7 @@ typedef enum VkImageUsageFlagBits {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

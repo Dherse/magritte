@@ -66,7 +66,7 @@ If a binding has a [`descriptor_count`] of zero, it is skipped.
 This behavior applies recursively, with the update affecting consecutive
 bindings as needed to update all [`descriptor_count`] descriptors.
 Consecutive bindings  **must**  have identical [`DescriptorType`],
-[VkShaderStageFlags](),
+[`ShaderStageFlags`],
 [`DescriptorBindingFlagBits`],
 and immutable samplers references.
 ## Valid Usage
@@ -96,8 +96,8 @@ and immutable samplers references.
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER`, `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER`, or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`, and the `buffer` member of any element of [`buffer_info`] is the handle of a non-sparse buffer, then that buffer  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, the `buffer` member of each element of [`buffer_info`] **must**  have been created with `VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT` set
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`, the `buffer` member of each element of [`buffer_info`] **must**  have been created with `VK_BUFFER_USAGE_STORAGE_BUFFER_BIT` set
--    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, the `range` member of each element of [`buffer_info`], or the effective range if `range` is `VK_WHOLE_SIZE`,  **must**  be less than or equal to [`PhysicalDeviceLimits::max_uniform_buffer_range`]
--    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`, the `range` member of each element of [`buffer_info`], or the effective range if `range` is `VK_WHOLE_SIZE`,  **must**  be less than or equal to [`PhysicalDeviceLimits::max_storage_buffer_range`]
+-    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`, the `range` member of each element of [`buffer_info`], or the effective range if `range` is [`WHOLE_SIZE`],  **must**  be less than or equal to [`PhysicalDeviceLimits::max_uniform_buffer_range`]
+-    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`, the `range` member of each element of [`buffer_info`], or the effective range if `range` is [`WHOLE_SIZE`],  **must**  be less than or equal to [`PhysicalDeviceLimits::max_storage_buffer_range`]
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`, the [`Buffer`] that each element of [`texel_buffer_view`] was created from  **must**  have been created with `VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT` set
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`, the [`Buffer`] that each element of [`texel_buffer_view`] was created from  **must**  have been created with `VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT` set
 -    If [`descriptor_type`] is `VK_DESCRIPTOR_TYPE_STORAGE_IMAGE` or `VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT`, the `imageView` member of each element of [`image_info`] **must**  have been created with the identity swizzle

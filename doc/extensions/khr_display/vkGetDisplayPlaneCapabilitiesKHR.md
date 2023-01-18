@@ -36,7 +36,7 @@ VkResult vkGetDisplayPlaneCapabilitiesKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModeKHR`]
 - [`DisplayPlaneCapabilitiesKHR`]
 - [`PhysicalDevice`]

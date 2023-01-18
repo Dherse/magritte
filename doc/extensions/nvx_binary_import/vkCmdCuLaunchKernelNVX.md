@@ -24,7 +24,7 @@ void vkCmdCuLaunchKernelNVX(
 ## Command Properties
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`CommandBuffer`]
 - [`CuLaunchInfoNVX`]
 

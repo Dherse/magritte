@@ -22,7 +22,7 @@ typedef struct VkMultisamplePropertiesEXT {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`Extent2D`]
 - [`StructureType`]
 - [`get_physical_device_multisample_properties_ext`]

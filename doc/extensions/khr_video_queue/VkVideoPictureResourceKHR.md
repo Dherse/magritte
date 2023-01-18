@@ -29,7 +29,7 @@ typedef struct VkVideoPictureResourceKHR {
 -  [`image_view_binding`] **must**  be a valid [`ImageView`] handle
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`Extent2D`]
 - [`ImageView`]
 - [`Offset2D`]

@@ -28,7 +28,7 @@ typedef struct VkAccelerationStructureCreateInfoNV {
 -  [`info`] **must**  be a valid [`AccelerationStructureInfoNV`] structure
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureInfoNV`]
 - [`DeviceSize`]
 - [`StructureType`]

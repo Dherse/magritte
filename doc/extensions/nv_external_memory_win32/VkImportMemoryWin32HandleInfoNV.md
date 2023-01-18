@@ -19,7 +19,7 @@ typedef struct VkImportMemoryWin32HandleInfoNV {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`handle_type`] is `0` or a [`ExternalMemoryHandleTypeFlagBitsNV`] value specifying the type of memory handle in [`handle`].
-- [`handle`] is a Windows `HANDLE` referring to the memory.
+- [`handle`] is a Windows [`HANDLE`] referring to the memory.
 
 # Description
 If [`handle_type`] is `0`, this structure is ignored by consumers of the
@@ -33,8 +33,8 @@ If [`handle_type`] is `0`, this structure is ignored by consumers of the
 -  [`handle_type`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`] values
 
 # Related
-- [`nv_external_memory_win32`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`VK_NV_external_memory_win32`]
+- [`ExternalMemoryHandleTypeFlagsNV`]
 - [`StructureType`]
 
 # Notes and documentation

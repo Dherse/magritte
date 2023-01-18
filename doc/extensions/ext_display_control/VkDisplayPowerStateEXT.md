@@ -13,12 +13,12 @@ typedef enum VkDisplayPowerStateEXT {
 ```
 
 # Description
-- [`VK_DISPLAY_POWER_STATE_EXT`] specifies that the display is powered down.
-- [`VK_DISPLAY_POWER_STATE_EXT`] specifies that the display is put into a low power mode, from which it  **may**  be able to transition back to [`VK_DISPLAY_POWER_STATE_EXT`] more quickly than if it were in [`VK_DISPLAY_POWER_STATE_EXT`]. This state  **may**  be the same as [`VK_DISPLAY_POWER_STATE_EXT`].
-- [`VK_DISPLAY_POWER_STATE_EXT`] specifies that the display is powered on.
+- [`OFF`] specifies that the display is powered down.
+- [`SUSPEND`] specifies that the display is put into a low power mode, from which it  **may**  be able to transition back to [`ON`] more quickly than if it were in [`OFF`]. This state  **may**  be the same as [`OFF`].
+- [`ON`] specifies that the display is powered on.
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`DisplayPowerInfoEXT`]
 
 # Notes and documentation

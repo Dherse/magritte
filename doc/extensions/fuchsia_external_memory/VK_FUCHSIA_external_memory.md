@@ -15,8 +15,8 @@ processing workload for more complex memory manipulation pipelines.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory_capabilities`]`
-- Requires `[`khr_external_memory`]`
+- Requires `[`VK_KHR_external_memory_capabilities`]`
+- Requires `[`VK_KHR_external_memory`]`
 
 # Contacts
 - John Rosasco [rosasco](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_external_memory] @rosasco%0A<<Here describe the issue or question you have about the VK_FUCHSIA_external_memory extension>>)
@@ -31,13 +31,13 @@ processing workload for more complex memory manipulation pipelines.
 - Extending [`MemoryAllocateInfo`]:  - [`ImportMemoryZirconHandleInfoFUCHSIA`]
 
 # New constants
-- `VK_FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME`
-- `VK_FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION`
+- [`FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME`]
+- [`FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION`]
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_ZIRCON_VMO_BIT_FUCHSIA` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_ZIRCON_HANDLE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_MEMORY_GET_ZIRCON_HANDLE_INFO_FUCHSIA`  - `VK_STRUCTURE_TYPE_MEMORY_ZIRCON_HANDLE_PROPERTIES_FUCHSIA`
 
 # Known issues & F.A.Q.
-See `[`khr_external_memory`]` issues list for further information.
+See `[`VK_KHR_external_memory`]` issues list for further information.
 
 # Version history
 - Revision 1, 2021-03-01 (John Rosasco)  - Initial draft

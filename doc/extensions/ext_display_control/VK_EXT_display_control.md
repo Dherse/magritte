@@ -2,7 +2,7 @@
 
 # Description
 This extension defines a set of utility functions for use with the
-`[`khr_display`]` and `[`khr_display_swapchain`]` extensions.
+`[`VK_KHR_display`]` and `[`VK_KHR_display_swapchain`]` extensions.
 
 # Registered extension number
 92
@@ -12,8 +12,8 @@ This extension defines a set of utility functions for use with the
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_display_surface_counter`]`
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_EXT_display_surface_counter`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_display_control] @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_display_control extension>>)
@@ -36,8 +36,8 @@ This extension defines a set of utility functions for use with the
 - [`DisplayPowerStateEXT`]
 
 # New constants
-- `VK_EXT_DISPLAY_CONTROL_EXTENSION_NAME`
-- `VK_EXT_DISPLAY_CONTROL_SPEC_VERSION`
+- [`EXT_DISPLAY_CONTROL_EXTENSION_NAME`]
+- [`EXT_DISPLAY_CONTROL_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_EVENT_INFO_EXT`  - `VK_STRUCTURE_TYPE_DISPLAY_EVENT_INFO_EXT`  - `VK_STRUCTURE_TYPE_DISPLAY_POWER_INFO_EXT`  - `VK_STRUCTURE_TYPE_SWAPCHAIN_COUNTER_CREATE_INFO_EXT`
 
 # Known issues & F.A.Q.

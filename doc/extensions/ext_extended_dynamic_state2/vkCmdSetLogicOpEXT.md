@@ -38,7 +38,7 @@ create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_extended_dynamic_state2`]
+- [`VK_EXT_extended_dynamic_state2`]
 - [`CommandBuffer`]
 - [`LogicOp`]
 

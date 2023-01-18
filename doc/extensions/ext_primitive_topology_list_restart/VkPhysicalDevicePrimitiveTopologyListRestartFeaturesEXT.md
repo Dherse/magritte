@@ -33,7 +33,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
 
 # Related
-- [`ext_primitive_topology_list_restart`]
+- [`VK_EXT_primitive_topology_list_restart`]
 - [`Bool32`]
 - [`StructureType`]
 

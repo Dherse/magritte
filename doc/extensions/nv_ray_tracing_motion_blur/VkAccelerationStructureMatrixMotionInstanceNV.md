@@ -43,9 +43,9 @@ That is, for a `time` in [0,1] the resulting transform is
 -  [`flags`] **must**  be a valid combination of [`GeometryInstanceFlagBitsKHR`] values
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureMotionInstanceDataNV`]
-- [VkGeometryInstanceFlagsKHR]()
+- [`GeometryInstanceFlagsKHR`]
 - [`TransformMatrixKHR`]
 
 # Notes and documentation

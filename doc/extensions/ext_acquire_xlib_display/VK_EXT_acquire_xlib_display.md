@@ -17,7 +17,7 @@ until control is released.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`ext_direct_mode_display`]`
+- Requires `[`VK_EXT_direct_mode_display`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_acquire_xlib_display] @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_acquire_xlib_display extension>>)
@@ -27,8 +27,8 @@ until control is released.
 - [`get_rand_r_output_display_ext`]
 
 # New constants
-- `VK_EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME`
-- `VK_EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION`
+- [`EXT_ACQUIRE_XLIB_DISPLAY_EXTENSION_NAME`]
+- [`EXT_ACQUIRE_XLIB_DISPLAY_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) Should [`acquire_xlib_display_ext`] take an RandR display ID, or a

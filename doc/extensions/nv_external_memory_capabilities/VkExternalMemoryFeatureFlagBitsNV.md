@@ -14,14 +14,14 @@ typedef enum VkExternalMemoryFeatureFlagBitsNV {
 ```
 
 # Description
-- [`VK_EXTERNAL_MEMORY_FEATURE_FLAG_BITS_NV`] specifies that external memory of the specified type  **must**  be created as a dedicated allocation when used in the manner specified.
-- [`VK_EXTERNAL_MEMORY_FEATURE_FLAG_BITS_NV`] specifies that the implementation supports exporting handles of the specified type.
-- [`VK_EXTERNAL_MEMORY_FEATURE_FLAG_BITS_NV`] specifies that the implementation supports importing handles of the specified type.
+- [`DEDICATED_ONLY`] specifies that external memory of the specified type  **must**  be created as a dedicated allocation when used in the manner specified.
+- [`EXPORTABLE`] specifies that the implementation supports exporting handles of the specified type.
+- [`IMPORTABLE`] specifies that the implementation supports importing handles of the specified type.
 
 # Related
-- [`nv_external_memory_capabilities`]
+- [`VK_NV_external_memory_capabilities`]
 - [`ExternalImageFormatPropertiesNV`]
-- [VkExternalMemoryFeatureFlagsNV]()
+- [`ExternalMemoryFeatureFlagsNV`]
 - [`get_physical_device_external_image_format_properties_nv`]
 
 # Notes and documentation

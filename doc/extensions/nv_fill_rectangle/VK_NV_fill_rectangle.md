@@ -22,8 +22,8 @@ drawn, particularly for a user interface.
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fill_rectangle] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NV_fill_rectangle extension>>)
 
 # New constants
-- `VK_NV_FILL_RECTANGLE_EXTENSION_NAME`
-- `VK_NV_FILL_RECTANGLE_SPEC_VERSION`
+- [`NV_FILL_RECTANGLE_EXTENSION_NAME`]
+- [`NV_FILL_RECTANGLE_SPEC_VERSION`]
 - Extending [`PolygonMode`]:  - `VK_POLYGON_MODE_FILL_RECTANGLE_NV`
 
 # Version history

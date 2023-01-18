@@ -16,7 +16,7 @@ Applications using Vulkan directly should use Vulkan’s default convention.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jesse Hall [jessehall](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_provoking_vertex] @jessehall%0A<<Here describe the issue or question you have about the VK_EXT_provoking_vertex extension>>)
@@ -30,8 +30,8 @@ Applications using Vulkan directly should use Vulkan’s default convention.
 - [`ProvokingVertexModeEXT`]
 
 # New constants
-- `VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME`
-- `VK_EXT_PROVOKING_VERTEX_SPEC_VERSION`
+- [`EXT_PROVOKING_VERTEX_EXTENSION_NAME`]
+- [`EXT_PROVOKING_VERTEX_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_PROVOKING_VERTEX_STATE_CREATE_INFO_EXT`
 
 # Known issues & F.A.Q.

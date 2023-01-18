@@ -29,7 +29,7 @@ buffer that an allocation will be bound to.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_memory_requirements2`]`
+- Requires `[`VK_KHR_get_memory_requirements2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -42,8 +42,8 @@ buffer that an allocation will be bound to.
 - Extending [`MemoryRequirements2`]:  - [`MemoryDedicatedRequirementsKHR`]
 
 # New constants
-- `VK_KHR_DEDICATED_ALLOCATION_EXTENSION_NAME`
-- `VK_KHR_DEDICATED_ALLOCATION_SPEC_VERSION`
+- [`KHR_DEDICATED_ALLOCATION_EXTENSION_NAME`]
+- [`KHR_DEDICATED_ALLOCATION_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_ALLOCATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_DEDICATED_REQUIREMENTS_KHR`
 
 # Version history

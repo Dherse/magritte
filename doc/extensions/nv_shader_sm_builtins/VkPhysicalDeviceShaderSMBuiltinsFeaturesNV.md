@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SM_BUILTINS_FEATURES_NV`
 
 # Related
-- [`nv_shader_sm_builtins`]
+- [`VK_NV_shader_sm_builtins`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -20,7 +20,7 @@ dimensions that are supported by the implementation.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_cooperative_matrix] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NV_cooperative_matrix extension>>)
@@ -38,8 +38,8 @@ dimensions that are supported by the implementation.
 - [`ScopeNV`]
 
 # New constants
-- `VK_NV_COOPERATIVE_MATRIX_EXTENSION_NAME`
-- `VK_NV_COOPERATIVE_MATRIX_SPEC_VERSION`
+- [`NV_COOPERATIVE_MATRIX_EXTENSION_NAME`]
+- [`NV_COOPERATIVE_MATRIX_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_COOPERATIVE_MATRIX_PROPERTIES_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_COOPERATIVE_MATRIX_PROPERTIES_NV`
 
 # Known issues & F.A.Q.

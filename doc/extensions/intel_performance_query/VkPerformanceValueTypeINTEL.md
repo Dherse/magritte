@@ -3,11 +3,11 @@
 # C Specifications
 Possible values of [`PerformanceValueINTEL::type_`], specifying the
 type of the data returned in [`PerformanceValueINTEL::data`], are:
-- [`VK_PERFORMANCE_VALUE_TYPE_INTEL`] specifies that unsigned 32-bit integer data is returned in `data.value32`.
-- [`VK_PERFORMANCE_VALUE_TYPE_INTEL`] specifies that unsigned 64-bit integer data is returned in `data.value64`.
-- [`VK_PERFORMANCE_VALUE_TYPE_INTEL`] specifies that floating-point data is returned in `data.valueFloat`.
-- [`VK_PERFORMANCE_VALUE_TYPE_INTEL`] specifies that [`Bool32`] data is returned in `data.valueBool`.
-- [`VK_PERFORMANCE_VALUE_TYPE_INTEL`] specifies that a pointer to a null-terminated UTF-8 string is returned in `data.valueString`. The pointer is valid for the lifetime of the `device` parameter passed to [`get_performance_parameter_intel`].
+- [`UINT32`] specifies that unsigned 32-bit integer data is returned in `data.value32`.
+- [`UINT64`] specifies that unsigned 64-bit integer data is returned in `data.value64`.
+- [`FLOAT`] specifies that floating-point data is returned in `data.valueFloat`.
+- [`BOOL`] specifies that [`Bool32`] data is returned in `data.valueBool`.
+- [`STRING`] specifies that a pointer to a null-terminated UTF-8 string is returned in `data.valueString`. The pointer is valid for the lifetime of the `device` parameter passed to [`get_performance_parameter_intel`].
 
 ```c
 // Provided by VK_INTEL_performance_query
@@ -21,7 +21,7 @@ typedef enum VkPerformanceValueTypeINTEL {
 ```
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`PerformanceValueINTEL`]
 
 # Notes and documentation

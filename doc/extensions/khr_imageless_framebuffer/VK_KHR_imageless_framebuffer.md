@@ -17,8 +17,8 @@ provided at render pass begin time via
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_maintenance2`]`
-- Requires `[`khr_image_format_list`]`
+- Requires `[`VK_KHR_maintenance2`]`
+- Requires `[`VK_KHR_image_format_list`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -33,8 +33,8 @@ provided at render pass begin time via
 - Extending [`RenderPassBeginInfo`]:  - [`RenderPassAttachmentBeginInfoKHR`]
 
 # New constants
-- `VK_KHR_IMAGELESS_FRAMEBUFFER_EXTENSION_NAME`
-- `VK_KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION`
+- [`KHR_IMAGELESS_FRAMEBUFFER_EXTENSION_NAME`]
+- [`KHR_IMAGELESS_FRAMEBUFFER_SPEC_VERSION`]
 - Extending [`FramebufferCreateFlagBits`]:  - `VK_FRAMEBUFFER_CREATE_IMAGELESS_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENTS_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_FRAMEBUFFER_ATTACHMENT_IMAGE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_RENDER_PASS_ATTACHMENT_BEGIN_INFO_KHR`
 

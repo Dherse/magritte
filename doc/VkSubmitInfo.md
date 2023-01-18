@@ -53,8 +53,8 @@ otherwise execute out of order.
 -    For each element of [`signal_semaphores`] created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE` the corresponding element of [`TimelineSemaphoreSubmitInfo::signal_semaphore_values`] **must**  have a value greater than the current value of the semaphore when the [semaphore signal operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-semaphores-signaling) is executed
 -    For each element of [`wait_semaphores`] created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE` the corresponding element of [`TimelineSemaphoreSubmitInfo::wait_semaphore_values`] **must**  have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
 -    For each element of [`signal_semaphores`] created with a [`SemaphoreType`] of `VK_SEMAPHORE_TYPE_TIMELINE` the corresponding element of [`TimelineSemaphoreSubmitInfo::signal_semaphore_values`] **must**  have a value which does not differ from the current value of the semaphore or the value of any outstanding semaphore wait or signal operation on that semaphore by more than [`maxTimelineSemaphoreValueDifference`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-maxTimelineSemaphoreValueDifference)
--    If the [`p_next`] chain of this structure does not include a [`ProtectedSubmitInfo`] structure with `protectedSubmit` set to `VK_TRUE`, then each element of the [`command_buffers`] array  **must**  be an unprotected command buffer
--    If the [`p_next`] chain of this structure includes a [`ProtectedSubmitInfo`] structure with `protectedSubmit` set to `VK_TRUE`, then each element of the [`command_buffers`] array  **must**  be a protected command buffer
+-    If the [`p_next`] chain of this structure does not include a [`ProtectedSubmitInfo`] structure with `protectedSubmit` set to [`TRUE`], then each element of the [`command_buffers`] array  **must**  be an unprotected command buffer
+-    If the [`p_next`] chain of this structure includes a [`ProtectedSubmitInfo`] structure with `protectedSubmit` set to [`TRUE`], then each element of the [`command_buffers`] array  **must**  be a protected command buffer
 -    If [`command_buffers`] contains any [resumed render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they  **must**  be suspended by a render pass instance earlier in submission order within [`command_buffers`]
 -    If [`command_buffers`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), they  **must**  be resumed by a render pass instance later in submission order within [`command_buffers`]
 -    If [`command_buffers`] contains any [suspended render pass instances](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-suspension), there  **must**  be no action or synchronization commands between that render pass instance and the render pass instance that resumes it
@@ -75,7 +75,7 @@ otherwise execute out of order.
 # Related
 - [`crate::vulkan1_0`]
 - [`CommandBuffer`]
-- [VkPipelineStageFlags]()
+- [`PipelineStageFlags`]
 - [`Semaphore`]
 - [`StructureType`]
 - [`queue_submit`]

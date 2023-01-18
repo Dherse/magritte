@@ -64,10 +64,10 @@ the call to [`set_buffer_collection_image_constraints_fuchsia`], at
 -  [`suggested_y_chroma_offset`] **must**  be a valid [`ChromaLocation`] value
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`ChromaLocation`]
 - [`ComponentMapping`]
-- [VkFormatFeatureFlags]()
+- [`FormatFeatureFlags`]
 - [`SamplerYcbcrModelConversion`]
 - [`SamplerYcbcrRange`]
 - [`StructureType`]

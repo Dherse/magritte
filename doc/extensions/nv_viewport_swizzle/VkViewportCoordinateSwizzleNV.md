@@ -22,7 +22,7 @@ typedef enum VkViewportCoordinateSwizzleNV {
 These values are described in detail in [Viewport Swizzle](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#vertexpostproc-viewport-swizzle).
 
 # Related
-- [`nv_viewport_swizzle`]
+- [`VK_NV_viewport_swizzle`]
 - [`ViewportSwizzleNV`]
 
 # Notes and documentation

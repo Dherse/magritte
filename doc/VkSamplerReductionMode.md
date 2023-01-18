@@ -24,12 +24,12 @@ typedef VkSamplerReductionMode VkSamplerReductionModeEXT;
 ```
 
 # Description
-- [`VK_SAMPLER_REDUCTION_MODE`] specifies that texel values are combined by computing a weighted average of values in the footprint, using weights as specified in [the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
-- [`VK_SAMPLER_REDUCTION_MODE`] specifies that texel values are combined by taking the component-wise minimum of values in the footprint with non-zero weights.
-- [`VK_SAMPLER_REDUCTION_MODE`] specifies that texel values are combined by taking the component-wise maximum of values in the footprint with non-zero weights.
+- [`WEIGHTED_AVERAGE`] specifies that texel values are combined by computing a weighted average of values in the footprint, using weights as specified in [the image operations chapter](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-unnormalized-to-integer).
+- [`MIN`] specifies that texel values are combined by taking the component-wise minimum of values in the footprint with non-zero weights.
+- [`MAX`] specifies that texel values are combined by taking the component-wise maximum of values in the footprint with non-zero weights.
 
 # Related
-- [`ext_sampler_filter_minmax`]
+- [`VK_EXT_sampler_filter_minmax`]
 - [`crate::vulkan1_2`]
 - [`SamplerReductionModeCreateInfo`]
 

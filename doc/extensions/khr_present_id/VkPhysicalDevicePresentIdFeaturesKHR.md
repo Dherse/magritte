@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`
 
 # Related
-- [`khr_present_id`]
+- [`VK_KHR_present_id`]
 - [`Bool32`]
 - [`StructureType`]
 

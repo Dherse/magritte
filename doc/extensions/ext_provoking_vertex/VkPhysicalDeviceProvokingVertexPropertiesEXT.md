@@ -28,7 +28,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROVOKING_VERTEX_PROPERTIES_EXT`
 
 # Related
-- [`ext_provoking_vertex`]
+- [`VK_EXT_provoking_vertex`]
 - [`Bool32`]
 - [`StructureType`]
 

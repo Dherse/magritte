@@ -43,7 +43,7 @@ extensions were also added to help cover a few additional edge cases.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -64,8 +64,8 @@ extensions were also added to help cover a few additional edge cases.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceBufferDeviceAddressFeaturesKHR`]
 
 # New constants
-- `VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`
-- `VK_KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`
+- [`KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`]
+- [`KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 - Extending [`BufferCreateFlagBits`]:  - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_KHR` 
 - Extending [`MemoryAllocateFlagBits`]:  - `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_BIT_KHR`  - `VK_MEMORY_ALLOCATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_KHR` 

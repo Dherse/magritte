@@ -36,7 +36,7 @@ typedef VkSemaphoreSignalInfo VkSemaphoreSignalInfoKHR;
 -  [`semaphore`] **must**  be a valid [`Semaphore`] handle
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`Semaphore`]
 - [`StructureType`]

@@ -12,12 +12,12 @@ typedef enum VkQueryResultStatusKHR {
 ```
 
 # Description
-- [`VK_QUERY_RESULT_STATUS_KHR`] specifies that the query result is not yet available.
-- [`VK_QUERY_RESULT_STATUS_KHR`] specifies that operations did not complete successfully.
-- [`VK_QUERY_RESULT_STATUS_KHR`] specifies that operations completed successfully and the query result is available.
+- [`NOT_READY`] specifies that the query result is not yet available.
+- [`ERROR`] specifies that operations did not complete successfully.
+- [`COMPLETE`] specifies that operations completed successfully and the query result is available.
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

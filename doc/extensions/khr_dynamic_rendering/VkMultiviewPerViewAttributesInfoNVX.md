@@ -31,14 +31,14 @@ a dynamic render pass instance, and [`CommandBufferInheritanceInfo`]
 when specifying the dynamic render pass instance parameters for secondary
 command buffers.
 ## Valid Usage
--    If [`per_view_attributes_position_x_only`] is `VK_TRUE` then [`per_view_attributes`] **must**  also be `VK_TRUE`
+-    If [`per_view_attributes_position_x_only`] is [`TRUE`] then [`per_view_attributes`] **must**  also be [`TRUE`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MULTIVIEW_PER_VIEW_ATTRIBUTES_INFO_NVX`
 
 # Related
-- [`khr_dynamic_rendering`]
-- [`nvx_multiview_per_view_attributes`]
+- [`VK_KHR_dynamic_rendering`]
+- [`VK_NVX_multiview_per_view_attributes`]
 - [`Bool32`]
 - [`StructureType`]
 

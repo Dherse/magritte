@@ -36,7 +36,7 @@ typedef struct VkImageViewHandleInfoNVX {
 -    Both of [`image_view`], and [`sampler`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nvx_image_view_handle`]
+- [`VK_NVX_image_view_handle`]
 - [`DescriptorType`]
 - [`ImageView`]
 - [`Sampler`]

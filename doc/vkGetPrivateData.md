@@ -42,7 +42,7 @@ void vkGetPrivateDataEXT(
 -  [`private_data_slot`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`Device`]
 - [`ObjectType`]

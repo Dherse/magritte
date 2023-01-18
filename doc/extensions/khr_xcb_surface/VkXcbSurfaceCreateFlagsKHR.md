@@ -7,7 +7,7 @@ typedef VkFlags VkXcbSurfaceCreateFlagsKHR;
 ```
 
 # Related
-- [`khr_xcb_surface`]
+- [`VK_KHR_xcb_surface`]
 - [`XcbSurfaceCreateInfoKHR`]
 
 # Notes and documentation

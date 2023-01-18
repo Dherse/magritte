@@ -34,7 +34,7 @@ closing a window, or similar behavior.
 - Host access to [`surface`] **must**  be externally synchronized
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`AllocationCallbacks`]
 - [`Instance`]
 - [`SurfaceKHR`]

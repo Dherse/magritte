@@ -23,8 +23,8 @@ of images with a depth-stencil format at image creation time.
 - Extending [`ImageCreateInfo`], [`PhysicalDeviceImageFormatInfo2`]:  - [`ImageStencilUsageCreateInfoEXT`]
 
 # New constants
-- `VK_EXT_SEPARATE_STENCIL_USAGE_EXTENSION_NAME`
-- `VK_EXT_SEPARATE_STENCIL_USAGE_SPEC_VERSION`
+- [`EXT_SEPARATE_STENCIL_USAGE_EXTENSION_NAME`]
+- [`EXT_SEPARATE_STENCIL_USAGE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGE_STENCIL_USAGE_CREATE_INFO_EXT`
 
 # Version history

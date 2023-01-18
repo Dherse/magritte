@@ -49,7 +49,7 @@ the swapchain is destroyed.
 - Host access to [`swapchain`] **must**  be externally synchronized
 
 # Related
-- [`khr_swapchain`]
+- [`VK_KHR_swapchain`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`SwapchainKHR`]

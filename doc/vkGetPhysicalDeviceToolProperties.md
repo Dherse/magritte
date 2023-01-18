@@ -46,7 +46,7 @@ time.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_tooling_info`]
+- [`VK_EXT_tooling_info`]
 - [`crate::vulkan1_3`]
 - [`PhysicalDevice`]
 - [`PhysicalDeviceToolProperties`]

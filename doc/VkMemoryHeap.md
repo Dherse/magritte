@@ -17,7 +17,7 @@ typedef struct VkMemoryHeap {
 # Related
 - [`crate::vulkan1_0`]
 - [`DeviceSize`]
-- [VkMemoryHeapFlags]()
+- [`MemoryHeapFlags`]
 - [`PhysicalDeviceMemoryProperties`]
 
 # Notes and documentation

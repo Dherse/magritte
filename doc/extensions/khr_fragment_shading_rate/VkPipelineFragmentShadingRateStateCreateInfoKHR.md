@@ -31,7 +31,7 @@ to be equal to `VK_FRAGMENT_SHADING_RATE_COMBINER_OP_KEEP_KHR`.
 -    Any given element of [`combiner_ops`] **must**  be a valid [`FragmentShadingRateCombinerOpKHR`] value
 
 # Related
-- [`khr_fragment_shading_rate`]
+- [`VK_KHR_fragment_shading_rate`]
 - [`Extent2D`]
 - [`FragmentShadingRateCombinerOpKHR`]
 - [`StructureType`]

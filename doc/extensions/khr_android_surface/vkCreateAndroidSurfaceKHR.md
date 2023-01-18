@@ -41,7 +41,7 @@ consumer’s preferred size).
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 # Related
-- [`khr_android_surface`]
+- [`VK_KHR_android_surface`]
 - [`AllocationCallbacks`]
 - [`AndroidSurfaceCreateInfoKHR`]
 - [`Instance`]

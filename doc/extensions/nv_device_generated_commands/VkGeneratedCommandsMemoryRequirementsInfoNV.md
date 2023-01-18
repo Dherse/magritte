@@ -34,7 +34,7 @@ typedef struct VkGeneratedCommandsMemoryRequirementsInfoNV {
 -    Both of [`indirect_commands_layout`], and [`pipeline`] **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`IndirectCommandsLayoutNV`]
 - [`Pipeline`]
 - [`PipelineBindPoint`]

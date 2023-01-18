@@ -7,7 +7,7 @@ typedef VkFlags VkAndroidSurfaceCreateFlagsKHR;
 ```
 
 # Related
-- [`khr_android_surface`]
+- [`VK_KHR_android_surface`]
 - [`AndroidSurfaceCreateInfoKHR`]
 
 # Notes and documentation

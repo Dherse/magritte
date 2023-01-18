@@ -23,7 +23,7 @@ void vkDestroyVideoSessionKHR(
 -  [`video_session`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`VideoSessionKHR`]

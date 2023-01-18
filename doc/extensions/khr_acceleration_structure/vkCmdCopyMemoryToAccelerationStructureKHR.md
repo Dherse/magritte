@@ -48,7 +48,7 @@ These do not need to be built at deserialize time, but  **must**  be created.
 ## Command Properties
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`CommandBuffer`]
 - [`CopyMemoryToAccelerationStructureInfoKHR`]
 

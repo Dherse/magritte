@@ -34,7 +34,7 @@ If the command fails, the implementation  **must**  not retain a reference.
 -  [`buffer`] **must**  be a valid pointer to an [`AHardwareBuffer`] value
 
 # Related
-- [`android_external_memory_android_hardware_buffer`]
+- [`VK_ANDROID_external_memory_android_hardware_buffer`]
 - [`StructureType`]
 
 # Notes and documentation

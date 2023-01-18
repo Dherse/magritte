@@ -47,7 +47,7 @@ returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`Device`]
 - [`PipelineExecutablePropertiesKHR`]
 - [`PipelineInfoKHR`]

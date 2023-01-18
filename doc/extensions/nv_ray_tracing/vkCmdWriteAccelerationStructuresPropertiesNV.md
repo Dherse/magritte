@@ -53,7 +53,7 @@ Accesses to any of the acceleration structures listed in
 ## Command Properties
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureNV`]
 - [`CommandBuffer`]
 - [`QueryPool`]

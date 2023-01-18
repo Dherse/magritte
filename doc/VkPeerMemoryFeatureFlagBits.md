@@ -28,11 +28,11 @@ typedef VkPeerMemoryFeatureFlagBits VkPeerMemoryFeatureFlagBitsKHR;
 ```
 
 # Description
-- [`VK_PEER_MEMORY_FEATURE_FLAG_BITS`] specifies that the memory  **can**  be accessed as the source of any `vkCmdCopy*` command.
-- [`VK_PEER_MEMORY_FEATURE_FLAG_BITS`] specifies that the memory  **can**  be accessed as the destination of any `vkCmdCopy*` command.
-- [`VK_PEER_MEMORY_FEATURE_FLAG_BITS`] specifies that the memory  **can**  be read as any memory access type.
-- [`VK_PEER_MEMORY_FEATURE_FLAG_BITS`] specifies that the memory  **can**  be written as any memory access type. Shader atomics are considered to be writes.
-[`VK_PEER_MEMORY_FEATURE_FLAG_BITS`] **must**  be supported for all host
+- [`COPY_SRC`] specifies that the memory  **can**  be accessed as the source of any `vkCmdCopy*` command.
+- [`COPY_DST`] specifies that the memory  **can**  be accessed as the destination of any `vkCmdCopy*` command.
+- [`GENERIC_SRC`] specifies that the memory  **can**  be read as any memory access type.
+- [`GENERIC_DST`] specifies that the memory  **can**  be written as any memory access type. Shader atomics are considered to be writes.
+[`COPY_DST`] **must**  be supported for all host
 local heaps and for at least one device-local memory heap.If a device does not support a peer memory feature, it is still valid to use
 a resource that includes both local and peer memory bindings with the
 corresponding access type as long as only the local bindings are actually
@@ -43,7 +43,7 @@ but would scissor the rendering to only update local memory.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkPeerMemoryFeatureFlags]()
+- [`PeerMemoryFeatureFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

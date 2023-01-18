@@ -1,0 +1,1 @@
+[`SUBGROUP`] corresponds to SPIR-V `Subgroup` scope.

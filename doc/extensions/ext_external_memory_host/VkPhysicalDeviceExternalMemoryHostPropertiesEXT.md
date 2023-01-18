@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
 
 # Related
-- [`ext_external_memory_host`]
+- [`VK_EXT_external_memory_host`]
 - [`DeviceSize`]
 - [`StructureType`]
 

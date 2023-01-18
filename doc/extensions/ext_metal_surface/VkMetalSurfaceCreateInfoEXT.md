@@ -25,7 +25,7 @@ typedef struct VkMetalSurfaceCreateInfoEXT {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_metal_surface`]
+- [`VK_EXT_metal_surface`]
 - [`MetalSurfaceCreateFlagsEXT`]
 - [`StructureType`]
 - [`create_metal_surface_ext`]

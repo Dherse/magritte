@@ -50,7 +50,7 @@ values used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_discard_rectangles`]
+- [`VK_EXT_discard_rectangles`]
 - [`CommandBuffer`]
 - [`Rect2D`]
 

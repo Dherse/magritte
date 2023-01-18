@@ -12,7 +12,7 @@ mapped foreign device memory to Vulkan memory objects.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory`]`
+- Requires `[`VK_KHR_external_memory`]`
 
 # Contacts
 - Daniel Rakos [drakos-amd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_external_memory_host] @drakos-amd%0A<<Here describe the issue or question you have about the VK_EXT_external_memory_host extension>>)
@@ -26,8 +26,8 @@ mapped foreign device memory to Vulkan memory objects.
 - Extending [`PhysicalDeviceProperties2`]:  - [`PhysicalDeviceExternalMemoryHostPropertiesEXT`]
 
 # New constants
-- `VK_EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME`
-- `VK_EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION`
+- [`EXT_EXTERNAL_MEMORY_HOST_EXTENSION_NAME`]
+- [`EXT_EXTERNAL_MEMORY_HOST_SPEC_VERSION`]
 - Extending [`ExternalMemoryHandleTypeFlagBits`]:  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_ALLOCATION_BIT_EXT`  - `VK_EXTERNAL_MEMORY_HANDLE_TYPE_HOST_MAPPED_FOREIGN_MEMORY_BIT_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_HOST_POINTER_INFO_EXT`  - `VK_STRUCTURE_TYPE_MEMORY_HOST_POINTER_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_MEMORY_HOST_PROPERTIES_EXT`
 

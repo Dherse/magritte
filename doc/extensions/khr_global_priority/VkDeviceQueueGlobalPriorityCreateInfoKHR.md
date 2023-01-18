@@ -32,8 +32,8 @@ A queue created without specifying
 -  [`global_priority`] **must**  be a valid [`QueueGlobalPriorityKHR`] value
 
 # Related
-- [`ext_global_priority`]
-- [`khr_global_priority`]
+- [`VK_EXT_global_priority`]
+- [`VK_KHR_global_priority`]
 - [`QueueGlobalPriorityKHR`]
 - [`StructureType`]
 

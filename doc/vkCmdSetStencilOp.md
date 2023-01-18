@@ -58,11 +58,11 @@ active pipeline, for both front and back faces.
 ## Command Properties
 
 # Related
-- [`ext_extended_dynamic_state`]
+- [`VK_EXT_extended_dynamic_state`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
 - [`CompareOp`]
-- [VkStencilFaceFlags]()
+- [`StencilFaceFlags`]
 - [`StencilOp`]
 
 # Notes and documentation

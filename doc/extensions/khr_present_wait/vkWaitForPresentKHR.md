@@ -62,7 +62,7 @@ within the implementation.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 
 # Related
-- [`khr_present_wait`]
+- [`VK_KHR_present_wait`]
 - [`Device`]
 - [`SwapchainKHR`]
 

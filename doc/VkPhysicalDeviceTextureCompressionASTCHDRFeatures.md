@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_TEXTURE_COMPRESSION_ASTC_HDR_FEATURES`
 
 # Related
-- [`ext_texture_compression_astc_hdr`]
+- [`VK_EXT_texture_compression_astc_hdr`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

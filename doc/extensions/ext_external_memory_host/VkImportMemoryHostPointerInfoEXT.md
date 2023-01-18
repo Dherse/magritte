@@ -49,7 +49,7 @@ valid and accessible for the lifetime of the imported memory object.
 -  [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`ext_external_memory_host`]
+- [`VK_EXT_external_memory_host`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]
 

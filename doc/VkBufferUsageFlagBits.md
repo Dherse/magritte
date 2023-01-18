@@ -55,15 +55,15 @@ typedef enum VkBufferUsageFlagBits {
 ```
 
 # Description
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used as the source of a *transfer command* (see the definition of [`VK_PIPELINE_STAGE_TRANSFER_BIT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-transfer)).
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used as the destination of a transfer command.
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used to create a [`BufferView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used to create a [`BufferView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used in a [`DescriptorBufferInfo`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`.
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer  **can**  be used in a [`DescriptorBufferInfo`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`.
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer is suitable for passing as the `buffer` parameter to [`cmd_bind_index_buffer`].
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer is suitable for passing as an element of the `pBuffers` array to [`cmd_bind_vertex_buffers`].
-- [`VK_BUFFER_USAGE_FLAG_BITS`] specifies that the buffer is suitable for passing as the `buffer` parameter to [`cmd_draw_indirect`], [`cmd_draw_indexed_indirect`], [`cmd_draw_mesh_tasks_indirect_nv`], [`cmd_draw_mesh_tasks_indirect_count_nv`], or [`cmd_dispatch_indirect`]. It is also suitable for passing as the `buffer` member of [`IndirectCommandsStreamNV`], or `sequencesCountBuffer` or `sequencesIndexBuffer` or `preprocessedBuffer` member of [`GeneratedCommandsInfoNV`]
+- [`TRANSFER_SRC`] specifies that the buffer  **can**  be used as the source of a *transfer command* (see the definition of [`VK_PIPELINE_STAGE_TRANSFER_BIT`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-transfer)).
+- [`TRANSFER_DST`] specifies that the buffer  **can**  be used as the destination of a transfer command.
+- [`UNIFORM_TEXEL_BUFFER`] specifies that the buffer  **can**  be used to create a [`BufferView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER`.
+- [`STORAGE_TEXEL_BUFFER`] specifies that the buffer  **can**  be used to create a [`BufferView`] suitable for occupying a [`DescriptorSet`] slot of type `VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER`.
+- [`UNIFORM_BUFFER`] specifies that the buffer  **can**  be used in a [`DescriptorBufferInfo`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER` or `VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC`.
+- [`STORAGE_BUFFER`] specifies that the buffer  **can**  be used in a [`DescriptorBufferInfo`] suitable for occupying a [`DescriptorSet`] slot either of type `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER` or `VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC`.
+- [`INDEX_BUFFER`] specifies that the buffer is suitable for passing as the `buffer` parameter to [`cmd_bind_index_buffer`].
+- [`VERTEX_BUFFER`] specifies that the buffer is suitable for passing as an element of the `pBuffers` array to [`cmd_bind_vertex_buffers`].
+- [`INDIRECT_BUFFER`] specifies that the buffer is suitable for passing as the `buffer` parameter to [`cmd_draw_indirect`], [`cmd_draw_indexed_indirect`], [`cmd_draw_mesh_tasks_indirect_nv`], [`cmd_draw_mesh_tasks_indirect_count_nv`], or [`cmd_dispatch_indirect`]. It is also suitable for passing as the `buffer` member of [`IndirectCommandsStreamNV`], or `sequencesCountBuffer` or `sequencesIndexBuffer` or `preprocessedBuffer` member of [`GeneratedCommandsInfoNV`]
 - [`CONDITIONAL_RENDERING_EXT`] specifies that the buffer is suitable for passing as the `buffer` parameter to [`cmd_begin_conditional_rendering_ext`].
 - [`TRANSFORM_FEEDBACK_BUFFER_EXT`] specifies that the buffer is suitable for using for binding as a transform feedback buffer with [`cmd_bind_transform_feedback_buffers_ext`].
 - [`TRANSFORM_FEEDBACK_COUNTER_BUFFER_EXT`] specifies that the buffer is suitable for using as a counter buffer with [`cmd_begin_transform_feedback_ext`] and [`cmd_end_transform_feedback_ext`].
@@ -79,7 +79,7 @@ typedef enum VkBufferUsageFlagBits {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkBufferUsageFlags]()
+- [`BufferUsageFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

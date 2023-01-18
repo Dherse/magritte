@@ -33,9 +33,9 @@ typedef enum VkQueryType {
 ```
 
 # Description
-- [`VK_QUERY_TYPE`] specifies an [occlusion query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-occlusion).
-- [`VK_QUERY_TYPE`] specifies a [pipeline statistics query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-pipestats).
-- [`VK_QUERY_TYPE`] specifies a [timestamp query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-timestamps).
+- [`OCCLUSION`] specifies an [occlusion query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-occlusion).
+- [`PIPELINE_STATISTICS`] specifies a [pipeline statistics query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-pipestats).
+- [`TIMESTAMP`] specifies a [timestamp query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-timestamps).
 - [`PERFORMANCE_QUERY_KHR`] specifies a [performance query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-performance).
 - [`TRANSFORM_FEEDBACK_STREAM_EXT`] specifies a [transform feedback query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-transform-feedback).
 - [`ACCELERATION_STRUCTURE_COMPACTED_SIZE_KHR`] specifies a [acceleration structure size query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure-copying) for use with [`cmd_write_acceleration_structures_properties_khr`] or [`write_acceleration_structures_properties_khr`].

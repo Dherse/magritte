@@ -26,7 +26,7 @@ VkResult vkGetPhysicalDeviceVideoCapabilitiesKHR(
 *   - `VK_ERROR_EXTENSION_NOT_PRESENT`  - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_FEATURE_NOT_PRESENT`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`PhysicalDevice`]
 - [`VideoCapabilitiesKHR`]
 - [`VideoProfileKHR`]

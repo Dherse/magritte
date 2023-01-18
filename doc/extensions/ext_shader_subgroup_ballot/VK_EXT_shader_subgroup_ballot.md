@@ -49,8 +49,8 @@ decorations and instructions:
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_subgroup_ballot] @dgkoch%0A<<Here describe the issue or question you have about the VK_EXT_shader_subgroup_ballot extension>>)
 
 # New constants
-- `VK_EXT_SHADER_SUBGROUP_BALLOT_EXTENSION_NAME`
-- `VK_EXT_SHADER_SUBGROUP_BALLOT_SPEC_VERSION`
+- [`EXT_SHADER_SUBGROUP_BALLOT_EXTENSION_NAME`]
+- [`EXT_SHADER_SUBGROUP_BALLOT_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-11-28 (Daniel Koch)  - Initial draft

@@ -1,7 +1,7 @@
 [vkCreateSharedSwapchainsKHR](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkCreateSharedSwapchainsKHR.html) - Create multiple swapchains that share presentable images
 
 # C Specifications
-When the [`khr_display_swapchain`] extension is enabled, multiple
+When the [`VK_KHR_display_swapchain`] extension is enabled, multiple
 swapchains that share presentable images are created by calling:
 ```c
 // Provided by VK_KHR_display_swapchain
@@ -50,7 +50,7 @@ the presentable images  **can**  continue to be used.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_display_swapchain`]
+- [`VK_KHR_display_swapchain`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`SwapchainCreateInfoKHR`]

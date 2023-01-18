@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_INPUT_DYNAMIC_STATE_FEATURES_EXT`
 
 # Related
-- [`ext_vertex_input_dynamic_state`]
+- [`VK_EXT_vertex_input_dynamic_state`]
 - [`Bool32`]
 - [`StructureType`]
 

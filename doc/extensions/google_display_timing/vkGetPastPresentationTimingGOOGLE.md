@@ -54,7 +54,7 @@ were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`google_display_timing`]
+- [`VK_GOOGLE_display_timing`]
 - [`Device`]
 - [`PastPresentationTimingGOOGLE`]
 - [`SwapchainKHR`]

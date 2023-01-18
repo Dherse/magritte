@@ -27,7 +27,7 @@ void vkGetGeneratedCommandsMemoryRequirementsNV(
 -  [`p_memory_requirements`] **must**  be a valid pointer to a [`MemoryRequirements2`] structure
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`Device`]
 - [`GeneratedCommandsMemoryRequirementsInfoNV`]
 - [`MemoryRequirements2`]

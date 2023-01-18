@@ -22,7 +22,7 @@ typedef struct VkPerformanceMarkerInfoINTEL {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`StructureType`]
 - [`cmd_set_performance_marker_intel`]
 

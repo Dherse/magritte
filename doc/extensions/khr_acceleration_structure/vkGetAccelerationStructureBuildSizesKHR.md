@@ -53,7 +53,7 @@ above conditions.
 -  [`p_size_info`] **must**  be a valid pointer to a [`AccelerationStructureBuildSizesInfoKHR`] structure
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureBuildGeometryInfoKHR`]
 - [`AccelerationStructureBuildSizesInfoKHR`]
 - [`AccelerationStructureBuildTypeKHR`]

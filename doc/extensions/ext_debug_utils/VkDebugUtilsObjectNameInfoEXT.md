@@ -36,7 +36,7 @@ previously set name is removed.
 -    If [`object_name`] is not `NULL`, [`object_name`] **must**  be a null-terminated UTF-8 string
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsMessengerCallbackDataEXT`]
 - [`ObjectType`]
 - [`StructureType`]

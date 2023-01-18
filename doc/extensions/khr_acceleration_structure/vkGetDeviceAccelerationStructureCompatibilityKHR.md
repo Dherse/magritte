@@ -26,7 +26,7 @@ void vkGetDeviceAccelerationStructureCompatibilityKHR(
 -  [`p_compatibility`] **must**  be a valid pointer to a [`AccelerationStructureCompatibilityKHR`] value
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureCompatibilityKHR`]
 - [`AccelerationStructureVersionInfoKHR`]
 - [`Device`]

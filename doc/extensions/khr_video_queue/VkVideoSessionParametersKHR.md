@@ -9,7 +9,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkVideoSessionParametersKHR)
 ```
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`VideoBeginCodingInfoKHR`]
 - [`VideoSessionParametersCreateInfoKHR`]
 - [`create_video_session_parameters_khr`]

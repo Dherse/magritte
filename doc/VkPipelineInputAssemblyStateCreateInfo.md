@@ -35,11 +35,11 @@ following element through the end of the originally specified elements.
 The primitive restart index value comparison is performed before adding the
 `vertexOffset` value to the index value.
 ## Valid Usage
--    If [`topology`] is `VK_PRIMITIVE_TOPOLOGY_POINT_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST`, `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY` or `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`, and [`primitive_restart_enable`] is `VK_TRUE`, the [`primitiveTopologyListRestart`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveTopologyListRestart) feature  **must**  be enabled
--    If [`topology`] is `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST`, and [`primitive_restart_enable`] is `VK_TRUE`, the [`primitiveTopologyPatchListRestart`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveTopologyPatchListRestart) feature  **must**  be enabled
+-    If [`topology`] is `VK_PRIMITIVE_TOPOLOGY_POINT_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST`, `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST`, `VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY` or `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY`, and [`primitive_restart_enable`] is [`TRUE`], the [`primitiveTopologyListRestart`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveTopologyListRestart) feature  **must**  be enabled
+-    If [`topology`] is `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST`, and [`primitive_restart_enable`] is [`TRUE`], the [`primitiveTopologyPatchListRestart`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-primitiveTopologyPatchListRestart) feature  **must**  be enabled
 -    If the [geometry shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-geometryShader) feature is not enabled, [`topology`] **must**  not be any of `VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY`, `VK_PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY`, `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY` or `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY`
 -    If the [tessellation shaders](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-tessellationShader) feature is not enabled, [`topology`] **must**  not be `VK_PRIMITIVE_TOPOLOGY_PATCH_LIST`
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::triangle_fans`] is `VK_FALSE`, [`topology`] **must**  not be `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN`
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::triangle_fans`] is [`FALSE`], [`topology`] **must**  not be `VK_PRIMITIVE_TOPOLOGY_TRIANGLE_FAN`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO`

@@ -23,9 +23,9 @@ typedef struct VkVideoQueueFamilyProperties2KHR {
 -  [`video_codec_operations`] **must**  not be `0`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
-- [VkVideoCodecOperationFlagsKHR]()
+- [`VideoCodecOperationFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

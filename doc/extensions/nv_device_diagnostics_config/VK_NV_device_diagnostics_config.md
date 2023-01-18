@@ -13,7 +13,7 @@ extension to configure options related to device crash dump creation.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Kedarnath Thangudu [kthangudu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_device_diagnostics_config] @kthangudu%0A<<Here describe the issue or question you have about the VK_NV_device_diagnostics_config extension>>)
@@ -26,11 +26,11 @@ extension to configure options related to device crash dump creation.
 - [`DeviceDiagnosticsConfigFlagBitsNV`]
 
 # New bitmasks
-- [VkDeviceDiagnosticsConfigFlagsNV]()
+- [`DeviceDiagnosticsConfigFlagsNV`]
 
 # New constants
-- `VK_NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME`
-- `VK_NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION`
+- [`NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME`]
+- [`NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_DIAGNOSTICS_CONFIG_CREATE_INFO_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DIAGNOSTICS_CONFIG_FEATURES_NV`
 
 # Version history
@@ -43,7 +43,7 @@ extension to configure options related to device crash dump creation.
 # Related
 - [`DeviceDiagnosticsConfigCreateInfoNV`]
 - [`DeviceDiagnosticsConfigFlagBitsNV`]
-- [VkDeviceDiagnosticsConfigFlagsNV]()
+- [`DeviceDiagnosticsConfigFlagsNV`]
 - [`PhysicalDeviceDiagnosticsConfigFeaturesNV`]
 
 # Notes and documentation

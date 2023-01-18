@@ -7,7 +7,7 @@ typedef VkFlags VkDebugUtilsMessengerCallbackDataFlagsEXT;
 ```
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsMessengerCallbackDataEXT`]
 
 # Notes and documentation

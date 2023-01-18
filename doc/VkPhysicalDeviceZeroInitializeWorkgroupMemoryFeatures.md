@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ZERO_INITIALIZE_WORKGROUP_MEMORY_FEATURES`
 
 # Related
-- [`khr_zero_initialize_workgroup_memory`]
+- [`VK_KHR_zero_initialize_workgroup_memory`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

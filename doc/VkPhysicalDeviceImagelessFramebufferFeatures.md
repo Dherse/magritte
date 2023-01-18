@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGELESS_FRAMEBUFFER_FEATURES`
 
 # Related
-- [`khr_imageless_framebuffer`]
+- [`VK_KHR_imageless_framebuffer`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

@@ -1,0 +1,1 @@
+[`WORKGROUP`] corresponds to SPIR-V `Workgroup` scope.

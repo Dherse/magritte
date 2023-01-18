@@ -16,8 +16,8 @@ typedef struct VkSubpassDependency {
 ```
 
 # Members
-- [`src_subpass`] is the subpass index of the first subpass in the dependency, or `VK_SUBPASS_EXTERNAL`.
-- [`dst_subpass`] is the subpass index of the second subpass in the dependency, or `VK_SUBPASS_EXTERNAL`.
+- [`src_subpass`] is the subpass index of the first subpass in the dependency, or [`SUBPASS_EXTERNAL`].
+- [`dst_subpass`] is the subpass index of the second subpass in the dependency, or [`SUBPASS_EXTERNAL`].
 - [`src_stage_mask`] is a bitmask of [`PipelineStageFlagBits`] specifying the [source stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks).
 - [`dst_stage_mask`] is a bitmask of [`PipelineStageFlagBits`] specifying the [destination stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks)
 - [`src_access_mask`] is a bitmask of [`AccessFlagBits`] specifying a [source access mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-masks).
@@ -32,7 +32,7 @@ self-dependency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/ht
 a subpass instance.
 Otherwise, when a render pass instance which includes a subpass dependency
 is submitted to a queue, it defines a memory dependency between the
-subpasses identified by [`src_subpass`] and [`dst_subpass`].If [`src_subpass`] is equal to `VK_SUBPASS_EXTERNAL`, the first
+subpasses identified by [`src_subpass`] and [`dst_subpass`].If [`src_subpass`] is equal to [`SUBPASS_EXTERNAL`], the first
 [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) includes
 commands that occur earlier in [submission
 order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the [`cmd_begin_render_pass`] used to begin the render pass
@@ -43,7 +43,7 @@ or multisample resolve operations on attachments used in [`src_subpass`].
 In either case, the first synchronization scope is limited to operations on
 the pipeline stages determined by the
 [source stage mask](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-masks) specified by
-[`src_stage_mask`].If [`dst_subpass`] is equal to `VK_SUBPASS_EXTERNAL`, the second
+[`src_stage_mask`].If [`dst_subpass`] is equal to [`SUBPASS_EXTERNAL`], the second
 [synchronization scope](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-dependencies-scopes) includes
 commands that occur later in [submission
 order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-submission-order) than the [`cmd_end_render_pass`] used to end the render pass
@@ -87,14 +87,14 @@ render pass.
 -    If the [task shaders](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-taskShader) feature is not enabled, [`dst_stage_mask`] **must**  not contain `VK_PIPELINE_STAGE_TASK_SHADER_BIT_NV`
 -    If the [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-shadingRateImage) feature is not enabled, [`dst_stage_mask`] **must**  not contain `VK_PIPELINE_STAGE_SHADING_RATE_IMAGE_BIT_NV`
 -    If the [`synchronization2`](https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/vkspec.html#features-synchronization2) feature is not enabled, [`dst_stage_mask`] **must**  not be `0`
--  [`src_subpass`] **must**  be less than or equal to [`dst_subpass`], unless one of them is `VK_SUBPASS_EXTERNAL`, to avoid cyclic dependencies and ensure a valid execution order
--  [`src_subpass`] and [`dst_subpass`] **must**  not both be equal to `VK_SUBPASS_EXTERNAL`
+-  [`src_subpass`] **must**  be less than or equal to [`dst_subpass`], unless one of them is [`SUBPASS_EXTERNAL`], to avoid cyclic dependencies and ensure a valid execution order
+-  [`src_subpass`] and [`dst_subpass`] **must**  not both be equal to [`SUBPASS_EXTERNAL`]
 -    If [`src_subpass`] is equal to [`dst_subpass`] and not all of the stages in [`src_stage_mask`] and [`dst_stage_mask`] are [framebuffer-space stages](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), the [logically latest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) pipeline stage in [`src_stage_mask`] **must**  be [logically earlier](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) than or equal to the [logically earliest](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-pipeline-stages-order) pipeline stage in [`dst_stage_mask`]
 -    Any access flag included in [`src_access_mask`] **must**  be supported by one of the pipeline stages in [`src_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
 -    Any access flag included in [`dst_access_mask`] **must**  be supported by one of the pipeline stages in [`dst_stage_mask`], as specified in the [table of supported access types](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-access-types-supported)
 -    If [`src_subpass`] equals [`dst_subpass`], and [`src_stage_mask`] and [`dst_stage_mask`] both include a [framebuffer-space stage](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-framebuffer-regions), then [`dependency_flags`] **must**  include `VK_DEPENDENCY_BY_REGION_BIT`
--    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`] **must**  not be equal to `VK_SUBPASS_EXTERNAL`
--    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`] **must**  not be equal to `VK_SUBPASS_EXTERNAL`
+-    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`src_subpass`] **must**  not be equal to [`SUBPASS_EXTERNAL`]
+-    If [`dependency_flags`] includes `VK_DEPENDENCY_VIEW_LOCAL_BIT`, [`dst_subpass`] **must**  not be equal to [`SUBPASS_EXTERNAL`]
 -    If [`src_subpass`] equals [`dst_subpass`] and that subpass has more than one bit set in the view mask, then [`dependency_flags`] **must**  include `VK_DEPENDENCY_VIEW_LOCAL_BIT`
 
 ## Valid Usage (Implicit)
@@ -106,9 +106,9 @@ render pass.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkAccessFlags]()
-- [VkDependencyFlags]()
-- [VkPipelineStageFlags]()
+- [`AccessFlags`]
+- [`DependencyFlags`]
+- [`PipelineStageFlags`]
 - [`RenderPassCreateInfo`]
 
 # Notes and documentation

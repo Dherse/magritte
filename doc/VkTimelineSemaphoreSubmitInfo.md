@@ -45,7 +45,7 @@ in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
 -    If [`signal_semaphore_value_count`] is not `0`, and [`signal_semaphore_values`] is not `NULL`, [`signal_semaphore_values`] **must**  be a valid pointer to an array of [`signal_semaphore_value_count`]`uint64_t` values
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

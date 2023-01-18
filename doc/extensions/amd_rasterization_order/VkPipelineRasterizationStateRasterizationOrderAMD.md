@@ -24,14 +24,14 @@ typedef struct VkPipelineRasterizationStateRasterizationOrderAMD {
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_RASTERIZATION_ORDER_AMD`
 -  [`rasterization_order`] **must**  be a valid [`RasterizationOrderAMD`] value
-If the `[`amd_rasterization_order`]` device extension is not enabled
+If the `[`VK_AMD_rasterization_order`]` device extension is not enabled
 or the application does not request a particular rasterization order through
 specifying a [`PipelineRasterizationStateRasterizationOrderAMD`]
 structure then the rasterization order used by the graphics pipeline
 defaults to `VK_RASTERIZATION_ORDER_STRICT_AMD`.
 
 # Related
-- [`amd_rasterization_order`]
+- [`VK_AMD_rasterization_order`]
 - [`RasterizationOrderAMD`]
 - [`StructureType`]
 

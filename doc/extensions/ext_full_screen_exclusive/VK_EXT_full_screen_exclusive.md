@@ -20,10 +20,10 @@ and [`release_full_screen_exclusive_mode_ext`] commands.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_surface`]`
-- Requires `[`khr_get_surface_capabilities2`]`
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_surface`]`
+- Requires `[`VK_KHR_get_surface_capabilities2`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_full_screen_exclusive] @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_full_screen_exclusive extension>>)
@@ -32,7 +32,7 @@ and [`release_full_screen_exclusive_mode_ext`] commands.
 - [`acquire_full_screen_exclusive_mode_ext`]
 - [`get_physical_device_surface_present_modes2_ext`]
 - [`release_full_screen_exclusive_mode_ext`]
-If [`khr_device_group`] is supported:
+If [`VK_KHR_device_group`] is supported:
 - [`get_device_group_surface_present_modes2_ext`]
 If [Version 1.1]() is supported:
 - [`get_device_group_surface_present_modes2_ext`]
@@ -40,18 +40,18 @@ If [Version 1.1]() is supported:
 # New structures
 - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  - [`SurfaceFullScreenExclusiveInfoEXT`] 
 - Extending [`SurfaceCapabilities2KHR`]:  - [`SurfaceCapabilitiesFullScreenExclusiveEXT`] 
-If [`khr_win32_surface`] is supported:
+If [`VK_KHR_win32_surface`] is supported:
 - Extending [`PhysicalDeviceSurfaceInfo2KHR`], [`SwapchainCreateInfoKHR`]:  - [`SurfaceFullScreenExclusiveWin32InfoEXT`]
 
 # New enums
 - [`FullScreenExclusiveEXT`]
 
 # New constants
-- `VK_EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME`
-- `VK_EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION`
+- [`EXT_FULL_SCREEN_EXCLUSIVE_EXTENSION_NAME`]
+- [`EXT_FULL_SCREEN_EXCLUSIVE_SPEC_VERSION`]
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`  - `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_INFO_EXT` 
-If [`khr_win32_surface`] is supported:
+If [`VK_KHR_win32_surface`] is supported:
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_SURFACE_FULL_SCREEN_EXCLUSIVE_WIN32_INFO_EXT`
 
 # Known issues & F.A.Q.
@@ -94,7 +94,7 @@ Vulkan style guidelines and avoid inventing new compound words.
 # Other information
 * 2019-03-12
 * No known IP claims.
-*   - Interacts with Vulkan 1.1  - Interacts with `[`khr_device_group`]`  - Interacts with `[`khr_win32_surface`]` 
+*   - Interacts with Vulkan 1.1  - Interacts with `[`VK_KHR_device_group`]`  - Interacts with `[`VK_KHR_win32_surface`]` 
 *   - Hans-Kristian Arntzen, ARM  - Slawomir Grajewski, Intel  - Tobias Hector, AMD  - James Jones, NVIDIA  - Daniel Rakos, AMD  - Jeff Juliano, NVIDIA  - Joshua Schnarr, NVIDIA  - Aaron Hagan, AMD
 
 # Related

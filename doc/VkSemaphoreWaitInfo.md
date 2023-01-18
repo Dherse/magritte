@@ -40,10 +40,10 @@ typedef VkSemaphoreWaitInfo VkSemaphoreWaitInfoKHR;
 -  [`semaphore_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`Semaphore`]
-- [VkSemaphoreWaitFlags]()
+- [`SemaphoreWaitFlags`]
 - [`StructureType`]
 - [`wait_semaphores`]
 - [`wait_semaphores_khr`]

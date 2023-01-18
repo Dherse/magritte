@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineRasterizationDepthClipStateCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_depth_clip_enable`]
+- [`VK_EXT_depth_clip_enable`]
 - [`PipelineRasterizationDepthClipStateCreateInfoEXT`]
 
 # Notes and documentation

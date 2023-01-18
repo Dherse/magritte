@@ -17,7 +17,7 @@ APIs.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_memory`]`
+- Requires `[`VK_KHR_external_memory`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_memory_win32] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_external_memory_win32 extension>>)
@@ -32,8 +32,8 @@ APIs.
 - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryWin32HandleInfoKHR`]  - [`ImportMemoryWin32HandleInfoKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`
+- [`KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_WIN32_HANDLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_IMPORT_MEMORY_WIN32_HANDLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_GET_WIN32_HANDLE_INFO_KHR`  - `VK_STRUCTURE_TYPE_MEMORY_WIN32_HANDLE_PROPERTIES_KHR`
 
 # Known issues & F.A.Q.

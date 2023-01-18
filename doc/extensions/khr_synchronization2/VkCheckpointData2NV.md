@@ -27,8 +27,8 @@ implementation-defined and  **can**  be queried by calling
 [`get_physical_device_queue_family_properties2`].
 
 # Related
-- [`khr_synchronization2`]
-- [`nv_device_diagnostic_checkpoints`]
+- [`VK_KHR_synchronization2`]
+- [`VK_NV_device_diagnostic_checkpoints`]
 - [`PipelineStageFlags2`]
 - [`StructureType`]
 - [`get_queue_checkpoint_data2_nv`]

@@ -33,7 +33,7 @@ written, and `VK_INCOMPLETE` will be returned instead of
 `VK_SUCCESS`, to indicate that not all the available values were
 returned.
 ## Valid Usage
--    If the `[`google_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface` **must**  be a valid [`SurfaceKHR`] handle
+-    If the `[`VK_GOOGLE_surfaceless_query`]` extension is not enabled, `pSurfaceInfo->surface` **must**  be a valid [`SurfaceKHR`] handle
 -    If `pSurfaceInfo->surface` is not [`crate::Handle::null`], it  **must**  be supported by [`physical_device`], as reported by [`get_physical_device_surface_support_khr`] or an equivalent platform-specific mechanism
 
 ## Valid Usage (Implicit)
@@ -47,7 +47,7 @@ returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_get_surface_capabilities2`]
+- [`VK_KHR_get_surface_capabilities2`]
 - [`PhysicalDevice`]
 - [`PhysicalDeviceSurfaceInfo2KHR`]
 - [`SurfaceFormat2KHR`]

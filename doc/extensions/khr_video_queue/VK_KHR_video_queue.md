@@ -8,8 +8,8 @@
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_sampler_ycbcr_conversion`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
 -  **This is a *provisional* extension and  **must**  be used with caution. See the [description](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#boilerplate-provisional-header) of provisional header files for enablement and stability details.**
 
 # Contacts
@@ -63,18 +63,18 @@
 
 # New bitmasks
 - [`VideoBeginCodingFlagsKHR`]
-- [VkVideoCapabilityFlagsKHR]()
-- [VkVideoChromaSubsamplingFlagsKHR]()
-- [VkVideoCodecOperationFlagsKHR]()
-- [VkVideoCodingControlFlagsKHR]()
-- [VkVideoCodingQualityPresetFlagsKHR]()
-- [VkVideoComponentBitDepthFlagsKHR]()
+- [`VideoCapabilityFlagsKHR`]
+- [`VideoChromaSubsamplingFlagsKHR`]
+- [`VideoCodecOperationFlagsKHR`]
+- [`VideoCodingControlFlagsKHR`]
+- [`VideoCodingQualityPresetFlagsKHR`]
+- [`VideoComponentBitDepthFlagsKHR`]
 - [`VideoEndCodingFlagsKHR`]
-- [VkVideoSessionCreateFlagsKHR]()
+- [`VideoSessionCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_VIDEO_QUEUE_EXTENSION_NAME`
-- `VK_KHR_VIDEO_QUEUE_SPEC_VERSION`
+- [`KHR_VIDEO_QUEUE_EXTENSION_NAME`]
+- [`KHR_VIDEO_QUEUE_SPEC_VERSION`]
 - Extending [`ObjectType`]:  - `VK_OBJECT_TYPE_VIDEO_SESSION_KHR`  - `VK_OBJECT_TYPE_VIDEO_SESSION_PARAMETERS_KHR` 
 - Extending [`QueryResultFlagBits`]:  - `VK_QUERY_RESULT_WITH_STATUS_BIT_KHR` 
 - Extending [`QueryType`]:  - `VK_QUERY_TYPE_RESULT_STATUS_ONLY_KHR` 
@@ -84,7 +84,7 @@
 - Revision 0.1, 2019-11-21 (Tony Zlatinski)  - Initial draft 
 - Revision 0.2, 2019-11-27 (Tony Zlatinski)  - Make vulkan video core common between decode and encode 
 - Revision 1, March 29 2021 (Tony Zlatinski)  - Spec and API updates. 
-- Revision 2, August 1 2021 (Srinath Kumarapuram)  - Rename `VkVideoCapabilitiesFlagBitsKHR` to [`VideoCapabilityFlagBitsKHR`] (along with the names of enumerants it defines) and `VkVideoCapabilitiesFlagsKHR` to `VkVideoCapabilityFlagsKHR`, following Vulkan naming conventions. 
+- Revision 2, August 1 2021 (Srinath Kumarapuram)  - Rename `VkVideoCapabilitiesFlagBitsKHR` to [`VideoCapabilityFlagBitsKHR`] (along with the names of enumerants it defines) and `VkVideoCapabilitiesFlagsKHR` to [`VideoCapabilityFlagsKHR`], following Vulkan naming conventions. 
 - Revision 3, 2022-03-16 (Ahmed Abdelkhalek)  - Relocate Std header version reporting/requesting from codec-operation specific extensions to this extension.  - Make Std header versions codec-operation specific instead of only codec-specific.
 
 # Other information
@@ -101,18 +101,18 @@
 - [`VideoBindMemoryKHR`]
 - [`VideoCapabilitiesKHR`]
 - [`VideoCapabilityFlagBitsKHR`]
-- [VkVideoCapabilityFlagsKHR]()
+- [`VideoCapabilityFlagsKHR`]
 - [`VideoChromaSubsamplingFlagBitsKHR`]
-- [VkVideoChromaSubsamplingFlagsKHR]()
+- [`VideoChromaSubsamplingFlagsKHR`]
 - [`VideoCodecOperationFlagBitsKHR`]
-- [VkVideoCodecOperationFlagsKHR]()
+- [`VideoCodecOperationFlagsKHR`]
 - [`VideoCodingControlFlagBitsKHR`]
-- [VkVideoCodingControlFlagsKHR]()
+- [`VideoCodingControlFlagsKHR`]
 - [`VideoCodingControlInfoKHR`]
 - [`VideoCodingQualityPresetFlagBitsKHR`]
-- [VkVideoCodingQualityPresetFlagsKHR]()
+- [`VideoCodingQualityPresetFlagsKHR`]
 - [`VideoComponentBitDepthFlagBitsKHR`]
-- [VkVideoComponentBitDepthFlagsKHR]()
+- [`VideoComponentBitDepthFlagsKHR`]
 - [`VideoEndCodingFlagsKHR`]
 - [`VideoEndCodingInfoKHR`]
 - [`VideoFormatPropertiesKHR`]
@@ -123,7 +123,7 @@
 - [`VideoQueueFamilyProperties2KHR`]
 - [`VideoReferenceSlotKHR`]
 - [`VideoSessionCreateFlagBitsKHR`]
-- [VkVideoSessionCreateFlagsKHR]()
+- [`VideoSessionCreateFlagsKHR`]
 - [`VideoSessionCreateInfoKHR`]
 - [`VideoSessionKHR`]
 - [`VideoSessionParametersCreateInfoKHR`]

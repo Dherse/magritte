@@ -1,7 +1,7 @@
 [VkPipelineStageFlagBits](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPipelineStageFlagBits.html) - Bitmask specifying pipeline stages
 
 # C Specifications
-Bits which  **can**  be set in a [VkPipelineStageFlags]() mask, specifying
+Bits which  **can**  be set in a [`PipelineStageFlags`] mask, specifying
 stages of execution, are:
 ```c
 // Provided by VK_VERSION_1_0
@@ -58,37 +58,37 @@ typedef enum VkPipelineStageFlagBits {
 These values all have the same meaning as the equivalently named values for
 [`PipelineStageFlags2`].
 - [`NONE`] specifies no stages of execution.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the stage of the pipeline where `VkDrawIndirect*` / `VkDispatchIndirect*` / `VkTraceRaysIndirect*` data structures are consumed. This stage also includes reading commands written by [`cmd_execute_generated_commands_nv`].
+- [`DRAW_INDIRECT`] specifies the stage of the pipeline where `VkDrawIndirect*` / `VkDispatchIndirect*` / `VkTraceRaysIndirect*` data structures are consumed. This stage also includes reading commands written by [`cmd_execute_generated_commands_nv`].
 - [`TASK_SHADER_NV`] specifies the task shader stage.
 - [`MESH_SHADER_NV`] specifies the mesh shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the stage of the pipeline where vertex and index buffers are consumed.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the vertex shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the tessellation control shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the tessellation evaluation shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the geometry shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the fragment shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed. This stage also includes [subpass load operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed. This stage also includes [subpass store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes [subpass load and store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) and multisample resolve operations for framebuffer attachments with a color or depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the execution of a compute shader.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the following commands:  - All [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`cmd_copy_query_pool_results`]  - [`cmd_blit_image2`] and [`cmd_blit_image`]  - [`cmd_resolve_image2`] and [`cmd_resolve_image`]  - All [clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears), with the exception of [`cmd_clear_attachments`] 
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies a pseudo-stage indicating execution on the host of reads/writes of device memory. This stage is not invoked by any commands recorded in a command buffer.
+- [`VERTEX_INPUT`] specifies the stage of the pipeline where vertex and index buffers are consumed.
+- [`VERTEX_SHADER`] specifies the vertex shader stage.
+- [`TESSELLATION_CONTROL_SHADER`] specifies the tessellation control shader stage.
+- [`TESSELLATION_EVALUATION_SHADER`] specifies the tessellation evaluation shader stage.
+- [`GEOMETRY_SHADER`] specifies the geometry shader stage.
+- [`FRAGMENT_SHADER`] specifies the fragment shader stage.
+- [`EARLY_FRAGMENT_TESTS`] specifies the stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed. This stage also includes [subpass load operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
+- [`LATE_FRAGMENT_TESTS`] specifies the stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed. This stage also includes [subpass store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
+- [`COLOR_ATTACHMENT_OUTPUT`] specifies the stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes [subpass load and store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) and multisample resolve operations for framebuffer attachments with a color or depth/stencil format.
+- [`COMPUTE_SHADER`] specifies the execution of a compute shader.
+- [`TRANSFER`] specifies the following commands:  - All [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`cmd_copy_query_pool_results`]  - [`cmd_blit_image2`] and [`cmd_blit_image`]  - [`cmd_resolve_image2`] and [`cmd_resolve_image`]  - All [clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears), with the exception of [`cmd_clear_attachments`] 
+- [`HOST`] specifies a pseudo-stage indicating execution on the host of reads/writes of device memory. This stage is not invoked by any commands recorded in a command buffer.
 - [`ACCELERATION_STRUCTURE_BUILD_KHR`] specifies     the execution of     [`cmd_build_acceleration_structure_nv`],     [`cmd_copy_acceleration_structure_nv`],     [`cmd_write_acceleration_structures_properties_nv`] ,     [`cmd_build_acceleration_structures_khr`],     [`cmd_build_acceleration_structures_indirect_khr`],     [`cmd_copy_acceleration_structure_khr`],     [`cmd_copy_acceleration_structure_to_memory_khr`],     [`cmd_copy_memory_to_acceleration_structure_khr`], and     [`cmd_write_acceleration_structures_properties_khr`].
 - [`RAY_TRACING_SHADER_KHR`] specifies the     execution of the ray tracing shader stages, via [`cmd_trace_rays_nv`] , [`cmd_trace_rays_khr`], or [`cmd_trace_rays_indirect_khr`]
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies the execution of all graphics pipeline stages, and is equivalent to the logical OR of:  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`TASK_SHADER_NV`]  - [`MESH_SHADER_NV`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`VK_PIPELINE_STAGE_FLAG_BITS`]  - [`CONDITIONAL_RENDERING_EXT`]  - [`TRANSFORM_FEEDBACK_EXT`]  - [`FRAGMENT_SHADING_RATE_ATTACHMENT_KHR`]  - [`FRAGMENT_DENSITY_PROCESS_EXT`] 
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] specifies all operations performed by all commands supported on the queue it is used with.
+- [`ALL_GRAPHICS`] specifies the execution of all graphics pipeline stages, and is equivalent to the logical OR of:  - [`DRAW_INDIRECT`]  - [`TASK_SHADER_NV`]  - [`MESH_SHADER_NV`]  - [`VERTEX_INPUT`]  - [`VERTEX_SHADER`]  - [`TESSELLATION_CONTROL_SHADER`]  - [`TESSELLATION_EVALUATION_SHADER`]  - [`GEOMETRY_SHADER`]  - [`FRAGMENT_SHADER`]  - [`EARLY_FRAGMENT_TESTS`]  - [`LATE_FRAGMENT_TESTS`]  - [`COLOR_ATTACHMENT_OUTPUT`]  - [`CONDITIONAL_RENDERING_EXT`]  - [`TRANSFORM_FEEDBACK_EXT`]  - [`FRAGMENT_SHADING_RATE_ATTACHMENT_KHR`]  - [`FRAGMENT_DENSITY_PROCESS_EXT`] 
+- [`ALL_COMMANDS`] specifies all operations performed by all commands supported on the queue it is used with.
 - [`CONDITIONAL_RENDERING_EXT`] specifies the stage of the pipeline where the predicate of conditional rendering is consumed.
 - [`TRANSFORM_FEEDBACK_EXT`] specifies the stage of the pipeline where vertex attribute output values are written to the transform feedback buffers.
 - [`COMMAND_PREPROCESS_NV`] specifies the stage of the pipeline where device-side preprocessing for generated commands via [`cmd_preprocess_generated_commands_nv`] is handled.
 - [`FRAGMENT_SHADING_RATE_ATTACHMENT_KHR`]     specifies the stage of the pipeline where the     [fragment shading rate     attachment](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-fragment-shading-rate-attachment) or     [shading rate image](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-shading-rate-image)     is read to determine the fragment shading rate for portions of a     rasterized primitive.
 - [`FRAGMENT_DENSITY_PROCESS_EXT`] specifies the stage of the pipeline where the fragment density map is read to [generate the fragment areas](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragmentdensitymapops).
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] is equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS`] with [VkAccessFlags]() set to `0` when specified in the second synchronization scope, but specifies no stage of execution when specified in the first scope.
-- [`VK_PIPELINE_STAGE_FLAG_BITS`] is equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS`] with [VkAccessFlags]() set to `0` when specified in the first synchronization scope, but specifies no stage of execution when specified in the second scope.
+- [`TOP_OF_PIPE`] is equivalent to [`ALL_COMMANDS`] with [`AccessFlags`] set to `0` when specified in the second synchronization scope, but specifies no stage of execution when specified in the first scope.
+- [`BOTTOM_OF_PIPE`] is equivalent to [`ALL_COMMANDS`] with [`AccessFlags`] set to `0` when specified in the first synchronization scope, but specifies no stage of execution when specified in the second scope.
 
 # Related
 - [`crate::vulkan1_0`]
 - [`CheckpointDataNV`]
-- [VkPipelineStageFlags]()
+- [`PipelineStageFlags`]
 - [`cmd_write_buffer_marker_amd`]
 - [`cmd_write_timestamp`]
 

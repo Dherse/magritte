@@ -25,12 +25,12 @@ typedef VkShaderFloatControlsIndependence VkShaderFloatControlsIndependenceKHR;
 ```
 
 # Description
-- [`VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE`] specifies that shader float controls for 32-bit floating point  **can**  be set independently; other bit widths  **must**  be set identically to each other.
-- [`VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE`] specifies that shader float controls for all bit widths  **can**  be set independently.
-- [`VK_SHADER_FLOAT_CONTROLS_INDEPENDENCE`] specifies that shader float controls for all bit widths  **must**  be set identically.
+- [`32_BIT_ONLY`] specifies that shader float controls for 32-bit floating point  **can**  be set independently; other bit widths  **must**  be set identically to each other.
+- [`ALL`] specifies that shader float controls for all bit widths  **can**  be set independently.
+- [`NONE`] specifies that shader float controls for all bit widths  **must**  be set identically.
 
 # Related
-- [`khr_shader_float_controls`]
+- [`VK_KHR_shader_float_controls`]
 - [`crate::vulkan1_2`]
 - [`PhysicalDeviceFloatControlsProperties`]
 - [`PhysicalDeviceVulkan12Properties`]

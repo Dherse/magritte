@@ -1,12 +1,12 @@
 //! # Documentation
 //! Documentation processor for generating Vulkan documentation.
-use std::{collections::HashMap, ops::Deref, borrow::Cow, fmt::Write};
+use std::{borrow::Cow, collections::HashMap, fmt::Write, ops::Deref};
 
 use magritte_parse::{Queryable, Source};
 use regex::Regex;
-use scraper::{Html, Selector, ElementRef};
+use scraper::{ElementRef, Html, Selector};
 
-use crate::html::{Visitor, TrimInPlace};
+use crate::html::{TrimInPlace, Visitor};
 
 lazy_static::lazy_static! {
     static ref DOUBLE_WHITE_SPACE_REGEX: Regex = Regex::new(r"\s+").unwrap();
@@ -79,7 +79,7 @@ impl<'a> DocRef<'a> {
     pub fn set_mod_level_doc(&mut self) {
         self.1 = true;
     }
-    
+
     fn visit_selectable<'b>(
         &mut self,
         source: &Source<'b>,

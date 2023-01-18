@@ -26,7 +26,7 @@ void vkDestroyBufferCollectionFUCHSIA(
 -  [`collection`] **must**  have been created, allocated, or retrieved from [`device`]
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`AllocationCallbacks`]
 - [`BufferCollectionFUCHSIA`]
 - [`Device`]

@@ -17,7 +17,7 @@ void vkUninitializePerformanceApiINTEL(
 -  [`device`] **must**  be a valid [`Device`] handle
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`Device`]
 
 # Notes and documentation

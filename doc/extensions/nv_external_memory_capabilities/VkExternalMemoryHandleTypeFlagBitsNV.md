@@ -14,14 +14,14 @@ typedef enum VkExternalMemoryHandleTypeFlagBitsNV {
 ```
 
 # Description
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_NV`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`].
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_NV`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`], or one duplicated from such a handle using `DuplicateHandle()`.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_NV`] specifies a valid NT handle to memory returned by `IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a handle using `DuplicateHandle()`.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS_NV`] specifies a handle to memory returned by `IDXGIResource::GetSharedHandle()`.
+- [`OPAQUE_WIN32_KMT`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`].
+- [`OPAQUE_WIN32`] specifies a handle to memory returned by [`get_memory_win32_handle_nv`], or one duplicated from such a handle using `DuplicateHandle()`.
+- [`D3D11_IMAGE`] specifies a valid NT handle to memory returned by `IDXGIResource1::CreateSharedHandle`, or a handle duplicated from such a handle using `DuplicateHandle()`.
+- [`D3D11_IMAGE_KMT`] specifies a handle to memory returned by `IDXGIResource::GetSharedHandle()`.
 
 # Related
-- [`nv_external_memory_capabilities`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`VK_NV_external_memory_capabilities`]
+- [`ExternalMemoryHandleTypeFlagsNV`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

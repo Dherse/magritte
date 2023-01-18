@@ -33,7 +33,7 @@ zero.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_MEMORY_OPAQUE_CAPTURE_ADDRESS_ALLOCATE_INFO`
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

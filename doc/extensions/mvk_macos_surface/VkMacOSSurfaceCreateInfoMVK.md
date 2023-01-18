@@ -29,7 +29,7 @@ typedef struct VkMacOSSurfaceCreateInfoMVK {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`mvk_macos_surface`]
+- [`VK_MVK_macos_surface`]
 - [`MacOsSurfaceCreateFlagsMVK`]
 - [`StructureType`]
 - [`create_mac_os_surface_mvk`]

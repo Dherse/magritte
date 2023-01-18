@@ -23,7 +23,7 @@ typedef struct VkVideoSessionParametersUpdateInfoKHR {
 -    The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
 - [`update_video_session_parameters_khr`]
 

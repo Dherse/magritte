@@ -1,0 +1,1 @@
+[`FRAGMENT`] specifies the fragment stage.

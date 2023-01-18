@@ -12,7 +12,7 @@ typedef enum VkPerformanceConfigurationTypeINTEL {
 ```
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`PerformanceConfigurationAcquireInfoINTEL`]
 
 # Notes and documentation

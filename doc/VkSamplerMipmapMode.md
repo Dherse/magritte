@@ -12,8 +12,8 @@ typedef enum VkSamplerMipmapMode {
 ```
 
 # Description
-- [`VK_SAMPLER_MIPMAP_MODE`] specifies nearest filtering.
-- [`VK_SAMPLER_MIPMAP_MODE`] specifies linear filtering.
+- [`NEAREST`] specifies nearest filtering.
+- [`LINEAR`] specifies linear filtering.
 These modes are described in detail in [Texel
 Filtering](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#textures-texel-filtering).
 

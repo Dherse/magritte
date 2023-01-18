@@ -20,8 +20,8 @@ typedef struct VkPipelineSampleLocationsStateCreateInfoEXT {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`sample_locations_enable`] controls whether custom sample locations are used. If [`sample_locations_enable`] is `VK_FALSE`, the default sample locations are used and the values specified in [`sample_locations_info`] are ignored.
-- [`sample_locations_info`] is the sample locations to use during rasterization if [`sample_locations_enable`] is `VK_TRUE` and the graphics pipeline is not created with `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
+- [`sample_locations_enable`] controls whether custom sample locations are used. If [`sample_locations_enable`] is [`FALSE`], the default sample locations are used and the values specified in [`sample_locations_info`] are ignored.
+- [`sample_locations_info`] is the sample locations to use during rasterization if [`sample_locations_enable`] is [`TRUE`] and the graphics pipeline is not created with `VK_DYNAMIC_STATE_SAMPLE_LOCATIONS_EXT`.
 
 # Description
 ## Valid Usage (Implicit)
@@ -29,7 +29,7 @@ typedef struct VkPipelineSampleLocationsStateCreateInfoEXT {
 -  [`sample_locations_info`] **must**  be a valid [`SampleLocationsInfoEXT`] structure
 
 # Related
-- [`ext_sample_locations`]
+- [`VK_EXT_sample_locations`]
 - [`Bool32`]
 - [`SampleLocationsInfoEXT`]
 - [`StructureType`]

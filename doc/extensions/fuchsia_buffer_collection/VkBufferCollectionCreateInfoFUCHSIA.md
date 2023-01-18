@@ -14,18 +14,18 @@ typedef struct VkBufferCollectionCreateInfoFUCHSIA {
 # Members
 - [`s_type`] is the type of this structure
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure
-- [`collection_token`] is a `zx_handle_t` containing the Sysmem client’s buffer collection token
+- [`collection_token`] is a [`zx_handle_t`] containing the Sysmem client’s buffer collection token
 
 # Description
 ## Valid Usage
--  [`collection_token`] **must**  be a valid `zx_handle_t` to a Zircon channel allocated from Sysmem (`fuchsia.sysmem.Allocator`/AllocateSharedCollection) with `ZX_DEFAULT_CHANNEL_RIGHTS` rights
+-  [`collection_token`] **must**  be a valid [`zx_handle_t`] to a Zircon channel allocated from Sysmem (`fuchsia.sysmem.Allocator`/AllocateSharedCollection) with `ZX_DEFAULT_CHANNEL_RIGHTS` rights
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_BUFFER_COLLECTION_CREATE_INFO_FUCHSIA`
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`StructureType`]
 - [`create_buffer_collection_fuchsia`]
 

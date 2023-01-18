@@ -26,7 +26,7 @@ the similarly named parameters of [`cmd_trace_rays_khr`].
 -  [`width`] × [`height`] × [`depth`] **must**  be less than or equal to [`PhysicalDeviceRayTracingPipelinePropertiesKHR::max_ray_dispatch_invocation_count`]
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

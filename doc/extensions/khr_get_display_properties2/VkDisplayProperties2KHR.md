@@ -22,7 +22,7 @@ typedef struct VkDisplayProperties2KHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_get_display_properties2`]
+- [`VK_KHR_get_display_properties2`]
 - [`DisplayPropertiesKHR`]
 - [`StructureType`]
 - [`get_physical_device_display_properties2_khr`]

@@ -28,14 +28,14 @@ zero.
 ## Valid Usage
 -  [`PhysicalDeviceTransformFeedbackFeaturesEXT::geometry_streams`] **must**  be enabled
 -  [`rasterization_stream`] **must**  be less than [`PhysicalDeviceTransformFeedbackPropertiesEXT::max_transform_feedback_streams`]
--  [`rasterization_stream`] **must**  be zero if [`PhysicalDeviceTransformFeedbackPropertiesEXT::transform_feedback_rasterization_stream_select`] is `VK_FALSE`
+-  [`rasterization_stream`] **must**  be zero if [`PhysicalDeviceTransformFeedbackPropertiesEXT::transform_feedback_rasterization_stream_select`] is [`FALSE`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_STREAM_CREATE_INFO_EXT`
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`PipelineRasterizationStateStreamCreateFlagsEXT`]
 - [`StructureType`]
 

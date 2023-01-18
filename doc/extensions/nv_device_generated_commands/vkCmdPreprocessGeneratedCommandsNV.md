@@ -33,7 +33,7 @@ void vkCmdPreprocessGeneratedCommandsNV(
 ## Command Properties
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`CommandBuffer`]
 - [`GeneratedCommandsInfoNV`]
 

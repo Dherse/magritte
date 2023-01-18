@@ -63,9 +63,9 @@ specific [`index`] parameter.
 ## Command Properties
 
 # Related
-- [`ext_transform_feedback`]
+- [`VK_EXT_transform_feedback`]
 - [`CommandBuffer`]
-- [VkQueryControlFlags]()
+- [`QueryControlFlags`]
 - [`QueryPool`]
 
 # Notes and documentation

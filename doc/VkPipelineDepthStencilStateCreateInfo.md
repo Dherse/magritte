@@ -25,7 +25,7 @@ typedef struct VkPipelineDepthStencilStateCreateInfo {
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is a bitmask of [`PipelineDepthStencilStateCreateFlagBits`] specifying additional depth/stencil state information.
 - [`depth_test_enable`] controls whether [depth testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth) is enabled.
-- [`depth_write_enable`] controls whether [depth writes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth-write) are enabled when [`depth_test_enable`] is `VK_TRUE`. Depth writes are always disabled when [`depth_test_enable`] is `VK_FALSE`.
+- [`depth_write_enable`] controls whether [depth writes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth-write) are enabled when [`depth_test_enable`] is [`TRUE`]. Depth writes are always disabled when [`depth_test_enable`] is [`FALSE`].
 - [`depth_compare_op`] is the comparison operator used in the [depth test](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-depth).
 - [`depth_bounds_test_enable`] controls whether [depth bounds testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-dbt) is enabled.
 - [`stencil_test_enable`] controls whether [stencil testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-stencil) is enabled.
@@ -35,8 +35,8 @@ typedef struct VkPipelineDepthStencilStateCreateInfo {
 
 # Description
 ## Valid Usage
--    If the [depth bounds testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthBounds) feature is not enabled, [`depth_bounds_test_enable`] **must**  be `VK_FALSE`
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::separate_stencil_mask_ref`] is `VK_FALSE`, and the value of [`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] is `VK_TRUE`, and the value of [`PipelineRasterizationStateCreateInfo::cull_mode`] is `VK_CULL_MODE_NONE`, the value of `reference` in each of the [`StencilOpState`] structs in [`front`] and [`back`] **must**  be the same
+-    If the [depth bounds testing](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-depthBounds) feature is not enabled, [`depth_bounds_test_enable`] **must**  be [`FALSE`]
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::separate_stencil_mask_ref`] is [`FALSE`], and the value of [`PipelineDepthStencilStateCreateInfo`]::[`stencil_test_enable`] is [`TRUE`], and the value of [`PipelineRasterizationStateCreateInfo::cull_mode`] is `VK_CULL_MODE_NONE`, the value of `reference` in each of the [`StencilOpState`] structs in [`front`] and [`back`] **must**  be the same
 -    If the [`rasterizationOrderDepthAttachmentAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rasterizationOrderDepthAttachmentAccess) feature is not enabled, [`flags`] **must**  not include `VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM`
 -    If the [`rasterizationOrderStencilAttachmentAccess`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rasterizationOrderStencilAttachmentAccess) feature is not enabled, [`flags`] **must**  not include `VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM`
 
@@ -53,7 +53,7 @@ typedef struct VkPipelineDepthStencilStateCreateInfo {
 - [`Bool32`]
 - [`CompareOp`]
 - [`GraphicsPipelineCreateInfo`]
-- [VkPipelineDepthStencilStateCreateFlags]()
+- [`PipelineDepthStencilStateCreateFlags`]
 - [`StencilOpState`]
 - [`StructureType`]
 

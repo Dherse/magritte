@@ -46,13 +46,13 @@ typedef struct VkVideoDecodeInfoKHR {
 -    If [`reference_slot_count`] is not `0`, [`reference_slots`] **must**  be a valid pointer to an array of [`reference_slot_count`] valid [`VideoReferenceSlotKHR`] structures
 
 # Related
-- [`khr_video_decode_queue`]
+- [`VK_KHR_video_decode_queue`]
 - [`Buffer`]
 - [`DeviceSize`]
 - [`Extent2D`]
 - [`Offset2D`]
 - [`StructureType`]
-- [VkVideoDecodeFlagsKHR]()
+- [`VideoDecodeFlagsKHR`]
 - [`VideoPictureResourceKHR`]
 - [`VideoReferenceSlotKHR`]
 - [`cmd_decode_video_khr`]

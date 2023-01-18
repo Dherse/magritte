@@ -14,13 +14,13 @@ typedef enum VkCommandPoolCreateFlagBits {
 ```
 
 # Description
-- [`VK_COMMAND_POOL_CREATE_FLAG_BITS`] specifies that command buffers allocated from the pool will be short-lived, meaning that they will be reset or freed in a relatively short timeframe. This flag  **may**  be used by the implementation to control memory allocation behavior within the pool.
-- [`VK_COMMAND_POOL_CREATE_FLAG_BITS`] allows any command buffer allocated from a pool to be individually reset to the [initial state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle); either by calling [`reset_command_buffer`], or via the implicit reset when calling [`begin_command_buffer`]. If this flag is not set on a pool, then [`reset_command_buffer`] **must**  not be called for any command buffer allocated from that pool.
+- [`TRANSIENT`] specifies that command buffers allocated from the pool will be short-lived, meaning that they will be reset or freed in a relatively short timeframe. This flag  **may**  be used by the implementation to control memory allocation behavior within the pool.
+- [`RESET_COMMAND_BUFFER`] allows any command buffer allocated from a pool to be individually reset to the [initial state](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#commandbuffers-lifecycle); either by calling [`reset_command_buffer`], or via the implicit reset when calling [`begin_command_buffer`]. If this flag is not set on a pool, then [`reset_command_buffer`] **must**  not be called for any command buffer allocated from that pool.
 - [`PROTECTED`] specifies that command buffers allocated from the pool are protected command buffers.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkCommandPoolCreateFlags]()
+- [`CommandPoolCreateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

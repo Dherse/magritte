@@ -1,7 +1,7 @@
 [VkPresentTimesInfoGOOGLE](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkPresentTimesInfoGOOGLE.html) - The earliest time each image should be presented
 
 # C Specifications
-When the `[`google_display_timing`]` extension is enabled, additional
+When the `[`VK_GOOGLE_display_timing`]` extension is enabled, additional
 fields  **can**  be specified that allow an application to specify the earliest
 time that an image should be displayed.
 This allows an application to avoid stutter that is caused by an image being
@@ -39,7 +39,7 @@ typedef struct VkPresentTimesInfoGOOGLE {
 -  [`swapchain_count`] **must**  be greater than `0`
 
 # Related
-- [`google_display_timing`]
+- [`VK_GOOGLE_display_timing`]
 - [`PresentTimeGOOGLE`]
 - [`StructureType`]
 

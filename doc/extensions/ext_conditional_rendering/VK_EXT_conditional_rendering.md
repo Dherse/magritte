@@ -33,11 +33,11 @@ and clearing attachments within a conditional rendering block.
 - [`ConditionalRenderingFlagBitsEXT`]
 
 # New bitmasks
-- [VkConditionalRenderingFlagsEXT]()
+- [`ConditionalRenderingFlagsEXT`]
 
 # New constants
-- `VK_EXT_CONDITIONAL_RENDERING_EXTENSION_NAME`
-- `VK_EXT_CONDITIONAL_RENDERING_SPEC_VERSION`
+- [`EXT_CONDITIONAL_RENDERING_EXTENSION_NAME`]
+- [`EXT_CONDITIONAL_RENDERING_SPEC_VERSION`]
 - Extending [`AccessFlagBits`]:  - `VK_ACCESS_CONDITIONAL_RENDERING_READ_BIT_EXT` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_CONDITIONAL_RENDERING_BIT_EXT` 
 - Extending [`PipelineStageFlagBits`]:  - `VK_PIPELINE_STAGE_CONDITIONAL_RENDERING_BIT_EXT` 
@@ -47,9 +47,9 @@ and clearing attachments within a conditional rendering block.
 1) Should conditional rendering affect copy and blit commands? **RESOLVED** : Conditional rendering should not affect copies and blits.2) Should secondary command buffers be allowed to execute while conditional
 rendering is active in the primary command buffer? **RESOLVED** : The rendering commands in secondary command buffer will be
 affected by an active conditional rendering in primary command buffer if the
-`conditionalRenderingEnable` is set to `VK_TRUE`.
+`conditionalRenderingEnable` is set to [`TRUE`].
 Conditional rendering  **must**  not be active in the primary command buffer if
-`conditionalRenderingEnable` is `VK_FALSE`.
+`conditionalRenderingEnable` is [`FALSE`].
 
 # Version history
 - Revision 1, 2018-04-19 (Vikram Kushwaha)  - First Version 
@@ -64,7 +64,7 @@ Conditional rendering  **must**  not be active in the primary command buffer if
 - [`CommandBufferInheritanceConditionalRenderingInfoEXT`]
 - [`ConditionalRenderingBeginInfoEXT`]
 - [`ConditionalRenderingFlagBitsEXT`]
-- [VkConditionalRenderingFlagsEXT]()
+- [`ConditionalRenderingFlagsEXT`]
 - [`PhysicalDeviceConditionalRenderingFeaturesEXT`]
 - [`cmd_begin_conditional_rendering_ext`]
 - [`cmd_end_conditional_rendering_ext`]

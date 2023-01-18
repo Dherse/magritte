@@ -35,10 +35,10 @@ typedef VkPhysicalDeviceToolProperties VkPhysicalDeviceToolPropertiesEXT;
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`ext_tooling_info`]
+- [`VK_EXT_tooling_info`]
 - [`crate::vulkan1_3`]
 - [`StructureType`]
-- [VkToolPurposeFlags]()
+- [`ToolPurposeFlags`]
 - [`get_physical_device_tool_properties`]
 - [`get_physical_device_tool_properties_ext`]
 

@@ -17,13 +17,13 @@ typedef struct VkXlibSurfaceCreateInfoKHR {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is reserved for future use.
-- [`dpy`] is a pointer to an Xlib `Display` connection to the X server.
-- [`window`] is an Xlib `Window` to associate the surface with.
+- [`dpy`] is a pointer to an Xlib [`Display`] connection to the X server.
+- [`window`] is an Xlib [`Window`] to associate the surface with.
 
 # Description
 ## Valid Usage
--  [`dpy`] **must**  point to a valid Xlib `Display`
--  [`window`] **must**  be a valid Xlib `Window`
+-  [`dpy`] **must**  point to a valid Xlib [`Display`]
+-  [`window`] **must**  be a valid Xlib [`Window`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_XLIB_SURFACE_CREATE_INFO_KHR`
@@ -31,7 +31,7 @@ typedef struct VkXlibSurfaceCreateInfoKHR {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`khr_xlib_surface`]
+- [`VK_KHR_xlib_surface`]
 - [`StructureType`]
 - [`XlibSurfaceCreateFlagsKHR`]
 - [`create_xlib_surface_khr`]

@@ -46,7 +46,7 @@ values used to create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`nv_clip_space_w_scaling`]
+- [`VK_NV_clip_space_w_scaling`]
 - [`CommandBuffer`]
 - [`ViewportWScalingNV`]
 

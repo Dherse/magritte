@@ -17,12 +17,12 @@ typedef enum VkPerformanceCounterScopeKHR {
 ```
 
 # Description
-- [`VK_PERFORMANCE_COUNTER_SCOPE_KHR`] - the performance counter scope is a single complete command buffer.
-- [`VK_PERFORMANCE_COUNTER_SCOPE_KHR`] - the performance counter scope is zero or more complete render passes. The performance query containing the performance counter  **must**  begin and end outside a render pass instance.
-- [`VK_PERFORMANCE_COUNTER_SCOPE_KHR`] - the performance counter scope is zero or more commands.
+- [`COMMAND_BUFFER`] - the performance counter scope is a single complete command buffer.
+- [`RENDER_PASS`] - the performance counter scope is zero or more complete render passes. The performance query containing the performance counter  **must**  begin and end outside a render pass instance.
+- [`COMMAND`] - the performance counter scope is zero or more commands.
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`PerformanceCounterKHR`]
 
 # Notes and documentation

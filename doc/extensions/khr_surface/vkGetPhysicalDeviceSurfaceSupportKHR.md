@@ -16,7 +16,7 @@ VkResult vkGetPhysicalDeviceSurfaceSupportKHR(
 - [`physical_device`] is the physical device.
 - [`queue_family_index`] is the queue family.
 - [`surface`] is the surface.
-- [`p_supported`] is a pointer to a [`Bool32`], which is set to `VK_TRUE` to indicate support, and `VK_FALSE` otherwise.
+- [`p_supported`] is a pointer to a [`Bool32`], which is set to [`TRUE`] to indicate support, and [`FALSE`] otherwise.
 
 # Description
 ## Valid Usage
@@ -33,7 +33,7 @@ VkResult vkGetPhysicalDeviceSurfaceSupportKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_SURFACE_LOST_KHR`
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`Bool32`]
 - [`PhysicalDevice`]
 - [`SurfaceKHR`]

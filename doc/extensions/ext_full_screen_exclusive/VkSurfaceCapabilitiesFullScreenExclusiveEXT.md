@@ -21,15 +21,15 @@ typedef struct VkSurfaceCapabilitiesFullScreenExclusiveEXT {
 This structure  **can**  be included in the [`p_next`] chain of
 [`SurfaceCapabilities2KHR`] to determine support for exclusive
 full-screen access.
-If [`full_screen_exclusive_supported`] is `VK_FALSE`, it indicates that
+If [`full_screen_exclusive_supported`] is [`FALSE`], it indicates that
 exclusive full-screen access is not obtainable for this surface.Applications  **must**  not attempt to create swapchains with
 `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT` set if
-[`full_screen_exclusive_supported`] is `VK_FALSE`.
+[`full_screen_exclusive_supported`] is [`FALSE`].
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_SURFACE_CAPABILITIES_FULL_SCREEN_EXCLUSIVE_EXT`
 
 # Related
-- [`ext_full_screen_exclusive`]
+- [`VK_EXT_full_screen_exclusive`]
 - [`Bool32`]
 - [`StructureType`]
 

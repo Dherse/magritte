@@ -14,9 +14,9 @@ Vulkan:
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_get_surface_capabilities2`]`
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_surface_capabilities2`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_display_native_hdr] @anteru%0A<<Here describe the issue or question you have about the VK_AMD_display_native_hdr extension>>)
@@ -29,8 +29,8 @@ Vulkan:
 - Extending [`SwapchainCreateInfoKHR`]:  - [`SwapchainDisplayNativeHdrCreateInfoAMD`]
 
 # New constants
-- `VK_AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME`
-- `VK_AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION`
+- [`AMD_DISPLAY_NATIVE_HDR_EXTENSION_NAME`]
+- [`AMD_DISPLAY_NATIVE_HDR_SPEC_VERSION`]
 - Extending [`ColorSpaceKHR`]:  - `VK_COLOR_SPACE_DISPLAY_NATIVE_AMD` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_NATIVE_HDR_SURFACE_CAPABILITIES_AMD`  - `VK_STRUCTURE_TYPE_SWAPCHAIN_DISPLAY_NATIVE_HDR_CREATE_INFO_AMD`
 

@@ -15,7 +15,7 @@ is compliant with.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -31,10 +31,10 @@ is compliant with.
 - [`DriverIdKHR`]
 
 # New constants
-- `VK_KHR_DRIVER_PROPERTIES_EXTENSION_NAME`
-- `VK_KHR_DRIVER_PROPERTIES_SPEC_VERSION`
-- `VK_MAX_DRIVER_INFO_SIZE_KHR`
-- `VK_MAX_DRIVER_NAME_SIZE_KHR`
+- [`KHR_DRIVER_PROPERTIES_EXTENSION_NAME`]
+- [`KHR_DRIVER_PROPERTIES_SPEC_VERSION`]
+- [`MAX_DRIVER_INFO_SIZE_KHR`]
+- [`MAX_DRIVER_NAME_SIZE_KHR`]
 - Extending [`DriverId`]:  - `VK_DRIVER_ID_AMD_OPEN_SOURCE_KHR`  - `VK_DRIVER_ID_AMD_PROPRIETARY_KHR`  - `VK_DRIVER_ID_ARM_PROPRIETARY_KHR`  - `VK_DRIVER_ID_BROADCOM_PROPRIETARY_KHR`  - `VK_DRIVER_ID_GGP_PROPRIETARY_KHR`  - `VK_DRIVER_ID_GOOGLE_SWIFTSHADER_KHR`  - `VK_DRIVER_ID_IMAGINATION_PROPRIETARY_KHR`  - `VK_DRIVER_ID_INTEL_OPEN_SOURCE_MESA_KHR`  - `VK_DRIVER_ID_INTEL_PROPRIETARY_WINDOWS_KHR`  - `VK_DRIVER_ID_MESA_RADV_KHR`  - `VK_DRIVER_ID_NVIDIA_PROPRIETARY_KHR`  - `VK_DRIVER_ID_QUALCOMM_PROPRIETARY_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DRIVER_PROPERTIES_KHR`
 
@@ -48,8 +48,8 @@ is compliant with.
 *   - Baldur Karlsson  - Matthaeus G. Chajdas, AMD  - Piers Daniell, NVIDIA  - Alexander Galazin, Arm  - Jesse Hall, Google  - Daniel Rakos, AMD
 
 # Related
-- [VK_MAX_DRIVER_INFO_SIZE_KHR]()
-- [VK_MAX_DRIVER_NAME_SIZE_KHR]()
+- [`MAX_DRIVER_INFO_SIZE_KHR`]
+- [`MAX_DRIVER_NAME_SIZE_KHR`]
 - [`ConformanceVersionKHR`]
 - [`DriverIdKHR`]
 - [`PhysicalDeviceDriverPropertiesKHR`]

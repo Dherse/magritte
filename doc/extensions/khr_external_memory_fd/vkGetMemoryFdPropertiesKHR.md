@@ -36,7 +36,7 @@ VkResult vkGetMemoryFdPropertiesKHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INVALID_EXTERNAL_HANDLE`
 
 # Related
-- [`khr_external_memory_fd`]
+- [`VK_KHR_external_memory_fd`]
 - [`Device`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`MemoryFdPropertiesKHR`]

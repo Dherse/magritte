@@ -15,20 +15,20 @@ VkResult vkGetMemoryZirconHandleFUCHSIA(
 # Parameters
 - [`device`] is the [`Device`].
 - [`p_get_zircon_handle_info`] is a pointer to a [`MemoryGetZirconHandleInfoFUCHSIA`] structure.
-- [`p_zircon_handle`] is a pointer to a `zx_handle_t` which holds the resulting Zircon handle.
+- [`p_zircon_handle`] is a pointer to a [`zx_handle_t`] which holds the resulting Zircon handle.
 
 # Description
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
 -  [`p_get_zircon_handle_info`] **must**  be a valid pointer to a valid [`MemoryGetZirconHandleInfoFUCHSIA`] structure
--  [`p_zircon_handle`] **must**  be a valid pointer to a `zx_handle_t` value
+-  [`p_zircon_handle`] **must**  be a valid pointer to a [`zx_handle_t`] value
 
 ## Return Codes
 *   - `VK_SUCCESS` 
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`fuchsia_external_memory`]
+- [`VK_FUCHSIA_external_memory`]
 - [`Device`]
 - [`MemoryGetZirconHandleInfoFUCHSIA`]
 

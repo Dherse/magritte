@@ -43,7 +43,7 @@ A callback will always be executed in the same thread as the originating
 Vulkan call.A callback  **can**  be called from multiple threads simultaneously (if the
 application is making Vulkan calls from multiple threads).
 ## Valid Usage
--  [`pfn_user_callback`] **must**  be a valid [PFN_vkDebugUtilsMessengerCallbackEXT]()
+-  [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT`
@@ -52,13 +52,13 @@ application is making Vulkan calls from multiple threads).
 -  [`message_severity`] **must**  not be `0`
 -  [`message_type`] **must**  be a valid combination of [`DebugUtilsMessageTypeFlagBitsEXT`] values
 -  [`message_type`] **must**  not be `0`
--  [`pfn_user_callback`] **must**  be a valid [PFN_vkDebugUtilsMessengerCallbackEXT]() value
+-  [`pfn_user_callback`] **must**  be a valid [`PFNDebugUtilsMessengerCallbackEXT`] value
 
 # Related
-- [PFN_vkDebugUtilsMessengerCallbackEXT]()
-- [`ext_debug_utils`]
-- [VkDebugUtilsMessageSeverityFlagsEXT]()
-- [VkDebugUtilsMessageTypeFlagsEXT]()
+- [`PFNDebugUtilsMessengerCallbackEXT`]
+- [`VK_EXT_debug_utils`]
+- [`DebugUtilsMessageSeverityFlagsEXT`]
+- [`DebugUtilsMessageTypeFlagsEXT`]
 - [`DebugUtilsMessengerCreateFlagsEXT`]
 - [`StructureType`]
 - [`create_debug_utils_messenger_ext`]

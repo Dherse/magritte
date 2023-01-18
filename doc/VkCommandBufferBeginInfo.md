@@ -35,7 +35,7 @@ typedef struct VkCommandBufferBeginInfo {
 # Related
 - [`crate::vulkan1_0`]
 - [`CommandBufferInheritanceInfo`]
-- [VkCommandBufferUsageFlags]()
+- [`CommandBufferUsageFlags`]
 - [`StructureType`]
 - [`begin_command_buffer`]
 

@@ -12,8 +12,8 @@ display without any underlying window system.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
-- Requires `[`khr_display`]`
+- Requires `[`VK_KHR_swapchain`]`
+- Requires `[`VK_KHR_display`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_display_swapchain] @cubanismo%0A<<Here describe the issue or question you have about the VK_KHR_display_swapchain extension>>)
@@ -25,8 +25,8 @@ display without any underlying window system.
 - Extending [`PresentInfoKHR`]:  - [`DisplayPresentInfoKHR`]
 
 # New constants
-- `VK_KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME`
-- `VK_KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION`
+- [`KHR_DISPLAY_SWAPCHAIN_EXTENSION_NAME`]
+- [`KHR_DISPLAY_SWAPCHAIN_SPEC_VERSION`]
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INCOMPATIBLE_DISPLAY_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DISPLAY_PRESENT_INFO_KHR`
 

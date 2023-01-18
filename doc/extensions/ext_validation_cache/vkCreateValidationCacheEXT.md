@@ -40,7 +40,7 @@ threads simultaneously.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`ValidationCacheCreateInfoEXT`]

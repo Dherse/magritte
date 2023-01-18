@@ -1,7 +1,7 @@
 [VK_EXT_headless_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_EXT_headless_surface.html) - instance extension
 
 # Description
-The [`ext_headless_surface`] extension is an instance extension.
+The [`VK_EXT_headless_surface`] extension is an instance extension.
 It provides a mechanism to create [`SurfaceKHR`] objects independently
 of any window system or display device.
 The presentation operation for a swapchain created from a headless surface
@@ -25,7 +25,7 @@ inconvenient to use for general Vulkan application development.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Lisa Wu [chengtianww](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_headless_surface] @chengtianww%0A<<Here describe the issue or question you have about the VK_EXT_headless_surface extension>>)
@@ -40,8 +40,8 @@ inconvenient to use for general Vulkan application development.
 - [`HeadlessSurfaceCreateFlagsEXT`]
 
 # New constants
-- `VK_EXT_HEADLESS_SURFACE_EXTENSION_NAME`
-- `VK_EXT_HEADLESS_SURFACE_SPEC_VERSION`
+- [`EXT_HEADLESS_SURFACE_EXTENSION_NAME`]
+- [`EXT_HEADLESS_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_HEADLESS_SURFACE_CREATE_INFO_EXT`
 
 # Version history

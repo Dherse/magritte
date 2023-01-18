@@ -24,10 +24,10 @@ typedef enum VkQueueFlagBits {
 ```
 
 # Description
-- [`VK_QUEUE_FLAG_BITS`] specifies that queues in this queue family support graphics operations.
-- [`VK_QUEUE_FLAG_BITS`] specifies that queues in this queue family support compute operations.
-- [`VK_QUEUE_FLAG_BITS`] specifies that queues in this queue family support transfer operations.
-- [`VK_QUEUE_FLAG_BITS`] specifies that queues in this queue family support sparse memory management operations (see [Sparse Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory)). If any of the sparse resource features are enabled, then at least one queue family  **must**  support this bit.
+- [`GRAPHICS`] specifies that queues in this queue family support graphics operations.
+- [`COMPUTE`] specifies that queues in this queue family support compute operations.
+- [`TRANSFER`] specifies that queues in this queue family support transfer operations.
+- [`SPARSE_BINDING`] specifies that queues in this queue family support sparse memory management operations (see [Sparse Resources](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#sparsememory)). If any of the sparse resource features are enabled, then at least one queue family  **must**  support this bit.
 - [`VIDEO_DECODE_KHR`] specifies that queues in this queue family support Video Decode operations.
 - [`VIDEO_ENCODE_KHR`] specifies that queues in this queue family support Video Encode operations.
 - [`PROTECTED`] specifies that queues in this queue family support the `VK_DEVICE_QUEUE_CREATE_PROTECTED_BIT` bit. (see [Protected Memory](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-protected-memory)). If the physical device supports the `protectedMemory` feature, at least one of its queue families  **must**  support this bit.
@@ -41,7 +41,7 @@ and protected memory operations.For further details see [Queues](https://www.khr
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkQueueFlags]()
+- [`QueueFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

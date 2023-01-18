@@ -1,0 +1,1 @@
+[`VERTEX`] specifies the vertex stage.

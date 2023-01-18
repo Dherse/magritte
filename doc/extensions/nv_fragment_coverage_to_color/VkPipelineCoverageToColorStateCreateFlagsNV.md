@@ -7,7 +7,7 @@ typedef VkFlags VkPipelineCoverageToColorStateCreateFlagsNV;
 ```
 
 # Related
-- [`nv_fragment_coverage_to_color`]
+- [`VK_NV_fragment_coverage_to_color`]
 - [`PipelineCoverageToColorStateCreateInfoNV`]
 
 # Notes and documentation

@@ -19,7 +19,7 @@ applications.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Yiwei Zhang [zhangyiwei](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_device_memory_report] @zhangyiwei%0A<<Here describe the issue or question you have about the VK_EXT_device_memory_report extension>>)
@@ -36,8 +36,8 @@ applications.
 - [`DeviceMemoryReportFlagsEXT`]
 
 # New constants
-- `VK_EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME`
-- `VK_EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION`
+- [`EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME`]
+- [`EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_DEVICE_MEMORY_REPORT_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_DEVICE_MEMORY_REPORT_CALLBACK_DATA_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
 
 # Known issues & F.A.Q.
@@ -48,7 +48,7 @@ We want to make this extension tied to the device’s lifecycle.
 Each ICD just handles its own implementation of this extension, and this
 extension will only be directly exposed from the ICD.
 So we can avoid the extra implementation complexity used to accommodate the
-flexibility of `[`ext_debug_utils`]` extension.2) Can we extend and use the existing internal allocation callbacks instead
+flexibility of `[`VK_EXT_debug_utils`]` extension.2) Can we extend and use the existing internal allocation callbacks instead
 of adding the new callback structure in this extension? **RESOLVED** : No.
 Our memory reporting layer that combines this information with other memory
 information it collects directly (e.g. bindings of resources to
@@ -141,7 +141,7 @@ why.
 *   - Yiwei Zhang, Google  - Jesse Hall, Google
 
 # Related
-- [PFN_vkDeviceMemoryReportCallbackEXT]()
+- [`PFNDeviceMemoryReportCallbackEXT`]
 - [`DeviceDeviceMemoryReportCreateInfoEXT`]
 - [`DeviceMemoryReportCallbackDataEXT`]
 - [`DeviceMemoryReportEventTypeEXT`]

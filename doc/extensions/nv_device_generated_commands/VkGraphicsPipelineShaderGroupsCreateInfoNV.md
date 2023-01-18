@@ -47,7 +47,7 @@ based on the pipelines that make use of them.
 -  [`group_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`GraphicsShaderGroupCreateInfoNV`]
 - [`Pipeline`]
 - [`StructureType`]

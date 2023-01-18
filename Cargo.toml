@@ -7,12 +7,15 @@ members = [
     "crates/magritte-build",
     "bins/magritte-ron-build",
     "bins/magritte-doc-build",
+    "builders/magritte-native-backend-build",
+    "builders/magritte-wasm-backend-build",
+    "builders/magritte-native-host-build",
+    "builders/magritte-wasm-host-build",
     "host/magritte-native-host",
     "host/magritte-wasm-host",
     "backend/magritte-wasm-backend",
     "backend/magritte-native-backend",
     "magritte",
-    "magritte-vkgen",
 ]
 
 [profile.release]

@@ -43,7 +43,7 @@ typedef struct VkSwapchainCreateInfoKHR {
 - [`pre_transform`] is a [`SurfaceTransformFlagBitsKHR`] value describing the transform, relative to the presentation engine’s natural orientation, applied to the image content prior to presentation. If it does not match the `currentTransform` value returned by [`get_physical_device_surface_capabilities_khr`], the presentation engine will transform the image content as part of the presentation operation.
 - [`composite_alpha`] is a [`CompositeAlphaFlagBitsKHR`] value indicating the alpha compositing mode to use when this surface is composited together with other surfaces on certain window systems.
 - [`present_mode`] is the presentation mode the swapchain will use. A swapchain’s present mode determines how incoming present requests will be processed and queued internally.
-- [`clipped`] specifies whether the Vulkan implementation is allowed to discard rendering operations that affect regions of the surface that are not visible.  - If set to `VK_TRUE`, the presentable images associated with the swapchain  **may**  not own all of their pixels. Pixels in the presentable images that correspond to regions of the target surface obscured by another window on the desktop, or subject to some other clipping mechanism will have undefined content when read back. Fragment shaders  **may**  not execute for these pixels, and thus any side effects they would have had will not occur. Setting `VK_TRUE` does not guarantee any clipping will occur, but allows more efficient presentation methods to be used on some platforms.  - If set to `VK_FALSE`, presentable images associated with the swapchain will own all of the pixels they contain. 
+- [`clipped`] specifies whether the Vulkan implementation is allowed to discard rendering operations that affect regions of the surface that are not visible.  - If set to [`TRUE`], the presentable images associated with the swapchain  **may**  not own all of their pixels. Pixels in the presentable images that correspond to regions of the target surface obscured by another window on the desktop, or subject to some other clipping mechanism will have undefined content when read back. Fragment shaders  **may**  not execute for these pixels, and thus any side effects they would have had will not occur. Setting [`TRUE`] does not guarantee any clipping will occur, but allows more efficient presentation methods to be used on some platforms.  - If set to [`FALSE`], presentable images associated with the swapchain will own all of the pixels they contain. 
 - [`old_swapchain`] is [`crate::Handle::null`], or the existing non-retired swapchain currently associated with [`surface`]. Providing a valid [`old_swapchain`] **may**  aid in the resource reuse, and also allows the application to still present any images that are already acquired from it.
 
 # Description
@@ -80,7 +80,7 @@ associated with [`old_swapchain`].
 -    If [`flags`] contains `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR` then the [`p_next`] chain  **must**  include a [`ImageFormatListCreateInfo`] structure with a `viewFormatCount` greater than zero and `pViewFormats` **must**  have an element equal to [`image_format`]
 -    If a [`ImageFormatListCreateInfo`] structure was included in the [`p_next`] chain and [`ImageFormatListCreateInfo::view_format_count`] is not zero then all of the formats in [`ImageFormatListCreateInfo::view_formats`] **must**  be compatible with the `format` as described in the [compatibility table](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-compatibility)
 -    If [`flags`] does not contain `VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR` and the [`p_next`] chain include a [`ImageFormatListCreateInfo`] structure then [`ImageFormatListCreateInfo::view_format_count`] **must**  be `0` or `1`
--    If [`flags`] contains `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR`, then [`SurfaceProtectedCapabilitiesKHR::supports_protected`] **must**  be `VK_TRUE` in the [`SurfaceProtectedCapabilitiesKHR`] structure returned by [`get_physical_device_surface_capabilities2_khr`] for [`surface`]
+-    If [`flags`] contains `VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR`, then [`SurfaceProtectedCapabilitiesKHR::supports_protected`] **must**  be [`TRUE`] in the [`SurfaceProtectedCapabilitiesKHR`] structure returned by [`get_physical_device_surface_capabilities2_khr`] for [`surface`]
 -    If the [`p_next`] chain includes a [`SurfaceFullScreenExclusiveInfoEXT`] structure with its `fullScreenExclusive` member set to `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`, and [`surface`] was created using [`create_win32_surface_khr`], a [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **must**  be included in the [`p_next`] chain
 
 ## Valid Usage (Implicit)
@@ -102,19 +102,19 @@ associated with [`old_swapchain`].
 -    Both of [`old_swapchain`], and [`surface`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Instance`]
 
 # Related
-- [`khr_swapchain`]
+- [`VK_KHR_swapchain`]
 - [`Bool32`]
 - [`ColorSpaceKHR`]
 - [`CompositeAlphaFlagBitsKHR`]
 - [`Extent2D`]
 - [`Format`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`PresentModeKHR`]
 - [`SharingMode`]
 - [`StructureType`]
 - [`SurfaceKHR`]
 - [`SurfaceTransformFlagBitsKHR`]
-- [VkSwapchainCreateFlagsKHR]()
+- [`SwapchainCreateFlagsKHR`]
 - [`SwapchainKHR`]
 - [`create_shared_swapchains_khr`]
 - [`create_swapchain_khr`]

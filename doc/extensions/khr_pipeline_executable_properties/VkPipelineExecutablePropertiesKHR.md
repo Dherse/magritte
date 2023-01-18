@@ -18,8 +18,8 @@ typedef struct VkPipelineExecutablePropertiesKHR {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`stages`] is a bitmask of zero or more [`ShaderStageFlagBits`] indicating which shader stages (if any) were principally used as inputs to compile this pipeline executable.
-- [`name`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a short human readable name for this pipeline executable.
-- [`description`] is an array of `VK_MAX_DESCRIPTION_SIZE``char` containing a null-terminated UTF-8 string which is a human readable description for this pipeline executable.
+- [`name`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a short human readable name for this pipeline executable.
+- [`description`] is an array of [`MAX_DESCRIPTION_SIZE`]`char` containing a null-terminated UTF-8 string which is a human readable description for this pipeline executable.
 - [`subgroup_size`] is the subgroup size with which this pipeline executable is dispatched.
 
 # Description
@@ -39,8 +39,8 @@ executable.
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_pipeline_executable_properties`]
-- [VkShaderStageFlags]()
+- [`VK_KHR_pipeline_executable_properties`]
+- [`ShaderStageFlags`]
 - [`StructureType`]
 - [`get_pipeline_executable_properties_khr`]
 

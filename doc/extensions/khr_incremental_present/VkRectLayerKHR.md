@@ -26,7 +26,7 @@ will be constant for the life of the swapchain.
 -  [`layer`] **must**  be less than the `imageArrayLayers` member of the [`SwapchainCreateInfoKHR`] structure passed to [`create_swapchain_khr`]
 
 # Related
-- [`khr_incremental_present`]
+- [`VK_KHR_incremental_present`]
 - [`Extent2D`]
 - [`Offset2D`]
 - [`PresentRegionKHR`]

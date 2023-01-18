@@ -1,0 +1,1 @@
+[`1D`] specifies a one-dimensional image.

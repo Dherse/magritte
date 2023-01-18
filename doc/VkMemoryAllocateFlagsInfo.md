@@ -38,7 +38,7 @@ instance of memory is allocated (as if [`device_mask`] is set to one).On some im
 memory on all physical devices even if the [`device_mask`] excludes some
 devices.
 If [`PhysicalDeviceGroupProperties::subset_allocation`] is
-`VK_TRUE`, then memory is only consumed for the devices in the device
+[`TRUE`], then memory is only consumed for the devices in the device
 mask.
 ## Valid Usage
 -    If `VK_MEMORY_ALLOCATE_DEVICE_MASK_BIT` is set, [`device_mask`] **must**  be a valid device mask
@@ -50,7 +50,7 @@ mask.
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkMemoryAllocateFlags]()
+- [`MemoryAllocateFlags`]
 - [`StructureType`]
 
 # Notes and documentation

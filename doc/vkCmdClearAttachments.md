@@ -37,9 +37,9 @@ writes](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec
 `VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT` and
 `VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT` stages.[`cmd_clear_attachments`] is not affected by the bound pipeline state.
 ## Valid Usage
--    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_COLOR_BIT`, then the `colorAttachment` member of that element  **must**  either refer to a color attachment which is `VK_ATTACHMENT_UNUSED`, or  **must**  be a valid color attachment
--    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_DEPTH_BIT`, then the current subpass' depth/stencil attachment  **must**  either be `VK_ATTACHMENT_UNUSED`, or  **must**  have a depth component
--    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_STENCIL_BIT`, then the current subpass' depth/stencil attachment  **must**  either be `VK_ATTACHMENT_UNUSED`, or  **must**  have a stencil component
+-    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_COLOR_BIT`, then the `colorAttachment` member of that element  **must**  either refer to a color attachment which is [`ATTACHMENT_UNUSED`], or  **must**  be a valid color attachment
+-    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_DEPTH_BIT`, then the current subpass' depth/stencil attachment  **must**  either be [`ATTACHMENT_UNUSED`], or  **must**  have a depth component
+-    If the `aspectMask` member of any element of [`p_attachments`] contains `VK_IMAGE_ASPECT_STENCIL_BIT`, then the current subpass' depth/stencil attachment  **must**  either be [`ATTACHMENT_UNUSED`], or  **must**  have a stencil component
 -    The `rect` member of each element of [`p_rects`] **must**  have an `extent.width` greater than `0`
 -    The `rect` member of each element of [`p_rects`] **must**  have an `extent.height` greater than `0`
 -    The rectangular region specified by each element of [`p_rects`] **must**  be contained within the render area of the current render pass instance

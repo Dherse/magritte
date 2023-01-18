@@ -43,7 +43,7 @@ specified by [`cmd_set_coarse_sample_order_nv`].
 -    If [`custom_sample_order_count`] is not `0`, [`custom_sample_orders`] **must**  be a valid pointer to an array of [`custom_sample_order_count`] valid [`CoarseSampleOrderCustomNV`] structures
 
 # Related
-- [`nv_shading_rate_image`]
+- [`VK_NV_shading_rate_image`]
 - [`CoarseSampleOrderCustomNV`]
 - [`CoarseSampleOrderTypeNV`]
 - [`StructureType`]

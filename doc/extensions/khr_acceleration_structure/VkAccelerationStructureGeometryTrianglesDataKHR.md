@@ -44,7 +44,7 @@ typedef struct VkAccelerationStructureGeometryTrianglesDataKHR {
 -  [`index_type`] **must**  be a valid [`IndexType`] value
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureGeometryDataKHR`]
 - [`DeviceOrHostAddressConstKHR`]
 - [`DeviceSize`]

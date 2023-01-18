@@ -14,9 +14,9 @@ typedef struct VkPhysicalDeviceMemoryProperties {
 
 # Members
 - [`memory_type_count`] is the number of valid elements in the [`memory_types`] array.
-- [`memory_types`] is an array of `VK_MAX_MEMORY_TYPES`[`MemoryType`] structures describing the *memory types* that  **can**  be used to access memory allocated from the heaps specified by [`memory_heaps`].
+- [`memory_types`] is an array of [`MAX_MEMORY_TYPES`][`MemoryType`] structures describing the *memory types* that  **can**  be used to access memory allocated from the heaps specified by [`memory_heaps`].
 - [`memory_heap_count`] is the number of valid elements in the [`memory_heaps`] array.
-- [`memory_heaps`] is an array of `VK_MAX_MEMORY_HEAPS`[`MemoryHeap`] structures describing the *memory heaps* from which memory  **can**  be allocated.
+- [`memory_heaps`] is an array of [`MAX_MEMORY_HEAPS`][`MemoryHeap`] structures describing the *memory heaps* from which memory  **can**  be allocated.
 
 # Description
 The [`PhysicalDeviceMemoryProperties`] structure describes a number of
@@ -31,12 +31,12 @@ More than one memory type  **may**  share each heap, and the heaps and memory
 types provide a mechanism to advertise an accurate size of the physical
 memory resources while allowing the memory to be used with a variety of
 different properties.The number of memory heaps is given by [`memory_heap_count`] and is less
-than or equal to `VK_MAX_MEMORY_HEAPS`.
+than or equal to [`MAX_MEMORY_HEAPS`].
 Each heap is described by an element of the [`memory_heaps`] array as a
 [`MemoryHeap`] structure.
 The number of memory types available across all memory heaps is given by
 [`memory_type_count`] and is less than or equal to
-`VK_MAX_MEMORY_TYPES`.
+[`MAX_MEMORY_TYPES`].
 Each memory type is described by an element of the [`memory_types`] array
 as a [`MemoryType`] structure.At least one heap  **must**  include `VK_MEMORY_HEAP_DEVICE_LOCAL_BIT` in
 [`MemoryHeap::flags`].

@@ -12,7 +12,7 @@ typedef struct VkImageSubresource {
 ```
 
 # Members
-- [`aspect_mask`] is a [VkImageAspectFlags]() value selecting the image *aspect*.
+- [`aspect_mask`] is a [`ImageAspectFlags`] value selecting the image *aspect*.
 - [`mip_level`] selects the mipmap level.
 - [`array_layer`] selects the array layer.
 
@@ -23,7 +23,7 @@ typedef struct VkImageSubresource {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`SparseImageMemoryBind`]
 - [`get_image_subresource_layout`]
 

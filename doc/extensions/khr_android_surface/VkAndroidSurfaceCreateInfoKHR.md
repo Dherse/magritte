@@ -28,7 +28,7 @@ typedef struct VkAndroidSurfaceCreateInfoKHR {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`khr_android_surface`]
+- [`VK_KHR_android_surface`]
 - [`AndroidSurfaceCreateFlagsKHR`]
 - [`StructureType`]
 - [`create_android_surface_khr`]

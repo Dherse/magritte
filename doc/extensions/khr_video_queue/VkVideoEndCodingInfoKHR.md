@@ -23,7 +23,7 @@ typedef struct VkVideoEndCodingInfoKHR {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
 - [`VideoEndCodingFlagsKHR`]
 - [`cmd_end_video_coding_khr`]

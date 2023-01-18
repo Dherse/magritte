@@ -17,7 +17,7 @@ typedef union VkAccelerationStructureMotionInstanceDataNV {
 - [`srt_motion_instance`] is a [`AccelerationStructureSrtMotionInstanceNV`] structure containing data for an SRT motion instance.
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`AccelerationStructureInstanceKHR`]
 - [`AccelerationStructureMatrixMotionInstanceNV`]
 - [`AccelerationStructureMotionInstanceNV`]

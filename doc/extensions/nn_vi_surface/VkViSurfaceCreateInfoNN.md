@@ -28,7 +28,7 @@ typedef struct VkViSurfaceCreateInfoNN {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`nn_vi_surface`]
+- [`VK_NN_vi_surface`]
 - [`StructureType`]
 - [`ViSurfaceCreateFlagsNN`]
 - [`create_vi_surface_nn`]

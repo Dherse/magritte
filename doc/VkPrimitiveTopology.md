@@ -20,17 +20,17 @@ typedef enum VkPrimitiveTopology {
 ```
 
 # Description
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [separate point primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-point-lists).
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [separate line primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists).
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [connected line primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips) with consecutive lines sharing a vertex.
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [separate triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists).
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [connected triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips) with consecutive triangles sharing an edge.
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [connected triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans) with all triangles sharing a common vertex. If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::triangle_fans`] is `VK_FALSE`, then triangle fans are not supported by the implementation, and [`VK_PRIMITIVE_TOPOLOGY`] **must**  not be used.
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [separate line primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists-with-adjacency).
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [connected line primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips-with-adjacency), with consecutive primitives sharing three vertices.
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies a series of [separate triangle primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency).
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies [connected triangle primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips-with-adjacency), with consecutive triangles sharing an edge.
-- [`VK_PRIMITIVE_TOPOLOGY`] specifies [separate patch primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-patch-lists).
+- [`POINT_LIST`] specifies a series of [separate point primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-point-lists).
+- [`LINE_LIST`] specifies a series of [separate line primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists).
+- [`LINE_STRIP`] specifies a series of [connected line primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips) with consecutive lines sharing a vertex.
+- [`TRIANGLE_LIST`] specifies a series of [separate triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists).
+- [`TRIANGLE_STRIP`] specifies a series of [connected triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips) with consecutive triangles sharing an edge.
+- [`TRIANGLE_FAN`] specifies a series of [connected triangle primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-fans) with all triangles sharing a common vertex. If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::triangle_fans`] is [`FALSE`], then triangle fans are not supported by the implementation, and [`TRIANGLE_FAN`] **must**  not be used.
+- [`LINE_LIST_WITH_ADJACENCY`] specifies a series of [separate line primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-lists-with-adjacency).
+- [`LINE_STRIP_WITH_ADJACENCY`] specifies a series of [connected line primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-line-strips-with-adjacency), with consecutive primitives sharing three vertices.
+- [`TRIANGLE_LIST_WITH_ADJACENCY`] specifies a series of [separate triangle primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency).
+- [`TRIANGLE_STRIP_WITH_ADJACENCY`] specifies [connected triangle primitives with adjacency](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-strips-with-adjacency), with consecutive triangles sharing an edge.
+- [`PATCH_LIST`] specifies [separate patch primitives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-patch-lists).
 Each primitive topology, and its construction from a list of vertices, is
 described in detail below with a supporting diagram, according to the
 following key:The diagrams are supported with mathematical definitions where the vertices

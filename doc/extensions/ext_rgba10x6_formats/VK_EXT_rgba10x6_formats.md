@@ -13,7 +13,7 @@ a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/re
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_sampler_ycbcr_conversion`]`
+- Requires `[`VK_KHR_sampler_ycbcr_conversion`]`
 
 # Contacts
 - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_rgba10x6_formats] @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the VK_EXT_rgba10x6_formats extension>>)
@@ -22,8 +22,8 @@ a [sampler Y′C<sub>B</sub>C<sub>R</sub> conversion](https://www.khronos.org/re
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceRgba10x6FormatsFeaturesEXT`]
 
 # New constants
-- `VK_EXT_RGBA10X6_FORMATS_EXTENSION_NAME`
-- `VK_EXT_RGBA10X6_FORMATS_SPEC_VERSION`
+- [`EXT_RGBA10X6_FORMATS_EXTENSION_NAME`]
+- [`EXT_RGBA10X6_FORMATS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RGBA10X6_FORMATS_FEATURES_EXT`
 
 # Known issues & F.A.Q.

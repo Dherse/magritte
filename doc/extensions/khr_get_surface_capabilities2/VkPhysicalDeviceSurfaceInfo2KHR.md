@@ -34,9 +34,9 @@ parameters included in the [`p_next`] chain of
 [`SwapchainCreateInfoKHR`].
 ## Valid Usage
 -    If the [`p_next`] chain includes a [`SurfaceFullScreenExclusiveInfoEXT`] structure with its `fullScreenExclusive` member set to `VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT`, and [`surface`] was created using [`create_win32_surface_khr`], a [`SurfaceFullScreenExclusiveWin32InfoEXT`] structure  **must**  be included in the [`p_next`] chain
--    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_capabilities2_khr`], if the `[`google_surfaceless_query`]` extension is enabled and the [`p_next`] chain of the `pSurfaceCapabilities` parameter includes [`SurfaceProtectedCapabilitiesKHR`], then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
--    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_formats2_khr`], if the `[`google_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
--    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_present_modes2_ext`], if the `[`google_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+-    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_capabilities2_khr`], if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled and the [`p_next`] chain of the `pSurfaceCapabilities` parameter includes [`SurfaceProtectedCapabilitiesKHR`], then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+-    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_formats2_khr`], if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
+-    When passed as the `pSurfaceInfo` parameter of [`get_physical_device_surface_present_modes2_ext`], if the `[`VK_GOOGLE_surfaceless_query`]` extension is enabled, then [`surface`] **can**  be [`crate::Handle::null`]. Otherwise, [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SURFACE_INFO_2_KHR`
@@ -45,7 +45,7 @@ parameters included in the [`p_next`] chain of
 -    If [`surface`] is not [`crate::Handle::null`], [`surface`] **must**  be a valid [`SurfaceKHR`] handle
 
 # Related
-- [`khr_get_surface_capabilities2`]
+- [`VK_KHR_get_surface_capabilities2`]
 - [`StructureType`]
 - [`SurfaceKHR`]
 - [`get_device_group_surface_present_modes2_ext`]

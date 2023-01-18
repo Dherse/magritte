@@ -1,1 +1,0 @@
-[`VK_SAMPLER_MIPMAP_MODE`] specifies nearest filtering.

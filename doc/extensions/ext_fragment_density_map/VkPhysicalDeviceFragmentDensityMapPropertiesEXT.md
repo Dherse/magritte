@@ -30,7 +30,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_DENSITY_MAP_PROPERTIES_EXT`
 
 # Related
-- [`ext_fragment_density_map`]
+- [`VK_EXT_fragment_density_map`]
 - [`Bool32`]
 - [`Extent2D`]
 - [`StructureType`]

@@ -1,9 +1,9 @@
 [VK_NN_vi_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_NN_vi_surface.html) - instance extension
 
 # Description
-The [`nn_vi_surface`] extension is an instance extension.
+The [`VK_NN_vi_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) associated with an
+the `[`VK_KHR_surface`]` extension) associated with an
 `nn`::`vi`::`Layer`.
 
 # Registered extension number
@@ -14,7 +14,7 @@ the `[`khr_surface`]` extension) associated with an
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Mathias Heyer mheyer
@@ -29,8 +29,8 @@ the `[`khr_surface`]` extension) associated with an
 - [`ViSurfaceCreateFlagsNN`]
 
 # New constants
-- `VK_NN_VI_SURFACE_EXTENSION_NAME`
-- `VK_NN_VI_SURFACE_SPEC_VERSION`
+- [`NN_VI_SURFACE_EXTENSION_NAME`]
+- [`NN_VI_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_VI_SURFACE_CREATE_INFO_NN`
 
 # Known issues & F.A.Q.

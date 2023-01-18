@@ -16,11 +16,11 @@ typedef struct VkImagePipeSurfaceCreateInfoFUCHSIA {
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`flags`] is reserved for future use.
-- [`image_pipe_handle`] is a `zx_handle_t` referring to the ImagePipe to associate with the surface.
+- [`image_pipe_handle`] is a [`zx_handle_t`] referring to the ImagePipe to associate with the surface.
 
 # Description
 ## Valid Usage
--  [`image_pipe_handle`] **must**  be a valid `zx_handle_t`
+-  [`image_pipe_handle`] **must**  be a valid [`zx_handle_t`]
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
@@ -28,7 +28,7 @@ typedef struct VkImagePipeSurfaceCreateInfoFUCHSIA {
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`fuchsia_imagepipe_surface`]
+- [`VK_FUCHSIA_imagepipe_surface`]
 - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
 - [`StructureType`]
 - [`create_image_pipe_surface_fuchsia`]

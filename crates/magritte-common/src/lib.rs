@@ -1,11 +1,11 @@
 #![feature(const_trait_impl)]
 
-mod version;
+mod cstr;
 mod size;
 mod spv;
-mod cstr;
+mod version;
 
-pub use version::*;
+pub use cstr::*;
 pub use size::*;
 pub use spv::*;
-pub use cstr::*;
+pub use version::*;

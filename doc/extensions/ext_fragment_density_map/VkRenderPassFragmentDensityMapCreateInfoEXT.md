@@ -28,19 +28,19 @@ the following constraints determined by the attachment’s image view
 - Otherwise the fragment density map will be read by the host during [`cmd_begin_render_pass`]
 The fragment density map  **may**  additionally be read by the device during
 `VK_PIPELINE_STAGE_FRAGMENT_DENSITY_PROCESS_BIT_EXT` for any mode.If this structure is not present, it is as if
-[`fragment_density_map_attachment`] was given as `VK_ATTACHMENT_UNUSED`.
+[`fragment_density_map_attachment`] was given as [`ATTACHMENT_UNUSED`].
 ## Valid Usage
--    If [`fragment_density_map_attachment`] is not `VK_ATTACHMENT_UNUSED`, [`fragment_density_map_attachment`] **must**  not be an element of [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`], [`SubpassDescription::resolve_attachments`], [`SubpassDescription::depth_stencil_attachment`], or [`SubpassDescription::preserve_attachments`] for any subpass
--    If [`fragment_density_map_attachment`] is not `VK_ATTACHMENT_UNUSED`, `layout` **must**  be equal to `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`, or `VK_IMAGE_LAYOUT_GENERAL`
--    If [`fragment_density_map_attachment`] is not `VK_ATTACHMENT_UNUSED`, [`fragment_density_map_attachment`] **must**  reference an attachment with a `loadOp` equal to `VK_ATTACHMENT_LOAD_OP_LOAD` or `VK_ATTACHMENT_LOAD_OP_DONT_CARE`
--    If [`fragment_density_map_attachment`] is not `VK_ATTACHMENT_UNUSED`, [`fragment_density_map_attachment`] **must**  reference an attachment with a `storeOp` equal to `VK_ATTACHMENT_STORE_OP_DONT_CARE`
+-    If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], [`fragment_density_map_attachment`] **must**  not be an element of [`SubpassDescription::input_attachments`], [`SubpassDescription::color_attachments`], [`SubpassDescription::resolve_attachments`], [`SubpassDescription::depth_stencil_attachment`], or [`SubpassDescription::preserve_attachments`] for any subpass
+-    If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], `layout` **must**  be equal to `VK_IMAGE_LAYOUT_FRAGMENT_DENSITY_MAP_OPTIMAL_EXT`, or `VK_IMAGE_LAYOUT_GENERAL`
+-    If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], [`fragment_density_map_attachment`] **must**  reference an attachment with a `loadOp` equal to `VK_ATTACHMENT_LOAD_OP_LOAD` or `VK_ATTACHMENT_LOAD_OP_DONT_CARE`
+-    If [`fragment_density_map_attachment`] is not [`ATTACHMENT_UNUSED`], [`fragment_density_map_attachment`] **must**  reference an attachment with a `storeOp` equal to `VK_ATTACHMENT_STORE_OP_DONT_CARE`
 
 ## Valid Usage (Implicit)
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_RENDER_PASS_FRAGMENT_DENSITY_MAP_CREATE_INFO_EXT`
 -  [`fragment_density_map_attachment`] **must**  be a valid [`AttachmentReference`] structure
 
 # Related
-- [`ext_fragment_density_map`]
+- [`VK_EXT_fragment_density_map`]
 - [`AttachmentReference`]
 - [`StructureType`]
 

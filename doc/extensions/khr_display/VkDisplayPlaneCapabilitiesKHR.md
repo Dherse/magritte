@@ -52,8 +52,8 @@ in [`DisplayPlaneCapabilitiesKHR`] are guaranteed to be supported.
 Presentation requests specifying unsupported combinations  **may**  fail.
 
 # Related
-- [`khr_display`]
-- [VkDisplayPlaneAlphaFlagsKHR]()
+- [`VK_KHR_display`]
+- [`DisplayPlaneAlphaFlagsKHR`]
 - [`DisplayPlaneCapabilities2KHR`]
 - [`Extent2D`]
 - [`Offset2D`]

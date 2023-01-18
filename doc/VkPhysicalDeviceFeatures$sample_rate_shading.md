@@ -3,6 +3,6 @@
 are supported.
 If this feature is not enabled, the `sampleShadingEnable` member of
 the [`PipelineMultisampleStateCreateInfo`] structure  **must**  be set to
-`VK_FALSE` and the `minSampleShading` member is ignored.
+[`FALSE`] and the `minSampleShading` member is ignored.
 This also specifies whether shader modules  **can**  declare the
 `SampleRateShading` capability.

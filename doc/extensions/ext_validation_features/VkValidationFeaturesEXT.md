@@ -36,7 +36,7 @@ typedef struct VkValidationFeaturesEXT {
 -    If [`disabled_validation_feature_count`] is not `0`, [`disabled_validation_features`] **must**  be a valid pointer to an array of [`disabled_validation_feature_count`] valid [`ValidationFeatureDisableEXT`] values
 
 # Related
-- [`ext_validation_features`]
+- [`VK_EXT_validation_features`]
 - [`StructureType`]
 - [`ValidationFeatureDisableEXT`]
 - [`ValidationFeatureEnableEXT`]

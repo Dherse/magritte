@@ -20,12 +20,12 @@ typedef enum VkBorderColor {
 ```
 
 # Description
-- [`VK_BORDER_COLOR`] specifies a transparent, floating-point format, black color.
-- [`VK_BORDER_COLOR`] specifies a transparent, integer format, black color.
-- [`VK_BORDER_COLOR`] specifies an opaque, floating-point format, black color.
-- [`VK_BORDER_COLOR`] specifies an opaque, integer format, black color.
-- [`VK_BORDER_COLOR`] specifies an opaque, floating-point format, white color.
-- [`VK_BORDER_COLOR`] specifies an opaque, integer format, white color.
+- [`FLOAT_TRANSPARENT_BLACK`] specifies a transparent, floating-point format, black color.
+- [`INT_TRANSPARENT_BLACK`] specifies a transparent, integer format, black color.
+- [`FLOAT_OPAQUE_BLACK`] specifies an opaque, floating-point format, black color.
+- [`INT_OPAQUE_BLACK`] specifies an opaque, integer format, black color.
+- [`FLOAT_OPAQUE_WHITE`] specifies an opaque, floating-point format, white color.
+- [`INT_OPAQUE_WHITE`] specifies an opaque, integer format, white color.
 - [`FLOAT_CUSTOM_EXT`] indicates that a [`SamplerCustomBorderColorCreateInfoEXT`] structure is included in the [`SamplerCreateInfo::p_next`] chain containing the color data in floating-point format.
 - [`INT_CUSTOM_EXT`] indicates that a [`SamplerCustomBorderColorCreateInfoEXT`] structure is included in the [`SamplerCreateInfo::p_next`] chain containing the color data in integer format.
 These colors are described in detail in [Texel

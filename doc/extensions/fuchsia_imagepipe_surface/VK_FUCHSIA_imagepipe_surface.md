@@ -1,9 +1,9 @@
 [VK_FUCHSIA_imagepipe_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_FUCHSIA_imagepipe_surface.html) - instance extension
 
 # Description
-The [`fuchsia_imagepipe_surface`] extension is an instance extension.
+The [`VK_FUCHSIA_imagepipe_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to a Fuchsia
+the `[`VK_KHR_surface`]` extension) that refers to a Fuchsia
 `imagePipeHandle`.
 
 # Registered extension number
@@ -14,7 +14,7 @@ the `[`khr_surface`]` extension) that refers to a Fuchsia
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Craig Stout [cdotstout](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_FUCHSIA_imagepipe_surface] @cdotstout%0A<<Here describe the issue or question you have about the VK_FUCHSIA_imagepipe_surface extension>>)
@@ -29,8 +29,8 @@ the `[`khr_surface`]` extension) that refers to a Fuchsia
 - [`ImagePipeSurfaceCreateFlagsFUCHSIA`]
 
 # New constants
-- `VK_FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME`
-- `VK_FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION`
+- [`FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME`]
+- [`FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_IMAGEPIPE_SURFACE_CREATE_INFO_FUCHSIA`
 
 # Version history

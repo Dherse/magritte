@@ -30,7 +30,7 @@ Once ended, conditional rendering becomes inactive.
 ## Command Properties
 
 # Related
-- [`ext_conditional_rendering`]
+- [`VK_EXT_conditional_rendering`]
 - [`CommandBuffer`]
 
 # Notes and documentation

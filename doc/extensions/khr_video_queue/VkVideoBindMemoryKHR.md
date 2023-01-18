@@ -29,7 +29,7 @@ typedef struct VkVideoBindMemoryKHR {
 -  [`memory`] **must**  be a valid [`DeviceMemory`] handle
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`DeviceMemory`]
 - [`DeviceSize`]
 - [`StructureType`]

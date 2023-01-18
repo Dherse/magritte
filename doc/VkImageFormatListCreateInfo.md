@@ -34,7 +34,7 @@ not included in the [`p_next`] chain of [`ImageCreateInfo`].
 -    If [`view_format_count`] is not `0`, [`view_formats`] **must**  be a valid pointer to an array of [`view_format_count`] valid [`Format`] values
 
 # Related
-- [`khr_image_format_list`]
+- [`VK_KHR_image_format_list`]
 - [`crate::vulkan1_2`]
 - [`Format`]
 - [`StructureType`]

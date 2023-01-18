@@ -19,7 +19,7 @@ typedef enum VkIndirectCommandsTokenTypeNV {
 ```
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`IndirectCommandsLayoutTokenNV`]
 
 # Notes and documentation

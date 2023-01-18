@@ -21,11 +21,11 @@ typedef VkSemaphoreType VkSemaphoreTypeKHR;
 ```
 
 # Description
-- [`VK_SEMAPHORE_TYPE`] specifies a *binary semaphore* type that has a boolean payload indicating whether the semaphore is currently signaled or unsignaled. When created, the semaphore is in the unsignaled state.
-- [`VK_SEMAPHORE_TYPE`] specifies a *timeline semaphore* type that has a strictly increasing 64-bit unsigned integer payload indicating whether the semaphore is signaled with respect to a particular reference value. When created, the semaphore payload has the value given by the `initialValue` field of [`SemaphoreTypeCreateInfo`].
+- [`BINARY`] specifies a *binary semaphore* type that has a boolean payload indicating whether the semaphore is currently signaled or unsignaled. When created, the semaphore is in the unsignaled state.
+- [`TIMELINE`] specifies a *timeline semaphore* type that has a strictly increasing 64-bit unsigned integer payload indicating whether the semaphore is signaled with respect to a particular reference value. When created, the semaphore payload has the value given by the `initialValue` field of [`SemaphoreTypeCreateInfo`].
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`SemaphoreTypeCreateInfo`]
 

@@ -15,18 +15,18 @@ typedef enum VkDeviceGroupPresentModeFlagBitsKHR {
 ```
 
 # Description
-- [`VK_DEVICE_GROUP_PRESENT_MODE_FLAG_BITS_KHR`] specifies that any physical device with a presentation engine  **can**  present its own swapchain images.
-- [`VK_DEVICE_GROUP_PRESENT_MODE_FLAG_BITS_KHR`] specifies that any physical device with a presentation engine  **can**  present swapchain images from any physical device in its `presentMask`.
-- [`VK_DEVICE_GROUP_PRESENT_MODE_FLAG_BITS_KHR`] specifies that any physical device with a presentation engine  **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
-- [`VK_DEVICE_GROUP_PRESENT_MODE_FLAG_BITS_KHR`] specifies that multiple physical devices with a presentation engine  **can**  each present their own swapchain images.
+- [`LOCAL`] specifies that any physical device with a presentation engine  **can**  present its own swapchain images.
+- [`REMOTE`] specifies that any physical device with a presentation engine  **can**  present swapchain images from any physical device in its `presentMask`.
+- [`SUM`] specifies that any physical device with a presentation engine  **can**  present the sum of swapchain images from any physical devices in its `presentMask`.
+- [`LOCAL_MULTI_DEVICE`] specifies that multiple physical devices with a presentation engine  **can**  each present their own swapchain images.
 
 # Related
-- [`khr_device_group`]
-- [`khr_surface`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_surface`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`DeviceGroupPresentInfoKHR`]
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

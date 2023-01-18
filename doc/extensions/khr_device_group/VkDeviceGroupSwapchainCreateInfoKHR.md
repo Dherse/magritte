@@ -28,10 +28,10 @@ If this structure is not present, [`modes`] is considered to be
 -  [`modes`] **must**  not be `0`
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
-- [VkDeviceGroupPresentModeFlagsKHR]()
+- [`DeviceGroupPresentModeFlagsKHR`]
 - [`StructureType`]
 
 # Notes and documentation

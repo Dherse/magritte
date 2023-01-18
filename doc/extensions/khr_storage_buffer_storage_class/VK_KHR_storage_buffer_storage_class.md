@@ -23,8 +23,8 @@ A `Block`-decorated object in this class is equivalent to a
 - Alexander Galazin [alegal-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_storage_buffer_storage_class] @alegal-arm%0A<<Here describe the issue or question you have about the VK_KHR_storage_buffer_storage_class extension>>)
 
 # New constants
-- `VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME`
-- `VK_KHR_STORAGE_BUFFER_STORAGE_CLASS_SPEC_VERSION`
+- [`KHR_STORAGE_BUFFER_STORAGE_CLASS_EXTENSION_NAME`]
+- [`KHR_STORAGE_BUFFER_STORAGE_CLASS_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-03-23 (Alexander Galazin)  - Initial draft

@@ -25,7 +25,7 @@ typedef struct VkVertexInputAttributeDescription {
 -  [`binding`] **must**  be less than [`PhysicalDeviceLimits::max_vertex_input_bindings`]
 -  [`offset`] **must**  be less than or equal to [`PhysicalDeviceLimits::max_vertex_input_attribute_offset`]
 -  [`format`] **must**  be allowed as a vertex buffer format, as specified by the `VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT` flag in [`FormatProperties::buffer_features`] returned by [`get_physical_device_format_properties`]
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::vertex_attribute_access_beyond_stride`] is `VK_FALSE`, the sum of [`offset`] plus the size of the vertex attribute data described by [`format`] **must**  not be greater than `stride` in the [`VertexInputBindingDescription`] referenced in [`binding`]
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::vertex_attribute_access_beyond_stride`] is [`FALSE`], the sum of [`offset`] plus the size of the vertex attribute data described by [`format`] **must**  not be greater than `stride` in the [`VertexInputBindingDescription`] referenced in [`binding`]
 
 ## Valid Usage (Implicit)
 -  [`format`] **must**  be a valid [`Format`] value

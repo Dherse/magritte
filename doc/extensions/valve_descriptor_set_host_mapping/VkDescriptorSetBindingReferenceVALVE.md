@@ -21,7 +21,7 @@ typedef struct VkDescriptorSetBindingReferenceVALVE {
 -  [`descriptor_set_layout`] **must**  be a valid [`DescriptorSetLayout`] handle
 
 # Related
-- [`valve_descriptor_set_host_mapping`]
+- [`VK_VALVE_descriptor_set_host_mapping`]
 - [`DescriptorSetLayout`]
 - [`StructureType`]
 - [`get_descriptor_set_layout_host_mapping_info_valve`]

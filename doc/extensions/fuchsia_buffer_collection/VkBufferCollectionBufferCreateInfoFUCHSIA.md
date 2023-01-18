@@ -27,7 +27,7 @@ typedef struct VkBufferCollectionBufferCreateInfoFUCHSIA {
 -  [`collection`] **must**  be a valid [`BufferCollectionFUCHSIA`] handle
 
 # Related
-- [`fuchsia_buffer_collection`]
+- [`VK_FUCHSIA_buffer_collection`]
 - [`BufferCollectionFUCHSIA`]
 - [`StructureType`]
 

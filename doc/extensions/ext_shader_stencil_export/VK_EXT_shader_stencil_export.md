@@ -20,8 +20,8 @@ against the value generated in the shader.
 - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_shader_stencil_export] @dominikwitczakamd%0A<<Here describe the issue or question you have about the VK_EXT_shader_stencil_export extension>>)
 
 # New constants
-- `VK_EXT_SHADER_STENCIL_EXPORT_EXTENSION_NAME`
-- `VK_EXT_SHADER_STENCIL_EXPORT_SPEC_VERSION`
+- [`EXT_SHADER_STENCIL_EXPORT_EXTENSION_NAME`]
+- [`EXT_SHADER_STENCIL_EXPORT_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2017-07-19 (Dominik Witczak)  - Initial draft

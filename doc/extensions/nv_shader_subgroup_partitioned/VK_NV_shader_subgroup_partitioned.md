@@ -23,8 +23,8 @@ Support for these new operations is advertised via the
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_shader_subgroup_partitioned] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_NV_shader_subgroup_partitioned extension>>)
 
 # New constants
-- `VK_NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME`
-- `VK_NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION`
+- [`NV_SHADER_SUBGROUP_PARTITIONED_EXTENSION_NAME`]
+- [`NV_SHADER_SUBGROUP_PARTITIONED_SPEC_VERSION`]
 - Extending [`SubgroupFeatureFlagBits`]:  - `VK_SUBGROUP_FEATURE_PARTITIONED_BIT_NV`
 
 # Version history

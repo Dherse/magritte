@@ -15,7 +15,7 @@ must match.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_dedicated_allocation`]`
+- Requires `[`VK_KHR_dedicated_allocation`]`
 
 # Contacts
 - Nuno Subtil [nsubtil](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_dedicated_allocation_image_aliasing] @nsubtil%0A<<Here describe the issue or question you have about the VK_NV_dedicated_allocation_image_aliasing extension>>)
@@ -24,8 +24,8 @@ must match.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV`]
 
 # New constants
-- `VK_NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME`
-- `VK_NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION`
+- [`NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_EXTENSION_NAME`]
+- [`NV_DEDICATED_ALLOCATION_IMAGE_ALIASING_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEDICATED_ALLOCATION_IMAGE_ALIASING_FEATURES_NV`
 
 # Version history

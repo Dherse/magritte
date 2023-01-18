@@ -50,7 +50,7 @@ In all cases, each import operation  **must**  create a distinct
 -    If [`handle_type`] is not `0`, [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`khr_external_memory_win32`]
+- [`VK_KHR_external_memory_win32`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]
 

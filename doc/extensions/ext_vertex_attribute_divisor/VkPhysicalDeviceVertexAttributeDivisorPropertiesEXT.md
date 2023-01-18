@@ -26,7 +26,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VERTEX_ATTRIBUTE_DIVISOR_PROPERTIES_EXT`
 
 # Related
-- [`ext_vertex_attribute_divisor`]
+- [`VK_EXT_vertex_attribute_divisor`]
 - [`StructureType`]
 
 # Notes and documentation

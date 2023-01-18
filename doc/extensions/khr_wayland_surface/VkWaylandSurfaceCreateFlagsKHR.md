@@ -7,7 +7,7 @@ typedef VkFlags VkWaylandSurfaceCreateFlagsKHR;
 ```
 
 # Related
-- [`khr_wayland_surface`]
+- [`VK_KHR_wayland_surface`]
 - [`WaylandSurfaceCreateInfoKHR`]
 
 # Notes and documentation

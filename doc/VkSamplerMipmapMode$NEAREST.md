@@ -1,0 +1,1 @@
+[`NEAREST`] specifies nearest filtering.

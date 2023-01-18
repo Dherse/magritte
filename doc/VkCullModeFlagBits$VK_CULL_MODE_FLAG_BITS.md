@@ -1,1 +1,0 @@
-[`VK_CULL_MODE_FLAG_BITS`] specifies that no triangles are discarded

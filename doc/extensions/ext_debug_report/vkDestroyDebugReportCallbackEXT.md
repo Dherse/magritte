@@ -30,7 +30,7 @@ void vkDestroyDebugReportCallbackEXT(
 - Host access to [`callback`] **must**  be externally synchronized
 
 # Related
-- [`ext_debug_report`]
+- [`VK_EXT_debug_report`]
 - [`AllocationCallbacks`]
 - [`DebugReportCallbackEXT`]
 - [`Instance`]

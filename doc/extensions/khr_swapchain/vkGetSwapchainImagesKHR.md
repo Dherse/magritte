@@ -41,7 +41,7 @@ images were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`khr_swapchain`]
+- [`VK_KHR_swapchain`]
 - [`Device`]
 - [`Image`]
 - [`SwapchainKHR`]

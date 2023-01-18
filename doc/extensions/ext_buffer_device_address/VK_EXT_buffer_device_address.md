@@ -18,10 +18,10 @@ tool, so that it matches the address used when the trace was captured.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
-- *Deprecated* by `[`khr_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
+- *Deprecated* by `[`VK_KHR_buffer_device_address`]` extension  - Which in turn was *promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_buffer_device_address] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_buffer_device_address extension>>)
@@ -35,8 +35,8 @@ tool, so that it matches the address used when the trace was captured.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceBufferAddressFeaturesEXT`]  - [`PhysicalDeviceBufferDeviceAddressFeaturesEXT`]
 
 # New constants
-- `VK_EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`
-- `VK_EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`
+- [`EXT_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME`]
+- [`EXT_BUFFER_DEVICE_ADDRESS_SPEC_VERSION`]
 - Extending [`BufferCreateFlagBits`]:  - `VK_BUFFER_CREATE_DEVICE_ADDRESS_CAPTURE_REPLAY_BIT_EXT` 
 - Extending [`BufferUsageFlagBits`]:  - `VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT` 
 - Extending [`VulkanResultCodes`]:  - `VK_ERROR_INVALID_DEVICE_ADDRESS_EXT` 

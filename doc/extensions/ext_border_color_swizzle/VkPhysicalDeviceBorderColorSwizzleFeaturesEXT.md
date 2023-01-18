@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BORDER_COLOR_SWIZZLE_FEATURES_EXT`
 
 # Related
-- [`ext_border_color_swizzle`]
+- [`VK_EXT_border_color_swizzle`]
 - [`Bool32`]
 - [`StructureType`]
 

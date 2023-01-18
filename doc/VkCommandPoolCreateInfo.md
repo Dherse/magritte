@@ -29,7 +29,7 @@ typedef struct VkCommandPoolCreateInfo {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkCommandPoolCreateFlags]()
+- [`CommandPoolCreateFlags`]
 - [`StructureType`]
 - [`create_command_pool`]
 

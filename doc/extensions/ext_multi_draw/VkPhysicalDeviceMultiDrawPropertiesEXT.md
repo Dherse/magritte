@@ -25,7 +25,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTI_DRAW_PROPERTIES_EXT`
 
 # Related
-- [`ext_multi_draw`]
+- [`VK_EXT_multi_draw`]
 - [`StructureType`]
 
 # Notes and documentation

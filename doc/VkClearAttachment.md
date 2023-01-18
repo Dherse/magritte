@@ -30,7 +30,7 @@ typedef struct VkClearAttachment {
 # Related
 - [`crate::vulkan1_0`]
 - [`ClearValue`]
-- [VkImageAspectFlags]()
+- [`ImageAspectFlags`]
 - [`cmd_clear_attachments`]
 
 # Notes and documentation

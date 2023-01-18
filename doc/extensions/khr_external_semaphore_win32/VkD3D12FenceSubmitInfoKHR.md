@@ -43,7 +43,7 @@ in the [`wait_semaphore_values`] or [`signal_semaphore_values`] entry.
 -    If [`signal_semaphore_values_count`] is not `0`, and [`signal_semaphore_values`] is not `NULL`, [`signal_semaphore_values`] **must**  be a valid pointer to an array of [`signal_semaphore_values_count`]`uint64_t` values
 
 # Related
-- [`khr_external_semaphore_win32`]
+- [`VK_KHR_external_semaphore_win32`]
 - [`StructureType`]
 
 # Notes and documentation

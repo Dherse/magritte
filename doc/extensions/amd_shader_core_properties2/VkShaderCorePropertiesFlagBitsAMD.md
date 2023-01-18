@@ -2,9 +2,9 @@
 
 # C Specifications
 Bits for this type  **may**  be defined by future extensions, or new versions of
-the `[`amd_shader_core_properties2`]` extension.
+the `[`VK_AMD_shader_core_properties2`]` extension.
 Possible values of the `flags` member of
-[VkShaderCorePropertiesFlagsAMD]() are:
+[`ShaderCorePropertiesFlagsAMD`] are:
 ```c
 // Provided by VK_AMD_shader_core_properties2
 typedef enum VkShaderCorePropertiesFlagBitsAMD {
@@ -12,9 +12,9 @@ typedef enum VkShaderCorePropertiesFlagBitsAMD {
 ```
 
 # Related
-- [`amd_shader_core_properties2`]
+- [`VK_AMD_shader_core_properties2`]
 - [`PhysicalDeviceShaderCoreProperties2AMD`]
-- [VkShaderCorePropertiesFlagsAMD]()
+- [`ShaderCorePropertiesFlagsAMD`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

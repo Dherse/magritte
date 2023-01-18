@@ -27,7 +27,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_SUBGROUP_UNIFORM_CONTROL_FLOW_FEATURES_KHR`
 
 # Related
-- [`khr_shader_subgroup_uniform_control_flow`]
+- [`VK_KHR_shader_subgroup_uniform_control_flow`]
 - [`Bool32`]
 - [`StructureType`]
 

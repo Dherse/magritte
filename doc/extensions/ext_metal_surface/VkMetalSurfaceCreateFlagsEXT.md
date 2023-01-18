@@ -7,7 +7,7 @@ typedef VkFlags VkMetalSurfaceCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_metal_surface`]
+- [`VK_EXT_metal_surface`]
 - [`MetalSurfaceCreateInfoEXT`]
 
 # Notes and documentation

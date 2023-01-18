@@ -14,7 +14,7 @@ typedef VkAccessFlags2 VkAccessFlags2KHR;
 ```
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`BufferMemoryBarrier2`]
 - [`ImageMemoryBarrier2`]

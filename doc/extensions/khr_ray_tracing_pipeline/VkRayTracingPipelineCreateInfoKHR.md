@@ -83,14 +83,14 @@ Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/htm
 -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, each element of `pLibraryInfo->pLibraries` **must**  have been created with the `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR` bit set
 -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR`, each element of `pLibraryInfo->pLibraries` **must**  have been created with the `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_BIT_KHR` bit set
 -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR`, each element of `pLibraryInfo->pLibraries` **must**  have been created with the `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_MISS_SHADERS_BIT_KHR` bit set
--    If the `[`khr_pipeline_library`]` extension is not enabled, [`library_info`] and [`library_interface`] **must**  be `NULL`
--    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, for any element of [`groups`] with a `type` of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `anyHitShader` of that element  **must**  not be `VK_SHADER_UNUSED_KHR`
--    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, for any element of [`groups`] with a `type` of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `closestHitShader` of that element  **must**  not be `VK_SHADER_UNUSED_KHR`
+-    If the `[`VK_KHR_pipeline_library`]` extension is not enabled, [`library_info`] and [`library_interface`] **must**  be `NULL`
+-    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_BIT_KHR`, for any element of [`groups`] with a `type` of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `anyHitShader` of that element  **must**  not be [`SHADER_UNUSED_KHR`]
+-    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_BIT_KHR`, for any element of [`groups`] with a `type` of `VK_RAY_TRACING_SHADER_GROUP_TYPE_TRIANGLES_HIT_GROUP_KHR` or `VK_RAY_TRACING_SHADER_GROUP_TYPE_PROCEDURAL_HIT_GROUP_KHR`, the `closestHitShader` of that element  **must**  not be [`SHADER_UNUSED_KHR`]
 -    If the [`rayTraversalPrimitiveCulling`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTraversalPrimitiveCulling) feature is not enabled, [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
 -    If the [`rayTraversalPrimitiveCulling`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTraversalPrimitiveCulling) feature is not enabled, [`flags`] **must**  not include `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR`
 -  [`flags`] **must**  not include both `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_TRIANGLES_BIT_KHR` and `VK_PIPELINE_CREATE_RAY_TRACING_SKIP_AABBS_BIT_KHR`
 -    If [`flags`] includes `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`, [`rayTracingPipelineShaderGroupHandleCaptureReplay`](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#features-rayTracingPipelineShaderGroupHandleCaptureReplay) **must**  be enabled
--    If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`] is `VK_TRUE` and the `pShaderGroupCaptureReplayHandle` member of any element of [`groups`] is not `NULL`, [`flags`] **must**  include `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
+-    If [`PhysicalDeviceRayTracingPipelineFeaturesKHR::ray_tracing_pipeline_shader_group_handle_capture_replay`] is [`TRUE`] and the `pShaderGroupCaptureReplayHandle` member of any element of [`groups`] is not `NULL`, [`flags`] **must**  include `VK_PIPELINE_CREATE_RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_BIT_KHR`
 -    If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`stage_count`] **must**  not be `0`
 -    If [`library_info`] is not `NULL` and its `libraryCount` is `0`, [`group_count`] **must**  not be `0`
 -    Any element of the `pDynamicStates` member of [`dynamic_state`] **must**  be `VK_DYNAMIC_STATE_RAY_TRACING_PIPELINE_STACK_SIZE_KHR`
@@ -109,9 +109,9 @@ Pipeline Stack](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/htm
 -    Both of [`base_pipeline_handle`], and [`layout`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`Pipeline`]
-- [VkPipelineCreateFlags]()
+- [`PipelineCreateFlags`]
 - [`PipelineDynamicStateCreateInfo`]
 - [`PipelineLayout`]
 - [`PipelineLibraryCreateInfoKHR`]

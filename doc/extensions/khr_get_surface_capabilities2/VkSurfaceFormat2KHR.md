@@ -22,7 +22,7 @@ typedef struct VkSurfaceFormat2KHR {
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_get_surface_capabilities2`]
+- [`VK_KHR_get_surface_capabilities2`]
 - [`StructureType`]
 - [`SurfaceFormatKHR`]
 - [`get_physical_device_surface_formats2_khr`]

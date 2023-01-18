@@ -37,7 +37,7 @@ Otherwise, the stack size is computed as described in
 ## Command Properties
 
 # Related
-- [`khr_ray_tracing_pipeline`]
+- [`VK_KHR_ray_tracing_pipeline`]
 - [`CommandBuffer`]
 
 # Notes and documentation

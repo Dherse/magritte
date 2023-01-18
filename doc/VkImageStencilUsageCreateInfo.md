@@ -51,9 +51,9 @@ When this structure is not included in the [`p_next`] chain of
 -  [`stencil_usage`] **must**  not be `0`
 
 # Related
-- [`ext_separate_stencil_usage`]
+- [`VK_EXT_separate_stencil_usage`]
 - [`crate::vulkan1_2`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

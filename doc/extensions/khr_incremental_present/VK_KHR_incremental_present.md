@@ -2,7 +2,7 @@
 
 # Description
 This device extension extends [`queue_present_khr`], from the
-`[`khr_swapchain`]` extension, allowing an application to specify a
+`[`VK_KHR_swapchain`]` extension, allowing an application to specify a
 list of rectangular, modified regions of each image to present.
 This should be used in situations where an application is only changing a
 small portion of the presentable images within a swapchain, since it enables
@@ -18,7 +18,7 @@ extension.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_incremental_present] @ianelliottus%0A<<Here describe the issue or question you have about the VK_KHR_incremental_present extension>>)
@@ -29,8 +29,8 @@ extension.
 - Extending [`PresentInfoKHR`]:  - [`PresentRegionsKHR`]
 
 # New constants
-- `VK_KHR_INCREMENTAL_PRESENT_EXTENSION_NAME`
-- `VK_KHR_INCREMENTAL_PRESENT_SPEC_VERSION`
+- [`KHR_INCREMENTAL_PRESENT_EXTENSION_NAME`]
+- [`KHR_INCREMENTAL_PRESENT_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_REGIONS_KHR`
 
 # Known issues & F.A.Q.

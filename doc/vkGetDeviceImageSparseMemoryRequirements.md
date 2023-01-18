@@ -35,7 +35,7 @@ void vkGetDeviceImageSparseMemoryRequirementsKHR(
 -    If the value referenced by [`p_sparse_memory_requirement_count`] is not `0`, and [`p_sparse_memory_requirements`] is not `NULL`, [`p_sparse_memory_requirements`] **must**  be a valid pointer to an array of [`p_sparse_memory_requirement_count`][`SparseImageMemoryRequirements2`] structures
 
 # Related
-- [`khr_maintenance4`]
+- [`VK_KHR_maintenance4`]
 - [`crate::vulkan1_3`]
 - [`Device`]
 - [`DeviceImageMemoryRequirements`]

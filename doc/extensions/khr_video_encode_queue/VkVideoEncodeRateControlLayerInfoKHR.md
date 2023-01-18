@@ -64,7 +64,7 @@ coding layers (if applicable to the specified stream rate control mode).
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_VIDEO_ENCODE_RATE_CONTROL_LAYER_INFO_KHR`
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`StructureType`]
 - [`VideoEncodeRateControlInfoKHR`]
 

@@ -137,10 +137,10 @@ any dependency between [framebuffer-space](https://www.khronos.org/registry/vulk
 - [`crate::vulkan1_0`]
 - [`BufferMemoryBarrier`]
 - [`CommandBuffer`]
-- [VkDependencyFlags]()
+- [`DependencyFlags`]
 - [`ImageMemoryBarrier`]
 - [`MemoryBarrier`]
-- [VkPipelineStageFlags]()
+- [`PipelineStageFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

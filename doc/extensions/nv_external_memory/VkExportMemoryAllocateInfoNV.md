@@ -22,8 +22,8 @@ typedef struct VkExportMemoryAllocateInfoNV {
 -  [`handle_types`] **must**  be a valid combination of [`ExternalMemoryHandleTypeFlagBitsNV`] values
 
 # Related
-- [`nv_external_memory`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`VK_NV_external_memory`]
+- [`ExternalMemoryHandleTypeFlagsNV`]
 - [`StructureType`]
 
 # Notes and documentation

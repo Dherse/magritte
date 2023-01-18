@@ -2,4 +2,4 @@
 This  **must**  only be returned if no attempt to allocate host or device
 memory was made to accommodate the new allocation.
 If the failure was definitely due to fragmentation of the pool,
-[`VK_RESULT`] **should**  be returned instead.
+[`ERROR_FRAGMENTED_POOL`] **should**  be returned instead.

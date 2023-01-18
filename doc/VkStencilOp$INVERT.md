@@ -1,0 +1,1 @@
+[`INVERT`] bitwise-inverts the current value.

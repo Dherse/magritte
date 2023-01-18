@@ -21,8 +21,8 @@ traversal results to the calling shader.This extension adds support for the foll
 
 # Dependencies
 - Requires Vulkan 1.1
-- Requires `[`khr_spirv_1_4`]`
-- Requires `[`khr_acceleration_structure`]`
+- Requires `[`VK_KHR_spirv_1_4`]`
+- Requires `[`VK_KHR_acceleration_structure`]`
 
 # Contacts
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_ray_query] @dgkoch%0A<<Here describe the issue or question you have about the VK_KHR_ray_query extension>>)
@@ -31,15 +31,15 @@ traversal results to the calling shader.This extension adds support for the foll
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceRayQueryFeaturesKHR`]
 
 # New constants
-- `VK_KHR_RAY_QUERY_EXTENSION_NAME`
-- `VK_KHR_RAY_QUERY_SPEC_VERSION`
+- [`KHR_RAY_QUERY_EXTENSION_NAME`]
+- [`KHR_RAY_QUERY_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RAY_QUERY_FEATURES_KHR`
 
 # Known issues & F.A.Q.
 (1) What are the changes between the public provisional (VK_KHR_ray_tracing
 v8) release and the final (VK_KHR_acceleration_structure v11 /
 VK_KHR_ray_query v1) release?
-- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`khr_acceleration_structure`]` (for acceleration structure operations)  - `[`khr_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`khr_ray_query`]` (for ray queries in existing shader stages) 
+- refactor VK_KHR_ray_tracing into 3 extensions, enabling implementation flexibility and decoupling ray query support from ray pipelines:  - `[`VK_KHR_acceleration_structure`]` (for acceleration structure operations)  - `[`VK_KHR_ray_tracing_pipeline`]` (for ray tracing pipeline and shader stages)  - `[`VK_KHR_ray_query`]` (for ray queries in existing shader stages) 
 - Update SPIRV capabilities to use `RayQueryKHR`
 - extension is no longer provisional
 

@@ -49,7 +49,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VARIABLE_POINTERS_FEATURES`
 
 # Related
-- [`khr_variable_pointers`]
+- [`VK_KHR_variable_pointers`]
 - [`crate::vulkan1_1`]
 - [`Bool32`]
 - [`StructureType`]

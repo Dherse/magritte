@@ -17,10 +17,10 @@ Vulkan instance that created them.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`nv_external_memory_capabilities`]`
+- Requires `[`VK_NV_external_memory_capabilities`]`
 
 # Deprecation state
-- *Deprecated* by `[`khr_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
+- *Deprecated* by `[`VK_KHR_external_memory`]` extension  - Which in turn was *promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_external_memory] @cubanismo%0A<<Here describe the issue or question you have about the VK_NV_external_memory extension>>)
@@ -30,8 +30,8 @@ Vulkan instance that created them.
 - Extending [`MemoryAllocateInfo`]:  - [`ExportMemoryAllocateInfoNV`]
 
 # New constants
-- `VK_NV_EXTERNAL_MEMORY_EXTENSION_NAME`
-- `VK_NV_EXTERNAL_MEMORY_SPEC_VERSION`
+- [`NV_EXTERNAL_MEMORY_EXTENSION_NAME`]
+- [`NV_EXTERNAL_MEMORY_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_MEMORY_ALLOCATE_INFO_NV`  - `VK_STRUCTURE_TYPE_EXTERNAL_MEMORY_IMAGE_CREATE_INFO_NV`
 
 # Known issues & F.A.Q.

@@ -21,7 +21,7 @@ typedef struct VkDisplayModeParametersKHR {
 -  [`refresh_rate`] **must**  be greater than `0`
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModeCreateInfoKHR`]
 - [`DisplayModePropertiesKHR`]
 - [`Extent2D`]

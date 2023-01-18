@@ -33,7 +33,7 @@ corresponding fields of [`FormatProperties2::format_properties`].
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_FORMAT_PROPERTIES_3`
 
 # Related
-- [`khr_format_feature_flags2`]
+- [`VK_KHR_format_feature_flags2`]
 - [`crate::vulkan1_3`]
 - [`FormatFeatureFlags2`]
 - [`StructureType`]

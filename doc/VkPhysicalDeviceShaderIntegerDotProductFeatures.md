@@ -36,7 +36,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_INTEGER_DOT_PRODUCT_FEATURES`
 
 # Related
-- [`khr_shader_integer_dot_product`]
+- [`VK_KHR_shader_integer_dot_product`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

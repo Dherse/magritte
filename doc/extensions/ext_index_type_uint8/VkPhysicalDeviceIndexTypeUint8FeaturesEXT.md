@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
 
 # Related
-- [`ext_index_type_uint8`]
+- [`VK_EXT_index_type_uint8`]
 - [`Bool32`]
 - [`StructureType`]
 

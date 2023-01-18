@@ -39,12 +39,12 @@ typedef struct VkVideoCapabilitiesKHR {
 -    The [`s_type`] value of each struct in the [`p_next`] chain  **must**  be unique
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`DeviceSize`]
 - [`ExtensionProperties`]
 - [`Extent2D`]
 - [`StructureType`]
-- [VkVideoCapabilityFlagsKHR]()
+- [`VideoCapabilityFlagsKHR`]
 - [`get_physical_device_video_capabilities_khr`]
 
 # Notes and documentation

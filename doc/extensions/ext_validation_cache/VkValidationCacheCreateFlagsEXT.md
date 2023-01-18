@@ -7,7 +7,7 @@ typedef VkFlags VkValidationCacheCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_validation_cache`]
+- [`VK_EXT_validation_cache`]
 - [`ValidationCacheCreateInfoEXT`]
 
 # Notes and documentation

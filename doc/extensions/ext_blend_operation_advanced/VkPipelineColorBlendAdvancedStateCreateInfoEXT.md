@@ -26,12 +26,12 @@ typedef struct VkPipelineColorBlendAdvancedStateCreateInfoEXT {
 
 # Description
 If this structure is not present, [`src_premultiplied`] and
-[`dst_premultiplied`] are both considered to be `VK_TRUE`, and
+[`dst_premultiplied`] are both considered to be [`TRUE`], and
 [`blend_overlap`] is considered to be
 `VK_BLEND_OVERLAP_UNCORRELATED_EXT`.
 ## Valid Usage
--    If the [non-premultiplied source color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedSrcColor) property is not supported, [`src_premultiplied`] **must**  be `VK_TRUE`
--    If the [non-premultiplied destination color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedDstColor) property is not supported, [`dst_premultiplied`] **must**  be `VK_TRUE`
+-    If the [non-premultiplied source color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedSrcColor) property is not supported, [`src_premultiplied`] **must**  be [`TRUE`]
+-    If the [non-premultiplied destination color](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendNonPremultipliedDstColor) property is not supported, [`dst_premultiplied`] **must**  be [`TRUE`]
 -    If the [correlated overlap](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#limits-advancedBlendCorrelatedOverlap) property is not supported, [`blend_overlap`] **must**  be `VK_BLEND_OVERLAP_UNCORRELATED_EXT`
 
 ## Valid Usage (Implicit)
@@ -39,7 +39,7 @@ If this structure is not present, [`src_premultiplied`] and
 -  [`blend_overlap`] **must**  be a valid [`BlendOverlapEXT`] value
 
 # Related
-- [`ext_blend_operation_advanced`]
+- [`VK_EXT_blend_operation_advanced`]
 - [`BlendOverlapEXT`]
 - [`Bool32`]
 - [`StructureType`]

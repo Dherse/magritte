@@ -30,7 +30,7 @@ The number of passes required to capture the counters specified in the
 -  [`p_num_passes`] **must**  be a valid pointer to a `uint32_t` value
 
 # Related
-- [`khr_performance_query`]
+- [`VK_KHR_performance_query`]
 - [`PhysicalDevice`]
 - [`QueryPoolPerformanceCreateInfoKHR`]
 

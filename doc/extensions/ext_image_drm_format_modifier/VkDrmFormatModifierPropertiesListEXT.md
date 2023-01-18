@@ -34,7 +34,7 @@ returned `drmFormatModifier` **must**  be unique.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_DRM_FORMAT_MODIFIER_PROPERTIES_LIST_EXT`
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`DrmFormatModifierPropertiesEXT`]
 - [`StructureType`]
 

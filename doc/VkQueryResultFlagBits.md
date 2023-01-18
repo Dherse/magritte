@@ -19,15 +19,15 @@ typedef enum VkQueryResultFlagBits {
 ```
 
 # Description
-- [`VK_QUERY_RESULT_FLAG_BITS`] specifies the results will be written as an array of 64-bit unsigned integer values. If this bit is not set, the results will be written as an array of 32-bit unsigned integer values.
-- [`VK_QUERY_RESULT_FLAG_BITS`] specifies that Vulkan will wait for each query’s status to become available before retrieving its results.
-- [`VK_QUERY_RESULT_FLAG_BITS`] specifies that the availability status accompanies the results.
-- [`VK_QUERY_RESULT_FLAG_BITS`] specifies that returning partial results is acceptable.
+- [`64`] specifies the results will be written as an array of 64-bit unsigned integer values. If this bit is not set, the results will be written as an array of 32-bit unsigned integer values.
+- [`WAIT`] specifies that Vulkan will wait for each query’s status to become available before retrieving its results.
+- [`WITH_AVAILABILITY`] specifies that the availability status accompanies the results.
+- [`PARTIAL`] specifies that returning partial results is acceptable.
 - [`WITH_STATUS_KHR`] specifies that the last value returned in the query is a [`QueryResultStatusKHR`] value. See [result status query](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#queries-result-status-only) for information on how an application can determine whether the use of this flag bit is supported.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkQueryResultFlags]()
+- [`QueryResultFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

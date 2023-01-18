@@ -25,14 +25,14 @@ using the `CloseHandle` system call when they are no longer needed.
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle
 -  [`p_get_win32_handle_info`] **must**  be a valid pointer to a valid [`MemoryGetWin32HandleInfoKHR`] structure
--  [`p_handle`] **must**  be a valid pointer to a `HANDLE` value
+-  [`p_handle`] **must**  be a valid pointer to a [`HANDLE`] value
 
 ## Return Codes
 *   - `VK_SUCCESS` 
 *   - `VK_ERROR_TOO_MANY_OBJECTS`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`khr_external_memory_win32`]
+- [`VK_KHR_external_memory_win32`]
 - [`Device`]
 - [`MemoryGetWin32HandleInfoKHR`]
 

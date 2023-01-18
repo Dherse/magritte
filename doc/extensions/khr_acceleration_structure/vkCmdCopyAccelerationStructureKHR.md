@@ -40,7 +40,7 @@ This command copies the `pInfo->src` acceleration structure to the
 ## Command Properties
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`CommandBuffer`]
 - [`CopyAccelerationStructureInfoKHR`]
 

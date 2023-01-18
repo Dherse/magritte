@@ -28,7 +28,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ASTC_DECODE_FEATURES_EXT`
 
 # Related
-- [`ext_astc_decode_mode`]
+- [`VK_EXT_astc_decode_mode`]
 - [`Bool32`]
 - [`StructureType`]
 

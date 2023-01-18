@@ -23,16 +23,16 @@ typedef struct VkDisplayPropertiesKHR {
 
 # Description
 - [`supported_transforms`] is a bitmask of [`SurfaceTransformFlagBitsKHR`] describing which transforms are supported by this display.
-- [`plane_reorder_possible`] tells whether the planes on this display  **can**  have their z order changed. If this is `VK_TRUE`, the application  **can**  re-arrange the planes on this display in any order relative to each other.
+- [`plane_reorder_possible`] tells whether the planes on this display  **can**  have their z order changed. If this is [`TRUE`], the application  **can**  re-arrange the planes on this display in any order relative to each other.
 - [`persistent_content`] tells whether the display supports self-refresh/internal buffering. If this is true, the application  **can**  submit persistent present operations on swapchains created against this display.
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`Bool32`]
 - [`DisplayKHR`]
 - [`DisplayProperties2KHR`]
 - [`Extent2D`]
-- [VkSurfaceTransformFlagsKHR]()
+- [`SurfaceTransformFlagsKHR`]
 - [`get_physical_device_display_properties_khr`]
 
 # Notes and documentation

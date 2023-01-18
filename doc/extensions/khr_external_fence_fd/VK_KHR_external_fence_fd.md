@@ -14,7 +14,7 @@ fence payload from POSIX file descriptors.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_fence`]`
+- Requires `[`VK_KHR_external_fence`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_external_fence_fd] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_external_fence_fd extension>>)
@@ -28,13 +28,13 @@ fence payload from POSIX file descriptors.
 - [`ImportFenceFdInfoKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_FENCE_FD_SPEC_VERSION`
+- [`KHR_EXTERNAL_FENCE_FD_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_FENCE_FD_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_FENCE_GET_FD_INFO_KHR`  - `VK_STRUCTURE_TYPE_IMPORT_FENCE_FD_INFO_KHR`
 
 # Known issues & F.A.Q.
 This extension borrows concepts, semantics, and language from
-`[`khr_external_semaphore_fd`]`.
+`[`VK_KHR_external_semaphore_fd`]`.
 That extension’s issues apply equally to this extension.
 
 # Version history
@@ -43,7 +43,7 @@ That extension’s issues apply equally to this extension.
 # Other information
 * 2017-05-08
 * No known IP claims.
-*   - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  - Contributors to `[`khr_external_semaphore_fd`]`
+*   - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  - Contributors to `[`VK_KHR_external_semaphore_fd`]`
 
 # Related
 - [`FenceGetFdInfoKHR`]

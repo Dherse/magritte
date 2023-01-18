@@ -9,8 +9,8 @@ typedef uint32_t VkBool32;
 ```
 
 # Related
-- [VK_FALSE]()
-- [VK_TRUE]()
+- [`FALSE`]
+- [`TRUE`]
 - [`crate::vulkan1_0`]
 - [`AccelerationStructureGeometryInstancesDataKHR`]
 - [`CommandBufferInheritanceConditionalRenderingInfoEXT`]

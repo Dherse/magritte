@@ -22,8 +22,8 @@ typedef VkPhysicalDeviceGroupProperties VkPhysicalDeviceGroupPropertiesKHR;
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
 - [`physical_device_count`] is the number of physical devices in the group.
-- [`physical_devices`] is an array of `VK_MAX_DEVICE_GROUP_SIZE`[`PhysicalDevice`] handles representing all physical devices in the group. The first [`physical_device_count`] elements of the array will be valid.
-- [`subset_allocation`] specifies whether logical devices created from the group support allocating device memory on a subset of devices, via the `deviceMask` member of the [`MemoryAllocateFlagsInfo`]. If this is `VK_FALSE`, then all device memory allocations are made across all physical devices in the group. If [`physical_device_count`] is `1`, then [`subset_allocation`] **must**  be `VK_FALSE`.
+- [`physical_devices`] is an array of [`MAX_DEVICE_GROUP_SIZE`][`PhysicalDevice`] handles representing all physical devices in the group. The first [`physical_device_count`] elements of the array will be valid.
+- [`subset_allocation`] specifies whether logical devices created from the group support allocating device memory on a subset of devices, via the `deviceMask` member of the [`MemoryAllocateFlagsInfo`]. If this is [`FALSE`], then all device memory allocations are made across all physical devices in the group. If [`physical_device_count`] is `1`, then [`subset_allocation`] **must**  be [`FALSE`].
 
 # Description
 ## Valid Usage (Implicit)

@@ -18,8 +18,8 @@ typedef enum VkIndexType {
 ```
 
 # Description
-- [`VK_INDEX_TYPE`] specifies that indices are 16-bit unsigned integer values.
-- [`VK_INDEX_TYPE`] specifies that indices are 32-bit unsigned integer values.
+- [`UINT16`] specifies that indices are 16-bit unsigned integer values.
+- [`UINT32`] specifies that indices are 32-bit unsigned integer values.
 - [`NONE_KHR`] specifies that no indices are provided.
 - [`UINT8_EXT`] specifies that indices are 8-bit unsigned integer values.
 

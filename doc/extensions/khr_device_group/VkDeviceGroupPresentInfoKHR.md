@@ -65,8 +65,8 @@ considered to be `VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR`.
 -  [`mode`] **must**  be a valid [`DeviceGroupPresentModeFlagBitsKHR`] value
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`DeviceGroupPresentModeFlagBitsKHR`]
 - [`StructureType`]

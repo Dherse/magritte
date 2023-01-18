@@ -1,9 +1,9 @@
 [VK_KHR_android_surface](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_android_surface.html) - instance extension
 
 # Description
-The [`khr_android_surface`] extension is an instance extension.
+The [`VK_KHR_android_surface`] extension is an instance extension.
 It provides a mechanism to create a [`SurfaceKHR`] object (defined by
-the `[`khr_surface`]` extension) that refers to an
+the `[`VK_KHR_surface`]` extension) that refers to an
 [`ANativeWindow`], Android’s native surface type.
 The [`ANativeWindow`] represents the producer endpoint of any buffer
 queue, regardless of consumer endpoint.
@@ -19,7 +19,7 @@ the images through a `SurfaceTexture`.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_surface`]`
+- Requires `[`VK_KHR_surface`]`
 
 # Contacts
 - Jesse Hall [critsec](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_android_surface] @critsec%0A<<Here describe the issue or question you have about the VK_KHR_android_surface extension>>)
@@ -37,8 +37,8 @@ the images through a `SurfaceTexture`.
 - [`AndroidSurfaceCreateFlagsKHR`]
 
 # New constants
-- `VK_KHR_ANDROID_SURFACE_EXTENSION_NAME`
-- `VK_KHR_ANDROID_SURFACE_SPEC_VERSION`
+- [`KHR_ANDROID_SURFACE_EXTENSION_NAME`]
+- [`KHR_ANDROID_SURFACE_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_ANDROID_SURFACE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.

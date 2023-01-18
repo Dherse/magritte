@@ -32,7 +32,7 @@ typedef struct VkPipelineVertexInputDivisorStateCreateInfoEXT {
 -  [`vertex_binding_divisor_count`] **must**  be greater than `0`
 
 # Related
-- [`ext_vertex_attribute_divisor`]
+- [`VK_EXT_vertex_attribute_divisor`]
 - [`StructureType`]
 - [`VertexInputBindingDivisorDescriptionEXT`]
 

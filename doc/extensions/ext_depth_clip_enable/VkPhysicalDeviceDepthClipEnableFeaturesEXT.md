@@ -18,7 +18,7 @@ This structure describes the following feature:
 # Description
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`depth_clip_enable`] indicates that the implementation supports setting the depth clipping operation explicitly via the [`PipelineRasterizationDepthClipStateCreateInfoEXT`] pipeline state. Otherwise depth clipping is only enabled when [`PipelineRasterizationStateCreateInfo::depth_clamp_enable`] is set to `VK_FALSE`.
+- [`depth_clip_enable`] indicates that the implementation supports setting the depth clipping operation explicitly via the [`PipelineRasterizationDepthClipStateCreateInfoEXT`] pipeline state. Otherwise depth clipping is only enabled when [`PipelineRasterizationStateCreateInfo::depth_clamp_enable`] is set to [`FALSE`].
 If the [`PhysicalDeviceDepthClipEnableFeaturesEXT`] structure is included in the [`p_next`] chain of the
 [`PhysicalDeviceFeatures2`] structure passed to
 [`get_physical_device_features2`], it is filled in to indicate whether each
@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_ENABLE_FEATURES_EXT`
 
 # Related
-- [`ext_depth_clip_enable`]
+- [`VK_EXT_depth_clip_enable`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -1,1 +1,0 @@
-[`VK_RESULT`] Command successfully completed

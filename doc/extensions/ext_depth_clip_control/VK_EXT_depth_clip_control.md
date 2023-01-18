@@ -19,7 +19,7 @@ requirements.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_depth_clip_control] @syoussefi%0A<<Here describe the issue or question you have about the VK_EXT_depth_clip_control extension>>)
@@ -29,8 +29,8 @@ requirements.
 - Extending [`PipelineViewportStateCreateInfo`]:  - [`PipelineViewportDepthClipControlCreateInfoEXT`]
 
 # New constants
-- `VK_EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME`
-- `VK_EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION`
+- [`EXT_DEPTH_CLIP_CONTROL_EXTENSION_NAME`]
+- [`EXT_DEPTH_CLIP_CONTROL_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEPTH_CLIP_CONTROL_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_DEPTH_CLIP_CONTROL_CREATE_INFO_EXT`
 
 # Known issues & F.A.Q.

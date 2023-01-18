@@ -34,7 +34,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_HOST_QUERY_RESET_FEATURES`
 
 # Related
-- [`ext_host_query_reset`]
+- [`VK_EXT_host_query_reset`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

@@ -28,8 +28,8 @@ spec.
 - Piers Daniell [pdaniell-nv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_sample_mask_override_coverage] @pdaniell-nv%0A<<Here describe the issue or question you have about the VK_NV_sample_mask_override_coverage extension>>)
 
 # New constants
-- `VK_NV_SAMPLE_MASK_OVERRIDE_COVERAGE_EXTENSION_NAME`
-- `VK_NV_SAMPLE_MASK_OVERRIDE_COVERAGE_SPEC_VERSION`
+- [`NV_SAMPLE_MASK_OVERRIDE_COVERAGE_EXTENSION_NAME`]
+- [`NV_SAMPLE_MASK_OVERRIDE_COVERAGE_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-12-08 (Piers Daniell)  - Internal revisions

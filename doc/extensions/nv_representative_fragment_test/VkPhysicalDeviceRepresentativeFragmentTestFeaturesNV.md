@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_REPRESENTATIVE_FRAGMENT_TEST_FEATURES_NV`
 
 # Related
-- [`nv_representative_fragment_test`]
+- [`VK_NV_representative_fragment_test`]
 - [`Bool32`]
 - [`StructureType`]
 

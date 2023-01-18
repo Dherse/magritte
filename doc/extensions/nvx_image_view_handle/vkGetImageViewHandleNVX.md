@@ -19,7 +19,7 @@ uint32_t vkGetImageViewHandleNVX(
 -  [`p_info`] **must**  be a valid pointer to a valid [`ImageViewHandleInfoNVX`] structure
 
 # Related
-- [`nvx_image_view_handle`]
+- [`VK_NVX_image_view_handle`]
 - [`Device`]
 - [`ImageViewHandleInfoNVX`]
 

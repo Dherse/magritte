@@ -16,7 +16,7 @@ system, desktop, and/or other applications.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_display`]`
+- Requires `[`VK_KHR_display`]`
 
 # Contacts
 - James Jones [cubanismo](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_direct_mode_display] @cubanismo%0A<<Here describe the issue or question you have about the VK_EXT_direct_mode_display extension>>)
@@ -25,19 +25,19 @@ system, desktop, and/or other applications.
 - [`release_display_ext`]
 
 # New constants
-- `VK_EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME`
-- `VK_EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION`
+- [`EXT_DIRECT_MODE_DISPLAY_EXTENSION_NAME`]
+- [`EXT_DIRECT_MODE_DISPLAY_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) Should this extension and its related platform-specific extensions
-leverage `[`khr_display`]`, or provide separate equivalent interfaces. **RESOLVED** : Use `[`khr_display`]` concepts and objects.
-`[`khr_display`]` can be used to enumerate all displays on the system,
+leverage `[`VK_KHR_display`]`, or provide separate equivalent interfaces. **RESOLVED** : Use `[`VK_KHR_display`]` concepts and objects.
+`[`VK_KHR_display`]` can be used to enumerate all displays on the system,
 including those attached to/in use by a window system or native platform,
-but `[`khr_display_swapchain`]` will fail to create a swapchain on
+but `[`VK_KHR_display_swapchain`]` will fail to create a swapchain on
 in-use displays.
 This extension and its platform-specific children will allow applications to
 grab in-use displays away from window systems and/or native platforms,
-allowing them to be used with `[`khr_display_swapchain`]`.2) Are separate calls needed to acquire displays and enable direct mode? **RESOLVED** : No, these operations happen in one combined command.
+allowing them to be used with `[`VK_KHR_display_swapchain`]`.2) Are separate calls needed to acquire displays and enable direct mode? **RESOLVED** : No, these operations happen in one combined command.
 Acquiring a display puts it into direct mode.
 
 # Version history

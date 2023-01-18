@@ -17,7 +17,7 @@ VkResult vkQueueWaitIdle(
 every previously executed [queue submission
 command](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#devsandqueues-submission) that accepts a fence, then waiting for all of those fences to
 signal using [`wait_for_fences`] with an infinite timeout and
-`waitAll` set to `VK_TRUE`.
+`waitAll` set to [`TRUE`].
 ## Valid Usage (Implicit)
 -  [`queue`] **must**  be a valid [`Queue`] handle
 

@@ -27,7 +27,7 @@ even if the adjacent patches use different level-of-detail values.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_corner_sampled_image] @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_corner_sampled_image extension>>)
@@ -36,8 +36,8 @@ even if the adjacent patches use different level-of-detail values.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceCornerSampledImageFeaturesNV`]
 
 # New constants
-- `VK_NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME`
-- `VK_NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION`
+- [`NV_CORNER_SAMPLED_IMAGE_EXTENSION_NAME`]
+- [`NV_CORNER_SAMPLED_IMAGE_SPEC_VERSION`]
 - Extending [`ImageCreateFlagBits`]:  - `VK_IMAGE_CREATE_CORNER_SAMPLED_BIT_NV` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV`
 

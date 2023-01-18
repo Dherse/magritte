@@ -29,7 +29,7 @@ VkResult vkCreateIOSSurfaceMVK(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`
 
 # Related
-- [`mvk_ios_surface`]
+- [`VK_MVK_ios_surface`]
 - [`AllocationCallbacks`]
 - [`IosSurfaceCreateInfoMVK`]
 - [`Instance`]

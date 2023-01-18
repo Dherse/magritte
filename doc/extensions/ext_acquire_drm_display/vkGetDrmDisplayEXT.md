@@ -43,7 +43,7 @@ call must return the error code `VK_ERROR_INITIALIZATION_FAILED`.
 *   - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`
 
 # Related
-- [`ext_acquire_drm_display`]
+- [`VK_EXT_acquire_drm_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

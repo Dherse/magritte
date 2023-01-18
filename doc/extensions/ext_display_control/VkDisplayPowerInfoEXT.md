@@ -23,7 +23,7 @@ typedef struct VkDisplayPowerInfoEXT {
 -  [`power_state`] **must**  be a valid [`DisplayPowerStateEXT`] value
 
 # Related
-- [`ext_display_control`]
+- [`VK_EXT_display_control`]
 - [`DisplayPowerStateEXT`]
 - [`StructureType`]
 - [`display_power_control_ext`]

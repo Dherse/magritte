@@ -24,7 +24,7 @@ described above) are ignored.
 -    If [`image_view`] is created from a depth/stencil image, the `aspectMask` used to create the [`image_view`] **must**  include either `VK_IMAGE_ASPECT_DEPTH_BIT` or `VK_IMAGE_ASPECT_STENCIL_BIT` but not both
 -  [`image_layout`] **must**  match the actual [`ImageLayout`] of each subresource accessible from [`image_view`] at the time this descriptor is accessed as defined by the [image layout matching rules](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#resources-image-layouts-matching-rule)
 -    If [`sampler`] is used and the [`Format`] of the image is a [multi-planar format](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#formats-requiring-sampler-ycbcr-conversion), the image  **must**  have been created with `VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT`, and the `aspectMask` of the [`image_view`] **must**  be `VK_IMAGE_ASPECT_PLANE_0_BIT`, `VK_IMAGE_ASPECT_PLANE_1_BIT` or (for three-plane formats only) `VK_IMAGE_ASPECT_PLANE_2_BIT`
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::mutable_comparison_samplers`] is `VK_FALSE`, then [`sampler`] **must**  have been created with [`SamplerCreateInfo::compare_enable`] set to `VK_FALSE`
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::mutable_comparison_samplers`] is [`FALSE`], then [`sampler`] **must**  have been created with [`SamplerCreateInfo::compare_enable`] set to [`FALSE`]
 
 ## Valid Usage (Implicit)
 -    Both of [`image_view`], and [`sampler`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]

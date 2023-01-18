@@ -31,7 +31,7 @@ VkResult vkDebugMarkerSetObjectTagEXT(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`ext_debug_marker`]
+- [`VK_EXT_debug_marker`]
 - [`DebugMarkerObjectTagInfoEXT`]
 - [`Device`]
 

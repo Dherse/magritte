@@ -21,13 +21,13 @@ typedef VkGeometryFlagBitsKHR VkGeometryFlagBitsNV;
 ```
 
 # Description
-- [`VK_GEOMETRY_FLAG_BITS_KHR`] indicates that this geometry does not invoke the any-hit shaders even if present in a hit group.
-- [`VK_GEOMETRY_FLAG_BITS_KHR`] indicates that the implementation  **must**  only call the any-hit shader a single time for each primitive in this geometry. If this bit is absent an implementation  **may**  invoke the any-hit shader more than once for this geometry.
+- [`OPAQUE`] indicates that this geometry does not invoke the any-hit shaders even if present in a hit group.
+- [`NO_DUPLICATE_ANY_HIT_INVOCATION`] indicates that the implementation  **must**  only call the any-hit shader a single time for each primitive in this geometry. If this bit is absent an implementation  **may**  invoke the any-hit shader more than once for this geometry.
 
 # Related
-- [`khr_acceleration_structure`]
-- [`nv_ray_tracing`]
-- [VkGeometryFlagsKHR]()
+- [`VK_KHR_acceleration_structure`]
+- [`VK_NV_ray_tracing`]
+- [`GeometryFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

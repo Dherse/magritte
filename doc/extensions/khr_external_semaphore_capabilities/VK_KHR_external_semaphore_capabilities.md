@@ -16,7 +16,7 @@ handles an implementation supports for a given set of use cases.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -41,9 +41,9 @@ handles an implementation supports for a given set of use cases.
 - [`ExternalSemaphoreHandleTypeFlagsKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION`
-- `VK_LUID_SIZE_KHR`
+- [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_SEMAPHORE_CAPABILITIES_SPEC_VERSION`]
+- [`LUID_SIZE_KHR`]
 - Extending [`ExternalSemaphoreFeatureFlagBits`]:  - `VK_EXTERNAL_SEMAPHORE_FEATURE_EXPORTABLE_BIT_KHR`  - `VK_EXTERNAL_SEMAPHORE_FEATURE_IMPORTABLE_BIT_KHR` 
 - Extending [`ExternalSemaphoreHandleTypeFlagBits`]:  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_D3D12_FENCE_BIT_KHR`  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_FD_BIT_KHR`  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_BIT_KHR`  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_OPAQUE_WIN32_KMT_BIT_KHR`  - `VK_EXTERNAL_SEMAPHORE_HANDLE_TYPE_SYNC_FD_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXTERNAL_SEMAPHORE_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXTERNAL_SEMAPHORE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_ID_PROPERTIES_KHR`
@@ -58,7 +58,7 @@ handles an implementation supports for a given set of use cases.
 *   - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA
 
 # Related
-- [VK_LUID_SIZE_KHR]()
+- [`LUID_SIZE_KHR`]
 - [`ExternalSemaphoreFeatureFlagBitsKHR`]
 - [`ExternalSemaphoreFeatureFlagsKHR`]
 - [`ExternalSemaphoreHandleTypeFlagBitsKHR`]

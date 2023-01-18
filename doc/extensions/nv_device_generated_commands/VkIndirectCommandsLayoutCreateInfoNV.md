@@ -69,9 +69,9 @@ void cmdProcessAllSequences(cmd, pipeline, indirectCommandsLayout, pIndirectComm
 -  [`stream_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`IndirectCommandsLayoutTokenNV`]
-- [VkIndirectCommandsLayoutUsageFlagsNV]()
+- [`IndirectCommandsLayoutUsageFlagsNV`]
 - [`PipelineBindPoint`]
 - [`StructureType`]
 - [`create_indirect_commands_layout_nv`]

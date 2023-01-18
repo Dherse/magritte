@@ -69,11 +69,11 @@ used as part of the encoding operation on the input image.
 -  [`rate_control_modes`] **must**  not be `0`
 
 # Related
-- [`khr_video_encode_queue`]
+- [`VK_KHR_video_encode_queue`]
 - [`Extent2D`]
 - [`StructureType`]
-- [VkVideoEncodeCapabilityFlagsKHR]()
-- [VkVideoEncodeRateControlModeFlagsKHR]()
+- [`VideoEncodeCapabilityFlagsKHR`]
+- [`VideoEncodeRateControlModeFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

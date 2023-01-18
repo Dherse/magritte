@@ -28,7 +28,7 @@ typedef VkPrivateDataSlotCreateInfo VkPrivateDataSlotCreateInfoEXT;
 -  [`flags`] **must**  be `0`
 
 # Related
-- [`ext_private_data`]
+- [`VK_EXT_private_data`]
 - [`crate::vulkan1_3`]
 - [`PrivateDataSlotCreateFlags`]
 - [`StructureType`]

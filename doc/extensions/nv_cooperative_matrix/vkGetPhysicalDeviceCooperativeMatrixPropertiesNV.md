@@ -37,7 +37,7 @@ properties were returned.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`
 
 # Related
-- [`nv_cooperative_matrix`]
+- [`VK_NV_cooperative_matrix`]
 - [`CooperativeMatrixPropertiesNV`]
 - [`PhysicalDevice`]
 

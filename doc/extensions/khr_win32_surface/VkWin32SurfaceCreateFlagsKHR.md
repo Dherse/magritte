@@ -7,7 +7,7 @@ typedef VkFlags VkWin32SurfaceCreateFlagsKHR;
 ```
 
 # Related
-- [`khr_win32_surface`]
+- [`VK_KHR_win32_surface`]
 - [`Win32SurfaceCreateInfoKHR`]
 
 # Notes and documentation

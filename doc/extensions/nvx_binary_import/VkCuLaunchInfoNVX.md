@@ -33,7 +33,7 @@ typedef struct VkCuLaunchInfoNVX {
 -    If [`extra_count`] is not `0`, [`extras`] **must**  be a valid pointer to an array of [`extra_count`] bytes
 
 # Related
-- [`nvx_binary_import`]
+- [`VK_NVX_binary_import`]
 - [`CuFunctionNVX`]
 - [`StructureType`]
 - [`cmd_cu_launch_kernel_nvx`]

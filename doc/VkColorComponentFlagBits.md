@@ -16,10 +16,10 @@ typedef enum VkColorComponentFlagBits {
 ```
 
 # Description
-- [`VK_COLOR_COMPONENT_FLAG_BITS`] specifies that the R value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
-- [`VK_COLOR_COMPONENT_FLAG_BITS`] specifies that the G value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
-- [`VK_COLOR_COMPONENT_FLAG_BITS`] specifies that the B value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
-- [`VK_COLOR_COMPONENT_FLAG_BITS`] specifies that the A value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
+- [`R`] specifies that the R value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
+- [`G`] specifies that the G value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
+- [`B`] specifies that the B value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
+- [`A`] specifies that the A value is written to the color attachment for the appropriate sample. Otherwise, the value in memory is unmodified.
 The color write mask operation is applied regardless of whether blending is
 enabled.The color write mask operation is applied only if
 [Color Write Enable](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#framebuffer-color-write-enable) is enabled for the
@@ -29,7 +29,7 @@ the attachment are disabled.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkColorComponentFlags]()
+- [`ColorComponentFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

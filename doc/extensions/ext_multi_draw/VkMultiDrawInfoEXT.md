@@ -19,7 +19,7 @@ The members of [`MultiDrawInfoEXT`] have the same meaning as the
 [`first_vertex`] and [`vertex_count`] parameters in [`cmd_draw`].
 
 # Related
-- [`ext_multi_draw`]
+- [`VK_EXT_multi_draw`]
 - [`cmd_draw_multi_ext`]
 
 # Notes and documentation

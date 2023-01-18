@@ -51,7 +51,7 @@ defined by how it is used.
 -  [`stage_mask`] **must**  be a valid combination of [`PipelineStageFlagBits2`] values
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 - [`PipelineStageFlags2`]
 - [`Semaphore`]

@@ -48,7 +48,7 @@ with either `VK_SUCCESS` or `VK_ERROR_DEVICE_LOST`.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`
 
 # Related
-- [`khr_timeline_semaphore`]
+- [`VK_KHR_timeline_semaphore`]
 - [`crate::vulkan1_2`]
 - [`Device`]
 - [`SemaphoreWaitInfo`]

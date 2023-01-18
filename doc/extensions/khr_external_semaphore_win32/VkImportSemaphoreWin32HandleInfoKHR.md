@@ -48,10 +48,10 @@ The handle types supported by [`handle_type`] are:
 - Host access to [`semaphore`] **must**  be externally synchronized
 
 # Related
-- [`khr_external_semaphore_win32`]
+- [`VK_KHR_external_semaphore_win32`]
 - [`ExternalSemaphoreHandleTypeFlagBits`]
 - [`Semaphore`]
-- [VkSemaphoreImportFlags]()
+- [`SemaphoreImportFlags`]
 - [`StructureType`]
 - [`import_semaphore_win32_handle_khr`]
 

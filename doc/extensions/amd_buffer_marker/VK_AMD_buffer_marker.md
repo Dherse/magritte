@@ -22,8 +22,8 @@ loss.
 - [`cmd_write_buffer_marker_amd`]
 
 # New constants
-- `VK_AMD_BUFFER_MARKER_EXTENSION_NAME`
-- `VK_AMD_BUFFER_MARKER_SPEC_VERSION`
+- [`AMD_BUFFER_MARKER_EXTENSION_NAME`]
+- [`AMD_BUFFER_MARKER_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2018-01-26 (Jaakko Konttinen)  - Initial revision

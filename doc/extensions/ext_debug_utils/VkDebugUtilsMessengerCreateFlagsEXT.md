@@ -7,7 +7,7 @@ typedef VkFlags VkDebugUtilsMessengerCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_debug_utils`]
+- [`VK_EXT_debug_utils`]
 - [`DebugUtilsMessengerCreateInfoEXT`]
 
 # Notes and documentation

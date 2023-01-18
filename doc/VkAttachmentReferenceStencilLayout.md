@@ -30,7 +30,7 @@ typedef VkAttachmentReferenceStencilLayout VkAttachmentReferenceStencilLayoutKHR
 -  [`stencil_layout`] **must**  be a valid [`ImageLayout`] value
 
 # Related
-- [`khr_separate_depth_stencil_layouts`]
+- [`VK_KHR_separate_depth_stencil_layouts`]
 - [`crate::vulkan1_2`]
 - [`ImageLayout`]
 - [`StructureType`]

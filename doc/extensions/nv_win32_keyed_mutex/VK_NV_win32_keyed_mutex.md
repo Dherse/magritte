@@ -16,10 +16,10 @@ buffers to a queue.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`nv_external_memory_win32`]`
+- Requires `[`VK_NV_external_memory_win32`]`
 
 # Deprecation state
-- *Promoted* to `[`khr_win32_keyed_mutex`]` extension
+- *Promoted* to `[`VK_KHR_win32_keyed_mutex`]` extension
 
 # Contacts
 - Carsten Rohde [crohde](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_win32_keyed_mutex] @crohde%0A<<Here describe the issue or question you have about the VK_NV_win32_keyed_mutex extension>>)
@@ -28,8 +28,8 @@ buffers to a queue.
 - Extending [`SubmitInfo`], [`SubmitInfo2`]:  - [`Win32KeyedMutexAcquireReleaseInfoNV`]
 
 # New constants
-- `VK_NV_WIN32_KEYED_MUTEX_EXTENSION_NAME`
-- `VK_NV_WIN32_KEYED_MUTEX_SPEC_VERSION`
+- [`NV_WIN32_KEYED_MUTEX_EXTENSION_NAME`]
+- [`NV_WIN32_KEYED_MUTEX_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_WIN32_KEYED_MUTEX_ACQUIRE_RELEASE_INFO_NV`
 
 # Version history

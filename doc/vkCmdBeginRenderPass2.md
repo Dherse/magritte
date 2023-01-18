@@ -56,7 +56,7 @@ record the commands for the first subpass of that render pass.
 ## Command Properties
 
 # Related
-- [`khr_create_renderpass2`]
+- [`VK_KHR_create_renderpass2`]
 - [`crate::vulkan1_2`]
 - [`CommandBuffer`]
 - [`RenderPassBeginInfo`]

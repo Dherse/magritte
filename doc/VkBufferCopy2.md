@@ -34,7 +34,7 @@ typedef VkBufferCopy2 VkBufferCopy2KHR;
 -  [`p_next`] **must**  be `NULL`
 
 # Related
-- [`khr_copy_commands2`]
+- [`VK_KHR_copy_commands2`]
 - [`crate::vulkan1_3`]
 - [`CopyBufferInfo2`]
 - [`DeviceSize`]

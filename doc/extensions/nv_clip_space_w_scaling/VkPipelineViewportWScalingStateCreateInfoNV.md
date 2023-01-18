@@ -27,7 +27,7 @@ typedef struct VkPipelineViewportWScalingStateCreateInfoNV {
 -  [`viewport_count`] **must**  be greater than `0`
 
 # Related
-- [`nv_clip_space_w_scaling`]
+- [`VK_NV_clip_space_w_scaling`]
 - [`Bool32`]
 - [`StructureType`]
 - [`ViewportWScalingNV`]

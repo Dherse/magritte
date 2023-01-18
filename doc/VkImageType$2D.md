@@ -1,0 +1,1 @@
+[`2D`] specifies a two-dimensional image.

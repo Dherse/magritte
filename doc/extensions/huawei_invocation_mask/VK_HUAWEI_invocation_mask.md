@@ -15,8 +15,8 @@ invoking an additional pass to compact the ray buffer.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_ray_tracing_pipeline`]`
-- Requires `[`khr_synchronization2`]`
+- Requires `[`VK_KHR_ray_tracing_pipeline`]`
+- Requires `[`VK_KHR_synchronization2`]`
 
 # Contacts
 - Yunpeng Zhu [yunxingzhu](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_HUAWEI_invocation_mask] @yunxingzhu%0A<<Here describe the issue or question you have about the VK_HUAWEI_invocation_mask extension>>)
@@ -28,8 +28,8 @@ invoking an additional pass to compact the ray buffer.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceInvocationMaskFeaturesHUAWEI`]
 
 # New constants
-- `VK_HUAWEI_INVOCATION_MASK_EXTENSION_NAME`
-- `VK_HUAWEI_INVOCATION_MASK_SPEC_VERSION`
+- [`HUAWEI_INVOCATION_MASK_EXTENSION_NAME`]
+- [`HUAWEI_INVOCATION_MASK_SPEC_VERSION`]
 - Extending [`AccessFlagBits2`]:  - `VK_ACCESS_2_INVOCATION_MASK_READ_BIT_HUAWEI` 
 - Extending [`ImageUsageFlagBits`]:  - `VK_IMAGE_USAGE_INVOCATION_MASK_BIT_HUAWEI` 
 - Extending [`PipelineStageFlagBits2`]:  - `VK_PIPELINE_STAGE_2_INVOCATION_MASK_BIT_HUAWEI` 
@@ -40,7 +40,7 @@ invoking an additional pass to compact the ray buffer.
 
 # Other information
 * 2021-05-27
-*   - This extension requires `[`khr_ray_tracing_pipeline`]`, which allow to bind an invocation mask image before the ray tracing command  - This extension requires `[`khr_synchronization2`]`, which allows new pipeline stage for the invocation mask image 
+*   - This extension requires `[`VK_KHR_ray_tracing_pipeline`]`, which allow to bind an invocation mask image before the ray tracing command  - This extension requires `[`VK_KHR_synchronization2`]`, which allows new pipeline stage for the invocation mask image 
 *   - Yunpeng Zhu, HuaWei
 
 # Related

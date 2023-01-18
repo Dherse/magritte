@@ -26,7 +26,7 @@ tessellation, geometry, and fragment shaders.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -40,8 +40,8 @@ tessellation, geometry, and fragment shaders.
 - Extending [`RenderPassCreateInfo`]:  - [`RenderPassMultiviewCreateInfoKHR`]
 
 # New constants
-- `VK_KHR_MULTIVIEW_EXTENSION_NAME`
-- `VK_KHR_MULTIVIEW_SPEC_VERSION`
+- [`KHR_MULTIVIEW_EXTENSION_NAME`]
+- [`KHR_MULTIVIEW_SPEC_VERSION`]
 - Extending [`DependencyFlagBits`]:  - `VK_DEPENDENCY_VIEW_LOCAL_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MULTIVIEW_PROPERTIES_KHR`  - `VK_STRUCTURE_TYPE_RENDER_PASS_MULTIVIEW_CREATE_INFO_KHR`
 

@@ -5,7 +5,7 @@ This extension provides instance-level commands to enumerate groups of
 physical devices, and to create a logical device from a subset of one of
 those groups.
 Such a logical device can then be used with new features in the
-`[`khr_device_group`]` extension.
+`[`VK_KHR_device_group`]` extension.
 
 # Registered extension number
 71
@@ -30,9 +30,9 @@ Such a logical device can then be used with new features in the
 - Extending [`DeviceCreateInfo`]:  - [`DeviceGroupDeviceCreateInfoKHR`]
 
 # New constants
-- `VK_KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME`
-- `VK_KHR_DEVICE_GROUP_CREATION_SPEC_VERSION`
-- `VK_MAX_DEVICE_GROUP_SIZE_KHR`
+- [`KHR_DEVICE_GROUP_CREATION_EXTENSION_NAME`]
+- [`KHR_DEVICE_GROUP_CREATION_SPEC_VERSION`]
+- [`MAX_DEVICE_GROUP_SIZE_KHR`]
 - Extending [`MemoryHeapFlagBits`]:  - `VK_MEMORY_HEAP_MULTI_INSTANCE_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DEVICE_GROUP_DEVICE_CREATE_INFO_KHR`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_GROUP_PROPERTIES_KHR`
 
@@ -46,7 +46,7 @@ Such a logical device can then be used with new features in the
 *   - Jeff Bolz, NVIDIA
 
 # Related
-- [VK_MAX_DEVICE_GROUP_SIZE_KHR]()
+- [`MAX_DEVICE_GROUP_SIZE_KHR`]
 - [`DeviceGroupDeviceCreateInfoKHR`]
 - [`PhysicalDeviceGroupPropertiesKHR`]
 - [`enumerate_physical_device_groups_khr`]

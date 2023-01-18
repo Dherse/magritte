@@ -1,7 +1,7 @@
 [VK_GOOGLE_user_type](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_GOOGLE_user_type.html) - device extension
 
 # Description
-The [`google_user_type`] extension allows use of the `SPV_GOOGLE_user_type`
+The [`VK_GOOGLE_user_type`] extension allows use of the `SPV_GOOGLE_user_type`
 extension in SPIR-V shader modules.
 
 # Registered extension number
@@ -17,8 +17,8 @@ extension in SPIR-V shader modules.
 - Kaye Mason [chaleur](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_user_type] @chaleur%0A<<Here describe the issue or question you have about the VK_GOOGLE_user_type extension>>)
 
 # New constants
-- `VK_GOOGLE_USER_TYPE_EXTENSION_NAME`
-- `VK_GOOGLE_USER_TYPE_SPEC_VERSION`
+- [`GOOGLE_USER_TYPE_EXTENSION_NAME`]
+- [`GOOGLE_USER_TYPE_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2019-09-07 (Kaye Mason)  - Initial draft

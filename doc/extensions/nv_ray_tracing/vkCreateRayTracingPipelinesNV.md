@@ -42,7 +42,7 @@ VkResult vkCreateRayTracingPipelinesNV(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_INVALID_SHADER_NV`
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`Pipeline`]

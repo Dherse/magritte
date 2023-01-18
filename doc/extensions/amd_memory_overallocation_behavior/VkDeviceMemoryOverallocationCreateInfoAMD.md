@@ -27,7 +27,7 @@ typedef struct VkDeviceMemoryOverallocationCreateInfoAMD {
 -  [`overallocation_behavior`] **must**  be a valid [`MemoryOverallocationBehaviorAMD`] value
 
 # Related
-- [`amd_memory_overallocation_behavior`]
+- [`VK_AMD_memory_overallocation_behavior`]
 - [`MemoryOverallocationBehaviorAMD`]
 - [`StructureType`]
 

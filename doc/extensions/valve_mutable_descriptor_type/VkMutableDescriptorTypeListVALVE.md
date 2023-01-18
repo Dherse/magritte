@@ -29,7 +29,7 @@ typedef struct VkMutableDescriptorTypeListVALVE {
 -    If [`descriptor_type_count`] is not `0`, [`descriptor_types`] **must**  be a valid pointer to an array of [`descriptor_type_count`] valid [`DescriptorType`] values
 
 # Related
-- [`valve_mutable_descriptor_type`]
+- [`VK_VALVE_mutable_descriptor_type`]
 - [`DescriptorType`]
 - [`MutableDescriptorTypeCreateInfoVALVE`]
 

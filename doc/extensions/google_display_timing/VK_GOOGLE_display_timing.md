@@ -2,7 +2,7 @@
 
 # Description
 This device extension allows an application that uses the
-`[`khr_swapchain`]` extension to obtain information about the
+`[`VK_KHR_swapchain`]` extension to obtain information about the
 presentation engine’s display, to obtain timing information about each
 present, and to schedule a present to happen no earlier than a desired time.
 An application can use this to minimize various visual anomalies (e.g.
@@ -27,7 +27,7 @@ fixed-refresh-rate (FRR) displays.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - Ian Elliott [ianelliottus](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_GOOGLE_display_timing] @ianelliottus%0A<<Here describe the issue or question you have about the VK_GOOGLE_display_timing extension>>)
@@ -43,8 +43,8 @@ fixed-refresh-rate (FRR) displays.
 - Extending [`PresentInfoKHR`]:  - [`PresentTimesInfoGOOGLE`]
 
 # New constants
-- `VK_GOOGLE_DISPLAY_TIMING_EXTENSION_NAME`
-- `VK_GOOGLE_DISPLAY_TIMING_SPEC_VERSION`
+- [`GOOGLE_DISPLAY_TIMING_EXTENSION_NAME`]
+- [`GOOGLE_DISPLAY_TIMING_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PRESENT_TIMES_INFO_GOOGLE`
 
 # Version history

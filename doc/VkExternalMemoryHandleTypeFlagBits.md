@@ -49,13 +49,13 @@ typedef VkExternalMemoryHandleTypeFlagBits VkExternalMemoryHandleTypeFlagBitsKHR
 ```
 
 # Description
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies a POSIX file descriptor handle that has only limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control message. It owns a reference to the underlying memory resource represented by its Vulkan memory object.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies an NT handle that has only limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`, and `SetHandleInformation`. It owns a reference to the underlying memory resource represented by its Vulkan memory object.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies a global share handle that has only limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any native APIs. It does not own a reference to the underlying memory resource represented by its Vulkan memory object, and will therefore become invalid when all Vulkan memory objects associated with it are destroyed.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies an NT handle returned by `IDXGIResource1`::`CreateSharedHandle` referring to a Direct3D 10 or 11 texture resource. It owns a reference to the memory used by the Direct3D resource.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies a global share handle returned by `IDXGIResource`::`GetSharedHandle` referring to a Direct3D 10 or 11 texture resource. It does not own a reference to the underlying Direct3D resource, and will therefore become invalid when all Vulkan memory objects and Direct3D resources associated with it are destroyed.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies an NT handle returned by `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 heap resource. It owns a reference to the resources used by the Direct3D heap.
-- [`VK_EXTERNAL_MEMORY_HANDLE_TYPE_FLAG_BITS`] specifies an NT handle returned by `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 committed resource. It owns a reference to the memory used by the Direct3D resource.
+- [`OPAQUE_FD`] specifies a POSIX file descriptor handle that has only limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the POSIX system calls `dup`, `dup2`, `close`, and the non-standard system call `dup3`. Additionally, it  **must**  be transportable over a socket using an `SCM_RIGHTS` control message. It owns a reference to the underlying memory resource represented by its Vulkan memory object.
+- [`OPAQUE_WIN32`] specifies an NT handle that has only limited valid usage outside of Vulkan and other compatible APIs. It  **must**  be compatible with the functions `DuplicateHandle`, `CloseHandle`, `CompareObjectHandles`, `GetHandleInformation`, and `SetHandleInformation`. It owns a reference to the underlying memory resource represented by its Vulkan memory object.
+- [`OPAQUE_WIN32_KMT`] specifies a global share handle that has only limited valid usage outside of Vulkan and other compatible APIs. It is not compatible with any native APIs. It does not own a reference to the underlying memory resource represented by its Vulkan memory object, and will therefore become invalid when all Vulkan memory objects associated with it are destroyed.
+- [`D3D11_TEXTURE`] specifies an NT handle returned by `IDXGIResource1`::`CreateSharedHandle` referring to a Direct3D 10 or 11 texture resource. It owns a reference to the memory used by the Direct3D resource.
+- [`D3D11_TEXTURE_KMT`] specifies a global share handle returned by `IDXGIResource`::`GetSharedHandle` referring to a Direct3D 10 or 11 texture resource. It does not own a reference to the underlying Direct3D resource, and will therefore become invalid when all Vulkan memory objects and Direct3D resources associated with it are destroyed.
+- [`D3D12_HEAP`] specifies an NT handle returned by `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 heap resource. It owns a reference to the resources used by the Direct3D heap.
+- [`D3D12_RESOURCE`] specifies an NT handle returned by `ID3D12Device`::`CreateSharedHandle` referring to a Direct3D 12 committed resource. It owns a reference to the memory used by the Direct3D resource.
 - [`HOST_ALLOCATION_EXT`] specifies a host pointer returned by a host memory allocation command. It does not own a reference to the underlying memory resource, and will therefore become invalid if the host memory is freed.
 - [`HOST_MAPPED_FOREIGN_MEMORY_EXT`] specifies a host pointer to *host mapped foreign memory*. It does not own a reference to the underlying memory resource, and will therefore become invalid if the foreign memory is unmapped or otherwise becomes no longer available.
 - [`DMA_BUF_EXT`] is a file descriptor for a Linux dma_buf. It owns a reference to the underlying memory resource represented by its Vulkan memory object.
@@ -68,7 +68,7 @@ following table:
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkExternalMemoryHandleTypeFlags]()
+- [`ExternalMemoryHandleTypeFlags`]
 - [`ImportMemoryFdInfoKHR`]
 - [`ImportMemoryHostPointerInfoEXT`]
 - [`ImportMemoryWin32HandleInfoKHR`]

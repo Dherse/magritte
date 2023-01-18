@@ -11,11 +11,11 @@ typedef enum VkCommandPoolResetFlagBits {
 ```
 
 # Description
-- [`VK_COMMAND_POOL_RESET_FLAG_BITS`] specifies that resetting a command pool recycles all of the resources from the command pool back to the system.
+- [`RELEASE_RESOURCES`] specifies that resetting a command pool recycles all of the resources from the command pool back to the system.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkCommandPoolResetFlags]()
+- [`CommandPoolResetFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

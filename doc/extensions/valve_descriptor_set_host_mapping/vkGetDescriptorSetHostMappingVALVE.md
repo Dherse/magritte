@@ -19,7 +19,7 @@ void vkGetDescriptorSetHostMappingVALVE(
 -  [`pp_data`] **must**  be a valid pointer to a pointer value
 
 # Related
-- [`valve_descriptor_set_host_mapping`]
+- [`VK_VALVE_descriptor_set_host_mapping`]
 - [`DescriptorSet`]
 - [`Device`]
 

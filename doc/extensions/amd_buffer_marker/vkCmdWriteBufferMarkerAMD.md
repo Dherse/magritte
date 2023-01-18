@@ -64,7 +64,7 @@ the synchronization scope  **must**  include both [`pipeline_stage`] and
 ## Command Properties
 
 # Related
-- [`amd_buffer_marker`]
+- [`VK_AMD_buffer_marker`]
 - [`Buffer`]
 - [`CommandBuffer`]
 - [`DeviceSize`]

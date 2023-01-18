@@ -23,7 +23,7 @@ typedef struct VkBindVertexBufferIndirectCommandNV {
 -    Each element of the buffer from which the address was acquired and that is non-sparse  **must**  be bound completely and contiguously to a single [`DeviceMemory`] object
 
 # Related
-- [`nv_device_generated_commands`]
+- [`VK_NV_device_generated_commands`]
 - [`DeviceAddress`]
 
 # Notes and documentation

@@ -21,21 +21,21 @@ typedef VkRenderingFlagBits VkRenderingFlagBitsKHR;
 ```
 
 # Description
-- [`VK_RENDERING_FLAG_BITS`] specifies that draw calls for the render pass instance will be recorded in secondary command buffers.
-- [`VK_RENDERING_FLAG_BITS`] specifies that the render pass instance is resuming an earlier suspended render pass instance.
-- [`VK_RENDERING_FLAG_BITS`] specifies that the render pass instance will be suspended.
+- [`CONTENTS_SECONDARY_COMMAND_BUFFERS`] specifies that draw calls for the render pass instance will be recorded in secondary command buffers.
+- [`RESUMING`] specifies that the render pass instance is resuming an earlier suspended render pass instance.
+- [`SUSPENDING`] specifies that the render pass instance will be suspended.
 The contents of `pRenderingInfo` **must**  match between suspended render
 pass instances and the render pass instances that resume them, other than
-the presence or absence of the [`VK_RENDERING_FLAG_BITS`],
-[`VK_RENDERING_FLAG_BITS`], and
-[`VK_RENDERING_FLAG_BITS`] flags.
+the presence or absence of the [`RESUMING`],
+[`SUSPENDING`], and
+[`CONTENTS_SECONDARY_COMMAND_BUFFERS`] flags.
 No action or synchronization commands, or other render pass instances, are
 allowed between suspending and resuming render pass instances.
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
-- [VkRenderingFlags]()
+- [`RenderingFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

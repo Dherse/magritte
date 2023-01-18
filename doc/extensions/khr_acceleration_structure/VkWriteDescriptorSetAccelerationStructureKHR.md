@@ -31,7 +31,7 @@ typedef struct VkWriteDescriptorSetAccelerationStructureKHR {
 -  [`acceleration_structure_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`StructureType`]
 

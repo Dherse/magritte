@@ -27,7 +27,7 @@ typedef struct VkAccelerationStructureMemoryRequirementsInfoNV {
 -  [`acceleration_structure`] **must**  be a valid [`AccelerationStructureNV`] handle
 
 # Related
-- [`nv_ray_tracing`]
+- [`VK_NV_ray_tracing`]
 - [`AccelerationStructureMemoryRequirementsTypeNV`]
 - [`AccelerationStructureNV`]
 - [`StructureType`]

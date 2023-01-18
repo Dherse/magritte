@@ -2,7 +2,7 @@
 
 # Description
 This device extension allows an application that uses the
-`[`khr_swapchain`]` extension to provide an identifier for present
+`[`VK_KHR_swapchain`]` extension to provide an identifier for present
 operations on a swapchain.
 An application  **can**  use this to reference specific present operations in
 other extensions.
@@ -15,7 +15,7 @@ other extensions.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_swapchain`]`
+- Requires `[`VK_KHR_swapchain`]`
 
 # Contacts
 - Keith Packard [keithp](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_KHR_present_id] @keithp%0A<<Here describe the issue or question you have about the VK_KHR_present_id extension>>)
@@ -25,8 +25,8 @@ other extensions.
 - Extending [`PresentInfoKHR`]:  - [`PresentIdKHR`]
 
 # New constants
-- `VK_KHR_PRESENT_ID_EXTENSION_NAME`
-- `VK_KHR_PRESENT_ID_SPEC_VERSION`
+- [`KHR_PRESENT_ID_EXTENSION_NAME`]
+- [`KHR_PRESENT_ID_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRESENT_ID_FEATURES_KHR`  - `VK_STRUCTURE_TYPE_PRESENT_ID_KHR`
 
 # Known issues & F.A.Q.

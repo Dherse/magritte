@@ -14,13 +14,13 @@ typedef enum VkIndirectCommandsLayoutUsageFlagBitsNV {
 ```
 
 # Description
-- [`VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_NV`] specifies that the layout is always used with the manual preprocessing step through calling [`cmd_preprocess_generated_commands_nv`] and executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to `VK_TRUE`.
-- [`VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_NV`] specifies that the input data for the sequences is not implicitly indexed from 0..sequencesUsed but a user provided [`Buffer`] encoding the index is provided.
-- [`VK_INDIRECT_COMMANDS_LAYOUT_USAGE_FLAG_BITS_NV`] specifies that the processing of sequences  **can**  happen at an implementation-dependent order, which is not: guaranteed to be coherent using the same input data.
+- [`EXPLICIT_PREPROCESS`] specifies that the layout is always used with the manual preprocessing step through calling [`cmd_preprocess_generated_commands_nv`] and executed by [`cmd_execute_generated_commands_nv`] with `isPreprocessed` set to [`TRUE`].
+- [`INDEXED_SEQUENCES`] specifies that the input data for the sequences is not implicitly indexed from 0..sequencesUsed but a user provided [`Buffer`] encoding the index is provided.
+- [`UNORDERED_SEQUENCES`] specifies that the processing of sequences  **can**  happen at an implementation-dependent order, which is not: guaranteed to be coherent using the same input data.
 
 # Related
-- [`nv_device_generated_commands`]
-- [VkIndirectCommandsLayoutUsageFlagsNV]()
+- [`VK_NV_device_generated_commands`]
+- [`IndirectCommandsLayoutUsageFlagsNV`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

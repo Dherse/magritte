@@ -16,7 +16,7 @@ typedef struct VkClearDepthStencilValue {
 
 # Description
 ## Valid Usage
--    Unless the `[`ext_depth_range_unrestricted`]` extension is enabled [`depth`] **must**  be between `0.0` and `1.0`, inclusive
+-    Unless the `[`VK_EXT_depth_range_unrestricted`]` extension is enabled [`depth`] **must**  be between `0.0` and `1.0`, inclusive
 
 # Related
 - [`crate::vulkan1_0`]

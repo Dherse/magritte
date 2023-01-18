@@ -16,7 +16,7 @@ typedef struct VkMemoryType {
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkMemoryPropertyFlags]()
+- [`MemoryPropertyFlags`]
 - [`PhysicalDeviceMemoryProperties`]
 
 # Notes and documentation

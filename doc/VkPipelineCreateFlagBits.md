@@ -69,19 +69,19 @@ typedef enum VkPipelineCreateFlagBits {
 ```
 
 # Description
-- [`VK_PIPELINE_CREATE_FLAG_BITS`] specifies that the created pipeline will not be optimized. Using this flag  **may**  reduce the time taken to create the pipeline.
-- [`VK_PIPELINE_CREATE_FLAG_BITS`] specifies that the pipeline to be created is allowed to be the parent of a pipeline that will be created in a subsequent pipeline creation call.
-- [`VK_PIPELINE_CREATE_FLAG_BITS`] specifies that the pipeline to be created will be a child of a previously created parent pipeline.
+- [`DISABLE_OPTIMIZATION`] specifies that the created pipeline will not be optimized. Using this flag  **may**  reduce the time taken to create the pipeline.
+- [`ALLOW_DERIVATIVES`] specifies that the pipeline to be created is allowed to be the parent of a pipeline that will be created in a subsequent pipeline creation call.
+- [`DERIVATIVE`] specifies that the pipeline to be created will be a child of a previously created parent pipeline.
 - [`VIEW_INDEX_FROM_DEVICE_INDEX`] specifies that any shader input variables decorated as `ViewIndex` will be assigned values as if they were decorated as `DeviceIndex`.
 - [`DISPATCH_BASE`] specifies that a compute pipeline  **can**  be used with [`cmd_dispatch_base`] with a non-zero base workgroup.
 - [`DEFER_COMPILE_NV`] specifies that a pipeline is created with all shaders in the deferred state. Before using the pipeline the application  **must**  call [`compile_deferred_nv`] exactly once on each shader in the pipeline before using the pipeline.
 - [`CAPTURE_STATISTICS_KHR`] specifies that the shader compiler should capture statistics for the pipeline executables produced by the compile process which  **can**  later be retrieved by calling [`get_pipeline_executable_statistics_khr`]. Enabling this flag  **must**  not affect the final compiled pipeline but  **may**  disable pipeline caching or otherwise affect pipeline creation time.
 - [`CAPTURE_INTERNAL_REPRESENTATIONS_KHR`] specifies that the shader compiler should capture the internal representations of pipeline executables produced by the compile process which  **can**  later be retrieved by calling [`get_pipeline_executable_internal_representations_khr`]. Enabling this flag  **must**  not affect the final compiled pipeline but  **may**  disable pipeline caching or otherwise affect pipeline creation time.
 - [`LIBRARY_KHR`] specifies that the pipeline  **cannot**  be used directly, and instead defines a *pipeline library* that  **can**  be combined with other pipelines using the [`PipelineLibraryCreateInfoKHR`] structure. This is available in ray tracing pipelines.
-- [`RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR`] specifies that an any-hit shader will always be present when an any-hit shader would be executed. A NULL any-hit shader is an any-hit shader which is effectively `VK_SHADER_UNUSED_KHR`, such as from a shader group consisting entirely of zeros.
-- [`RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR`] specifies that a closest hit shader will always be present when a closest hit shader would be executed. A NULL closest hit shader is a closest hit shader which is effectively `VK_SHADER_UNUSED_KHR`, such as from a shader group consisting entirely of zeros.
-- [`RAY_TRACING_NO_NULL_MISS_SHADERS_KHR`] specifies that a miss shader will always be present when a miss shader would be executed. A NULL miss shader is a miss shader which is effectively `VK_SHADER_UNUSED_KHR`, such as from a shader group consisting entirely of zeros.
-- [`RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR`] specifies that an intersection shader will always be present when an intersection shader would be executed. A NULL intersection shader is an intersection shader which is effectively `VK_SHADER_UNUSED_KHR`, such as from a shader group consisting entirely of zeros.
+- [`RAY_TRACING_NO_NULL_ANY_HIT_SHADERS_KHR`] specifies that an any-hit shader will always be present when an any-hit shader would be executed. A NULL any-hit shader is an any-hit shader which is effectively [`SHADER_UNUSED_KHR`], such as from a shader group consisting entirely of zeros.
+- [`RAY_TRACING_NO_NULL_CLOSEST_HIT_SHADERS_KHR`] specifies that a closest hit shader will always be present when a closest hit shader would be executed. A NULL closest hit shader is a closest hit shader which is effectively [`SHADER_UNUSED_KHR`], such as from a shader group consisting entirely of zeros.
+- [`RAY_TRACING_NO_NULL_MISS_SHADERS_KHR`] specifies that a miss shader will always be present when a miss shader would be executed. A NULL miss shader is a miss shader which is effectively [`SHADER_UNUSED_KHR`], such as from a shader group consisting entirely of zeros.
+- [`RAY_TRACING_NO_NULL_INTERSECTION_SHADERS_KHR`] specifies that an intersection shader will always be present when an intersection shader would be executed. A NULL intersection shader is an intersection shader which is effectively [`SHADER_UNUSED_KHR`], such as from a shader group consisting entirely of zeros.
 - [`RAY_TRACING_SKIP_TRIANGLES_KHR`] specifies that triangle primitives will be skipped during traversal using `OpTraceRayKHR`.
 - [`RAY_TRACING_SKIP_AABBS_KHR`] specifies that AABB primitives will be skipped during traversal using `OpTraceRayKHR`.
 - [`RAY_TRACING_SHADER_GROUP_HANDLE_CAPTURE_REPLAY_KHR`] specifies that the shader group handles  **can**  be saved and reused on a subsequent run (e.g. for trace capture and replay).
@@ -91,8 +91,8 @@ typedef enum VkPipelineCreateFlagBits {
 - [`RAY_TRACING_ALLOW_MOTION_NV`] specifies that the pipeline is allowed to use `OpTraceRayMotionNV`.
 - [`RENDERING_FRAGMENT_SHADING_RATE_ATTACHMENT_KHR`] specifies that the pipeline will be used with a fragment shading rate attachment.
 - [`RENDERING_FRAGMENT_DENSITY_MAP_ATTACHMENT_EXT`] specifies that the pipeline will be used with a fragment density map attachment.
-It is valid to set both [`VK_PIPELINE_CREATE_FLAG_BITS`] and
-[`VK_PIPELINE_CREATE_FLAG_BITS`].
+It is valid to set both [`ALLOW_DERIVATIVES`] and
+[`DERIVATIVE`].
 This allows a pipeline to be both a parent and possibly a child in a
 pipeline hierarchy.
 See [Pipeline Derivatives](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipelines-pipeline-derivatives) for more
@@ -100,7 +100,7 @@ information.
 
 # Related
 - [`crate::vulkan1_0`]
-- [VkPipelineCreateFlags]()
+- [`PipelineCreateFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

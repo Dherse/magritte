@@ -30,7 +30,7 @@ corresponding implementation-dependent property.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_4_PROPERTIES`
 
 # Related
-- [`khr_maintenance4`]
+- [`VK_KHR_maintenance4`]
 - [`crate::vulkan1_3`]
 - [`DeviceSize`]
 - [`StructureType`]

@@ -32,7 +32,7 @@ typedef struct VkImageDrmFormatModifierListCreateInfoEXT {
 -  [`drm_format_modifier_count`] **must**  be greater than `0`
 
 # Related
-- [`ext_image_drm_format_modifier`]
+- [`VK_EXT_image_drm_format_modifier`]
 - [`StructureType`]
 
 # Notes and documentation

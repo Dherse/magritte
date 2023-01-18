@@ -30,7 +30,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_CLOCK_FEATURES_KHR`
 
 # Related
-- [`khr_shader_clock`]
+- [`VK_KHR_shader_clock`]
 - [`Bool32`]
 - [`StructureType`]
 

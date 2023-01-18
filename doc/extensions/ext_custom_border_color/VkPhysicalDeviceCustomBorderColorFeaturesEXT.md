@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CUSTOM_BORDER_COLOR_FEATURES_EXT`
 
 # Related
-- [`ext_custom_border_color`]
+- [`VK_EXT_custom_border_color`]
 - [`Bool32`]
 - [`StructureType`]
 

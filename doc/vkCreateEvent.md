@@ -20,7 +20,7 @@ VkResult vkCreateEvent(
 # Description
 When created, the event object is in the unsignaled state.
 ## Valid Usage
--    If the `[`khr_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::events`] is `VK_FALSE`, then the implementation does not support [events](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-events), and [`create_event`] **must**  not be used
+-    If the `[`VK_KHR_portability_subset`]` extension is enabled, and [`PhysicalDevicePortabilitySubsetFeaturesKHR::events`] is [`FALSE`], then the implementation does not support [events](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#synchronization-events), and [`create_event`] **must**  not be used
 
 ## Valid Usage (Implicit)
 -  [`device`] **must**  be a valid [`Device`] handle

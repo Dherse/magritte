@@ -18,7 +18,7 @@ allocations are more likely to remain in device-local memory.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jeff Bolz [jeffbolznv](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_memory_priority] @jeffbolznv%0A<<Here describe the issue or question you have about the VK_EXT_memory_priority extension>>)
@@ -28,8 +28,8 @@ allocations are more likely to remain in device-local memory.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceMemoryPriorityFeaturesEXT`]
 
 # New constants
-- `VK_EXT_MEMORY_PRIORITY_EXTENSION_NAME`
-- `VK_EXT_MEMORY_PRIORITY_SPEC_VERSION`
+- [`EXT_MEMORY_PRIORITY_EXTENSION_NAME`]
+- [`EXT_MEMORY_PRIORITY_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_MEMORY_PRIORITY_ALLOCATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MEMORY_PRIORITY_FEATURES_EXT`
 
 # Version history

@@ -22,8 +22,8 @@ number of samples get a corresponding color output.
 - Matthaeus G. Chajdas [anteru](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_mixed_attachment_samples] @anteru%0A<<Here describe the issue or question you have about the VK_AMD_mixed_attachment_samples extension>>)
 
 # New constants
-- `VK_AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME`
-- `VK_AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION`
+- [`AMD_MIXED_ATTACHMENT_SAMPLES_EXTENSION_NAME`]
+- [`AMD_MIXED_ATTACHMENT_SAMPLES_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 None.

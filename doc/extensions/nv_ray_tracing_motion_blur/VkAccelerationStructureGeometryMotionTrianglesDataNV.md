@@ -30,7 +30,7 @@ intermediate times.Indexing for [`AccelerationStructureGeometryMotionTrianglesDa
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_ACCELERATION_STRUCTURE_GEOMETRY_MOTION_TRIANGLES_DATA_NV`
 
 # Related
-- [`nv_ray_tracing_motion_blur`]
+- [`VK_NV_ray_tracing_motion_blur`]
 - [`DeviceOrHostAddressConstKHR`]
 - [`StructureType`]
 

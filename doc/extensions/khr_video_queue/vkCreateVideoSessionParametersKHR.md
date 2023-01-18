@@ -29,7 +29,7 @@ VkResult vkCreateVideoSessionParametersKHR(
 *   - `VK_ERROR_INITIALIZATION_FAILED`  - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_TOO_MANY_OBJECTS`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`AllocationCallbacks`]
 - [`Device`]
 - [`VideoSessionParametersCreateInfoKHR`]

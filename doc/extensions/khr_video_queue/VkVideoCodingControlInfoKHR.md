@@ -14,7 +14,7 @@ typedef struct VkVideoCodingControlInfoKHR {
 # Members
 - [`s_type`] is the type of this structure.
 - [`p_next`] is `NULL` or a pointer to a structure extending this structure.
-- [`flags`] is a bitmask of [VkVideoCodingControlFlagsKHR]() specifying control flags.
+- [`flags`] is a bitmask of [`VideoCodingControlFlagsKHR`] specifying control flags.
 
 # Description
 ## Valid Usage
@@ -27,9 +27,9 @@ typedef struct VkVideoCodingControlInfoKHR {
 -  [`flags`] **must**  be a valid combination of [`VideoCodingControlFlagBitsKHR`] values
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`StructureType`]
-- [VkVideoCodingControlFlagsKHR]()
+- [`VideoCodingControlFlagsKHR`]
 - [`cmd_control_video_coding_khr`]
 
 # Notes and documentation

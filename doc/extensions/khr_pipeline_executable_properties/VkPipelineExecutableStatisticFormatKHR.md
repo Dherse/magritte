@@ -13,13 +13,13 @@ typedef enum VkPipelineExecutableStatisticFormatKHR {
 ```
 
 # Description
-- [`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_KHR`] specifies that the statistic is returned as a 32-bit boolean value which  **must**  be either `VK_TRUE` or `VK_FALSE` and  **should**  be read from the `b32` field of [`PipelineExecutableStatisticValueKHR`].
-- [`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_KHR`] specifies that the statistic is returned as a signed 64-bit integer and  **should**  be read from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
-- [`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_KHR`] specifies that the statistic is returned as an unsigned 64-bit integer and  **should**  be read from the `u64` field of [`PipelineExecutableStatisticValueKHR`].
-- [`VK_PIPELINE_EXECUTABLE_STATISTIC_FORMAT_KHR`] specifies that the statistic is returned as a 64-bit floating-point value and  **should**  be read from the `f64` field of [`PipelineExecutableStatisticValueKHR`].
+- [`BOOL32`] specifies that the statistic is returned as a 32-bit boolean value which  **must**  be either [`TRUE`] or [`FALSE`] and  **should**  be read from the `b32` field of [`PipelineExecutableStatisticValueKHR`].
+- [`INT64`] specifies that the statistic is returned as a signed 64-bit integer and  **should**  be read from the `i64` field of [`PipelineExecutableStatisticValueKHR`].
+- [`UINT64`] specifies that the statistic is returned as an unsigned 64-bit integer and  **should**  be read from the `u64` field of [`PipelineExecutableStatisticValueKHR`].
+- [`FLOAT64`] specifies that the statistic is returned as a 64-bit floating-point value and  **should**  be read from the `f64` field of [`PipelineExecutableStatisticValueKHR`].
 
 # Related
-- [`khr_pipeline_executable_properties`]
+- [`VK_KHR_pipeline_executable_properties`]
 - [`PipelineExecutableStatisticKHR`]
 
 # Notes and documentation

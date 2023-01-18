@@ -87,7 +87,7 @@ for access by a resuming render pass instance.
 -    Both of [`image_view`], and [`resolve_image_view`] that are valid handles of non-ignored parameters  **must**  have been created, allocated, or retrieved from the same [`Device`]
 
 # Related
-- [`khr_dynamic_rendering`]
+- [`VK_KHR_dynamic_rendering`]
 - [`crate::vulkan1_3`]
 - [`AttachmentLoadOp`]
 - [`AttachmentStoreOp`]

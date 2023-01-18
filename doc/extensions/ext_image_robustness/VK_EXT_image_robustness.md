@@ -16,7 +16,7 @@ based on the format as described in [Conversion to RGBA](https://www.khronos.org
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -28,8 +28,8 @@ based on the format as described in [Conversion to RGBA](https://www.khronos.org
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceImageRobustnessFeaturesEXT`]
 
 # New constants
-- `VK_EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME`
-- `VK_EXT_IMAGE_ROBUSTNESS_SPEC_VERSION`
+- [`EXT_IMAGE_ROBUSTNESS_EXTENSION_NAME`]
+- [`EXT_IMAGE_ROBUSTNESS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES_EXT`
 
 # Known issues & F.A.Q.

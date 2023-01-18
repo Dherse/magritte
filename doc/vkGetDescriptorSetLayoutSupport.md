@@ -33,7 +33,7 @@ This command returns information about whether a descriptor set satisfies
 this limit.
 If the descriptor set layout satisfies the
 [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]
-limit, this command is guaranteed to return `VK_TRUE` in
+limit, this command is guaranteed to return [`TRUE`] in
 [`DescriptorSetLayoutSupport::supported`].
 If the descriptor set layout exceeds the
 [`PhysicalDeviceMaintenance3Properties::max_per_set_descriptors`]

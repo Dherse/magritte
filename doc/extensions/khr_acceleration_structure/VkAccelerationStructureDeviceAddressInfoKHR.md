@@ -24,7 +24,7 @@ typedef struct VkAccelerationStructureDeviceAddressInfoKHR {
 -  [`acceleration_structure`] **must**  be a valid [`AccelerationStructureKHR`] handle
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureKHR`]
 - [`StructureType`]
 - [`get_acceleration_structure_device_address_khr`]

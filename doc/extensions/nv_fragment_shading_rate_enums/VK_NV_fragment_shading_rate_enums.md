@@ -15,7 +15,7 @@ discards any portions of a primitive that would use that shading rate.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_fragment_shading_rate`]`
+- Requires `[`VK_KHR_fragment_shading_rate`]`
 
 # Contacts
 - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_fragment_shading_rate_enums] @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_fragment_shading_rate_enums extension>>)
@@ -33,8 +33,8 @@ discards any portions of a primitive that would use that shading rate.
 - [`FragmentShadingRateTypeNV`]
 
 # New constants
-- `VK_NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME`
-- `VK_NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION`
+- [`NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME`]
+- [`NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FRAGMENT_SHADING_RATE_ENUMS_PROPERTIES_NV`  - `VK_STRUCTURE_TYPE_PIPELINE_FRAGMENT_SHADING_RATE_ENUM_STATE_CREATE_INFO_NV`
 
 # Known issues & F.A.Q.

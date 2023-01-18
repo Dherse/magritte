@@ -21,7 +21,7 @@ typedef VkDescriptorUpdateTemplateType VkDescriptorUpdateTemplateTypeKHR;
 ```
 
 # Description
-- [`VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE`] specifies that the descriptor update template will be used for descriptor set updates only.
+- [`DESCRIPTOR_SET`] specifies that the descriptor update template will be used for descriptor set updates only.
 - [`PUSH_DESCRIPTORS_KHR`] specifies that the descriptor update template will be used for push descriptor updates only.
 
 # Related

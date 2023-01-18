@@ -1,7 +1,7 @@
 [VK_KHR_vulkan_memory_model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VK_KHR_vulkan_memory_model.html) - device extension
 
 # Description
-The [`khr_vulkan_memory_model`] extension allows use of the
+The [`VK_KHR_vulkan_memory_model`] extension allows use of the
 [Vulkan Memory Model](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#memory-model), which formally defines how to
 synchronize memory accesses to the same memory locations performed by
 multiple shader invocations.
@@ -25,8 +25,8 @@ multiple shader invocations.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceVulkanMemoryModelFeaturesKHR`]
 
 # New constants
-- `VK_KHR_VULKAN_MEMORY_MODEL_EXTENSION_NAME`
-- `VK_KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION`
+- [`KHR_VULKAN_MEMORY_MODEL_EXTENSION_NAME`]
+- [`KHR_VULKAN_MEMORY_MODEL_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_MEMORY_MODEL_FEATURES_KHR`
 
 # Version history

@@ -103,33 +103,33 @@ typedef VkPipelineStageFlagBits2 VkPipelineStageFlagBits2KHR;
 ```
 
 # Description
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies no stages of execution.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline where indirect command parameters are consumed. This stage also includes reading commands written by [`cmd_preprocess_generated_commands_nv`].
+- [`PIPELINE_STAGE2_NONE`] specifies no stages of execution.
+- [`PIPELINE_STAGE2_DRAW_INDIRECT`] specifies the stage of the pipeline where indirect command parameters are consumed. This stage also includes reading commands written by [`cmd_preprocess_generated_commands_nv`].
 - [`PIPELINE_STAGE2_TASK_SHADER_NV`] specifies the task shader stage.
 - [`PIPELINE_STAGE2_MESH_SHADER_NV`] specifies the mesh shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline where index buffers are consumed.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline where vertex buffers are consumed.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] is equivalent to the logical OR of:  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`] 
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the vertex shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the tessellation control shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the tessellation evaluation shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the geometry shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] is equivalent to specifying all supported [pre-rasterization shader stages](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization):  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`PIPELINE_STAGE2_TASK_SHADER_NV`]  - [`PIPELINE_STAGE2_MESH_SHADER_NV`] 
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the fragment shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed. This stage also includes [subpass load operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed. This stage also includes [subpass store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes [subpass load and store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) and multisample resolve operations for framebuffer attachments with a color or depth/stencil format.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the compute shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies a pseudo-stage indicating execution on the host of reads/writes of device memory. This stage is not invoked by any commands recorded in a command buffer.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the execution of all [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`cmd_copy_query_pool_results`].
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the execution of [`cmd_blit_image`].
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the execution of [`cmd_resolve_image`].
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the execution of [clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears), with the exception of [`cmd_clear_attachments`].
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] is equivalent to specifying all of:  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`] 
+- [`PIPELINE_STAGE2_INDEX_INPUT`] specifies the stage of the pipeline where index buffers are consumed.
+- [`PIPELINE_STAGE2_VERTEX_ATTRIBUTE_INPUT`] specifies the stage of the pipeline where vertex buffers are consumed.
+- [`PIPELINE_STAGE2_VERTEX_INPUT`] is equivalent to the logical OR of:  - [`PIPELINE_STAGE2_INDEX_INPUT`]  - [`PIPELINE_STAGE2_VERTEX_ATTRIBUTE_INPUT`] 
+- [`PIPELINE_STAGE2_VERTEX_SHADER`] specifies the vertex shader stage.
+- [`PIPELINE_STAGE2_TESSELLATION_CONTROL_SHADER`] specifies the tessellation control shader stage.
+- [`PIPELINE_STAGE2_TESSELLATION_EVALUATION_SHADER`] specifies the tessellation evaluation shader stage.
+- [`PIPELINE_STAGE2_GEOMETRY_SHADER`] specifies the geometry shader stage.
+- [`PIPELINE_STAGE2_PRE_RASTERIZATION_SHADERS`] is equivalent to specifying all supported [pre-rasterization shader stages](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#pipeline-graphics-subsets-pre-rasterization):  - [`PIPELINE_STAGE2_VERTEX_SHADER`]  - [`PIPELINE_STAGE2_TESSELLATION_CONTROL_SHADER`]  - [`PIPELINE_STAGE2_TESSELLATION_EVALUATION_SHADER`]  - [`PIPELINE_STAGE2_GEOMETRY_SHADER`]  - [`PIPELINE_STAGE2_TASK_SHADER_NV`]  - [`PIPELINE_STAGE2_MESH_SHADER_NV`] 
+- [`PIPELINE_STAGE2_FRAGMENT_SHADER`] specifies the fragment shader stage.
+- [`PIPELINE_STAGE2_EARLY_FRAGMENT_TESTS`] specifies the stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed. This stage also includes [subpass load operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
+- [`PIPELINE_STAGE2_LATE_FRAGMENT_TESTS`] specifies the stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed. This stage also includes [subpass store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) for framebuffer attachments with a depth/stencil format.
+- [`PIPELINE_STAGE2_COLOR_ATTACHMENT_OUTPUT`] specifies the stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes [subpass load and store operations](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#renderpass-load-store-ops) and multisample resolve operations for framebuffer attachments with a color or depth/stencil format.
+- [`PIPELINE_STAGE2_COMPUTE_SHADER`] specifies the compute shader stage.
+- [`PIPELINE_STAGE2_HOST`] specifies a pseudo-stage indicating execution on the host of reads/writes of device memory. This stage is not invoked by any commands recorded in a command buffer.
+- [`PIPELINE_STAGE2_COPY`] specifies the execution of all [copy commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#copies), including [`cmd_copy_query_pool_results`].
+- [`PIPELINE_STAGE2_BLIT`] specifies the execution of [`cmd_blit_image`].
+- [`PIPELINE_STAGE2_RESOLVE`] specifies the execution of [`cmd_resolve_image`].
+- [`PIPELINE_STAGE2_CLEAR`] specifies the execution of [clear commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#clears), with the exception of [`cmd_clear_attachments`].
+- [`PIPELINE_STAGE2_ALL_TRANSFER`] is equivalent to specifying all of:  - [`PIPELINE_STAGE2_COPY`]  - [`PIPELINE_STAGE2_BLIT`]  - [`PIPELINE_STAGE2_RESOLVE`]  - [`PIPELINE_STAGE2_CLEAR`] 
 - [`PIPELINE_STAGE2_RAY_TRACING_SHADER_KHR`] specifies the execution of the ray tracing shader stages.
 - [`PIPELINE_STAGE2_ACCELERATION_STRUCTURE_BUILD_KHR`] specifies the execution of [acceleration structure commands](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#acceleration-structure).
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies the execution of all graphics pipeline stages, and is equivalent to the logical OR of:  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`PIPELINE_STAGE2_TASK_SHADER_NV`]  - [`PIPELINE_STAGE2_MESH_SHADER_NV`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`VK_PIPELINE_STAGE_FLAG_BITS2`]  - [`PIPELINE_STAGE2_CONDITIONAL_RENDERING_EXT`]  - [`PIPELINE_STAGE2_TRANSFORM_FEEDBACK_EXT`]  - [`PIPELINE_STAGE2_SHADING_RATE_IMAGE_NV`]  - [`PIPELINE_STAGE2_FRAGMENT_DENSITY_PROCESS_EXT`]  - [`PIPELINE_STAGE2_INVOCATION_MASK_HUAWEI`] 
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] specifies all operations performed by all commands supported on the queue it is used with.
+- [`PIPELINE_STAGE2_ALL_GRAPHICS`] specifies the execution of all graphics pipeline stages, and is equivalent to the logical OR of:  - [`PIPELINE_STAGE2_DRAW_INDIRECT`]  - [`PIPELINE_STAGE2_TASK_SHADER_NV`]  - [`PIPELINE_STAGE2_MESH_SHADER_NV`]  - [`PIPELINE_STAGE2_VERTEX_INPUT`]  - [`PIPELINE_STAGE2_VERTEX_SHADER`]  - [`PIPELINE_STAGE2_TESSELLATION_CONTROL_SHADER`]  - [`PIPELINE_STAGE2_TESSELLATION_EVALUATION_SHADER`]  - [`PIPELINE_STAGE2_GEOMETRY_SHADER`]  - [`PIPELINE_STAGE2_FRAGMENT_SHADER`]  - [`PIPELINE_STAGE2_EARLY_FRAGMENT_TESTS`]  - [`PIPELINE_STAGE2_LATE_FRAGMENT_TESTS`]  - [`PIPELINE_STAGE2_COLOR_ATTACHMENT_OUTPUT`]  - [`PIPELINE_STAGE2_CONDITIONAL_RENDERING_EXT`]  - [`PIPELINE_STAGE2_TRANSFORM_FEEDBACK_EXT`]  - [`PIPELINE_STAGE2_SHADING_RATE_IMAGE_NV`]  - [`PIPELINE_STAGE2_FRAGMENT_DENSITY_PROCESS_EXT`]  - [`PIPELINE_STAGE2_INVOCATION_MASK_HUAWEI`] 
+- [`PIPELINE_STAGE2_ALL_COMMANDS`] specifies all operations performed by all commands supported on the queue it is used with.
 - [`PIPELINE_STAGE2_CONDITIONAL_RENDERING_EXT`] specifies the stage of the pipeline where the predicate of conditional rendering is consumed.
 - [`PIPELINE_STAGE2_TRANSFORM_FEEDBACK_EXT`] specifies the stage of the pipeline where vertex attribute output values are written to the transform feedback buffers.
 - [`PIPELINE_STAGE2_COMMAND_PREPROCESS_NV`] specifies the stage of the pipeline where device-side generation of commands via [`cmd_preprocess_generated_commands_nv`] is handled.
@@ -139,11 +139,11 @@ typedef VkPipelineStageFlagBits2 VkPipelineStageFlagBits2KHR;
 - [`PIPELINE_STAGE2_VIDEO_DECODE_KHR`] specifies the stage of the pipeline where [video decode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-decode-operations) are performed.
 - [`PIPELINE_STAGE2_VIDEO_ENCODE_KHR`] specifies the stage of the pipeline where [video encode operation](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#video-encode-operations) are performed.
 - [`PIPELINE_STAGE2_SUBPASS_SHADING_HUAWEI`] specifies the subpass shading shader stage.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] is equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS2`] with [`AccessFlags2`] set to `0` when specified in the second synchronization scope, but equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS2`] in the first scope.
-- [`VK_PIPELINE_STAGE_FLAG_BITS2`] is equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS2`] with [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent to [`VK_PIPELINE_STAGE_FLAG_BITS2`] in the second scope.
+- [`PIPELINE_STAGE2_TOP_OF_PIPE`] is equivalent to [`PIPELINE_STAGE2_ALL_COMMANDS`] with [`AccessFlags2`] set to `0` when specified in the second synchronization scope, but equivalent to [`PIPELINE_STAGE2_NONE`] in the first scope.
+- [`PIPELINE_STAGE2_BOTTOM_OF_PIPE`] is equivalent to [`PIPELINE_STAGE2_ALL_COMMANDS`] with [`AccessFlags2`] set to `0` when specified in the first synchronization scope, but equivalent to [`PIPELINE_STAGE2_NONE`] in the second scope.
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
 
 # Notes and documentation

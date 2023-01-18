@@ -17,8 +17,8 @@ uniforms backed by buffer memory.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
-- Requires `[`khr_maintenance1`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_maintenance1`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.3](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.3-promotions)
@@ -33,8 +33,8 @@ uniforms backed by buffer memory.
 - Extending [`WriteDescriptorSet`]:  - [`WriteDescriptorSetInlineUniformBlockEXT`]
 
 # New constants
-- `VK_EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME`
-- `VK_EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION`
+- [`EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME`]
+- [`EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION`]
 - Extending [`DescriptorType`]:  - `VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_INLINE_UNIFORM_BLOCK_CREATE_INFO_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_FEATURES_EXT`  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INLINE_UNIFORM_BLOCK_PROPERTIES_EXT`  - `VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET_INLINE_UNIFORM_BLOCK_EXT`
 
@@ -57,14 +57,14 @@ Additionally, the `stride` member of
 and a default value of one is used, meaning that the data to update inline
 uniform block bindings with must be contiguous in memory.3) What layout rules apply for uniform blocks corresponding to inline
 constants? **RESOLVED** : They use the same layout rules as uniform buffers.4) Do we need to add non-uniform indexing features/properties as introduced
-by [`ext_descriptor_indexing`] for inline uniform blocks? **RESOLVED** : No, because inline uniform blocks are not allowed to be
+by [`VK_EXT_descriptor_indexing`] for inline uniform blocks? **RESOLVED** : No, because inline uniform blocks are not allowed to be
 “arrayed”.
 A single binding with an inline uniform block descriptor type corresponds to
 a single uniform block instance and the array indices inside that binding
 refer to individual offsets within the uniform block (see issue #2).
 However, this extension does introduce new features/properties about the
 level of support for update-after-bind inline uniform blocks.5) Is the `descriptorBindingVariableDescriptorCount` feature introduced
-by [`ext_descriptor_indexing`] supported for inline uniform blocks? **RESOLVED** : Yes, as long as other inline uniform block specific limits are
+by [`VK_EXT_descriptor_indexing`] supported for inline uniform blocks? **RESOLVED** : Yes, as long as other inline uniform block specific limits are
 respected.6) Do the robustness guarantees of `robustBufferAccess` apply to inline
 uniform block accesses? **RESOLVED** : No, similarly to push constants, as they are not backed by
 buffer memory like uniform buffers.

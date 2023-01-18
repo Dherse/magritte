@@ -2,7 +2,7 @@
 
 # Description
 This extension incorporates `VK_ATTACHMENT_STORE_OP_NONE_EXT` from
-`[`qcom_render_pass_store_ops`]`, enabling applications to avoid
+`[`VK_QCOM_render_pass_store_ops`]`, enabling applications to avoid
 unnecessary synchronization when an attachment is not written during a
 render pass.Additionally, `VK_ATTACHMENT_LOAD_OP_NONE_EXT` is introduced to avoid
 unnecessary synchronization when an attachment is not used during a render
@@ -25,8 +25,8 @@ pipelines have been created.
 - Shahbaz Youssefi [syoussefi](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_EXT_load_store_op_none] @syoussefi%0A<<Here describe the issue or question you have about the VK_EXT_load_store_op_none extension>>)
 
 # New constants
-- `VK_EXT_LOAD_STORE_OP_NONE_EXTENSION_NAME`
-- `VK_EXT_LOAD_STORE_OP_NONE_SPEC_VERSION`
+- [`EXT_LOAD_STORE_OP_NONE_EXTENSION_NAME`]
+- [`EXT_LOAD_STORE_OP_NONE_SPEC_VERSION`]
 - Extending [`AttachmentLoadOp`]:  - `VK_ATTACHMENT_LOAD_OP_NONE_EXT` 
 - Extending [`AttachmentStoreOp`]:  - `VK_ATTACHMENT_STORE_OP_NONE_EXT`
 

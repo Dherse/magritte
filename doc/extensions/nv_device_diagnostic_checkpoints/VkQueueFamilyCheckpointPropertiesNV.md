@@ -24,8 +24,8 @@ Additional queue family information can be queried by setting
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_QUEUE_FAMILY_CHECKPOINT_PROPERTIES_NV`
 
 # Related
-- [`nv_device_diagnostic_checkpoints`]
-- [VkPipelineStageFlags]()
+- [`VK_NV_device_diagnostic_checkpoints`]
+- [`PipelineStageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

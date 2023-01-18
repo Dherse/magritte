@@ -16,7 +16,7 @@ OpAtomicCompareExchange.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.2](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.2-promotions)
@@ -28,8 +28,8 @@ OpAtomicCompareExchange.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceShaderAtomicInt64FeaturesKHR`]
 
 # New constants
-- `VK_KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME`
-- `VK_KHR_SHADER_ATOMIC_INT64_SPEC_VERSION`
+- [`KHR_SHADER_ATOMIC_INT64_EXTENSION_NAME`]
+- [`KHR_SHADER_ATOMIC_INT64_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_SHADER_ATOMIC_INT64_FEATURES_KHR`
 
 # Version history

@@ -38,7 +38,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_BUFFER_DEVICE_ADDRESS_FEATURES_EXT`
 
 # Related
-- [`ext_buffer_device_address`]
+- [`VK_EXT_buffer_device_address`]
 - [`Bool32`]
 - [`StructureType`]
 

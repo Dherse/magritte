@@ -17,8 +17,8 @@ This extension adds support for the following SPIR-V extension in Vulkan:
 - Dominik Witczak [dominikwitczakamd](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_AMD_gcn_shader] @dominikwitczakamd%0A<<Here describe the issue or question you have about the VK_AMD_gcn_shader extension>>)
 
 # New constants
-- `VK_AMD_GCN_SHADER_EXTENSION_NAME`
-- `VK_AMD_GCN_SHADER_SPEC_VERSION`
+- [`AMD_GCN_SHADER_EXTENSION_NAME`]
+- [`AMD_GCN_SHADER_SPEC_VERSION`]
 
 # Version history
 - Revision 1, 2016-05-30 (Dominik Witczak)  - Initial draft

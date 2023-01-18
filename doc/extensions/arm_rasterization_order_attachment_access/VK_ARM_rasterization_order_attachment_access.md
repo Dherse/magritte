@@ -22,7 +22,7 @@ information.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Jan-Harald Fredriksen [janharaldfredriksen-arm](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_ARM_rasterization_order_attachment_access] @janharaldfredriksen-arm%0A<<Here describe the issue or question you have about the VK_ARM_rasterization_order_attachment_access extension>>)
@@ -35,15 +35,15 @@ information.
 - [`PipelineDepthStencilStateCreateFlagBits`]
 
 # New constants
-- `VK_ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME`
-- `VK_ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION`
+- [`ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME`]
+- [`ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION`]
 - Extending [`PipelineColorBlendStateCreateFlagBits`]:  - `VK_PIPELINE_COLOR_BLEND_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_BIT_ARM` 
 - Extending [`PipelineDepthStencilStateCreateFlagBits`]:  - `VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM`  - `VK_PIPELINE_DEPTH_STENCIL_STATE_CREATE_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_FEATURES_ARM` 
 - Extending [`SubpassDescriptionFlagBits`]:  - `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_COLOR_ACCESS_BIT_ARM`  - `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_DEPTH_ACCESS_BIT_ARM`  - `VK_SUBPASS_DESCRIPTION_RASTERIZATION_ORDER_ATTACHMENT_STENCIL_ACCESS_BIT_ARM`
 
 # Known issues & F.A.Q.
-1) Is there any interaction with the `[`khr_dynamic_rendering`]`
+1) Is there any interaction with the `[`VK_KHR_dynamic_rendering`]`
 extension?No.
 This extension only affects reads from input attachments.
 Render pass instances begun with [`cmd_begin_rendering_khr`] do not have

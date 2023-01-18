@@ -7,7 +7,7 @@ typedef VkFlags VkHeadlessSurfaceCreateFlagsEXT;
 ```
 
 # Related
-- [`ext_headless_surface`]
+- [`VK_EXT_headless_surface`]
 - [`HeadlessSurfaceCreateInfoEXT`]
 
 # Notes and documentation

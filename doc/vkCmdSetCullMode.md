@@ -40,10 +40,10 @@ create the currently active pipeline.
 ## Command Properties
 
 # Related
-- [`ext_extended_dynamic_state`]
+- [`VK_EXT_extended_dynamic_state`]
 - [`crate::vulkan1_3`]
 - [`CommandBuffer`]
-- [VkCullModeFlags]()
+- [`CullModeFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

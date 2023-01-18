@@ -34,7 +34,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_IMAGE_ROBUSTNESS_FEATURES`
 
 # Related
-- [`ext_image_robustness`]
+- [`VK_EXT_image_robustness`]
 - [`crate::vulkan1_3`]
 - [`Bool32`]
 - [`StructureType`]

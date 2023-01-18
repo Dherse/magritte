@@ -35,7 +35,7 @@ to specifying this structure with a [`exclusive_scissor_count`] of `0`.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`
 
 # Related
-- [`nv_scissor_exclusive`]
+- [`VK_NV_scissor_exclusive`]
 - [`Rect2D`]
 - [`StructureType`]
 

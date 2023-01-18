@@ -17,7 +17,7 @@ fails.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_get_physical_device_properties2`]`
+- Requires `[`VK_KHR_get_physical_device_properties2`]`
 
 # Contacts
 - Pat Brown [nvpbrown](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_scissor_exclusive] @nvpbrown%0A<<Here describe the issue or question you have about the VK_NV_scissor_exclusive extension>>)
@@ -30,8 +30,8 @@ fails.
 - Extending [`PipelineViewportStateCreateInfo`]:  - [`PipelineViewportExclusiveScissorStateCreateInfoNV`]
 
 # New constants
-- `VK_NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME`
-- `VK_NV_SCISSOR_EXCLUSIVE_SPEC_VERSION`
+- [`NV_SCISSOR_EXCLUSIVE_EXTENSION_NAME`]
+- [`NV_SCISSOR_EXCLUSIVE_SPEC_VERSION`]
 - Extending [`DynamicState`]:  - `VK_DYNAMIC_STATE_EXCLUSIVE_SCISSOR_NV` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_EXCLUSIVE_SCISSOR_FEATURES_NV`  - `VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_EXCLUSIVE_SCISSOR_STATE_CREATE_INFO_NV`
 

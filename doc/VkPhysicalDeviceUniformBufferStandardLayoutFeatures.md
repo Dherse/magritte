@@ -35,7 +35,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_UNIFORM_BUFFER_STANDARD_LAYOUT_FEATURES`
 
 # Related
-- [`khr_uniform_buffer_standard_layout`]
+- [`VK_KHR_uniform_buffer_standard_layout`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

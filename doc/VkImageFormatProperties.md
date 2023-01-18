@@ -33,7 +33,7 @@ implementation for use in [`create_image`], then all members of
 - [`Extent3D`]
 - [`ExternalImageFormatPropertiesNV`]
 - [`ImageFormatProperties2`]
-- [VkSampleCountFlags]()
+- [`SampleCountFlags`]
 - [`get_physical_device_image_format_properties`]
 
 # Notes and documentation

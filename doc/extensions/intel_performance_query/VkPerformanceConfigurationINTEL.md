@@ -12,7 +12,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkPerformanceConfigurationINTEL)
 ```
 
 # Related
-- [`intel_performance_query`]
+- [`VK_INTEL_performance_query`]
 - [`acquire_performance_configuration_intel`]
 - [`queue_set_performance_configuration_intel`]
 - [`release_performance_configuration_intel`]

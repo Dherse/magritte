@@ -30,7 +30,7 @@ typedef struct VkMemoryGetZirconHandleInfoFUCHSIA {
 -  [`handle_type`] **must**  be a valid [`ExternalMemoryHandleTypeFlagBits`] value
 
 # Related
-- [`fuchsia_external_memory`]
+- [`VK_FUCHSIA_external_memory`]
 - [`DeviceMemory`]
 - [`ExternalMemoryHandleTypeFlagBits`]
 - [`StructureType`]

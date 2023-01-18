@@ -12,11 +12,11 @@ typedef enum VkVideoDecodeFlagBitsKHR {
 ```
 
 # Description
-- [`VK_VIDEO_DECODE_FLAG_BITS_KHR`] The current version of the specification has reserved this value for future use.
+- [`RESERVED0`] The current version of the specification has reserved this value for future use.
 
 # Related
-- [`khr_video_decode_queue`]
-- [VkVideoDecodeFlagsKHR]()
+- [`VK_KHR_video_decode_queue`]
+- [`VideoDecodeFlagsKHR`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

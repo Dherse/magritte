@@ -20,8 +20,8 @@ This extension allows `uint8_t` indices to be used with
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDeviceIndexTypeUint8FeaturesEXT`]
 
 # New constants
-- `VK_EXT_INDEX_TYPE_UINT8_EXTENSION_NAME`
-- `VK_EXT_INDEX_TYPE_UINT8_SPEC_VERSION`
+- [`EXT_INDEX_TYPE_UINT8_EXTENSION_NAME`]
+- [`EXT_INDEX_TYPE_UINT8_SPEC_VERSION`]
 - Extending [`IndexType`]:  - `VK_INDEX_TYPE_UINT8_EXT` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_INDEX_TYPE_UINT8_FEATURES_EXT`
 

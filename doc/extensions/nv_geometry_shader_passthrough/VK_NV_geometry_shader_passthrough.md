@@ -35,8 +35,8 @@ specification.
 - Daniel Koch [dgkoch](https://github.com/KhronosGroup/Vulkan-Docs/issues/new?body=[VK_NV_geometry_shader_passthrough] @dgkoch%0A<<Here describe the issue or question you have about the VK_NV_geometry_shader_passthrough extension>>)
 
 # New constants
-- `VK_NV_GEOMETRY_SHADER_PASSTHROUGH_EXTENSION_NAME`
-- `VK_NV_GEOMETRY_SHADER_PASSTHROUGH_SPEC_VERSION`
+- [`NV_GEOMETRY_SHADER_PASSTHROUGH_EXTENSION_NAME`]
+- [`NV_GEOMETRY_SHADER_PASSTHROUGH_SPEC_VERSION`]
 
 # Known issues & F.A.Q.
 1) Should we require or allow a passthrough geometry shader to specify the

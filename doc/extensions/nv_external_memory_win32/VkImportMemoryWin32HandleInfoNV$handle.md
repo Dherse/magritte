@@ -1,1 +1,1 @@
-[`handle`] is a Windows `HANDLE` referring to the memory.
+[`handle`] is a Windows [`HANDLE`] referring to the memory.

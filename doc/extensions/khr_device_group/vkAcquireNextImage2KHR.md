@@ -30,8 +30,8 @@ VkResult vkAcquireNextImage2KHR(
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_DEVICE_LOST`  - `VK_ERROR_OUT_OF_DATE_KHR`  - `VK_ERROR_SURFACE_LOST_KHR`  - `VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT`
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`AcquireNextImageInfoKHR`]
 - [`Device`]

@@ -38,7 +38,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_8BIT_STORAGE_FEATURES`
 
 # Related
-- [`khr_8bit_storage`]
+- [`VK_KHR_8bit_storage`]
 - [`crate::vulkan1_2`]
 - [`Bool32`]
 - [`StructureType`]

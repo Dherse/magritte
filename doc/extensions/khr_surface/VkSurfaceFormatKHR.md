@@ -15,7 +15,7 @@ typedef struct VkSurfaceFormatKHR {
 - [`color_space`] is a presentation [`ColorSpaceKHR`] that is compatible with the surface.
 
 # Related
-- [`khr_surface`]
+- [`VK_KHR_surface`]
 - [`ColorSpaceKHR`]
 - [`Format`]
 - [`SurfaceFormat2KHR`]

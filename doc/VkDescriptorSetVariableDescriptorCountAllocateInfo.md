@@ -50,7 +50,7 @@ ignored.
 -    If [`descriptor_set_count`] is not `0`, [`descriptor_counts`] **must**  be a valid pointer to an array of [`descriptor_set_count`]`uint32_t` values
 
 # Related
-- [`ext_descriptor_indexing`]
+- [`VK_EXT_descriptor_indexing`]
 - [`crate::vulkan1_2`]
 - [`StructureType`]
 

@@ -17,12 +17,12 @@ typedef VkSubmitFlagBits VkSubmitFlagBitsKHR;
 ```
 
 # Description
-- [`VK_SUBMIT_FLAG_BITS`] specifies that this batch is a protected submission.
+- [`PROTECTED`] specifies that this batch is a protected submission.
 
 # Related
-- [`khr_synchronization2`]
+- [`VK_KHR_synchronization2`]
 - [`crate::vulkan1_3`]
-- [VkSubmitFlags]()
+- [`SubmitFlags`]
 
 # Notes and documentation
 For more information, see the [Vulkan specification](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html)

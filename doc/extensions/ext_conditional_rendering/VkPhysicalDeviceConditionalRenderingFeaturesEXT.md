@@ -31,7 +31,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CONDITIONAL_RENDERING_FEATURES_EXT`
 
 # Related
-- [`ext_conditional_rendering`]
+- [`VK_EXT_conditional_rendering`]
 - [`Bool32`]
 - [`StructureType`]
 

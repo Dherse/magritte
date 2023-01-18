@@ -15,7 +15,7 @@ typedef union VkDeviceOrHostAddressConstKHR {
 - [`host_address`] is a const host memory address.
 
 # Related
-- [`khr_acceleration_structure`]
+- [`VK_KHR_acceleration_structure`]
 - [`AccelerationStructureGeometryAabbsDataKHR`]
 - [`AccelerationStructureGeometryInstancesDataKHR`]
 - [`AccelerationStructureGeometryMotionTrianglesDataNV`]

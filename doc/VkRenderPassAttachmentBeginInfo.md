@@ -34,7 +34,7 @@ typedef VkRenderPassAttachmentBeginInfo VkRenderPassAttachmentBeginInfoKHR;
 -    If [`attachment_count`] is not `0`, [`attachments`] **must**  be a valid pointer to an array of [`attachment_count`] valid [`ImageView`] handles
 
 # Related
-- [`khr_imageless_framebuffer`]
+- [`VK_KHR_imageless_framebuffer`]
 - [`crate::vulkan1_2`]
 - [`ImageView`]
 - [`StructureType`]

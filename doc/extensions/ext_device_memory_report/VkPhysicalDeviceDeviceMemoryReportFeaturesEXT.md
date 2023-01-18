@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DEVICE_MEMORY_REPORT_FEATURES_EXT`
 
 # Related
-- [`ext_device_memory_report`]
+- [`VK_EXT_device_memory_report`]
 - [`Bool32`]
 - [`StructureType`]
 

@@ -28,7 +28,7 @@ void vkCmdDecodeVideoKHR(
 ## Command Properties
 
 # Related
-- [`khr_video_decode_queue`]
+- [`VK_KHR_video_decode_queue`]
 - [`CommandBuffer`]
 - [`VideoDecodeInfoKHR`]
 

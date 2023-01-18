@@ -30,7 +30,7 @@ if permission to access it has already been acquired by another entity, the
 call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`dpy`] **must**  be a valid pointer to a `Display` value
+-  [`dpy`] **must**  be a valid pointer to a [`Display`] value
 -  [`display`] **must**  be a valid [`DisplayKHR`] handle
 -  [`display`] **must**  have been created, allocated, or retrieved from [`physical_device`]
 
@@ -39,7 +39,7 @@ call  **must**  return the error code `VK_ERROR_INITIALIZATION_FAILED`.
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`ext_acquire_xlib_display`]
+- [`VK_EXT_acquire_xlib_display`]
 - [`DisplayKHR`]
 - [`PhysicalDevice`]
 

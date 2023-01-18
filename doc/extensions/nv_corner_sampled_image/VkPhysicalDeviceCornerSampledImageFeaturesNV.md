@@ -29,7 +29,7 @@ corresponding feature is supported.
 -  [`s_type`] **must**  be `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_CORNER_SAMPLED_IMAGE_FEATURES_NV`
 
 # Related
-- [`nv_corner_sampled_image`]
+- [`VK_NV_corner_sampled_image`]
 - [`Bool32`]
 - [`StructureType`]
 

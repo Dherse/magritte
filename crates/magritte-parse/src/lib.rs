@@ -8,25 +8,25 @@ mod string;
 mod ty;
 
 pub use expr::parse_expr;
-pub use ty::native_raw;
 pub use magritte_types::*;
+pub use ty::native_raw;
 
 use std::{
     borrow::Cow,
     error::Error,
     hint::unreachable_unchecked,
     io::{self, Cursor},
-    ops::{Not, Deref},
+    ops::{Deref, Not},
 };
 
 use externally_synced::externally_synced_new;
 use heck::ToSnakeCase;
-use name::{bit_name, enum_name, funcpointer_name, function_name, tag_of_type, type_name, const_name};
+use name::{bit_name, const_name, enum_name, funcpointer_name, function_name, tag_of_type, type_name};
 use processor::process_type;
 use ty::{ty_new, ty_with_name};
 use vk_parse::{
-    EnumSpec, EnumsChild, FatalError, InterfaceItem, RegistryChild, TypeCodeMarkup, TypeMember, TypeMemberDefinition,
-    TypeMemberMarkup, TypeSpec, TypesChild, ExtensionChild,
+    EnumSpec, EnumsChild, ExtensionChild, FatalError, InterfaceItem, RegistryChild, TypeCodeMarkup, TypeMember,
+    TypeMemberDefinition, TypeMemberMarkup, TypeSpec, TypesChild,
 };
 
 pub const EXTENSION_BLOCK_LIST: &[&str] = &["VK_EXT_video", "VK_QCOM", "VK_QNX", "VK_GGP"];
@@ -63,6 +63,7 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
             RegistryChild::Enums(enums) => match enums.kind.as_deref() {
                 Some("bitmask") => out.visit_flagbits(enums),
                 Some("enum") => out.visit_enum(enums),
+                None => out.visit_consts(enums),
                 _ => (),
             },
             RegistryChild::Commands(commands) => commands.children.into_iter().for_each(|child| match child {
@@ -83,7 +84,9 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
                     }
                 });
             },
-            RegistryChild::Extensions(extensions) => extensions.children.into_iter().for_each(|ext| out.visit_extension(ext)),
+            RegistryChild::Extensions(extensions) => {
+                extensions.children.into_iter().for_each(|ext| out.visit_extension(ext))
+            },
 
             // TODO: deal with formats, SPIR-V (for magritte-shaders and magritte-rg later) and platforms
             RegistryChild::SpirvExtensions(_)
@@ -115,8 +118,7 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
         out.handles.len() - 1,
     ));
 
-    *out
-        .functions
+    *out.functions
         .get_by_name_mut("vkGetSwapchainImagesKHR")
         .unwrap()
         .arguments_mut()
@@ -175,13 +177,11 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
                 if let Some(handle) = out.handles.get_by_name_mut(name) {
                     handle.add_function(<Function as SymbolName>::name(function));
                 } else {
-                    out.loader_functions
-                        .push(<Function as SymbolName>::name(function));
+                    out.loader_functions.push(<Function as SymbolName>::name(function));
                 }
             },
             _ => {
-                out.loader_functions
-                    .push(<Function as SymbolName>::name(function));
+                out.loader_functions.push(<Function as SymbolName>::name(function));
             },
         }
 
@@ -282,6 +282,8 @@ trait Visitor<'a> {
 
     fn visit_enum(&mut self, enums: vk_parse::Enums);
 
+    fn visit_consts(&mut self, consts: vk_parse::Enums);
+
     fn visit_flagbits(&mut self, enums: vk_parse::Enums);
 
     fn visit_command_alias(&mut self, original_name: String, alias: String);
@@ -295,16 +297,6 @@ trait Visitor<'a> {
 
 macro_rules! symbol {
     ($this:ident, $name:ident: $ty:ident) => {
-        $this.global.extend($this.$name.iter().enumerate().filter(|(_, v)| v.origin().is_unknown()).map(|(idx, value)| {
-            (
-                SymbolName::name(value),
-                SymbolName::pretty_name(value),
-                SourceType::$ty,
-                idx,
-            )
-        }));
-    };
-    ($this:ident, !$name:ident: $ty:ident) => {
         $this.global.extend($this.$name.iter().enumerate().map(|(idx, value)| {
             (
                 SymbolName::name(value),
@@ -315,12 +307,9 @@ macro_rules! symbol {
         }));
     };
 
-    ($this:ident, $($name:ident: $ty:ident),*, $(!$name2:ident: $ty2:ident),* $(,)*) => {
+    ($this:ident, $($name:ident: $ty:ident),* $(,)*) => {
         $(
             symbol!{ $this, $name: $ty }
-        )*
-        $(
-            symbol!{ $this, !$name2: $ty2 }
         )*
     };
 }
@@ -345,8 +334,8 @@ impl<'a> Visitor<'a> for Source<'a> {
             aliases: Alias,
             opaque_types: Opaque,
             extensions: Extension,
-            !tags: Tag,
-            !vendors: Vendor,
+            tags: Tag,
+            vendors: Vendor,
         }
     }
 
@@ -360,7 +349,9 @@ impl<'a> Visitor<'a> for Source<'a> {
 
     fn visit_opaque(&mut self, type_: vk_parse::Type) {
         let requires = type_.requires.expect("not an opaque type");
-        if requires.ends_with(".h") {
+
+        // TODO: add support for VK_VIDEO
+        if requires.ends_with(".h") && !requires.starts_with("vk_video/vulkan_video_codec_") {
             let name = type_.name.expect("missing a name");
 
             self.opaque_types_mut()
@@ -596,7 +587,7 @@ impl<'a> Visitor<'a> for Source<'a> {
             match child {
                 EnumsChild::Enum(enum_) => {
                     let bit_original_name = enum_.name;
-                    let bit_name = enum_name(&original_name, tag, Some(&name));
+                    let bit_name = enum_name(&bit_original_name, tag, Some(&name));
                     match enum_.spec {
                         EnumSpec::Alias { alias, .. } => {
                             aliases.push(Alias::new_no_origin(bit_original_name, bit_name, alias));
@@ -638,7 +629,7 @@ impl<'a> Visitor<'a> for Source<'a> {
             match child {
                 EnumsChild::Enum(enum_) => {
                     let bit_original_name = enum_.name;
-                    let bit_name = bit_name(&original_name, tag, Some(&name));
+                    let bit_name = bit_name(&bit_original_name, tag, Some(&name));
                     match enum_.spec {
                         EnumSpec::Alias { alias, .. } => {
                             aliases.push(Alias::new_no_origin(bit_original_name, bit_name, alias));
@@ -751,8 +742,8 @@ impl<'a> Visitor<'a> for Source<'a> {
 
         match item {
             InterfaceItem::Type { name, .. } | InterfaceItem::Command { name, .. } => {
-                if let Some(ref_mut) = self.find_mut(&name) {
-                    ref_mut.assign_origin(origin);
+                if let Some(item) = self.find_mut(&name) {
+                    item.assign_origin(origin);
                 }
             },
             InterfaceItem::Enum(enum_) => {
@@ -770,7 +761,7 @@ impl<'a> Visitor<'a> for Source<'a> {
                                 let tag = tag_of_type(item.original_name(), self.tags.as_slice());
                                 let name = enum_name(&original_name, tag, Some(item.name()));
                                 let alias = Alias::new(original_name, name, alias, origin);
-                                
+
                                 item.aliases_mut().push(alias);
                             } else {
                                 unreachable!("unknown bitflag/enum: {extends}");
@@ -781,7 +772,12 @@ impl<'a> Visitor<'a> for Source<'a> {
                                 .push(ConstAlias::new(original_name, name, alias, origin));
                         }
                     },
-                    EnumSpec::Offset { offset, extends, extnumber, dir } => {
+                    EnumSpec::Offset {
+                        offset,
+                        extends,
+                        extnumber,
+                        dir,
+                    } => {
                         let base = extnumber.unwrap_or(origin.id()) - 1;
                         let negative = !dir;
                         let value = if negative { -1 } else { 1 } * (1_000_000_000 + base * 1_000 + offset);
@@ -795,34 +791,41 @@ impl<'a> Visitor<'a> for Source<'a> {
                             let tag = tag_of_type(item.original_name(), self.tags.as_slice());
                             let name = enum_name(&original_name, tag, Some(item.name()));
                             let variant = Bit::new(original_name, name, value, origin);
-                            
+
                             item.variants_mut().push(variant);
                         } else {
                             unreachable!("unknown bitflag/enum: {extends}");
                         }
                     },
-                    EnumSpec::Bitpos { bitpos, extends } => if let Some(extends) = extends {
-                        let value = 1 << bitpos;
-                        if let Some(item) = self.bitflags.get_by_name_mut(&extends) {
-                            let tag = tag_of_type(item.original_name(), self.tags.as_slice());
-                            let name = bit_name(&original_name, tag, Some(item.name()));
-                            let bit = Bit::new(original_name, name, value, origin);
+                    EnumSpec::Bitpos { bitpos, extends } => {
+                        if let Some(extends) = extends {
+                            let value = 1 << bitpos;
+                            if let Some(item) = self.bitflags.get_by_name_mut(&extends) {
+                                let tag = tag_of_type(item.original_name(), self.tags.as_slice());
+                                let name = bit_name(&original_name, tag, Some(item.name()));
+                                let bit = Bit::new(original_name, name, value, origin);
 
-                            item.bits_mut().push(bit);
-                        } else if let Some(item) = self.enums.get_by_name_mut(&extends) {
-                            let tag = tag_of_type(item.original_name(), self.tags.as_slice());
-                            let name = enum_name(&original_name, tag, Some(item.name()));
-                            let variant = Bit::new(original_name, name, value, origin);
-                            
-                            item.variants_mut().push(variant);
+                                item.bits_mut().push(bit);
+                            } else if let Some(item) = self.enums.get_by_name_mut(&extends) {
+                                let tag = tag_of_type(item.original_name(), self.tags.as_slice());
+                                let name = enum_name(&original_name, tag, Some(item.name()));
+                                let variant = Bit::new(original_name, name, value, origin);
+
+                                item.variants_mut().push(variant);
+                            } else {
+                                unreachable!("unknown bitflag/enum: {extends}");
+                            }
                         } else {
-                            unreachable!("unknown bitflag/enum: {extends}");
+                            let value = 1 << bitpos;
+                            let name = const_name(&original_name, None);
+                            self.constants_mut().push(Const::new(
+                                original_name,
+                                name,
+                                Ty::u32(),
+                                Expr::ConstantInt(value),
+                                origin,
+                            ));
                         }
-                    } else {
-                        let value = 1 << bitpos;
-                        let name = const_name(&original_name, None);
-                        self.constants_mut()
-                            .push(Const::new(original_name, name, Ty::u32(), Expr::ConstantInt(value), origin));
                     },
                     EnumSpec::Value { value, extends } => {
                         let value = parse_expr(&value).expect("failed to parse expr").1;
@@ -832,13 +835,13 @@ impl<'a> Visitor<'a> for Source<'a> {
                                 let tag = tag_of_type(item.original_name(), self.tags.as_slice());
                                 let name = bit_name(&original_name, tag, Some(item.name()));
                                 let bit = Bit::new(original_name, name, value.compute(), origin);
-    
+
                                 item.bits_mut().push(bit);
                             } else if let Some(item) = self.enums.get_by_name_mut(&extends) {
                                 let tag = tag_of_type(item.original_name(), self.tags.as_slice());
                                 let name = enum_name(&original_name, tag, Some(item.name()));
                                 let variant = Bit::new(original_name, name, value.compute(), origin);
-                                
+
                                 item.variants_mut().push(variant);
                             } else {
                                 unreachable!("unknown bitflag/enum: {extends}");
@@ -868,7 +871,7 @@ impl<'a> Visitor<'a> for Source<'a> {
                             ref_mut.assign_origin(origin);
                         }
                     },
-                    other => unreachable!("unknown enum spec: {other:?}")
+                    other => unreachable!("unknown enum spec: {other:?}"),
                 }
             },
             InterfaceItem::Comment(_) => (),
@@ -898,16 +901,12 @@ impl<'a> Visitor<'a> for Source<'a> {
 
         let min_core = extension
             .requires_core
-            .as_ref()
-            .map(|s| s as &str)
+            .as_deref()
             .map_or(Origin::Vulkan1_0, Origin::from_core);
 
-
-        let required = extension
-            .requires
-            .as_ref()
-            .map_or_else(Vec::new, |s| s.split(',').map(ToString::to_string).map(Cow::Owned).collect());
-
+        let required = extension.requires.as_ref().map_or_else(Vec::new, |s| {
+            s.split(',').map(ToString::to_string).map(Cow::Owned).collect()
+        });
 
         let deprecation_status = DeprecationStatus::new(
             extension.promotedto.as_ref(),
@@ -915,15 +914,7 @@ impl<'a> Visitor<'a> for Source<'a> {
             extension.obsoletedby.as_ref(),
         );
 
-        let ext = Extension::new(
-            name,
-            disabled,
-            id,
-            ty,
-            min_core,
-            required,
-            deprecation_status,
-        );
+        let ext = Extension::new(name, disabled, id, ty, min_core, required, deprecation_status);
 
         let origin = ext.origin().clone();
 
@@ -935,6 +926,42 @@ impl<'a> Visitor<'a> for Source<'a> {
                     .into_iter()
                     .for_each(|item| self.assign_origin(origin.clone(), item));
             }
+        });
+    }
+
+    fn visit_consts(&mut self, consts: vk_parse::Enums) {
+        let name = consts.name.expect("missing name");
+
+        let origin = if name == "API Constants" {
+            Origin::Vulkan1_0
+        } else {
+            Origin::Unknown
+        };
+
+        consts.children.into_iter().for_each(|child| match child {
+            EnumsChild::Enum(en) => match en.spec {
+                EnumSpec::Alias { alias, .. } => {
+                    let original_name = en.name;
+                    let name = const_name(&original_name, None);
+
+                    self.constant_aliases
+                        .push(ConstAlias::new_no_origin(original_name, name, alias));
+                },
+                EnumSpec::Value { value, .. } => {
+                    let original_name = en.name;
+                    let name = const_name(&original_name, None);
+
+                    let ty = ty_with_name(en.type_suffix.as_ref().unwrap(), "").1;
+
+                    let expr = parse_expr(&value).expect("failed to parse expression").1;
+
+                    self.constants
+                        .push(Const::new(original_name, name, ty, expr, origin.clone()));
+                },
+                other => unreachable!("const spec: {:?}", other),
+            },
+            EnumsChild::Unused(_) | EnumsChild::Comment(_) => (),
+            other => panic!("unknown child type: {:?}", other),
         });
     }
 }

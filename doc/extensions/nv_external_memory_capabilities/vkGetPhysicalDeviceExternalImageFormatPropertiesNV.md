@@ -49,14 +49,14 @@ Otherwise, they are filled in as described for
 *   - `VK_ERROR_OUT_OF_HOST_MEMORY`  - `VK_ERROR_OUT_OF_DEVICE_MEMORY`  - `VK_ERROR_FORMAT_NOT_SUPPORTED`
 
 # Related
-- [`nv_external_memory_capabilities`]
+- [`VK_NV_external_memory_capabilities`]
 - [`ExternalImageFormatPropertiesNV`]
-- [VkExternalMemoryHandleTypeFlagsNV]()
+- [`ExternalMemoryHandleTypeFlagsNV`]
 - [`Format`]
-- [VkImageCreateFlags]()
+- [`ImageCreateFlags`]
 - [`ImageTiling`]
 - [`ImageType`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`PhysicalDevice`]
 
 # Notes and documentation

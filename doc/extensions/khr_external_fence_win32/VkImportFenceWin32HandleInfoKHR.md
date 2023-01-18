@@ -45,10 +45,10 @@ The handle types supported by [`handle_type`] are:
 - Host access to [`fence`] **must**  be externally synchronized
 
 # Related
-- [`khr_external_fence_win32`]
+- [`VK_KHR_external_fence_win32`]
 - [`ExternalFenceHandleTypeFlagBits`]
 - [`Fence`]
-- [VkFenceImportFlags]()
+- [`FenceImportFlags`]
 - [`StructureType`]
 - [`import_fence_win32_handle_khr`]
 

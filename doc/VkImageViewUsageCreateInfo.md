@@ -36,7 +36,7 @@ determining the valid usage conditions of [`ImageViewCreateInfo`].
 
 # Related
 - [`crate::vulkan1_1`]
-- [VkImageUsageFlags]()
+- [`ImageUsageFlags`]
 - [`StructureType`]
 
 # Notes and documentation

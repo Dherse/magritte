@@ -35,7 +35,7 @@ descriptor type lists in
 -    If [`mutable_descriptor_type_list_count`] is not `0`, [`mutable_descriptor_type_lists`] **must**  be a valid pointer to an array of [`mutable_descriptor_type_list_count`] valid [`MutableDescriptorTypeListVALVE`] structures
 
 # Related
-- [`valve_mutable_descriptor_type`]
+- [`VK_VALVE_mutable_descriptor_type`]
 - [`MutableDescriptorTypeListVALVE`]
 - [`StructureType`]
 

@@ -39,7 +39,7 @@ to specifying this structure with a [`discard_rectangle_count`] of `0`.
 -  [`discard_rectangle_mode`] **must**  be a valid [`DiscardRectangleModeEXT`] value
 
 # Related
-- [`ext_discard_rectangles`]
+- [`VK_EXT_discard_rectangles`]
 - [`DiscardRectangleModeEXT`]
 - [`PipelineDiscardRectangleStateCreateFlagsEXT`]
 - [`Rect2D`]

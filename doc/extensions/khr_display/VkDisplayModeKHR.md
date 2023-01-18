@@ -8,7 +8,7 @@ VK_DEFINE_NON_DISPATCHABLE_HANDLE(VkDisplayModeKHR)
 ```
 
 # Related
-- [`khr_display`]
+- [`VK_KHR_display`]
 - [`DisplayModePropertiesKHR`]
 - [`DisplayPlaneInfo2KHR`]
 - [`DisplaySurfaceCreateInfoKHR`]

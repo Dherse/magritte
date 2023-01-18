@@ -4,6 +4,6 @@ color output in the [Multisample Coverage](https://www.khronos.org/registry/vulk
 operation.
 If this feature is not enabled, then the `alphaToOneEnable` member
 of the [`PipelineMultisampleStateCreateInfo`] structure  **must**  be set
-to `VK_FALSE`.
-Otherwise setting `alphaToOneEnable` to `VK_TRUE` will enable
+to [`FALSE`].
+Otherwise setting `alphaToOneEnable` to [`TRUE`] will enable
 alpha-to-one behavior.

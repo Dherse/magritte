@@ -57,7 +57,7 @@ the return value will be the same address that was returned at capture time.
 -  [`p_info`] **must**  be a valid pointer to a valid [`BufferDeviceAddressInfo`] structure
 
 # Related
-- [`khr_buffer_device_address`]
+- [`VK_KHR_buffer_device_address`]
 - [`crate::vulkan1_2`]
 - [`BufferDeviceAddressInfo`]
 - [`Device`]

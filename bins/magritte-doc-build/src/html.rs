@@ -1,8 +1,8 @@
 use std::{borrow::Cow, collections::HashMap, mem::swap};
 
 use ego_tree::NodeRef;
-use magritte_types::{Queryable, Source};
 use magritte_parse::native_raw;
+use magritte_types::{Queryable, Source};
 use nom::combinator::all_consuming;
 use regex::{Regex, Replacer};
 use scraper::{ElementRef, Node, Selector};

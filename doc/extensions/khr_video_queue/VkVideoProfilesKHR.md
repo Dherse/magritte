@@ -25,7 +25,7 @@ typedef struct VkVideoProfilesKHR {
 -  [`profile_count`] **must**  be greater than `0`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`PhysicalDeviceVideoFormatInfoKHR`]
 - [`StructureType`]
 - [`VideoProfileKHR`]

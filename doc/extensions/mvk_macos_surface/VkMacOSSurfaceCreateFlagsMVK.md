@@ -7,7 +7,7 @@ typedef VkFlags VkMacOSSurfaceCreateFlagsMVK;
 ```
 
 # Related
-- [`mvk_macos_surface`]
+- [`VK_MVK_macos_surface`]
 - [`MacOsSurfaceCreateInfoMVK`]
 
 # Notes and documentation

@@ -28,8 +28,8 @@ typedef struct VkImageSwapchainCreateInfoKHR {
 -    If [`swapchain`] is not [`crate::Handle::null`], [`swapchain`] **must**  be a valid [`SwapchainKHR`] handle
 
 # Related
-- [`khr_device_group`]
-- [`khr_swapchain`]
+- [`VK_KHR_device_group`]
+- [`VK_KHR_swapchain`]
 - [`crate::vulkan1_1`]
 - [`StructureType`]
 - [`SwapchainKHR`]

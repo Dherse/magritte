@@ -1,4 +1,13 @@
-use magritte_types::{Source, Origin, Extension, Const, ConstAlias, OpaqueType, Alias, Struct, Union, Handle, FunctionPointer, Basetype, Bitmask, Enum, CommandAlias, Function, Bitflag};
+pub mod imports;
+pub mod rustfmt;
+pub mod ugly_diff_paths;
+pub mod origin;
+pub mod extensions;
+
+use magritte_types::{
+    Alias, Basetype, Bitflag, Bitmask, CommandAlias, Const, ConstAlias, Enum, Extension, Function, FunctionPointer,
+    Handle, OpaqueType, Origin, Source, Struct, Union,
+};
 
 const VERSIONS: &[Origin<'static>] = &[
     Origin::Vulkan1_0,
@@ -51,7 +60,6 @@ bitflags::bitflags! {
     }
 }
 
-
 pub trait Visitable<'a> {
     fn visit_all<V: Visitor>(&self, visitor: &mut V) {
         self.visit(visitor, VisitorFlags::all())
@@ -66,22 +74,25 @@ impl<'a> Visitable<'a> for Source<'a> {
     fn visit<V: Visitor>(&self, visitor: &mut V, flags: VisitorFlags) {
         if flags.contains(VisitorFlags::ORIGINS) {
             for origin in self.origins.iter().filter(|o| !o.is_disabled()) {
-                let visitor = visitor.visit_origin(self, origin);
-                self.visit_origin(origin, visitor, flags).finish();
+                if let Some(visitor) = visitor.visit_origin(self, origin) {
+                    self.visit_origin(origin, visitor, flags).finish();
+                }
             }
         }
 
         if flags.contains(VisitorFlags::VERSIONS) {
             for origin in VERSIONS {
-                let visitor = visitor.visit_version(self, origin);
-                self.visit_origin(origin, visitor, flags).finish();
+                if let Some(visitor) = visitor.visit_version(self, origin) {
+                    self.visit_origin(origin, visitor, flags).finish();
+                }
             }
         }
 
         if flags.contains(VisitorFlags::EXTENSIONS) {
             for extension in self.extensions.iter().filter(|e| !e.disabled()) {
-                let visitor = visitor.visit_extension(self, extension);
-                self.visit_origin(extension.origin(), visitor, flags).finish();
+                if let Some(visitor) = visitor.visit_extension(self, extension) {
+                    self.visit_origin(extension.origin(), visitor, flags).finish();
+                }
             }
         }
     }
@@ -209,11 +220,24 @@ pub trait Visitor {
     where
         Self: 'parent;
 
-    fn visit_origin<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Self::OriginVisitor<'_>;
+    #[allow(unused_variables)]
+    fn visit_origin<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Option<Self::OriginVisitor<'_>> {
+        None
+    }
 
-    fn visit_version<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Self::VersionVisitor<'_>;
+    #[allow(unused_variables)]
+    fn visit_version<'a>(&mut self, source: &Source<'a>, origin: &Origin<'a>) -> Option<Self::VersionVisitor<'_>> {
+        None
+    }
 
-    fn visit_extension<'a>(&mut self, source: &Source<'a>, extension: &Extension<'a>) -> Self::ExtensionVisitor<'_>;
+    #[allow(unused_variables)]
+    fn visit_extension<'a>(
+        &mut self,
+        source: &Source<'a>,
+        extension: &Extension<'a>,
+    ) -> Option<Self::ExtensionVisitor<'_>> {
+        None
+    }
 }
 
 pub trait OriginVisitor<'parent>: Sized + 'parent {

@@ -50,6 +50,23 @@ impl<'a> Alias<'a> {
         self.name.as_ref()
     }
 
+    #[cfg(feature = "codegen")]
+    pub fn as_ident(&self) -> proc_macro2::Ident {
+        if self.name().starts_with(char::is_numeric) {
+            quote::format_ident!("N{}", self.name)
+        } else {
+            proc_macro2::Ident::new(self.name(), proc_macro2::Span::call_site())
+        }
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
+        let original_name = self.original_name();
+        (self.name() != self.original_name()).then(|| quote::quote! {
+            #[doc(alias = #original_name)]
+        })
+    }
+
     /// Get a reference to the alias's origin.
     #[inline]
     pub const fn origin(&self) -> &Origin<'a> {

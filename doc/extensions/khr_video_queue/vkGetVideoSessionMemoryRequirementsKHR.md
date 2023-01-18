@@ -44,7 +44,7 @@ memory heap types were returned.
 *   - `VK_ERROR_INITIALIZATION_FAILED`
 
 # Related
-- [`khr_video_queue`]
+- [`VK_KHR_video_queue`]
 - [`Device`]
 - [`VideoGetMemoryPropertiesKHR`]
 - [`VideoSessionKHR`]

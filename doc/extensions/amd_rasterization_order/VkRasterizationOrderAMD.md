@@ -13,11 +13,11 @@ typedef enum VkRasterizationOrderAMD {
 ```
 
 # Description
-- [`VK_RASTERIZATION_ORDER_AMD`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
-- [`VK_RASTERIZATION_ORDER_AMD`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+- [`STRICT`] specifies that operations for each primitive in a subpass  **must**  occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
+- [`RELAXED`] specifies that operations for each primitive in a subpass  **may**  not occur in [primitive order](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-primitive-order).
 
 # Related
-- [`amd_rasterization_order`]
+- [`VK_AMD_rasterization_order`]
 - [`PipelineRasterizationStateRasterizationOrderAMD`]
 
 # Notes and documentation

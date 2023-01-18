@@ -15,7 +15,7 @@ exported.
 
 # Dependencies
 - Requires Vulkan 1.0
-- Requires `[`khr_external_fence_capabilities`]`
+- Requires `[`VK_KHR_external_fence_capabilities`]`
 
 # Deprecation state
 - *Promoted* to [Vulkan 1.1](https://www.khronos.org/registry/vulkan/specs/1.3-extensions/html/vkspec.html#versions-1.1-promotions)
@@ -33,14 +33,14 @@ exported.
 - [`FenceImportFlagsKHR`]
 
 # New constants
-- `VK_KHR_EXTERNAL_FENCE_EXTENSION_NAME`
-- `VK_KHR_EXTERNAL_FENCE_SPEC_VERSION`
+- [`KHR_EXTERNAL_FENCE_EXTENSION_NAME`]
+- [`KHR_EXTERNAL_FENCE_SPEC_VERSION`]
 - Extending [`FenceImportFlagBits`]:  - `VK_FENCE_IMPORT_TEMPORARY_BIT_KHR` 
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_EXPORT_FENCE_CREATE_INFO_KHR`
 
 # Known issues & F.A.Q.
 This extension borrows concepts, semantics, and language from
-`[`khr_external_semaphore`]`.
+`[`VK_KHR_external_semaphore`]`.
 That extension’s issues apply equally to this extension.
 
 # Version history
@@ -50,7 +50,7 @@ That extension’s issues apply equally to this extension.
 * 2017-05-08
 * No known IP claims.
 *   - Promoted to Vulkan 1.1 Core 
-*   - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  - Contributors to `[`khr_external_semaphore`]`
+*   - Jesse Hall, Google  - James Jones, NVIDIA  - Jeff Juliano, NVIDIA  - Cass Everitt, Oculus  - Contributors to `[`VK_KHR_external_semaphore`]`
 
 # Related
 - [`ExportFenceCreateInfoKHR`]

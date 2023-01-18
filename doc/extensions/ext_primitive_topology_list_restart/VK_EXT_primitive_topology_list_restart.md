@@ -22,8 +22,8 @@ functionality on Vulkan by avoiding emulation which incurs data copies.
 - Extending [`PhysicalDeviceFeatures2`], [`DeviceCreateInfo`]:  - [`PhysicalDevicePrimitiveTopologyListRestartFeaturesEXT`]
 
 # New constants
-- `VK_EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME`
-- `VK_EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION`
+- [`EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_EXTENSION_NAME`]
+- [`EXT_PRIMITIVE_TOPOLOGY_LIST_RESTART_SPEC_VERSION`]
 - Extending [`StructureType`]:  - `VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PRIMITIVE_TOPOLOGY_LIST_RESTART_FEATURES_EXT`
 
 # Version history

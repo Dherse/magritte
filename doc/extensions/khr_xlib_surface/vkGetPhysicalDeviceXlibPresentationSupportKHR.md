@@ -15,8 +15,8 @@ VkBool32 vkGetPhysicalDeviceXlibPresentationSupportKHR(
 # Parameters
 - [`physical_device`] is the physical device.
 - [`queue_family_index`] is the queue family index.
-- [`dpy`] is a pointer to an Xlib `Display` connection to the server.
-- `visualId` is an X11 visual (`VisualID`).
+- [`dpy`] is a pointer to an Xlib [`Display`] connection to the server.
+- `visualId` is an X11 visual ([`VisualID`]).
 
 # Description
 This platform-specific function  **can**  be called prior to creating a surface.
@@ -25,10 +25,10 @@ This platform-specific function  **can**  be called prior to creating a surface.
 
 ## Valid Usage (Implicit)
 -  [`physical_device`] **must**  be a valid [`PhysicalDevice`] handle
--  [`dpy`] **must**  be a valid pointer to a `Display` value
+-  [`dpy`] **must**  be a valid pointer to a [`Display`] value
 
 # Related
-- [`khr_xlib_surface`]
+- [`VK_KHR_xlib_surface`]
 - [`PhysicalDevice`]
 
 # Notes and documentation
