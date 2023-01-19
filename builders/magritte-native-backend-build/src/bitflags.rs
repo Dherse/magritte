@@ -9,7 +9,7 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
     pub fn gen_for_bitmask(&mut self, source: &Source<'_>, bitmask: &Bitmask<'_>, bitflag: &Bitflag<'_>, ty: &TokenStream) {
         let name = bitmask.as_ident();
         let alias = bitmask.as_alias();
-        let doc = self.doc_of(&self.doc_dir_path, bitflag.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, bitflag.original_name());
 
         self.imports.push_origin(source, bitflag.origin(), bitflag.name());
 

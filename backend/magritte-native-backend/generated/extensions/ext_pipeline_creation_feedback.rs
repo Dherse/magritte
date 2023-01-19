@@ -1,3 +1,5 @@
+//!# [VK_EXT_pipeline_creation_feedback](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_pipeline_creation_feedback.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_pipeline_creation_feedback/VK_EXT_pipeline_creation_feedback.md")]
 use crate::{
     cstr,
     vulkan1_3::{

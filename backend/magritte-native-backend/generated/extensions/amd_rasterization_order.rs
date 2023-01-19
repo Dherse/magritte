@@ -1,8 +1,12 @@
+//!# [VK_AMD_rasterization_order](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_rasterization_order.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_rasterization_order/VK_AMD_rasterization_order.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPipelineRasterizationStateRasterizationOrderAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateRasterizationOrderAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_rasterization_order/VkPipelineRasterizationStateRasterizationOrderAMD.md")]
 #[doc(alias = "VkPipelineRasterizationStateRasterizationOrderAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -18,6 +22,8 @@ pub struct PipelineRasterizationStateRasterizationOrderAMD {
 pub const AMD_RASTERIZATION_ORDER_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_AMD_RASTERIZATION_ORDER_EXTENSION_NAME")]
 pub const AMD_RASTERIZATION_ORDER_EXTENSION_NAME: &'static CStr = cstr!("VK_AMD_rasterization_order");
+///# [VkRasterizationOrderAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRasterizationOrderAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_rasterization_order/VkRasterizationOrderAMD.md")]
 #[doc(alias = "VkRasterizationOrderAMD")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

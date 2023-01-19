@@ -1,8 +1,12 @@
+//!# [VK_EXT_primitive_topology_list_restart](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_primitive_topology_list_restart.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_primitive_topology_list_restart/VK_EXT_primitive_topology_list_restart.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_primitive_topology_list_restart/VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

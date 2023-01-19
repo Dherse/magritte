@@ -57,6 +57,18 @@ impl<'a> Origin<'a> {
         }
     }
 
+    /// Creates a new origin from a core version string
+    pub fn to_core(&self) -> &str {
+        match self {
+            Origin::Unknown | Origin::Opaque => unreachable!("not a core version"),
+            Origin::Extension(name, _, _) => name,
+            Origin::Vulkan1_0 => "VK_VERSION_1_0",
+            Origin::Vulkan1_1 => "VK_VERSION_1_1",
+            Origin::Vulkan1_2 => "VK_VERSION_1_2",
+            Origin::Vulkan1_3 => "VK_VERSION_1_3",
+        }
+    }
+
     /// Gets the major part of the version from an origin.
     ///
     /// # Panics
@@ -337,7 +349,8 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_3 => path.push("VK_VERSION_1_3.md"),
             Origin::Opaque => path.push("opaque.md"),
             Origin::Extension(ext, _, false) => path.push(format!(
-                "extensions/{}.md",
+                "extensions/{}/{}.md",
+                ext.trim_start_matches("VK_").to_snake_case(),
                 ext
             )),
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
@@ -358,7 +371,7 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_3 => path.push_str("/VK_VERSION_1_3.md"),
             Origin::Opaque => path.push_str("/opaque.md"),
             Origin::Extension(ext, _, false) => path.push_str(&format!(
-                "/extensions/{}.md",
+                "/{}.md",
                 ext
             )),
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
@@ -369,7 +382,7 @@ impl<'a> Origin<'a> {
     }
 
     /// As a file path of the output file for this origin
-    pub fn as_mod_dir_path<P: AsRef<Path>>(&self, path: &P) -> PathBuf {
+    pub fn as_doc_dir_path<P: AsRef<Path>>(&self, path: &P) -> PathBuf {
         let mut path: PathBuf = path.as_ref().into();
 
         match self {
@@ -384,12 +397,12 @@ impl<'a> Origin<'a> {
         path
     }
 
-    pub fn as_mod_dir_string(&self, path: &str) -> String {
+    pub fn as_doc_dir_string(&self, path: &str) -> String {
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
             Origin::Extension(ext, _, _) => {
-                format!("{}/extensions/{}", path, ext.trim_start_matches("VK_").to_snake_case())
+                format!("{path}/extensions/{}", ext.trim_start_matches("VK_").to_snake_case())
             },
             Origin::Vulkan1_0 | Origin::Vulkan1_1 | Origin::Vulkan1_2 | Origin::Vulkan1_3 | Origin::Opaque => {
                 path.to_string()

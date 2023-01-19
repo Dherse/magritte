@@ -1,3 +1,5 @@
+//!# [VK_KHR_video_decode_queue](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_decode_queue.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VK_KHR_video_decode_queue.md")]
 use crate::{
     cstr,
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkVideoDecodeCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeCapabilitiesKHR.md")]
 #[doc(alias = "VkVideoDecodeCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct VideoDecodeCapabilitiesKHR {
     p_next: *mut BaseOutStructure,
     flags: VideoDecodeCapabilityFlagsKHR,
 }
+///# [VkVideoDecodeInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeInfoKHR.md")]
 #[doc(alias = "VkVideoDecodeInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -44,6 +50,8 @@ pub struct VideoDecodeInfoKHR {
     #[doc(alias = "pReferenceSlots")]
     reference_slots: *const VideoReferenceSlotKHR,
 }
+///# [VkVideoDecodeCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoDecodeCapabilityFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -317,6 +325,8 @@ impl std::fmt::Debug for VideoDecodeCapabilityFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoDecodeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoDecodeFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -580,6 +590,8 @@ impl std::fmt::Debug for VideoDecodeFlagsKHR {
 pub const KHR_VIDEO_DECODE_QUEUE_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME")]
 pub const KHR_VIDEO_DECODE_QUEUE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_video_decode_queue");
+///# [VkVideoDecodeCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoDecodeCapabilityFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -619,6 +631,8 @@ impl VideoDecodeCapabilityFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoDecodeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoDecodeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/VkVideoDecodeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoDecodeFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -655,6 +669,8 @@ impl VideoDecodeFlagBitsKHR {
         Self(bits)
     }
 }
+///# [vkCmdDecodeVideoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDecodeVideoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_decode_queue/vkCmdDecodeVideoKHR.md")]
 #[doc(alias = "vkCmdDecodeVideoKHR")]
 pub type FNCmdDecodeVideoKhr =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_frame_info: *const VideoDecodeInfoKHR);

@@ -1,6 +1,6 @@
 use std::{
     fs::File,
-    ops::{Deref, DerefMut},
+    ops::{Deref, DerefMut, Not},
     path::PathBuf,
 };
 
@@ -30,21 +30,32 @@ impl NativeBackendVisitor {
 
         let doc_dir = doc_dir.as_ref();
 
+        let link = origin.is_opaque().not().then(|| {
+            let item = origin.to_core();
+            let link = format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
+            quote! {
+                #![doc = #link]
+            }
+        });
+
         real_path.exists().then(|| {
             let doc_path = origin.as_mod_doc_file_string(doc_dir);
             quote! {
+                #link
                 #![doc = include_str!(#doc_path)]
             }
         })
     }
 
-    pub fn doc_of<P: AsRef<str>>(&self, doc_dir: P, item: &str) -> Option<TokenStream> {
-        let real_path = self.doc.join(format!("{item}.md"));
+    pub fn doc_of<P: AsRef<str>>(&self, doc_dir: P, origin: &Origin<'_>, item: &str) -> Option<TokenStream> {
+        let real_path = origin.as_doc_dir_path(&self.doc).join(format!("{item}.md"));
         let doc_dir = doc_dir.as_ref();
 
+        let link = format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
         real_path.exists().then(|| {
             let doc_path = format!("{doc_dir}/{item}.md");
             quote! {
+                #[doc = #link]
                 #[doc = include_str!(#doc_path)]
             }
         })
@@ -85,7 +96,7 @@ impl Visitor for NativeBackendVisitor {
         let absolute = mod_path.canonicalize().expect("failed to canonicalize path");
         let doc_dir = ugly_diff_paths(&self.doc, &absolute).expect("no relative path");
 
-        let doc_dir_path = origin.as_mod_dir_string(&doc_dir);
+        let doc_dir_path = origin.as_doc_dir_string(&doc_dir);
 
         let parent = mod_path.parent().expect("missing parent on path");
         if !parent.exists() {
@@ -119,7 +130,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
         let ty = constant_type(const_.ty(), &mut self.imports);
         let value = constant_value(const_.value(), source, &mut self.imports);
 
-        let doc = self.doc_of(&self.doc_dir_path, const_.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, const_.original_name());
         let alias = const_.as_alias();
 
         let mut out = &mut self.out;
@@ -218,7 +229,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
 
     fn visit_struct<'a>(&mut self, source: &Source<'a>, struct_: &Struct<'a>) {
         let name = struct_.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, struct_.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, struct_.original_name());
         let alias = struct_.as_alias();
 
         let fields = struct_
@@ -254,7 +265,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
 
     fn visit_union<'a>(&mut self, source: &Source<'a>, union_: &Union<'a>) {
         let name = union_.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, union_.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, union_.original_name());
         let alias = union_.as_alias();
 
         let fields = union_
@@ -290,7 +301,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
 
     fn visit_handle<'a>(&mut self, _source: &Source<'a>, handle: &Handle<'a>) {
         let name = handle.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, handle.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, handle.original_name());
         let alias = handle.as_alias();
 
         let storage = if handle.dispatchable() {
@@ -331,7 +342,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
 
     fn visit_function_pointer<'a>(&mut self, source: &Source<'a>, function_pointer: &FunctionPointer<'a>) {
         let name = function_pointer.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, function_pointer.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, function_pointer.original_name());
         let alias = function_pointer.as_alias();
 
         let args = function_pointer
@@ -364,7 +375,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
 
     fn visit_base_type<'a>(&mut self, _source: &Source<'a>, base_type: &Basetype<'a>) {
         let name = base_type.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, base_type.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, base_type.original_name());
         let alias = base_type.as_alias();
 
         let ty = constant_type(base_type.of(), &mut self.imports);

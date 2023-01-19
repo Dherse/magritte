@@ -1,3 +1,5 @@
+//!# [VK_KHR_imageless_framebuffer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_imageless_framebuffer.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_imageless_framebuffer/VK_KHR_imageless_framebuffer.md")]
 use crate::{
     cstr,
     vulkan1_2::{

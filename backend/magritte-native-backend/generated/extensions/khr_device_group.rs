@@ -1,3 +1,5 @@
+//!# [VK_KHR_device_group](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_device_group.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VK_KHR_device_group.md")]
 #[cfg(feature = "VK_KHR_surface")]
 use crate::extensions::khr_surface::SurfaceKHR;
 #[cfg(feature = "VK_KHR_swapchain")]
@@ -49,6 +51,8 @@ pub type DeviceGroupSubmitInfoKHR = DeviceGroupSubmitInfo;
 ///See [`DeviceGroupBindSparseInfo`]
 #[doc(alias = "VkDeviceGroupBindSparseInfoKHR")]
 pub type DeviceGroupBindSparseInfoKHR = DeviceGroupBindSparseInfo;
+///# [VkDeviceGroupPresentCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkDeviceGroupPresentCapabilitiesKHR.md")]
 #[doc(alias = "VkDeviceGroupPresentCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -61,6 +65,8 @@ pub struct DeviceGroupPresentCapabilitiesKHR {
     present_mask: [u32; MAX_DEVICE_GROUP_SIZE as usize],
     modes: DeviceGroupPresentModeFlagsKHR,
 }
+///# [VkImageSwapchainCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImageSwapchainCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkImageSwapchainCreateInfoKHR.md")]
 #[doc(alias = "VkImageSwapchainCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -71,6 +77,8 @@ pub struct ImageSwapchainCreateInfoKHR {
     p_next: *const BaseInStructure,
     swapchain: SwapchainKHR,
 }
+///# [VkBindImageMemorySwapchainInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindImageMemorySwapchainInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkBindImageMemorySwapchainInfoKHR.md")]
 #[doc(alias = "VkBindImageMemorySwapchainInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -83,6 +91,8 @@ pub struct BindImageMemorySwapchainInfoKHR {
     #[doc(alias = "imageIndex")]
     image_index: u32,
 }
+///# [VkAcquireNextImageInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAcquireNextImageInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkAcquireNextImageInfoKHR.md")]
 #[doc(alias = "VkAcquireNextImageInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -98,6 +108,8 @@ pub struct AcquireNextImageInfoKHR {
     #[doc(alias = "deviceMask")]
     device_mask: u32,
 }
+///# [VkDeviceGroupPresentInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkDeviceGroupPresentInfoKHR.md")]
 #[doc(alias = "VkDeviceGroupPresentInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -112,6 +124,8 @@ pub struct DeviceGroupPresentInfoKHR {
     device_masks: *const u32,
     mode: DeviceGroupPresentModeFlagBitsKHR,
 }
+///# [VkDeviceGroupSwapchainCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupSwapchainCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkDeviceGroupSwapchainCreateInfoKHR.md")]
 #[doc(alias = "VkDeviceGroupSwapchainCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -122,6 +136,8 @@ pub struct DeviceGroupSwapchainCreateInfoKHR {
     p_next: *const BaseInStructure,
     modes: DeviceGroupPresentModeFlagsKHR,
 }
+///# [VkDeviceGroupPresentModeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkDeviceGroupPresentModeFlagBitsKHR.md")]
 #[doc(alias = "VkDeviceGroupPresentModeFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -425,6 +441,8 @@ impl std::fmt::Debug for DeviceGroupPresentModeFlagsKHR {
 pub const KHR_DEVICE_GROUP_SPEC_VERSION: u32 = 4;
 #[doc(alias = "VK_KHR_DEVICE_GROUP_EXTENSION_NAME")]
 pub const KHR_DEVICE_GROUP_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_device_group");
+///# [VkDeviceGroupPresentModeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceGroupPresentModeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/VkDeviceGroupPresentModeFlagBitsKHR.md")]
 #[doc(alias = "VkDeviceGroupPresentModeFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -484,23 +502,31 @@ pub type FNCmdSetDeviceMaskKhr = FNCmdSetDeviceMask;
 ///See [`cmd_dispatch_base`]
 #[doc(alias = "vkCmdDispatchBaseKHR")]
 pub type FNCmdDispatchBaseKhr = FNCmdDispatchBase;
+///# [vkGetDeviceGroupPresentCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceGroupPresentCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/vkGetDeviceGroupPresentCapabilitiesKHR.md")]
 #[doc(alias = "vkGetDeviceGroupPresentCapabilitiesKHR")]
 pub type FNGetDeviceGroupPresentCapabilitiesKhr = unsafe extern "system" fn(
     device: Device,
     p_device_group_present_capabilities: *mut DeviceGroupPresentCapabilitiesKHR,
 ) -> VulkanResultCodes;
+///# [vkGetDeviceGroupSurfacePresentModesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDeviceGroupSurfacePresentModesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/vkGetDeviceGroupSurfacePresentModesKHR.md")]
 #[doc(alias = "vkGetDeviceGroupSurfacePresentModesKHR")]
 pub type FNGetDeviceGroupSurfacePresentModesKhr = unsafe extern "system" fn(
     device: Device,
     surface: SurfaceKHR,
     p_modes: *mut DeviceGroupPresentModeFlagsKHR,
 ) -> VulkanResultCodes;
+///# [vkAcquireNextImage2KHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImage2KHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/vkAcquireNextImage2KHR.md")]
 #[doc(alias = "vkAcquireNextImage2KHR")]
 pub type FNAcquireNextImage2Khr = unsafe extern "system" fn(
     device: Device,
     p_acquire_info: *const AcquireNextImageInfoKHR,
     p_image_index: *mut u32,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDevicePresentRectanglesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDevicePresentRectanglesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_device_group/vkGetPhysicalDevicePresentRectanglesKHR.md")]
 #[doc(alias = "vkGetPhysicalDevicePresentRectanglesKHR")]
 pub type FNGetPhysicalDevicePresentRectanglesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

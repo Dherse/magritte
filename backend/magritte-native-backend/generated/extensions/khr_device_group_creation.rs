@@ -1,3 +1,5 @@
+//!# [VK_KHR_device_group_creation](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_device_group_creation.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_device_group_creation/VK_KHR_device_group_creation.md")]
 use crate::{
     cstr,
     vulkan1_0::MAX_DEVICE_GROUP_SIZE,

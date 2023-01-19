@@ -1,8 +1,12 @@
+//!# [VK_KHR_pipeline_library](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_pipeline_library.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_library/VK_KHR_pipeline_library.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Pipeline, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPipelineLibraryCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineLibraryCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_library/VkPipelineLibraryCreateInfoKHR.md")]
 #[doc(alias = "VkPipelineLibraryCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

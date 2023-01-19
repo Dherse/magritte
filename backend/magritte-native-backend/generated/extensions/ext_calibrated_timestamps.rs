@@ -1,8 +1,12 @@
+//!# [VK_EXT_calibrated_timestamps](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_calibrated_timestamps.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_calibrated_timestamps/VK_EXT_calibrated_timestamps.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Device, PhysicalDevice, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkCalibratedTimestampInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCalibratedTimestampInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_calibrated_timestamps/VkCalibratedTimestampInfoEXT.md")]
 #[doc(alias = "VkCalibratedTimestampInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -18,6 +22,8 @@ pub struct CalibratedTimestampInfoEXT {
 pub const EXT_CALIBRATED_TIMESTAMPS_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME")]
 pub const EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_calibrated_timestamps");
+///# [VkTimeDomainEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkTimeDomainEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_calibrated_timestamps/VkTimeDomainEXT.md")]
 #[doc(alias = "VkTimeDomainEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -60,12 +66,16 @@ impl TimeDomainEXT {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceCalibrateableTimeDomainsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_calibrated_timestamps/vkGetPhysicalDeviceCalibrateableTimeDomainsEXT.md")]
 #[doc(alias = "vkGetPhysicalDeviceCalibrateableTimeDomainsEXT")]
 pub type FNGetPhysicalDeviceCalibrateableTimeDomainsExt = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_time_domain_count: *mut u32,
     p_time_domains: *mut TimeDomainEXT,
 ) -> VulkanResultCodes;
+///# [vkGetCalibratedTimestampsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetCalibratedTimestampsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_calibrated_timestamps/vkGetCalibratedTimestampsEXT.md")]
 #[doc(alias = "vkGetCalibratedTimestampsEXT")]
 pub type FNGetCalibratedTimestampsExt = unsafe extern "system" fn(
     device: Device,

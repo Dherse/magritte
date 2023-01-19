@@ -1,3 +1,5 @@
+//!# [VK_KHR_depth_stencil_resolve](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_depth_stencil_resolve.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_depth_stencil_resolve/VK_KHR_depth_stencil_resolve.md")]
 use crate::{
     cstr,
     vulkan1_2::{

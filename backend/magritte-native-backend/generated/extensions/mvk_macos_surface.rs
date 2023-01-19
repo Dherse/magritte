@@ -1,9 +1,13 @@
+//!# [VK_MVK_macos_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_MVK_macos_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/mvk_macos_surface/VK_MVK_macos_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkMacOSSurfaceCreateInfoMVK](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMacOSSurfaceCreateInfoMVK.html)
+# [doc = include_str ! ("../../../../doc/extensions/mvk_macos_surface/VkMacOSSurfaceCreateInfoMVK.md")]
 #[doc(alias = "VkMacOSSurfaceCreateInfoMVK")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -32,6 +36,8 @@ impl MacOsSurfaceCreateFlagsMVK {
 pub const MVK_MACOS_SURFACE_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_MVK_MACOS_SURFACE_EXTENSION_NAME")]
 pub const MVK_MACOS_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_MVK_macos_surface");
+///# [vkCreateMacOSSurfaceMVK](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateMacOSSurfaceMVK.html)
+# [doc = include_str ! ("../../../../doc/extensions/mvk_macos_surface/vkCreateMacOSSurfaceMVK.md")]
 #[doc(alias = "vkCreateMacOSSurfaceMVK")]
 pub type FNCreateMacOsSurfaceMvk = unsafe extern "system" fn(
     instance: Instance,

@@ -1,3 +1,5 @@
+//!# [VK_NV_coverage_reduction_mode](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_coverage_reduction_mode.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/VK_NV_coverage_reduction_mode.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceCoverageReductionModeFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCoverageReductionModeFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/VkPhysicalDeviceCoverageReductionModeFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceCoverageReductionModeFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -17,6 +21,8 @@ pub struct PhysicalDeviceCoverageReductionModeFeaturesNV {
     #[doc(alias = "coverageReductionMode")]
     coverage_reduction_mode: Bool32,
 }
+///# [VkPipelineCoverageReductionStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageReductionStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/VkPipelineCoverageReductionStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineCoverageReductionStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -29,6 +35,8 @@ pub struct PipelineCoverageReductionStateCreateInfoNV {
     #[doc(alias = "coverageReductionMode")]
     coverage_reduction_mode: CoverageReductionModeNV,
 }
+///# [VkFramebufferMixedSamplesCombinationNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFramebufferMixedSamplesCombinationNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/VkFramebufferMixedSamplesCombinationNV.md")]
 #[doc(alias = "VkFramebufferMixedSamplesCombinationNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -62,6 +70,8 @@ impl PipelineCoverageReductionStateCreateFlagsNV {
 pub const NV_COVERAGE_REDUCTION_MODE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME")]
 pub const NV_COVERAGE_REDUCTION_MODE_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_coverage_reduction_mode");
+///# [VkCoverageReductionModeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCoverageReductionModeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/VkCoverageReductionModeNV.md")]
 #[doc(alias = "VkCoverageReductionModeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -98,6 +108,8 @@ impl CoverageReductionModeNV {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_coverage_reduction_mode/vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV.md")]
 #[doc(alias = "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV")]
 pub type FNGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNv =
     unsafe extern "system" fn(

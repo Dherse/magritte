@@ -1,8 +1,12 @@
+//!# [VK_NV_corner_sampled_image](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_corner_sampled_image.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_corner_sampled_image/VK_NV_corner_sampled_image.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceCornerSampledImageFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCornerSampledImageFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_corner_sampled_image/VkPhysicalDeviceCornerSampledImageFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceCornerSampledImageFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

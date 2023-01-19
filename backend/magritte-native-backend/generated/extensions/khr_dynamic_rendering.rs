@@ -1,3 +1,5 @@
+//!# [VK_KHR_dynamic_rendering](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_dynamic_rendering.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_dynamic_rendering/VK_KHR_dynamic_rendering.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Bool32, Extent2D, ImageLayout, ImageView, SampleCountFlagBits, StructureType},
@@ -32,6 +34,8 @@ pub type CommandBufferInheritanceRenderingInfoKHR = CommandBufferInheritanceRend
 ///See [`AttachmentSampleCountInfoAMD`]
 #[doc(alias = "VkAttachmentSampleCountInfoNV")]
 pub type AttachmentSampleCountInfoNV = AttachmentSampleCountInfoAMD;
+///# [VkRenderingFragmentShadingRateAttachmentInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentShadingRateAttachmentInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_dynamic_rendering/VkRenderingFragmentShadingRateAttachmentInfoKHR.md")]
 #[doc(alias = "VkRenderingFragmentShadingRateAttachmentInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -47,6 +51,8 @@ pub struct RenderingFragmentShadingRateAttachmentInfoKHR {
     #[doc(alias = "shadingRateAttachmentTexelSize")]
     shading_rate_attachment_texel_size: Extent2D,
 }
+///# [VkRenderingFragmentDensityMapAttachmentInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRenderingFragmentDensityMapAttachmentInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_dynamic_rendering/VkRenderingFragmentDensityMapAttachmentInfoEXT.md")]
 #[doc(alias = "VkRenderingFragmentDensityMapAttachmentInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -60,6 +66,8 @@ pub struct RenderingFragmentDensityMapAttachmentInfoEXT {
     #[doc(alias = "imageLayout")]
     image_layout: ImageLayout,
 }
+///# [VkAttachmentSampleCountInfoAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleCountInfoAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_dynamic_rendering/VkAttachmentSampleCountInfoAMD.md")]
 #[doc(alias = "VkAttachmentSampleCountInfoAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -75,6 +83,8 @@ pub struct AttachmentSampleCountInfoAMD {
     #[doc(alias = "depthStencilAttachmentSamples")]
     depth_stencil_attachment_samples: SampleCountFlagBits,
 }
+///# [VkMultiviewPerViewAttributesInfoNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMultiviewPerViewAttributesInfoNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_dynamic_rendering/VkMultiviewPerViewAttributesInfoNVX.md")]
 #[doc(alias = "VkMultiviewPerViewAttributesInfoNVX")]
 #[derive(Clone, Copy)]
 #[repr(C)]

@@ -1,3 +1,5 @@
+//!# [VK_KHR_maintenance4](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance4.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_maintenance4/VK_KHR_maintenance4.md")]
 use crate::{
     cstr,
     vulkan1_3::{

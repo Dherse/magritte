@@ -1,3 +1,5 @@
+//!# [VK_EXT_transform_feedback](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_transform_feedback.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/VK_EXT_transform_feedback.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceTransformFeedbackFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTransformFeedbackFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/VkPhysicalDeviceTransformFeedbackFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct PhysicalDeviceTransformFeedbackFeaturesEXT {
     #[doc(alias = "geometryStreams")]
     geometry_streams: Bool32,
 }
+///# [VkPhysicalDeviceTransformFeedbackPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTransformFeedbackPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/VkPhysicalDeviceTransformFeedbackPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceTransformFeedbackPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -48,6 +54,8 @@ pub struct PhysicalDeviceTransformFeedbackPropertiesEXT {
     #[doc(alias = "transformFeedbackDraw")]
     transform_feedback_draw: Bool32,
 }
+///# [VkPipelineRasterizationStateStreamCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationStateStreamCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/VkPipelineRasterizationStateStreamCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineRasterizationStateStreamCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -76,6 +84,8 @@ impl PipelineRasterizationStateStreamCreateFlagsEXT {
 pub const EXT_TRANSFORM_FEEDBACK_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME")]
 pub const EXT_TRANSFORM_FEEDBACK_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_transform_feedback");
+///# [vkCmdBindTransformFeedbackBuffersEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBindTransformFeedbackBuffersEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdBindTransformFeedbackBuffersEXT.md")]
 #[doc(alias = "vkCmdBindTransformFeedbackBuffersEXT")]
 pub type FNCmdBindTransformFeedbackBuffersExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -85,6 +95,8 @@ pub type FNCmdBindTransformFeedbackBuffersExt = unsafe extern "system" fn(
     p_offsets: *const DeviceSize,
     p_sizes: *const DeviceSize,
 );
+///# [vkCmdBeginTransformFeedbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginTransformFeedbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdBeginTransformFeedbackEXT.md")]
 #[doc(alias = "vkCmdBeginTransformFeedbackEXT")]
 pub type FNCmdBeginTransformFeedbackExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -93,6 +105,8 @@ pub type FNCmdBeginTransformFeedbackExt = unsafe extern "system" fn(
     p_counter_buffers: *const Buffer,
     p_counter_buffer_offsets: *const DeviceSize,
 );
+///# [vkCmdEndTransformFeedbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndTransformFeedbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdEndTransformFeedbackEXT.md")]
 #[doc(alias = "vkCmdEndTransformFeedbackEXT")]
 pub type FNCmdEndTransformFeedbackExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -101,6 +115,8 @@ pub type FNCmdEndTransformFeedbackExt = unsafe extern "system" fn(
     p_counter_buffers: *const Buffer,
     p_counter_buffer_offsets: *const DeviceSize,
 );
+///# [vkCmdBeginQueryIndexedEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginQueryIndexedEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdBeginQueryIndexedEXT.md")]
 #[doc(alias = "vkCmdBeginQueryIndexedEXT")]
 pub type FNCmdBeginQueryIndexedExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -109,9 +125,13 @@ pub type FNCmdBeginQueryIndexedExt = unsafe extern "system" fn(
     flags: QueryControlFlags,
     index: u32,
 );
+///# [vkCmdEndQueryIndexedEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndQueryIndexedEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdEndQueryIndexedEXT.md")]
 #[doc(alias = "vkCmdEndQueryIndexedEXT")]
 pub type FNCmdEndQueryIndexedExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, query_pool: QueryPool, query: u32, index: u32);
+///# [vkCmdDrawIndirectByteCountEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDrawIndirectByteCountEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_transform_feedback/vkCmdDrawIndirectByteCountEXT.md")]
 #[doc(alias = "vkCmdDrawIndirectByteCountEXT")]
 pub type FNCmdDrawIndirectByteCountExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

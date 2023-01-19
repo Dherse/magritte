@@ -1,8 +1,12 @@
+//!# [VK_NVX_binary_import](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NVX_binary_import.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VK_NVX_binary_import.md")]
 use crate::{
     cstr,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, CommandBuffer, Device, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkCuModuleCreateInfoNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCuModuleCreateInfoNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VkCuModuleCreateInfoNVX.md")]
 #[doc(alias = "VkCuModuleCreateInfoNVX")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct CuModuleCreateInfoNVX {
     #[doc(alias = "pData")]
     data: *const std::ffi::c_void,
 }
+///# [VkCuFunctionCreateInfoNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCuFunctionCreateInfoNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VkCuFunctionCreateInfoNVX.md")]
 #[doc(alias = "VkCuFunctionCreateInfoNVX")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -28,6 +34,8 @@ pub struct CuFunctionCreateInfoNVX {
     #[doc(alias = "pName")]
     name: *const CStr,
 }
+///# [VkCuLaunchInfoNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCuLaunchInfoNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VkCuLaunchInfoNVX.md")]
 #[doc(alias = "VkCuLaunchInfoNVX")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -60,6 +68,8 @@ pub struct CuLaunchInfoNVX {
     #[doc(alias = "pExtras")]
     extras: *const *const std::ffi::c_void,
 }
+///# [VkCuModuleNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCuModuleNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VkCuModuleNVX.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkCuModuleNVX")]
 #[repr(transparent)]
@@ -74,6 +84,8 @@ impl const Default for CuModuleNVX {
         Self::null()
     }
 }
+///# [VkCuFunctionNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCuFunctionNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/VkCuFunctionNVX.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkCuFunctionNVX")]
 #[repr(transparent)]
@@ -92,6 +104,8 @@ impl const Default for CuFunctionNVX {
 pub const NVX_BINARY_IMPORT_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NVX_BINARY_IMPORT_EXTENSION_NAME")]
 pub const NVX_BINARY_IMPORT_EXTENSION_NAME: &'static CStr = cstr!("VK_NVX_binary_import");
+///# [vkCreateCuModuleNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateCuModuleNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/vkCreateCuModuleNVX.md")]
 #[doc(alias = "vkCreateCuModuleNVX")]
 pub type FNCreateCuModuleNvx = unsafe extern "system" fn(
     device: Device,
@@ -99,6 +113,8 @@ pub type FNCreateCuModuleNvx = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_module: *mut CuModuleNVX,
 ) -> VulkanResultCodes;
+///# [vkCreateCuFunctionNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateCuFunctionNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/vkCreateCuFunctionNVX.md")]
 #[doc(alias = "vkCreateCuFunctionNVX")]
 pub type FNCreateCuFunctionNvx = unsafe extern "system" fn(
     device: Device,
@@ -106,12 +122,18 @@ pub type FNCreateCuFunctionNvx = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_function: *mut CuFunctionNVX,
 ) -> VulkanResultCodes;
+///# [vkDestroyCuModuleNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyCuModuleNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/vkDestroyCuModuleNVX.md")]
 #[doc(alias = "vkDestroyCuModuleNVX")]
 pub type FNDestroyCuModuleNvx =
     unsafe extern "system" fn(device: Device, module: CuModuleNVX, p_allocator: *const AllocationCallbacks);
+///# [vkDestroyCuFunctionNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyCuFunctionNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/vkDestroyCuFunctionNVX.md")]
 #[doc(alias = "vkDestroyCuFunctionNVX")]
 pub type FNDestroyCuFunctionNvx =
     unsafe extern "system" fn(device: Device, function: CuFunctionNVX, p_allocator: *const AllocationCallbacks);
+///# [vkCmdCuLaunchKernelNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdCuLaunchKernelNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_binary_import/vkCmdCuLaunchKernelNVX.md")]
 #[doc(alias = "vkCmdCuLaunchKernelNVX")]
 pub type FNCmdCuLaunchKernelNvx =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_launch_info: *const CuLaunchInfoNVX);

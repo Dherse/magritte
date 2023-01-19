@@ -1,3 +1,5 @@
+//!# [VK_KHR_descriptor_update_template](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_descriptor_update_template.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_descriptor_update_template/VK_KHR_descriptor_update_template.md")]
 use crate::{
     cstr,
     vulkan1_0::{CommandBuffer, PipelineLayout},
@@ -36,6 +38,8 @@ pub type FNDestroyDescriptorUpdateTemplateKhr = FNDestroyDescriptorUpdateTemplat
 ///See [`update_descriptor_set_with_template`]
 #[doc(alias = "vkUpdateDescriptorSetWithTemplateKHR")]
 pub type FNUpdateDescriptorSetWithTemplateKhr = FNUpdateDescriptorSetWithTemplate;
+///# [vkCmdPushDescriptorSetWithTemplateKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdPushDescriptorSetWithTemplateKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_descriptor_update_template/vkCmdPushDescriptorSetWithTemplateKHR.md")]
 #[doc(alias = "vkCmdPushDescriptorSetWithTemplateKHR")]
 pub type FNCmdPushDescriptorSetWithTemplateKhr = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

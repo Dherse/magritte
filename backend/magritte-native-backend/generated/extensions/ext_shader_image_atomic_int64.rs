@@ -1,8 +1,12 @@
+//!# [VK_EXT_shader_image_atomic_int64](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_image_atomic_int64.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_shader_image_atomic_int64/VK_EXT_shader_image_atomic_int64.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_shader_image_atomic_int64/VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceShaderImageAtomicInt64FeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

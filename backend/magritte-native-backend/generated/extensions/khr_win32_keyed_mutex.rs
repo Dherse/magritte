@@ -1,8 +1,12 @@
+//!# [VK_KHR_win32_keyed_mutex](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_win32_keyed_mutex.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_win32_keyed_mutex/VK_KHR_win32_keyed_mutex.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, DeviceMemory, StructureType},
 };
 use std::ffi::CStr;
+///# [VkWin32KeyedMutexAcquireReleaseInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkWin32KeyedMutexAcquireReleaseInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_win32_keyed_mutex/VkWin32KeyedMutexAcquireReleaseInfoKHR.md")]
 #[doc(alias = "VkWin32KeyedMutexAcquireReleaseInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

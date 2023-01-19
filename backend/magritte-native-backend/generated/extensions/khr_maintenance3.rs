@@ -1,3 +1,5 @@
+//!# [VK_KHR_maintenance3](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance3.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_maintenance3/VK_KHR_maintenance3.md")]
 use crate::{
     cstr,
     vulkan1_1::{DescriptorSetLayoutSupport, FNGetDescriptorSetLayoutSupport, PhysicalDeviceMaintenance3Properties},

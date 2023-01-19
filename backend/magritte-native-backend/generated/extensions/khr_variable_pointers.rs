@@ -1,3 +1,5 @@
+//!# [VK_KHR_variable_pointers](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_variable_pointers.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_variable_pointers/VK_KHR_variable_pointers.md")]
 use crate::{cstr, vulkan1_1::PhysicalDeviceVariablePointersFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceVariablePointersFeatures`]

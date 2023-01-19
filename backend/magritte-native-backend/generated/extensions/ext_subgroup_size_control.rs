@@ -1,3 +1,5 @@
+//!# [VK_EXT_subgroup_size_control](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_subgroup_size_control.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_subgroup_size_control/VK_EXT_subgroup_size_control.md")]
 use crate::{
     cstr,
     vulkan1_3::{

@@ -1,8 +1,12 @@
+//!# [VK_KHR_workgroup_memory_explicit_layout](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_workgroup_memory_explicit_layout.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_workgroup_memory_explicit_layout/VK_KHR_workgroup_memory_explicit_layout.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_workgroup_memory_explicit_layout/VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

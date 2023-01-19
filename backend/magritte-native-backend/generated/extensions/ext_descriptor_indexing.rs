@@ -1,3 +1,5 @@
+//!# [VK_EXT_descriptor_indexing](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_descriptor_indexing.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_descriptor_indexing/VK_EXT_descriptor_indexing.md")]
 use crate::{
     cstr,
     vulkan1_2::{

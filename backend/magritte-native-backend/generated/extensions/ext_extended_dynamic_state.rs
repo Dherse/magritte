@@ -1,3 +1,5 @@
+//!# [VK_EXT_extended_dynamic_state](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state/VK_EXT_extended_dynamic_state.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
@@ -8,6 +10,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceExtendedDynamicStateFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicStateFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

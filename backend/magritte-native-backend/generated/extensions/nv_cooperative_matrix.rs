@@ -1,8 +1,12 @@
+//!# [VK_NV_cooperative_matrix](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_cooperative_matrix.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VK_NV_cooperative_matrix.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, PhysicalDevice, ShaderStageFlags, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceCooperativeMatrixFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VkPhysicalDeviceCooperativeMatrixFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PhysicalDeviceCooperativeMatrixFeaturesNV {
     #[doc(alias = "cooperativeMatrixRobustBufferAccess")]
     cooperative_matrix_robust_buffer_access: Bool32,
 }
+///# [VkPhysicalDeviceCooperativeMatrixPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCooperativeMatrixPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VkPhysicalDeviceCooperativeMatrixPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceCooperativeMatrixPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -27,6 +33,8 @@ pub struct PhysicalDeviceCooperativeMatrixPropertiesNV {
     #[doc(alias = "cooperativeMatrixSupportedStages")]
     cooperative_matrix_supported_stages: ShaderStageFlags,
 }
+///# [VkCooperativeMatrixPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCooperativeMatrixPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VkCooperativeMatrixPropertiesNV.md")]
 #[doc(alias = "VkCooperativeMatrixPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -55,6 +63,8 @@ pub struct CooperativeMatrixPropertiesNV {
 pub const NV_COOPERATIVE_MATRIX_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_COOPERATIVE_MATRIX_EXTENSION_NAME")]
 pub const NV_COOPERATIVE_MATRIX_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_cooperative_matrix");
+///# [VkScopeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkScopeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VkScopeNV.md")]
 #[doc(alias = "VkScopeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -97,6 +107,8 @@ impl ScopeNV {
         Self(bits)
     }
 }
+///# [VkComponentTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkComponentTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/VkComponentTypeNV.md")]
 #[doc(alias = "VkComponentTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -160,6 +172,8 @@ impl ComponentTypeNV {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceCooperativeMatrixPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_cooperative_matrix/vkGetPhysicalDeviceCooperativeMatrixPropertiesNV.md")]
 #[doc(alias = "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV")]
 pub type FNGetPhysicalDeviceCooperativeMatrixPropertiesNv = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

@@ -1,3 +1,5 @@
+//!# [VK_KHR_dedicated_allocation](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_dedicated_allocation.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_dedicated_allocation/VK_KHR_dedicated_allocation.md")]
 use crate::{
     cstr,
     vulkan1_1::{MemoryDedicatedAllocateInfo, MemoryDedicatedRequirements},

@@ -1,8 +1,12 @@
+//!# [VK_NV_linear_color_attachment](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_linear_color_attachment.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_linear_color_attachment/VK_NV_linear_color_attachment.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceLinearColorAttachmentFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLinearColorAttachmentFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_linear_color_attachment/VkPhysicalDeviceLinearColorAttachmentFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceLinearColorAttachmentFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

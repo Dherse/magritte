@@ -1,8 +1,12 @@
+//!# [VK_EXT_fragment_density_map2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_fragment_density_map2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_fragment_density_map2/VK_EXT_fragment_density_map2.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceFragmentDensityMap2FeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_fragment_density_map2/VkPhysicalDeviceFragmentDensityMap2FeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMap2FeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceFragmentDensityMap2FeaturesEXT {
     #[doc(alias = "fragmentDensityMapDeferred")]
     fragment_density_map_deferred: Bool32,
 }
+///# [VkPhysicalDeviceFragmentDensityMap2PropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentDensityMap2PropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_fragment_density_map2/VkPhysicalDeviceFragmentDensityMap2PropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentDensityMap2PropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

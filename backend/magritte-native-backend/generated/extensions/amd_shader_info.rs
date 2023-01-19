@@ -1,8 +1,12 @@
+//!# [VK_AMD_shader_info](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_info.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_shader_info/VK_AMD_shader_info.md")]
 use crate::{
     cstr,
     vulkan1_0::{Device, Pipeline, ShaderStageFlagBits, ShaderStageFlags, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkShaderResourceUsageAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderResourceUsageAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_info/VkShaderResourceUsageAMD.md")]
 #[doc(alias = "VkShaderResourceUsageAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -18,6 +22,8 @@ pub struct ShaderResourceUsageAMD {
     #[doc(alias = "scratchMemUsageInBytes")]
     scratch_mem_usage_in_bytes: usize,
 }
+///# [VkShaderStatisticsInfoAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderStatisticsInfoAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_info/VkShaderStatisticsInfoAMD.md")]
 #[doc(alias = "VkShaderStatisticsInfoAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +47,8 @@ pub struct ShaderStatisticsInfoAMD {
 pub const AMD_SHADER_INFO_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_AMD_SHADER_INFO_EXTENSION_NAME")]
 pub const AMD_SHADER_INFO_EXTENSION_NAME: &'static CStr = cstr!("VK_AMD_shader_info");
+///# [VkShaderInfoTypeAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderInfoTypeAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_info/VkShaderInfoTypeAMD.md")]
 #[doc(alias = "VkShaderInfoTypeAMD")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -80,6 +88,8 @@ impl ShaderInfoTypeAMD {
         Self(bits)
     }
 }
+///# [vkGetShaderInfoAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetShaderInfoAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_info/vkGetShaderInfoAMD.md")]
 #[doc(alias = "vkGetShaderInfoAMD")]
 pub type FNGetShaderInfoAmd = unsafe extern "system" fn(
     device: Device,

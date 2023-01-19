@@ -1,8 +1,12 @@
+//!# [VK_EXT_shader_atomic_float](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_atomic_float.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_shader_atomic_float/VK_EXT_shader_atomic_float.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderAtomicFloatFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_shader_atomic_float/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

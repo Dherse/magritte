@@ -1,9 +1,13 @@
+//!# [VK_NV_fragment_shading_rate_enums](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_fragment_shading_rate_enums.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VK_NV_fragment_shading_rate_enums.md")]
 use crate::{
     cstr,
     extensions::khr_fragment_shading_rate::FragmentShadingRateCombinerOpKHR,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, SampleCountFlagBits, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsFeaturesNV {
     #[doc(alias = "noInvocationFragmentShadingRates")]
     no_invocation_fragment_shading_rates: Bool32,
 }
+///# [VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct PhysicalDeviceFragmentShadingRateEnumsPropertiesNV {
     #[doc(alias = "maxFragmentShadingRateInvocationCount")]
     max_fragment_shading_rate_invocation_count: SampleCountFlagBits,
 }
+///# [VkPipelineFragmentShadingRateEnumStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VkPipelineFragmentShadingRateEnumStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineFragmentShadingRateEnumStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -49,6 +57,8 @@ pub struct PipelineFragmentShadingRateEnumStateCreateInfoNV {
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME")]
 pub const NV_FRAGMENT_SHADING_RATE_ENUMS_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_fragment_shading_rate_enums");
+///# [VkFragmentShadingRateNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VkFragmentShadingRateNV.md")]
 #[doc(alias = "VkFragmentShadingRateNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -115,6 +125,8 @@ impl FragmentShadingRateNV {
         Self(bits)
     }
 }
+///# [VkFragmentShadingRateTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/VkFragmentShadingRateTypeNV.md")]
 #[doc(alias = "VkFragmentShadingRateTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -151,6 +163,8 @@ impl FragmentShadingRateTypeNV {
         Self(bits)
     }
 }
+///# [vkCmdSetFragmentShadingRateEnumNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetFragmentShadingRateEnumNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_shading_rate_enums/vkCmdSetFragmentShadingRateEnumNV.md")]
 #[doc(alias = "vkCmdSetFragmentShadingRateEnumNV")]
 pub type FNCmdSetFragmentShadingRateEnumNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

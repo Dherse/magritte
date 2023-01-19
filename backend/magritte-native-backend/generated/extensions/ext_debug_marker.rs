@@ -1,8 +1,12 @@
+//!# [VK_EXT_debug_marker](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_marker.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/VK_EXT_debug_marker.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, CommandBuffer, Device, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkDebugMarkerObjectNameInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectNameInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/VkDebugMarkerObjectNameInfoEXT.md")]
 #[doc(alias = "VkDebugMarkerObjectNameInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -17,6 +21,8 @@ pub struct DebugMarkerObjectNameInfoEXT {
     #[doc(alias = "pObjectName")]
     object_name: *const CStr,
 }
+///# [VkDebugMarkerObjectTagInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerObjectTagInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/VkDebugMarkerObjectTagInfoEXT.md")]
 #[doc(alias = "VkDebugMarkerObjectTagInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -35,6 +41,8 @@ pub struct DebugMarkerObjectTagInfoEXT {
     #[doc(alias = "pTag")]
     tag: *const std::ffi::c_void,
 }
+///# [VkDebugMarkerMarkerInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugMarkerMarkerInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/VkDebugMarkerMarkerInfoEXT.md")]
 #[doc(alias = "VkDebugMarkerMarkerInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -51,6 +59,8 @@ pub struct DebugMarkerMarkerInfoEXT {
 pub const EXT_DEBUG_MARKER_SPEC_VERSION: u32 = 4;
 #[doc(alias = "VK_EXT_DEBUG_MARKER_EXTENSION_NAME")]
 pub const EXT_DEBUG_MARKER_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_debug_marker");
+///# [VkDebugReportObjectTypeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugReportObjectTypeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/VkDebugReportObjectTypeEXT.md")]
 #[doc(alias = "VkDebugReportObjectTypeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -218,17 +228,27 @@ impl DebugReportObjectTypeEXT {
         Self(bits)
     }
 }
+///# [vkDebugMarkerSetObjectNameEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDebugMarkerSetObjectNameEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/vkDebugMarkerSetObjectNameEXT.md")]
 #[doc(alias = "vkDebugMarkerSetObjectNameEXT")]
 pub type FNDebugMarkerSetObjectNameExt =
     unsafe extern "system" fn(device: Device, p_name_info: *const DebugMarkerObjectNameInfoEXT) -> VulkanResultCodes;
+///# [vkDebugMarkerSetObjectTagEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDebugMarkerSetObjectTagEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/vkDebugMarkerSetObjectTagEXT.md")]
 #[doc(alias = "vkDebugMarkerSetObjectTagEXT")]
 pub type FNDebugMarkerSetObjectTagExt =
     unsafe extern "system" fn(device: Device, p_tag_info: *const DebugMarkerObjectTagInfoEXT) -> VulkanResultCodes;
+///# [vkCmdDebugMarkerBeginEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerBeginEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/vkCmdDebugMarkerBeginEXT.md")]
 #[doc(alias = "vkCmdDebugMarkerBeginEXT")]
 pub type FNCmdDebugMarkerBeginExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_marker_info: *const DebugMarkerMarkerInfoEXT);
+///# [vkCmdDebugMarkerEndEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerEndEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/vkCmdDebugMarkerEndEXT.md")]
 #[doc(alias = "vkCmdDebugMarkerEndEXT")]
 pub type FNCmdDebugMarkerEndExt = unsafe extern "system" fn(command_buffer: CommandBuffer);
+///# [vkCmdDebugMarkerInsertEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDebugMarkerInsertEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_marker/vkCmdDebugMarkerInsertEXT.md")]
 #[doc(alias = "vkCmdDebugMarkerInsertEXT")]
 pub type FNCmdDebugMarkerInsertExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_marker_info: *const DebugMarkerMarkerInfoEXT);

@@ -1,3 +1,5 @@
+//!# [VK_KHR_push_descriptor](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_push_descriptor.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_push_descriptor/VK_KHR_push_descriptor.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -5,6 +7,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePushDescriptorPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePushDescriptorPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_push_descriptor/VkPhysicalDevicePushDescriptorPropertiesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePushDescriptorPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -20,6 +24,8 @@ pub struct PhysicalDevicePushDescriptorPropertiesKHR {
 pub const KHR_PUSH_DESCRIPTOR_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME")]
 pub const KHR_PUSH_DESCRIPTOR_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_push_descriptor");
+///# [vkCmdPushDescriptorSetKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdPushDescriptorSetKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_push_descriptor/vkCmdPushDescriptorSetKHR.md")]
 #[doc(alias = "vkCmdPushDescriptorSetKHR")]
 pub type FNCmdPushDescriptorSetKhr = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

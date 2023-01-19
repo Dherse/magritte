@@ -1,3 +1,5 @@
+//!# [VK_EXT_separate_stencil_usage](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_separate_stencil_usage.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_separate_stencil_usage/VK_EXT_separate_stencil_usage.md")]
 use crate::{cstr, vulkan1_2::ImageStencilUsageCreateInfo};
 use std::ffi::CStr;
 ///See [`ImageStencilUsageCreateInfo`]

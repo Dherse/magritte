@@ -1,3 +1,5 @@
+//!# [VK_EXT_directfb_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_directfb_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_directfb_surface/VK_EXT_directfb_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
@@ -7,6 +9,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkDirectFBSurfaceCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDirectFBSurfaceCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_directfb_surface/VkDirectFBSurfaceCreateInfoEXT.md")]
 #[doc(alias = "VkDirectFBSurfaceCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -35,6 +39,8 @@ impl DirectFBSurfaceCreateFlagsEXT {
 pub const EXT_DIRECTFB_SURFACE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_DIRECTFB_SURFACE_EXTENSION_NAME")]
 pub const EXT_DIRECTFB_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_directfb_surface");
+///# [vkCreateDirectFBSurfaceEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateDirectFBSurfaceEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_directfb_surface/vkCreateDirectFBSurfaceEXT.md")]
 #[doc(alias = "vkCreateDirectFBSurfaceEXT")]
 pub type FNCreateDirectFbSurfaceExt = unsafe extern "system" fn(
     instance: Instance,
@@ -42,6 +48,8 @@ pub type FNCreateDirectFbSurfaceExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_surface: *mut SurfaceKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceDirectFBPresentationSupportEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceDirectFBPresentationSupportEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_directfb_surface/vkGetPhysicalDeviceDirectFBPresentationSupportEXT.md")]
 #[doc(alias = "vkGetPhysicalDeviceDirectFBPresentationSupportEXT")]
 pub type FNGetPhysicalDeviceDirectFbPresentationSupportExt =
     unsafe extern "system" fn(physical_device: PhysicalDevice, queue_family_index: u32, dfb: *mut IDirectFB) -> Bool32;

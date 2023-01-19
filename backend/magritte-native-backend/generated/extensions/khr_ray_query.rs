@@ -1,8 +1,12 @@
+//!# [VK_KHR_ray_query](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_ray_query.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_ray_query/VK_KHR_ray_query.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRayQueryFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayQueryFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_ray_query/VkPhysicalDeviceRayQueryFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDeviceRayQueryFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

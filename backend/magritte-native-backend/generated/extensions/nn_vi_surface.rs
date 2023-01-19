@@ -1,9 +1,13 @@
+//!# [VK_NN_vi_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NN_vi_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nn_vi_surface/VK_NN_vi_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkViSurfaceCreateInfoNN](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkViSurfaceCreateInfoNN.html)
+# [doc = include_str ! ("../../../../doc/extensions/nn_vi_surface/VkViSurfaceCreateInfoNN.md")]
 #[doc(alias = "VkViSurfaceCreateInfoNN")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -31,6 +35,8 @@ impl ViSurfaceCreateFlagsNN {
 pub const NN_VI_SURFACE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NN_VI_SURFACE_EXTENSION_NAME")]
 pub const NN_VI_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_NN_vi_surface");
+///# [vkCreateViSurfaceNN](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateViSurfaceNN.html)
+# [doc = include_str ! ("../../../../doc/extensions/nn_vi_surface/vkCreateViSurfaceNN.md")]
 #[doc(alias = "vkCreateViSurfaceNN")]
 pub type FNCreateViSurfaceNn = unsafe extern "system" fn(
     instance: Instance,

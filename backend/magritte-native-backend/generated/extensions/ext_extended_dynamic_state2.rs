@@ -1,9 +1,13 @@
+//!# [VK_EXT_extended_dynamic_state2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state2/VK_EXT_extended_dynamic_state2.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, LogicOp, StructureType},
     vulkan1_3::{FNCmdSetDepthBiasEnable, FNCmdSetPrimitiveRestartEnable, FNCmdSetRasterizerDiscardEnable},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceExtendedDynamicState2FeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state2/VkPhysicalDeviceExtendedDynamicState2FeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicState2FeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -32,8 +36,12 @@ pub type FNCmdSetDepthBiasEnableExt = FNCmdSetDepthBiasEnable;
 ///See [`cmd_set_primitive_restart_enable`]
 #[doc(alias = "vkCmdSetPrimitiveRestartEnableEXT")]
 pub type FNCmdSetPrimitiveRestartEnableExt = FNCmdSetPrimitiveRestartEnable;
+///# [vkCmdSetPatchControlPointsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetPatchControlPointsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state2/vkCmdSetPatchControlPointsEXT.md")]
 #[doc(alias = "vkCmdSetPatchControlPointsEXT")]
 pub type FNCmdSetPatchControlPointsExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, patch_control_points: u32);
+///# [vkCmdSetLogicOpEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetLogicOpEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state2/vkCmdSetLogicOpEXT.md")]
 #[doc(alias = "vkCmdSetLogicOpEXT")]
 pub type FNCmdSetLogicOpExt = unsafe extern "system" fn(command_buffer: CommandBuffer, logic_op: LogicOp);

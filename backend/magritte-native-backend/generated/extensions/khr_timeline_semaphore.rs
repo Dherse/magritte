@@ -1,3 +1,5 @@
+//!# [VK_KHR_timeline_semaphore](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_timeline_semaphore.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_timeline_semaphore/VK_KHR_timeline_semaphore.md")]
 use crate::{
     cstr,
     vulkan1_2::{

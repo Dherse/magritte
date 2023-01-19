@@ -1,8 +1,12 @@
+//!# [VK_NV_representative_fragment_test](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_representative_fragment_test.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_representative_fragment_test/VK_NV_representative_fragment_test.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_representative_fragment_test/VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceRepresentativeFragmentTestFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceRepresentativeFragmentTestFeaturesNV {
     #[doc(alias = "representativeFragmentTest")]
     representative_fragment_test: Bool32,
 }
+///# [VkPipelineRepresentativeFragmentTestStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_representative_fragment_test/VkPipelineRepresentativeFragmentTestStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineRepresentativeFragmentTestStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

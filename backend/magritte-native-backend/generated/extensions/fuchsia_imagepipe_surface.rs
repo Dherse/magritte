@@ -1,3 +1,5 @@
+//!# [VK_FUCHSIA_imagepipe_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_FUCHSIA_imagepipe_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/fuchsia_imagepipe_surface/VK_FUCHSIA_imagepipe_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
@@ -5,6 +7,8 @@ use crate::{
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkImagePipeSurfaceCreateInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImagePipeSurfaceCreateInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_imagepipe_surface/VkImagePipeSurfaceCreateInfoFUCHSIA.md")]
 #[doc(alias = "VkImagePipeSurfaceCreateInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -33,6 +37,8 @@ impl ImagePipeSurfaceCreateFlagsFUCHSIA {
 pub const FUCHSIA_IMAGEPIPE_SURFACE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME")]
 pub const FUCHSIA_IMAGEPIPE_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_FUCHSIA_imagepipe_surface");
+///# [vkCreateImagePipeSurfaceFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateImagePipeSurfaceFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_imagepipe_surface/vkCreateImagePipeSurfaceFUCHSIA.md")]
 #[doc(alias = "vkCreateImagePipeSurfaceFUCHSIA")]
 pub type FNCreateImagePipeSurfaceFuchsia = unsafe extern "system" fn(
     instance: Instance,

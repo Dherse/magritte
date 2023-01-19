@@ -1,8 +1,12 @@
+//!# [VK_NV_shader_sm_builtins](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_shader_sm_builtins.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_shader_sm_builtins/VK_NV_shader_sm_builtins.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderSMBuiltinsPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shader_sm_builtins/VkPhysicalDeviceShaderSMBuiltinsPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PhysicalDeviceShaderSmBuiltinsPropertiesNV {
     #[doc(alias = "shaderWarpsPerSM")]
     shader_warps_per_sm: u32,
 }
+///# [VkPhysicalDeviceShaderSMBuiltinsFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shader_sm_builtins/VkPhysicalDeviceShaderSMBuiltinsFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceShaderSMBuiltinsFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

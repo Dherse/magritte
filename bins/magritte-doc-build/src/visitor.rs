@@ -63,7 +63,7 @@ impl Visitor for DocVisitor {
             buffer.extend(related);
             buffer.extend(once(copyright));
 
-            let root = origin.as_mod_dir_path(&self.path_stub);
+            let root = origin.as_doc_dir_path(&self.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", doc_name));
@@ -94,7 +94,7 @@ impl Visitor for DocVisitor {
             buffer.extend(related);
             buffer.extend(once(copyright));
 
-            let root = extension.origin().as_mod_dir_path(&self.path_stub);
+            let root = extension.origin().as_doc_dir_path(&self.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", extension.name()));
@@ -142,7 +142,7 @@ macro_rules! doc {
             $this.buffer.extend(related);
             $this.buffer.extend(once(copyright));
 
-            let root = $var.origin().as_mod_dir_path(&$this.path_stub);
+            let root = $var.origin().as_doc_dir_path(&$this.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", $var.original_name()));
@@ -170,7 +170,7 @@ macro_rules! doc {
             $this.buffer.extend(related);
             $this.buffer.extend(once(copyright));
 
-            let root = $var.origin().as_mod_dir_path(&$this.path_stub);
+            let root = $var.origin().as_doc_dir_path(&$this.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", $var.original_name()));
@@ -203,7 +203,7 @@ macro_rules! doc {
             $this.buffer.extend(related);
             $this.buffer.extend(once(copyright));
 
-            let root = $var.origin().as_mod_dir_path(&$this.path_stub);
+            let root = $var.origin().as_doc_dir_path(&$this.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", $var.original_name()));
@@ -234,7 +234,7 @@ macro_rules! doc {
             $this.buffer.extend(related);
             $this.buffer.extend(once(copyright));
 
-            let root = $var.origin().as_mod_dir_path(&$this.path_stub);
+            let root = $var.origin().as_doc_dir_path(&$this.path_stub);
             std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
             let path = root.join(format!("{}.md", $var.original_name()));
@@ -298,7 +298,7 @@ impl<'parent> OriginVisitor<'parent> for DocOriginVisitor<'parent> {
 
         let text = format!("See [`{}`] for more information", command.as_rust_path("crate"));
 
-        let root = command_alias.origin().as_mod_dir_path(&self.path_stub);
+        let root = command_alias.origin().as_doc_dir_path(&self.path_stub);
         std::fs::create_dir_all(&root).expect("failed to create doc dir");
 
         let path = root.join(format!("{}.md", command_alias.original_name()));

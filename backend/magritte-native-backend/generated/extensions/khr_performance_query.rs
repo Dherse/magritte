@@ -1,3 +1,5 @@
+//!# [VK_KHR_performance_query](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_performance_query.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VK_KHR_performance_query.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePerformanceQueryFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPhysicalDevicePerformanceQueryFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePerformanceQueryFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct PhysicalDevicePerformanceQueryFeaturesKHR {
     #[doc(alias = "performanceCounterMultipleQueryPools")]
     performance_counter_multiple_query_pools: Bool32,
 }
+///# [VkPhysicalDevicePerformanceQueryPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePerformanceQueryPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPhysicalDevicePerformanceQueryPropertiesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePerformanceQueryPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct PhysicalDevicePerformanceQueryPropertiesKHR {
     #[doc(alias = "allowCommandBufferQueryCopies")]
     allow_command_buffer_query_copies: Bool32,
 }
+///# [VkPerformanceCounterKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterKHR.md")]
 #[doc(alias = "VkPerformanceCounterKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -43,6 +51,8 @@ pub struct PerformanceCounterKHR {
     storage: PerformanceCounterStorageKHR,
     uuid: [u8; UUID_SIZE as usize],
 }
+///# [VkPerformanceCounterDescriptionKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterDescriptionKHR.md")]
 #[doc(alias = "VkPerformanceCounterDescriptionKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -56,6 +66,8 @@ pub struct PerformanceCounterDescriptionKHR {
     category: [std::ffi::c_char; MAX_DESCRIPTION_SIZE as usize],
     description: [std::ffi::c_char; MAX_DESCRIPTION_SIZE as usize],
 }
+///# [VkQueryPoolPerformanceCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueryPoolPerformanceCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkQueryPoolPerformanceCreateInfoKHR.md")]
 #[doc(alias = "VkQueryPoolPerformanceCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -71,6 +83,8 @@ pub struct QueryPoolPerformanceCreateInfoKHR {
     #[doc(alias = "pCounterIndices")]
     counter_indices: *const u32,
 }
+///# [VkAcquireProfilingLockInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkAcquireProfilingLockInfoKHR.md")]
 #[doc(alias = "VkAcquireProfilingLockInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -82,6 +96,8 @@ pub struct AcquireProfilingLockInfoKHR {
     flags: AcquireProfilingLockFlagsKHR,
     timeout: u64,
 }
+///# [VkPerformanceQuerySubmitInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceQuerySubmitInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceQuerySubmitInfoKHR.md")]
 #[doc(alias = "VkPerformanceQuerySubmitInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -93,6 +109,8 @@ pub struct PerformanceQuerySubmitInfoKHR {
     #[doc(alias = "counterPassIndex")]
     counter_pass_index: u32,
 }
+///# [VkPerformanceCounterResultKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterResultKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterResultKHR.md")]
 #[doc(alias = "VkPerformanceCounterResultKHR")]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -104,6 +122,8 @@ pub union PerformanceCounterResultKHR {
     float32: f32,
     float64: f64,
 }
+///# [VkPerformanceCounterDescriptionFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterDescriptionFlagBitsKHR.md")]
 #[doc(alias = "VkPerformanceCounterDescriptionFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -373,6 +393,8 @@ impl std::fmt::Debug for PerformanceCounterDescriptionFlagsKHR {
             .finish()
     }
 }
+///# [VkAcquireProfilingLockFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkAcquireProfilingLockFlagBitsKHR.md")]
 #[doc(alias = "VkAcquireProfilingLockFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -611,6 +633,8 @@ impl std::fmt::Debug for AcquireProfilingLockFlagsKHR {
 pub const KHR_PERFORMANCE_QUERY_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_PERFORMANCE_QUERY_EXTENSION_NAME")]
 pub const KHR_PERFORMANCE_QUERY_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_performance_query");
+///# [VkPerformanceCounterDescriptionFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterDescriptionFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterDescriptionFlagBitsKHR.md")]
 #[doc(alias = "VkPerformanceCounterDescriptionFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -647,6 +671,8 @@ impl PerformanceCounterDescriptionFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkAcquireProfilingLockFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAcquireProfilingLockFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkAcquireProfilingLockFlagBitsKHR.md")]
 #[doc(alias = "VkAcquireProfilingLockFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -677,6 +703,8 @@ impl AcquireProfilingLockFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkPerformanceCounterScopeKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterScopeKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterScopeKHR.md")]
 #[doc(alias = "VkPerformanceCounterScopeKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -722,6 +750,8 @@ impl PerformanceCounterScopeKHR {
         Self(bits)
     }
 }
+///# [VkPerformanceCounterUnitKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterUnitKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterUnitKHR.md")]
 #[doc(alias = "VkPerformanceCounterUnitKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -785,6 +815,8 @@ impl PerformanceCounterUnitKHR {
         Self(bits)
     }
 }
+///# [VkPerformanceCounterStorageKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPerformanceCounterStorageKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/VkPerformanceCounterStorageKHR.md")]
 #[doc(alias = "VkPerformanceCounterStorageKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -833,6 +865,8 @@ impl PerformanceCounterStorageKHR {
         Self(bits)
     }
 }
+///# [vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR.md")]
 #[doc(alias = "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR")]
 pub type FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr =
     unsafe extern "system" fn(
@@ -842,14 +876,20 @@ pub type FNEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKhr =
         p_counters: *mut PerformanceCounterKHR,
         p_counter_descriptions: *mut PerformanceCounterDescriptionKHR,
     ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR")]
 pub type FNGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_performance_query_create_info: *const QueryPoolPerformanceCreateInfoKHR,
     p_num_passes: *mut u32,
 );
+///# [vkAcquireProfilingLockKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkAcquireProfilingLockKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/vkAcquireProfilingLockKHR.md")]
 #[doc(alias = "vkAcquireProfilingLockKHR")]
 pub type FNAcquireProfilingLockKhr =
     unsafe extern "system" fn(device: Device, p_info: *const AcquireProfilingLockInfoKHR) -> VulkanResultCodes;
+///# [vkReleaseProfilingLockKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkReleaseProfilingLockKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_performance_query/vkReleaseProfilingLockKHR.md")]
 #[doc(alias = "vkReleaseProfilingLockKHR")]
 pub type FNReleaseProfilingLockKhr = unsafe extern "system" fn(device: Device);

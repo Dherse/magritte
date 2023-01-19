@@ -1,14 +1,18 @@
+//!# [VK_KHR_swapchain](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_swapchain.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VK_KHR_swapchain.md")]
 use crate::{
     cstr,
     extensions::khr_surface::{
         ColorSpaceKHR, CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR,
     },
     vulkan1_0::{
-        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, ImageUsageFlags,
-        ImageViewCreateInfo, Queue, Semaphore, SharingMode, StructureType, VulkanResultCodes,
+        AllocationCallbacks, BaseInStructure, Bool32, Device, Extent2D, Fence, Format, Image, ImageUsageFlags, Queue,
+        Semaphore, SharingMode, StructureType, VulkanResultCodes,
     },
 };
 use std::ffi::CStr;
+///# [VkSwapchainCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateInfoKHR.md")]
 #[doc(alias = "VkSwapchainCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -47,6 +51,8 @@ pub struct SwapchainCreateInfoKHR {
     #[doc(alias = "oldSwapchain")]
     old_swapchain: SwapchainKHR,
 }
+///# [VkPresentInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPresentInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkPresentInfoKHR.md")]
 #[doc(alias = "VkPresentInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -68,6 +74,8 @@ pub struct PresentInfoKHR {
     #[doc(alias = "pResults")]
     results: *mut VulkanResultCodes,
 }
+///# [VkSwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainKHR.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkSwapchainKHR")]
 #[repr(transparent)]
@@ -82,36 +90,8 @@ impl const Default for SwapchainKHR {
         Self::null()
     }
 }
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkImage.md")]
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(alias = "VkImage")]
-#[repr(transparent)]
-pub struct SwapchainImage(u64);
-impl SwapchainImage {
-    pub const fn null() -> Self {
-        Self(0)
-    }
-}
-impl const Default for SwapchainImage {
-    fn default() -> Self {
-        Self::null()
-    }
-}
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkImageView.md")]
-#[derive(Clone, Copy, PartialEq, Eq)]
-#[doc(alias = "VkImageView")]
-#[repr(transparent)]
-pub struct SwapchainImageView(u64);
-impl SwapchainImageView {
-    pub const fn null() -> Self {
-        Self(0)
-    }
-}
-impl const Default for SwapchainImageView {
-    fn default() -> Self {
-        Self::null()
-    }
-}
+///# [VkSwapchainCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateFlagBitsKHR.md")]
 #[doc(alias = "VkSwapchainCreateFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -393,6 +373,8 @@ impl std::fmt::Debug for SwapchainCreateFlagsKHR {
 pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
 #[doc(alias = "VK_KHR_SWAPCHAIN_EXTENSION_NAME")]
 pub const KHR_SWAPCHAIN_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_swapchain");
+///# [VkSwapchainCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateFlagBitsKHR.md")]
 #[doc(alias = "VkSwapchainCreateFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -436,6 +418,8 @@ impl SwapchainCreateFlagBitsKHR {
         Self(bits)
     }
 }
+///# [vkCreateSwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateSwapchainKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkCreateSwapchainKHR.md")]
 #[doc(alias = "vkCreateSwapchainKHR")]
 pub type FNCreateSwapchainKhr = unsafe extern "system" fn(
     device: Device,
@@ -443,16 +427,22 @@ pub type FNCreateSwapchainKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_swapchain: *mut SwapchainKHR,
 ) -> VulkanResultCodes;
+///# [vkDestroySwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroySwapchainKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkDestroySwapchainKHR.md")]
 #[doc(alias = "vkDestroySwapchainKHR")]
 pub type FNDestroySwapchainKhr =
     unsafe extern "system" fn(device: Device, swapchain: SwapchainKHR, p_allocator: *const AllocationCallbacks);
+///# [vkGetSwapchainImagesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainImagesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkGetSwapchainImagesKHR.md")]
 #[doc(alias = "vkGetSwapchainImagesKHR")]
 pub type FNGetSwapchainImagesKhr = unsafe extern "system" fn(
     device: Device,
     swapchain: SwapchainKHR,
     p_swapchain_image_count: *mut u32,
-    p_swapchain_images: *mut SwapchainImage,
+    p_swapchain_images: *mut Image,
 ) -> VulkanResultCodes;
+///# [vkAcquireNextImageKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImageKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkAcquireNextImageKHR.md")]
 #[doc(alias = "vkAcquireNextImageKHR")]
 pub type FNAcquireNextImageKhr = unsafe extern "system" fn(
     device: Device,
@@ -462,14 +452,8 @@ pub type FNAcquireNextImageKhr = unsafe extern "system" fn(
     fence: Fence,
     p_image_index: *mut u32,
 ) -> VulkanResultCodes;
+///# [vkQueuePresentKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueuePresentKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkQueuePresentKHR.md")]
 #[doc(alias = "vkQueuePresentKHR")]
 pub type FNQueuePresentKhr =
     unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR) -> VulkanResultCodes;
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkCreateImageView.md")]
-#[doc(alias = "vkCreateImageView")]
-pub type FNCreateSwapchainImageView = unsafe extern "system" fn(
-    device: Device,
-    p_create_info: *const ImageViewCreateInfo,
-    p_allocator: *const AllocationCallbacks,
-    p_view: *mut SwapchainImageView,
-) -> VulkanResultCodes;

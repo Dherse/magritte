@@ -1,8 +1,12 @@
+//!# [VK_VALVE_mutable_descriptor_type](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_VALVE_mutable_descriptor_type.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/valve_mutable_descriptor_type/VK_VALVE_mutable_descriptor_type.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DescriptorType, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.html)
+# [doc = include_str ! ("../../../../doc/extensions/valve_mutable_descriptor_type/VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE.md")]
 #[doc(alias = "VkPhysicalDeviceMutableDescriptorTypeFeaturesVALVE")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceMutableDescriptorTypeFeaturesVALVE {
     #[doc(alias = "mutableDescriptorType")]
     mutable_descriptor_type: Bool32,
 }
+///# [VkMutableDescriptorTypeListVALVE](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeListVALVE.html)
+# [doc = include_str ! ("../../../../doc/extensions/valve_mutable_descriptor_type/VkMutableDescriptorTypeListVALVE.md")]
 #[doc(alias = "VkMutableDescriptorTypeListVALVE")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -23,6 +29,8 @@ pub struct MutableDescriptorTypeListVALVE {
     #[doc(alias = "pDescriptorTypes")]
     descriptor_types: *const DescriptorType,
 }
+///# [VkMutableDescriptorTypeCreateInfoVALVE](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMutableDescriptorTypeCreateInfoVALVE.html)
+# [doc = include_str ! ("../../../../doc/extensions/valve_mutable_descriptor_type/VkMutableDescriptorTypeCreateInfoVALVE.md")]
 #[doc(alias = "VkMutableDescriptorTypeCreateInfoVALVE")]
 #[derive(Clone, Copy)]
 #[repr(C)]

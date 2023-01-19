@@ -1,3 +1,5 @@
+//!# [VK_EXT_sampler_filter_minmax](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_sampler_filter_minmax.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_sampler_filter_minmax/VK_EXT_sampler_filter_minmax.md")]
 use crate::{
     cstr,
     vulkan1_2::{PhysicalDeviceSamplerFilterMinmaxProperties, SamplerReductionMode, SamplerReductionModeCreateInfo},

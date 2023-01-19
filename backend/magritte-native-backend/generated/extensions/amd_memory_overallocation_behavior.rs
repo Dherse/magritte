@@ -1,8 +1,12 @@
+//!# [VK_AMD_memory_overallocation_behavior](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_memory_overallocation_behavior.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_memory_overallocation_behavior/VK_AMD_memory_overallocation_behavior.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkDeviceMemoryOverallocationCreateInfoAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryOverallocationCreateInfoAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_memory_overallocation_behavior/VkDeviceMemoryOverallocationCreateInfoAMD.md")]
 #[doc(alias = "VkDeviceMemoryOverallocationCreateInfoAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME")]
 pub const AMD_MEMORY_OVERALLOCATION_BEHAVIOR_EXTENSION_NAME: &'static CStr =
     cstr!("VK_AMD_memory_overallocation_behavior");
+///# [VkMemoryOverallocationBehaviorAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryOverallocationBehaviorAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_memory_overallocation_behavior/VkMemoryOverallocationBehaviorAMD.md")]
 #[doc(alias = "VkMemoryOverallocationBehaviorAMD")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

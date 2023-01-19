@@ -1,8 +1,12 @@
+//!# [VK_NV_mesh_shader](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_mesh_shader.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/VK_NV_mesh_shader.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, Buffer, CommandBuffer, DeviceSize, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceMeshShaderFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMeshShaderFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/VkPhysicalDeviceMeshShaderFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceMeshShaderFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PhysicalDeviceMeshShaderFeaturesNV {
     #[doc(alias = "meshShader")]
     mesh_shader: Bool32,
 }
+///# [VkPhysicalDeviceMeshShaderPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMeshShaderPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/VkPhysicalDeviceMeshShaderPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceMeshShaderPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -51,6 +57,8 @@ pub struct PhysicalDeviceMeshShaderPropertiesNV {
     #[doc(alias = "meshOutputPerPrimitiveGranularity")]
     mesh_output_per_primitive_granularity: u32,
 }
+///# [VkDrawMeshTasksIndirectCommandNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDrawMeshTasksIndirectCommandNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/VkDrawMeshTasksIndirectCommandNV.md")]
 #[doc(alias = "VkDrawMeshTasksIndirectCommandNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -64,9 +72,13 @@ pub struct DrawMeshTasksIndirectCommandNV {
 pub const NV_MESH_SHADER_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_MESH_SHADER_EXTENSION_NAME")]
 pub const NV_MESH_SHADER_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_mesh_shader");
+///# [vkCmdDrawMeshTasksNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDrawMeshTasksNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/vkCmdDrawMeshTasksNV.md")]
 #[doc(alias = "vkCmdDrawMeshTasksNV")]
 pub type FNCmdDrawMeshTasksNv =
     unsafe extern "system" fn(command_buffer: CommandBuffer, task_count: u32, first_task: u32);
+///# [vkCmdDrawMeshTasksIndirectNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDrawMeshTasksIndirectNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/vkCmdDrawMeshTasksIndirectNV.md")]
 #[doc(alias = "vkCmdDrawMeshTasksIndirectNV")]
 pub type FNCmdDrawMeshTasksIndirectNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -75,6 +87,8 @@ pub type FNCmdDrawMeshTasksIndirectNv = unsafe extern "system" fn(
     draw_count: u32,
     stride: u32,
 );
+///# [vkCmdDrawMeshTasksIndirectCountNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdDrawMeshTasksIndirectCountNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_mesh_shader/vkCmdDrawMeshTasksIndirectCountNV.md")]
 #[doc(alias = "vkCmdDrawMeshTasksIndirectCountNV")]
 pub type FNCmdDrawMeshTasksIndirectCountNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

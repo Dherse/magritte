@@ -5,11 +5,15 @@ edition = "2021"
 
 [dependencies]
 magritte-common = { version = "0.1.0", path = "../../crates/magritte-common" }
+libloading = { version = "0.7.4", optional = true }
 
 [build-dependencies]
 magritte-native-backend-build = { version = "0.1.0", path = "../../builders/magritte-native-backend-build" }
 
 [features]
+default = [ "loader" ]
+loader = [ "libloading" ]
+
 VK_AMD_buffer_marker = []
 VK_AMD_device_coherent_memory = []
 VK_AMD_display_native_hdr = ['VK_KHR_get_physical_device_properties2', 'VK_KHR_get_surface_capabilities2', 'VK_KHR_swapchain']

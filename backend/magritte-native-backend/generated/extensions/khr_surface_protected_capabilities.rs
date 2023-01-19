@@ -1,8 +1,12 @@
+//!# [VK_KHR_surface_protected_capabilities](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_surface_protected_capabilities.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_surface_protected_capabilities/VK_KHR_surface_protected_capabilities.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkSurfaceProtectedCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceProtectedCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_surface_protected_capabilities/VkSurfaceProtectedCapabilitiesKHR.md")]
 #[doc(alias = "VkSurfaceProtectedCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

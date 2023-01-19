@@ -1,3 +1,5 @@
+//!# [VK_NV_ray_tracing](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_ray_tracing.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VK_NV_ray_tracing.md")]
 #[cfg(feature = "VK_KHR_acceleration_structure")]
 use crate::extensions::khr_acceleration_structure::AabbPositionsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
@@ -78,6 +80,8 @@ pub type TransformMatrixNV = TransformMatrixKHR;
 ///See [`AccelerationStructureInstanceKHR`]
 #[doc(alias = "VkAccelerationStructureInstanceNV")]
 pub type AccelerationStructureInstanceNV = AccelerationStructureInstanceKHR;
+///# [VkRayTracingShaderGroupCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkRayTracingShaderGroupCreateInfoNV.md")]
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -97,6 +101,8 @@ pub struct RayTracingShaderGroupCreateInfoNV {
     #[doc(alias = "intersectionShader")]
     intersection_shader: u32,
 }
+///# [VkRayTracingPipelineCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkRayTracingPipelineCreateInfoNV.md")]
 #[doc(alias = "VkRayTracingPipelineCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -122,6 +128,8 @@ pub struct RayTracingPipelineCreateInfoNV {
     #[doc(alias = "basePipelineIndex")]
     base_pipeline_index: i32,
 }
+///# [VkGeometryTrianglesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryTrianglesNV.md")]
 #[doc(alias = "VkGeometryTrianglesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -153,6 +161,8 @@ pub struct GeometryTrianglesNV {
     #[doc(alias = "transformOffset")]
     transform_offset: DeviceSize,
 }
+///# [VkGeometryAABBNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryAABBNV.md")]
 #[doc(alias = "VkGeometryAABBNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -168,6 +178,8 @@ pub struct GeometryAabbNV {
     stride: u32,
     offset: DeviceSize,
 }
+///# [VkGeometryDataNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryDataNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryDataNV.md")]
 #[doc(alias = "VkGeometryDataNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -175,6 +187,8 @@ pub struct GeometryDataNV {
     triangles: GeometryTrianglesNV,
     aabbs: GeometryAabbNV,
 }
+///# [VkGeometryNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryNV.md")]
 #[doc(alias = "VkGeometryNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -188,6 +202,8 @@ pub struct GeometryNV {
     geometry: GeometryDataNV,
     flags: GeometryFlagsKHR,
 }
+///# [VkAccelerationStructureInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureInfoNV.md")]
 #[doc(alias = "VkAccelerationStructureInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -206,6 +222,8 @@ pub struct AccelerationStructureInfoNV {
     #[doc(alias = "pGeometries")]
     geometries: *const GeometryNV,
 }
+///# [VkAccelerationStructureCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureCreateInfoNV.md")]
 #[doc(alias = "VkAccelerationStructureCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -218,6 +236,8 @@ pub struct AccelerationStructureCreateInfoNV {
     compacted_size: DeviceSize,
     info: AccelerationStructureInfoNV,
 }
+///# [VkBindAccelerationStructureMemoryInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkBindAccelerationStructureMemoryInfoNV.md")]
 #[doc(alias = "VkBindAccelerationStructureMemoryInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -236,6 +256,8 @@ pub struct BindAccelerationStructureMemoryInfoNV {
     #[doc(alias = "pDeviceIndices")]
     device_indices: *const u32,
 }
+///# [VkWriteDescriptorSetAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkWriteDescriptorSetAccelerationStructureNV.md")]
 #[doc(alias = "VkWriteDescriptorSetAccelerationStructureNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -249,6 +271,8 @@ pub struct WriteDescriptorSetAccelerationStructureNV {
     #[doc(alias = "pAccelerationStructures")]
     acceleration_structures: *const AccelerationStructureNV,
 }
+///# [VkAccelerationStructureMemoryRequirementsInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureMemoryRequirementsInfoNV.md")]
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -262,6 +286,8 @@ pub struct AccelerationStructureMemoryRequirementsInfoNV {
     #[doc(alias = "accelerationStructure")]
     acceleration_structure: AccelerationStructureNV,
 }
+///# [VkPhysicalDeviceRayTracingPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkPhysicalDeviceRayTracingPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -287,6 +313,8 @@ pub struct PhysicalDeviceRayTracingPropertiesNV {
     #[doc(alias = "maxDescriptorSetAccelerationStructures")]
     max_descriptor_set_acceleration_structures: u32,
 }
+///# [VkAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureNV.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkAccelerationStructureNV")]
 #[repr(transparent)]
@@ -308,6 +336,8 @@ pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_ray_tracin
 ///See [`SHADER_UNUSED_KHR`]
 #[doc(alias = "VK_SHADER_UNUSED_NV")]
 pub const SHADER_UNUSED_NV: u32 = SHADER_UNUSED_KHR;
+///# [VkAccelerationStructureMemoryRequirementsTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureMemoryRequirementsTypeNV.md")]
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -350,9 +380,13 @@ impl AccelerationStructureMemoryRequirementsTypeNV {
 ///See [`get_ray_tracing_shader_group_handles_khr`]
 #[doc(alias = "vkGetRayTracingShaderGroupHandlesNV")]
 pub type FNGetRayTracingShaderGroupHandlesNv = FNGetRayTracingShaderGroupHandlesKhr;
+///# [vkCompileDeferredNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCompileDeferredNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCompileDeferredNV.md")]
 #[doc(alias = "vkCompileDeferredNV")]
 pub type FNCompileDeferredNv =
     unsafe extern "system" fn(device: Device, pipeline: Pipeline, shader: u32) -> VulkanResultCodes;
+///# [vkCreateAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCreateAccelerationStructureNV.md")]
 #[doc(alias = "vkCreateAccelerationStructureNV")]
 pub type FNCreateAccelerationStructureNv = unsafe extern "system" fn(
     device: Device,
@@ -360,24 +394,32 @@ pub type FNCreateAccelerationStructureNv = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_acceleration_structure: *mut AccelerationStructureNV,
 ) -> VulkanResultCodes;
+///# [vkDestroyAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkDestroyAccelerationStructureNV.md")]
 #[doc(alias = "vkDestroyAccelerationStructureNV")]
 pub type FNDestroyAccelerationStructureNv = unsafe extern "system" fn(
     device: Device,
     acceleration_structure: AccelerationStructureNV,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkGetAccelerationStructureMemoryRequirementsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkGetAccelerationStructureMemoryRequirementsNV.md")]
 #[doc(alias = "vkGetAccelerationStructureMemoryRequirementsNV")]
 pub type FNGetAccelerationStructureMemoryRequirementsNv = unsafe extern "system" fn(
     device: Device,
     p_info: *const AccelerationStructureMemoryRequirementsInfoNV,
     p_memory_requirements: *mut MemoryRequirements2KHR,
 );
+///# [vkBindAccelerationStructureMemoryNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkBindAccelerationStructureMemoryNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkBindAccelerationStructureMemoryNV.md")]
 #[doc(alias = "vkBindAccelerationStructureMemoryNV")]
 pub type FNBindAccelerationStructureMemoryNv = unsafe extern "system" fn(
     device: Device,
     bind_info_count: u32,
     p_bind_infos: *const BindAccelerationStructureMemoryInfoNV,
 ) -> VulkanResultCodes;
+///# [vkGetAccelerationStructureHandleNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetAccelerationStructureHandleNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkGetAccelerationStructureHandleNV.md")]
 #[doc(alias = "vkGetAccelerationStructureHandleNV")]
 pub type FNGetAccelerationStructureHandleNv = unsafe extern "system" fn(
     device: Device,
@@ -385,6 +427,8 @@ pub type FNGetAccelerationStructureHandleNv = unsafe extern "system" fn(
     data_size: usize,
     p_data: *mut std::ffi::c_void,
 ) -> VulkanResultCodes;
+///# [vkCreateRayTracingPipelinesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateRayTracingPipelinesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCreateRayTracingPipelinesNV.md")]
 #[doc(alias = "vkCreateRayTracingPipelinesNV")]
 pub type FNCreateRayTracingPipelinesNv = unsafe extern "system" fn(
     device: Device,
@@ -394,6 +438,8 @@ pub type FNCreateRayTracingPipelinesNv = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_pipelines: *mut Pipeline,
 ) -> VulkanResultCodes;
+///# [vkCmdCopyAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdCopyAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdCopyAccelerationStructureNV.md")]
 #[doc(alias = "vkCmdCopyAccelerationStructureNV")]
 pub type FNCmdCopyAccelerationStructureNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -401,6 +447,8 @@ pub type FNCmdCopyAccelerationStructureNv = unsafe extern "system" fn(
     src: AccelerationStructureNV,
     mode: CopyAccelerationStructureModeKHR,
 );
+///# [vkCmdWriteAccelerationStructuresPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdWriteAccelerationStructuresPropertiesNV.md")]
 #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesNV")]
 pub type FNCmdWriteAccelerationStructuresPropertiesNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -410,6 +458,8 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = unsafe extern "system" f
     query_pool: QueryPool,
     first_query: u32,
 );
+///# [vkCmdBuildAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBuildAccelerationStructureNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdBuildAccelerationStructureNV.md")]
 #[doc(alias = "vkCmdBuildAccelerationStructureNV")]
 pub type FNCmdBuildAccelerationStructureNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -422,6 +472,8 @@ pub type FNCmdBuildAccelerationStructureNv = unsafe extern "system" fn(
     scratch: Buffer,
     scratch_offset: DeviceSize,
 );
+///# [vkCmdTraceRaysNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdTraceRaysNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdTraceRaysNV.md")]
 #[doc(alias = "vkCmdTraceRaysNV")]
 pub type FNCmdTraceRaysNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

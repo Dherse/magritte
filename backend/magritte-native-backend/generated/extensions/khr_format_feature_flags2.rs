@@ -1,3 +1,5 @@
+//!# [VK_KHR_format_feature_flags2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_format_feature_flags2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_format_feature_flags2/VK_KHR_format_feature_flags2.md")]
 use crate::{
     cstr,
     vulkan1_3::{FormatFeatureFlagBits2, FormatFeatureFlags2, FormatProperties3},

@@ -1,8 +1,12 @@
+//!# [VK_KHR_global_priority](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_global_priority.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_global_priority/VK_KHR_global_priority.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType, MAX_GLOBAL_PRIORITY_SIZE_KHR},
 };
 use std::ffi::CStr;
+///# [VkDeviceQueueGlobalPriorityCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceQueueGlobalPriorityCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_global_priority/VkDeviceQueueGlobalPriorityCreateInfoKHR.md")]
 #[doc(alias = "VkDeviceQueueGlobalPriorityCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct DeviceQueueGlobalPriorityCreateInfoKHR {
     #[doc(alias = "globalPriority")]
     global_priority: QueueGlobalPriorityKHR,
 }
+///# [VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_global_priority/VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDeviceGlobalPriorityQueryFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -25,6 +31,8 @@ pub struct PhysicalDeviceGlobalPriorityQueryFeaturesKHR {
     #[doc(alias = "globalPriorityQuery")]
     global_priority_query: Bool32,
 }
+///# [VkQueueFamilyGlobalPriorityPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyGlobalPriorityPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_global_priority/VkQueueFamilyGlobalPriorityPropertiesKHR.md")]
 #[doc(alias = "VkQueueFamilyGlobalPriorityPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +49,8 @@ pub struct QueueFamilyGlobalPriorityPropertiesKHR {
 pub const KHR_GLOBAL_PRIORITY_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_GLOBAL_PRIORITY_EXTENSION_NAME")]
 pub const KHR_GLOBAL_PRIORITY_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_global_priority");
+///# [VkQueueGlobalPriorityKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueueGlobalPriorityKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_global_priority/VkQueueGlobalPriorityKHR.md")]
 #[doc(alias = "VkQueueGlobalPriorityKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

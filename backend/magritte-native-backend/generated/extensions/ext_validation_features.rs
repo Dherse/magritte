@@ -1,8 +1,12 @@
+//!# [VK_EXT_validation_features](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_validation_features.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_validation_features/VK_EXT_validation_features.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkValidationFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_features/VkValidationFeaturesEXT.md")]
 #[doc(alias = "VkValidationFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -24,6 +28,8 @@ pub struct ValidationFeaturesEXT {
 pub const EXT_VALIDATION_FEATURES_SPEC_VERSION: u32 = 5;
 #[doc(alias = "VK_EXT_VALIDATION_FEATURES_EXTENSION_NAME")]
 pub const EXT_VALIDATION_FEATURES_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_validation_features");
+///# [VkValidationFeatureEnableEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureEnableEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_features/VkValidationFeatureEnableEXT.md")]
 #[doc(alias = "VkValidationFeatureEnableEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -69,6 +75,8 @@ impl ValidationFeatureEnableEXT {
         Self(bits)
     }
 }
+///# [VkValidationFeatureDisableEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationFeatureDisableEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_features/VkValidationFeatureDisableEXT.md")]
 #[doc(alias = "VkValidationFeatureDisableEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

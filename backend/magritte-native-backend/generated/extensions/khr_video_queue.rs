@@ -1,3 +1,5 @@
+//!# [VK_KHR_video_queue](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_queue.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VK_KHR_video_queue.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -8,6 +10,8 @@ use crate::{
     vulkan1_1::MemoryRequirements2,
 };
 use std::ffi::CStr;
+///# [VkVideoQueueFamilyProperties2KHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoQueueFamilyProperties2KHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoQueueFamilyProperties2KHR.md")]
 #[doc(alias = "VkVideoQueueFamilyProperties2KHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct VideoQueueFamilyProperties2KHR {
     #[doc(alias = "videoCodecOperations")]
     video_codec_operations: VideoCodecOperationFlagsKHR,
 }
+///# [VkQueueFamilyQueryResultStatusProperties2KHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyQueryResultStatusProperties2KHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkQueueFamilyQueryResultStatusProperties2KHR.md")]
 #[doc(alias = "VkQueueFamilyQueryResultStatusProperties2KHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -29,6 +35,8 @@ pub struct QueueFamilyQueryResultStatusProperties2KHR {
     p_next: *mut BaseOutStructure,
     supported: Bool32,
 }
+///# [VkVideoProfilesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoProfilesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoProfilesKHR.md")]
 #[doc(alias = "VkVideoProfilesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -42,6 +50,8 @@ pub struct VideoProfilesKHR {
     #[doc(alias = "pProfiles")]
     profiles: *const VideoProfileKHR,
 }
+///# [VkPhysicalDeviceVideoFormatInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceVideoFormatInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkPhysicalDeviceVideoFormatInfoKHR.md")]
 #[doc(alias = "VkPhysicalDeviceVideoFormatInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -55,6 +65,8 @@ pub struct PhysicalDeviceVideoFormatInfoKHR {
     #[doc(alias = "pVideoProfiles")]
     video_profiles: *const VideoProfilesKHR,
 }
+///# [VkVideoFormatPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoFormatPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoFormatPropertiesKHR.md")]
 #[doc(alias = "VkVideoFormatPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -65,6 +77,8 @@ pub struct VideoFormatPropertiesKHR {
     p_next: *mut BaseOutStructure,
     format: Format,
 }
+///# [VkVideoProfileKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoProfileKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoProfileKHR.md")]
 #[doc(alias = "VkVideoProfileKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -82,6 +96,8 @@ pub struct VideoProfileKHR {
     #[doc(alias = "chromaBitDepth")]
     chroma_bit_depth: VideoComponentBitDepthFlagsKHR,
 }
+///# [VkVideoCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCapabilitiesKHR.md")]
 #[doc(alias = "VkVideoCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -109,6 +125,8 @@ pub struct VideoCapabilitiesKHR {
     #[doc(alias = "stdHeaderVersion")]
     std_header_version: ExtensionProperties,
 }
+///# [VkVideoGetMemoryPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoGetMemoryPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoGetMemoryPropertiesKHR.md")]
 #[doc(alias = "VkVideoGetMemoryPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -122,6 +140,8 @@ pub struct VideoGetMemoryPropertiesKHR {
     #[doc(alias = "pMemoryRequirements")]
     memory_requirements: *mut MemoryRequirements2,
 }
+///# [VkVideoBindMemoryKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoBindMemoryKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoBindMemoryKHR.md")]
 #[doc(alias = "VkVideoBindMemoryKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -138,6 +158,8 @@ pub struct VideoBindMemoryKHR {
     #[doc(alias = "memorySize")]
     memory_size: DeviceSize,
 }
+///# [VkVideoPictureResourceKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoPictureResourceKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoPictureResourceKHR.md")]
 #[doc(alias = "VkVideoPictureResourceKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -155,6 +177,8 @@ pub struct VideoPictureResourceKHR {
     #[doc(alias = "imageViewBinding")]
     image_view_binding: ImageView,
 }
+///# [VkVideoReferenceSlotKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoReferenceSlotKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoReferenceSlotKHR.md")]
 #[doc(alias = "VkVideoReferenceSlotKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -168,6 +192,8 @@ pub struct VideoReferenceSlotKHR {
     #[doc(alias = "pPictureResource")]
     picture_resource: *const VideoPictureResourceKHR,
 }
+///# [VkVideoSessionCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionCreateInfoKHR.md")]
 #[doc(alias = "VkVideoSessionCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -194,6 +220,8 @@ pub struct VideoSessionCreateInfoKHR {
     #[doc(alias = "pStdHeaderVersion")]
     std_header_version: *const ExtensionProperties,
 }
+///# [VkVideoSessionParametersCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionParametersCreateInfoKHR.md")]
 #[doc(alias = "VkVideoSessionParametersCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -207,6 +235,8 @@ pub struct VideoSessionParametersCreateInfoKHR {
     #[doc(alias = "videoSession")]
     video_session: VideoSessionKHR,
 }
+///# [VkVideoSessionParametersUpdateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersUpdateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionParametersUpdateInfoKHR.md")]
 #[doc(alias = "VkVideoSessionParametersUpdateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -218,6 +248,8 @@ pub struct VideoSessionParametersUpdateInfoKHR {
     #[doc(alias = "updateSequenceCount")]
     update_sequence_count: u32,
 }
+///# [VkVideoBeginCodingInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoBeginCodingInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoBeginCodingInfoKHR.md")]
 #[doc(alias = "VkVideoBeginCodingInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -238,6 +270,8 @@ pub struct VideoBeginCodingInfoKHR {
     #[doc(alias = "pReferenceSlots")]
     reference_slots: *const VideoReferenceSlotKHR,
 }
+///# [VkVideoEndCodingInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEndCodingInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoEndCodingInfoKHR.md")]
 #[doc(alias = "VkVideoEndCodingInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -248,6 +282,8 @@ pub struct VideoEndCodingInfoKHR {
     p_next: *const BaseInStructure,
     flags: VideoEndCodingFlagsKHR,
 }
+///# [VkVideoCodingControlInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodingControlInfoKHR.md")]
 #[doc(alias = "VkVideoCodingControlInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -258,6 +294,8 @@ pub struct VideoCodingControlInfoKHR {
     p_next: *const BaseInStructure,
     flags: VideoCodingControlFlagsKHR,
 }
+///# [VkVideoSessionKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionKHR.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkVideoSessionKHR")]
 #[repr(transparent)]
@@ -272,6 +310,8 @@ impl const Default for VideoSessionKHR {
         Self::null()
     }
 }
+///# [VkVideoSessionParametersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionParametersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionParametersKHR.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkVideoSessionParametersKHR")]
 #[repr(transparent)]
@@ -286,6 +326,8 @@ impl const Default for VideoSessionParametersKHR {
         Self::null()
     }
 }
+///# [VkVideoCodecOperationFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodecOperationFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodecOperationFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -533,6 +575,8 @@ impl std::fmt::Debug for VideoCodecOperationFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCapabilityFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -792,6 +836,8 @@ impl std::fmt::Debug for VideoCapabilityFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoSessionCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionCreateFlagBitsKHR.md")]
 #[doc(alias = "VkVideoSessionCreateFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1075,6 +1121,8 @@ impl VideoEndCodingFlagsKHR {
         Self(0)
     }
 }
+///# [VkVideoCodingQualityPresetFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodingQualityPresetFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodingQualityPresetFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1350,6 +1398,8 @@ impl std::fmt::Debug for VideoCodingQualityPresetFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoCodingControlFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodingControlFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodingControlFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1609,6 +1659,8 @@ impl std::fmt::Debug for VideoCodingControlFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoChromaSubsamplingFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoChromaSubsamplingFlagBitsKHR.md")]
 #[doc(alias = "VkVideoChromaSubsamplingFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1908,6 +1960,8 @@ impl std::fmt::Debug for VideoChromaSubsamplingFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoComponentBitDepthFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoComponentBitDepthFlagBitsKHR.md")]
 #[doc(alias = "VkVideoComponentBitDepthFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2202,6 +2256,8 @@ impl std::fmt::Debug for VideoComponentBitDepthFlagsKHR {
 pub const KHR_VIDEO_QUEUE_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_KHR_VIDEO_QUEUE_EXTENSION_NAME")]
 pub const KHR_VIDEO_QUEUE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_video_queue");
+///# [VkVideoCodecOperationFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodecOperationFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodecOperationFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodecOperationFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2243,6 +2299,8 @@ impl VideoCodecOperationFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoChromaSubsamplingFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoChromaSubsamplingFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoChromaSubsamplingFlagBitsKHR.md")]
 #[doc(alias = "VkVideoChromaSubsamplingFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2288,6 +2346,8 @@ impl VideoChromaSubsamplingFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoComponentBitDepthFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoComponentBitDepthFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoComponentBitDepthFlagBitsKHR.md")]
 #[doc(alias = "VkVideoComponentBitDepthFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2330,6 +2390,8 @@ impl VideoComponentBitDepthFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCapabilityFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2366,6 +2428,8 @@ impl VideoCapabilityFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoSessionCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoSessionCreateFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoSessionCreateFlagBitsKHR.md")]
 #[doc(alias = "VkVideoSessionCreateFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2402,6 +2466,8 @@ impl VideoSessionCreateFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoCodingQualityPresetFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodingQualityPresetFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodingQualityPresetFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodingQualityPresetFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2441,6 +2507,8 @@ impl VideoCodingQualityPresetFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoCodingControlFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoCodingControlFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkVideoCodingControlFlagBitsKHR.md")]
 #[doc(alias = "VkVideoCodingControlFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2477,6 +2545,8 @@ impl VideoCodingControlFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkQueryResultStatusKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueryResultStatusKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/VkQueryResultStatusKHR.md")]
 #[doc(alias = "VkQueryResultStatusKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -2516,12 +2586,16 @@ impl QueryResultStatusKHR {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceVideoCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkGetPhysicalDeviceVideoCapabilitiesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceVideoCapabilitiesKHR")]
 pub type FNGetPhysicalDeviceVideoCapabilitiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_video_profile: *const VideoProfileKHR,
     p_capabilities: *mut VideoCapabilitiesKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceVideoFormatPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceVideoFormatPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkGetPhysicalDeviceVideoFormatPropertiesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceVideoFormatPropertiesKHR")]
 pub type FNGetPhysicalDeviceVideoFormatPropertiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
@@ -2529,6 +2603,8 @@ pub type FNGetPhysicalDeviceVideoFormatPropertiesKhr = unsafe extern "system" fn
     p_video_format_property_count: *mut u32,
     p_video_format_properties: *mut VideoFormatPropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkCreateVideoSessionKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkCreateVideoSessionKHR.md")]
 #[doc(alias = "vkCreateVideoSessionKHR")]
 pub type FNCreateVideoSessionKhr = unsafe extern "system" fn(
     device: Device,
@@ -2536,9 +2612,13 @@ pub type FNCreateVideoSessionKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_video_session: *mut VideoSessionKHR,
 ) -> VulkanResultCodes;
+///# [vkDestroyVideoSessionKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkDestroyVideoSessionKHR.md")]
 #[doc(alias = "vkDestroyVideoSessionKHR")]
 pub type FNDestroyVideoSessionKhr =
     unsafe extern "system" fn(device: Device, video_session: VideoSessionKHR, p_allocator: *const AllocationCallbacks);
+///# [vkCreateVideoSessionParametersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateVideoSessionParametersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkCreateVideoSessionParametersKHR.md")]
 #[doc(alias = "vkCreateVideoSessionParametersKHR")]
 pub type FNCreateVideoSessionParametersKhr = unsafe extern "system" fn(
     device: Device,
@@ -2546,18 +2626,24 @@ pub type FNCreateVideoSessionParametersKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_video_session_parameters: *mut VideoSessionParametersKHR,
 ) -> VulkanResultCodes;
+///# [vkUpdateVideoSessionParametersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkUpdateVideoSessionParametersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkUpdateVideoSessionParametersKHR.md")]
 #[doc(alias = "vkUpdateVideoSessionParametersKHR")]
 pub type FNUpdateVideoSessionParametersKhr = unsafe extern "system" fn(
     device: Device,
     video_session_parameters: VideoSessionParametersKHR,
     p_update_info: *const VideoSessionParametersUpdateInfoKHR,
 ) -> VulkanResultCodes;
+///# [vkDestroyVideoSessionParametersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyVideoSessionParametersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkDestroyVideoSessionParametersKHR.md")]
 #[doc(alias = "vkDestroyVideoSessionParametersKHR")]
 pub type FNDestroyVideoSessionParametersKhr = unsafe extern "system" fn(
     device: Device,
     video_session_parameters: VideoSessionParametersKHR,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkGetVideoSessionMemoryRequirementsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetVideoSessionMemoryRequirementsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkGetVideoSessionMemoryRequirementsKHR.md")]
 #[doc(alias = "vkGetVideoSessionMemoryRequirementsKHR")]
 pub type FNGetVideoSessionMemoryRequirementsKhr = unsafe extern "system" fn(
     device: Device,
@@ -2565,6 +2651,8 @@ pub type FNGetVideoSessionMemoryRequirementsKhr = unsafe extern "system" fn(
     p_video_session_memory_requirements_count: *mut u32,
     p_video_session_memory_requirements: *mut VideoGetMemoryPropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkBindVideoSessionMemoryKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkBindVideoSessionMemoryKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkBindVideoSessionMemoryKHR.md")]
 #[doc(alias = "vkBindVideoSessionMemoryKHR")]
 pub type FNBindVideoSessionMemoryKhr = unsafe extern "system" fn(
     device: Device,
@@ -2572,12 +2660,18 @@ pub type FNBindVideoSessionMemoryKhr = unsafe extern "system" fn(
     video_session_bind_memory_count: u32,
     p_video_session_bind_memories: *const VideoBindMemoryKHR,
 ) -> VulkanResultCodes;
+///# [vkCmdBeginVideoCodingKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginVideoCodingKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkCmdBeginVideoCodingKHR.md")]
 #[doc(alias = "vkCmdBeginVideoCodingKHR")]
 pub type FNCmdBeginVideoCodingKhr =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_begin_info: *const VideoBeginCodingInfoKHR);
+///# [vkCmdControlVideoCodingKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdControlVideoCodingKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkCmdControlVideoCodingKHR.md")]
 #[doc(alias = "vkCmdControlVideoCodingKHR")]
 pub type FNCmdControlVideoCodingKhr =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_coding_control_info: *const VideoCodingControlInfoKHR);
+///# [vkCmdEndVideoCodingKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndVideoCodingKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_queue/vkCmdEndVideoCodingKHR.md")]
 #[doc(alias = "vkCmdEndVideoCodingKHR")]
 pub type FNCmdEndVideoCodingKhr =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_end_coding_info: *const VideoEndCodingInfoKHR);

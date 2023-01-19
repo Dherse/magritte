@@ -1,8 +1,12 @@
+//!# [VK_NV_inherited_viewport_scissor](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_inherited_viewport_scissor.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VK_NV_inherited_viewport_scissor.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType, Viewport},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceInheritedViewportScissorFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceInheritedViewportScissorFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV {
     #[doc(alias = "inheritedViewportScissor2D")]
     inherited_viewport_scissor2_d: Bool32,
 }
+///# [VkCommandBufferInheritanceViewportScissorInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VkCommandBufferInheritanceViewportScissorInfoNV.md")]
 #[doc(alias = "VkCommandBufferInheritanceViewportScissorInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

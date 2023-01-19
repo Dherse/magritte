@@ -1,3 +1,5 @@
+//!# [VK_KHR_shader_integer_dot_product](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_integer_dot_product.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_shader_integer_dot_product/VK_KHR_shader_integer_dot_product.md")]
 use crate::{
     cstr,
     vulkan1_3::{PhysicalDeviceShaderIntegerDotProductFeatures, PhysicalDeviceShaderIntegerDotProductProperties},

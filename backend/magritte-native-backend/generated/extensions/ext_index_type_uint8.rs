@@ -1,8 +1,12 @@
+//!# [VK_EXT_index_type_uint8](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_index_type_uint8.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_index_type_uint8/VK_EXT_index_type_uint8.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceIndexTypeUint8FeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_index_type_uint8/VkPhysicalDeviceIndexTypeUint8FeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceIndexTypeUint8FeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

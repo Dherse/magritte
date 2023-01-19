@@ -1,3 +1,5 @@
+//!# [VK_KHR_sampler_ycbcr_conversion](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_sampler_ycbcr_conversion.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_sampler_ycbcr_conversion/VK_KHR_sampler_ycbcr_conversion.md")]
 use crate::{
     cstr,
     vulkan1_1::{

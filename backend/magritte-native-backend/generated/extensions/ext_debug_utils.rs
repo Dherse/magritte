@@ -1,3 +1,5 @@
+//!# [VK_EXT_debug_utils](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_utils.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VK_EXT_debug_utils.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkDebugUtilsObjectNameInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsObjectNameInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsObjectNameInfoEXT.md")]
 #[doc(alias = "VkDebugUtilsObjectNameInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -21,6 +25,8 @@ pub struct DebugUtilsObjectNameInfoEXT {
     #[doc(alias = "pObjectName")]
     object_name: *const CStr,
 }
+///# [VkDebugUtilsObjectTagInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsObjectTagInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsObjectTagInfoEXT.md")]
 #[doc(alias = "VkDebugUtilsObjectTagInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -40,6 +46,8 @@ pub struct DebugUtilsObjectTagInfoEXT {
     #[doc(alias = "pTag")]
     tag: *const std::ffi::c_void,
 }
+///# [VkDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsLabelEXT.md")]
 #[doc(alias = "VkDebugUtilsLabelEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -52,6 +60,8 @@ pub struct DebugUtilsLabelEXT {
     label_name: *const CStr,
     color: [f32; 4 as usize],
 }
+///# [VkDebugUtilsMessengerCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessengerCreateInfoEXT.md")]
 #[doc(alias = "VkDebugUtilsMessengerCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -70,6 +80,8 @@ pub struct DebugUtilsMessengerCreateInfoEXT {
     #[doc(alias = "pUserData")]
     user_data: *mut std::ffi::c_void,
 }
+///# [VkDebugUtilsMessengerCallbackDataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerCallbackDataEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessengerCallbackDataEXT.md")]
 #[doc(alias = "VkDebugUtilsMessengerCallbackDataEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -98,6 +110,8 @@ pub struct DebugUtilsMessengerCallbackDataEXT {
     #[doc(alias = "pObjects")]
     objects: *const DebugUtilsObjectNameInfoEXT,
 }
+///# [VkDebugUtilsMessengerEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessengerEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessengerEXT.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkDebugUtilsMessengerEXT")]
 #[repr(transparent)]
@@ -112,6 +126,8 @@ impl const Default for DebugUtilsMessengerEXT {
         Self::null()
     }
 }
+///# [PFN_vkDebugUtilsMessengerCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/PFN_vkDebugUtilsMessengerCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/PFN_vkDebugUtilsMessengerCallbackEXT.md")]
 #[doc(alias = "PFN_vkDebugUtilsMessengerCallbackEXT")]
 pub type PFNDebugUtilsMessengerCallbackEXT = unsafe extern "system" fn(
     message_severity: DebugUtilsMessageSeverityFlagBitsEXT,
@@ -119,6 +135,8 @@ pub type PFNDebugUtilsMessengerCallbackEXT = unsafe extern "system" fn(
     p_callback_data: *const DebugUtilsMessengerCallbackDataEXT,
     p_user_data: *mut std::ffi::c_void,
 ) -> Bool32;
+///# [VkDebugUtilsMessageSeverityFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessageSeverityFlagBitsEXT.md")]
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagsEXT")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -406,6 +424,8 @@ impl std::fmt::Debug for DebugUtilsMessageSeverityFlagsEXT {
             .finish()
     }
 }
+///# [VkDebugUtilsMessageTypeFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessageTypeFlagBitsEXT.md")]
 #[doc(alias = "VkDebugUtilsMessageTypeFlagsEXT")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -707,6 +727,8 @@ impl DebugUtilsMessengerCallbackDataFlagsEXT {
 pub const EXT_DEBUG_UTILS_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_DEBUG_UTILS_EXTENSION_NAME")]
 pub const EXT_DEBUG_UTILS_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_debug_utils");
+///# [VkDebugUtilsMessageSeverityFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageSeverityFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessageSeverityFlagBitsEXT.md")]
 #[doc(alias = "VkDebugUtilsMessageSeverityFlagBitsEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -749,6 +771,8 @@ impl DebugUtilsMessageSeverityFlagBitsEXT {
         Self(bits)
     }
 }
+///# [VkDebugUtilsMessageTypeFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugUtilsMessageTypeFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/VkDebugUtilsMessageTypeFlagBitsEXT.md")]
 #[doc(alias = "VkDebugUtilsMessageTypeFlagBitsEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -788,20 +812,32 @@ impl DebugUtilsMessageTypeFlagBitsEXT {
         Self(bits)
     }
 }
+///# [vkSetDebugUtilsObjectNameEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetDebugUtilsObjectNameEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkSetDebugUtilsObjectNameEXT.md")]
 #[doc(alias = "vkSetDebugUtilsObjectNameEXT")]
 pub type FNSetDebugUtilsObjectNameExt =
     unsafe extern "system" fn(device: Device, p_name_info: *const DebugUtilsObjectNameInfoEXT) -> VulkanResultCodes;
+///# [vkSetDebugUtilsObjectTagEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetDebugUtilsObjectTagEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkSetDebugUtilsObjectTagEXT.md")]
 #[doc(alias = "vkSetDebugUtilsObjectTagEXT")]
 pub type FNSetDebugUtilsObjectTagExt =
     unsafe extern "system" fn(device: Device, p_tag_info: *const DebugUtilsObjectTagInfoEXT) -> VulkanResultCodes;
+///# [vkQueueBeginDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueueBeginDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkQueueBeginDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkQueueBeginDebugUtilsLabelEXT")]
 pub type FNQueueBeginDebugUtilsLabelExt =
     unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT);
+///# [vkQueueEndDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueueEndDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkQueueEndDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkQueueEndDebugUtilsLabelEXT")]
 pub type FNQueueEndDebugUtilsLabelExt = unsafe extern "system" fn(queue: Queue);
+///# [vkQueueInsertDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueueInsertDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkQueueInsertDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkQueueInsertDebugUtilsLabelEXT")]
 pub type FNQueueInsertDebugUtilsLabelExt =
     unsafe extern "system" fn(queue: Queue, p_label_info: *const DebugUtilsLabelEXT);
+///# [vkCreateDebugUtilsMessengerEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateDebugUtilsMessengerEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkCreateDebugUtilsMessengerEXT.md")]
 #[doc(alias = "vkCreateDebugUtilsMessengerEXT")]
 pub type FNCreateDebugUtilsMessengerExt = unsafe extern "system" fn(
     instance: Instance,
@@ -809,12 +845,16 @@ pub type FNCreateDebugUtilsMessengerExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_messenger: *mut DebugUtilsMessengerEXT,
 ) -> VulkanResultCodes;
+///# [vkDestroyDebugUtilsMessengerEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyDebugUtilsMessengerEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkDestroyDebugUtilsMessengerEXT.md")]
 #[doc(alias = "vkDestroyDebugUtilsMessengerEXT")]
 pub type FNDestroyDebugUtilsMessengerExt = unsafe extern "system" fn(
     instance: Instance,
     messenger: DebugUtilsMessengerEXT,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkSubmitDebugUtilsMessageEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSubmitDebugUtilsMessageEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkSubmitDebugUtilsMessageEXT.md")]
 #[doc(alias = "vkSubmitDebugUtilsMessageEXT")]
 pub type FNSubmitDebugUtilsMessageExt = unsafe extern "system" fn(
     instance: Instance,
@@ -822,11 +862,17 @@ pub type FNSubmitDebugUtilsMessageExt = unsafe extern "system" fn(
     message_types: DebugUtilsMessageTypeFlagsEXT,
     p_callback_data: *const DebugUtilsMessengerCallbackDataEXT,
 );
+///# [vkCmdBeginDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkCmdBeginDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkCmdBeginDebugUtilsLabelEXT")]
 pub type FNCmdBeginDebugUtilsLabelExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_label_info: *const DebugUtilsLabelEXT);
+///# [vkCmdEndDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkCmdEndDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkCmdEndDebugUtilsLabelEXT")]
 pub type FNCmdEndDebugUtilsLabelExt = unsafe extern "system" fn(command_buffer: CommandBuffer);
+///# [vkCmdInsertDebugUtilsLabelEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdInsertDebugUtilsLabelEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_utils/vkCmdInsertDebugUtilsLabelEXT.md")]
 #[doc(alias = "vkCmdInsertDebugUtilsLabelEXT")]
 pub type FNCmdInsertDebugUtilsLabelExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_label_info: *const DebugUtilsLabelEXT);

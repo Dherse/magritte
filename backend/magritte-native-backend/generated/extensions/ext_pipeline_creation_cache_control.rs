@@ -1,3 +1,5 @@
+//!# [VK_EXT_pipeline_creation_cache_control](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_pipeline_creation_cache_control.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_pipeline_creation_cache_control/VK_EXT_pipeline_creation_cache_control.md")]
 use crate::{cstr, vulkan1_3::PhysicalDevicePipelineCreationCacheControlFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDevicePipelineCreationCacheControlFeatures`]
@@ -8,6 +10,8 @@ pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME")]
 pub const EXT_PIPELINE_CREATION_CACHE_CONTROL_EXTENSION_NAME: &'static CStr =
     cstr!("VK_EXT_pipeline_creation_cache_control");
+///# [VkPipelineCacheCreateFlagBits](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCacheCreateFlagBits.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_pipeline_creation_cache_control/VkPipelineCacheCreateFlagBits.md")]
 #[doc(alias = "VkPipelineCacheCreateFlagBits")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

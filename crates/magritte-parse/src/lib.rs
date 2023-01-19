@@ -100,75 +100,8 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
         out.update_symbol_table();
     }
 
-    out.handles.push(Handle {
-        original_name: Cow::Borrowed("VkImage"),
-        rename: Some(Cow::Borrowed("VkSwapchainImage")),
-        name: "SwapchainImage".to_string(),
-        parent: Some(Cow::Borrowed("VkSwapchainKHR")),
-        dispatchable: false,
-        origin: out.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
-        functions: SymbolTable::default(),
-        destroyer: None,
-    });
-
-    out.global.push((
-        Cow::Borrowed("VkSwapchainImage"),
-        "SwapchainImage".to_string(),
-        SourceType::Handle,
-        out.handles.len() - 1,
-    ));
-
-    *out.functions
-        .get_by_name_mut("vkGetSwapchainImagesKHR")
-        .unwrap()
-        .arguments_mut()
-        .last_mut()
-        .unwrap()
-        .ty_mut()
-        .as_slice_mut()
-        .1
-        .as_named_mut() = Cow::Borrowed("VkSwapchainImage");
-
-    out.handles.push(Handle {
-        original_name: Cow::Borrowed("VkImageView"),
-        rename: Some(Cow::Borrowed("VkSwapchainImageView")),
-        name: "SwapchainImageView".to_string(),
-        parent: Some(Cow::Borrowed("VkSwapchainImage")),
-        dispatchable: false,
-        origin: out.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone(),
-        functions: SymbolTable::default(),
-        destroyer: Some(Cow::Borrowed("vkDestroyImageView")),
-    });
-
-    out.global.push((
-        Cow::Borrowed("VkSwapchainImageView"),
-        "SwapchainImageView".to_string(),
-        SourceType::Handle,
-        out.handles.len() - 1,
-    ));
-
-    let mut func = out.functions.get_by_name("vkCreateImageView").unwrap().clone();
-    func.rename = Some(Cow::Borrowed("vkCreateSwapchainImageView"));
-    func.name = "create_swapchain_image_view".to_string();
-    func.origin = out.extensions.get_by_name("VK_KHR_swapchain").unwrap().origin.clone();
-    *func
-        .arguments_mut()
-        .last_mut()
-        .unwrap()
-        .ty_mut()
-        .as_ptr_mut()
-        .1
-        .as_named_mut() = Cow::Borrowed("VkSwapchainImageView");
-
-    out.functions.push(func);
-
-    out.global.push((
-        Cow::Borrowed("vkCreateSwapchainImageView"),
-        "create_swapchain_image_view".to_string(),
-        SourceType::Function,
-        out.functions.len() - 1,
-    ));
-
+    // Assign functions to handles.
+    // Assign allocators/destructors to handles.
     for function in out.functions.iter().chain(out.commands.iter().map(Deref::deref)) {
         let first_arg = &function.arguments()[0];
 
@@ -226,6 +159,7 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
         }
     }
 
+    // add aliases to functions and commands
     for alias in &out.command_aliases {
         // ignore disabled aliases
         if alias.origin().is_disabled() {
@@ -239,6 +173,7 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
         }
     }
 
+    // add extensions to structs (for pointer chains)
     for i in 0..out.structs.len() {
         if out.structs[i].origin().is_disabled() {
             continue;

@@ -1,3 +1,5 @@
+//!# [VK_FUCHSIA_buffer_collection](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_FUCHSIA_buffer_collection.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VK_FUCHSIA_buffer_collection.md")]
 use crate::{
     cstr,
     opaque::zx_handle_t,
@@ -8,6 +10,8 @@ use crate::{
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
 };
 use std::ffi::CStr;
+///# [VkImportMemoryBufferCollectionFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImportMemoryBufferCollectionFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkImportMemoryBufferCollectionFUCHSIA.md")]
 #[doc(alias = "VkImportMemoryBufferCollectionFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct ImportMemoryBufferCollectionFUCHSIA {
     collection: BufferCollectionFUCHSIA,
     index: u32,
 }
+///# [VkBufferCollectionImageCreateInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionImageCreateInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionImageCreateInfoFUCHSIA.md")]
 #[doc(alias = "VkBufferCollectionImageCreateInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct BufferCollectionImageCreateInfoFUCHSIA {
     collection: BufferCollectionFUCHSIA,
     index: u32,
 }
+///# [VkBufferCollectionBufferCreateInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionBufferCreateInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionBufferCreateInfoFUCHSIA.md")]
 #[doc(alias = "VkBufferCollectionBufferCreateInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +49,8 @@ pub struct BufferCollectionBufferCreateInfoFUCHSIA {
     collection: BufferCollectionFUCHSIA,
     index: u32,
 }
+///# [VkBufferCollectionCreateInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionCreateInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionCreateInfoFUCHSIA.md")]
 #[doc(alias = "VkBufferCollectionCreateInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -52,6 +62,8 @@ pub struct BufferCollectionCreateInfoFUCHSIA {
     #[doc(alias = "collectionToken")]
     collection_token: zx_handle_t,
 }
+///# [VkBufferCollectionPropertiesFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionPropertiesFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionPropertiesFUCHSIA.md")]
 #[doc(alias = "VkBufferCollectionPropertiesFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -83,6 +95,8 @@ pub struct BufferCollectionPropertiesFUCHSIA {
     #[doc(alias = "suggestedYChromaOffset")]
     suggested_y_chroma_offset: ChromaLocation,
 }
+///# [VkBufferConstraintsInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferConstraintsInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferConstraintsInfoFUCHSIA.md")]
 #[doc(alias = "VkBufferConstraintsInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -98,6 +112,8 @@ pub struct BufferConstraintsInfoFUCHSIA {
     #[doc(alias = "bufferCollectionConstraints")]
     buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA,
 }
+///# [VkSysmemColorSpaceFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSysmemColorSpaceFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkSysmemColorSpaceFUCHSIA.md")]
 #[doc(alias = "VkSysmemColorSpaceFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -109,6 +125,8 @@ pub struct SysmemColorSpaceFUCHSIA {
     #[doc(alias = "colorSpace")]
     color_space: u32,
 }
+///# [VkImageFormatConstraintsInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImageFormatConstraintsInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkImageFormatConstraintsInfoFUCHSIA.md")]
 #[doc(alias = "VkImageFormatConstraintsInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -129,6 +147,8 @@ pub struct ImageFormatConstraintsInfoFUCHSIA {
     #[doc(alias = "pColorSpaces")]
     color_spaces: *const SysmemColorSpaceFUCHSIA,
 }
+///# [VkImageConstraintsInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImageConstraintsInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkImageConstraintsInfoFUCHSIA.md")]
 #[doc(alias = "VkImageConstraintsInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -145,6 +165,8 @@ pub struct ImageConstraintsInfoFUCHSIA {
     buffer_collection_constraints: BufferCollectionConstraintsInfoFUCHSIA,
     flags: ImageConstraintsInfoFlagsFUCHSIA,
 }
+///# [VkBufferCollectionConstraintsInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionConstraintsInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionConstraintsInfoFUCHSIA.md")]
 #[doc(alias = "VkBufferCollectionConstraintsInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -164,6 +186,8 @@ pub struct BufferCollectionConstraintsInfoFUCHSIA {
     #[doc(alias = "minBufferCountForSharedSlack")]
     min_buffer_count_for_shared_slack: u32,
 }
+///# [VkBufferCollectionFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferCollectionFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkBufferCollectionFUCHSIA.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkBufferCollectionFUCHSIA")]
 #[repr(transparent)]
@@ -190,6 +214,8 @@ impl ImageFormatConstraintsFlagsFUCHSIA {
         Self(0)
     }
 }
+///# [VkImageConstraintsInfoFlagBitsFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImageConstraintsInfoFlagBitsFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkImageConstraintsInfoFlagBitsFUCHSIA.md")]
 #[doc(alias = "VkImageConstraintsInfoFlagsFUCHSIA")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -493,6 +519,8 @@ impl std::fmt::Debug for ImageConstraintsInfoFlagsFUCHSIA {
 pub const FUCHSIA_BUFFER_COLLECTION_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME")]
 pub const FUCHSIA_BUFFER_COLLECTION_EXTENSION_NAME: &'static CStr = cstr!("VK_FUCHSIA_buffer_collection");
+///# [VkImageConstraintsInfoFlagBitsFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImageConstraintsInfoFlagBitsFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/VkImageConstraintsInfoFlagBitsFUCHSIA.md")]
 #[doc(alias = "VkImageConstraintsInfoFlagBitsFUCHSIA")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -538,6 +566,8 @@ impl ImageConstraintsInfoFlagBitsFUCHSIA {
         Self(bits)
     }
 }
+///# [vkCreateBufferCollectionFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateBufferCollectionFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/vkCreateBufferCollectionFUCHSIA.md")]
 #[doc(alias = "vkCreateBufferCollectionFUCHSIA")]
 pub type FNCreateBufferCollectionFuchsia = unsafe extern "system" fn(
     device: Device,
@@ -545,24 +575,32 @@ pub type FNCreateBufferCollectionFuchsia = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_collection: *mut BufferCollectionFUCHSIA,
 ) -> VulkanResultCodes;
+///# [vkSetBufferCollectionBufferConstraintsFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetBufferCollectionBufferConstraintsFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/vkSetBufferCollectionBufferConstraintsFUCHSIA.md")]
 #[doc(alias = "vkSetBufferCollectionBufferConstraintsFUCHSIA")]
 pub type FNSetBufferCollectionBufferConstraintsFuchsia = unsafe extern "system" fn(
     device: Device,
     collection: BufferCollectionFUCHSIA,
     p_buffer_constraints_info: *const BufferConstraintsInfoFUCHSIA,
 ) -> VulkanResultCodes;
+///# [vkSetBufferCollectionImageConstraintsFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetBufferCollectionImageConstraintsFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/vkSetBufferCollectionImageConstraintsFUCHSIA.md")]
 #[doc(alias = "vkSetBufferCollectionImageConstraintsFUCHSIA")]
 pub type FNSetBufferCollectionImageConstraintsFuchsia = unsafe extern "system" fn(
     device: Device,
     collection: BufferCollectionFUCHSIA,
     p_image_constraints_info: *const ImageConstraintsInfoFUCHSIA,
 ) -> VulkanResultCodes;
+///# [vkDestroyBufferCollectionFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyBufferCollectionFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/vkDestroyBufferCollectionFUCHSIA.md")]
 #[doc(alias = "vkDestroyBufferCollectionFUCHSIA")]
 pub type FNDestroyBufferCollectionFuchsia = unsafe extern "system" fn(
     device: Device,
     collection: BufferCollectionFUCHSIA,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkGetBufferCollectionPropertiesFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetBufferCollectionPropertiesFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_buffer_collection/vkGetBufferCollectionPropertiesFUCHSIA.md")]
 #[doc(alias = "vkGetBufferCollectionPropertiesFUCHSIA")]
 pub type FNGetBufferCollectionPropertiesFuchsia = unsafe extern "system" fn(
     device: Device,

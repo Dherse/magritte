@@ -1,8 +1,12 @@
+//!# [VK_AMD_pipeline_compiler_control](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_pipeline_compiler_control.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_pipeline_compiler_control/VK_AMD_pipeline_compiler_control.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPipelineCompilerControlCreateInfoAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCompilerControlCreateInfoAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_pipeline_compiler_control/VkPipelineCompilerControlCreateInfoAMD.md")]
 #[doc(alias = "VkPipelineCompilerControlCreateInfoAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PipelineCompilerControlCreateInfoAMD {
     #[doc(alias = "compilerControlFlags")]
     compiler_control_flags: PipelineCompilerControlFlagsAMD,
 }
+///# [VkPipelineCompilerControlFlagBitsAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCompilerControlFlagBitsAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_pipeline_compiler_control/VkPipelineCompilerControlFlagBitsAMD.md")]
 #[doc(alias = "VkPipelineCompilerControlFlagsAMD")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -256,6 +262,8 @@ impl std::fmt::Debug for PipelineCompilerControlFlagsAMD {
 pub const AMD_PIPELINE_COMPILER_CONTROL_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME")]
 pub const AMD_PIPELINE_COMPILER_CONTROL_EXTENSION_NAME: &'static CStr = cstr!("VK_AMD_pipeline_compiler_control");
+///# [VkPipelineCompilerControlFlagBitsAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCompilerControlFlagBitsAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_pipeline_compiler_control/VkPipelineCompilerControlFlagBitsAMD.md")]
 #[doc(alias = "VkPipelineCompilerControlFlagBitsAMD")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

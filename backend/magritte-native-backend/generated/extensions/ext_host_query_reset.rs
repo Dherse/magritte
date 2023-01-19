@@ -1,3 +1,5 @@
+//!# [VK_EXT_host_query_reset](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_host_query_reset.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_host_query_reset/VK_EXT_host_query_reset.md")]
 use crate::{
     cstr,
     vulkan1_2::{FNResetQueryPool, PhysicalDeviceHostQueryResetFeatures},

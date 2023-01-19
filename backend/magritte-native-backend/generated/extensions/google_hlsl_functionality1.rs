@@ -1,3 +1,5 @@
+//!# [VK_GOOGLE_hlsl_functionality1](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_GOOGLE_hlsl_functionality1.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/google_hlsl_functionality1/VK_GOOGLE_hlsl_functionality1.md")]
 use crate::cstr;
 use std::ffi::CStr;
 #[doc(alias = "VK_GOOGLE_HLSL_FUNCTIONALITY_1_SPEC_VERSION")]

@@ -1,8 +1,12 @@
+//!# [VK_EXT_validation_cache](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_validation_cache.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/VK_EXT_validation_cache.md")]
 use crate::{
     cstr,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Device, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkValidationCacheCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationCacheCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/VkValidationCacheCreateInfoEXT.md")]
 #[doc(alias = "VkValidationCacheCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -17,6 +21,8 @@ pub struct ValidationCacheCreateInfoEXT {
     #[doc(alias = "pInitialData")]
     initial_data: *const std::ffi::c_void,
 }
+///# [VkShaderModuleValidationCacheCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderModuleValidationCacheCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/VkShaderModuleValidationCacheCreateInfoEXT.md")]
 #[doc(alias = "VkShaderModuleValidationCacheCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -28,6 +34,8 @@ pub struct ShaderModuleValidationCacheCreateInfoEXT {
     #[doc(alias = "validationCache")]
     validation_cache: ValidationCacheEXT,
 }
+///# [VkValidationCacheEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationCacheEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/VkValidationCacheEXT.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkValidationCacheEXT")]
 #[repr(transparent)]
@@ -58,6 +66,8 @@ impl ValidationCacheCreateFlagsEXT {
 pub const EXT_VALIDATION_CACHE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_VALIDATION_CACHE_EXTENSION_NAME")]
 pub const EXT_VALIDATION_CACHE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_validation_cache");
+///# [VkValidationCacheHeaderVersionEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationCacheHeaderVersionEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/VkValidationCacheHeaderVersionEXT.md")]
 #[doc(alias = "VkValidationCacheHeaderVersionEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -91,6 +101,8 @@ impl ValidationCacheHeaderVersionEXT {
         Self(bits)
     }
 }
+///# [vkCreateValidationCacheEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateValidationCacheEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/vkCreateValidationCacheEXT.md")]
 #[doc(alias = "vkCreateValidationCacheEXT")]
 pub type FNCreateValidationCacheExt = unsafe extern "system" fn(
     device: Device,
@@ -98,12 +110,16 @@ pub type FNCreateValidationCacheExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_validation_cache: *mut ValidationCacheEXT,
 ) -> VulkanResultCodes;
+///# [vkDestroyValidationCacheEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyValidationCacheEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/vkDestroyValidationCacheEXT.md")]
 #[doc(alias = "vkDestroyValidationCacheEXT")]
 pub type FNDestroyValidationCacheExt = unsafe extern "system" fn(
     device: Device,
     validation_cache: ValidationCacheEXT,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkGetValidationCacheDataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetValidationCacheDataEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/vkGetValidationCacheDataEXT.md")]
 #[doc(alias = "vkGetValidationCacheDataEXT")]
 pub type FNGetValidationCacheDataExt = unsafe extern "system" fn(
     device: Device,
@@ -111,6 +127,8 @@ pub type FNGetValidationCacheDataExt = unsafe extern "system" fn(
     p_data_size: *mut usize,
     p_data: *mut std::ffi::c_void,
 ) -> VulkanResultCodes;
+///# [vkMergeValidationCachesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkMergeValidationCachesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_cache/vkMergeValidationCachesEXT.md")]
 #[doc(alias = "vkMergeValidationCachesEXT")]
 pub type FNMergeValidationCachesExt = unsafe extern "system" fn(
     device: Device,

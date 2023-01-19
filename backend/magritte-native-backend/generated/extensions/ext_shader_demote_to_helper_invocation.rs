@@ -1,3 +1,5 @@
+//!# [VK_EXT_shader_demote_to_helper_invocation](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_demote_to_helper_invocation.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_shader_demote_to_helper_invocation/VK_EXT_shader_demote_to_helper_invocation.md")]
 use crate::{cstr, vulkan1_3::PhysicalDeviceShaderDemoteToHelperInvocationFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceShaderDemoteToHelperInvocationFeatures`]

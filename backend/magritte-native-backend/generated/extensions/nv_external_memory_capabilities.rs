@@ -1,3 +1,5 @@
+//!# [VK_NV_external_memory_capabilities](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_external_memory_capabilities.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VK_NV_external_memory_capabilities.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkExternalImageFormatPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalImageFormatPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VkExternalImageFormatPropertiesNV.md")]
 #[doc(alias = "VkExternalImageFormatPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct ExternalImageFormatPropertiesNV {
     #[doc(alias = "compatibleHandleTypes")]
     compatible_handle_types: ExternalMemoryHandleTypeFlagsNV,
 }
+///# [VkExternalMemoryHandleTypeFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VkExternalMemoryHandleTypeFlagBitsNV.md")]
 #[doc(alias = "VkExternalMemoryHandleTypeFlagsNV")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -306,6 +312,8 @@ impl std::fmt::Debug for ExternalMemoryHandleTypeFlagsNV {
             .finish()
     }
 }
+///# [VkExternalMemoryFeatureFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VkExternalMemoryFeatureFlagBitsNV.md")]
 #[doc(alias = "VkExternalMemoryFeatureFlagsNV")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -581,6 +589,8 @@ impl std::fmt::Debug for ExternalMemoryFeatureFlagsNV {
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME")]
 pub const NV_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_external_memory_capabilities");
+///# [VkExternalMemoryHandleTypeFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryHandleTypeFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VkExternalMemoryHandleTypeFlagBitsNV.md")]
 #[doc(alias = "VkExternalMemoryHandleTypeFlagBitsNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -623,6 +633,8 @@ impl ExternalMemoryHandleTypeFlagBitsNV {
         Self(bits)
     }
 }
+///# [VkExternalMemoryFeatureFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalMemoryFeatureFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/VkExternalMemoryFeatureFlagBitsNV.md")]
 #[doc(alias = "VkExternalMemoryFeatureFlagBitsNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -662,6 +674,8 @@ impl ExternalMemoryFeatureFlagBitsNV {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceExternalImageFormatPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_capabilities/vkGetPhysicalDeviceExternalImageFormatPropertiesNV.md")]
 #[doc(alias = "vkGetPhysicalDeviceExternalImageFormatPropertiesNV")]
 pub type FNGetPhysicalDeviceExternalImageFormatPropertiesNv = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

@@ -1,8 +1,12 @@
+//!# [VK_AMD_shader_core_properties](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_core_properties.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties/VK_AMD_shader_core_properties.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderCorePropertiesAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderCorePropertiesAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties/VkPhysicalDeviceShaderCorePropertiesAMD.md")]
 #[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]

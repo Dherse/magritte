@@ -1,8 +1,12 @@
+//!# [VK_KHR_portability_subset](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_portability_subset.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VK_KHR_portability_subset.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePortabilitySubsetFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePortabilitySubsetFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VkPhysicalDevicePortabilitySubsetFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +45,8 @@ pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
     #[doc(alias = "vertexAttributeAccessBeyondStride")]
     vertex_attribute_access_beyond_stride: Bool32,
 }
+///# [VkPhysicalDevicePortabilitySubsetPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePortabilitySubsetPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VkPhysicalDevicePortabilitySubsetPropertiesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

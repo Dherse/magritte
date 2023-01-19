@@ -1,3 +1,5 @@
+//!# [VK_KHR_buffer_device_address](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_buffer_device_address.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_buffer_device_address/VK_KHR_buffer_device_address.md")]
 use crate::{
     cstr,
     vulkan1_2::{

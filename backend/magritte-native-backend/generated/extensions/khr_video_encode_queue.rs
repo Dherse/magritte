@@ -1,9 +1,13 @@
+//!# [VK_KHR_video_encode_queue](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_video_encode_queue.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VK_KHR_video_encode_queue.md")]
 use crate::{
     cstr,
     extensions::khr_video_queue::{VideoPictureResourceKHR, VideoReferenceSlotKHR},
     vulkan1_0::{BaseInStructure, Buffer, CommandBuffer, DeviceSize, Extent2D, StructureType},
 };
 use std::ffi::CStr;
+///# [VkVideoEncodeInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeInfoKHR.md")]
 #[doc(alias = "VkVideoEncodeInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -34,6 +38,8 @@ pub struct VideoEncodeInfoKHR {
     #[doc(alias = "precedingExternallyEncodedBytes")]
     preceding_externally_encoded_bytes: u32,
 }
+///# [VkVideoEncodeRateControlInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlInfoKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -50,6 +56,8 @@ pub struct VideoEncodeRateControlInfoKHR {
     #[doc(alias = "pLayerConfigs")]
     layer_configs: *const VideoEncodeRateControlLayerInfoKHR,
 }
+///# [VkVideoEncodeRateControlLayerInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlLayerInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlLayerInfoKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlLayerInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -71,6 +79,8 @@ pub struct VideoEncodeRateControlLayerInfoKHR {
     #[doc(alias = "initialVirtualBufferSizeInMs")]
     initial_virtual_buffer_size_in_ms: u32,
 }
+///# [VkVideoEncodeCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeCapabilitiesKHR.md")]
 #[doc(alias = "VkVideoEncodeCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -89,6 +99,8 @@ pub struct VideoEncodeCapabilitiesKHR {
     #[doc(alias = "inputImageDataFillAlignment")]
     input_image_data_fill_alignment: Extent2D,
 }
+///# [VkVideoEncodeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -348,6 +360,8 @@ impl std::fmt::Debug for VideoEncodeFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoEncodeCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeCapabilityFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -612,6 +626,8 @@ impl std::fmt::Debug for VideoEncodeCapabilityFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoEncodeRateControlFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -875,6 +891,8 @@ impl std::fmt::Debug for VideoEncodeRateControlFlagsKHR {
             .finish()
     }
 }
+///# [VkVideoEncodeRateControlModeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlModeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlModeFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1154,6 +1172,8 @@ impl std::fmt::Debug for VideoEncodeRateControlModeFlagsKHR {
 pub const KHR_VIDEO_ENCODE_QUEUE_SPEC_VERSION: u32 = 4;
 #[doc(alias = "VK_KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME")]
 pub const KHR_VIDEO_ENCODE_QUEUE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_video_encode_queue");
+///# [VkVideoEncodeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1190,6 +1210,8 @@ impl VideoEncodeFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoEncodeCapabilityFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeCapabilityFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeCapabilityFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeCapabilityFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1226,6 +1248,8 @@ impl VideoEncodeCapabilityFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoEncodeRateControlFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1262,6 +1286,8 @@ impl VideoEncodeRateControlFlagBitsKHR {
         Self(bits)
     }
 }
+///# [VkVideoEncodeRateControlModeFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVideoEncodeRateControlModeFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/VkVideoEncodeRateControlModeFlagBitsKHR.md")]
 #[doc(alias = "VkVideoEncodeRateControlModeFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -1301,6 +1327,8 @@ impl VideoEncodeRateControlModeFlagBitsKHR {
         Self(bits)
     }
 }
+///# [vkCmdEncodeVideoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEncodeVideoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_video_encode_queue/vkCmdEncodeVideoKHR.md")]
 #[doc(alias = "vkCmdEncodeVideoKHR")]
 pub type FNCmdEncodeVideoKhr =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_encode_info: *const VideoEncodeInfoKHR);

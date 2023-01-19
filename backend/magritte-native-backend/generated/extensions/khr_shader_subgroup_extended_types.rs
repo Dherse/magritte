@@ -1,3 +1,5 @@
+//!# [VK_KHR_shader_subgroup_extended_types](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_subgroup_extended_types.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_shader_subgroup_extended_types/VK_KHR_shader_subgroup_extended_types.md")]
 use crate::{cstr, vulkan1_2::PhysicalDeviceShaderSubgroupExtendedTypesFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceShaderSubgroupExtendedTypesFeatures`]

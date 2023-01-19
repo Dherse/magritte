@@ -1,8 +1,12 @@
+//!# [VK_NV_compute_shader_derivatives](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_compute_shader_derivatives.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_compute_shader_derivatives/VK_NV_compute_shader_derivatives.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceComputeShaderDerivativesFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_compute_shader_derivatives/VkPhysicalDeviceComputeShaderDerivativesFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceComputeShaderDerivativesFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

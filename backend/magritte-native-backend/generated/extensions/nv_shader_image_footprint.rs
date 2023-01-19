@@ -1,8 +1,12 @@
+//!# [VK_NV_shader_image_footprint](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_shader_image_footprint.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_shader_image_footprint/VK_NV_shader_image_footprint.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderImageFootprintFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderImageFootprintFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shader_image_footprint/VkPhysicalDeviceShaderImageFootprintFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceShaderImageFootprintFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

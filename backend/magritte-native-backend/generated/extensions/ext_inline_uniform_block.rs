@@ -1,3 +1,5 @@
+//!# [VK_EXT_inline_uniform_block](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_inline_uniform_block.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_inline_uniform_block/VK_EXT_inline_uniform_block.md")]
 use crate::{
     cstr,
     vulkan1_3::{

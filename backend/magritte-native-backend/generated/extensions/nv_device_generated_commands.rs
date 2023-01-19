@@ -1,3 +1,5 @@
+//!# [VK_NV_device_generated_commands](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_device_generated_commands.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VK_NV_device_generated_commands.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -9,6 +11,8 @@ use crate::{
     vulkan1_1::MemoryRequirements2,
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -20,6 +24,8 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsFeaturesNV {
     #[doc(alias = "deviceGeneratedCommands")]
     device_generated_commands: Bool32,
 }
+///# [VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -47,6 +53,8 @@ pub struct PhysicalDeviceDeviceGeneratedCommandsPropertiesNV {
     #[doc(alias = "minIndirectCommandsBufferOffsetAlignment")]
     min_indirect_commands_buffer_offset_alignment: u32,
 }
+///# [VkGraphicsShaderGroupCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGraphicsShaderGroupCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkGraphicsShaderGroupCreateInfoNV.md")]
 #[doc(alias = "VkGraphicsShaderGroupCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -64,6 +72,8 @@ pub struct GraphicsShaderGroupCreateInfoNV {
     #[doc(alias = "pTessellationState")]
     tessellation_state: *const PipelineTessellationStateCreateInfo,
 }
+///# [VkGraphicsPipelineShaderGroupsCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGraphicsPipelineShaderGroupsCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkGraphicsPipelineShaderGroupsCreateInfoNV.md")]
 #[doc(alias = "VkGraphicsPipelineShaderGroupsCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -81,6 +91,8 @@ pub struct GraphicsPipelineShaderGroupsCreateInfoNV {
     #[doc(alias = "pPipelines")]
     pipelines: *const Pipeline,
 }
+///# [VkBindShaderGroupIndirectCommandNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindShaderGroupIndirectCommandNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkBindShaderGroupIndirectCommandNV.md")]
 #[doc(alias = "VkBindShaderGroupIndirectCommandNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -88,6 +100,8 @@ pub struct BindShaderGroupIndirectCommandNV {
     #[doc(alias = "groupIndex")]
     group_index: u32,
 }
+///# [VkBindIndexBufferIndirectCommandNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindIndexBufferIndirectCommandNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkBindIndexBufferIndirectCommandNV.md")]
 #[doc(alias = "VkBindIndexBufferIndirectCommandNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -98,6 +112,8 @@ pub struct BindIndexBufferIndirectCommandNV {
     #[doc(alias = "indexType")]
     index_type: IndexType,
 }
+///# [VkBindVertexBufferIndirectCommandNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindVertexBufferIndirectCommandNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkBindVertexBufferIndirectCommandNV.md")]
 #[doc(alias = "VkBindVertexBufferIndirectCommandNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -107,12 +123,16 @@ pub struct BindVertexBufferIndirectCommandNV {
     size: u32,
     stride: u32,
 }
+///# [VkSetStateFlagsIndirectCommandNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSetStateFlagsIndirectCommandNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkSetStateFlagsIndirectCommandNV.md")]
 #[doc(alias = "VkSetStateFlagsIndirectCommandNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct SetStateFlagsIndirectCommandNV {
     data: u32,
 }
+///# [VkIndirectCommandsStreamNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsStreamNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsStreamNV.md")]
 #[doc(alias = "VkIndirectCommandsStreamNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -120,6 +140,8 @@ pub struct IndirectCommandsStreamNV {
     buffer: Buffer,
     offset: DeviceSize,
 }
+///# [VkIndirectCommandsLayoutTokenNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutTokenNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsLayoutTokenNV.md")]
 #[doc(alias = "VkIndirectCommandsLayoutTokenNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -153,6 +175,8 @@ pub struct IndirectCommandsLayoutTokenNV {
     #[doc(alias = "pIndexTypeValues")]
     index_type_values: *const u32,
 }
+///# [VkIndirectCommandsLayoutCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsLayoutCreateInfoNV.md")]
 #[doc(alias = "VkIndirectCommandsLayoutCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -173,6 +197,8 @@ pub struct IndirectCommandsLayoutCreateInfoNV {
     #[doc(alias = "pStreamStrides")]
     stream_strides: *const u32,
 }
+///# [VkGeneratedCommandsInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkGeneratedCommandsInfoNV.md")]
 #[doc(alias = "VkGeneratedCommandsInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -207,6 +233,8 @@ pub struct GeneratedCommandsInfoNV {
     #[doc(alias = "sequencesIndexOffset")]
     sequences_index_offset: DeviceSize,
 }
+///# [VkGeneratedCommandsMemoryRequirementsInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeneratedCommandsMemoryRequirementsInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkGeneratedCommandsMemoryRequirementsInfoNV.md")]
 #[doc(alias = "VkGeneratedCommandsMemoryRequirementsInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -223,6 +251,8 @@ pub struct GeneratedCommandsMemoryRequirementsInfoNV {
     #[doc(alias = "maxSequencesCount")]
     max_sequences_count: u32,
 }
+///# [VkIndirectCommandsLayoutNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsLayoutNV.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkIndirectCommandsLayoutNV")]
 #[repr(transparent)]
@@ -237,6 +267,8 @@ impl const Default for IndirectCommandsLayoutNV {
         Self::null()
     }
 }
+///# [VkIndirectCommandsLayoutUsageFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsLayoutUsageFlagBitsNV.md")]
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagsNV")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -512,6 +544,8 @@ impl std::fmt::Debug for IndirectCommandsLayoutUsageFlagsNV {
             .finish()
     }
 }
+///# [VkIndirectStateFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectStateFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectStateFlagBitsNV.md")]
 #[doc(alias = "VkIndirectStateFlagsNV")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -763,6 +797,8 @@ impl std::fmt::Debug for IndirectStateFlagsNV {
 pub const NV_DEVICE_GENERATED_COMMANDS_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME")]
 pub const NV_DEVICE_GENERATED_COMMANDS_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_device_generated_commands");
+///# [VkIndirectCommandsLayoutUsageFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsLayoutUsageFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsLayoutUsageFlagBitsNV.md")]
 #[doc(alias = "VkIndirectCommandsLayoutUsageFlagBitsNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -802,6 +838,8 @@ impl IndirectCommandsLayoutUsageFlagBitsNV {
         Self(bits)
     }
 }
+///# [VkIndirectStateFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectStateFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectStateFlagBitsNV.md")]
 #[doc(alias = "VkIndirectStateFlagBitsNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -835,6 +873,8 @@ impl IndirectStateFlagBitsNV {
         Self(bits)
     }
 }
+///# [VkIndirectCommandsTokenTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkIndirectCommandsTokenTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/VkIndirectCommandsTokenTypeNV.md")]
 #[doc(alias = "VkIndirectCommandsTokenTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -889,12 +929,16 @@ impl IndirectCommandsTokenTypeNV {
         Self(bits)
     }
 }
+///# [vkGetGeneratedCommandsMemoryRequirementsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetGeneratedCommandsMemoryRequirementsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkGetGeneratedCommandsMemoryRequirementsNV.md")]
 #[doc(alias = "vkGetGeneratedCommandsMemoryRequirementsNV")]
 pub type FNGetGeneratedCommandsMemoryRequirementsNv = unsafe extern "system" fn(
     device: Device,
     p_info: *const GeneratedCommandsMemoryRequirementsInfoNV,
     p_memory_requirements: *mut MemoryRequirements2,
 );
+///# [vkCreateIndirectCommandsLayoutNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateIndirectCommandsLayoutNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkCreateIndirectCommandsLayoutNV.md")]
 #[doc(alias = "vkCreateIndirectCommandsLayoutNV")]
 pub type FNCreateIndirectCommandsLayoutNv = unsafe extern "system" fn(
     device: Device,
@@ -902,21 +946,29 @@ pub type FNCreateIndirectCommandsLayoutNv = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_indirect_commands_layout: *mut IndirectCommandsLayoutNV,
 ) -> VulkanResultCodes;
+///# [vkDestroyIndirectCommandsLayoutNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyIndirectCommandsLayoutNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkDestroyIndirectCommandsLayoutNV.md")]
 #[doc(alias = "vkDestroyIndirectCommandsLayoutNV")]
 pub type FNDestroyIndirectCommandsLayoutNv = unsafe extern "system" fn(
     device: Device,
     indirect_commands_layout: IndirectCommandsLayoutNV,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkCmdExecuteGeneratedCommandsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdExecuteGeneratedCommandsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkCmdExecuteGeneratedCommandsNV.md")]
 #[doc(alias = "vkCmdExecuteGeneratedCommandsNV")]
 pub type FNCmdExecuteGeneratedCommandsNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
     is_preprocessed: Bool32,
     p_generated_commands_info: *const GeneratedCommandsInfoNV,
 );
+///# [vkCmdPreprocessGeneratedCommandsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdPreprocessGeneratedCommandsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkCmdPreprocessGeneratedCommandsNV.md")]
 #[doc(alias = "vkCmdPreprocessGeneratedCommandsNV")]
 pub type FNCmdPreprocessGeneratedCommandsNv =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_generated_commands_info: *const GeneratedCommandsInfoNV);
+///# [vkCmdBindPipelineShaderGroupNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBindPipelineShaderGroupNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_generated_commands/vkCmdBindPipelineShaderGroupNV.md")]
 #[doc(alias = "vkCmdBindPipelineShaderGroupNV")]
 pub type FNCmdBindPipelineShaderGroupNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

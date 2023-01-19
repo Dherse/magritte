@@ -156,7 +156,7 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
 
         let name = bitflag.as_ident();
         let alias = bitflag.as_alias();
-        let doc = self.doc_of(&self.doc_dir_path, bitflag.original_name());
+        let doc = self.doc_of(&self.doc_dir_path, &self.origin, bitflag.original_name());
 
         let bits = bitflag.bits().iter().map(|bit| bits_of_bitflag(
             self.parent,

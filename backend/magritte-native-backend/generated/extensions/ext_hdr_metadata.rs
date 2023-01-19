@@ -1,9 +1,13 @@
+//!# [VK_EXT_hdr_metadata](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_hdr_metadata.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VK_EXT_hdr_metadata.md")]
 use crate::{
     cstr,
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, Device, StructureType},
 };
 use std::ffi::CStr;
+///# [VkXYColorEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkXYColorEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VkXYColorEXT.md")]
 #[doc(alias = "VkXYColorEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -11,6 +15,8 @@ pub struct XyColorEXT {
     x: f32,
     y: f32,
 }
+///# [VkHdrMetadataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkHdrMetadataEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VkHdrMetadataEXT.md")]
 #[doc(alias = "VkHdrMetadataEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -40,6 +46,8 @@ pub struct HdrMetadataEXT {
 pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_HDR_METADATA_EXTENSION_NAME")]
 pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_hdr_metadata");
+///# [vkSetHdrMetadataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetHdrMetadataEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/vkSetHdrMetadataEXT.md")]
 #[doc(alias = "vkSetHdrMetadataEXT")]
 pub type FNSetHdrMetadataExt = unsafe extern "system" fn(
     device: Device,

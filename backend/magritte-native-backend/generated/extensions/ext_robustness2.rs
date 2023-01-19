@@ -1,8 +1,12 @@
+//!# [VK_EXT_robustness2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_robustness2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_robustness2/VK_EXT_robustness2.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, DeviceSize, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRobustness2FeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRobustness2FeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_robustness2/VkPhysicalDeviceRobustness2FeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceRobustness2FeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -18,6 +22,8 @@ pub struct PhysicalDeviceRobustness2FeaturesEXT {
     #[doc(alias = "nullDescriptor")]
     null_descriptor: Bool32,
 }
+///# [VkPhysicalDeviceRobustness2PropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRobustness2PropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_robustness2/VkPhysicalDeviceRobustness2PropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceRobustness2PropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

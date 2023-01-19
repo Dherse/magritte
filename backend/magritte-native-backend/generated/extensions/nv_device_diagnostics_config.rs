@@ -1,8 +1,12 @@
+//!# [VK_NV_device_diagnostics_config](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_device_diagnostics_config.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_device_diagnostics_config/VK_NV_device_diagnostics_config.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDiagnosticsConfigFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_diagnostics_config/VkPhysicalDeviceDiagnosticsConfigFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceDiagnosticsConfigFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceDiagnosticsConfigFeaturesNV {
     #[doc(alias = "diagnosticsConfig")]
     diagnostics_config: Bool32,
 }
+///# [VkDeviceDiagnosticsConfigCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_diagnostics_config/VkDeviceDiagnosticsConfigCreateInfoNV.md")]
 #[doc(alias = "VkDeviceDiagnosticsConfigCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -24,6 +30,8 @@ pub struct DeviceDiagnosticsConfigCreateInfoNV {
     p_next: *const BaseInStructure,
     flags: DeviceDiagnosticsConfigFlagsNV,
 }
+///# [VkDeviceDiagnosticsConfigFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_diagnostics_config/VkDeviceDiagnosticsConfigFlagBitsNV.md")]
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagsNV")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -312,6 +320,8 @@ impl std::fmt::Debug for DeviceDiagnosticsConfigFlagsNV {
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME")]
 pub const NV_DEVICE_DIAGNOSTICS_CONFIG_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_device_diagnostics_config");
+///# [VkDeviceDiagnosticsConfigFlagBitsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceDiagnosticsConfigFlagBitsNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_device_diagnostics_config/VkDeviceDiagnosticsConfigFlagBitsNV.md")]
 #[doc(alias = "VkDeviceDiagnosticsConfigFlagBitsNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

@@ -1,8 +1,12 @@
+//!# [VK_AMD_device_coherent_memory](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_device_coherent_memory.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_device_coherent_memory/VK_AMD_device_coherent_memory.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceCoherentMemoryFeaturesAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCoherentMemoryFeaturesAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_device_coherent_memory/VkPhysicalDeviceCoherentMemoryFeaturesAMD.md")]
 #[doc(alias = "VkPhysicalDeviceCoherentMemoryFeaturesAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]

@@ -1,3 +1,5 @@
+//!# [VK_KHR_copy_commands2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_copy_commands2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_copy_commands2/VK_KHR_copy_commands2.md")]
 use crate::{
     cstr,
     vulkan1_3::{

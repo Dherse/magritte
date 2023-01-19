@@ -1,8 +1,12 @@
+//!# [VK_NV_framebuffer_mixed_samples](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_framebuffer_mixed_samples.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_framebuffer_mixed_samples/VK_NV_framebuffer_mixed_samples.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPipelineCoverageModulationStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageModulationStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_framebuffer_mixed_samples/VkPipelineCoverageModulationStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineCoverageModulationStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -37,6 +41,8 @@ impl PipelineCoverageModulationStateCreateFlagsNV {
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME")]
 pub const NV_FRAMEBUFFER_MIXED_SAMPLES_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_framebuffer_mixed_samples");
+///# [VkCoverageModulationModeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCoverageModulationModeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_framebuffer_mixed_samples/VkCoverageModulationModeNV.md")]
 #[doc(alias = "VkCoverageModulationModeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

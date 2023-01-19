@@ -1,3 +1,5 @@
+//!# [VK_EXT_display_surface_counter](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_display_surface_counter.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_display_surface_counter/VK_EXT_display_surface_counter.md")]
 use crate::{
     cstr,
     extensions::{
@@ -7,6 +9,8 @@ use crate::{
     vulkan1_0::{BaseOutStructure, Extent2D, ImageUsageFlags, PhysicalDevice, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkSurfaceCapabilities2EXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceCapabilities2EXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_surface_counter/VkSurfaceCapabilities2EXT.md")]
 #[doc(alias = "VkSurfaceCapabilities2EXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -38,6 +42,8 @@ pub struct SurfaceCapabilities2EXT {
     #[doc(alias = "supportedSurfaceCounters")]
     supported_surface_counters: SurfaceCounterFlagsEXT,
 }
+///# [VkSurfaceCounterFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceCounterFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_surface_counter/VkSurfaceCounterFlagBitsEXT.md")]
 #[doc(alias = "VkSurfaceCounterFlagsEXT")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -289,6 +295,8 @@ impl std::fmt::Debug for SurfaceCounterFlagsEXT {
 pub const EXT_DISPLAY_SURFACE_COUNTER_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME")]
 pub const EXT_DISPLAY_SURFACE_COUNTER_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_display_surface_counter");
+///# [VkSurfaceCounterFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSurfaceCounterFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_surface_counter/VkSurfaceCounterFlagBitsEXT.md")]
 #[doc(alias = "VkSurfaceCounterFlagBitsEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -322,6 +330,8 @@ impl SurfaceCounterFlagBitsEXT {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceSurfaceCapabilities2EXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceSurfaceCapabilities2EXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_surface_counter/vkGetPhysicalDeviceSurfaceCapabilities2EXT.md")]
 #[doc(alias = "vkGetPhysicalDeviceSurfaceCapabilities2EXT")]
 pub type FNGetPhysicalDeviceSurfaceCapabilities2Ext = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

@@ -1,8 +1,12 @@
+//!# [VK_EXT_physical_device_drm](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_physical_device_drm.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_physical_device_drm/VK_EXT_physical_device_drm.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDrmPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDrmPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_physical_device_drm/VkPhysicalDeviceDrmPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

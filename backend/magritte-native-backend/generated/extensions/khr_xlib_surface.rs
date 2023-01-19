@@ -1,3 +1,5 @@
+//!# [VK_KHR_xlib_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_xlib_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_xlib_surface/VK_KHR_xlib_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
@@ -7,6 +9,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkXlibSurfaceCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkXlibSurfaceCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_xlib_surface/VkXlibSurfaceCreateInfoKHR.md")]
 #[doc(alias = "VkXlibSurfaceCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -35,6 +39,8 @@ impl XlibSurfaceCreateFlagsKHR {
 pub const KHR_XLIB_SURFACE_SPEC_VERSION: u32 = 6;
 #[doc(alias = "VK_KHR_XLIB_SURFACE_EXTENSION_NAME")]
 pub const KHR_XLIB_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_xlib_surface");
+///# [vkCreateXlibSurfaceKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateXlibSurfaceKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_xlib_surface/vkCreateXlibSurfaceKHR.md")]
 #[doc(alias = "vkCreateXlibSurfaceKHR")]
 pub type FNCreateXlibSurfaceKhr = unsafe extern "system" fn(
     instance: Instance,
@@ -42,6 +48,8 @@ pub type FNCreateXlibSurfaceKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_surface: *mut SurfaceKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceXlibPresentationSupportKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceXlibPresentationSupportKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_xlib_surface/vkGetPhysicalDeviceXlibPresentationSupportKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceXlibPresentationSupportKHR")]
 pub type FNGetPhysicalDeviceXlibPresentationSupportKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

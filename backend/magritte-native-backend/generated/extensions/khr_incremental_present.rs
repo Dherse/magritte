@@ -1,8 +1,12 @@
+//!# [VK_KHR_incremental_present](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_incremental_present.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_incremental_present/VK_KHR_incremental_present.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Extent2D, Offset2D, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPresentRegionsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPresentRegionsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_incremental_present/VkPresentRegionsKHR.md")]
 #[doc(alias = "VkPresentRegionsKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PresentRegionsKHR {
     #[doc(alias = "pRegions")]
     regions: *const PresentRegionKHR,
 }
+///# [VkPresentRegionKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPresentRegionKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_incremental_present/VkPresentRegionKHR.md")]
 #[doc(alias = "VkPresentRegionKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -25,6 +31,8 @@ pub struct PresentRegionKHR {
     #[doc(alias = "pRectangles")]
     rectangles: *const RectLayerKHR,
 }
+///# [VkRectLayerKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRectLayerKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_incremental_present/VkRectLayerKHR.md")]
 #[doc(alias = "VkRectLayerKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]

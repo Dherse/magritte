@@ -1,8 +1,12 @@
+//!# [VK_INTEL_shader_integer_functions2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_INTEL_shader_integer_functions2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/intel_shader_integer_functions2/VK_INTEL_shader_integer_functions2.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.html)
+# [doc = include_str ! ("../../../../doc/extensions/intel_shader_integer_functions2/VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL.md")]
 #[doc(alias = "VkPhysicalDeviceShaderIntegerFunctions2FeaturesINTEL")]
 #[derive(Clone, Copy)]
 #[repr(C)]

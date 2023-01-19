@@ -1,3 +1,5 @@
+//!# [VK_NV_ray_tracing_motion_blur](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_ray_tracing_motion_blur.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VK_NV_ray_tracing_motion_blur.md")]
 use crate::{
     cstr,
     extensions::khr_acceleration_structure::{
@@ -6,6 +8,8 @@ use crate::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRayTracingMotionBlurFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingMotionBlurFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkPhysicalDeviceRayTracingMotionBlurFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceRayTracingMotionBlurFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct PhysicalDeviceRayTracingMotionBlurFeaturesNV {
     #[doc(alias = "rayTracingMotionBlurPipelineTraceRaysIndirect")]
     ray_tracing_motion_blur_pipeline_trace_rays_indirect: Bool32,
 }
+///# [VkAccelerationStructureGeometryMotionTrianglesDataNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureGeometryMotionTrianglesDataNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureGeometryMotionTrianglesDataNV.md")]
 #[doc(alias = "VkAccelerationStructureGeometryMotionTrianglesDataNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct AccelerationStructureGeometryMotionTrianglesDataNV {
     #[doc(alias = "vertexData")]
     vertex_data: DeviceOrHostAddressConstKHR,
 }
+///# [VkAccelerationStructureMotionInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureMotionInfoNV.md")]
 #[doc(alias = "VkAccelerationStructureMotionInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -42,6 +50,8 @@ pub struct AccelerationStructureMotionInfoNV {
     max_instances: u32,
     flags: AccelerationStructureMotionInfoFlagsNV,
 }
+///# [VkSRTDataNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSRTDataNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkSRTDataNV.md")]
 #[doc(alias = "VkSRTDataNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -63,6 +73,8 @@ pub struct SrtDataNV {
     ty: f32,
     tz: f32,
 }
+///# [VkAccelerationStructureSRTMotionInstanceNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureSRTMotionInstanceNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureSRTMotionInstanceNV.md")]
 #[doc(alias = "VkAccelerationStructureSRTMotionInstanceNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -80,6 +92,8 @@ pub struct AccelerationStructureSrtMotionInstanceNV {
     #[doc(alias = "accelerationStructureReference")]
     acceleration_structure_reference: u64,
 }
+///# [VkAccelerationStructureMatrixMotionInstanceNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMatrixMotionInstanceNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureMatrixMotionInstanceNV.md")]
 #[doc(alias = "VkAccelerationStructureMatrixMotionInstanceNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -97,6 +111,8 @@ pub struct AccelerationStructureMatrixMotionInstanceNV {
     #[doc(alias = "accelerationStructureReference")]
     acceleration_structure_reference: u64,
 }
+///# [VkAccelerationStructureMotionInstanceNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureMotionInstanceNV.md")]
 #[doc(alias = "VkAccelerationStructureMotionInstanceNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -106,6 +122,8 @@ pub struct AccelerationStructureMotionInstanceNV {
     flags: AccelerationStructureMotionInstanceFlagsNV,
     data: AccelerationStructureMotionInstanceDataNV,
 }
+///# [VkAccelerationStructureMotionInstanceDataNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceDataNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureMotionInstanceDataNV.md")]
 #[doc(alias = "VkAccelerationStructureMotionInstanceDataNV")]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -145,6 +163,8 @@ impl AccelerationStructureMotionInstanceFlagsNV {
 pub const NV_RAY_TRACING_MOTION_BLUR_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME")]
 pub const NV_RAY_TRACING_MOTION_BLUR_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_ray_tracing_motion_blur");
+///# [VkAccelerationStructureMotionInstanceTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMotionInstanceTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing_motion_blur/VkAccelerationStructureMotionInstanceTypeNV.md")]
 #[doc(alias = "VkAccelerationStructureMotionInstanceTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

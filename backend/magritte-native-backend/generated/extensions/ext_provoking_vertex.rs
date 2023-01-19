@@ -1,8 +1,12 @@
+//!# [VK_EXT_provoking_vertex](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_provoking_vertex.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_provoking_vertex/VK_EXT_provoking_vertex.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceProvokingVertexFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProvokingVertexFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_provoking_vertex/VkPhysicalDeviceProvokingVertexFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceProvokingVertexFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PhysicalDeviceProvokingVertexFeaturesEXT {
     #[doc(alias = "transformFeedbackPreservesProvokingVertex")]
     transform_feedback_preserves_provoking_vertex: Bool32,
 }
+///# [VkPhysicalDeviceProvokingVertexPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceProvokingVertexPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_provoking_vertex/VkPhysicalDeviceProvokingVertexPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceProvokingVertexPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -29,6 +35,8 @@ pub struct PhysicalDeviceProvokingVertexPropertiesEXT {
     #[doc(alias = "transformFeedbackPreservesTriangleFanProvokingVertex")]
     transform_feedback_preserves_triangle_fan_provoking_vertex: Bool32,
 }
+///# [VkPipelineRasterizationProvokingVertexStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_provoking_vertex/VkPipelineRasterizationProvokingVertexStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineRasterizationProvokingVertexStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -44,6 +52,8 @@ pub struct PipelineRasterizationProvokingVertexStateCreateInfoEXT {
 pub const EXT_PROVOKING_VERTEX_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_PROVOKING_VERTEX_EXTENSION_NAME")]
 pub const EXT_PROVOKING_VERTEX_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_provoking_vertex");
+///# [VkProvokingVertexModeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkProvokingVertexModeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_provoking_vertex/VkProvokingVertexModeEXT.md")]
 #[doc(alias = "VkProvokingVertexModeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

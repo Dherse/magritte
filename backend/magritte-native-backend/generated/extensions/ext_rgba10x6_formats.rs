@@ -1,8 +1,12 @@
+//!# [VK_EXT_rgba10x6_formats](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_rgba10x6_formats.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_rgba10x6_formats/VK_EXT_rgba10x6_formats.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_rgba10x6_formats/VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

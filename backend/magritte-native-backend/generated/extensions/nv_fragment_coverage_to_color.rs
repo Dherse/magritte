@@ -1,8 +1,12 @@
+//!# [VK_NV_fragment_coverage_to_color](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_fragment_coverage_to_color.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_fragment_coverage_to_color/VK_NV_fragment_coverage_to_color.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPipelineCoverageToColorStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineCoverageToColorStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_fragment_coverage_to_color/VkPipelineCoverageToColorStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineCoverageToColorStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

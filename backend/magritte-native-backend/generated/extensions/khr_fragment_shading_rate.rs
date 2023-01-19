@@ -1,3 +1,5 @@
+//!# [VK_KHR_fragment_shading_rate](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_fragment_shading_rate.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VK_KHR_fragment_shading_rate.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -7,6 +9,8 @@ use crate::{
     vulkan1_2::AttachmentReference2,
 };
 use std::ffi::CStr;
+///# [VkFragmentShadingRateAttachmentInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateAttachmentInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkFragmentShadingRateAttachmentInfoKHR.md")]
 #[doc(alias = "VkFragmentShadingRateAttachmentInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -20,6 +24,8 @@ pub struct FragmentShadingRateAttachmentInfoKHR {
     #[doc(alias = "shadingRateAttachmentTexelSize")]
     shading_rate_attachment_texel_size: Extent2D,
 }
+///# [VkPipelineFragmentShadingRateStateCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineFragmentShadingRateStateCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkPipelineFragmentShadingRateStateCreateInfoKHR.md")]
 #[doc(alias = "VkPipelineFragmentShadingRateStateCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -33,6 +39,8 @@ pub struct PipelineFragmentShadingRateStateCreateInfoKHR {
     #[doc(alias = "combinerOps")]
     combiner_ops: [FragmentShadingRateCombinerOpKHR; 2 as usize],
 }
+///# [VkPhysicalDeviceFragmentShadingRateFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkPhysicalDeviceFragmentShadingRateFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -48,6 +56,8 @@ pub struct PhysicalDeviceFragmentShadingRateFeaturesKHR {
     #[doc(alias = "attachmentFragmentShadingRate")]
     attachment_fragment_shading_rate: Bool32,
 }
+///# [VkPhysicalDeviceFragmentShadingRatePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkPhysicalDeviceFragmentShadingRatePropertiesKHR.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRatePropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -91,6 +101,8 @@ pub struct PhysicalDeviceFragmentShadingRatePropertiesKHR {
     #[doc(alias = "fragmentShadingRateStrictMultiplyCombiner")]
     fragment_shading_rate_strict_multiply_combiner: Bool32,
 }
+///# [VkPhysicalDeviceFragmentShadingRateKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShadingRateKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkPhysicalDeviceFragmentShadingRateKHR.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShadingRateKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -108,6 +120,8 @@ pub struct PhysicalDeviceFragmentShadingRateKHR {
 pub const KHR_FRAGMENT_SHADING_RATE_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME")]
 pub const KHR_FRAGMENT_SHADING_RATE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_fragment_shading_rate");
+///# [VkFragmentShadingRateCombinerOpKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFragmentShadingRateCombinerOpKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/VkFragmentShadingRateCombinerOpKHR.md")]
 #[doc(alias = "VkFragmentShadingRateCombinerOpKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -153,12 +167,16 @@ impl FragmentShadingRateCombinerOpKHR {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceFragmentShadingRatesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceFragmentShadingRatesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/vkGetPhysicalDeviceFragmentShadingRatesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceFragmentShadingRatesKHR")]
 pub type FNGetPhysicalDeviceFragmentShadingRatesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_fragment_shading_rate_count: *mut u32,
     p_fragment_shading_rates: *mut PhysicalDeviceFragmentShadingRateKHR,
 ) -> VulkanResultCodes;
+///# [vkCmdSetFragmentShadingRateKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetFragmentShadingRateKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_fragment_shading_rate/vkCmdSetFragmentShadingRateKHR.md")]
 #[doc(alias = "vkCmdSetFragmentShadingRateKHR")]
 pub type FNCmdSetFragmentShadingRateKhr = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

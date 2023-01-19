@@ -1,8 +1,12 @@
+//!# [VK_EXT_fragment_shader_interlock](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_fragment_shader_interlock.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_fragment_shader_interlock/VK_EXT_fragment_shader_interlock.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_fragment_shader_interlock/VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceFragmentShaderInterlockFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

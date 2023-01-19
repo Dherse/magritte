@@ -1,8 +1,12 @@
+//!# [VK_NV_viewport_swizzle](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_viewport_swizzle.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_viewport_swizzle/VK_NV_viewport_swizzle.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkViewportSwizzleNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkViewportSwizzleNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_viewport_swizzle/VkViewportSwizzleNV.md")]
 #[doc(alias = "VkViewportSwizzleNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -12,6 +16,8 @@ pub struct ViewportSwizzleNV {
     z: ViewportCoordinateSwizzleNV,
     w: ViewportCoordinateSwizzleNV,
 }
+///# [VkPipelineViewportSwizzleStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportSwizzleStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_viewport_swizzle/VkPipelineViewportSwizzleStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineViewportSwizzleStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -42,6 +48,8 @@ impl PipelineViewportSwizzleStateCreateFlagsNV {
 pub const NV_VIEWPORT_SWIZZLE_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_NV_VIEWPORT_SWIZZLE_EXTENSION_NAME")]
 pub const NV_VIEWPORT_SWIZZLE_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_viewport_swizzle");
+///# [VkViewportCoordinateSwizzleNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkViewportCoordinateSwizzleNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_viewport_swizzle/VkViewportCoordinateSwizzleNV.md")]
 #[doc(alias = "VkViewportCoordinateSwizzleNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

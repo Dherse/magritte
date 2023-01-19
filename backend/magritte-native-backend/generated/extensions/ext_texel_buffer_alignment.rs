@@ -1,3 +1,5 @@
+//!# [VK_EXT_texel_buffer_alignment](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_texel_buffer_alignment.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_texel_buffer_alignment/VK_EXT_texel_buffer_alignment.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
@@ -7,6 +9,8 @@ use std::ffi::CStr;
 ///See [`PhysicalDeviceTexelBufferAlignmentProperties`]
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentPropertiesEXT")]
 pub type PhysicalDeviceTexelBufferAlignmentPropertiesEXT = PhysicalDeviceTexelBufferAlignmentProperties;
+///# [VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_texel_buffer_alignment/VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

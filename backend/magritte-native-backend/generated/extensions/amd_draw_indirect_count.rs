@@ -1,3 +1,5 @@
+//!# [VK_AMD_draw_indirect_count](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_draw_indirect_count.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_draw_indirect_count/VK_AMD_draw_indirect_count.md")]
 use crate::{
     cstr,
     vulkan1_2::{FNCmdDrawIndexedIndirectCount, FNCmdDrawIndirectCount},

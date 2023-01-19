@@ -1,3 +1,5 @@
+//!# [VK_KHR_maintenance1](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance1.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_maintenance1/VK_KHR_maintenance1.md")]
 use crate::{
     cstr,
     vulkan1_1::{CommandPoolTrimFlags, FNTrimCommandPool},

@@ -1,3 +1,5 @@
+//!# [VK_KHR_display](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_display.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_display/VK_KHR_display.md")]
 use crate::{
     cstr,
     extensions::khr_surface::{SurfaceKHR, SurfaceTransformFlagBitsKHR},
@@ -7,6 +9,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkDisplayPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayPropertiesKHR.md")]
 #[doc(alias = "VkDisplayPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -25,6 +29,8 @@ pub struct DisplayPropertiesKHR {
     #[doc(alias = "persistentContent")]
     persistent_content: Bool32,
 }
+///# [VkDisplayPlanePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPlanePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayPlanePropertiesKHR.md")]
 #[doc(alias = "VkDisplayPlanePropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -34,6 +40,8 @@ pub struct DisplayPlanePropertiesKHR {
     #[doc(alias = "currentStackIndex")]
     current_stack_index: u32,
 }
+///# [VkDisplayModeParametersKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayModeParametersKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayModeParametersKHR.md")]
 #[doc(alias = "VkDisplayModeParametersKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -43,6 +51,8 @@ pub struct DisplayModeParametersKHR {
     #[doc(alias = "refreshRate")]
     refresh_rate: u32,
 }
+///# [VkDisplayModePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayModePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayModePropertiesKHR.md")]
 #[doc(alias = "VkDisplayModePropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -51,6 +61,8 @@ pub struct DisplayModePropertiesKHR {
     display_mode: DisplayModeKHR,
     parameters: DisplayModeParametersKHR,
 }
+///# [VkDisplayModeCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayModeCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayModeCreateInfoKHR.md")]
 #[doc(alias = "VkDisplayModeCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -62,6 +74,8 @@ pub struct DisplayModeCreateInfoKHR {
     flags: DisplayModeCreateFlagsKHR,
     parameters: DisplayModeParametersKHR,
 }
+///# [VkDisplayPlaneCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayPlaneCapabilitiesKHR.md")]
 #[doc(alias = "VkDisplayPlaneCapabilitiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -85,6 +99,8 @@ pub struct DisplayPlaneCapabilitiesKHR {
     #[doc(alias = "maxDstExtent")]
     max_dst_extent: Extent2D,
 }
+///# [VkDisplaySurfaceCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplaySurfaceCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplaySurfaceCreateInfoKHR.md")]
 #[doc(alias = "VkDisplaySurfaceCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -108,6 +124,8 @@ pub struct DisplaySurfaceCreateInfoKHR {
     #[doc(alias = "imageExtent")]
     image_extent: Extent2D,
 }
+///# [VkDisplayKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayKHR.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkDisplayKHR")]
 #[repr(transparent)]
@@ -122,6 +140,8 @@ impl const Default for DisplayKHR {
         Self::null()
     }
 }
+///# [VkDisplayModeKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayModeKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayModeKHR.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkDisplayModeKHR")]
 #[repr(transparent)]
@@ -136,6 +156,8 @@ impl const Default for DisplayModeKHR {
         Self::null()
     }
 }
+///# [VkDisplayPlaneAlphaFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayPlaneAlphaFlagBitsKHR.md")]
 #[doc(alias = "VkDisplayPlaneAlphaFlagsKHR")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -790,6 +812,8 @@ impl DisplaySurfaceCreateFlagsKHR {
 pub const KHR_DISPLAY_SPEC_VERSION: u32 = 23;
 #[doc(alias = "VK_KHR_DISPLAY_EXTENSION_NAME")]
 pub const KHR_DISPLAY_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_display");
+///# [VkDisplayPlaneAlphaFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPlaneAlphaFlagBitsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/VkDisplayPlaneAlphaFlagBitsKHR.md")]
 #[doc(alias = "VkDisplayPlaneAlphaFlagBitsKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -832,18 +856,24 @@ impl DisplayPlaneAlphaFlagBitsKHR {
         Self(bits)
     }
 }
+///# [vkGetPhysicalDeviceDisplayPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceDisplayPropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkGetPhysicalDeviceDisplayPropertiesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceDisplayPropertiesKHR")]
 pub type FNGetPhysicalDeviceDisplayPropertiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_property_count: *mut u32,
     p_properties: *mut DisplayPropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceDisplayPlanePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkGetPhysicalDeviceDisplayPlanePropertiesKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceDisplayPlanePropertiesKHR")]
 pub type FNGetPhysicalDeviceDisplayPlanePropertiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     p_property_count: *mut u32,
     p_properties: *mut DisplayPlanePropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkGetDisplayPlaneSupportedDisplaysKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDisplayPlaneSupportedDisplaysKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkGetDisplayPlaneSupportedDisplaysKHR.md")]
 #[doc(alias = "vkGetDisplayPlaneSupportedDisplaysKHR")]
 pub type FNGetDisplayPlaneSupportedDisplaysKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
@@ -851,6 +881,8 @@ pub type FNGetDisplayPlaneSupportedDisplaysKhr = unsafe extern "system" fn(
     p_display_count: *mut u32,
     p_displays: *mut DisplayKHR,
 ) -> VulkanResultCodes;
+///# [vkGetDisplayModePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDisplayModePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkGetDisplayModePropertiesKHR.md")]
 #[doc(alias = "vkGetDisplayModePropertiesKHR")]
 pub type FNGetDisplayModePropertiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
@@ -858,6 +890,8 @@ pub type FNGetDisplayModePropertiesKhr = unsafe extern "system" fn(
     p_property_count: *mut u32,
     p_properties: *mut DisplayModePropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkCreateDisplayModeKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayModeKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkCreateDisplayModeKHR.md")]
 #[doc(alias = "vkCreateDisplayModeKHR")]
 pub type FNCreateDisplayModeKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
@@ -866,6 +900,8 @@ pub type FNCreateDisplayModeKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_mode: *mut DisplayModeKHR,
 ) -> VulkanResultCodes;
+///# [vkGetDisplayPlaneCapabilitiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetDisplayPlaneCapabilitiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkGetDisplayPlaneCapabilitiesKHR.md")]
 #[doc(alias = "vkGetDisplayPlaneCapabilitiesKHR")]
 pub type FNGetDisplayPlaneCapabilitiesKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
@@ -873,6 +909,8 @@ pub type FNGetDisplayPlaneCapabilitiesKhr = unsafe extern "system" fn(
     plane_index: u32,
     p_capabilities: *mut DisplayPlaneCapabilitiesKHR,
 ) -> VulkanResultCodes;
+///# [vkCreateDisplayPlaneSurfaceKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateDisplayPlaneSurfaceKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_display/vkCreateDisplayPlaneSurfaceKHR.md")]
 #[doc(alias = "vkCreateDisplayPlaneSurfaceKHR")]
 pub type FNCreateDisplayPlaneSurfaceKhr = unsafe extern "system" fn(
     instance: Instance,

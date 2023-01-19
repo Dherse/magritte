@@ -1,8 +1,12 @@
+//!# [VK_EXT_blend_operation_advanced](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_blend_operation_advanced.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_blend_operation_advanced/VK_EXT_blend_operation_advanced.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_blend_operation_advanced/VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceBlendOperationAdvancedFeaturesEXT {
     #[doc(alias = "advancedBlendCoherentOperations")]
     advanced_blend_coherent_operations: Bool32,
 }
+///# [VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_blend_operation_advanced/VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -35,6 +41,8 @@ pub struct PhysicalDeviceBlendOperationAdvancedPropertiesEXT {
     #[doc(alias = "advancedBlendAllOperations")]
     advanced_blend_all_operations: Bool32,
 }
+///# [VkPipelineColorBlendAdvancedStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendAdvancedStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_blend_operation_advanced/VkPipelineColorBlendAdvancedStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineColorBlendAdvancedStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -54,6 +62,8 @@ pub struct PipelineColorBlendAdvancedStateCreateInfoEXT {
 pub const EXT_BLEND_OPERATION_ADVANCED_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME")]
 pub const EXT_BLEND_OPERATION_ADVANCED_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_blend_operation_advanced");
+///# [VkBlendOverlapEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBlendOverlapEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_blend_operation_advanced/VkBlendOverlapEXT.md")]
 #[doc(alias = "VkBlendOverlapEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

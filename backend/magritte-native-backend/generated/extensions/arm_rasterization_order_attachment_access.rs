@@ -1,8 +1,12 @@
+//!# [VK_ARM_rasterization_order_attachment_access](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_ARM_rasterization_order_attachment_access.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/arm_rasterization_order_attachment_access/VK_ARM_rasterization_order_attachment_access.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.html)
+# [doc = include_str ! ("../../../../doc/extensions/arm_rasterization_order_attachment_access/VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM.md")]
 #[doc(alias = "VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesARM")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -23,6 +27,8 @@ pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME")]
 pub const ARM_RASTERIZATION_ORDER_ATTACHMENT_ACCESS_EXTENSION_NAME: &'static CStr =
     cstr!("VK_ARM_rasterization_order_attachment_access");
+///# [VkPipelineColorBlendStateCreateFlagBits](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineColorBlendStateCreateFlagBits.html)
+# [doc = include_str ! ("../../../../doc/extensions/arm_rasterization_order_attachment_access/VkPipelineColorBlendStateCreateFlagBits.md")]
 #[doc(alias = "VkPipelineColorBlendStateCreateFlagBits")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -56,6 +62,8 @@ impl PipelineColorBlendStateCreateFlagBits {
         Self(bits)
     }
 }
+///# [VkPipelineDepthStencilStateCreateFlagBits](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineDepthStencilStateCreateFlagBits.html)
+# [doc = include_str ! ("../../../../doc/extensions/arm_rasterization_order_attachment_access/VkPipelineDepthStencilStateCreateFlagBits.md")]
 #[doc(alias = "VkPipelineDepthStencilStateCreateFlagBits")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

@@ -1,3 +1,5 @@
+//!# [VK_KHR_shader_atomic_int64](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_atomic_int64.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_shader_atomic_int64/VK_KHR_shader_atomic_int64.md")]
 use crate::{cstr, vulkan1_2::PhysicalDeviceShaderAtomicInt64Features};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceShaderAtomicInt64Features`]

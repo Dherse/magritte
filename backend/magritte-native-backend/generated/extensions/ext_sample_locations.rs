@@ -1,3 +1,5 @@
+//!# [VK_EXT_sample_locations](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_sample_locations.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VK_EXT_sample_locations.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkSampleLocationEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSampleLocationEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkSampleLocationEXT.md")]
 #[doc(alias = "VkSampleLocationEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -13,6 +17,8 @@ pub struct SampleLocationEXT {
     x: f32,
     y: f32,
 }
+///# [VkSampleLocationsInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSampleLocationsInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkSampleLocationsInfoEXT.md")]
 #[doc(alias = "VkSampleLocationsInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct SampleLocationsInfoEXT {
     #[doc(alias = "pSampleLocations")]
     sample_locations: *const SampleLocationEXT,
 }
+///# [VkAttachmentSampleLocationsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAttachmentSampleLocationsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkAttachmentSampleLocationsEXT.md")]
 #[doc(alias = "VkAttachmentSampleLocationsEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -39,6 +47,8 @@ pub struct AttachmentSampleLocationsEXT {
     #[doc(alias = "sampleLocationsInfo")]
     sample_locations_info: SampleLocationsInfoEXT,
 }
+///# [VkSubpassSampleLocationsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSubpassSampleLocationsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkSubpassSampleLocationsEXT.md")]
 #[doc(alias = "VkSubpassSampleLocationsEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -48,6 +58,8 @@ pub struct SubpassSampleLocationsEXT {
     #[doc(alias = "sampleLocationsInfo")]
     sample_locations_info: SampleLocationsInfoEXT,
 }
+///# [VkRenderPassSampleLocationsBeginInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRenderPassSampleLocationsBeginInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkRenderPassSampleLocationsBeginInfoEXT.md")]
 #[doc(alias = "VkRenderPassSampleLocationsBeginInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -65,6 +77,8 @@ pub struct RenderPassSampleLocationsBeginInfoEXT {
     #[doc(alias = "pPostSubpassSampleLocations")]
     post_subpass_sample_locations: *const SubpassSampleLocationsEXT,
 }
+///# [VkPipelineSampleLocationsStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineSampleLocationsStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkPipelineSampleLocationsStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineSampleLocationsStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -78,6 +92,8 @@ pub struct PipelineSampleLocationsStateCreateInfoEXT {
     #[doc(alias = "sampleLocationsInfo")]
     sample_locations_info: SampleLocationsInfoEXT,
 }
+///# [VkPhysicalDeviceSampleLocationsPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceSampleLocationsPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkPhysicalDeviceSampleLocationsPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceSampleLocationsPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -97,6 +113,8 @@ pub struct PhysicalDeviceSampleLocationsPropertiesEXT {
     #[doc(alias = "variableSampleLocations")]
     variable_sample_locations: Bool32,
 }
+///# [VkMultisamplePropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMultisamplePropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/VkMultisamplePropertiesEXT.md")]
 #[doc(alias = "VkMultisamplePropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -112,12 +130,16 @@ pub struct MultisamplePropertiesEXT {
 pub const EXT_SAMPLE_LOCATIONS_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_SAMPLE_LOCATIONS_EXTENSION_NAME")]
 pub const EXT_SAMPLE_LOCATIONS_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_sample_locations");
+///# [vkGetPhysicalDeviceMultisamplePropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceMultisamplePropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/vkGetPhysicalDeviceMultisamplePropertiesEXT.md")]
 #[doc(alias = "vkGetPhysicalDeviceMultisamplePropertiesEXT")]
 pub type FNGetPhysicalDeviceMultisamplePropertiesExt = unsafe extern "system" fn(
     physical_device: PhysicalDevice,
     samples: SampleCountFlagBits,
     p_multisample_properties: *mut MultisamplePropertiesEXT,
 );
+///# [vkCmdSetSampleLocationsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetSampleLocationsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_sample_locations/vkCmdSetSampleLocationsEXT.md")]
 #[doc(alias = "vkCmdSetSampleLocationsEXT")]
 pub type FNCmdSetSampleLocationsExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, p_sample_locations_info: *const SampleLocationsInfoEXT);

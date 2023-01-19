@@ -1,8 +1,12 @@
+//!# [VK_EXT_conditional_rendering](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_conditional_rendering.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VK_EXT_conditional_rendering.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, DeviceSize, StructureType},
 };
 use std::ffi::CStr;
+///# [VkConditionalRenderingBeginInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingBeginInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VkConditionalRenderingBeginInfoEXT.md")]
 #[doc(alias = "VkConditionalRenderingBeginInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -15,6 +19,8 @@ pub struct ConditionalRenderingBeginInfoEXT {
     offset: DeviceSize,
     flags: ConditionalRenderingFlagsEXT,
 }
+///# [VkCommandBufferInheritanceConditionalRenderingInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceConditionalRenderingInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VkCommandBufferInheritanceConditionalRenderingInfoEXT.md")]
 #[doc(alias = "VkCommandBufferInheritanceConditionalRenderingInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -26,6 +32,8 @@ pub struct CommandBufferInheritanceConditionalRenderingInfoEXT {
     #[doc(alias = "conditionalRenderingEnable")]
     conditional_rendering_enable: Bool32,
 }
+///# [VkPhysicalDeviceConditionalRenderingFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceConditionalRenderingFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VkPhysicalDeviceConditionalRenderingFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceConditionalRenderingFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -39,6 +47,8 @@ pub struct PhysicalDeviceConditionalRenderingFeaturesEXT {
     #[doc(alias = "inheritedConditionalRendering")]
     inherited_conditional_rendering: Bool32,
 }
+///# [VkConditionalRenderingFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VkConditionalRenderingFlagBitsEXT.md")]
 #[doc(alias = "VkConditionalRenderingFlagsEXT")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -290,6 +300,8 @@ impl std::fmt::Debug for ConditionalRenderingFlagsEXT {
 pub const EXT_CONDITIONAL_RENDERING_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_CONDITIONAL_RENDERING_EXTENSION_NAME")]
 pub const EXT_CONDITIONAL_RENDERING_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_conditional_rendering");
+///# [VkConditionalRenderingFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkConditionalRenderingFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/VkConditionalRenderingFlagBitsEXT.md")]
 #[doc(alias = "VkConditionalRenderingFlagBitsEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -323,10 +335,14 @@ impl ConditionalRenderingFlagBitsEXT {
         Self(bits)
     }
 }
+///# [vkCmdBeginConditionalRenderingEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBeginConditionalRenderingEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/vkCmdBeginConditionalRenderingEXT.md")]
 #[doc(alias = "vkCmdBeginConditionalRenderingEXT")]
 pub type FNCmdBeginConditionalRenderingExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
     p_conditional_rendering_begin: *const ConditionalRenderingBeginInfoEXT,
 );
+///# [vkCmdEndConditionalRenderingEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdEndConditionalRenderingEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conditional_rendering/vkCmdEndConditionalRenderingEXT.md")]
 #[doc(alias = "vkCmdEndConditionalRenderingEXT")]
 pub type FNCmdEndConditionalRenderingExt = unsafe extern "system" fn(command_buffer: CommandBuffer);

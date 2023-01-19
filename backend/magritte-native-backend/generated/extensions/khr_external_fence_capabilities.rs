@@ -1,3 +1,5 @@
+//!# [VK_KHR_external_fence_capabilities](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_fence_capabilities.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_capabilities/VK_KHR_external_fence_capabilities.md")]
 use crate::{
     cstr,
     vulkan1_0::LUID_SIZE,

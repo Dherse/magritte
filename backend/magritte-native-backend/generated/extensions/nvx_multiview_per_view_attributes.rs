@@ -1,8 +1,12 @@
+//!# [VK_NVX_multiview_per_view_attributes](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NVX_multiview_per_view_attributes.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nvx_multiview_per_view_attributes/VK_NVX_multiview_per_view_attributes.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX.html)
+# [doc = include_str ! ("../../../../doc/extensions/nvx_multiview_per_view_attributes/VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX.md")]
 #[doc(alias = "VkPhysicalDeviceMultiviewPerViewAttributesPropertiesNVX")]
 #[derive(Clone, Copy)]
 #[repr(C)]

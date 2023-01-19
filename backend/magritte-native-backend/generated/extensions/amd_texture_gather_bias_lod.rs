@@ -1,8 +1,12 @@
+//!# [VK_AMD_texture_gather_bias_lod](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_texture_gather_bias_lod.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_texture_gather_bias_lod/VK_AMD_texture_gather_bias_lod.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkTextureLODGatherFormatPropertiesAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkTextureLODGatherFormatPropertiesAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_texture_gather_bias_lod/VkTextureLODGatherFormatPropertiesAMD.md")]
 #[doc(alias = "VkTextureLODGatherFormatPropertiesAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]

@@ -1,8 +1,12 @@
+//!# [VK_AMD_shader_core_properties2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_core_properties2.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties2/VK_AMD_shader_core_properties2.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceShaderCoreProperties2AMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderCoreProperties2AMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties2/VkPhysicalDeviceShaderCoreProperties2AMD.md")]
 #[doc(alias = "VkPhysicalDeviceShaderCoreProperties2AMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -16,6 +20,8 @@ pub struct PhysicalDeviceShaderCoreProperties2AMD {
     #[doc(alias = "activeComputeUnitCount")]
     active_compute_unit_count: u32,
 }
+///# [VkShaderCorePropertiesFlagBitsAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderCorePropertiesFlagBitsAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties2/VkShaderCorePropertiesFlagBitsAMD.md")]
 #[doc(alias = "VkShaderCorePropertiesFlagsAMD")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -254,6 +260,8 @@ impl std::fmt::Debug for ShaderCorePropertiesFlagsAMD {
 pub const AMD_SHADER_CORE_PROPERTIES_2_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME")]
 pub const AMD_SHADER_CORE_PROPERTIES_2_EXTENSION_NAME: &'static CStr = cstr!("VK_AMD_shader_core_properties2");
+///# [VkShaderCorePropertiesFlagBitsAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShaderCorePropertiesFlagBitsAMD.html)
+# [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties2/VkShaderCorePropertiesFlagBitsAMD.md")]
 #[doc(alias = "VkShaderCorePropertiesFlagBitsAMD")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

@@ -1,3 +1,5 @@
+//!# [VK_EXT_global_priority_query](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_global_priority_query.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_global_priority_query/VK_EXT_global_priority_query.md")]
 #[cfg(feature = "VK_KHR_global_priority")]
 use crate::extensions::khr_global_priority::PhysicalDeviceGlobalPriorityQueryFeaturesKHR;
 #[cfg(feature = "VK_KHR_global_priority")]

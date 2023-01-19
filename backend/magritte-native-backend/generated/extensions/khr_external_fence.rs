@@ -1,3 +1,5 @@
+//!# [VK_KHR_external_fence](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_fence.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_external_fence/VK_KHR_external_fence.md")]
 use crate::{
     cstr,
     vulkan1_1::{ExportFenceCreateInfo, FenceImportFlagBits, FenceImportFlags},

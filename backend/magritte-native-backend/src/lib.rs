@@ -20,4 +20,9 @@ pub mod vulkan1_3;
 #[path = "../generated/extensions.rs"]
 pub mod extensions;
 
+#[cfg(feature = "loader")]
+pub mod loader;
+
+pub mod entry;
+
 pub use magritte_common::*;

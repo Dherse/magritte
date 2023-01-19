@@ -1,3 +1,5 @@
+//!# [VK_EXT_global_priority](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_global_priority.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_global_priority/VK_EXT_global_priority.md")]
 use crate::cstr;
 #[cfg(feature = "VK_KHR_global_priority")]
 use crate::extensions::khr_global_priority::DeviceQueueGlobalPriorityCreateInfoKHR;

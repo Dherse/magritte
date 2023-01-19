@@ -1,3 +1,5 @@
+//!# [VK_EXT_buffer_device_address](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_buffer_device_address.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_buffer_device_address/VK_EXT_buffer_device_address.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DeviceAddress, StructureType},
@@ -10,6 +12,8 @@ pub type PhysicalDeviceBufferAddressFeaturesEXT = PhysicalDeviceBufferDeviceAddr
 ///See [`BufferDeviceAddressInfo`]
 #[doc(alias = "VkBufferDeviceAddressInfoEXT")]
 pub type BufferDeviceAddressInfoEXT = BufferDeviceAddressInfo;
+///# [VkPhysicalDeviceBufferDeviceAddressFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_buffer_device_address/VkPhysicalDeviceBufferDeviceAddressFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -25,6 +29,8 @@ pub struct PhysicalDeviceBufferDeviceAddressFeaturesEXT {
     #[doc(alias = "bufferDeviceAddressMultiDevice")]
     buffer_device_address_multi_device: Bool32,
 }
+///# [VkBufferDeviceAddressCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBufferDeviceAddressCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_buffer_device_address/VkBufferDeviceAddressCreateInfoEXT.md")]
 #[doc(alias = "VkBufferDeviceAddressCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

@@ -1,3 +1,5 @@
+//!# [VK_KHR_shader_float_controls](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_shader_float_controls.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_shader_float_controls/VK_KHR_shader_float_controls.md")]
 use crate::{
     cstr,
     vulkan1_2::{PhysicalDeviceFloatControlsProperties, ShaderFloatControlsIndependence},

@@ -1,8 +1,12 @@
+//!# [VK_EXT_device_memory_report](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_device_memory_report.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/VK_EXT_device_memory_report.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, DeviceSize, ObjectType, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDeviceMemoryReportFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/VkPhysicalDeviceDeviceMemoryReportFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceDeviceMemoryReportFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceDeviceMemoryReportFeaturesEXT {
     #[doc(alias = "deviceMemoryReport")]
     device_memory_report: Bool32,
 }
+///# [VkDeviceDeviceMemoryReportCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceDeviceMemoryReportCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/VkDeviceDeviceMemoryReportCreateInfoEXT.md")]
 #[doc(alias = "VkDeviceDeviceMemoryReportCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -28,6 +34,8 @@ pub struct DeviceDeviceMemoryReportCreateInfoEXT {
     #[doc(alias = "pUserData")]
     user_data: *mut std::ffi::c_void,
 }
+///# [VkDeviceMemoryReportCallbackDataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportCallbackDataEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/VkDeviceMemoryReportCallbackDataEXT.md")]
 #[doc(alias = "VkDeviceMemoryReportCallbackDataEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -49,6 +57,8 @@ pub struct DeviceMemoryReportCallbackDataEXT {
     #[doc(alias = "heapIndex")]
     heap_index: u32,
 }
+///# [PFN_vkDeviceMemoryReportCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/PFN_vkDeviceMemoryReportCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/PFN_vkDeviceMemoryReportCallbackEXT.md")]
 #[doc(alias = "PFN_vkDeviceMemoryReportCallbackEXT")]
 pub type PFNDeviceMemoryReportCallbackEXT = unsafe extern "system" fn(
     p_callback_data: *const DeviceMemoryReportCallbackDataEXT,
@@ -70,6 +80,8 @@ impl DeviceMemoryReportFlagsEXT {
 pub const EXT_DEVICE_MEMORY_REPORT_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME")]
 pub const EXT_DEVICE_MEMORY_REPORT_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_device_memory_report");
+///# [VkDeviceMemoryReportEventTypeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceMemoryReportEventTypeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_device_memory_report/VkDeviceMemoryReportEventTypeEXT.md")]
 #[doc(alias = "VkDeviceMemoryReportEventTypeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

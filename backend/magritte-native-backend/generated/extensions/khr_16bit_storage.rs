@@ -1,3 +1,5 @@
+//!# [VK_KHR_16bit_storage](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_16bit_storage.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_16bit_storage/VK_KHR_16bit_storage.md")]
 use crate::{cstr, vulkan1_1::PhysicalDevice16BitStorageFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDevice16BitStorageFeatures`]

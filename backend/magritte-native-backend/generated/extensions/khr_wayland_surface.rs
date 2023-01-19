@@ -1,3 +1,5 @@
+//!# [VK_KHR_wayland_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_wayland_surface.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_wayland_surface/VK_KHR_wayland_surface.md")]
 use crate::{
     cstr,
     extensions::khr_surface::SurfaceKHR,
@@ -7,6 +9,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkWaylandSurfaceCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkWaylandSurfaceCreateInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_wayland_surface/VkWaylandSurfaceCreateInfoKHR.md")]
 #[doc(alias = "VkWaylandSurfaceCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -35,6 +39,8 @@ impl WaylandSurfaceCreateFlagsKHR {
 pub const KHR_WAYLAND_SURFACE_SPEC_VERSION: u32 = 6;
 #[doc(alias = "VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME")]
 pub const KHR_WAYLAND_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_wayland_surface");
+///# [vkCreateWaylandSurfaceKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateWaylandSurfaceKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_wayland_surface/vkCreateWaylandSurfaceKHR.md")]
 #[doc(alias = "vkCreateWaylandSurfaceKHR")]
 pub type FNCreateWaylandSurfaceKhr = unsafe extern "system" fn(
     instance: Instance,
@@ -42,6 +48,8 @@ pub type FNCreateWaylandSurfaceKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_surface: *mut SurfaceKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPhysicalDeviceWaylandPresentationSupportKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceWaylandPresentationSupportKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_wayland_surface/vkGetPhysicalDeviceWaylandPresentationSupportKHR.md")]
 #[doc(alias = "vkGetPhysicalDeviceWaylandPresentationSupportKHR")]
 pub type FNGetPhysicalDeviceWaylandPresentationSupportKhr = unsafe extern "system" fn(
     physical_device: PhysicalDevice,

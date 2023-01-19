@@ -1,8 +1,12 @@
+//!# [VK_EXT_ycbcr_2plane_444_formats](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_ycbcr_2plane_444_formats.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_ycbcr_2plane_444_formats/VK_EXT_ycbcr_2plane_444_formats.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_ycbcr_2plane_444_formats/VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceYcbcr2Plane444FormatsFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

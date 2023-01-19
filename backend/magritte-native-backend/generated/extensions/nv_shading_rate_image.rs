@@ -1,3 +1,5 @@
+//!# [VK_NV_shading_rate_image](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_shading_rate_image.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VK_NV_shading_rate_image.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -5,6 +7,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkShadingRatePaletteNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkShadingRatePaletteNV.md")]
 #[doc(alias = "VkShadingRatePaletteNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct ShadingRatePaletteNV {
     #[doc(alias = "pShadingRatePaletteEntries")]
     shading_rate_palette_entries: *const ShadingRatePaletteEntryNV,
 }
+///# [VkPipelineViewportShadingRateImageStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportShadingRateImageStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkPipelineViewportShadingRateImageStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineViewportShadingRateImageStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -29,6 +35,8 @@ pub struct PipelineViewportShadingRateImageStateCreateInfoNV {
     #[doc(alias = "pShadingRatePalettes")]
     shading_rate_palettes: *const ShadingRatePaletteNV,
 }
+///# [VkPhysicalDeviceShadingRateImageFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImageFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkPhysicalDeviceShadingRateImageFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceShadingRateImageFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -42,6 +50,8 @@ pub struct PhysicalDeviceShadingRateImageFeaturesNV {
     #[doc(alias = "shadingRateCoarseSampleOrder")]
     shading_rate_coarse_sample_order: Bool32,
 }
+///# [VkPhysicalDeviceShadingRateImagePropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShadingRateImagePropertiesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkPhysicalDeviceShadingRateImagePropertiesNV.md")]
 #[doc(alias = "VkPhysicalDeviceShadingRateImagePropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -57,6 +67,8 @@ pub struct PhysicalDeviceShadingRateImagePropertiesNV {
     #[doc(alias = "shadingRateMaxCoarseSamples")]
     shading_rate_max_coarse_samples: u32,
 }
+///# [VkCoarseSampleLocationNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleLocationNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkCoarseSampleLocationNV.md")]
 #[doc(alias = "VkCoarseSampleLocationNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -67,6 +79,8 @@ pub struct CoarseSampleLocationNV {
     pixel_y: u32,
     sample: u32,
 }
+///# [VkCoarseSampleOrderCustomNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleOrderCustomNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkCoarseSampleOrderCustomNV.md")]
 #[doc(alias = "VkCoarseSampleOrderCustomNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -80,6 +94,8 @@ pub struct CoarseSampleOrderCustomNV {
     #[doc(alias = "pSampleLocations")]
     sample_locations: *const CoarseSampleLocationNV,
 }
+///# [VkPipelineViewportCoarseSampleOrderStateCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkPipelineViewportCoarseSampleOrderStateCreateInfoNV.md")]
 #[doc(alias = "VkPipelineViewportCoarseSampleOrderStateCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -99,6 +115,8 @@ pub struct PipelineViewportCoarseSampleOrderStateCreateInfoNV {
 pub const NV_SHADING_RATE_IMAGE_SPEC_VERSION: u32 = 3;
 #[doc(alias = "VK_NV_SHADING_RATE_IMAGE_EXTENSION_NAME")]
 pub const NV_SHADING_RATE_IMAGE_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_shading_rate_image");
+///# [VkShadingRatePaletteEntryNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkShadingRatePaletteEntryNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkShadingRatePaletteEntryNV.md")]
 #[doc(alias = "VkShadingRatePaletteEntryNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -165,6 +183,8 @@ impl ShadingRatePaletteEntryNV {
         Self(bits)
     }
 }
+///# [VkCoarseSampleOrderTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCoarseSampleOrderTypeNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/VkCoarseSampleOrderTypeNV.md")]
 #[doc(alias = "VkCoarseSampleOrderTypeNV")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -207,9 +227,13 @@ impl CoarseSampleOrderTypeNV {
         Self(bits)
     }
 }
+///# [vkCmdBindShadingRateImageNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBindShadingRateImageNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/vkCmdBindShadingRateImageNV.md")]
 #[doc(alias = "vkCmdBindShadingRateImageNV")]
 pub type FNCmdBindShadingRateImageNv =
     unsafe extern "system" fn(command_buffer: CommandBuffer, image_view: ImageView, image_layout: ImageLayout);
+///# [vkCmdSetViewportShadingRatePaletteNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetViewportShadingRatePaletteNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/vkCmdSetViewportShadingRatePaletteNV.md")]
 #[doc(alias = "vkCmdSetViewportShadingRatePaletteNV")]
 pub type FNCmdSetViewportShadingRatePaletteNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -217,6 +241,8 @@ pub type FNCmdSetViewportShadingRatePaletteNv = unsafe extern "system" fn(
     viewport_count: u32,
     p_shading_rate_palettes: *const ShadingRatePaletteNV,
 );
+///# [vkCmdSetCoarseSampleOrderNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetCoarseSampleOrderNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_shading_rate_image/vkCmdSetCoarseSampleOrderNV.md")]
 #[doc(alias = "vkCmdSetCoarseSampleOrderNV")]
 pub type FNCmdSetCoarseSampleOrderNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

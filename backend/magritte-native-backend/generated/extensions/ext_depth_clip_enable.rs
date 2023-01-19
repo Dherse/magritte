@@ -1,8 +1,12 @@
+//!# [VK_EXT_depth_clip_enable](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_depth_clip_enable.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_depth_clip_enable/VK_EXT_depth_clip_enable.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDepthClipEnableFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDepthClipEnableFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_depth_clip_enable/VkPhysicalDeviceDepthClipEnableFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceDepthClipEnableFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceDepthClipEnableFeaturesEXT {
     #[doc(alias = "depthClipEnable")]
     depth_clip_enable: Bool32,
 }
+///# [VkPipelineRasterizationDepthClipStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationDepthClipStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_depth_clip_enable/VkPipelineRasterizationDepthClipStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineRasterizationDepthClipStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

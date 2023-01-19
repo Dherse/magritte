@@ -1,8 +1,12 @@
+//!# [VK_EXT_ycbcr_image_arrays](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_ycbcr_image_arrays.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_ycbcr_image_arrays/VK_EXT_ycbcr_image_arrays.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceYcbcrImageArraysFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_ycbcr_image_arrays/VkPhysicalDeviceYcbcrImageArraysFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceYcbcrImageArraysFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

@@ -1,8 +1,12 @@
+//!# [VK_EXT_pci_bus_info](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_pci_bus_info.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_pci_bus_info/VK_EXT_pci_bus_info.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePCIBusInfoPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePCIBusInfoPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_pci_bus_info/VkPhysicalDevicePCIBusInfoPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDevicePCIBusInfoPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

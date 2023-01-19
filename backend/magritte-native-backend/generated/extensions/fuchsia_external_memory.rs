@@ -1,3 +1,5 @@
+//!# [VK_FUCHSIA_external_memory](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_FUCHSIA_external_memory.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/VK_FUCHSIA_external_memory.md")]
 use crate::{
     cstr,
     opaque::zx_handle_t,
@@ -5,6 +7,8 @@ use crate::{
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
 };
 use std::ffi::CStr;
+///# [VkImportMemoryZirconHandleInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImportMemoryZirconHandleInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/VkImportMemoryZirconHandleInfoFUCHSIA.md")]
 #[doc(alias = "VkImportMemoryZirconHandleInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -17,6 +21,8 @@ pub struct ImportMemoryZirconHandleInfoFUCHSIA {
     handle_type: ExternalMemoryHandleTypeFlagBits,
     handle: zx_handle_t,
 }
+///# [VkMemoryZirconHandlePropertiesFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryZirconHandlePropertiesFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/VkMemoryZirconHandlePropertiesFUCHSIA.md")]
 #[doc(alias = "VkMemoryZirconHandlePropertiesFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -28,6 +34,8 @@ pub struct MemoryZirconHandlePropertiesFUCHSIA {
     #[doc(alias = "memoryTypeBits")]
     memory_type_bits: u32,
 }
+///# [VkMemoryGetZirconHandleInfoFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryGetZirconHandleInfoFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/VkMemoryGetZirconHandleInfoFUCHSIA.md")]
 #[doc(alias = "VkMemoryGetZirconHandleInfoFUCHSIA")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -44,12 +52,16 @@ pub struct MemoryGetZirconHandleInfoFUCHSIA {
 pub const FUCHSIA_EXTERNAL_MEMORY_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME")]
 pub const FUCHSIA_EXTERNAL_MEMORY_EXTENSION_NAME: &'static CStr = cstr!("VK_FUCHSIA_external_memory");
+///# [vkGetMemoryZirconHandleFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryZirconHandleFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/vkGetMemoryZirconHandleFUCHSIA.md")]
 #[doc(alias = "vkGetMemoryZirconHandleFUCHSIA")]
 pub type FNGetMemoryZirconHandleFuchsia = unsafe extern "system" fn(
     device: Device,
     p_get_zircon_handle_info: *const MemoryGetZirconHandleInfoFUCHSIA,
     p_zircon_handle: *mut zx_handle_t,
 ) -> VulkanResultCodes;
+///# [vkGetMemoryZirconHandlePropertiesFUCHSIA](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryZirconHandlePropertiesFUCHSIA.html)
+# [doc = include_str ! ("../../../../doc/extensions/fuchsia_external_memory/vkGetMemoryZirconHandlePropertiesFUCHSIA.md")]
 #[doc(alias = "vkGetMemoryZirconHandlePropertiesFUCHSIA")]
 pub type FNGetMemoryZirconHandlePropertiesFuchsia = unsafe extern "system" fn(
     device: Device,

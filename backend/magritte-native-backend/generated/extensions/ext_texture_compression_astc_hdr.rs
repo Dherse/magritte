@@ -1,3 +1,5 @@
+//!# [VK_EXT_texture_compression_astc_hdr](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_texture_compression_astc_hdr.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_texture_compression_astc_hdr/VK_EXT_texture_compression_astc_hdr.md")]
 use crate::{cstr, vulkan1_3::PhysicalDeviceTextureCompressionAstchdrFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceTextureCompressionAstchdrFeatures`]

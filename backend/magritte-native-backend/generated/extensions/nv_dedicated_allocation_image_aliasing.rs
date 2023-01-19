@@ -1,8 +1,12 @@
+//!# [VK_NV_dedicated_allocation_image_aliasing](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_dedicated_allocation_image_aliasing.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/nv_dedicated_allocation_image_aliasing/VK_NV_dedicated_allocation_image_aliasing.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.html)
+# [doc = include_str ! ("../../../../doc/extensions/nv_dedicated_allocation_image_aliasing/VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]

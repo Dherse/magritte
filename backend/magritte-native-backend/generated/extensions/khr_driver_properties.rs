@@ -1,3 +1,5 @@
+//!# [VK_KHR_driver_properties](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_driver_properties.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_driver_properties/VK_KHR_driver_properties.md")]
 use crate::{
     cstr,
     vulkan1_0::{MAX_DRIVER_INFO_SIZE, MAX_DRIVER_NAME_SIZE},

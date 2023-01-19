@@ -1,8 +1,12 @@
+//!# [VK_EXT_validation_flags](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_validation_flags.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VK_EXT_validation_flags.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, StructureType},
 };
 use std::ffi::CStr;
+///# [VkValidationFlagsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationFlagsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VkValidationFlagsEXT.md")]
 #[doc(alias = "VkValidationFlagsEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -20,6 +24,8 @@ pub struct ValidationFlagsEXT {
 pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 2;
 #[doc(alias = "VK_EXT_VALIDATION_FLAGS_EXTENSION_NAME")]
 pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_validation_flags");
+///# [VkValidationCheckEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationCheckEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VkValidationCheckEXT.md")]
 #[doc(alias = "VkValidationCheckEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

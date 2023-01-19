@@ -1,8 +1,12 @@
+//!# [VK_EXT_conservative_rasterization](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_conservative_rasterization.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_conservative_rasterization/VK_EXT_conservative_rasterization.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceConservativeRasterizationPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceConservativeRasterizationPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conservative_rasterization/VkPhysicalDeviceConservativeRasterizationPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceConservativeRasterizationPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +34,8 @@ pub struct PhysicalDeviceConservativeRasterizationPropertiesEXT {
     #[doc(alias = "conservativeRasterizationPostDepthCoverage")]
     conservative_rasterization_post_depth_coverage: Bool32,
 }
+///# [VkPipelineRasterizationConservativeStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationConservativeStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conservative_rasterization/VkPipelineRasterizationConservativeStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineRasterizationConservativeStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -60,6 +66,8 @@ impl PipelineRasterizationConservativeStateCreateFlagsEXT {
 pub const EXT_CONSERVATIVE_RASTERIZATION_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME")]
 pub const EXT_CONSERVATIVE_RASTERIZATION_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_conservative_rasterization");
+///# [VkConservativeRasterizationModeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkConservativeRasterizationModeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_conservative_rasterization/VkConservativeRasterizationModeEXT.md")]
 #[doc(alias = "VkConservativeRasterizationModeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]

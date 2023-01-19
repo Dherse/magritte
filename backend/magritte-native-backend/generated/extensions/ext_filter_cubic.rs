@@ -1,8 +1,12 @@
+//!# [VK_EXT_filter_cubic](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_filter_cubic.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_filter_cubic/VK_EXT_filter_cubic.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, Bool32, ImageViewType, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceImageViewImageFormatInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceImageViewImageFormatInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_filter_cubic/VkPhysicalDeviceImageViewImageFormatInfoEXT.md")]
 #[doc(alias = "VkPhysicalDeviceImageViewImageFormatInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceImageViewImageFormatInfoEXT {
     #[doc(alias = "imageViewType")]
     image_view_type: ImageViewType,
 }
+///# [VkFilterCubicImageViewImageFormatPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFilterCubicImageViewImageFormatPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_filter_cubic/VkFilterCubicImageViewImageFormatPropertiesEXT.md")]
 #[doc(alias = "VkFilterCubicImageViewImageFormatPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

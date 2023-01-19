@@ -1,3 +1,5 @@
+//!# [VK_KHR_zero_initialize_workgroup_memory](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_zero_initialize_workgroup_memory.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_zero_initialize_workgroup_memory/VK_KHR_zero_initialize_workgroup_memory.md")]
 use crate::{cstr, vulkan1_3::PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceZeroInitializeWorkgroupMemoryFeatures`]

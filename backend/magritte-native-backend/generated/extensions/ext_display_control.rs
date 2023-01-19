@@ -1,3 +1,5 @@
+//!# [VK_EXT_display_control](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_display_control.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VK_EXT_display_control.md")]
 use crate::{
     cstr,
     extensions::{
@@ -8,6 +10,8 @@ use crate::{
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Device, Fence, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkDisplayPowerInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPowerInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDisplayPowerInfoEXT.md")]
 #[doc(alias = "VkDisplayPowerInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct DisplayPowerInfoEXT {
     #[doc(alias = "powerState")]
     power_state: DisplayPowerStateEXT,
 }
+///# [VkDeviceEventInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceEventInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDeviceEventInfoEXT.md")]
 #[doc(alias = "VkDeviceEventInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -30,6 +36,8 @@ pub struct DeviceEventInfoEXT {
     #[doc(alias = "deviceEvent")]
     device_event: DeviceEventTypeEXT,
 }
+///# [VkDisplayEventInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayEventInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDisplayEventInfoEXT.md")]
 #[doc(alias = "VkDisplayEventInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +49,8 @@ pub struct DisplayEventInfoEXT {
     #[doc(alias = "displayEvent")]
     display_event: DisplayEventTypeEXT,
 }
+///# [VkSwapchainCounterCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCounterCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkSwapchainCounterCreateInfoEXT.md")]
 #[doc(alias = "VkSwapchainCounterCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -56,6 +66,8 @@ pub struct SwapchainCounterCreateInfoEXT {
 pub const EXT_DISPLAY_CONTROL_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_DISPLAY_CONTROL_EXTENSION_NAME")]
 pub const EXT_DISPLAY_CONTROL_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_display_control");
+///# [VkDisplayPowerStateEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayPowerStateEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDisplayPowerStateEXT.md")]
 #[doc(alias = "VkDisplayPowerStateEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -95,6 +107,8 @@ impl DisplayPowerStateEXT {
         Self(bits)
     }
 }
+///# [VkDeviceEventTypeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDeviceEventTypeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDeviceEventTypeEXT.md")]
 #[doc(alias = "VkDeviceEventTypeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -128,6 +142,8 @@ impl DeviceEventTypeEXT {
         Self(bits)
     }
 }
+///# [VkDisplayEventTypeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDisplayEventTypeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/VkDisplayEventTypeEXT.md")]
 #[doc(alias = "VkDisplayEventTypeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -161,12 +177,16 @@ impl DisplayEventTypeEXT {
         Self(bits)
     }
 }
+///# [vkDisplayPowerControlEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDisplayPowerControlEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/vkDisplayPowerControlEXT.md")]
 #[doc(alias = "vkDisplayPowerControlEXT")]
 pub type FNDisplayPowerControlExt = unsafe extern "system" fn(
     device: Device,
     display: DisplayKHR,
     p_display_power_info: *const DisplayPowerInfoEXT,
 ) -> VulkanResultCodes;
+///# [vkRegisterDeviceEventEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkRegisterDeviceEventEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/vkRegisterDeviceEventEXT.md")]
 #[doc(alias = "vkRegisterDeviceEventEXT")]
 pub type FNRegisterDeviceEventExt = unsafe extern "system" fn(
     device: Device,
@@ -174,6 +194,8 @@ pub type FNRegisterDeviceEventExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_fence: *mut Fence,
 ) -> VulkanResultCodes;
+///# [vkRegisterDisplayEventEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkRegisterDisplayEventEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/vkRegisterDisplayEventEXT.md")]
 #[doc(alias = "vkRegisterDisplayEventEXT")]
 pub type FNRegisterDisplayEventExt = unsafe extern "system" fn(
     device: Device,
@@ -182,6 +204,8 @@ pub type FNRegisterDisplayEventExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_fence: *mut Fence,
 ) -> VulkanResultCodes;
+///# [vkGetSwapchainCounterEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainCounterEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_display_control/vkGetSwapchainCounterEXT.md")]
 #[doc(alias = "vkGetSwapchainCounterEXT")]
 pub type FNGetSwapchainCounterExt = unsafe extern "system" fn(
     device: Device,

@@ -1,8 +1,12 @@
+//!# [VK_EXT_memory_budget](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_memory_budget.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_memory_budget/VK_EXT_memory_budget.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseOutStructure, DeviceSize, StructureType, MAX_MEMORY_HEAPS},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceMemoryBudgetPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryBudgetPropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_memory_budget/VkPhysicalDeviceMemoryBudgetPropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceMemoryBudgetPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]

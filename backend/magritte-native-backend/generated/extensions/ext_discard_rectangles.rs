@@ -1,8 +1,12 @@
+//!# [VK_EXT_discard_rectangles](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_discard_rectangles.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_discard_rectangles/VK_EXT_discard_rectangles.md")]
 use crate::{
     cstr,
     vulkan1_0::{BaseInStructure, BaseOutStructure, CommandBuffer, Rect2D, StructureType},
 };
 use std::ffi::CStr;
+///# [VkPhysicalDeviceDiscardRectanglePropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDiscardRectanglePropertiesEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_discard_rectangles/VkPhysicalDeviceDiscardRectanglePropertiesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceDiscardRectanglePropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -14,6 +18,8 @@ pub struct PhysicalDeviceDiscardRectanglePropertiesEXT {
     #[doc(alias = "maxDiscardRectangles")]
     max_discard_rectangles: u32,
 }
+///# [VkPipelineDiscardRectangleStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineDiscardRectangleStateCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_discard_rectangles/VkPipelineDiscardRectangleStateCreateInfoEXT.md")]
 #[doc(alias = "VkPipelineDiscardRectangleStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -46,6 +52,8 @@ impl PipelineDiscardRectangleStateCreateFlagsEXT {
 pub const EXT_DISCARD_RECTANGLES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_EXT_DISCARD_RECTANGLES_EXTENSION_NAME")]
 pub const EXT_DISCARD_RECTANGLES_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_discard_rectangles");
+///# [VkDiscardRectangleModeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDiscardRectangleModeEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_discard_rectangles/VkDiscardRectangleModeEXT.md")]
 #[doc(alias = "VkDiscardRectangleModeEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -82,6 +90,8 @@ impl DiscardRectangleModeEXT {
         Self(bits)
     }
 }
+///# [vkCmdSetDiscardRectangleEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetDiscardRectangleEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_discard_rectangles/vkCmdSetDiscardRectangleEXT.md")]
 #[doc(alias = "vkCmdSetDiscardRectangleEXT")]
 pub type FNCmdSetDiscardRectangleExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

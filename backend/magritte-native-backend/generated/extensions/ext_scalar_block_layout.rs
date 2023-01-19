@@ -1,3 +1,5 @@
+//!# [VK_EXT_scalar_block_layout](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_scalar_block_layout.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_scalar_block_layout/VK_EXT_scalar_block_layout.md")]
 use crate::{cstr, vulkan1_2::PhysicalDeviceScalarBlockLayoutFeatures};
 use std::ffi::CStr;
 ///See [`PhysicalDeviceScalarBlockLayoutFeatures`]

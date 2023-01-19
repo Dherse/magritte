@@ -1,3 +1,5 @@
+//!# [VK_KHR_pipeline_executable_properties](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_pipeline_executable_properties.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VK_KHR_pipeline_executable_properties.md")]
 use crate::{
     cstr,
     vulkan1_0::{
@@ -6,6 +8,8 @@ use crate::{
     },
 };
 use std::ffi::CStr;
+///# [VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR.md")]
 #[doc(alias = "VkPhysicalDevicePipelineExecutablePropertiesFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -17,6 +21,8 @@ pub struct PhysicalDevicePipelineExecutablePropertiesFeaturesKHR {
     #[doc(alias = "pipelineExecutableInfo")]
     pipeline_executable_info: Bool32,
 }
+///# [VkPipelineInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineInfoKHR.md")]
 #[doc(alias = "VkPipelineInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -27,6 +33,8 @@ pub struct PipelineInfoKHR {
     p_next: *const BaseInStructure,
     pipeline: Pipeline,
 }
+///# [VkPipelineExecutablePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutablePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutablePropertiesKHR.md")]
 #[doc(alias = "VkPipelineExecutablePropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -41,6 +49,8 @@ pub struct PipelineExecutablePropertiesKHR {
     #[doc(alias = "subgroupSize")]
     subgroup_size: u32,
 }
+///# [VkPipelineExecutableInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInfoKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutableInfoKHR.md")]
 #[doc(alias = "VkPipelineExecutableInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -53,6 +63,8 @@ pub struct PipelineExecutableInfoKHR {
     #[doc(alias = "executableIndex")]
     executable_index: u32,
 }
+///# [VkPipelineExecutableStatisticKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableStatisticKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutableStatisticKHR.md")]
 #[doc(alias = "VkPipelineExecutableStatisticKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -66,6 +78,8 @@ pub struct PipelineExecutableStatisticKHR {
     format: PipelineExecutableStatisticFormatKHR,
     value: PipelineExecutableStatisticValueKHR,
 }
+///# [VkPipelineExecutableInternalRepresentationKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableInternalRepresentationKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutableInternalRepresentationKHR.md")]
 #[doc(alias = "VkPipelineExecutableInternalRepresentationKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -83,6 +97,8 @@ pub struct PipelineExecutableInternalRepresentationKHR {
     #[doc(alias = "pData")]
     data: *mut std::ffi::c_void,
 }
+///# [VkPipelineExecutableStatisticValueKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableStatisticValueKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutableStatisticValueKHR.md")]
 #[doc(alias = "VkPipelineExecutableStatisticValueKHR")]
 #[repr(C)]
 #[derive(Clone, Copy)]
@@ -97,6 +113,8 @@ pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_SPEC_VERSION: u32 = 1;
 #[doc(alias = "VK_KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME")]
 pub const KHR_PIPELINE_EXECUTABLE_PROPERTIES_EXTENSION_NAME: &'static CStr =
     cstr!("VK_KHR_pipeline_executable_properties");
+///# [VkPipelineExecutableStatisticFormatKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineExecutableStatisticFormatKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/VkPipelineExecutableStatisticFormatKHR.md")]
 #[doc(alias = "VkPipelineExecutableStatisticFormatKHR")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -139,6 +157,8 @@ impl PipelineExecutableStatisticFormatKHR {
         Self(bits)
     }
 }
+///# [vkGetPipelineExecutablePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutablePropertiesKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/vkGetPipelineExecutablePropertiesKHR.md")]
 #[doc(alias = "vkGetPipelineExecutablePropertiesKHR")]
 pub type FNGetPipelineExecutablePropertiesKhr = unsafe extern "system" fn(
     device: Device,
@@ -146,6 +166,8 @@ pub type FNGetPipelineExecutablePropertiesKhr = unsafe extern "system" fn(
     p_executable_count: *mut u32,
     p_properties: *mut PipelineExecutablePropertiesKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPipelineExecutableStatisticsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutableStatisticsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/vkGetPipelineExecutableStatisticsKHR.md")]
 #[doc(alias = "vkGetPipelineExecutableStatisticsKHR")]
 pub type FNGetPipelineExecutableStatisticsKhr = unsafe extern "system" fn(
     device: Device,
@@ -153,6 +175,8 @@ pub type FNGetPipelineExecutableStatisticsKhr = unsafe extern "system" fn(
     p_statistic_count: *mut u32,
     p_statistics: *mut PipelineExecutableStatisticKHR,
 ) -> VulkanResultCodes;
+///# [vkGetPipelineExecutableInternalRepresentationsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetPipelineExecutableInternalRepresentationsKHR.html)
+# [doc = include_str ! ("../../../../doc/extensions/khr_pipeline_executable_properties/vkGetPipelineExecutableInternalRepresentationsKHR.md")]
 #[doc(alias = "vkGetPipelineExecutableInternalRepresentationsKHR")]
 pub type FNGetPipelineExecutableInternalRepresentationsKhr = unsafe extern "system" fn(
     device: Device,

@@ -1,3 +1,5 @@
+//!# [VK_EXT_debug_report](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_debug_report.html)
+# ! [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/VK_EXT_debug_report.md")]
 #[cfg(feature = "VK_EXT_debug_marker")]
 use crate::extensions::ext_debug_marker::DebugReportObjectTypeEXT;
 use crate::{
@@ -5,6 +7,8 @@ use crate::{
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Bool32, Instance, StructureType, VulkanResultCodes},
 };
 use std::ffi::CStr;
+///# [VkDebugReportCallbackCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugReportCallbackCreateInfoEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/VkDebugReportCallbackCreateInfoEXT.md")]
 #[doc(alias = "VkDebugReportCallbackCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
@@ -19,6 +23,8 @@ pub struct DebugReportCallbackCreateInfoEXT {
     #[doc(alias = "pUserData")]
     user_data: *mut std::ffi::c_void,
 }
+///# [VkDebugReportCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugReportCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/VkDebugReportCallbackEXT.md")]
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkDebugReportCallbackEXT")]
 #[repr(transparent)]
@@ -33,6 +39,8 @@ impl const Default for DebugReportCallbackEXT {
         Self::null()
     }
 }
+///# [PFN_vkDebugReportCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/PFN_vkDebugReportCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/PFN_vkDebugReportCallbackEXT.md")]
 #[doc(alias = "PFN_vkDebugReportCallbackEXT")]
 pub type PFNDebugReportCallbackEXT = unsafe extern "system" fn(
     flags: DebugReportFlagsEXT,
@@ -44,6 +52,8 @@ pub type PFNDebugReportCallbackEXT = unsafe extern "system" fn(
     p_message: *const std::ffi::c_char,
     p_user_data: *mut std::ffi::c_void,
 ) -> Bool32;
+///# [VkDebugReportFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugReportFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/VkDebugReportFlagBitsEXT.md")]
 #[doc(alias = "VkDebugReportFlagsEXT")]
 #[repr(transparent)]
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -343,6 +353,8 @@ impl std::fmt::Debug for DebugReportFlagsEXT {
 pub const EXT_DEBUG_REPORT_SPEC_VERSION: u32 = 10;
 #[doc(alias = "VK_EXT_DEBUG_REPORT_EXTENSION_NAME")]
 pub const EXT_DEBUG_REPORT_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_debug_report");
+///# [VkDebugReportFlagBitsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkDebugReportFlagBitsEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/VkDebugReportFlagBitsEXT.md")]
 #[doc(alias = "VkDebugReportFlagBitsEXT")]
 #[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -388,6 +400,8 @@ impl DebugReportFlagBitsEXT {
         Self(bits)
     }
 }
+///# [vkCreateDebugReportCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateDebugReportCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/vkCreateDebugReportCallbackEXT.md")]
 #[doc(alias = "vkCreateDebugReportCallbackEXT")]
 pub type FNCreateDebugReportCallbackExt = unsafe extern "system" fn(
     instance: Instance,
@@ -395,12 +409,16 @@ pub type FNCreateDebugReportCallbackExt = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_callback: *mut DebugReportCallbackEXT,
 ) -> VulkanResultCodes;
+///# [vkDestroyDebugReportCallbackEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyDebugReportCallbackEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/vkDestroyDebugReportCallbackEXT.md")]
 #[doc(alias = "vkDestroyDebugReportCallbackEXT")]
 pub type FNDestroyDebugReportCallbackExt = unsafe extern "system" fn(
     instance: Instance,
     callback: DebugReportCallbackEXT,
     p_allocator: *const AllocationCallbacks,
 );
+///# [vkDebugReportMessageEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDebugReportMessageEXT.html)
+# [doc = include_str ! ("../../../../doc/extensions/ext_debug_report/vkDebugReportMessageEXT.md")]
 #[doc(alias = "vkDebugReportMessageEXT")]
 pub type FNDebugReportMessageExt = unsafe extern "system" fn(
     instance: Instance,
