@@ -2,7 +2,7 @@
 name = 'magritte'
 edition = '2021'
 version = '0.1.0'
-description = 'A high performance, high level graphics API around Vulkan'
+description = 'A high performance, high level graphics API built on top of Vulkan. With support for WASM!'
 readme = '../README.md'
 keywords = [
     'vulkan',
@@ -19,3 +19,28 @@ categories = [
 ]
 license-file = '../LICENSE'
 repository = 'https://github.com/Dherse/magritte'
+
+[features]
+default = []
+
+# Enable the native backend & host API
+# This is used when building a native application
+native = [ "magritte-native-backend", "crossbeam-epoch"]
+
+# Enable the WASM backend & client API
+# This is used when building a WASM application
+wasm = [ ]
+
+# Enable the WASM backend & host API
+# This is used when hosting a WASM application
+wasm-host = [ "native", "wasmer" ]
+
+[dependencies]
+# Epoch based garbage collector
+crossbeam-epoch = { version = "0.9.13", optional = true }
+
+# Native backend
+magritte-native-backend = { version = "0.1.0", path = "../backend/magritte-native-backend", optional = true }
+
+# WASM host-side support
+wasmer = { version = "3.1.0", default-features = false, optional = true }

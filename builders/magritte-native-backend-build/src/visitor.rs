@@ -11,7 +11,7 @@ use magritte_types::{
     Alias, Basetype, Bitmask, Const, ConstAlias, FunctionPointer, Handle, OpaqueType, Origin, Ref, Source, Struct,
     Union, Bitflag, Enum, CommandAlias,
 };
-use proc_macro2::TokenStream;
+use proc_macro2::{TokenStream, Ident};
 use quote::{quote, quote_each_token, ToTokens};
 
 use crate::{
@@ -110,8 +110,15 @@ impl Visitor for NativeBackendVisitor {
             origin: origin.to_static(),
             out: TokenStream::new(),
             imports: Imports::new(origin),
+            vtable: Vec::new(),
         })
     }
+}
+
+pub struct VTableItem {
+    pub name: Ident,
+    pub ty: Ident,
+    pub original_name: String,
 }
 
 pub struct NativeBackendOriginVisitor<'parent> {
@@ -122,6 +129,8 @@ pub struct NativeBackendOriginVisitor<'parent> {
 
     pub(crate) out: TokenStream,
     pub(crate) imports: Imports,
+
+    pub(crate) vtable: Vec<VTableItem>,
 }
 
 impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
@@ -461,21 +470,38 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
             #alias
             pub type #name = #of_ident;
         };
+
+        self.vtable.push(VTableItem {
+            name,
+            ty: of_ident,
+            original_name: command_alias.original_name().to_string(),
+        });
     }
 
     fn visit_function<'a>(&mut self, source: &Source<'a>, function: &magritte_types::Function<'a>) {
-        self.visit_function_pointer(source, &function.as_function_pointer());
+        let fn_ptr = function.as_function_pointer();
+        self.visit_function_pointer(source, &fn_ptr);
+
+        self.vtable.push(VTableItem {
+            name: function.as_ident(),
+            ty: fn_ptr.as_ident(),
+            original_name: function.original_name().to_string(),
+        });
     }
 
     fn visit_command<'a>(&mut self, source: &Source<'a>, command: &magritte_types::Function<'a>) {
         self.visit_function(source, &*command);
     }
 
-    fn finish(self) {
+    fn finish<'a>(self, _source: &Source<'a>) {
         let mut out = String::with_capacity(1 << 20);
 
         if let Some(doc) = self.doc_of_origin(&self.doc_dir_path, &self.origin) {
             out.extend_one(doc.to_string());
+        }
+
+        if !self.vtable.is_empty() {
+            eprintln!("TODO: vtable");
         }
         
         out.extend_one(self.imports.to_token_stream().to_string());

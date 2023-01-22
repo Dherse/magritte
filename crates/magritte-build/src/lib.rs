@@ -75,7 +75,7 @@ impl<'a> Visitable<'a> for Source<'a> {
         if flags.contains(VisitorFlags::ORIGINS) {
             for origin in self.origins.iter().filter(|o| !o.is_disabled()) {
                 if let Some(visitor) = visitor.visit_origin(self, origin) {
-                    self.visit_origin(origin, visitor, flags).finish();
+                    self.visit_origin(origin, visitor, flags).finish(self);
                 }
             }
         }
@@ -83,7 +83,7 @@ impl<'a> Visitable<'a> for Source<'a> {
         if flags.contains(VisitorFlags::VERSIONS) {
             for origin in VERSIONS {
                 if let Some(visitor) = visitor.visit_version(self, origin) {
-                    self.visit_origin(origin, visitor, flags).finish();
+                    self.visit_origin(origin, visitor, flags).finish(self);
                 }
             }
         }
@@ -91,7 +91,7 @@ impl<'a> Visitable<'a> for Source<'a> {
         if flags.contains(VisitorFlags::EXTENSIONS) {
             for extension in self.extensions.iter().filter(|e| !e.disabled()) {
                 if let Some(visitor) = visitor.visit_extension(self, extension) {
-                    self.visit_origin(extension.origin(), visitor, flags).finish();
+                    self.visit_origin(extension.origin(), visitor, flags).finish(self);
                 }
             }
         }
@@ -286,7 +286,8 @@ pub trait OriginVisitor<'parent>: Sized + 'parent {
     #[allow(unused_variables)]
     fn visit_command<'a>(&mut self, source: &Source<'a>, command: &Function<'a>) {}
 
-    fn finish(self) {}
+    #[allow(unused_variables)]
+    fn finish<'a>(self, source: &Source<'a>) {}
 }
 
 impl<'parent> OriginVisitor<'parent> for () {}
