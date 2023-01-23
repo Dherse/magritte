@@ -6,11 +6,12 @@ ron: magritte.ron
 doc: ron
 	cargo run --bin magritte-doc-build --release -- ./magritte.ron ./vendors/Vulkan-Docs/gen/out/man/html ./doc
 
-native-backend:
-	cargo run --bin magritte-native-backend-build --release -- ./magritte.ron ./doc ./backend/magritte-native-backend/generated
+core:
+	cargo run --bin magritte-build --release -- ./magritte.ron ./doc ./magritte/generated
 
 clean:
 	cargo clean
-	rm ./doc
-	rm ./magritte.ron
-	rm ./backend/magritte-native-backend/generated
+	rm -R ./doc
+	rm -R ./magritte.ron
+	rm -R ./backend/magritte-native-backend/generated
+	rm -R ./magritte/generated
