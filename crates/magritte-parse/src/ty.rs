@@ -57,18 +57,18 @@ fn process_base_ty<'a>(name: &mut String, base_ty: BaseTy<'a>, mut lengths: impl
                     if length == "null-terminated" {
                         Ty::NullTerminatedString(mutability)
                     } else {
-                        Ty::Slice(mutability, box inside, parse_expr(&length).unwrap().1).as_static()
+                        Ty::Slice(mutability, Box::new(inside), parse_expr(&length).unwrap().1).as_static()
                     }
                 } else {
-                    Ty::Slice(mutability, box inside, parse_expr(&length).unwrap().1).as_static()
+                    Ty::Slice(mutability, Box::new(inside), parse_expr(&length).unwrap().1).as_static()
                 }
             } else {
-                Ty::Pointer(mutability, box process_base_ty(name, *ty, lengths))
+                Ty::Pointer(mutability, Box::new(process_base_ty(name, *ty, lengths)))
             }
         },
         BaseTy::Native(native) => Ty::Native(native),
         BaseTy::Named(named) => Ty::Named(Cow::Owned(named.to_string())),
-        BaseTy::Array(length, ty) => Ty::Array(box process_base_ty(name, *ty, lengths), length),
+        BaseTy::Array(length, ty) => Ty::Array(Box::new(process_base_ty(name, *ty, lengths)), length),
     }
 }
 
@@ -86,7 +86,7 @@ fn ty(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
         array,
         map(
             tuple((alt((pointer_of_pointer, pointer, native, named)), variable_raw)),
-            |(ty, name)| BaseTy::ArgName(name, box ty),
+            |(ty, name)| BaseTy::ArgName(name, Box::new(ty)),
         ),
         alt((pointer_of_pointer, pointer, native, named)),
     ))(input)
@@ -113,7 +113,7 @@ fn array(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
                 space0,
             ),
         )),
-        |(_, ty, arg, len)| BaseTy::ArgName(arg, box BaseTy::Array(len, box ty)),
+        |(_, ty, arg, len)| BaseTy::ArgName(arg, Box::new(BaseTy::Array(len, Box::new(ty)))),
     )(input)
 }
 
@@ -207,7 +207,7 @@ fn pointer(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
                 } else {
                     Mutability::Const
                 },
-                box ty,
+                Box::new(ty),
             )
         },
     )(input)
@@ -229,14 +229,14 @@ fn pointer_of_pointer(input: &'_ str) -> IResult<&'_ str, BaseTy<'_>> {
                 } else {
                     Mutability::Const
                 },
-                box BaseTy::Pointer(
+                Box::new(BaseTy::Pointer(
                     if const_b.is_empty() {
                         Mutability::Mutable
                     } else {
                         Mutability::Const
                     },
-                    box ty,
-                ),
+                    Box::new(ty),
+                )),
             )
         },
     )(input)
@@ -250,17 +250,17 @@ mod tests {
     fn test_natives() {
         assert_eq!(
             ty("uint32_t this"),
-            Ok(("", BaseTy::ArgName("this", box BaseTy::Native(Native::UInt(4)))))
+            Ok(("", BaseTy::ArgName("this", Box::new(BaseTy::Native(Native::UInt(4))))))
         );
 
         assert_eq!(
             ty("float this"),
-            Ok(("", BaseTy::ArgName("this", box BaseTy::Native(Native::Float))))
+            Ok(("", BaseTy::ArgName("this", Box::new(BaseTy::Native(Native::Float)))))
         );
 
         assert_eq!(
             ty("size_t this"),
-            Ok(("", BaseTy::ArgName("this", box BaseTy::Native(Native::USize))))
+            Ok(("", BaseTy::ArgName("this", Box::new(BaseTy::Native(Native::USize)))))
         );
     }
 
@@ -268,19 +268,19 @@ mod tests {
     fn test_named() {
         assert_eq!(
             ty("VkInstance this"),
-            Ok(("", BaseTy::ArgName("this", box BaseTy::Named("VkInstance"))))
+            Ok(("", BaseTy::ArgName("this", Box::new(BaseTy::Named("VkInstance")))))
         );
 
         assert_eq!(
             ty("MyType this"),
-            Ok(("", BaseTy::ArgName("this", box BaseTy::Named("MyType"))))
+            Ok(("", BaseTy::ArgName("this", Box::new(BaseTy::Named("MyType")))))
         );
 
         assert_eq!(
             ty("VkVeryLongVulkanTypeNameAsTheyLoveIt this"),
             Ok((
                 "",
-                BaseTy::ArgName("this", box BaseTy::Named("VkVeryLongVulkanTypeNameAsTheyLoveIt"))
+                BaseTy::ArgName("this", Box::new(BaseTy::Named("VkVeryLongVulkanTypeNameAsTheyLoveIt")))
             ))
         );
     }
@@ -293,7 +293,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(Mutability::Const, box BaseTy::Named("VkInstance"))
+                    Box::new(BaseTy::Pointer(Mutability::Const, Box::new(BaseTy::Named("VkInstance"))))
                 )
             ))
         );
@@ -304,7 +304,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(Mutability::Mutable, box BaseTy::Named("VkInstance"))
+                    Box::new(BaseTy::Pointer(Mutability::Mutable, Box::new(BaseTy::Named("VkInstance"))))
                 )
             ))
         );
@@ -315,7 +315,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(Mutability::Const, box BaseTy::Native(Native::UInt(4)))
+                    Box::new(BaseTy::Pointer(Mutability::Const, Box::new(BaseTy::Native(Native::UInt(4)))))
                 )
             ))
         );
@@ -326,7 +326,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "pViewOffsets",
-                    box BaseTy::Pointer(Mutability::Const, box BaseTy::Native(Native::Int(4)))
+                    Box::new(BaseTy::Pointer(Mutability::Const, Box::new(BaseTy::Native(Native::Int(4)))))
                 )
             ))
         );
@@ -337,7 +337,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(Mutability::Mutable, box BaseTy::Native(Native::UInt(4)))
+                    Box::new(BaseTy::Pointer(Mutability::Mutable, Box::new(BaseTy::Native(Native::UInt(4)))))
                 )
             ))
         );
@@ -351,10 +351,10 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(
+                    Box::new(BaseTy::Pointer(
                         Mutability::Const,
-                        box BaseTy::Pointer(Mutability::Const, box BaseTy::Named("VkInstance"))
-                    )
+                        Box::new(BaseTy::Pointer(Mutability::Const, Box::new(BaseTy::Named("VkInstance"))))
+                    ))
                 )
             ))
         );
@@ -365,10 +365,10 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Pointer(
+                    Box::new(BaseTy::Pointer(
                         Mutability::Mutable,
-                        box BaseTy::Pointer(Mutability::Mutable, box BaseTy::Native(Native::Void))
-                    )
+                        Box::new(BaseTy::Pointer(Mutability::Mutable, Box::new(BaseTy::Native(Native::Void))))
+                    ))
                 )
             ))
         );
@@ -382,7 +382,7 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "this",
-                    box BaseTy::Array(Expr::ConstantInt(5), box BaseTy::Named("VkInstance"))
+                    Box::new(BaseTy::Array(Expr::ConstantInt(5), Box::new(BaseTy::Named("VkInstance"))))
                 )
             ))
         );
@@ -393,10 +393,10 @@ mod tests {
                 "",
                 BaseTy::ArgName(
                     "uuid",
-                    box BaseTy::Array(
+                    Box::new(BaseTy::Array(
                         Expr::Constant(Cow::Borrowed("VK_UUID_SIZE")),
-                        box BaseTy::Native(Native::UInt(4))
-                    )
+                        Box::new(BaseTy::Native(Native::UInt(4)))
+                    ))
                 )
             ))
         );

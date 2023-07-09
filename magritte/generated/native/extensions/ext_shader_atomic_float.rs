@@ -1,46 +1,57 @@
-//!# [VK_EXT_shader_atomic_float](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_shader_atomic_float.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_shader_atomic_float/VK_EXT_shader_atomic_float.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseOutStructure, Bool32, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceShaderAtomicFloatFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_shader_atomic_float/VkPhysicalDeviceShaderAtomicFloatFeaturesEXT.md")]
+use crate::native::vulkan1_0::{BaseOutStructure, Bool32, StructureType};
 #[doc(alias = "VkPhysicalDeviceShaderAtomicFloatFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceShaderAtomicFloatFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "shaderBufferFloat32Atomics")]
-    shader_buffer_float32_atomics: Bool32,
+    pub shader_buffer_float32_atomics: Bool32,
     #[doc(alias = "shaderBufferFloat32AtomicAdd")]
-    shader_buffer_float32_atomic_add: Bool32,
+    pub shader_buffer_float32_atomic_add: Bool32,
     #[doc(alias = "shaderBufferFloat64Atomics")]
-    shader_buffer_float64_atomics: Bool32,
+    pub shader_buffer_float64_atomics: Bool32,
     #[doc(alias = "shaderBufferFloat64AtomicAdd")]
-    shader_buffer_float64_atomic_add: Bool32,
+    pub shader_buffer_float64_atomic_add: Bool32,
     #[doc(alias = "shaderSharedFloat32Atomics")]
-    shader_shared_float32_atomics: Bool32,
+    pub shader_shared_float32_atomics: Bool32,
     #[doc(alias = "shaderSharedFloat32AtomicAdd")]
-    shader_shared_float32_atomic_add: Bool32,
+    pub shader_shared_float32_atomic_add: Bool32,
     #[doc(alias = "shaderSharedFloat64Atomics")]
-    shader_shared_float64_atomics: Bool32,
+    pub shader_shared_float64_atomics: Bool32,
     #[doc(alias = "shaderSharedFloat64AtomicAdd")]
-    shader_shared_float64_atomic_add: Bool32,
+    pub shader_shared_float64_atomic_add: Bool32,
     #[doc(alias = "shaderImageFloat32Atomics")]
-    shader_image_float32_atomics: Bool32,
+    pub shader_image_float32_atomics: Bool32,
     #[doc(alias = "shaderImageFloat32AtomicAdd")]
-    shader_image_float32_atomic_add: Bool32,
+    pub shader_image_float32_atomic_add: Bool32,
     #[doc(alias = "sparseImageFloat32Atomics")]
-    sparse_image_float32_atomics: Bool32,
+    pub sparse_image_float32_atomics: Bool32,
     #[doc(alias = "sparseImageFloat32AtomicAdd")]
-    sparse_image_float32_atomic_add: Bool32,
+    pub sparse_image_float32_atomic_add: Bool32,
 }
-#[doc(alias = "VK_EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION")]
-pub const EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME")]
-pub const EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_shader_atomic_float");
+impl Default for PhysicalDeviceShaderAtomicFloatFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceShaderAtomicFloatFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            shader_buffer_float32_atomics: unsafe { std::mem::zeroed() },
+            shader_buffer_float32_atomic_add: unsafe { std::mem::zeroed() },
+            shader_buffer_float64_atomics: unsafe { std::mem::zeroed() },
+            shader_buffer_float64_atomic_add: unsafe { std::mem::zeroed() },
+            shader_shared_float32_atomics: unsafe { std::mem::zeroed() },
+            shader_shared_float32_atomic_add: unsafe { std::mem::zeroed() },
+            shader_shared_float64_atomics: unsafe { std::mem::zeroed() },
+            shader_shared_float64_atomic_add: unsafe { std::mem::zeroed() },
+            shader_image_float32_atomics: unsafe { std::mem::zeroed() },
+            shader_image_float32_atomic_add: unsafe { std::mem::zeroed() },
+            sparse_image_float32_atomics: unsafe { std::mem::zeroed() },
+            sparse_image_float32_atomic_add: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_shader_atomic_float::{
+    EXT_SHADER_ATOMIC_FLOAT_EXTENSION_NAME, EXT_SHADER_ATOMIC_FLOAT_SPEC_VERSION,
+};

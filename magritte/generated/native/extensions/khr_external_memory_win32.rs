@@ -1,84 +1,108 @@
-//!# [VK_KHR_external_memory_win32](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_memory_win32.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/VK_KHR_external_memory_win32.md")]
-use crate::{
-    cstr,
+use crate::native::{
     opaque::{DWORD, HANDLE, LPCWSTR, SECURITY_ATTRIBUTES},
     vulkan1_0::{BaseInStructure, BaseOutStructure, Device, DeviceMemory, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
 };
-use std::ffi::CStr;
-///# [VkImportMemoryWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImportMemoryWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/VkImportMemoryWin32HandleInfoKHR.md")]
 #[doc(alias = "VkImportMemoryWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ImportMemoryWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "handleType")]
-    handle_type: ExternalMemoryHandleTypeFlagBits,
-    handle: HANDLE,
-    name: LPCWSTR,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle: HANDLE,
+    pub name: LPCWSTR,
 }
-///# [VkExportMemoryWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExportMemoryWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/VkExportMemoryWin32HandleInfoKHR.md")]
+impl Default for ImportMemoryWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ImportMemoryWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            handle_type: unsafe { std::mem::zeroed() },
+            handle: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkExportMemoryWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ExportMemoryWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "pAttributes")]
-    attributes: *const SECURITY_ATTRIBUTES,
+    pub attributes: *const SECURITY_ATTRIBUTES,
     #[doc(alias = "dwAccess")]
-    dw_access: DWORD,
-    name: LPCWSTR,
+    pub dw_access: DWORD,
+    pub name: LPCWSTR,
 }
-///# [VkMemoryWin32HandlePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryWin32HandlePropertiesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/VkMemoryWin32HandlePropertiesKHR.md")]
+impl Default for ExportMemoryWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ExportMemoryWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            attributes: unsafe { std::mem::zeroed() },
+            dw_access: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkMemoryWin32HandlePropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MemoryWin32HandlePropertiesKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "memoryTypeBits")]
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
-///# [VkMemoryGetWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryGetWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/VkMemoryGetWin32HandleInfoKHR.md")]
+impl Default for MemoryWin32HandlePropertiesKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MemoryWin32HandlePropertiesKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            memory_type_bits: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkMemoryGetWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MemoryGetWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    memory: DeviceMemory,
+    pub p_next: *const BaseInStructure,
+    pub memory: DeviceMemory,
     #[doc(alias = "handleType")]
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
-#[doc(alias = "VK_KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION")]
-pub const KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME")]
-pub const KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_external_memory_win32");
-///# [vkGetMemoryWin32HandleKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryWin32HandleKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/vkGetMemoryWin32HandleKHR.md")]
+impl Default for MemoryGetWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MemoryGetWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            memory: unsafe { std::mem::zeroed() },
+            handle_type: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::khr_external_memory_win32::{
+    KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME, KHR_EXTERNAL_MEMORY_WIN32_SPEC_VERSION,
+};
 #[doc(alias = "vkGetMemoryWin32HandleKHR")]
 pub type FNGetMemoryWin32HandleKhr = unsafe extern "system" fn(
     device: Device,
     p_get_win32_handle_info: *const MemoryGetWin32HandleInfoKHR,
     p_handle: *mut HANDLE,
 ) -> VulkanResultCodes;
-///# [vkGetMemoryWin32HandlePropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryWin32HandlePropertiesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_win32/vkGetMemoryWin32HandlePropertiesKHR.md")]
 #[doc(alias = "vkGetMemoryWin32HandlePropertiesKHR")]
 pub type FNGetMemoryWin32HandlePropertiesKhr = unsafe extern "system" fn(
     device: Device,

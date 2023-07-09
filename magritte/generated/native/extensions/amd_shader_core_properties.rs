@@ -1,50 +1,63 @@
-//!# [VK_AMD_shader_core_properties](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_AMD_shader_core_properties.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties/VK_AMD_shader_core_properties.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseOutStructure, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceShaderCorePropertiesAMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceShaderCorePropertiesAMD.html)
-# [doc = include_str ! ("../../../../doc/extensions/amd_shader_core_properties/VkPhysicalDeviceShaderCorePropertiesAMD.md")]
+use crate::native::vulkan1_0::{BaseOutStructure, StructureType};
 #[doc(alias = "VkPhysicalDeviceShaderCorePropertiesAMD")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceShaderCorePropertiesAMD {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "shaderEngineCount")]
-    shader_engine_count: u32,
+    pub shader_engine_count: u32,
     #[doc(alias = "shaderArraysPerEngineCount")]
-    shader_arrays_per_engine_count: u32,
+    pub shader_arrays_per_engine_count: u32,
     #[doc(alias = "computeUnitsPerShaderArray")]
-    compute_units_per_shader_array: u32,
+    pub compute_units_per_shader_array: u32,
     #[doc(alias = "simdPerComputeUnit")]
-    simd_per_compute_unit: u32,
+    pub simd_per_compute_unit: u32,
     #[doc(alias = "wavefrontsPerSimd")]
-    wavefronts_per_simd: u32,
+    pub wavefronts_per_simd: u32,
     #[doc(alias = "wavefrontSize")]
-    wavefront_size: u32,
+    pub wavefront_size: u32,
     #[doc(alias = "sgprsPerSimd")]
-    sgprs_per_simd: u32,
+    pub sgprs_per_simd: u32,
     #[doc(alias = "minSgprAllocation")]
-    min_sgpr_allocation: u32,
+    pub min_sgpr_allocation: u32,
     #[doc(alias = "maxSgprAllocation")]
-    max_sgpr_allocation: u32,
+    pub max_sgpr_allocation: u32,
     #[doc(alias = "sgprAllocationGranularity")]
-    sgpr_allocation_granularity: u32,
+    pub sgpr_allocation_granularity: u32,
     #[doc(alias = "vgprsPerSimd")]
-    vgprs_per_simd: u32,
+    pub vgprs_per_simd: u32,
     #[doc(alias = "minVgprAllocation")]
-    min_vgpr_allocation: u32,
+    pub min_vgpr_allocation: u32,
     #[doc(alias = "maxVgprAllocation")]
-    max_vgpr_allocation: u32,
+    pub max_vgpr_allocation: u32,
     #[doc(alias = "vgprAllocationGranularity")]
-    vgpr_allocation_granularity: u32,
+    pub vgpr_allocation_granularity: u32,
 }
-#[doc(alias = "VK_AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION")]
-pub const AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME")]
-pub const AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME: &'static CStr = cstr!("VK_AMD_shader_core_properties");
+impl Default for PhysicalDeviceShaderCorePropertiesAMD {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceShaderCorePropertiesAmd,
+            p_next: unsafe { std::mem::zeroed() },
+            shader_engine_count: unsafe { std::mem::zeroed() },
+            shader_arrays_per_engine_count: unsafe { std::mem::zeroed() },
+            compute_units_per_shader_array: unsafe { std::mem::zeroed() },
+            simd_per_compute_unit: unsafe { std::mem::zeroed() },
+            wavefronts_per_simd: unsafe { std::mem::zeroed() },
+            wavefront_size: unsafe { std::mem::zeroed() },
+            sgprs_per_simd: unsafe { std::mem::zeroed() },
+            min_sgpr_allocation: unsafe { std::mem::zeroed() },
+            max_sgpr_allocation: unsafe { std::mem::zeroed() },
+            sgpr_allocation_granularity: unsafe { std::mem::zeroed() },
+            vgprs_per_simd: unsafe { std::mem::zeroed() },
+            min_vgpr_allocation: unsafe { std::mem::zeroed() },
+            max_vgpr_allocation: unsafe { std::mem::zeroed() },
+            vgpr_allocation_granularity: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::amd_shader_core_properties::{
+    AMD_SHADER_CORE_PROPERTIES_EXTENSION_NAME, AMD_SHADER_CORE_PROPERTIES_SPEC_VERSION,
+};

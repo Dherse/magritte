@@ -1,15 +1,9 @@
-//!# [VK_KHR_external_memory_capabilities](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_memory_capabilities.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_external_memory_capabilities/VK_KHR_external_memory_capabilities.md")]
-use crate::{
-    cstr,
-    vulkan1_1::{
-        ExternalBufferProperties, ExternalImageFormatProperties, ExternalMemoryFeatureFlagBits,
-        ExternalMemoryFeatureFlags, ExternalMemoryHandleTypeFlagBits, ExternalMemoryHandleTypeFlags,
-        ExternalMemoryProperties, FNGetPhysicalDeviceExternalBufferProperties, PhysicalDeviceExternalBufferInfo,
-        PhysicalDeviceExternalImageFormatInfo,
-    },
+use crate::native::vulkan1_1::{
+    ExternalBufferProperties, ExternalImageFormatProperties, ExternalMemoryFeatureFlagBits, ExternalMemoryFeatureFlags,
+    ExternalMemoryHandleTypeFlagBits, ExternalMemoryHandleTypeFlags, ExternalMemoryProperties,
+    FNGetPhysicalDeviceExternalBufferProperties, PhysicalDeviceExternalBufferInfo,
+    PhysicalDeviceExternalImageFormatInfo,
 };
-use std::ffi::CStr;
 ///See [`ExternalMemoryHandleTypeFlags`]
 #[doc(alias = "VkExternalMemoryHandleTypeFlagsKHR")]
 pub type ExternalMemoryHandleTypeFlagsKHR = ExternalMemoryHandleTypeFlags;
@@ -37,10 +31,9 @@ pub type PhysicalDeviceExternalBufferInfoKHR = PhysicalDeviceExternalBufferInfo;
 ///See [`ExternalBufferProperties`]
 #[doc(alias = "VkExternalBufferPropertiesKHR")]
 pub type ExternalBufferPropertiesKHR = ExternalBufferProperties;
-#[doc(alias = "VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION")]
-pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME")]
-pub const KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_external_memory_capabilities");
+pub use crate::common::extensions::khr_external_memory_capabilities::{
+    KHR_EXTERNAL_MEMORY_CAPABILITIES_EXTENSION_NAME, KHR_EXTERNAL_MEMORY_CAPABILITIES_SPEC_VERSION,
+};
 ///See [`get_physical_device_external_buffer_properties`]
 #[doc(alias = "vkGetPhysicalDeviceExternalBufferPropertiesKHR")]
 pub type FNGetPhysicalDeviceExternalBufferPropertiesKhr = FNGetPhysicalDeviceExternalBufferProperties;

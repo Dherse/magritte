@@ -1,14 +1,8 @@
-//!# [VK_KHR_create_renderpass2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_create_renderpass2.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_create_renderpass2/VK_KHR_create_renderpass2.md")]
-use crate::{
-    cstr,
-    vulkan1_2::{
-        AttachmentDescription2, AttachmentReference2, FNCmdBeginRenderPass2, FNCmdEndRenderPass2, FNCmdNextSubpass2,
-        FNCreateRenderPass2, RenderPassCreateInfo2, SubpassBeginInfo, SubpassDependency2, SubpassDescription2,
-        SubpassEndInfo,
-    },
+use crate::native::vulkan1_2::{
+    AttachmentDescription2, AttachmentReference2, FNCmdBeginRenderPass2, FNCmdEndRenderPass2, FNCmdNextSubpass2,
+    FNCreateRenderPass2, RenderPassCreateInfo2, SubpassBeginInfo, SubpassDependency2, SubpassDescription2,
+    SubpassEndInfo,
 };
-use std::ffi::CStr;
 ///See [`AttachmentDescription2`]
 #[doc(alias = "VkAttachmentDescription2KHR")]
 pub type AttachmentDescription2KHR = AttachmentDescription2;
@@ -30,10 +24,9 @@ pub type SubpassBeginInfoKHR = SubpassBeginInfo;
 ///See [`SubpassEndInfo`]
 #[doc(alias = "VkSubpassEndInfoKHR")]
 pub type SubpassEndInfoKHR = SubpassEndInfo;
-#[doc(alias = "VK_KHR_CREATE_RENDERPASS_2_SPEC_VERSION")]
-pub const KHR_CREATE_RENDERPASS_2_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_CREATE_RENDERPASS_2_EXTENSION_NAME")]
-pub const KHR_CREATE_RENDERPASS_2_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_create_renderpass2");
+pub use crate::common::extensions::khr_create_renderpass2::{
+    KHR_CREATE_RENDERPASS_2_EXTENSION_NAME, KHR_CREATE_RENDERPASS_2_SPEC_VERSION,
+};
 ///See [`create_render_pass2`]
 #[doc(alias = "vkCreateRenderPass2KHR")]
 pub type FNCreateRenderPass2Khr = FNCreateRenderPass2;

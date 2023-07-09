@@ -1,7 +1,4 @@
-//!# [VK_KHR_synchronization2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_synchronization2.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/VK_KHR_synchronization2.md")]
-use crate::{
-    cstr,
+use crate::native::{
     vulkan1_0::{BaseOutStructure, Buffer, CommandBuffer, DeviceSize, Queue, StructureType},
     vulkan1_3::{
         AccessFlagBits2, AccessFlags2, BufferMemoryBarrier2, CommandBufferSubmitInfo, DependencyInfo,
@@ -10,7 +7,6 @@ use crate::{
         PipelineStageFlagBits2, PipelineStageFlags2, SemaphoreSubmitInfo, SubmitFlagBits, SubmitFlags, SubmitInfo2,
     },
 };
-use std::ffi::CStr;
 ///See [`AccessFlags2`]
 #[doc(alias = "VkAccessFlags2KHR")]
 pub type AccessFlags2KHR = AccessFlags2;
@@ -53,41 +49,51 @@ pub type SubmitInfo2KHR = SubmitInfo2;
 ///See [`PhysicalDeviceSynchronization2Features`]
 #[doc(alias = "VkPhysicalDeviceSynchronization2FeaturesKHR")]
 pub type PhysicalDeviceSynchronization2FeaturesKHR = PhysicalDeviceSynchronization2Features;
-///# [VkQueueFamilyCheckpointProperties2NV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkQueueFamilyCheckpointProperties2NV.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/VkQueueFamilyCheckpointProperties2NV.md")]
 #[doc(alias = "VkQueueFamilyCheckpointProperties2NV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct QueueFamilyCheckpointProperties2NV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "checkpointExecutionStageMask")]
-    checkpoint_execution_stage_mask: PipelineStageFlags2,
+    pub checkpoint_execution_stage_mask: PipelineStageFlags2,
 }
-///# [VkCheckpointData2NV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCheckpointData2NV.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/VkCheckpointData2NV.md")]
+impl Default for QueueFamilyCheckpointProperties2NV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::QueueFamilyCheckpointProperties2Nv,
+            p_next: unsafe { std::mem::zeroed() },
+            checkpoint_execution_stage_mask: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkCheckpointData2NV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct CheckpointData2NV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
-    stage: PipelineStageFlags2,
+    pub p_next: *mut BaseOutStructure,
+    pub stage: PipelineStageFlags2,
     #[doc(alias = "pCheckpointMarker")]
-    checkpoint_marker: *mut std::ffi::c_void,
+    pub checkpoint_marker: *mut std::ffi::c_void,
 }
-///# [VkFlags64](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFlags64.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/VkFlags64.md")]
-#[doc(alias = "VkFlags64")]
-pub type Flags64 = u64;
-#[doc(alias = "VK_KHR_SYNCHRONIZATION_2_SPEC_VERSION")]
-pub const KHR_SYNCHRONIZATION_2_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_SYNCHRONIZATION_2_EXTENSION_NAME")]
-pub const KHR_SYNCHRONIZATION_2_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_synchronization2");
+impl Default for CheckpointData2NV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::CheckpointData2Nv,
+            p_next: unsafe { std::mem::zeroed() },
+            stage: unsafe { std::mem::zeroed() },
+            checkpoint_marker: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::khr_synchronization2::{
+    Flags64, KHR_SYNCHRONIZATION_2_EXTENSION_NAME, KHR_SYNCHRONIZATION_2_SPEC_VERSION,
+};
 ///See [`cmd_set_event2`]
 #[doc(alias = "vkCmdSetEvent2KHR")]
 pub type FNCmdSetEvent2Khr = FNCmdSetEvent2;
@@ -106,16 +112,12 @@ pub type FNQueueSubmit2Khr = FNQueueSubmit2;
 ///See [`cmd_write_timestamp2`]
 #[doc(alias = "vkCmdWriteTimestamp2KHR")]
 pub type FNCmdWriteTimestamp2Khr = FNCmdWriteTimestamp2;
-///# [vkGetQueueCheckpointData2NV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetQueueCheckpointData2NV.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/vkGetQueueCheckpointData2NV.md")]
 #[doc(alias = "vkGetQueueCheckpointData2NV")]
 pub type FNGetQueueCheckpointData2Nv = unsafe extern "system" fn(
     queue: Queue,
     p_checkpoint_data_count: *mut u32,
     p_checkpoint_data: *mut CheckpointData2NV,
 );
-///# [vkCmdWriteBufferMarker2AMD](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdWriteBufferMarker2AMD.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_synchronization2/vkCmdWriteBufferMarker2AMD.md")]
 #[doc(alias = "vkCmdWriteBufferMarker2AMD")]
 pub type FNCmdWriteBufferMarker2Amd = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

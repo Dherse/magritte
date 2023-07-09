@@ -1,12 +1,12 @@
+pub mod extensions;
 pub mod imports;
+pub mod origin;
 pub mod rustfmt;
 pub mod ugly_diff_paths;
-pub mod origin;
-pub mod extensions;
 
 use magritte_types::{
     Alias, Basetype, Bitflag, Bitmask, CommandAlias, Const, ConstAlias, Enum, Extension, Function, FunctionPointer,
-    Handle, OpaqueType, Origin, Source, Struct, Union,
+    Handle, OpaqueType, Origin, Source, Struct, TypeRef, Union,
 };
 
 const VERSIONS: &[Origin<'static>] = &[
@@ -99,59 +99,59 @@ impl<'a> Visitable<'a> for Source<'a> {
 
     fn visit_origin<'b, V: OriginVisitor<'b>>(&self, origin: &Origin<'a>, mut visitor: V, flags: VisitorFlags) -> V {
         if flags.contains(VisitorFlags::OPAQUE_TYPES) {
-            self.opaque_types
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_opaque_type(self, v));
+            self.opaque_types.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::OpaqueType(v));
+                visitor.visit_opaque_type(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::ALIASES) {
-            self.aliases
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_type_alias(self, v));
+            self.aliases.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Alias(v));
+                visitor.visit_type_alias(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::STRUCTS) {
-            self.structs
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_struct(self, v));
+            self.structs.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Struct(v));
+                visitor.visit_struct(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::UNIONS) {
-            self.unions
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_union(self, v));
+            self.unions.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Union(v));
+                visitor.visit_union(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::HANDLES) {
-            self.handles
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_handle(self, v));
+            self.handles.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Handle(v));
+                visitor.visit_handle(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::FUNCTION_POINTERS) {
-            self.funcpointers
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_function_pointer(self, v));
+            self.funcpointers.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::FunctionPointer(v));
+                visitor.visit_function_pointer(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::BASE_TYPES) {
-            self.basetypes
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_base_type(self, v));
+            self.basetypes.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Basetype(v));
+                visitor.visit_base_type(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::BITMASKS) {
-            self.bitmasks
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_bitmask(self, v));
+            self.bitmasks.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Bitmask(v));
+                visitor.visit_bitmask(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::CONSTANTS) {
@@ -169,17 +169,17 @@ impl<'a> Visitable<'a> for Source<'a> {
         }
 
         if flags.contains(VisitorFlags::BITFLAGS) {
-            self.bitflags
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_bitflag(self, v));
+            self.bitflags.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Bitflag(v));
+                visitor.visit_bitflag(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::ENUMS) {
-            self.enums
-                .iter()
-                .filter(|v| v.origin() == origin)
-                .for_each(|v| visitor.visit_enum(self, v));
+            self.enums.iter().filter(|v| v.origin() == origin).for_each(|v| {
+                visitor.visit_type(self, TypeRef::Enum(v));
+                visitor.visit_enum(self, v)
+            });
         }
 
         if flags.contains(VisitorFlags::COMMAND_ALIASES) {
@@ -241,6 +241,9 @@ pub trait Visitor {
 }
 
 pub trait OriginVisitor<'parent>: Sized + 'parent {
+    #[allow(unused_variables)]
+    fn visit_type<'a, 'b>(&mut self, source: &Source<'a>, ty: TypeRef<'a, 'b>) {}
+
     #[allow(unused_variables)]
     fn visit_const<'a>(&mut self, source: &Source<'a>, const_: &Const<'a>) {}
 

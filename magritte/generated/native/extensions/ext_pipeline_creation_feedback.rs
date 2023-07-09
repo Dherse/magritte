@@ -1,13 +1,7 @@
-//!# [VK_EXT_pipeline_creation_feedback](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_pipeline_creation_feedback.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_pipeline_creation_feedback/VK_EXT_pipeline_creation_feedback.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{
-        PipelineCreationFeedback, PipelineCreationFeedbackCreateInfo, PipelineCreationFeedbackFlagBits,
-        PipelineCreationFeedbackFlags,
-    },
+use crate::native::vulkan1_3::{
+    PipelineCreationFeedback, PipelineCreationFeedbackCreateInfo, PipelineCreationFeedbackFlagBits,
+    PipelineCreationFeedbackFlags,
 };
-use std::ffi::CStr;
 ///See [`PipelineCreationFeedbackFlags`]
 #[doc(alias = "VkPipelineCreationFeedbackFlagsEXT")]
 pub type PipelineCreationFeedbackFlagsEXT = PipelineCreationFeedbackFlags;
@@ -20,7 +14,6 @@ pub type PipelineCreationFeedbackEXT = PipelineCreationFeedback;
 ///See [`PipelineCreationFeedbackCreateInfo`]
 #[doc(alias = "VkPipelineCreationFeedbackCreateInfoEXT")]
 pub type PipelineCreationFeedbackCreateInfoEXT = PipelineCreationFeedbackCreateInfo;
-#[doc(alias = "VK_EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION")]
-pub const EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME")]
-pub const EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_pipeline_creation_feedback");
+pub use crate::common::extensions::ext_pipeline_creation_feedback::{
+    EXT_PIPELINE_CREATION_FEEDBACK_EXTENSION_NAME, EXT_PIPELINE_CREATION_FEEDBACK_SPEC_VERSION,
+};

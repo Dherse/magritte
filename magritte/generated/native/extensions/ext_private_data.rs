@@ -1,14 +1,7 @@
-//!# [VK_EXT_private_data](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_private_data.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_private_data/VK_EXT_private_data.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{
-        DevicePrivateDataCreateInfo, FNCreatePrivateDataSlot, FNDestroyPrivateDataSlot, FNGetPrivateData,
-        FNSetPrivateData, PhysicalDevicePrivateDataFeatures, PrivateDataSlot, PrivateDataSlotCreateFlags,
-        PrivateDataSlotCreateInfo,
-    },
+use crate::native::vulkan1_3::{
+    DevicePrivateDataCreateInfo, FNCreatePrivateDataSlot, FNDestroyPrivateDataSlot, FNGetPrivateData, FNSetPrivateData,
+    PhysicalDevicePrivateDataFeatures, PrivateDataSlot, PrivateDataSlotCreateFlags, PrivateDataSlotCreateInfo,
 };
-use std::ffi::CStr;
 ///See [`PrivateDataSlotCreateFlags`]
 #[doc(alias = "VkPrivateDataSlotCreateFlagsEXT")]
 pub type PrivateDataSlotCreateFlagsEXT = PrivateDataSlotCreateFlags;
@@ -24,10 +17,7 @@ pub type PrivateDataSlotCreateInfoEXT = PrivateDataSlotCreateInfo;
 ///See [`PhysicalDevicePrivateDataFeatures`]
 #[doc(alias = "VkPhysicalDevicePrivateDataFeaturesEXT")]
 pub type PhysicalDevicePrivateDataFeaturesEXT = PhysicalDevicePrivateDataFeatures;
-#[doc(alias = "VK_EXT_PRIVATE_DATA_SPEC_VERSION")]
-pub const EXT_PRIVATE_DATA_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_PRIVATE_DATA_EXTENSION_NAME")]
-pub const EXT_PRIVATE_DATA_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_private_data");
+pub use crate::common::extensions::ext_private_data::{EXT_PRIVATE_DATA_EXTENSION_NAME, EXT_PRIVATE_DATA_SPEC_VERSION};
 ///See [`create_private_data_slot`]
 #[doc(alias = "vkCreatePrivateDataSlotEXT")]
 pub type FNCreatePrivateDataSlotExt = FNCreatePrivateDataSlot;

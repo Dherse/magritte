@@ -1,53 +1,69 @@
-//!# [VK_EXT_custom_border_color](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_custom_border_color.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_custom_border_color/VK_EXT_custom_border_color.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, ClearColorValue, Format, StructureType},
-};
-use std::ffi::CStr;
-///# [VkSamplerCustomBorderColorCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSamplerCustomBorderColorCreateInfoEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_custom_border_color/VkSamplerCustomBorderColorCreateInfoEXT.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, ClearColorValue, Format, StructureType};
 #[doc(alias = "VkSamplerCustomBorderColorCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct SamplerCustomBorderColorCreateInfoEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "customBorderColor")]
-    custom_border_color: ClearColorValue,
-    format: Format,
+    pub custom_border_color: ClearColorValue,
+    pub format: Format,
 }
-///# [VkPhysicalDeviceCustomBorderColorPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCustomBorderColorPropertiesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_custom_border_color/VkPhysicalDeviceCustomBorderColorPropertiesEXT.md")]
+impl Default for SamplerCustomBorderColorCreateInfoEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::SamplerCustomBorderColorCreateInfoExt,
+            p_next: unsafe { std::mem::zeroed() },
+            custom_border_color: unsafe { std::mem::zeroed() },
+            format: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDeviceCustomBorderColorPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorPropertiesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "maxCustomBorderColorSamplers")]
-    max_custom_border_color_samplers: u32,
+    pub max_custom_border_color_samplers: u32,
 }
-///# [VkPhysicalDeviceCustomBorderColorFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceCustomBorderColorFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_custom_border_color/VkPhysicalDeviceCustomBorderColorFeaturesEXT.md")]
+impl Default for PhysicalDeviceCustomBorderColorPropertiesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceCustomBorderColorPropertiesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            max_custom_border_color_samplers: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDeviceCustomBorderColorFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceCustomBorderColorFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "customBorderColors")]
-    custom_border_colors: Bool32,
+    pub custom_border_colors: Bool32,
     #[doc(alias = "customBorderColorWithoutFormat")]
-    custom_border_color_without_format: Bool32,
+    pub custom_border_color_without_format: Bool32,
 }
-#[doc(alias = "VK_EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION")]
-pub const EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION: u32 = 12;
-#[doc(alias = "VK_EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME")]
-pub const EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_custom_border_color");
+impl Default for PhysicalDeviceCustomBorderColorFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceCustomBorderColorFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            custom_border_colors: unsafe { std::mem::zeroed() },
+            custom_border_color_without_format: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_custom_border_color::{
+    EXT_CUSTOM_BORDER_COLOR_EXTENSION_NAME, EXT_CUSTOM_BORDER_COLOR_SPEC_VERSION,
+};

@@ -31,7 +31,7 @@ fn single(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
 
 fn all(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
     map(terminated(delimited(space0, var, space0), tag("[]")), |a| {
-        ExternallySynced::All(box a)
+        ExternallySynced::All(Box::new(a))
     })(input)
 }
 
@@ -58,7 +58,7 @@ fn for_each(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
             tag("[]."),
             delimited(space0, single, space0),
         ),
-        |(a, b)| ExternallySynced::ForEach(box a, box b),
+        |(a, b)| ExternallySynced::ForEach(Box::new(a), Box::new(b)),
     )(input)
 }
 
@@ -69,7 +69,7 @@ fn resolve(input: &'_ str) -> IResult<&'_ str, ExternallySynced<'_>> {
             alt((tag("->"), tag("-&gt;"))),
             delimited(space0, single, space0),
         ),
-        |(a, b)| ExternallySynced::Resolve(box a, box b),
+        |(a, b)| ExternallySynced::Resolve(Box::new(a), Box::new(b)),
     )(input)
 }
 

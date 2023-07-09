@@ -1,14 +1,21 @@
 use magritte_build::origin::cond_of;
-use magritte_types::{Bitflag, Source, Bitmask, Alias, Bit};
+use magritte_types::{Alias, Bit, Bitflag, Bitmask, Source};
 use proc_macro2::TokenStream;
 use quote::{quote, quote_each_token};
 
-use crate::native::bits::{alias_of, bits_of};
+use crate::{
+    common::CommonOriginVisitor,
+    native::bits::{alias_of, bits_of},
+};
 
-use super::NativeBackendOriginVisitor;
-
-impl<'parent> NativeBackendOriginVisitor<'parent> {
-    pub fn gen_for_bitmask(&mut self, source: &Source<'_>, bitmask: &Bitmask<'_>, bitflag: &Bitflag<'_>, ty: &TokenStream) {
+impl<'b, 'parent> CommonOriginVisitor<'b, 'parent> {
+    pub fn gen_for_bitmask(
+        &mut self,
+        source: &Source<'_>,
+        bitmask: &Bitmask<'_>,
+        bitflag: &Bitflag<'_>,
+        ty: &TokenStream,
+    ) {
         let name = bitmask.as_ident();
         let alias = bitmask.as_alias();
         let doc = self.doc_of(&self.doc_dir_path, &self.origin, bitflag.original_name());
@@ -23,8 +30,13 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
             .iter()
             .filter(|bit| !bit.origin().is_disabled())
             .map(|a| cond_of(source, bitmask.origin(), a.origin()))
-            .chain(bitflag.aliases().iter()
-            .filter(|bit| !bit.origin().is_disabled()).map(|a| cond_of(source, bitmask.origin(), a.origin())))
+            .chain(
+                bitflag
+                    .aliases()
+                    .iter()
+                    .filter(|bit| !bit.origin().is_disabled())
+                    .map(|a| cond_of(source, bitmask.origin(), a.origin())),
+            )
             .collect::<Vec<_>>();
 
         let bit_idents = bitflag
@@ -32,17 +44,20 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
             .iter()
             .filter(|bit| !bit.origin().is_disabled())
             .map(Bit::as_ident)
-            .chain(bitflag.aliases().iter()
-            .filter(|bit| !bit.origin().is_disabled()).map(Alias::as_ident))
+            .chain(
+                bitflag
+                    .aliases()
+                    .iter()
+                    .filter(|bit| !bit.origin().is_disabled())
+                    .map(Alias::as_ident),
+            )
             .collect::<Vec<_>>();
 
-        let bits = bitflag.bits().iter().map(|bit| bits_of(
-            self.parent,
-            source, 
-            &self.doc_dir_path,
-            bitflag,
-            bit,
-        )).collect::<Vec<_>>();
+        let bits = bitflag
+            .bits()
+            .iter()
+            .map(|bit| bits_of(self.parent, source, &self.doc_dir_path, bitflag, bit))
+            .collect::<Vec<_>>();
 
         let first = if bit_idents.is_empty() {
             None
@@ -50,16 +65,13 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
             Some(quote! { let mut first = true; })
         };
 
-        let aliases = bitflag.aliases().iter().map(|alias| alias_of(
-            self.parent,
-            source, 
-            &self.doc_dir_path,
-            bitflag,
-            alias,
-        )).collect::<Vec<_>>();
-        
+        let aliases = bitflag
+            .aliases()
+            .iter()
+            .map(|alias| alias_of(self.parent, source, &self.doc_dir_path, bitflag, alias))
+            .collect::<Vec<_>>();
 
-        let mut out = &mut self.out;
+        let mut out = &mut self.tt;
         quote_each_token! {
             out
 
@@ -214,7 +226,7 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const std::ops::BitOr for #name {
+            impl std::ops::BitOr for #name {
                 type Output = Self;
 
                 #[inline]
@@ -223,14 +235,14 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const std::ops::BitOrAssign for #name {
+            impl std::ops::BitOrAssign for #name {
                 #[inline]
                 fn bitor_assign(&mut self, other: Self) {
                     *self = *self | other;
                 }
             }
 
-            impl const std::ops::BitXor  for #name {
+            impl std::ops::BitXor  for #name {
                 type Output = Self;
 
                 #[inline]
@@ -239,14 +251,14 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const std::ops::BitXorAssign  for #name {
+            impl std::ops::BitXorAssign  for #name {
                 #[inline]
                 fn bitxor_assign(&mut self, other: Self) {
                     *self = *self ^ other;
                 }
             }
 
-            impl const std::ops::BitAnd  for #name {
+            impl std::ops::BitAnd  for #name {
                 type Output = Self;
 
                 #[inline]
@@ -255,14 +267,14 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const std::ops::BitAndAssign  for #name {
+            impl std::ops::BitAndAssign  for #name {
                 #[inline]
                 fn bitand_assign(&mut self, other: Self) {
                     *self = *self & other;
                 }
             }
 
-            impl const std::ops::Sub for #name {
+            impl std::ops::Sub for #name {
                 type Output = Self;
 
                 #[inline]
@@ -271,14 +283,14 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const std::ops::SubAssign for #name {
+            impl std::ops::SubAssign for #name {
                 #[inline]
                 fn sub_assign(&mut self, other: Self) {
                     *self = *self - other;
                 }
             }
 
-            impl const std::ops::Not for #name {
+            impl std::ops::Not for #name {
                 type Output = Self;
 
                 #[inline]
@@ -303,14 +315,14 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                 }
             }
 
-            impl const Default for #name {
+            impl Default for #name {
                 fn default() -> Self {
                     Self::empty()
                 }
             }
 
             #bit_cond
-            impl const From<#bit_name> for #name {
+            impl From<#bit_name> for #name {
                 fn from(bit: #bit_name) -> Self {
                     unsafe {
                         Self::from_bits_unchecked(bit.bits())
@@ -366,6 +378,22 @@ impl<'parent> NativeBackendOriginVisitor<'parent> {
                     f.debug_tuple(stringify!(#name))
                         .field(&Flags(*self))
                         .finish()
+                }
+            }
+
+            #[cfg(feature = "native")]
+            unsafe impl crate::conv::IntoLowLevel for #name {
+                type LowLevel = Self;
+
+                unsafe fn into_low_level(&self, context: &std::sync::Arc<crate::context::Context>, bump: &bumpalo::Bump) -> Self::LowLevel {
+                    *self
+                }
+            }
+
+            #[cfg(feature = "native")]
+            unsafe impl crate::conv::FromLowLevel for #name {
+                unsafe fn from_low_level(context: &std::sync::Arc<crate::context::Context>, value: <Self as crate::conv::IntoLowLevel>::LowLevel) -> Self {
+                    value
                 }
             }
         };

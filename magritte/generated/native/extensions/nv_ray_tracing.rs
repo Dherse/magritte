@@ -1,43 +1,39 @@
-//!# [VK_NV_ray_tracing](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_ray_tracing.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VK_NV_ray_tracing.md")]
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::AabbPositionsKHR;
+use crate::native::extensions::khr_acceleration_structure::AabbPositionsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::AccelerationStructureInstanceKHR;
+use crate::native::extensions::khr_acceleration_structure::AccelerationStructureInstanceKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::AccelerationStructureTypeKHR;
+use crate::native::extensions::khr_acceleration_structure::AccelerationStructureTypeKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::BuildAccelerationStructureFlagBitsKHR;
+use crate::native::extensions::khr_acceleration_structure::BuildAccelerationStructureFlagBitsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::BuildAccelerationStructureFlagsKHR;
+use crate::native::extensions::khr_acceleration_structure::BuildAccelerationStructureFlagsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::CopyAccelerationStructureModeKHR;
+use crate::native::extensions::khr_acceleration_structure::CopyAccelerationStructureModeKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::GeometryFlagBitsKHR;
+use crate::native::extensions::khr_acceleration_structure::GeometryFlagBitsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::GeometryFlagsKHR;
+use crate::native::extensions::khr_acceleration_structure::GeometryFlagsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::GeometryInstanceFlagBitsKHR;
+use crate::native::extensions::khr_acceleration_structure::GeometryInstanceFlagBitsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR;
+use crate::native::extensions::khr_acceleration_structure::GeometryInstanceFlagsKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::GeometryTypeKHR;
+use crate::native::extensions::khr_acceleration_structure::GeometryTypeKHR;
 #[cfg(feature = "VK_KHR_acceleration_structure")]
-use crate::extensions::khr_acceleration_structure::TransformMatrixKHR;
+use crate::native::extensions::khr_acceleration_structure::TransformMatrixKHR;
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-use crate::extensions::khr_ray_tracing_pipeline::FNGetRayTracingShaderGroupHandlesKhr;
+use crate::native::extensions::khr_ray_tracing_pipeline::FNGetRayTracingShaderGroupHandlesKhr;
 #[cfg(feature = "VK_KHR_ray_tracing_pipeline")]
-use crate::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR;
-use crate::{
-    cstr,
+use crate::native::extensions::khr_ray_tracing_pipeline::RayTracingShaderGroupTypeKHR;
+use crate::native::{
     vulkan1_0::{
         AllocationCallbacks, BaseInStructure, BaseOutStructure, Bool32, Buffer, CommandBuffer, Device, DeviceMemory,
         DeviceSize, Format, IndexType, Pipeline, PipelineCache, PipelineCreateFlags, PipelineLayout,
-        PipelineShaderStageCreateInfo, QueryPool, QueryType, StructureType, VulkanResultCodes, SHADER_UNUSED_KHR,
+        PipelineShaderStageCreateInfo, QueryPool, QueryType, StructureType, VulkanResultCodes,
     },
     vulkan1_1::MemoryRequirements2,
 };
-use std::ffi::CStr;
 ///See [`GeometryFlagsKHR`]
 #[doc(alias = "VkGeometryFlagsNV")]
 pub type GeometryFlagsNV = GeometryFlagsKHR;
@@ -80,241 +76,367 @@ pub type TransformMatrixNV = TransformMatrixKHR;
 ///See [`AccelerationStructureInstanceKHR`]
 #[doc(alias = "VkAccelerationStructureInstanceNV")]
 pub type AccelerationStructureInstanceNV = AccelerationStructureInstanceKHR;
-///# [VkRayTracingShaderGroupCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRayTracingShaderGroupCreateInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkRayTracingShaderGroupCreateInfoNV.md")]
 #[doc(alias = "VkRayTracingShaderGroupCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct RayTracingShaderGroupCreateInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "type")]
-    type_: RayTracingShaderGroupTypeKHR,
+    pub type_: RayTracingShaderGroupTypeKHR,
     #[doc(alias = "generalShader")]
-    general_shader: u32,
+    pub general_shader: u32,
     #[doc(alias = "closestHitShader")]
-    closest_hit_shader: u32,
+    pub closest_hit_shader: u32,
     #[doc(alias = "anyHitShader")]
-    any_hit_shader: u32,
+    pub any_hit_shader: u32,
     #[doc(alias = "intersectionShader")]
-    intersection_shader: u32,
+    pub intersection_shader: u32,
 }
-///# [VkRayTracingPipelineCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkRayTracingPipelineCreateInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkRayTracingPipelineCreateInfoNV.md")]
+impl Default for RayTracingShaderGroupCreateInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::RayTracingShaderGroupCreateInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            type_: unsafe { std::mem::zeroed() },
+            general_shader: unsafe { std::mem::zeroed() },
+            closest_hit_shader: unsafe { std::mem::zeroed() },
+            any_hit_shader: unsafe { std::mem::zeroed() },
+            intersection_shader: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkRayTracingPipelineCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct RayTracingPipelineCreateInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    flags: PipelineCreateFlags,
+    pub p_next: *const BaseInStructure,
+    pub flags: PipelineCreateFlags,
     #[doc(alias = "stageCount")]
-    stage_count: u32,
+    pub stage_count: u32,
     #[doc(alias = "pStages")]
-    stages: *const PipelineShaderStageCreateInfo,
+    pub stages: *const PipelineShaderStageCreateInfo,
     #[doc(alias = "groupCount")]
-    group_count: u32,
+    pub group_count: u32,
     #[doc(alias = "pGroups")]
-    groups: *const RayTracingShaderGroupCreateInfoNV,
+    pub groups: *const RayTracingShaderGroupCreateInfoNV,
     #[doc(alias = "maxRecursionDepth")]
-    max_recursion_depth: u32,
-    layout: PipelineLayout,
+    pub max_recursion_depth: u32,
+    pub layout: PipelineLayout,
     #[doc(alias = "basePipelineHandle")]
-    base_pipeline_handle: Pipeline,
+    pub base_pipeline_handle: Pipeline,
     #[doc(alias = "basePipelineIndex")]
-    base_pipeline_index: i32,
+    pub base_pipeline_index: i32,
 }
-///# [VkGeometryTrianglesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryTrianglesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryTrianglesNV.md")]
+impl Default for RayTracingPipelineCreateInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::RayTracingPipelineCreateInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+            stage_count: unsafe { std::mem::zeroed() },
+            stages: unsafe { std::mem::zeroed() },
+            group_count: unsafe { std::mem::zeroed() },
+            groups: unsafe { std::mem::zeroed() },
+            max_recursion_depth: unsafe { std::mem::zeroed() },
+            layout: unsafe { std::mem::zeroed() },
+            base_pipeline_handle: unsafe { std::mem::zeroed() },
+            base_pipeline_index: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkGeometryTrianglesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct GeometryTrianglesNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "vertexData")]
-    vertex_data: Buffer,
+    pub vertex_data: Buffer,
     #[doc(alias = "vertexOffset")]
-    vertex_offset: DeviceSize,
+    pub vertex_offset: DeviceSize,
     #[doc(alias = "vertexCount")]
-    vertex_count: u32,
+    pub vertex_count: u32,
     #[doc(alias = "vertexStride")]
-    vertex_stride: DeviceSize,
+    pub vertex_stride: DeviceSize,
     #[doc(alias = "vertexFormat")]
-    vertex_format: Format,
+    pub vertex_format: Format,
     #[doc(alias = "indexData")]
-    index_data: Buffer,
+    pub index_data: Buffer,
     #[doc(alias = "indexOffset")]
-    index_offset: DeviceSize,
+    pub index_offset: DeviceSize,
     #[doc(alias = "indexCount")]
-    index_count: u32,
+    pub index_count: u32,
     #[doc(alias = "indexType")]
-    index_type: IndexType,
+    pub index_type: IndexType,
     #[doc(alias = "transformData")]
-    transform_data: Buffer,
+    pub transform_data: Buffer,
     #[doc(alias = "transformOffset")]
-    transform_offset: DeviceSize,
+    pub transform_offset: DeviceSize,
 }
-///# [VkGeometryAABBNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryAABBNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryAABBNV.md")]
+impl Default for GeometryTrianglesNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::GeometryTrianglesNv,
+            p_next: unsafe { std::mem::zeroed() },
+            vertex_data: unsafe { std::mem::zeroed() },
+            vertex_offset: unsafe { std::mem::zeroed() },
+            vertex_count: unsafe { std::mem::zeroed() },
+            vertex_stride: unsafe { std::mem::zeroed() },
+            vertex_format: unsafe { std::mem::zeroed() },
+            index_data: unsafe { std::mem::zeroed() },
+            index_offset: unsafe { std::mem::zeroed() },
+            index_count: unsafe { std::mem::zeroed() },
+            index_type: unsafe { std::mem::zeroed() },
+            transform_data: unsafe { std::mem::zeroed() },
+            transform_offset: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkGeometryAABBNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct GeometryAabbNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "aabbData")]
-    aabb_data: Buffer,
+    pub aabb_data: Buffer,
     #[doc(alias = "numAABBs")]
-    num_aab_bs: u32,
-    stride: u32,
-    offset: DeviceSize,
+    pub num_aab_bs: u32,
+    pub stride: u32,
+    pub offset: DeviceSize,
 }
-///# [VkGeometryDataNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryDataNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryDataNV.md")]
+impl Default for GeometryAabbNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::GeometryAabbNv,
+            p_next: unsafe { std::mem::zeroed() },
+            aabb_data: unsafe { std::mem::zeroed() },
+            num_aab_bs: unsafe { std::mem::zeroed() },
+            stride: unsafe { std::mem::zeroed() },
+            offset: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkGeometryDataNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct GeometryDataNV {
-    triangles: GeometryTrianglesNV,
-    aabbs: GeometryAabbNV,
+    pub triangles: GeometryTrianglesNV,
+    pub aabbs: GeometryAabbNV,
 }
-///# [VkGeometryNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkGeometryNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkGeometryNV.md")]
+impl Default for GeometryDataNV {
+    fn default() -> Self {
+        Self {
+            triangles: unsafe { std::mem::zeroed() },
+            aabbs: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkGeometryNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct GeometryNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "geometryType")]
-    geometry_type: GeometryTypeKHR,
-    geometry: GeometryDataNV,
-    flags: GeometryFlagsKHR,
+    pub geometry_type: GeometryTypeKHR,
+    pub geometry: GeometryDataNV,
+    pub flags: GeometryFlagsKHR,
 }
-///# [VkAccelerationStructureInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureInfoNV.md")]
+impl Default for GeometryNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::GeometryNv,
+            p_next: unsafe { std::mem::zeroed() },
+            geometry_type: unsafe { std::mem::zeroed() },
+            geometry: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAccelerationStructureInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AccelerationStructureInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "type")]
-    type_: AccelerationStructureTypeNV,
-    flags: BuildAccelerationStructureFlagsNV,
+    pub type_: AccelerationStructureTypeNV,
+    pub flags: BuildAccelerationStructureFlagsNV,
     #[doc(alias = "instanceCount")]
-    instance_count: u32,
+    pub instance_count: u32,
     #[doc(alias = "geometryCount")]
-    geometry_count: u32,
+    pub geometry_count: u32,
     #[doc(alias = "pGeometries")]
-    geometries: *const GeometryNV,
+    pub geometries: *const GeometryNV,
 }
-///# [VkAccelerationStructureCreateInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureCreateInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureCreateInfoNV.md")]
+impl Default for AccelerationStructureInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AccelerationStructureInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            type_: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+            instance_count: unsafe { std::mem::zeroed() },
+            geometry_count: unsafe { std::mem::zeroed() },
+            geometries: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAccelerationStructureCreateInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AccelerationStructureCreateInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "compactedSize")]
-    compacted_size: DeviceSize,
-    info: AccelerationStructureInfoNV,
+    pub compacted_size: DeviceSize,
+    pub info: AccelerationStructureInfoNV,
 }
-///# [VkBindAccelerationStructureMemoryInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkBindAccelerationStructureMemoryInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkBindAccelerationStructureMemoryInfoNV.md")]
+impl Default for AccelerationStructureCreateInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AccelerationStructureCreateInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            compacted_size: unsafe { std::mem::zeroed() },
+            info: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkBindAccelerationStructureMemoryInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct BindAccelerationStructureMemoryInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "accelerationStructure")]
-    acceleration_structure: AccelerationStructureNV,
-    memory: DeviceMemory,
+    pub acceleration_structure: AccelerationStructureNV,
+    pub memory: DeviceMemory,
     #[doc(alias = "memoryOffset")]
-    memory_offset: DeviceSize,
+    pub memory_offset: DeviceSize,
     #[doc(alias = "deviceIndexCount")]
-    device_index_count: u32,
+    pub device_index_count: u32,
     #[doc(alias = "pDeviceIndices")]
-    device_indices: *const u32,
+    pub device_indices: *const u32,
 }
-///# [VkWriteDescriptorSetAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkWriteDescriptorSetAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkWriteDescriptorSetAccelerationStructureNV.md")]
+impl Default for BindAccelerationStructureMemoryInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::BindAccelerationStructureMemoryInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            acceleration_structure: unsafe { std::mem::zeroed() },
+            memory: unsafe { std::mem::zeroed() },
+            memory_offset: unsafe { std::mem::zeroed() },
+            device_index_count: unsafe { std::mem::zeroed() },
+            device_indices: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkWriteDescriptorSetAccelerationStructureNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct WriteDescriptorSetAccelerationStructureNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "accelerationStructureCount")]
-    acceleration_structure_count: u32,
+    pub acceleration_structure_count: u32,
     #[doc(alias = "pAccelerationStructures")]
-    acceleration_structures: *const AccelerationStructureNV,
+    pub acceleration_structures: *const AccelerationStructureNV,
 }
-///# [VkAccelerationStructureMemoryRequirementsInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureMemoryRequirementsInfoNV.md")]
+impl Default for WriteDescriptorSetAccelerationStructureNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::WriteDescriptorSetAccelerationStructureNv,
+            p_next: unsafe { std::mem::zeroed() },
+            acceleration_structure_count: unsafe { std::mem::zeroed() },
+            acceleration_structures: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAccelerationStructureMemoryRequirementsInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AccelerationStructureMemoryRequirementsInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "type")]
-    type_: AccelerationStructureMemoryRequirementsTypeNV,
+    pub type_: AccelerationStructureMemoryRequirementsTypeNV,
     #[doc(alias = "accelerationStructure")]
-    acceleration_structure: AccelerationStructureNV,
+    pub acceleration_structure: AccelerationStructureNV,
 }
-///# [VkPhysicalDeviceRayTracingPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceRayTracingPropertiesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkPhysicalDeviceRayTracingPropertiesNV.md")]
+impl Default for AccelerationStructureMemoryRequirementsInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AccelerationStructureMemoryRequirementsInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            type_: unsafe { std::mem::zeroed() },
+            acceleration_structure: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDeviceRayTracingPropertiesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceRayTracingPropertiesNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "shaderGroupHandleSize")]
-    shader_group_handle_size: u32,
+    pub shader_group_handle_size: u32,
     #[doc(alias = "maxRecursionDepth")]
-    max_recursion_depth: u32,
+    pub max_recursion_depth: u32,
     #[doc(alias = "maxShaderGroupStride")]
-    max_shader_group_stride: u32,
+    pub max_shader_group_stride: u32,
     #[doc(alias = "shaderGroupBaseAlignment")]
-    shader_group_base_alignment: u32,
+    pub shader_group_base_alignment: u32,
     #[doc(alias = "maxGeometryCount")]
-    max_geometry_count: u64,
+    pub max_geometry_count: u64,
     #[doc(alias = "maxInstanceCount")]
-    max_instance_count: u64,
+    pub max_instance_count: u64,
     #[doc(alias = "maxTriangleCount")]
-    max_triangle_count: u64,
+    pub max_triangle_count: u64,
     #[doc(alias = "maxDescriptorSetAccelerationStructures")]
-    max_descriptor_set_acceleration_structures: u32,
+    pub max_descriptor_set_acceleration_structures: u32,
 }
-///# [VkAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureNV.md")]
+impl Default for PhysicalDeviceRayTracingPropertiesNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceRayTracingPropertiesNv,
+            p_next: unsafe { std::mem::zeroed() },
+            shader_group_handle_size: unsafe { std::mem::zeroed() },
+            max_recursion_depth: unsafe { std::mem::zeroed() },
+            max_shader_group_stride: unsafe { std::mem::zeroed() },
+            shader_group_base_alignment: unsafe { std::mem::zeroed() },
+            max_geometry_count: unsafe { std::mem::zeroed() },
+            max_instance_count: unsafe { std::mem::zeroed() },
+            max_triangle_count: unsafe { std::mem::zeroed() },
+            max_descriptor_set_acceleration_structures: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkAccelerationStructureNV")]
 #[repr(transparent)]
@@ -323,70 +445,25 @@ impl AccelerationStructureNV {
     pub const fn null() -> Self {
         Self(0)
     }
+    pub const fn raw(&self) -> u64 {
+        self.0
+    }
 }
-impl const Default for AccelerationStructureNV {
+impl Default for AccelerationStructureNV {
     fn default() -> Self {
         Self::null()
     }
 }
-#[doc(alias = "VK_NV_RAY_TRACING_SPEC_VERSION")]
-pub const NV_RAY_TRACING_SPEC_VERSION: u32 = 3;
-#[doc(alias = "VK_NV_RAY_TRACING_EXTENSION_NAME")]
-pub const NV_RAY_TRACING_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_ray_tracing");
-///See [`SHADER_UNUSED_KHR`]
-#[doc(alias = "VK_SHADER_UNUSED_NV")]
-pub const SHADER_UNUSED_NV: u32 = SHADER_UNUSED_KHR;
-///# [VkAccelerationStructureMemoryRequirementsTypeNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAccelerationStructureMemoryRequirementsTypeNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/VkAccelerationStructureMemoryRequirementsTypeNV.md")]
-#[doc(alias = "VkAccelerationStructureMemoryRequirementsTypeNV")]
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
-pub struct AccelerationStructureMemoryRequirementsTypeNV(i32);
-impl AccelerationStructureMemoryRequirementsTypeNV {
-    #[doc(alias = "VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_OBJECT_NV")]
-    pub const OBJECT: Self = Self(0);
-    #[doc(alias = "VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_BUILD_SCRATCH_NV")]
-    pub const BUILD_SCRATCH: Self = Self(1);
-    #[doc(alias = "VK_ACCELERATION_STRUCTURE_MEMORY_REQUIREMENTS_TYPE_UPDATE_SCRATCH_NV")]
-    pub const UPDATE_SCRATCH: Self = Self(2);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    ///The bits of this variant
-    #[inline]
-    pub const fn bits(&self) -> i32 {
-        self.0
-    }
-    ///Builds a bitmask from the bits of this variant
-    #[inline]
-    pub const fn from_bits(bits: i32) -> Option<Self> {
-        match bits {
-            x if x == Self::OBJECT.bits() => Some(Self(x)),
-            x if x == Self::BUILD_SCRATCH.bits() => Some(Self(x)),
-            x if x == Self::UPDATE_SCRATCH.bits() => Some(Self(x)),
-            _ => None,
-        }
-    }
-    ///Builds a bitmask from the bits of this variant without validating it
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
-        Self(bits)
-    }
-}
+pub use crate::common::extensions::nv_ray_tracing::{
+    AccelerationStructureMemoryRequirementsTypeNV, NV_RAY_TRACING_EXTENSION_NAME, NV_RAY_TRACING_SPEC_VERSION,
+    SHADER_UNUSED_NV,
+};
 ///See [`get_ray_tracing_shader_group_handles_khr`]
 #[doc(alias = "vkGetRayTracingShaderGroupHandlesNV")]
 pub type FNGetRayTracingShaderGroupHandlesNv = FNGetRayTracingShaderGroupHandlesKhr;
-///# [vkCompileDeferredNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCompileDeferredNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCompileDeferredNV.md")]
 #[doc(alias = "vkCompileDeferredNV")]
 pub type FNCompileDeferredNv =
     unsafe extern "system" fn(device: Device, pipeline: Pipeline, shader: u32) -> VulkanResultCodes;
-///# [vkCreateAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCreateAccelerationStructureNV.md")]
 #[doc(alias = "vkCreateAccelerationStructureNV")]
 pub type FNCreateAccelerationStructureNv = unsafe extern "system" fn(
     device: Device,
@@ -394,32 +471,24 @@ pub type FNCreateAccelerationStructureNv = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_acceleration_structure: *mut AccelerationStructureNV,
 ) -> VulkanResultCodes;
-///# [vkDestroyAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroyAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkDestroyAccelerationStructureNV.md")]
 #[doc(alias = "vkDestroyAccelerationStructureNV")]
 pub type FNDestroyAccelerationStructureNv = unsafe extern "system" fn(
     device: Device,
     acceleration_structure: AccelerationStructureNV,
     p_allocator: *const AllocationCallbacks,
 );
-///# [vkGetAccelerationStructureMemoryRequirementsNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkGetAccelerationStructureMemoryRequirementsNV.md")]
 #[doc(alias = "vkGetAccelerationStructureMemoryRequirementsNV")]
 pub type FNGetAccelerationStructureMemoryRequirementsNv = unsafe extern "system" fn(
     device: Device,
     p_info: *const AccelerationStructureMemoryRequirementsInfoNV,
     p_memory_requirements: *mut MemoryRequirements2KHR,
 );
-///# [vkBindAccelerationStructureMemoryNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkBindAccelerationStructureMemoryNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkBindAccelerationStructureMemoryNV.md")]
 #[doc(alias = "vkBindAccelerationStructureMemoryNV")]
 pub type FNBindAccelerationStructureMemoryNv = unsafe extern "system" fn(
     device: Device,
     bind_info_count: u32,
     p_bind_infos: *const BindAccelerationStructureMemoryInfoNV,
 ) -> VulkanResultCodes;
-///# [vkGetAccelerationStructureHandleNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetAccelerationStructureHandleNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkGetAccelerationStructureHandleNV.md")]
 #[doc(alias = "vkGetAccelerationStructureHandleNV")]
 pub type FNGetAccelerationStructureHandleNv = unsafe extern "system" fn(
     device: Device,
@@ -427,8 +496,6 @@ pub type FNGetAccelerationStructureHandleNv = unsafe extern "system" fn(
     data_size: usize,
     p_data: *mut std::ffi::c_void,
 ) -> VulkanResultCodes;
-///# [vkCreateRayTracingPipelinesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateRayTracingPipelinesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCreateRayTracingPipelinesNV.md")]
 #[doc(alias = "vkCreateRayTracingPipelinesNV")]
 pub type FNCreateRayTracingPipelinesNv = unsafe extern "system" fn(
     device: Device,
@@ -438,8 +505,6 @@ pub type FNCreateRayTracingPipelinesNv = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_pipelines: *mut Pipeline,
 ) -> VulkanResultCodes;
-///# [vkCmdCopyAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdCopyAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdCopyAccelerationStructureNV.md")]
 #[doc(alias = "vkCmdCopyAccelerationStructureNV")]
 pub type FNCmdCopyAccelerationStructureNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -447,8 +512,6 @@ pub type FNCmdCopyAccelerationStructureNv = unsafe extern "system" fn(
     src: AccelerationStructureNV,
     mode: CopyAccelerationStructureModeKHR,
 );
-///# [vkCmdWriteAccelerationStructuresPropertiesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdWriteAccelerationStructuresPropertiesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdWriteAccelerationStructuresPropertiesNV.md")]
 #[doc(alias = "vkCmdWriteAccelerationStructuresPropertiesNV")]
 pub type FNCmdWriteAccelerationStructuresPropertiesNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -458,8 +521,6 @@ pub type FNCmdWriteAccelerationStructuresPropertiesNv = unsafe extern "system" f
     query_pool: QueryPool,
     first_query: u32,
 );
-///# [vkCmdBuildAccelerationStructureNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdBuildAccelerationStructureNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdBuildAccelerationStructureNV.md")]
 #[doc(alias = "vkCmdBuildAccelerationStructureNV")]
 pub type FNCmdBuildAccelerationStructureNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,
@@ -472,8 +533,6 @@ pub type FNCmdBuildAccelerationStructureNv = unsafe extern "system" fn(
     scratch: Buffer,
     scratch_offset: DeviceSize,
 );
-///# [vkCmdTraceRaysNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdTraceRaysNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_ray_tracing/vkCmdTraceRaysNV.md")]
 #[doc(alias = "vkCmdTraceRaysNV")]
 pub type FNCmdTraceRaysNv = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

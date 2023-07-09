@@ -136,20 +136,20 @@ impl<'a> Expr<'a> {
         }
     }
 
-    pub fn as_static(self) -> Expr<'static> {
+    pub fn as_static(&self) -> Expr<'static> {
         match self {
-            Expr::String(a) => Expr::String(a),
-            Expr::Variable(a) => Expr::Variable(Cow::Owned(a.into_owned())),
-            Expr::Constant(a) => Expr::Constant(Cow::Owned(a.into_owned())),
-            Expr::ConstantInt(a) => Expr::ConstantInt(a),
-            Expr::ConstantFloat(a) => Expr::ConstantFloat(a),
-            Expr::Resolve(a, b) => Expr::Resolve(box a.as_static(), box b.as_static()),
-            Expr::Divide(a, b) => Expr::Divide(box a.as_static(), box b.as_static()),
-            Expr::Multiply(a, b) => Expr::Multiply(box a.as_static(), box b.as_static()),
-            Expr::Add(a, b) => Expr::Add(box a.as_static(), box b.as_static()),
-            Expr::Subtract(a, b) => Expr::Subtract(box a.as_static(), box b.as_static()),
-            Expr::BitwiseNot(a) => Expr::BitwiseNot(box a.as_static()),
-            Expr::Neg(a) => Expr::Neg(box a.as_static()),
+            Expr::String(a) => Expr::String(a.clone()),
+            Expr::Variable(a) => Expr::Variable(Cow::Owned(a.to_string())),
+            Expr::Constant(a) => Expr::Constant(Cow::Owned(a.to_string())),
+            Expr::ConstantInt(a) => Expr::ConstantInt(*a),
+            Expr::ConstantFloat(a) => Expr::ConstantFloat(*a),
+            Expr::Resolve(a, b) => Expr::Resolve(Box::new(a.as_static()), Box::new(b.as_static())),
+            Expr::Divide(a, b) => Expr::Divide(Box::new(a.as_static()), Box::new(b.as_static())),
+            Expr::Multiply(a, b) => Expr::Multiply(Box::new(a.as_static()), Box::new(b.as_static())),
+            Expr::Add(a, b) => Expr::Add(Box::new(a.as_static()), Box::new(b.as_static())),
+            Expr::Subtract(a, b) => Expr::Subtract(Box::new(a.as_static()), Box::new(b.as_static())),
+            Expr::BitwiseNot(a) => Expr::BitwiseNot(Box::new(a.as_static())),
+            Expr::Neg(a) => Expr::Neg(Box::new(a.as_static())),
         }
     }
 }

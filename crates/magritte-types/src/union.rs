@@ -64,8 +64,10 @@ impl<'a> Union<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -92,6 +94,10 @@ impl<'a> Union<'a> {
 
     pub fn has_opaque(&self, source: &Source<'a>) -> bool {
         self.fields().iter().any(|f| f.is_opaque(source))
+    }
+
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().all(|field| field.ty().is_copy(source))
     }
 }
 

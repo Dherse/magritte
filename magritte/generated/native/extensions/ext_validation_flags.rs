@@ -1,64 +1,27 @@
-//!# [VK_EXT_validation_flags](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_validation_flags.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VK_EXT_validation_flags.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, StructureType},
-};
-use std::ffi::CStr;
-///# [VkValidationFlagsEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationFlagsEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VkValidationFlagsEXT.md")]
+use crate::native::vulkan1_0::{BaseInStructure, StructureType};
 #[doc(alias = "VkValidationFlagsEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ValidationFlagsEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "disabledValidationCheckCount")]
-    disabled_validation_check_count: u32,
+    pub disabled_validation_check_count: u32,
     #[doc(alias = "pDisabledValidationChecks")]
-    disabled_validation_checks: *const ValidationCheckEXT,
+    pub disabled_validation_checks: *const ValidationCheckEXT,
 }
-#[doc(alias = "VK_EXT_VALIDATION_FLAGS_SPEC_VERSION")]
-pub const EXT_VALIDATION_FLAGS_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_EXT_VALIDATION_FLAGS_EXTENSION_NAME")]
-pub const EXT_VALIDATION_FLAGS_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_validation_flags");
-///# [VkValidationCheckEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkValidationCheckEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_validation_flags/VkValidationCheckEXT.md")]
-#[doc(alias = "VkValidationCheckEXT")]
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
-pub struct ValidationCheckEXT(i32);
-impl ValidationCheckEXT {
-    #[doc(alias = "VK_VALIDATION_CHECK_ALL_EXT")]
-    pub const ALL: Self = Self(0);
-    #[doc(alias = "VK_VALIDATION_CHECK_SHADERS_EXT")]
-    pub const SHADERS: Self = Self(1);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    ///The bits of this variant
-    #[inline]
-    pub const fn bits(&self) -> i32 {
-        self.0
-    }
-    ///Builds a bitmask from the bits of this variant
-    #[inline]
-    pub const fn from_bits(bits: i32) -> Option<Self> {
-        match bits {
-            x if x == Self::ALL.bits() => Some(Self(x)),
-            x if x == Self::SHADERS.bits() => Some(Self(x)),
-            _ => None,
+impl Default for ValidationFlagsEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ValidationFlagsExt,
+            p_next: unsafe { std::mem::zeroed() },
+            disabled_validation_check_count: unsafe { std::mem::zeroed() },
+            disabled_validation_checks: unsafe { std::mem::zeroed() },
         }
     }
-    ///Builds a bitmask from the bits of this variant without validating it
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
-        Self(bits)
-    }
 }
+pub use crate::common::extensions::ext_validation_flags::{
+    ValidationCheckEXT, EXT_VALIDATION_FLAGS_EXTENSION_NAME, EXT_VALIDATION_FLAGS_SPEC_VERSION,
+};

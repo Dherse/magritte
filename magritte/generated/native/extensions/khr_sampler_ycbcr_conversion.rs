@@ -1,15 +1,9 @@
-//!# [VK_KHR_sampler_ycbcr_conversion](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_sampler_ycbcr_conversion.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_sampler_ycbcr_conversion/VK_KHR_sampler_ycbcr_conversion.md")]
-use crate::{
-    cstr,
-    vulkan1_1::{
-        BindImagePlaneMemoryInfo, ChromaLocation, FNCreateSamplerYcbcrConversion, FNDestroySamplerYcbcrConversion,
-        ImagePlaneMemoryRequirementsInfo, PhysicalDeviceSamplerYcbcrConversionFeatures, SamplerYcbcrConversion,
-        SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo,
-        SamplerYcbcrModelConversion, SamplerYcbcrRange,
-    },
+use crate::native::vulkan1_1::{
+    BindImagePlaneMemoryInfo, ChromaLocation, FNCreateSamplerYcbcrConversion, FNDestroySamplerYcbcrConversion,
+    ImagePlaneMemoryRequirementsInfo, PhysicalDeviceSamplerYcbcrConversionFeatures, SamplerYcbcrConversion,
+    SamplerYcbcrConversionCreateInfo, SamplerYcbcrConversionImageFormatProperties, SamplerYcbcrConversionInfo,
+    SamplerYcbcrModelConversion, SamplerYcbcrRange,
 };
-use std::ffi::CStr;
 ///See [`SamplerYcbcrConversion`]
 #[doc(alias = "VkSamplerYcbcrConversionKHR")]
 pub type SamplerYcbcrConversionKHR = SamplerYcbcrConversion;
@@ -40,10 +34,9 @@ pub type PhysicalDeviceSamplerYcbcrConversionFeaturesKHR = PhysicalDeviceSampler
 ///See [`SamplerYcbcrConversionImageFormatProperties`]
 #[doc(alias = "VkSamplerYcbcrConversionImageFormatPropertiesKHR")]
 pub type SamplerYcbcrConversionImageFormatPropertiesKHR = SamplerYcbcrConversionImageFormatProperties;
-#[doc(alias = "VK_KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION")]
-pub const KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION: u32 = 14;
-#[doc(alias = "VK_KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME")]
-pub const KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_sampler_ycbcr_conversion");
+pub use crate::common::extensions::khr_sampler_ycbcr_conversion::{
+    KHR_SAMPLER_YCBCR_CONVERSION_EXTENSION_NAME, KHR_SAMPLER_YCBCR_CONVERSION_SPEC_VERSION,
+};
 ///See [`create_sampler_ycbcr_conversion`]
 #[doc(alias = "vkCreateSamplerYcbcrConversionKHR")]
 pub type FNCreateSamplerYcbcrConversionKhr = FNCreateSamplerYcbcrConversion;

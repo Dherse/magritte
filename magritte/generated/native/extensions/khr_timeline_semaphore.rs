@@ -1,14 +1,8 @@
-//!# [VK_KHR_timeline_semaphore](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_timeline_semaphore.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_timeline_semaphore/VK_KHR_timeline_semaphore.md")]
-use crate::{
-    cstr,
-    vulkan1_2::{
-        FNGetSemaphoreCounterValue, FNSignalSemaphore, FNWaitSemaphores, PhysicalDeviceTimelineSemaphoreFeatures,
-        PhysicalDeviceTimelineSemaphoreProperties, SemaphoreSignalInfo, SemaphoreType, SemaphoreTypeCreateInfo,
-        SemaphoreWaitFlagBits, SemaphoreWaitFlags, SemaphoreWaitInfo, TimelineSemaphoreSubmitInfo,
-    },
+use crate::native::vulkan1_2::{
+    FNGetSemaphoreCounterValue, FNSignalSemaphore, FNWaitSemaphores, PhysicalDeviceTimelineSemaphoreFeatures,
+    PhysicalDeviceTimelineSemaphoreProperties, SemaphoreSignalInfo, SemaphoreType, SemaphoreTypeCreateInfo,
+    SemaphoreWaitFlagBits, SemaphoreWaitFlags, SemaphoreWaitInfo, TimelineSemaphoreSubmitInfo,
 };
-use std::ffi::CStr;
 ///See [`SemaphoreWaitFlags`]
 #[doc(alias = "VkSemaphoreWaitFlagsKHR")]
 pub type SemaphoreWaitFlagsKHR = SemaphoreWaitFlags;
@@ -36,10 +30,9 @@ pub type SemaphoreWaitInfoKHR = SemaphoreWaitInfo;
 ///See [`SemaphoreSignalInfo`]
 #[doc(alias = "VkSemaphoreSignalInfoKHR")]
 pub type SemaphoreSignalInfoKHR = SemaphoreSignalInfo;
-#[doc(alias = "VK_KHR_TIMELINE_SEMAPHORE_SPEC_VERSION")]
-pub const KHR_TIMELINE_SEMAPHORE_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME")]
-pub const KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_timeline_semaphore");
+pub use crate::common::extensions::khr_timeline_semaphore::{
+    KHR_TIMELINE_SEMAPHORE_EXTENSION_NAME, KHR_TIMELINE_SEMAPHORE_SPEC_VERSION,
+};
 ///See [`get_semaphore_counter_value`]
 #[doc(alias = "vkGetSemaphoreCounterValueKHR")]
 pub type FNGetSemaphoreCounterValueKhr = FNGetSemaphoreCounterValue;

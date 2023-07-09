@@ -204,42 +204,42 @@ impl Display for Size {
     }
 }
 
-impl const From<usize> for Size {
+impl From<usize> for Size {
     #[inline]
     fn from(size: usize) -> Self {
         Self(size as _)
     }
 }
 
-impl const Into<usize> for Size {
+impl Into<usize> for Size {
     #[inline]
     fn into(self) -> usize {
         self.0 as _
     }
 }
 
-impl const From<u64> for Size {
+impl From<u64> for Size {
     #[inline]
     fn from(size: u64) -> Self {
         Self(size)
     }
 }
 
-impl const Into<u64> for Size {
+impl Into<u64> for Size {
     #[inline]
     fn into(self) -> u64 {
         self.0
     }
 }
 
-impl const From<u32> for Size {
+impl From<u32> for Size {
     #[inline]
     fn from(size: u32) -> Self {
         Self(size as _)
     }
 }
 
-impl const Into<u32> for Size {
+impl Into<u32> for Size {
     #[inline]
     fn into(self) -> u32 {
         self.0 as _

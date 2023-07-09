@@ -1,13 +1,7 @@
-//!# [VK_EXT_inline_uniform_block](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_inline_uniform_block.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_inline_uniform_block/VK_EXT_inline_uniform_block.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{
-        DescriptorPoolInlineUniformBlockCreateInfo, PhysicalDeviceInlineUniformBlockFeatures,
-        PhysicalDeviceInlineUniformBlockProperties, WriteDescriptorSetInlineUniformBlock,
-    },
+use crate::native::vulkan1_3::{
+    DescriptorPoolInlineUniformBlockCreateInfo, PhysicalDeviceInlineUniformBlockFeatures,
+    PhysicalDeviceInlineUniformBlockProperties, WriteDescriptorSetInlineUniformBlock,
 };
-use std::ffi::CStr;
 ///See [`PhysicalDeviceInlineUniformBlockFeatures`]
 #[doc(alias = "VkPhysicalDeviceInlineUniformBlockFeaturesEXT")]
 pub type PhysicalDeviceInlineUniformBlockFeaturesEXT = PhysicalDeviceInlineUniformBlockFeatures;
@@ -20,7 +14,6 @@ pub type WriteDescriptorSetInlineUniformBlockEXT = WriteDescriptorSetInlineUnifo
 ///See [`DescriptorPoolInlineUniformBlockCreateInfo`]
 #[doc(alias = "VkDescriptorPoolInlineUniformBlockCreateInfoEXT")]
 pub type DescriptorPoolInlineUniformBlockCreateInfoEXT = DescriptorPoolInlineUniformBlockCreateInfo;
-#[doc(alias = "VK_EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION")]
-pub const EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME")]
-pub const EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_inline_uniform_block");
+pub use crate::common::extensions::ext_inline_uniform_block::{
+    EXT_INLINE_UNIFORM_BLOCK_EXTENSION_NAME, EXT_INLINE_UNIFORM_BLOCK_SPEC_VERSION,
+};

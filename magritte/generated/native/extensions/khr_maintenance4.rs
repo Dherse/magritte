@@ -1,14 +1,8 @@
-//!# [VK_KHR_maintenance4](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_maintenance4.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_maintenance4/VK_KHR_maintenance4.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{
-        DeviceBufferMemoryRequirements, DeviceImageMemoryRequirements, FNGetDeviceBufferMemoryRequirements,
-        FNGetDeviceImageMemoryRequirements, FNGetDeviceImageSparseMemoryRequirements,
-        PhysicalDeviceMaintenance4Features, PhysicalDeviceMaintenance4Properties,
-    },
+use crate::native::vulkan1_3::{
+    DeviceBufferMemoryRequirements, DeviceImageMemoryRequirements, FNGetDeviceBufferMemoryRequirements,
+    FNGetDeviceImageMemoryRequirements, FNGetDeviceImageSparseMemoryRequirements, PhysicalDeviceMaintenance4Features,
+    PhysicalDeviceMaintenance4Properties,
 };
-use std::ffi::CStr;
 ///See [`DeviceBufferMemoryRequirements`]
 #[doc(alias = "VkDeviceBufferMemoryRequirementsKHR")]
 pub type DeviceBufferMemoryRequirementsKHR = DeviceBufferMemoryRequirements;
@@ -21,10 +15,9 @@ pub type PhysicalDeviceMaintenance4FeaturesKHR = PhysicalDeviceMaintenance4Featu
 ///See [`PhysicalDeviceMaintenance4Properties`]
 #[doc(alias = "VkPhysicalDeviceMaintenance4PropertiesKHR")]
 pub type PhysicalDeviceMaintenance4PropertiesKHR = PhysicalDeviceMaintenance4Properties;
-#[doc(alias = "VK_KHR_MAINTENANCE_4_SPEC_VERSION")]
-pub const KHR_MAINTENANCE_4_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_KHR_MAINTENANCE_4_EXTENSION_NAME")]
-pub const KHR_MAINTENANCE_4_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_maintenance4");
+pub use crate::common::extensions::khr_maintenance4::{
+    KHR_MAINTENANCE_4_EXTENSION_NAME, KHR_MAINTENANCE_4_SPEC_VERSION,
+};
 ///See [`get_device_buffer_memory_requirements`]
 #[doc(alias = "vkGetDeviceBufferMemoryRequirementsKHR")]
 pub type FNGetDeviceBufferMemoryRequirementsKhr = FNGetDeviceBufferMemoryRequirements;

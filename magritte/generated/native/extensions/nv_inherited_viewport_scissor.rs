@@ -1,41 +1,50 @@
-//!# [VK_NV_inherited_viewport_scissor](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_inherited_viewport_scissor.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VK_NV_inherited_viewport_scissor.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType, Viewport},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceInheritedViewportScissorFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VkPhysicalDeviceInheritedViewportScissorFeaturesNV.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType, Viewport};
 #[doc(alias = "VkPhysicalDeviceInheritedViewportScissorFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceInheritedViewportScissorFeaturesNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "inheritedViewportScissor2D")]
-    inherited_viewport_scissor2_d: Bool32,
+    pub inherited_viewport_scissor2_d: Bool32,
 }
-///# [VkCommandBufferInheritanceViewportScissorInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkCommandBufferInheritanceViewportScissorInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_inherited_viewport_scissor/VkCommandBufferInheritanceViewportScissorInfoNV.md")]
+impl Default for PhysicalDeviceInheritedViewportScissorFeaturesNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceInheritedViewportScissorFeaturesNv,
+            p_next: unsafe { std::mem::zeroed() },
+            inherited_viewport_scissor2_d: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkCommandBufferInheritanceViewportScissorInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct CommandBufferInheritanceViewportScissorInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "viewportScissor2D")]
-    viewport_scissor2_d: Bool32,
+    pub viewport_scissor2_d: Bool32,
     #[doc(alias = "viewportDepthCount")]
-    viewport_depth_count: u32,
+    pub viewport_depth_count: u32,
     #[doc(alias = "pViewportDepths")]
-    viewport_depths: *const Viewport,
+    pub viewport_depths: *const Viewport,
 }
-#[doc(alias = "VK_NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION")]
-pub const NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME")]
-pub const NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_inherited_viewport_scissor");
+impl Default for CommandBufferInheritanceViewportScissorInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::CommandBufferInheritanceViewportScissorInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            viewport_scissor2_d: unsafe { std::mem::zeroed() },
+            viewport_depth_count: unsafe { std::mem::zeroed() },
+            viewport_depths: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::nv_inherited_viewport_scissor::{
+    NV_INHERITED_VIEWPORT_SCISSOR_EXTENSION_NAME, NV_INHERITED_VIEWPORT_SCISSOR_SPEC_VERSION,
+};

@@ -1,0 +1,15 @@
+use crate::{
+    common::vulkan1_0::{MAX_DRIVER_INFO_SIZE, MAX_DRIVER_NAME_SIZE},
+    cstr,
+};
+use std::ffi::CStr;
+#[doc(alias = "VK_KHR_DRIVER_PROPERTIES_SPEC_VERSION")]
+pub const KHR_DRIVER_PROPERTIES_SPEC_VERSION: u32 = 1;
+#[doc(alias = "VK_KHR_DRIVER_PROPERTIES_EXTENSION_NAME")]
+pub const KHR_DRIVER_PROPERTIES_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_driver_properties");
+///See [`MAX_DRIVER_NAME_SIZE`]
+#[doc(alias = "VK_MAX_DRIVER_NAME_SIZE_KHR")]
+pub const MAX_DRIVER_NAME_SIZE_KHR: u32 = MAX_DRIVER_NAME_SIZE;
+///See [`MAX_DRIVER_INFO_SIZE`]
+#[doc(alias = "VK_MAX_DRIVER_INFO_SIZE_KHR")]
+pub const MAX_DRIVER_INFO_SIZE_KHR: u32 = MAX_DRIVER_INFO_SIZE;

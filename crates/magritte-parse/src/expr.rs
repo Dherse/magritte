@@ -41,13 +41,13 @@ pub fn parse_expr(input: &str) -> IResult<&'_ str, Expr<'static>> {
                 move || expr_other.clone(),
                 |acc, (op, val): (char, Expr)| {
                     if op == '+' {
-                        Expr::Add(box acc, box val).as_static()
+                        Expr::Add(Box::new(acc), Box::new(val)).as_static()
                     } else if op == '-' {
-                        Expr::Subtract(box acc, box val).as_static()
+                        Expr::Subtract(Box::new(acc), Box::new(val)).as_static()
                     } else if op == '*' {
-                        Expr::Multiply(box acc, box val).as_static()
+                        Expr::Multiply(Box::new(acc), Box::new(val)).as_static()
                     } else {
-                        Expr::Divide(box acc, box val).as_static()
+                        Expr::Divide(Box::new(acc), Box::new(val)).as_static()
                     }
                 },
             )(rest)
@@ -90,9 +90,9 @@ fn term<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
         move || init.clone(),
         |acc, (op, val): (char, Expr<'a>)| {
             if op == '*' {
-                Expr::Multiply(box acc, box val)
+                Expr::Multiply(Box::new(acc), Box::new(val))
             } else {
-                Expr::Divide(box acc, box val)
+                Expr::Divide(Box::new(acc), Box::new(val))
             }
         },
     )(i)
@@ -106,9 +106,9 @@ fn expr<'a>(input: &'a str) -> IResult<&'a str, Expr<'a>> {
         move || init.clone(),
         |acc, (op, val): (char, Expr<'a>)| {
             if op == '+' {
-                Expr::Add(box acc, box val)
+                Expr::Add(Box::new(acc), Box::new(val))
             } else {
-                Expr::Subtract(box acc, box val)
+                Expr::Subtract(Box::new(acc), Box::new(val))
             }
         },
     )(i)
@@ -153,20 +153,20 @@ pub fn variable_raw(input: &'_ str) -> IResult<&'_ str, &'_ str> {
 
 /// Matches a resolve (i.e `this->value`)
 fn bitwise_not(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
-    map(pair(complete::char('~'), parse_expr), |(_, a)| Expr::BitwiseNot(box a))(input)
+    map(pair(complete::char('~'), parse_expr), |(_, a)| Expr::BitwiseNot(Box::new(a)))(input)
 }
 
 /// Matches a resolve (i.e `this->value`)
 fn resolve_ptr(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(separated_pair(variable, tag("->"), variable), |(a, b)| {
-        Expr::Resolve(box a, box b)
+        Expr::Resolve(Box::new(a), Box::new(b))
     })(input)
 }
 
 /// Matches a resolve (i.e `this->value`)
 fn resolve_value(input: &'_ str) -> IResult<&'_ str, Expr<'_>> {
     map(separated_pair(variable, tag("."), variable), |(a, b)| {
-        Expr::Resolve(box a, box b)
+        Expr::Resolve(Box::new(a), Box::new(b))
     })(input)
 }
 
@@ -368,8 +368,8 @@ mod tests {
             Ok((
                 "",
                 Expr::Resolve(
-                    box Expr::Variable(Cow::Borrowed("this")),
-                    box Expr::Variable(Cow::Borrowed("that"))
+                    Box::new(Expr::Variable(Cow::Borrowed("this"))),
+                    Box::new(Expr::Variable(Cow::Borrowed("that")))
                 )
             ))
         );
@@ -379,8 +379,8 @@ mod tests {
             Ok((
                 "",
                 Expr::Resolve(
-                    box Expr::Variable(Cow::Borrowed("that")),
-                    box Expr::Variable(Cow::Borrowed("vkThat"))
+                    Box::new(Expr::Variable(Cow::Borrowed("that"))),
+                    Box::new(Expr::Variable(Cow::Borrowed("vkThat")))
                 )
             ))
         );
@@ -390,8 +390,8 @@ mod tests {
             Ok((
                 "",
                 Expr::Resolve(
-                    box Expr::Variable(Cow::Borrowed("that")),
-                    box Expr::Variable(Cow::Borrowed("vkThat"))
+                    Box::new(Expr::Variable(Cow::Borrowed("that"))),
+                    Box::new(Expr::Variable(Cow::Borrowed("vkThat")))
                 )
             ))
         );
@@ -401,7 +401,7 @@ mod tests {
     fn expr_test() {
         assert_eq!(
             parse_expr(" 1 +  2 "),
-            Ok(("", Expr::Add(box Expr::ConstantInt(1), box Expr::ConstantInt(2))))
+            Ok(("", Expr::Add(Box::new(Expr::ConstantInt(1)), Box::new(Expr::ConstantInt(2)))))
         );
 
         assert_eq!(
@@ -409,11 +409,11 @@ mod tests {
             Ok((
                 "",
                 Expr::Add(
-                    box Expr::Subtract(
-                        box Expr::Add(box Expr::ConstantInt(12), box Expr::ConstantInt(6)),
-                        box Expr::ConstantInt(4)
-                    ),
-                    box Expr::ConstantInt(3)
+                    Box::new(Expr::Subtract(
+                        Box::new(Expr::Add(Box::new(Expr::ConstantInt(12)), Box::new(Expr::ConstantInt(6)))),
+                        Box::new(Expr::ConstantInt(4))
+                    )),
+                    Box::new(Expr::ConstantInt(3))
                 )
             ))
         );
@@ -423,11 +423,11 @@ mod tests {
             Ok((
                 "",
                 Expr::Add(
-                    box Expr::Add(
-                        box Expr::ConstantInt(1),
-                        box Expr::Multiply(box Expr::ConstantInt(2), box Expr::ConstantInt(3))
-                    ),
-                    box Expr::ConstantInt(4)
+                    Box::new(Expr::Add(
+                        Box::new(Expr::ConstantInt(1)),
+                        Box::new(Expr::Multiply(Box::new(Expr::ConstantInt(2)), Box::new(Expr::ConstantInt(3))))
+                    )),
+                    Box::new(Expr::ConstantInt(4))
                 )
             ))
         );
@@ -437,11 +437,11 @@ mod tests {
             Ok((
                 "",
                 Expr::Multiply(
-                    box Expr::Resolve(
-                        box Expr::Variable(Cow::Borrowed("this")),
-                        box Expr::Variable(Cow::Borrowed("that"))
-                    ),
-                    box Expr::ConstantInt(64)
+                    Box::new(Expr::Resolve(
+                        Box::new(Expr::Variable(Cow::Borrowed("this"))),
+                        Box::new(Expr::Variable(Cow::Borrowed("that")))
+                    )),
+                    Box::new(Expr::ConstantInt(64))
                 )
             ))
         );
@@ -455,8 +455,8 @@ mod tests {
             Ok((
                 "",
                 Expr::Multiply(
-                    box Expr::ConstantInt(2),
-                    box Expr::Add(box Expr::ConstantFloat(3.0), box Expr::ConstantInt(4))
+                    Box::new(Expr::ConstantInt(2)),
+                    Box::new(Expr::Add(Box::new(Expr::ConstantFloat(3.0)), Box::new(Expr::ConstantInt(4))))
                 )
             ))
         );
@@ -465,11 +465,11 @@ mod tests {
             Ok((
                 "",
                 Expr::Add(
-                    box Expr::Divide(
-                        box Expr::Multiply(box Expr::ConstantInt(2), box Expr::ConstantInt(2)),
-                        box Expr::Subtract(box Expr::ConstantInt(5), box Expr::ConstantInt(1)),
-                    ),
-                    box Expr::ConstantInt(3)
+                    Box::new(Expr::Divide(
+                        Box::new(Expr::Multiply(Box::new(Expr::ConstantInt(2)), Box::new(Expr::ConstantInt(2)))),
+                        Box::new(Expr::Subtract(Box::new(Expr::ConstantInt(5)), Box::new(Expr::ConstantInt(1)))),
+                    )),
+                    Box::new(Expr::ConstantInt(3))
                 )
             ))
         );
@@ -477,10 +477,10 @@ mod tests {
 
     #[test]
     fn bitwise_test() {
-        assert_eq!(expr(" (  ~2 )"), Ok(("", Expr::BitwiseNot(box Expr::ConstantInt(2)))));
+        assert_eq!(expr(" (  ~2 )"), Ok(("", Expr::BitwiseNot(Box::new(Expr::ConstantInt(2))))));
         assert_eq!(
             expr(" (  ~0ULL )"),
-            Ok(("", Expr::BitwiseNot(box Expr::ConstantInt(0))))
+            Ok(("", Expr::BitwiseNot(Box::new(Expr::ConstantInt(0)))))
         );
     }
 }

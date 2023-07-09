@@ -1,4 +1,4 @@
-#![feature(box_patterns, box_syntax)]
+#![feature(box_patterns)]
 
 use std::borrow::Cow;
 

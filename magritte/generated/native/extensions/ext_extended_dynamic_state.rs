@@ -1,7 +1,4 @@
-//!# [VK_EXT_extended_dynamic_state](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_extended_dynamic_state.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state/VK_EXT_extended_dynamic_state.md")]
-use crate::{
-    cstr,
+use crate::native::{
     vulkan1_0::{BaseOutStructure, Bool32, StructureType},
     vulkan1_3::{
         FNCmdBindVertexBuffers2, FNCmdSetCullMode, FNCmdSetDepthBoundsTestEnable, FNCmdSetDepthCompareOp,
@@ -9,24 +6,29 @@ use crate::{
         FNCmdSetScissorWithCount, FNCmdSetStencilOp, FNCmdSetStencilTestEnable, FNCmdSetViewportWithCount,
     },
 };
-use std::ffi::CStr;
-///# [VkPhysicalDeviceExtendedDynamicStateFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_extended_dynamic_state/VkPhysicalDeviceExtendedDynamicStateFeaturesEXT.md")]
 #[doc(alias = "VkPhysicalDeviceExtendedDynamicStateFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceExtendedDynamicStateFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "extendedDynamicState")]
-    extended_dynamic_state: Bool32,
+    pub extended_dynamic_state: Bool32,
 }
-#[doc(alias = "VK_EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION")]
-pub const EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME")]
-pub const EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_extended_dynamic_state");
+impl Default for PhysicalDeviceExtendedDynamicStateFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceExtendedDynamicStateFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            extended_dynamic_state: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_extended_dynamic_state::{
+    EXT_EXTENDED_DYNAMIC_STATE_EXTENSION_NAME, EXT_EXTENDED_DYNAMIC_STATE_SPEC_VERSION,
+};
 ///See [`cmd_set_cull_mode`]
 #[doc(alias = "vkCmdSetCullModeEXT")]
 pub type FNCmdSetCullModeExt = FNCmdSetCullMode;

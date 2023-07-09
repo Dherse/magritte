@@ -15,7 +15,7 @@ use bytemuck::{Pod, Zeroable};
 #[repr(transparent)]
 pub struct Version(pub u32);
 
-impl const Default for Version {
+impl Default for Version {
     fn default() -> Self {
         Self::VULKAN1_0
     }
@@ -35,16 +35,16 @@ impl Ord for Version {
 
 impl Version {
     /// Vulkan 1.0
-    pub const VULKAN1_0: Self = Self::from((1, 0, 0));
+    pub const VULKAN1_0: Self = Self::new(1, 0, 0);
 
     /// Vulkan 1.1
-    pub const VULKAN1_1: Self = Self::from((1, 1, 0));
+    pub const VULKAN1_1: Self = Self::new(1, 1, 0);
 
     /// Vulkan 1.2
-    pub const VULKAN1_2: Self = Self::from((1, 2, 0));
+    pub const VULKAN1_2: Self = Self::new(1, 2, 0);
 
     /// Vulkan 1.3
-    pub const VULKAN1_3: Self = Self::from((1, 3, 0));
+    pub const VULKAN1_3: Self = Self::new(1, 3, 0);
 
     /// Creates a new Version from its components.
     #[must_use]
@@ -127,42 +127,42 @@ impl Display for Version {
     }
 }
 
-impl const From<u32> for Version {
+impl From<u32> for Version {
     #[inline]
     fn from(i: u32) -> Self {
         Self(i)
     }
 }
 
-impl const Into<u32> for Version {
+impl Into<u32> for Version {
     #[inline]
     fn into(self) -> u32 {
         self.0
     }
 }
 
-impl const From<(u32, u32, u32)> for Version {
+impl From<(u32, u32, u32)> for Version {
     #[inline]
     fn from((major, minor, patch): (u32, u32, u32)) -> Self {
         Self::new(major, minor, patch)
     }
 }
 
-impl const Into<(u32, u32, u32)> for Version {
+impl Into<(u32, u32, u32)> for Version {
     #[inline]
     fn into(self) -> (u32, u32, u32) {
         (self.major(), self.minor(), self.patch())
     }
 }
 
-impl const From<(u32, u32, u32, u32)> for Version {
+impl From<(u32, u32, u32, u32)> for Version {
     #[inline]
     fn from((variant, major, minor, patch): (u32, u32, u32, u32)) -> Self {
         Self::with_variant(variant, major, minor, patch)
     }
 }
 
-impl const Into<(u32, u32, u32, u32)> for Version {
+impl Into<(u32, u32, u32, u32)> for Version {
     #[inline]
     fn into(self) -> (u32, u32, u32, u32) {
         (self.variant(), self.major(), self.minor(), self.patch())

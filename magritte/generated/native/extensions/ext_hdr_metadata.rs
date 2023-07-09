@@ -1,53 +1,50 @@
-//!# [VK_EXT_hdr_metadata](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_hdr_metadata.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VK_EXT_hdr_metadata.md")]
-use crate::{
-    cstr,
+pub use crate::common::extensions::ext_hdr_metadata::XyColorEXT;
+use crate::native::{
     extensions::khr_swapchain::SwapchainKHR,
     vulkan1_0::{BaseInStructure, Device, StructureType},
 };
-use std::ffi::CStr;
-///# [VkXYColorEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkXYColorEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VkXYColorEXT.md")]
-#[doc(alias = "VkXYColorEXT")]
-#[derive(Clone, Copy)]
-#[repr(C)]
-pub struct XyColorEXT {
-    x: f32,
-    y: f32,
-}
-///# [VkHdrMetadataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkHdrMetadataEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/VkHdrMetadataEXT.md")]
 #[doc(alias = "VkHdrMetadataEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct HdrMetadataEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "displayPrimaryRed")]
-    display_primary_red: XyColorEXT,
+    pub display_primary_red: XyColorEXT,
     #[doc(alias = "displayPrimaryGreen")]
-    display_primary_green: XyColorEXT,
+    pub display_primary_green: XyColorEXT,
     #[doc(alias = "displayPrimaryBlue")]
-    display_primary_blue: XyColorEXT,
+    pub display_primary_blue: XyColorEXT,
     #[doc(alias = "whitePoint")]
-    white_point: XyColorEXT,
+    pub white_point: XyColorEXT,
     #[doc(alias = "maxLuminance")]
-    max_luminance: f32,
+    pub max_luminance: f32,
     #[doc(alias = "minLuminance")]
-    min_luminance: f32,
+    pub min_luminance: f32,
     #[doc(alias = "maxContentLightLevel")]
-    max_content_light_level: f32,
+    pub max_content_light_level: f32,
     #[doc(alias = "maxFrameAverageLightLevel")]
-    max_frame_average_light_level: f32,
+    pub max_frame_average_light_level: f32,
 }
-#[doc(alias = "VK_EXT_HDR_METADATA_SPEC_VERSION")]
-pub const EXT_HDR_METADATA_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_EXT_HDR_METADATA_EXTENSION_NAME")]
-pub const EXT_HDR_METADATA_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_hdr_metadata");
-///# [vkSetHdrMetadataEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkSetHdrMetadataEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_hdr_metadata/vkSetHdrMetadataEXT.md")]
+impl Default for HdrMetadataEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::HdrMetadataExt,
+            p_next: unsafe { std::mem::zeroed() },
+            display_primary_red: unsafe { std::mem::zeroed() },
+            display_primary_green: unsafe { std::mem::zeroed() },
+            display_primary_blue: unsafe { std::mem::zeroed() },
+            white_point: unsafe { std::mem::zeroed() },
+            max_luminance: unsafe { std::mem::zeroed() },
+            min_luminance: unsafe { std::mem::zeroed() },
+            max_content_light_level: unsafe { std::mem::zeroed() },
+            max_frame_average_light_level: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_hdr_metadata::{EXT_HDR_METADATA_EXTENSION_NAME, EXT_HDR_METADATA_SPEC_VERSION};
 #[doc(alias = "vkSetHdrMetadataEXT")]
 pub type FNSetHdrMetadataExt = unsafe extern "system" fn(
     device: Device,

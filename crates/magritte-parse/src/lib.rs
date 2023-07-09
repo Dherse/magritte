@@ -1,4 +1,4 @@
-#![feature(box_patterns, box_syntax, io_error_other, string_remove_matches)]
+#![feature(box_patterns, io_error_other, string_remove_matches)]
 
 mod expr;
 mod externally_synced;
@@ -29,7 +29,13 @@ use vk_parse::{
     TypeMemberDefinition, TypeMemberMarkup, TypeSpec, TypesChild,
 };
 
-pub const EXTENSION_BLOCK_LIST: &[&str] = &["VK_EXT_video", "VK_QCOM", "VK_QNX", "VK_GGP"];
+pub const EXTENSION_BLOCK_LIST: &[&str] = &[
+    "VK_EXT_video",
+    "VK_QCOM",
+    "VK_QNX",
+    "VK_GGP",
+    "VK_VALVE_descriptor_set_host_mapping",
+];
 
 pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
     let cursor = Cursor::new(vulkan);
@@ -102,7 +108,12 @@ pub fn parse(vulkan: &str) -> Result<Source<'_>, Box<dyn Error>> {
 
     // Assign functions to handles.
     // Assign allocators/destructors to handles.
-    for function in out.functions.iter().chain(out.commands.iter().map(Deref::deref)) {
+    for function in out
+        .functions
+        .iter()
+        .chain(out.commands.iter().map(Deref::deref))
+        .filter(|f| !f.origin().is_disabled())
+    {
         let first_arg = &function.arguments()[0];
 
         match first_arg.ty() {
@@ -933,9 +944,9 @@ fn parse_field(member: TypeMemberDefinition) -> Field<'static> {
         ty = Ty::Pointer(
             *mutability,
             if mutability.is_mut() {
-                box Ty::Named(Cow::Borrowed("VkBaseOutStructure"))
+                Box::new(Ty::Named(Cow::Borrowed("VkBaseOutStructure")))
             } else {
-                box Ty::Named(Cow::Borrowed("VkBaseInStructure"))
+                Box::new(Ty::Named(Cow::Borrowed("VkBaseInStructure")))
             },
         );
     } else if name.starts_with("p_") {

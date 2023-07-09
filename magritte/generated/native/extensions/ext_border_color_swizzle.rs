@@ -1,39 +1,48 @@
-//!# [VK_EXT_border_color_swizzle](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_border_color_swizzle.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_border_color_swizzle/VK_EXT_border_color_swizzle.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, ComponentMapping, StructureType},
-};
-use std::ffi::CStr;
-///# [VkSamplerBorderColorComponentMappingCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSamplerBorderColorComponentMappingCreateInfoEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_border_color_swizzle/VkSamplerBorderColorComponentMappingCreateInfoEXT.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, ComponentMapping, StructureType};
 #[doc(alias = "VkSamplerBorderColorComponentMappingCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct SamplerBorderColorComponentMappingCreateInfoEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    components: ComponentMapping,
-    srgb: Bool32,
+    pub p_next: *const BaseInStructure,
+    pub components: ComponentMapping,
+    pub srgb: Bool32,
 }
-///# [VkPhysicalDeviceBorderColorSwizzleFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceBorderColorSwizzleFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_border_color_swizzle/VkPhysicalDeviceBorderColorSwizzleFeaturesEXT.md")]
+impl Default for SamplerBorderColorComponentMappingCreateInfoEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::SamplerBorderColorComponentMappingCreateInfoExt,
+            p_next: unsafe { std::mem::zeroed() },
+            components: unsafe { std::mem::zeroed() },
+            srgb: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDeviceBorderColorSwizzleFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceBorderColorSwizzleFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "borderColorSwizzle")]
-    border_color_swizzle: Bool32,
+    pub border_color_swizzle: Bool32,
     #[doc(alias = "borderColorSwizzleFromImage")]
-    border_color_swizzle_from_image: Bool32,
+    pub border_color_swizzle_from_image: Bool32,
 }
-#[doc(alias = "VK_EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION")]
-pub const EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME")]
-pub const EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_border_color_swizzle");
+impl Default for PhysicalDeviceBorderColorSwizzleFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceBorderColorSwizzleFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            border_color_swizzle: unsafe { std::mem::zeroed() },
+            border_color_swizzle_from_image: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_border_color_swizzle::{
+    EXT_BORDER_COLOR_SWIZZLE_EXTENSION_NAME, EXT_BORDER_COLOR_SWIZZLE_SPEC_VERSION,
+};

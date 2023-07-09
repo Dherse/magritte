@@ -98,10 +98,33 @@ impl<'a> Handle<'a> {
     }
 
     #[cfg(feature = "codegen")]
+    pub fn as_field_ident(&self) -> proc_macro2::Ident {
+        use heck::ToSnakeCase;
+
+        proc_macro2::Ident::new(&self.name().to_snake_case(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_drop_fn_ident(&self) -> proc_macro2::Ident {
+        use heck::ToSnakeCase;
+
+        quote::format_ident!("drop_{}", self.name().to_snake_case())
+    }
+
+    #[cfg(feature = "codegen")]
+    pub fn as_clone_fn_ident(&self) -> proc_macro2::Ident {
+        use heck::ToSnakeCase;
+
+        quote::format_ident!("clone_{}", self.name().to_snake_case())
+    }
+
+    #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
     /// Get a reference to the handle's fields.

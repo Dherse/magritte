@@ -1,7 +1,4 @@
-//!# [VK_KHR_swapchain](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_swapchain.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VK_KHR_swapchain.md")]
-use crate::{
-    cstr,
+use crate::native::{
     extensions::khr_surface::{
         ColorSpaceKHR, CompositeAlphaFlagBitsKHR, PresentModeKHR, SurfaceKHR, SurfaceTransformFlagBitsKHR,
     },
@@ -10,72 +7,103 @@ use crate::{
         Semaphore, SharingMode, StructureType, VulkanResultCodes,
     },
 };
-use std::ffi::CStr;
-///# [VkSwapchainCreateInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateInfoKHR.md")]
 #[doc(alias = "VkSwapchainCreateInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct SwapchainCreateInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    flags: SwapchainCreateFlagsKHR,
-    surface: SurfaceKHR,
+    pub p_next: *const BaseInStructure,
+    pub flags: SwapchainCreateFlagsKHR,
+    pub surface: SurfaceKHR,
     #[doc(alias = "minImageCount")]
-    min_image_count: u32,
+    pub min_image_count: u32,
     #[doc(alias = "imageFormat")]
-    image_format: Format,
+    pub image_format: Format,
     #[doc(alias = "imageColorSpace")]
-    image_color_space: ColorSpaceKHR,
+    pub image_color_space: ColorSpaceKHR,
     #[doc(alias = "imageExtent")]
-    image_extent: Extent2D,
+    pub image_extent: Extent2D,
     #[doc(alias = "imageArrayLayers")]
-    image_array_layers: u32,
+    pub image_array_layers: u32,
     #[doc(alias = "imageUsage")]
-    image_usage: ImageUsageFlags,
+    pub image_usage: ImageUsageFlags,
     #[doc(alias = "imageSharingMode")]
-    image_sharing_mode: SharingMode,
+    pub image_sharing_mode: SharingMode,
     #[doc(alias = "queueFamilyIndexCount")]
-    queue_family_index_count: u32,
+    pub queue_family_index_count: u32,
     #[doc(alias = "pQueueFamilyIndices")]
-    queue_family_indices: *const u32,
+    pub queue_family_indices: *const u32,
     #[doc(alias = "preTransform")]
-    pre_transform: SurfaceTransformFlagBitsKHR,
+    pub pre_transform: SurfaceTransformFlagBitsKHR,
     #[doc(alias = "compositeAlpha")]
-    composite_alpha: CompositeAlphaFlagBitsKHR,
+    pub composite_alpha: CompositeAlphaFlagBitsKHR,
     #[doc(alias = "presentMode")]
-    present_mode: PresentModeKHR,
-    clipped: Bool32,
+    pub present_mode: PresentModeKHR,
+    pub clipped: Bool32,
     #[doc(alias = "oldSwapchain")]
-    old_swapchain: SwapchainKHR,
+    pub old_swapchain: SwapchainKHR,
 }
-///# [VkPresentInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPresentInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkPresentInfoKHR.md")]
+impl Default for SwapchainCreateInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::SwapchainCreateInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+            surface: unsafe { std::mem::zeroed() },
+            min_image_count: unsafe { std::mem::zeroed() },
+            image_format: unsafe { std::mem::zeroed() },
+            image_color_space: unsafe { std::mem::zeroed() },
+            image_extent: unsafe { std::mem::zeroed() },
+            image_array_layers: unsafe { std::mem::zeroed() },
+            image_usage: unsafe { std::mem::zeroed() },
+            image_sharing_mode: unsafe { std::mem::zeroed() },
+            queue_family_index_count: unsafe { std::mem::zeroed() },
+            queue_family_indices: unsafe { std::mem::zeroed() },
+            pre_transform: unsafe { std::mem::zeroed() },
+            composite_alpha: unsafe { std::mem::zeroed() },
+            present_mode: unsafe { std::mem::zeroed() },
+            clipped: unsafe { std::mem::zeroed() },
+            old_swapchain: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPresentInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PresentInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "waitSemaphoreCount")]
-    wait_semaphore_count: u32,
+    pub wait_semaphore_count: u32,
     #[doc(alias = "pWaitSemaphores")]
-    wait_semaphores: *const Semaphore,
+    pub wait_semaphores: *const Semaphore,
     #[doc(alias = "swapchainCount")]
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     #[doc(alias = "pSwapchains")]
-    swapchains: *const SwapchainKHR,
+    pub swapchains: *const SwapchainKHR,
     #[doc(alias = "pImageIndices")]
-    image_indices: *const u32,
+    pub image_indices: *const u32,
     #[doc(alias = "pResults")]
-    results: *mut VulkanResultCodes,
+    pub results: *mut VulkanResultCodes,
 }
-///# [VkSwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainKHR.md")]
+impl Default for PresentInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PresentInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            wait_semaphore_count: unsafe { std::mem::zeroed() },
+            wait_semaphores: unsafe { std::mem::zeroed() },
+            swapchain_count: unsafe { std::mem::zeroed() },
+            swapchains: unsafe { std::mem::zeroed() },
+            image_indices: unsafe { std::mem::zeroed() },
+            results: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[derive(Clone, Copy, PartialEq, Eq)]
 #[doc(alias = "VkSwapchainKHR")]
 #[repr(transparent)]
@@ -84,342 +112,18 @@ impl SwapchainKHR {
     pub const fn null() -> Self {
         Self(0)
     }
+    pub const fn raw(&self) -> u64 {
+        self.0
+    }
 }
-impl const Default for SwapchainKHR {
+impl Default for SwapchainKHR {
     fn default() -> Self {
         Self::null()
     }
 }
-///# [VkSwapchainCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateFlagBitsKHR.md")]
-#[doc(alias = "VkSwapchainCreateFlagsKHR")]
-#[repr(transparent)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub struct SwapchainCreateFlagsKHR(u32);
-impl SwapchainCreateFlagsKHR {
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR")]
-    #[cfg(feature = "VK_KHR_device_group")]
-    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1);
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR")]
-    pub const PROTECTED: Self = Self(2);
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR")]
-    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-    pub const MUTABLE_FORMAT: Self = Self(4);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    ///Returns a value with all of the flags enabled
-    #[inline]
-    #[allow(unused_mut)]
-    pub const fn all() -> Self {
-        let mut all = Self::empty();
-        #[cfg(feature = "VK_KHR_device_group")]
-        {
-            all |= Self::SPLIT_INSTANCE_BIND_REGIONS;
-        }
-        {
-            all |= Self::PROTECTED;
-        }
-        #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-        {
-            all |= Self::MUTABLE_FORMAT;
-        }
-        all
-    }
-    ///Returns the raw bits
-    #[inline]
-    pub const fn bits(&self) -> u32 {
-        self.0
-    }
-    ///Convert raw bits into a bit flags checking that only valid
-    ///bits are contained.
-    #[inline]
-    pub const fn from_bits(bits: u32) -> Option<Self> {
-        if (bits & !Self::all().bits()) == 0 {
-            Some(Self(bits))
-        } else {
-            None
-        }
-    }
-    ///Convert raw bits into a bit flags truncating all invalid
-    ///bits that may be contained.
-    #[inline]
-    pub const fn from_bits_truncate(bits: u32) -> Self {
-        Self(Self::all().0 & bits)
-    }
-    ///Convert raw bits into a bit preserving all bits
-    ///
-    ///# Safety
-    ///The caller of this function must ensure that all of the bits are valid.
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
-        Self(bits)
-    }
-    ///Returns `true` if no flags are currently set
-    #[inline]
-    pub const fn is_empty(&self) -> bool {
-        self.bits() == Self::empty().bits()
-    }
-    ///Returns `true` if all flags are currently set
-    #[inline]
-    pub const fn is_all(&self) -> bool {
-        self.bits() == Self::all().bits()
-    }
-    ///Returns `true` if there are flags in common to `self` and `other`
-    #[inline]
-    pub const fn intersects(&self, other: Self) -> bool {
-        !Self(self.bits() & other.bits()).is_empty()
-    }
-    ///Returns `true` if all of the flags in `other` are contained `self`
-    #[inline]
-    pub const fn contains(&self, other: Self) -> bool {
-        (self.bits() & other.bits()) == other.bits()
-    }
-    ///Inserts a set of flags in place
-    #[inline]
-    pub fn insert(&mut self, other: Self) {
-        self.0 |= other.bits()
-    }
-    ///Removes a set of flags in place
-    #[inline]
-    pub fn remove(&mut self, other: Self) {
-        self.0 &= !other.bits();
-    }
-    ///Toggles a set of flags in place
-    #[inline]
-    pub fn toggle(&mut self, other: Self) {
-        self.0 ^= other.bits();
-    }
-    ///Inserts or removes the specified flags depending on the value of `is_insert`
-    #[inline]
-    pub fn set(&mut self, other: Self, is_insert: bool) {
-        if is_insert {
-            self.insert(other);
-        } else {
-            self.remove(other);
-        }
-    }
-    ///Returns the intersection between `self` and `other`
-    #[inline]
-    pub const fn intersection(self, other: Self) -> Self {
-        Self(self.bits() & other.bits())
-    }
-    ///Returns the union between `self` and `other`
-    #[inline]
-    pub const fn union(self, other: Self) -> Self {
-        Self(self.bits() | other.bits())
-    }
-    ///Returns the difference between `self` and `other`
-    #[inline]
-    pub const fn difference(self, other: Self) -> Self {
-        Self(self.bits() & !other.bits())
-    }
-    ///Returns the [symmetric difference][sym-diff] between `self` and `other`
-    ///
-    ///[sym-diff]: https://en.wikipedia.org/wiki/Symmetric_difference
-    #[inline]
-    pub const fn symmetric_difference(self, other: Self) -> Self {
-        Self(self.bits() ^ other.bits())
-    }
-    ///Returns the complement of `self`.
-    #[inline]
-    pub const fn complement(self) -> Self {
-        Self::from_bits_truncate(!self.bits())
-    }
-}
-impl const std::ops::BitOr for SwapchainCreateFlagsKHR {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        self.union(other)
-    }
-}
-impl const std::ops::BitOrAssign for SwapchainCreateFlagsKHR {
-    #[inline]
-    fn bitor_assign(&mut self, other: Self) {
-        *self = *self | other;
-    }
-}
-impl const std::ops::BitXor for SwapchainCreateFlagsKHR {
-    type Output = Self;
-    #[inline]
-    fn bitxor(self, other: Self) -> Self {
-        self.symmetric_difference(other)
-    }
-}
-impl const std::ops::BitXorAssign for SwapchainCreateFlagsKHR {
-    #[inline]
-    fn bitxor_assign(&mut self, other: Self) {
-        *self = *self ^ other;
-    }
-}
-impl const std::ops::BitAnd for SwapchainCreateFlagsKHR {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        self.intersection(other)
-    }
-}
-impl const std::ops::BitAndAssign for SwapchainCreateFlagsKHR {
-    #[inline]
-    fn bitand_assign(&mut self, other: Self) {
-        *self = *self & other;
-    }
-}
-impl const std::ops::Sub for SwapchainCreateFlagsKHR {
-    type Output = Self;
-    #[inline]
-    fn sub(self, other: Self) -> Self {
-        self.difference(other)
-    }
-}
-impl const std::ops::SubAssign for SwapchainCreateFlagsKHR {
-    #[inline]
-    fn sub_assign(&mut self, other: Self) {
-        *self = *self - other;
-    }
-}
-impl const std::ops::Not for SwapchainCreateFlagsKHR {
-    type Output = Self;
-    #[inline]
-    fn not(self) -> Self {
-        self.complement()
-    }
-}
-impl Extend<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
-    fn extend<T: IntoIterator<Item = SwapchainCreateFlagsKHR>>(&mut self, iterator: T) {
-        for i in iterator {
-            Self::insert(self, i);
-        }
-    }
-}
-impl FromIterator<SwapchainCreateFlagsKHR> for SwapchainCreateFlagsKHR {
-    fn from_iter<T: IntoIterator<Item = SwapchainCreateFlagsKHR>>(iterator: T) -> SwapchainCreateFlagsKHR {
-        let mut out = Self::empty();
-        <Self as Extend<SwapchainCreateFlagsKHR>>::extend(&mut out, iterator);
-        out
-    }
-}
-impl const Default for SwapchainCreateFlagsKHR {
-    fn default() -> Self {
-        Self::empty()
-    }
-}
-impl const From<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
-    fn from(bit: SwapchainCreateFlagBitsKHR) -> Self {
-        unsafe { Self::from_bits_unchecked(bit.bits()) }
-    }
-}
-impl Extend<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
-    fn extend<T: IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(&mut self, iterator: T) {
-        for i in iterator {
-            Self::insert(self, Self::from(i));
-        }
-    }
-}
-impl FromIterator<SwapchainCreateFlagBitsKHR> for SwapchainCreateFlagsKHR {
-    fn from_iter<T: IntoIterator<Item = SwapchainCreateFlagBitsKHR>>(iterator: T) -> SwapchainCreateFlagsKHR {
-        let mut out = Self::empty();
-        <Self as Extend<SwapchainCreateFlagBitsKHR>>::extend(&mut out, iterator);
-        out
-    }
-}
-impl std::fmt::Debug for SwapchainCreateFlagsKHR {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-        struct Flags(SwapchainCreateFlagsKHR);
-        impl std::fmt::Debug for Flags {
-            #[allow(unused_assignments, unused_mut, unused_variables)]
-            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
-                if self.0 == SwapchainCreateFlagsKHR::empty() {
-                    f.write_str("empty")?;
-                } else {
-                    let mut first = true;
-                    #[cfg(feature = "VK_KHR_device_group")]
-                    if self.0.contains(SwapchainCreateFlagsKHR::SPLIT_INSTANCE_BIND_REGIONS) {
-                        if !first {
-                            f.write_str(" | ")?;
-                        }
-                        first = false;
-                        f.write_str(stringify!(SPLIT_INSTANCE_BIND_REGIONS))?;
-                    }
-                    if self.0.contains(SwapchainCreateFlagsKHR::PROTECTED) {
-                        if !first {
-                            f.write_str(" | ")?;
-                        }
-                        first = false;
-                        f.write_str(stringify!(PROTECTED))?;
-                    }
-                    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-                    if self.0.contains(SwapchainCreateFlagsKHR::MUTABLE_FORMAT) {
-                        if !first {
-                            f.write_str(" | ")?;
-                        }
-                        first = false;
-                        f.write_str(stringify!(MUTABLE_FORMAT))?;
-                    }
-                }
-                Ok(())
-            }
-        }
-        f.debug_tuple(stringify!(SwapchainCreateFlagsKHR))
-            .field(&Flags(*self))
-            .finish()
-    }
-}
-#[doc(alias = "VK_KHR_SWAPCHAIN_SPEC_VERSION")]
-pub const KHR_SWAPCHAIN_SPEC_VERSION: u32 = 70;
-#[doc(alias = "VK_KHR_SWAPCHAIN_EXTENSION_NAME")]
-pub const KHR_SWAPCHAIN_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_swapchain");
-///# [VkSwapchainCreateFlagBitsKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkSwapchainCreateFlagBitsKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/VkSwapchainCreateFlagBitsKHR.md")]
-#[doc(alias = "VkSwapchainCreateFlagBitsKHR")]
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
-pub struct SwapchainCreateFlagBitsKHR(u32);
-impl SwapchainCreateFlagBitsKHR {
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR")]
-    #[cfg(feature = "VK_KHR_device_group")]
-    pub const SPLIT_INSTANCE_BIND_REGIONS: Self = Self(1);
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR")]
-    pub const PROTECTED: Self = Self(2);
-    #[doc(alias = "VK_SWAPCHAIN_CREATE_MUTABLE_FORMAT_BIT_KHR")]
-    #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-    pub const MUTABLE_FORMAT: Self = Self(4);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    ///The bits of this variant
-    #[inline]
-    pub const fn bits(&self) -> u32 {
-        self.0
-    }
-    ///Builds a bitmask from the bits of this variant
-    #[inline]
-    pub const fn from_bits(bits: u32) -> Option<Self> {
-        match bits {
-            #[cfg(feature = "VK_KHR_device_group")]
-            x if x == Self::SPLIT_INSTANCE_BIND_REGIONS.bits() => Some(Self(x)),
-            x if x == Self::PROTECTED.bits() => Some(Self(x)),
-            #[cfg(feature = "VK_KHR_swapchain_mutable_format")]
-            x if x == Self::MUTABLE_FORMAT.bits() => Some(Self(x)),
-            _ => None,
-        }
-    }
-    ///Builds a bitmask from the bits of this variant without validating it
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: u32) -> Self {
-        Self(bits)
-    }
-}
-///# [vkCreateSwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateSwapchainKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkCreateSwapchainKHR.md")]
+pub use crate::common::extensions::khr_swapchain::{
+    SwapchainCreateFlagBitsKHR, SwapchainCreateFlagsKHR, KHR_SWAPCHAIN_EXTENSION_NAME, KHR_SWAPCHAIN_SPEC_VERSION,
+};
 #[doc(alias = "vkCreateSwapchainKHR")]
 pub type FNCreateSwapchainKhr = unsafe extern "system" fn(
     device: Device,
@@ -427,13 +131,9 @@ pub type FNCreateSwapchainKhr = unsafe extern "system" fn(
     p_allocator: *const AllocationCallbacks,
     p_swapchain: *mut SwapchainKHR,
 ) -> VulkanResultCodes;
-///# [vkDestroySwapchainKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkDestroySwapchainKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkDestroySwapchainKHR.md")]
 #[doc(alias = "vkDestroySwapchainKHR")]
 pub type FNDestroySwapchainKhr =
     unsafe extern "system" fn(device: Device, swapchain: SwapchainKHR, p_allocator: *const AllocationCallbacks);
-///# [vkGetSwapchainImagesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetSwapchainImagesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkGetSwapchainImagesKHR.md")]
 #[doc(alias = "vkGetSwapchainImagesKHR")]
 pub type FNGetSwapchainImagesKhr = unsafe extern "system" fn(
     device: Device,
@@ -441,8 +141,6 @@ pub type FNGetSwapchainImagesKhr = unsafe extern "system" fn(
     p_swapchain_image_count: *mut u32,
     p_swapchain_images: *mut Image,
 ) -> VulkanResultCodes;
-///# [vkAcquireNextImageKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkAcquireNextImageKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkAcquireNextImageKHR.md")]
 #[doc(alias = "vkAcquireNextImageKHR")]
 pub type FNAcquireNextImageKhr = unsafe extern "system" fn(
     device: Device,
@@ -452,8 +150,6 @@ pub type FNAcquireNextImageKhr = unsafe extern "system" fn(
     fence: Fence,
     p_image_index: *mut u32,
 ) -> VulkanResultCodes;
-///# [vkQueuePresentKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkQueuePresentKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_swapchain/vkQueuePresentKHR.md")]
 #[doc(alias = "vkQueuePresentKHR")]
 pub type FNQueuePresentKhr =
     unsafe extern "system" fn(queue: Queue, p_present_info: *const PresentInfoKHR) -> VulkanResultCodes;

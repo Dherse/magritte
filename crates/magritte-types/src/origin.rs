@@ -287,7 +287,9 @@ impl<'a> Origin<'a> {
 
     #[cfg(feature = "codegen")]
     pub fn as_rust_path_tokens(&self, prefix: &str) -> proc_macro2::TokenStream {
-        let prefix = proc_macro2::Ident::new(prefix, proc_macro2::Span::call_site());
+        use proc_macro2::TokenStream;
+
+        let prefix: TokenStream = prefix.parse().expect("cannot parse prefix");
         match self {
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(name, _, _) => {
@@ -370,10 +372,7 @@ impl<'a> Origin<'a> {
             Origin::Vulkan1_2 => path.push_str("/VK_VERSION_1_2.md"),
             Origin::Vulkan1_3 => path.push_str("/VK_VERSION_1_3.md"),
             Origin::Opaque => path.push_str("/opaque.md"),
-            Origin::Extension(ext, _, false) => path.push_str(&format!(
-                "/{}.md",
-                ext
-            )),
+            Origin::Extension(ext, _, false) => path.push_str(&format!("/{}.md", ext)),
             Origin::Unknown => panic!("unknown origin cannot be turned into a module"),
             Origin::Extension(_, _, true) => panic!("cannot write files for disabled extensions"),
         }

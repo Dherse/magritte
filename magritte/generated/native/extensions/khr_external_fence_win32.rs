@@ -1,73 +1,92 @@
-//!# [VK_KHR_external_fence_win32](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_external_fence_win32.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/VK_KHR_external_fence_win32.md")]
-use crate::{
-    cstr,
+use crate::native::{
     opaque::{DWORD, HANDLE, LPCWSTR, SECURITY_ATTRIBUTES},
     vulkan1_0::{BaseInStructure, Device, Fence, StructureType, VulkanResultCodes},
     vulkan1_1::{ExternalFenceHandleTypeFlagBits, FenceImportFlags},
 };
-use std::ffi::CStr;
-///# [VkImportFenceWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImportFenceWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/VkImportFenceWin32HandleInfoKHR.md")]
 #[doc(alias = "VkImportFenceWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ImportFenceWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    fence: Fence,
-    flags: FenceImportFlags,
+    pub p_next: *const BaseInStructure,
+    pub fence: Fence,
+    pub flags: FenceImportFlags,
     #[doc(alias = "handleType")]
-    handle_type: ExternalFenceHandleTypeFlagBits,
-    handle: HANDLE,
-    name: LPCWSTR,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle: HANDLE,
+    pub name: LPCWSTR,
 }
-///# [VkExportFenceWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExportFenceWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/VkExportFenceWin32HandleInfoKHR.md")]
+impl Default for ImportFenceWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ImportFenceWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            fence: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+            handle_type: unsafe { std::mem::zeroed() },
+            handle: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkExportFenceWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ExportFenceWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "pAttributes")]
-    attributes: *const SECURITY_ATTRIBUTES,
+    pub attributes: *const SECURITY_ATTRIBUTES,
     #[doc(alias = "dwAccess")]
-    dw_access: DWORD,
-    name: LPCWSTR,
+    pub dw_access: DWORD,
+    pub name: LPCWSTR,
 }
-///# [VkFenceGetWin32HandleInfoKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkFenceGetWin32HandleInfoKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/VkFenceGetWin32HandleInfoKHR.md")]
+impl Default for ExportFenceWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ExportFenceWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            attributes: unsafe { std::mem::zeroed() },
+            dw_access: unsafe { std::mem::zeroed() },
+            name: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkFenceGetWin32HandleInfoKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct FenceGetWin32HandleInfoKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    fence: Fence,
+    pub p_next: *const BaseInStructure,
+    pub fence: Fence,
     #[doc(alias = "handleType")]
-    handle_type: ExternalFenceHandleTypeFlagBits,
+    pub handle_type: ExternalFenceHandleTypeFlagBits,
 }
-#[doc(alias = "VK_KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION")]
-pub const KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME")]
-pub const KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_external_fence_win32");
-///# [vkGetFenceWin32HandleKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetFenceWin32HandleKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/vkGetFenceWin32HandleKHR.md")]
+impl Default for FenceGetWin32HandleInfoKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::FenceGetWin32HandleInfoKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            fence: unsafe { std::mem::zeroed() },
+            handle_type: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::khr_external_fence_win32::{
+    KHR_EXTERNAL_FENCE_WIN32_EXTENSION_NAME, KHR_EXTERNAL_FENCE_WIN32_SPEC_VERSION,
+};
 #[doc(alias = "vkGetFenceWin32HandleKHR")]
 pub type FNGetFenceWin32HandleKhr = unsafe extern "system" fn(
     device: Device,
     p_get_win32_handle_info: *const FenceGetWin32HandleInfoKHR,
     p_handle: *mut HANDLE,
 ) -> VulkanResultCodes;
-///# [vkImportFenceWin32HandleKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkImportFenceWin32HandleKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_external_fence_win32/vkImportFenceWin32HandleKHR.md")]
 #[doc(alias = "vkImportFenceWin32HandleKHR")]
 pub type FNImportFenceWin32HandleKhr = unsafe extern "system" fn(
     device: Device,

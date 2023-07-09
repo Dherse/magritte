@@ -1,14 +1,8 @@
-//!# [VK_EXT_descriptor_indexing](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_descriptor_indexing.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_descriptor_indexing/VK_EXT_descriptor_indexing.md")]
-use crate::{
-    cstr,
-    vulkan1_2::{
-        DescriptorBindingFlagBits, DescriptorBindingFlags, DescriptorSetLayoutBindingFlagsCreateInfo,
-        DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport,
-        PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties,
-    },
+use crate::native::vulkan1_2::{
+    DescriptorBindingFlagBits, DescriptorBindingFlags, DescriptorSetLayoutBindingFlagsCreateInfo,
+    DescriptorSetVariableDescriptorCountAllocateInfo, DescriptorSetVariableDescriptorCountLayoutSupport,
+    PhysicalDeviceDescriptorIndexingFeatures, PhysicalDeviceDescriptorIndexingProperties,
 };
-use std::ffi::CStr;
 ///See [`DescriptorBindingFlags`]
 #[doc(alias = "VkDescriptorBindingFlagsEXT")]
 pub type DescriptorBindingFlagsEXT = DescriptorBindingFlags;
@@ -30,7 +24,6 @@ pub type DescriptorSetVariableDescriptorCountAllocateInfoEXT = DescriptorSetVari
 ///See [`DescriptorSetVariableDescriptorCountLayoutSupport`]
 #[doc(alias = "VkDescriptorSetVariableDescriptorCountLayoutSupportEXT")]
 pub type DescriptorSetVariableDescriptorCountLayoutSupportEXT = DescriptorSetVariableDescriptorCountLayoutSupport;
-#[doc(alias = "VK_EXT_DESCRIPTOR_INDEXING_SPEC_VERSION")]
-pub const EXT_DESCRIPTOR_INDEXING_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME")]
-pub const EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_descriptor_indexing");
+pub use crate::common::extensions::ext_descriptor_indexing::{
+    EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME, EXT_DESCRIPTOR_INDEXING_SPEC_VERSION,
+};

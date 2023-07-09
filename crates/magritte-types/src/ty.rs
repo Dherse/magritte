@@ -62,7 +62,7 @@ impl<'a> Ty<'a> {
     /// Creates a new void pointer type
     #[inline]
     pub fn void_ptr(mut_: Mutability) -> Self {
-        Self::Pointer(mut_, box Self::void())
+        Self::Pointer(mut_, Box::new(Self::void()))
     }
 
     /// Creates a new [`std::ffi::c_void`] type
@@ -111,17 +111,17 @@ impl<'a> Ty<'a> {
     pub fn is_void_ptr(&self) -> bool {
         matches!(
             self,
-            Ty::Pointer(_, box Ty::Native(Native::Void)) | Ty::Slice(_, box Ty::Native(Native::Void), _)
+            Ty::Pointer(Mutability::Const, box Ty::Native(Native::Void))
+                | Ty::Slice(Mutability::Const, box Ty::Native(Native::Void), _)
         )
     }
 
     /// Checks whether the current type is a void pointer and returns its mutability
-    pub fn is_void_ptr_mut(&self) -> Option<Mutability> {
+    pub fn is_void_ptr_mut(&self) -> bool {
         match self {
-            Ty::Pointer(mut_, box Ty::Native(Native::Void)) | Ty::Slice(mut_, box Ty::Native(Native::Void), _) => {
-                Some(*mut_)
-            },
-            _ => None,
+            Ty::Pointer(Mutability::Mutable, box Ty::Native(Native::Void))
+            | Ty::Slice(Mutability::Mutable, box Ty::Native(Native::Void), _) => true,
+            _ => false,
         }
     }
 
@@ -136,11 +136,53 @@ impl<'a> Ty<'a> {
         matches!(self, Self::Native(_))
     }
 
+    /// Is `self` a `VkBool32`
+    pub fn is_bool32(&self) -> bool {
+        if let Self::Named(name) = self {
+            name == "VkBool32"
+        } else {
+            false
+        }
+    }
+
+    /// Is `self` a `VkDeviceSize`
+    pub fn is_device_size(&self) -> bool {
+        if let Self::Named(name) = self {
+            name == "VkDeviceSize"
+        } else {
+            false
+        }
+    }
+
+    /// Does `self` have a default value
+    pub fn is_default(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, _) => false,
+            Ty::Native(_) => true,
+            Ty::Named(name) => source.resolve_type(name).expect("unknown type").is_default(source),
+            Ty::StringArray(_) => true,
+            Ty::NullTerminatedString(_) => false,
+            Ty::Array(ty, _) => ty.is_default(source),
+            Ty::Slice(_, _, _) => true,
+        }
+    }
+
     /// Gets the length expression, returns some if `self` is an array or a slice
     pub fn length(&self) -> Option<&Expr<'a>> {
         match self {
             Ty::StringArray(len) | Ty::Array(_, len) | Ty::Slice(_, _, len) => Some(len),
             _ => None,
+        }
+    }
+
+    /// Decomposes self into a pointer's components
+    ///
+    /// # Panics
+    /// If `self` is not a pointer.
+    pub fn as_ptr_or_slice(&self) -> (Mutability, &Ty<'_>) {
+        match self {
+            Ty::Pointer(a, b) | Ty::Slice(a, b, _) => (*a, &**b),
+            _ => panic!("not a pointer: {:?}", self),
         }
     }
 
@@ -277,15 +319,36 @@ impl<'a> Ty<'a> {
         }
     }
 
-    pub fn as_static(self) -> Ty<'static> {
+    pub fn is_slice(&self) -> bool {
+        matches!(self, Ty::Slice(..))
+    }
+
+    pub fn is_array(&self) -> bool {
+        matches!(self, Ty::Array(..))
+    }
+
+    pub fn as_static(&self) -> Ty<'static> {
         match self {
-            Ty::Pointer(a, b) => Ty::Pointer(a, box b.as_static()),
-            Ty::Native(a) => Ty::Native(a),
-            Ty::Named(a) => Ty::Named(Cow::Owned(a.into_owned())),
+            Ty::Pointer(a, b) => Ty::Pointer(*a, Box::new(b.as_static())),
+            Ty::Native(a) => Ty::Native(*a),
+            Ty::Named(a) => Ty::Named(Cow::Owned(a.to_string())),
             Ty::StringArray(a) => Ty::StringArray(a.as_static()),
-            Ty::NullTerminatedString(a) => Ty::NullTerminatedString(a),
-            Ty::Array(a, b) => Ty::Array(box a.as_static(), b.as_static()),
-            Ty::Slice(a, b, c) => Ty::Slice(a, box b.as_static(), c.as_static()),
+            Ty::NullTerminatedString(a) => Ty::NullTerminatedString(*a),
+            Ty::Array(a, b) => Ty::Array(Box::new(a.as_static()), b.as_static()),
+            Ty::Slice(a, b, c) => Ty::Slice(*a, Box::new(b.as_static()), c.as_static()),
+        }
+    }
+
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        match self {
+            Ty::Pointer(_, ty) => ty.is_copy(source),
+            Ty::Native(_) => true,
+            Ty::StringArray(_)
+            | Ty::NullTerminatedString(_)
+            | Ty::Slice(_, _, _)
+            | Ty::Array(box Ty::Native(Native::Char), _) => false,
+            Ty::Named(name) => source.find_type(name).expect("unknown type").is_copy(source),
+            Ty::Array(ty, _) => ty.is_copy(source),
         }
     }
 }

@@ -1,46 +1,52 @@
-//!# [VK_NV_external_memory_rdma](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_NV_external_memory_rdma.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_rdma/VK_NV_external_memory_rdma.md")]
-use crate::{
-    cstr,
+use crate::native::{
     vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, Device, DeviceMemory, StructureType, VulkanResultCodes},
     vulkan1_1::ExternalMemoryHandleTypeFlagBits,
 };
-use std::ffi::CStr;
-///# [VkPhysicalDeviceExternalMemoryRDMAFeaturesNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceExternalMemoryRDMAFeaturesNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_rdma/VkPhysicalDeviceExternalMemoryRDMAFeaturesNV.md")]
 #[doc(alias = "VkPhysicalDeviceExternalMemoryRDMAFeaturesNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceExternalMemoryRdmaFeaturesNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "externalMemoryRDMA")]
-    external_memory_rdma: Bool32,
+    pub external_memory_rdma: Bool32,
 }
-///# [VkMemoryGetRemoteAddressInfoNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryGetRemoteAddressInfoNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_rdma/VkMemoryGetRemoteAddressInfoNV.md")]
+impl Default for PhysicalDeviceExternalMemoryRdmaFeaturesNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceExternalMemoryRdmaFeaturesNv,
+            p_next: unsafe { std::mem::zeroed() },
+            external_memory_rdma: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkMemoryGetRemoteAddressInfoNV")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MemoryGetRemoteAddressInfoNV {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    memory: DeviceMemory,
+    pub p_next: *const BaseInStructure,
+    pub memory: DeviceMemory,
     #[doc(alias = "handleType")]
-    handle_type: ExternalMemoryHandleTypeFlagBits,
+    pub handle_type: ExternalMemoryHandleTypeFlagBits,
 }
-#[doc(alias = "VkRemoteAddressNV")]
-pub type RemoteAddressNV = std::ffi::c_void;
-#[doc(alias = "VK_NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION")]
-pub const NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME")]
-pub const NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME: &'static CStr = cstr!("VK_NV_external_memory_rdma");
-///# [vkGetMemoryRemoteAddressNV](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryRemoteAddressNV.html)
-# [doc = include_str ! ("../../../../doc/extensions/nv_external_memory_rdma/vkGetMemoryRemoteAddressNV.md")]
+impl Default for MemoryGetRemoteAddressInfoNV {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MemoryGetRemoteAddressInfoNv,
+            p_next: unsafe { std::mem::zeroed() },
+            memory: unsafe { std::mem::zeroed() },
+            handle_type: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::nv_external_memory_rdma::{
+    RemoteAddressNV, NV_EXTERNAL_MEMORY_RDMA_EXTENSION_NAME, NV_EXTERNAL_MEMORY_RDMA_SPEC_VERSION,
+};
 #[doc(alias = "vkGetMemoryRemoteAddressNV")]
 pub type FNGetMemoryRemoteAddressNv = unsafe extern "system" fn(
     device: Device,

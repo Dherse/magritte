@@ -1,39 +1,45 @@
-//!# [VK_KHR_present_id](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_present_id.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_present_id/VK_KHR_present_id.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDevicePresentIdFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePresentIdFeaturesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_present_id/VkPhysicalDevicePresentIdFeaturesKHR.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
 #[doc(alias = "VkPhysicalDevicePresentIdFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDevicePresentIdFeaturesKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "presentId")]
-    present_id: Bool32,
+    pub present_id: Bool32,
 }
-///# [VkPresentIdKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPresentIdKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_present_id/VkPresentIdKHR.md")]
+impl Default for PhysicalDevicePresentIdFeaturesKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDevicePresentIdFeaturesKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            present_id: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPresentIdKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PresentIdKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "swapchainCount")]
-    swapchain_count: u32,
+    pub swapchain_count: u32,
     #[doc(alias = "pPresentIds")]
-    present_ids: *const u64,
+    pub present_ids: *const u64,
 }
-#[doc(alias = "VK_KHR_PRESENT_ID_SPEC_VERSION")]
-pub const KHR_PRESENT_ID_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_PRESENT_ID_EXTENSION_NAME")]
-pub const KHR_PRESENT_ID_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_present_id");
+impl Default for PresentIdKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PresentIdKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            swapchain_count: unsafe { std::mem::zeroed() },
+            present_ids: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::khr_present_id::{KHR_PRESENT_ID_EXTENSION_NAME, KHR_PRESENT_ID_SPEC_VERSION};

@@ -1,34 +1,39 @@
-//!# [VK_EXT_physical_device_drm](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_physical_device_drm.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_physical_device_drm/VK_EXT_physical_device_drm.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseOutStructure, Bool32, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceDrmPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceDrmPropertiesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_physical_device_drm/VkPhysicalDeviceDrmPropertiesEXT.md")]
+use crate::native::vulkan1_0::{BaseOutStructure, Bool32, StructureType};
 #[doc(alias = "VkPhysicalDeviceDrmPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceDrmPropertiesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "hasPrimary")]
-    has_primary: Bool32,
+    pub has_primary: Bool32,
     #[doc(alias = "hasRender")]
-    has_render: Bool32,
+    pub has_render: Bool32,
     #[doc(alias = "primaryMajor")]
-    primary_major: i64,
+    pub primary_major: i64,
     #[doc(alias = "primaryMinor")]
-    primary_minor: i64,
+    pub primary_minor: i64,
     #[doc(alias = "renderMajor")]
-    render_major: i64,
+    pub render_major: i64,
     #[doc(alias = "renderMinor")]
-    render_minor: i64,
+    pub render_minor: i64,
 }
-#[doc(alias = "VK_EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION")]
-pub const EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME")]
-pub const EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_physical_device_drm");
+impl Default for PhysicalDeviceDrmPropertiesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceDrmPropertiesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            has_primary: unsafe { std::mem::zeroed() },
+            has_render: unsafe { std::mem::zeroed() },
+            primary_major: unsafe { std::mem::zeroed() },
+            primary_minor: unsafe { std::mem::zeroed() },
+            render_major: unsafe { std::mem::zeroed() },
+            render_minor: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_physical_device_drm::{
+    EXT_PHYSICAL_DEVICE_DRM_EXTENSION_NAME, EXT_PHYSICAL_DEVICE_DRM_SPEC_VERSION,
+};

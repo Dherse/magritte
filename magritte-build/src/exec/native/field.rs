@@ -1,5 +1,5 @@
 use magritte_build::imports::Imports;
-use magritte_types::{Source, Ty};
+use magritte_types::{Expr, Native, Source, Ty};
 use proc_macro2::TokenStream;
 use quote::{quote, ToTokens};
 
@@ -48,6 +48,13 @@ pub fn field_type<'a>(source: &Source<'a>, ty: &Ty<'a>, imports: &mut Imports) -
 
             quote! {
                 *#mut_ c_char
+            }
+        },
+        Ty::Array(box Ty::Native(Native::UInt(1)), Expr::Constant(name)) if name == "VK_UUID_SIZE" => {
+            imports.push("uuid::Uuid");
+
+            quote! {
+                Uuid
             }
         },
         Ty::Array(ty, len) => {

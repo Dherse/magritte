@@ -1,10 +1,10 @@
 use std::path::Path;
 
-use magritte_types::{Source, Extension};
+use magritte_types::{Extension, Source};
 use proc_macro2::TokenStream;
 use quote::quote;
 
-use crate::{Visitor, rustfmt::run_rustfmt};
+use crate::{rustfmt::run_rustfmt, Visitor};
 
 #[derive(Default)]
 pub struct ExtensionsVisitor {
@@ -12,7 +12,7 @@ pub struct ExtensionsVisitor {
 }
 
 impl ExtensionsVisitor {
-    pub fn write<P: AsRef<Path>>(self, path: P) {
+    pub fn write<P: AsRef<Path>>(&mut self, path: P) {
         let path = path.as_ref().join("extensions.rs");
         let out = run_rustfmt(self.extensions.to_string()).expect("failed to run rustfmt");
 
@@ -42,7 +42,10 @@ impl Visitor for ExtensionsVisitor {
             return None;
         }
 
-        let cond = extension.origin().feature_flag(source).expect("extensions always have feature flags");
+        let cond = extension
+            .origin()
+            .feature_flag(source)
+            .expect("extensions always have feature flags");
         let ident = extension.as_ident();
         let path = format!("./extensions/{}.rs", ident);
         self.extensions.extend(quote! {

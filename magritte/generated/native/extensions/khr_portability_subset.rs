@@ -1,64 +1,85 @@
-//!# [VK_KHR_portability_subset](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_portability_subset.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VK_KHR_portability_subset.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseOutStructure, Bool32, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDevicePortabilitySubsetFeaturesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePortabilitySubsetFeaturesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VkPhysicalDevicePortabilitySubsetFeaturesKHR.md")]
+use crate::native::vulkan1_0::{BaseOutStructure, Bool32, StructureType};
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetFeaturesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetFeaturesKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "constantAlphaColorBlendFactors")]
-    constant_alpha_color_blend_factors: Bool32,
-    events: Bool32,
+    pub constant_alpha_color_blend_factors: Bool32,
+    pub events: Bool32,
     #[doc(alias = "imageViewFormatReinterpretation")]
-    image_view_format_reinterpretation: Bool32,
+    pub image_view_format_reinterpretation: Bool32,
     #[doc(alias = "imageViewFormatSwizzle")]
-    image_view_format_swizzle: Bool32,
+    pub image_view_format_swizzle: Bool32,
     #[doc(alias = "imageView2DOn3DImage")]
-    image_view2_d_on3_d_image: Bool32,
+    pub image_view2_d_on3_d_image: Bool32,
     #[doc(alias = "multisampleArrayImage")]
-    multisample_array_image: Bool32,
+    pub multisample_array_image: Bool32,
     #[doc(alias = "mutableComparisonSamplers")]
-    mutable_comparison_samplers: Bool32,
+    pub mutable_comparison_samplers: Bool32,
     #[doc(alias = "pointPolygons")]
-    point_polygons: Bool32,
+    pub point_polygons: Bool32,
     #[doc(alias = "samplerMipLodBias")]
-    sampler_mip_lod_bias: Bool32,
+    pub sampler_mip_lod_bias: Bool32,
     #[doc(alias = "separateStencilMaskRef")]
-    separate_stencil_mask_ref: Bool32,
+    pub separate_stencil_mask_ref: Bool32,
     #[doc(alias = "shaderSampleRateInterpolationFunctions")]
-    shader_sample_rate_interpolation_functions: Bool32,
+    pub shader_sample_rate_interpolation_functions: Bool32,
     #[doc(alias = "tessellationIsolines")]
-    tessellation_isolines: Bool32,
+    pub tessellation_isolines: Bool32,
     #[doc(alias = "tessellationPointMode")]
-    tessellation_point_mode: Bool32,
+    pub tessellation_point_mode: Bool32,
     #[doc(alias = "triangleFans")]
-    triangle_fans: Bool32,
+    pub triangle_fans: Bool32,
     #[doc(alias = "vertexAttributeAccessBeyondStride")]
-    vertex_attribute_access_beyond_stride: Bool32,
+    pub vertex_attribute_access_beyond_stride: Bool32,
 }
-///# [VkPhysicalDevicePortabilitySubsetPropertiesKHR](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDevicePortabilitySubsetPropertiesKHR.html)
-# [doc = include_str ! ("../../../../doc/extensions/khr_portability_subset/VkPhysicalDevicePortabilitySubsetPropertiesKHR.md")]
+impl Default for PhysicalDevicePortabilitySubsetFeaturesKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDevicePortabilitySubsetFeaturesKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            constant_alpha_color_blend_factors: unsafe { std::mem::zeroed() },
+            events: unsafe { std::mem::zeroed() },
+            image_view_format_reinterpretation: unsafe { std::mem::zeroed() },
+            image_view_format_swizzle: unsafe { std::mem::zeroed() },
+            image_view2_d_on3_d_image: unsafe { std::mem::zeroed() },
+            multisample_array_image: unsafe { std::mem::zeroed() },
+            mutable_comparison_samplers: unsafe { std::mem::zeroed() },
+            point_polygons: unsafe { std::mem::zeroed() },
+            sampler_mip_lod_bias: unsafe { std::mem::zeroed() },
+            separate_stencil_mask_ref: unsafe { std::mem::zeroed() },
+            shader_sample_rate_interpolation_functions: unsafe { std::mem::zeroed() },
+            tessellation_isolines: unsafe { std::mem::zeroed() },
+            tessellation_point_mode: unsafe { std::mem::zeroed() },
+            triangle_fans: unsafe { std::mem::zeroed() },
+            vertex_attribute_access_beyond_stride: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDevicePortabilitySubsetPropertiesKHR")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDevicePortabilitySubsetPropertiesKHR {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "minVertexInputBindingStrideAlignment")]
-    min_vertex_input_binding_stride_alignment: u32,
+    pub min_vertex_input_binding_stride_alignment: u32,
 }
-#[doc(alias = "VK_KHR_PORTABILITY_SUBSET_SPEC_VERSION")]
-pub const KHR_PORTABILITY_SUBSET_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME")]
-pub const KHR_PORTABILITY_SUBSET_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_portability_subset");
+impl Default for PhysicalDevicePortabilitySubsetPropertiesKHR {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDevicePortabilitySubsetPropertiesKhr,
+            p_next: unsafe { std::mem::zeroed() },
+            min_vertex_input_binding_stride_alignment: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::khr_portability_subset::{
+    KHR_PORTABILITY_SUBSET_EXTENSION_NAME, KHR_PORTABILITY_SUBSET_SPEC_VERSION,
+};

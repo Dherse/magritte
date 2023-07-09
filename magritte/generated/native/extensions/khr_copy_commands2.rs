@@ -1,14 +1,8 @@
-//!# [VK_KHR_copy_commands2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_copy_commands2.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_copy_commands2/VK_KHR_copy_commands2.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{
-        BlitImageInfo2, BufferCopy2, BufferImageCopy2, CopyBufferInfo2, CopyBufferToImageInfo2, CopyImageInfo2,
-        CopyImageToBufferInfo2, FNCmdBlitImage2, FNCmdCopyBuffer2, FNCmdCopyBufferToImage2, FNCmdCopyImage2,
-        FNCmdCopyImageToBuffer2, FNCmdResolveImage2, ImageBlit2, ImageCopy2, ImageResolve2, ResolveImageInfo2,
-    },
+use crate::native::vulkan1_3::{
+    BlitImageInfo2, BufferCopy2, BufferImageCopy2, CopyBufferInfo2, CopyBufferToImageInfo2, CopyImageInfo2,
+    CopyImageToBufferInfo2, FNCmdBlitImage2, FNCmdCopyBuffer2, FNCmdCopyBufferToImage2, FNCmdCopyImage2,
+    FNCmdCopyImageToBuffer2, FNCmdResolveImage2, ImageBlit2, ImageCopy2, ImageResolve2, ResolveImageInfo2,
 };
-use std::ffi::CStr;
 ///See [`BufferCopy2`]
 #[doc(alias = "VkBufferCopy2KHR")]
 pub type BufferCopy2KHR = BufferCopy2;
@@ -42,10 +36,9 @@ pub type CopyImageToBufferInfo2KHR = CopyImageToBufferInfo2;
 ///See [`ResolveImageInfo2`]
 #[doc(alias = "VkResolveImageInfo2KHR")]
 pub type ResolveImageInfo2KHR = ResolveImageInfo2;
-#[doc(alias = "VK_KHR_COPY_COMMANDS_2_SPEC_VERSION")]
-pub const KHR_COPY_COMMANDS_2_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_COPY_COMMANDS_2_EXTENSION_NAME")]
-pub const KHR_COPY_COMMANDS_2_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_copy_commands2");
+pub use crate::common::extensions::khr_copy_commands2::{
+    KHR_COPY_COMMANDS_2_EXTENSION_NAME, KHR_COPY_COMMANDS_2_SPEC_VERSION,
+};
 ///See [`cmd_copy_buffer2`]
 #[doc(alias = "vkCmdCopyBuffer2KHR")]
 pub type FNCmdCopyBuffer2Khr = FNCmdCopyBuffer2;

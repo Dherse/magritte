@@ -1,14 +1,8 @@
-//!# [VK_KHR_buffer_device_address](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_buffer_device_address.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_buffer_device_address/VK_KHR_buffer_device_address.md")]
-use crate::{
-    cstr,
-    vulkan1_2::{
-        BufferDeviceAddressInfo, BufferOpaqueCaptureAddressCreateInfo, DeviceMemoryOpaqueCaptureAddressInfo,
-        FNGetBufferDeviceAddress, FNGetBufferOpaqueCaptureAddress, FNGetDeviceMemoryOpaqueCaptureAddress,
-        MemoryOpaqueCaptureAddressAllocateInfo, PhysicalDeviceBufferDeviceAddressFeatures,
-    },
+use crate::native::vulkan1_2::{
+    BufferDeviceAddressInfo, BufferOpaqueCaptureAddressCreateInfo, DeviceMemoryOpaqueCaptureAddressInfo,
+    FNGetBufferDeviceAddress, FNGetBufferOpaqueCaptureAddress, FNGetDeviceMemoryOpaqueCaptureAddress,
+    MemoryOpaqueCaptureAddressAllocateInfo, PhysicalDeviceBufferDeviceAddressFeatures,
 };
-use std::ffi::CStr;
 ///See [`PhysicalDeviceBufferDeviceAddressFeatures`]
 #[doc(alias = "VkPhysicalDeviceBufferDeviceAddressFeaturesKHR")]
 pub type PhysicalDeviceBufferDeviceAddressFeaturesKHR = PhysicalDeviceBufferDeviceAddressFeatures;
@@ -24,10 +18,9 @@ pub type MemoryOpaqueCaptureAddressAllocateInfoKHR = MemoryOpaqueCaptureAddressA
 ///See [`DeviceMemoryOpaqueCaptureAddressInfo`]
 #[doc(alias = "VkDeviceMemoryOpaqueCaptureAddressInfoKHR")]
 pub type DeviceMemoryOpaqueCaptureAddressInfoKHR = DeviceMemoryOpaqueCaptureAddressInfo;
-#[doc(alias = "VK_KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION")]
-pub const KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME")]
-pub const KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_buffer_device_address");
+pub use crate::common::extensions::khr_buffer_device_address::{
+    KHR_BUFFER_DEVICE_ADDRESS_EXTENSION_NAME, KHR_BUFFER_DEVICE_ADDRESS_SPEC_VERSION,
+};
 ///See [`get_buffer_opaque_capture_address`]
 #[doc(alias = "vkGetBufferOpaqueCaptureAddressKHR")]
 pub type FNGetBufferOpaqueCaptureAddressKhr = FNGetBufferOpaqueCaptureAddress;

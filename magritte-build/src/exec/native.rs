@@ -7,27 +7,30 @@ use std::{
 use magritte_build::{
     imports::Imports, rustfmt::run_rustfmt, ugly_diff_paths::ugly_diff_paths, OriginVisitor, Visitor,
 };
+use magritte_parse::Field;
 use magritte_types::{
-    Alias, Basetype, Bitmask, Const, ConstAlias, FunctionPointer, Handle, OpaqueType, Origin, Ref, Source, Struct,
-    Union, Bitflag, Enum, CommandAlias,
+    Alias, Basetype, Bitflag, Bitmask, CommandAlias, Const, ConstAlias, Enum, FunctionPointer, Handle, OpaqueType,
+    Origin, Ref, Source, Struct, TypeRef, Union,
 };
-use proc_macro2::{TokenStream, Ident};
+use proc_macro2::{Ident, TokenStream};
 use quote::{quote, quote_each_token, ToTokens};
 
-use r#const::{constant_type, constant_value};
 use field::field_type;
 
-mod bitflags;
-mod bits;
-mod r#const;
-mod field;
+use crate::{edge_case::EdgeCase, hl::simple::is_struct_simple};
 
-pub struct NativeBackendVisitor {
+pub mod bitflags;
+pub mod bits;
+pub mod r#const;
+pub mod field;
+
+pub struct NativeVisitor<'b> {
+    pub edge_cases: &'b Vec<Box<dyn EdgeCase + Send + Sync>>,
     pub doc: PathBuf,
     pub out: PathBuf,
 }
 
-impl NativeBackendVisitor {
+impl<'b> NativeVisitor<'b> {
     pub fn doc_of_origin<P: AsRef<str>>(&self, doc_dir: P, origin: &Origin<'_>) -> Option<TokenStream> {
         let real_path = origin.as_mod_doc_file_path(&self.doc);
 
@@ -35,7 +38,8 @@ impl NativeBackendVisitor {
 
         let link = origin.is_opaque().not().then(|| {
             let item = origin.to_core();
-            let link = format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
+            let link =
+                format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
             quote! {
                 #![doc = #link]
             }
@@ -54,7 +58,8 @@ impl NativeBackendVisitor {
         let real_path = origin.as_doc_dir_path(&self.doc).join(format!("{item}.md"));
         let doc_dir = doc_dir.as_ref();
 
-        let link = format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
+        let link =
+            format!("# [{item}](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/{item}.html)\n");
         real_path.exists().then(|| {
             let doc_path = format!("{doc_dir}/{item}.md");
             quote! {
@@ -77,8 +82,8 @@ impl NativeBackendVisitor {
     }
 }
 
-impl Visitor for NativeBackendVisitor {
-    type OriginVisitor<'parent> = NativeBackendOriginVisitor<'parent>
+impl<'b> Visitor for NativeVisitor<'b> {
+    type OriginVisitor<'parent> = NativeBackendOriginVisitor<'b, 'parent>
     where
         Self: 'parent;
 
@@ -112,7 +117,7 @@ impl Visitor for NativeBackendVisitor {
             mod_path,
             origin: origin.to_static(),
             out: TokenStream::new(),
-            imports: Imports::new(origin),
+            imports: Imports::new(origin, "crate::native"),
             vtable: Vec::new(),
         })
     }
@@ -124,8 +129,8 @@ pub struct VTableItem {
     pub original_name: String,
 }
 
-pub struct NativeBackendOriginVisitor<'parent> {
-    pub(crate) parent: &'parent mut NativeBackendVisitor,
+pub struct NativeBackendOriginVisitor<'b, 'parent> {
+    pub(crate) parent: &'parent mut NativeVisitor<'b>,
     pub(crate) doc_dir_path: String,
     pub(crate) mod_path: PathBuf,
     pub(crate) origin: Origin<'static>,
@@ -136,45 +141,43 @@ pub struct NativeBackendOriginVisitor<'parent> {
     pub(crate) vtable: Vec<VTableItem>,
 }
 
-impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
-    fn visit_const<'a>(&mut self, source: &Source<'a>, const_: &Const<'a>) {
-        let name = const_.as_ident();
-        let ty = constant_type(const_.ty(), &mut self.imports);
-        let value = constant_value(const_.value(), source, &mut self.imports);
+macro_rules! impl_common_use {
+    ($this:ident, $name:ident) => {
+        let name = $name.as_ident();
+        let path = $this.origin.as_rust_path_tokens("crate::common");
 
-        let doc = self.doc_of(&self.doc_dir_path, &self.origin, const_.original_name());
-        let alias = const_.as_alias();
-
-        let mut out = &mut self.out;
+        let mut out = &mut $this.out;
         quote_each_token! {
             out
 
-            #doc
-            #alias
-            pub const #name: #ty = #value;
-        };
+            pub use #path :: #name;
+        }
+    };
+}
+
+impl<'b, 'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'b, 'parent> {
+    fn visit_const<'a>(&mut self, _source: &Source<'a>, const_: &Const<'a>) {
+        impl_common_use!(self, const_);
     }
 
-    fn visit_const_alias<'a>(&mut self, source: &Source<'a>, const_alias: &ConstAlias<'a>) {
-        let of = source.resolve(const_alias.of()).expect("unknown alias").as_const();
+    fn visit_const_alias<'a>(&mut self, _source: &Source<'a>, const_alias: &ConstAlias<'a>) {
+        impl_common_use!(self, const_alias);
+    }
 
-        self.imports.push_origin(source, of.origin(), of.name());
+    fn visit_base_type<'a>(&mut self, _source: &Source<'a>, base_type: &Basetype<'a>) {
+        impl_common_use!(self, base_type);
+    }
 
-        let name = const_alias.as_ident();
-        let alias = const_alias.as_alias();
-        let of_ident = of.as_ident();
-        let ty = constant_type(of.ty(), &mut self.imports);
+    fn visit_bitmask<'a>(&mut self, _source: &Source<'a>, bitmask: &Bitmask<'a>) {
+        impl_common_use!(self, bitmask);
+    }
 
-        let doc_str = format!("See [`{}`]", of.name());
+    fn visit_bitflag<'a>(&mut self, _source: &Source<'a>, bitflag: &Bitflag<'a>) {
+        impl_common_use!(self, bitflag);
+    }
 
-        let mut out = &mut self.out;
-        quote_each_token! {
-            out
-
-            #[doc = #doc_str]
-            #alias
-            pub const #name: #ty = #of_ident;
-        };
+    fn visit_enum<'a>(&mut self, _source: &Source<'a>, enum_: &Enum<'a>) {
+        impl_common_use!(self, enum_);
     }
 
     fn visit_opaque_type<'a>(&mut self, _source: &Source<'a>, opaque_type: &OpaqueType<'a>) {
@@ -244,6 +247,17 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
         let doc = self.doc_of(&self.doc_dir_path, &self.origin, struct_.original_name());
         let alias = struct_.as_alias();
 
+        let is_simple = is_struct_simple(self.edge_cases, source, struct_);
+        if is_simple && self.edge_cases.type_filter(source, TypeRef::Struct(struct_)) {
+            self.imports.push_str(format!(
+                "pub use {}::{};",
+                self.origin.as_rust_path("crate::common"),
+                struct_.name()
+            ));
+
+            return;
+        }
+
         let fields = struct_
             .fields()
             .iter()
@@ -256,9 +270,21 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
                 quote! {
                     #doc
                     #alias
-                    #name: #ty
+                    pub #name: #ty
                 }
             })
+            .collect::<Vec<_>>();
+
+        let field_idents = struct_.fields().iter().map(Field::as_ident);
+
+        let field_default_values = struct_
+            .fields()
+            .iter()
+            .map(|field| {
+                self.edge_cases
+                    .native_field_default(source, TypeRef::Struct(struct_), field, &mut self.imports)
+            })
+            .map(|value| value.unwrap_or_else(|| quote! { unsafe { std::mem::zeroed() } }))
             .collect::<Vec<_>>();
 
         let mut out = &mut self.out;
@@ -271,6 +297,14 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
             #[repr(C)]
             pub struct #name {
                 #(#fields),*
+            }
+
+            impl Default for #name {
+                fn default() -> Self {
+                    Self {
+                        #(#field_idents: #field_default_values),*
+                    }
+                }
             }
         };
     }
@@ -292,7 +326,7 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
                 quote! {
                     #doc
                     #alias
-                    #name: #ty
+                    pub #name: #ty
                 }
             })
             .collect::<Vec<_>>();
@@ -342,9 +376,13 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
                 pub const fn null() -> Self {
                     Self(#null)
                 }
+
+                pub const fn raw(&self) -> #storage {
+                    self.0
+                }
             }
 
-            impl const Default for #name {
+            impl Default for #name {
                 fn default() -> Self {
                     Self::null()
                 }
@@ -383,75 +421,6 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
             #alias
             pub type #name = unsafe extern "system" fn(#(#args),*) #return_type;
         };
-    }
-
-    fn visit_base_type<'a>(&mut self, _source: &Source<'a>, base_type: &Basetype<'a>) {
-        let name = base_type.as_ident();
-        let doc = self.doc_of(&self.doc_dir_path, &self.origin, base_type.original_name());
-        let alias = base_type.as_alias();
-
-        let ty = constant_type(base_type.of(), &mut self.imports);
-
-        let mut out = &mut self.out;
-        quote_each_token! {
-            out
-
-            #doc
-            #alias
-            pub type #name = #ty;
-        };
-    }
-
-    fn visit_bitmask<'a>(&mut self, source: &Source<'a>, bitmask: &Bitmask<'a>) {
-        if let Some(bitflag) = bitmask
-            .bits()
-            .and_then(|bits| source.resolve(bits))
-            .and_then(Ref::try_as_bitflag)
-        {
-            let ty = match bitflag.width() {
-                4 => quote! { u32 },
-                8 => quote! { u64 },
-                other => unreachable!("unknown bit width ({other}) for a mask: {:?}", bitflag),
-            };
-
-            self.gen_for_bitmask(source, bitmask, bitflag, &ty);
-        } else {
-            let name = bitmask.as_ident();
-            let alias = bitmask.as_alias();
-
-            let mut out = &mut self.out;
-            quote_each_token! {
-                out
-    
-                #alias
-                #[repr(transparent)]
-                #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-                #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-                pub struct #name(u32);
-    
-                impl #name {
-                    #[doc = "Default empty flags"]
-                    #[inline]
-                    pub const fn empty() -> Self {
-                        Self(0)
-                    }
-                }
-            }
-        }
-    }
-
-    fn visit_bitflag<'a>(&mut self, source: &Source<'a>, bitflag: &Bitflag<'a>) {
-        let ty = match bitflag.width() {
-            4 => quote! { u32 },
-            8 => quote! { u64 },
-            other => unreachable!("unknown bit width ({other}) for a mask: {:?}", bitflag),
-        };
-
-        self.gen_for_biflag(source, bitflag, &ty);
-    }
-
-    fn visit_enum<'a>(&mut self, source: &Source<'a>, enum_: &Enum<'a>) {
-        self.gen_for_biflag(source, enum_, &quote!(i32));
     }
 
     fn visit_command_alias<'a>(&mut self, source: &Source<'a>, command_alias: &CommandAlias<'a>) {
@@ -504,9 +473,9 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
         }
 
         if !self.vtable.is_empty() {
-            eprintln!("TODO: vtable");
+            // eprintln!("TODO: vtable");
         }
-        
+
         out.extend_one(self.imports.to_token_stream().to_string());
         out.extend_one(self.out.to_string());
 
@@ -515,15 +484,15 @@ impl<'parent> OriginVisitor<'parent> for NativeBackendOriginVisitor<'parent> {
     }
 }
 
-impl<'parent> Deref for NativeBackendOriginVisitor<'parent> {
-    type Target = NativeBackendVisitor;
+impl<'b, 'parent> Deref for NativeBackendOriginVisitor<'b, 'parent> {
+    type Target = NativeVisitor<'b>;
 
     fn deref(&self) -> &Self::Target {
         &*self.parent
     }
 }
 
-impl<'parent> DerefMut for NativeBackendOriginVisitor<'parent> {
+impl<'b, 'parent> DerefMut for NativeBackendOriginVisitor<'b, 'parent> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         self.parent
     }

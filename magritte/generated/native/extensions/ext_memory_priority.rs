@@ -1,36 +1,43 @@
-//!# [VK_EXT_memory_priority](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_memory_priority.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_memory_priority/VK_EXT_memory_priority.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceMemoryPriorityFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceMemoryPriorityFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_memory_priority/VkPhysicalDeviceMemoryPriorityFeaturesEXT.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, StructureType};
 #[doc(alias = "VkPhysicalDeviceMemoryPriorityFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceMemoryPriorityFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "memoryPriority")]
-    memory_priority: Bool32,
+    pub memory_priority: Bool32,
 }
-///# [VkMemoryPriorityAllocateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryPriorityAllocateInfoEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_memory_priority/VkMemoryPriorityAllocateInfoEXT.md")]
+impl Default for PhysicalDeviceMemoryPriorityFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceMemoryPriorityFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            memory_priority: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkMemoryPriorityAllocateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MemoryPriorityAllocateInfoEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    priority: f32,
+    pub p_next: *const BaseInStructure,
+    pub priority: f32,
 }
-#[doc(alias = "VK_EXT_MEMORY_PRIORITY_SPEC_VERSION")]
-pub const EXT_MEMORY_PRIORITY_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_MEMORY_PRIORITY_EXTENSION_NAME")]
-pub const EXT_MEMORY_PRIORITY_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_memory_priority");
+impl Default for MemoryPriorityAllocateInfoEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MemoryPriorityAllocateInfoExt,
+            p_next: unsafe { std::mem::zeroed() },
+            priority: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_memory_priority::{
+    EXT_MEMORY_PRIORITY_EXTENSION_NAME, EXT_MEMORY_PRIORITY_SPEC_VERSION,
+};

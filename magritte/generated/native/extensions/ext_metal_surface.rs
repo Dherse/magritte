@@ -1,47 +1,32 @@
-//!# [VK_EXT_metal_surface](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_metal_surface.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_metal_surface/VK_EXT_metal_surface.md")]
-use crate::{
-    cstr,
+use crate::native::{
     extensions::khr_surface::SurfaceKHR,
     vulkan1_0::{AllocationCallbacks, BaseInStructure, Instance, StructureType, VulkanResultCodes},
 };
-use std::ffi::CStr;
-///# [VkMetalSurfaceCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMetalSurfaceCreateInfoEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_metal_surface/VkMetalSurfaceCreateInfoEXT.md")]
 #[doc(alias = "VkMetalSurfaceCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MetalSurfaceCreateInfoEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    flags: MetalSurfaceCreateFlagsEXT,
+    pub p_next: *const BaseInStructure,
+    pub flags: MetalSurfaceCreateFlagsEXT,
     #[doc(alias = "pLayer")]
-    layer: *const CaMetalLayer,
+    pub layer: *const CaMetalLayer,
 }
-///# [CAMetalLayer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/CAMetalLayer.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_metal_surface/CAMetalLayer.md")]
-#[doc(alias = "CAMetalLayer")]
-pub type CaMetalLayer = std::ffi::c_void;
-#[doc(alias = "VkMetalSurfaceCreateFlagsEXT")]
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-pub struct MetalSurfaceCreateFlagsEXT(u32);
-impl MetalSurfaceCreateFlagsEXT {
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
+impl Default for MetalSurfaceCreateInfoEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MetalSurfaceCreateInfoExt,
+            p_next: unsafe { std::mem::zeroed() },
+            flags: unsafe { std::mem::zeroed() },
+            layer: unsafe { std::mem::zeroed() },
+        }
     }
 }
-#[doc(alias = "VK_EXT_METAL_SURFACE_SPEC_VERSION")]
-pub const EXT_METAL_SURFACE_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_METAL_SURFACE_EXTENSION_NAME")]
-pub const EXT_METAL_SURFACE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_metal_surface");
-///# [vkCreateMetalSurfaceEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCreateMetalSurfaceEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_metal_surface/vkCreateMetalSurfaceEXT.md")]
+pub use crate::common::extensions::ext_metal_surface::{
+    CaMetalLayer, MetalSurfaceCreateFlagsEXT, EXT_METAL_SURFACE_EXTENSION_NAME, EXT_METAL_SURFACE_SPEC_VERSION,
+};
 #[doc(alias = "vkCreateMetalSurfaceEXT")]
 pub type FNCreateMetalSurfaceExt = unsafe extern "system" fn(
     instance: Instance,

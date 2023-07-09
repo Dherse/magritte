@@ -27,20 +27,51 @@ crossbeam-epoch = { version = "0.9.13", optional = true }
 # WASM host-side support
 wasmer = { version = "3.1.0", default-features = false, optional = true }
 
+# Serialization support
+serde = { version = "1.0", features = [ "derive" ], optional = true }
+
+# Small vector optimization
+smallvec = { version = "1.10.0", features = ["union", "serde", "const_new", "const_generics"] }
+
+# Error enum creation
+thiserror = "1.0.38"
+
+# UUID support
+uuid = { version = "1.2.2", features = ["v4", "fast-rng"] }
+
+# Memory arena for faster allocations
+bumpalo = { version = "3.12.0", optional = true }
+
+# Fast concurrent map (for storing and getting mutable references to resources)
+dashmap = "5.4.0"
+
+# Dynamic library loading
+libloading = { version = "0.7.4", optional = true }
+
+# Error management
+anyhow = "1.0.68"
+
+# Fast string checking (used to check validity of CString)
+memchr = "2.5.0"
+parking_lot = "0.12.1"
+
 [features]
-default = []
+default = ["native", "serde", "uuid/serde"]
 
 # Enable the native backend & host API
 # This is used when building a native application
-native = [ "crossbeam-epoch"]
+native = ["crossbeam-epoch", "bumpalo"]
 
 # Enable the WASM backend & client API
 # This is used when building a WASM application
-wasm = [ ]
+wasm = ["serde", "uuid/serde"]
 
 # Enable the WASM backend & host API
 # This is used when hosting a WASM application
-wasm-host = [ "native", "wasmer" ]
+wasm-host = ["native", "wasmer", "serde"]
+
+# Enable dynamic library loading
+dynamic = ["libloading"]
 
 VK_AMD_buffer_marker = []
 VK_AMD_device_coherent_memory = []

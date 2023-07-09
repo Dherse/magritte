@@ -6,7 +6,7 @@ use std::{
 use heck::ToUpperCamelCase;
 use serde::{Deserialize, Serialize};
 
-use crate::{FunctionPointer, FunctionPointerArgument, Origin, Queryable, Source, SymbolName, SymbolTable, Ty};
+use crate::{Field, FunctionPointer, FunctionPointerArgument, Origin, Queryable, Source, SymbolName, SymbolTable, Ty};
 
 /// A function defined in Vulkan
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -108,8 +108,10 @@ impl<'a> Function<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -237,6 +239,17 @@ pub struct FunctionArgument<'a> {
 }
 
 impl<'a> FunctionArgument<'a> {
+    pub fn as_static(&self) -> FunctionArgument<'static> {
+        FunctionArgument {
+            original_name: Cow::Owned(self.original_name.to_string()),
+            name: self.name.clone(),
+            len: self.len.as_ref().map(|len| Cow::Owned(len.to_string())),
+            no_auto_validity: self.no_auto_validity,
+            optionality: self.optionality,
+            ty: self.ty.as_static(),
+            externally_synced: self.externally_synced.as_static(),
+        }
+    }
     /// Get a reference to the argument's original name.
     pub fn original_name(&self) -> &str {
         self.original_name.as_ref()
@@ -255,9 +268,25 @@ impl<'a> FunctionArgument<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
+    }
+
+    pub fn as_field(&self) -> Field<'a> {
+        Field {
+            original_name: self.original_name.clone(),
+            name: self.name.clone(),
+            ty: self.ty.clone(),
+            selector: None,
+            selection: None,
+            optional: Optionality::No,
+            externally_synchronized: ExternallySynced::No,
+            must_be_valid: true,
+            value: None,
+        }
     }
 
     /// Gets a reference to the argument's length.
@@ -433,8 +462,10 @@ impl<'a> CommandAlias<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -537,6 +568,19 @@ pub enum Optionality {
     Sometimes,
 }
 
+impl Optionality {
+    /// Returns true if the argument is optional
+    #[inline]
+    pub fn is_optional(self) -> bool {
+        self != Optionality::No
+    }
+
+    /// Returns true if the argument is not optional
+    pub fn is_required(self) -> bool {
+        self == Optionality::No
+    }
+}
+
 /// The external synchronization requierments
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum ExternallySynced<'a> {
@@ -573,15 +617,15 @@ impl<'a> ExternallySynced<'a> {
         !self.is_no()
     }
 
-    pub fn as_static(self) -> ExternallySynced<'static> {
+    pub fn as_static(&self) -> ExternallySynced<'static> {
         match self {
             Self::Yes => ExternallySynced::Yes,
             Self::No => ExternallySynced::No,
             Self::Multiple(vals) => ExternallySynced::Multiple(vals.into_iter().map(Self::as_static).collect()),
-            Self::Variable(vals) => ExternallySynced::Variable(Cow::Owned(vals.into_owned())),
-            Self::All(vals) => ExternallySynced::All(box vals.as_static()),
-            Self::Resolve(a, b) => ExternallySynced::Resolve(box a.as_static(), box b.as_static()),
-            Self::ForEach(a, b) => ExternallySynced::ForEach(box a.as_static(), box b.as_static()),
+            Self::Variable(vals) => ExternallySynced::Variable(Cow::Owned(vals.to_string())),
+            Self::All(vals) => ExternallySynced::All(Box::new(vals.as_static())),
+            Self::Resolve(a, b) => ExternallySynced::Resolve(Box::new(a.as_static()), Box::new(b.as_static())),
+            Self::ForEach(a, b) => ExternallySynced::ForEach(Box::new(a.as_static()), Box::new(b.as_static())),
         }
     }
 }

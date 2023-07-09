@@ -1,60 +1,78 @@
-//!# [VK_EXT_vertex_input_dynamic_state](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_vertex_input_dynamic_state.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_vertex_input_dynamic_state/VK_EXT_vertex_input_dynamic_state.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Format, StructureType, VertexInputRate},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_vertex_input_dynamic_state/VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT.md")]
+use crate::native::vulkan1_0::{BaseOutStructure, Bool32, CommandBuffer, Format, StructureType, VertexInputRate};
 #[doc(alias = "VkPhysicalDeviceVertexInputDynamicStateFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "vertexInputDynamicState")]
-    vertex_input_dynamic_state: Bool32,
+    pub vertex_input_dynamic_state: Bool32,
 }
-///# [VkVertexInputBindingDescription2EXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVertexInputBindingDescription2EXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_vertex_input_dynamic_state/VkVertexInputBindingDescription2EXT.md")]
+impl Default for PhysicalDeviceVertexInputDynamicStateFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceVertexInputDynamicStateFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            vertex_input_dynamic_state: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkVertexInputBindingDescription2EXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct VertexInputBindingDescription2EXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
-    binding: u32,
-    stride: u32,
+    pub p_next: *mut BaseOutStructure,
+    pub binding: u32,
+    pub stride: u32,
     #[doc(alias = "inputRate")]
-    input_rate: VertexInputRate,
-    divisor: u32,
+    pub input_rate: VertexInputRate,
+    pub divisor: u32,
 }
-///# [VkVertexInputAttributeDescription2EXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkVertexInputAttributeDescription2EXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_vertex_input_dynamic_state/VkVertexInputAttributeDescription2EXT.md")]
+impl Default for VertexInputBindingDescription2EXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::VertexInputBindingDescription2Ext,
+            p_next: unsafe { std::mem::zeroed() },
+            binding: unsafe { std::mem::zeroed() },
+            stride: unsafe { std::mem::zeroed() },
+            input_rate: unsafe { std::mem::zeroed() },
+            divisor: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkVertexInputAttributeDescription2EXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct VertexInputAttributeDescription2EXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
-    location: u32,
-    binding: u32,
-    format: Format,
-    offset: u32,
+    pub p_next: *mut BaseOutStructure,
+    pub location: u32,
+    pub binding: u32,
+    pub format: Format,
+    pub offset: u32,
 }
-#[doc(alias = "VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION")]
-pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME")]
-pub const EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_vertex_input_dynamic_state");
-///# [vkCmdSetVertexInputEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetVertexInputEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_vertex_input_dynamic_state/vkCmdSetVertexInputEXT.md")]
+impl Default for VertexInputAttributeDescription2EXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::VertexInputAttributeDescription2Ext,
+            p_next: unsafe { std::mem::zeroed() },
+            location: unsafe { std::mem::zeroed() },
+            binding: unsafe { std::mem::zeroed() },
+            format: unsafe { std::mem::zeroed() },
+            offset: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::ext_vertex_input_dynamic_state::{
+    EXT_VERTEX_INPUT_DYNAMIC_STATE_EXTENSION_NAME, EXT_VERTEX_INPUT_DYNAMIC_STATE_SPEC_VERSION,
+};
 #[doc(alias = "vkCmdSetVertexInputEXT")]
 pub type FNCmdSetVertexInputExt = unsafe extern "system" fn(
     command_buffer: CommandBuffer,

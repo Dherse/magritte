@@ -1,0 +1,9 @@
+use crate::{common::vulkan1_0::MAX_GLOBAL_PRIORITY_SIZE_KHR, cstr};
+use std::ffi::CStr;
+#[doc(alias = "VK_EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION")]
+pub const EXT_GLOBAL_PRIORITY_QUERY_SPEC_VERSION: u32 = 1;
+#[doc(alias = "VK_EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME")]
+pub const EXT_GLOBAL_PRIORITY_QUERY_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_global_priority_query");
+///See [`MAX_GLOBAL_PRIORITY_SIZE_KHR`]
+#[doc(alias = "VK_MAX_GLOBAL_PRIORITY_SIZE_EXT")]
+pub const MAX_GLOBAL_PRIORITY_SIZE_EXT: u32 = MAX_GLOBAL_PRIORITY_SIZE_KHR;

@@ -78,8 +78,10 @@ impl<'a> FunctionPointer<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -173,8 +175,10 @@ impl<'a> FunctionPointerArgument<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 

@@ -1,7 +1,4 @@
-//!# [VK_ANDROID_external_memory_android_hardware_buffer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_ANDROID_external_memory_android_hardware_buffer.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VK_ANDROID_external_memory_android_hardware_buffer.md")]
-use crate::{
-    cstr,
+use crate::native::{
     vulkan1_0::{
         BaseInStructure, BaseOutStructure, ComponentMapping, Device, DeviceMemory, DeviceSize, Format,
         FormatFeatureFlags, StructureType, VulkanResultCodes,
@@ -9,142 +6,197 @@ use crate::{
     vulkan1_1::{ChromaLocation, SamplerYcbcrModelConversion, SamplerYcbcrRange},
     vulkan1_3::FormatFeatureFlags2,
 };
-use std::ffi::CStr;
-///# [VkImportAndroidHardwareBufferInfoANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkImportAndroidHardwareBufferInfoANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkImportAndroidHardwareBufferInfoANDROID.md")]
 #[doc(alias = "VkImportAndroidHardwareBufferInfoANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ImportAndroidHardwareBufferInfoANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    buffer: *mut AHardwareBuffer,
+    pub p_next: *const BaseInStructure,
+    pub buffer: *mut AHardwareBuffer,
 }
-///# [VkAndroidHardwareBufferUsageANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferUsageANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkAndroidHardwareBufferUsageANDROID.md")]
+impl Default for ImportAndroidHardwareBufferInfoANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ImportAndroidHardwareBufferInfoAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            buffer: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAndroidHardwareBufferUsageANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AndroidHardwareBufferUsageANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "androidHardwareBufferUsage")]
-    android_hardware_buffer_usage: u64,
+    pub android_hardware_buffer_usage: u64,
 }
-///# [VkAndroidHardwareBufferPropertiesANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferPropertiesANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkAndroidHardwareBufferPropertiesANDROID.md")]
+impl Default for AndroidHardwareBufferUsageANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AndroidHardwareBufferUsageAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            android_hardware_buffer_usage: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAndroidHardwareBufferPropertiesANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AndroidHardwareBufferPropertiesANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "allocationSize")]
-    allocation_size: DeviceSize,
+    pub allocation_size: DeviceSize,
     #[doc(alias = "memoryTypeBits")]
-    memory_type_bits: u32,
+    pub memory_type_bits: u32,
 }
-///# [VkMemoryGetAndroidHardwareBufferInfoANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkMemoryGetAndroidHardwareBufferInfoANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkMemoryGetAndroidHardwareBufferInfoANDROID.md")]
+impl Default for AndroidHardwareBufferPropertiesANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AndroidHardwareBufferPropertiesAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            allocation_size: unsafe { std::mem::zeroed() },
+            memory_type_bits: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkMemoryGetAndroidHardwareBufferInfoANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct MemoryGetAndroidHardwareBufferInfoANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
-    memory: DeviceMemory,
+    pub p_next: *const BaseInStructure,
+    pub memory: DeviceMemory,
 }
-///# [VkAndroidHardwareBufferFormatPropertiesANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferFormatPropertiesANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkAndroidHardwareBufferFormatPropertiesANDROID.md")]
+impl Default for MemoryGetAndroidHardwareBufferInfoANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::MemoryGetAndroidHardwareBufferInfoAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            memory: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAndroidHardwareBufferFormatPropertiesANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatPropertiesANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
-    format: Format,
+    pub p_next: *mut BaseOutStructure,
+    pub format: Format,
     #[doc(alias = "externalFormat")]
-    external_format: u64,
+    pub external_format: u64,
     #[doc(alias = "formatFeatures")]
-    format_features: FormatFeatureFlags,
+    pub format_features: FormatFeatureFlags,
     #[doc(alias = "samplerYcbcrConversionComponents")]
-    sampler_ycbcr_conversion_components: ComponentMapping,
+    pub sampler_ycbcr_conversion_components: ComponentMapping,
     #[doc(alias = "suggestedYcbcrModel")]
-    suggested_ycbcr_model: SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_model: SamplerYcbcrModelConversion,
     #[doc(alias = "suggestedYcbcrRange")]
-    suggested_ycbcr_range: SamplerYcbcrRange,
+    pub suggested_ycbcr_range: SamplerYcbcrRange,
     #[doc(alias = "suggestedXChromaOffset")]
-    suggested_x_chroma_offset: ChromaLocation,
+    pub suggested_x_chroma_offset: ChromaLocation,
     #[doc(alias = "suggestedYChromaOffset")]
-    suggested_y_chroma_offset: ChromaLocation,
+    pub suggested_y_chroma_offset: ChromaLocation,
 }
-///# [VkExternalFormatANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkExternalFormatANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkExternalFormatANDROID.md")]
+impl Default for AndroidHardwareBufferFormatPropertiesANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AndroidHardwareBufferFormatPropertiesAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            format: unsafe { std::mem::zeroed() },
+            external_format: unsafe { std::mem::zeroed() },
+            format_features: unsafe { std::mem::zeroed() },
+            sampler_ycbcr_conversion_components: unsafe { std::mem::zeroed() },
+            suggested_ycbcr_model: unsafe { std::mem::zeroed() },
+            suggested_ycbcr_range: unsafe { std::mem::zeroed() },
+            suggested_x_chroma_offset: unsafe { std::mem::zeroed() },
+            suggested_y_chroma_offset: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkExternalFormatANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct ExternalFormatANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "externalFormat")]
-    external_format: u64,
+    pub external_format: u64,
 }
-///# [VkAndroidHardwareBufferFormatProperties2ANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkAndroidHardwareBufferFormatProperties2ANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/VkAndroidHardwareBufferFormatProperties2ANDROID.md")]
+impl Default for ExternalFormatANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::ExternalFormatAndroid,
+            p_next: unsafe { std::mem::zeroed() },
+            external_format: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkAndroidHardwareBufferFormatProperties2ANDROID")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct AndroidHardwareBufferFormatProperties2ANDROID {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
-    format: Format,
+    pub p_next: *mut BaseOutStructure,
+    pub format: Format,
     #[doc(alias = "externalFormat")]
-    external_format: u64,
+    pub external_format: u64,
     #[doc(alias = "formatFeatures")]
-    format_features: FormatFeatureFlags2,
+    pub format_features: FormatFeatureFlags2,
     #[doc(alias = "samplerYcbcrConversionComponents")]
-    sampler_ycbcr_conversion_components: ComponentMapping,
+    pub sampler_ycbcr_conversion_components: ComponentMapping,
     #[doc(alias = "suggestedYcbcrModel")]
-    suggested_ycbcr_model: SamplerYcbcrModelConversion,
+    pub suggested_ycbcr_model: SamplerYcbcrModelConversion,
     #[doc(alias = "suggestedYcbcrRange")]
-    suggested_ycbcr_range: SamplerYcbcrRange,
+    pub suggested_ycbcr_range: SamplerYcbcrRange,
     #[doc(alias = "suggestedXChromaOffset")]
-    suggested_x_chroma_offset: ChromaLocation,
+    pub suggested_x_chroma_offset: ChromaLocation,
     #[doc(alias = "suggestedYChromaOffset")]
-    suggested_y_chroma_offset: ChromaLocation,
+    pub suggested_y_chroma_offset: ChromaLocation,
 }
-///# [AHardwareBuffer](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/AHardwareBuffer.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/AHardwareBuffer.md")]
-pub type AHardwareBuffer = std::ffi::c_void;
-#[doc(alias = "VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION")]
-pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION: u32 = 5;
-#[doc(alias = "VK_ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME")]
-pub const ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME: &'static CStr =
-    cstr!("VK_ANDROID_external_memory_android_hardware_buffer");
-///# [vkGetAndroidHardwareBufferPropertiesANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetAndroidHardwareBufferPropertiesANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/vkGetAndroidHardwareBufferPropertiesANDROID.md")]
+impl Default for AndroidHardwareBufferFormatProperties2ANDROID {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::AndroidHardwareBufferFormatProperties2Android,
+            p_next: unsafe { std::mem::zeroed() },
+            format: unsafe { std::mem::zeroed() },
+            external_format: unsafe { std::mem::zeroed() },
+            format_features: unsafe { std::mem::zeroed() },
+            sampler_ycbcr_conversion_components: unsafe { std::mem::zeroed() },
+            suggested_ycbcr_model: unsafe { std::mem::zeroed() },
+            suggested_ycbcr_range: unsafe { std::mem::zeroed() },
+            suggested_x_chroma_offset: unsafe { std::mem::zeroed() },
+            suggested_y_chroma_offset: unsafe { std::mem::zeroed() },
+        }
+    }
+}
+pub use crate::common::extensions::android_external_memory_android_hardware_buffer::{
+    AHardwareBuffer, ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_EXTENSION_NAME,
+    ANDROID_EXTERNAL_MEMORY_ANDROID_HARDWARE_BUFFER_SPEC_VERSION,
+};
 #[doc(alias = "vkGetAndroidHardwareBufferPropertiesANDROID")]
 pub type FNGetAndroidHardwareBufferPropertiesAndroid = unsafe extern "system" fn(
     device: Device,
     buffer: *const AHardwareBuffer,
     p_properties: *mut AndroidHardwareBufferPropertiesANDROID,
 ) -> VulkanResultCodes;
-///# [vkGetMemoryAndroidHardwareBufferANDROID](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkGetMemoryAndroidHardwareBufferANDROID.html)
-# [doc = include_str ! ("../../../../doc/extensions/android_external_memory_android_hardware_buffer/vkGetMemoryAndroidHardwareBufferANDROID.md")]
 #[doc(alias = "vkGetMemoryAndroidHardwareBufferANDROID")]
 pub type FNGetMemoryAndroidHardwareBufferAndroid = unsafe extern "system" fn(
     device: Device,

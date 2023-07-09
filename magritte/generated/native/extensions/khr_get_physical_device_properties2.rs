@@ -1,17 +1,11 @@
-//!# [VK_KHR_get_physical_device_properties2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_get_physical_device_properties2.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_get_physical_device_properties2/VK_KHR_get_physical_device_properties2.md")]
-use crate::{
-    cstr,
-    vulkan1_1::{
-        FNGetPhysicalDeviceFeatures2, FNGetPhysicalDeviceFormatProperties2, FNGetPhysicalDeviceImageFormatProperties2,
-        FNGetPhysicalDeviceMemoryProperties2, FNGetPhysicalDeviceProperties2,
-        FNGetPhysicalDeviceQueueFamilyProperties2, FNGetPhysicalDeviceSparseImageFormatProperties2, FormatProperties2,
-        ImageFormatProperties2, PhysicalDeviceFeatures2, PhysicalDeviceImageFormatInfo2,
-        PhysicalDeviceMemoryProperties2, PhysicalDeviceProperties2, PhysicalDeviceSparseImageFormatInfo2,
-        QueueFamilyProperties2, SparseImageFormatProperties2,
-    },
+use crate::native::vulkan1_1::{
+    FNGetPhysicalDeviceFeatures2, FNGetPhysicalDeviceFormatProperties2, FNGetPhysicalDeviceImageFormatProperties2,
+    FNGetPhysicalDeviceMemoryProperties2, FNGetPhysicalDeviceProperties2, FNGetPhysicalDeviceQueueFamilyProperties2,
+    FNGetPhysicalDeviceSparseImageFormatProperties2, FormatProperties2, ImageFormatProperties2,
+    PhysicalDeviceFeatures2, PhysicalDeviceImageFormatInfo2, PhysicalDeviceMemoryProperties2,
+    PhysicalDeviceProperties2, PhysicalDeviceSparseImageFormatInfo2, QueueFamilyProperties2,
+    SparseImageFormatProperties2,
 };
-use std::ffi::CStr;
 ///See [`PhysicalDeviceFeatures2`]
 #[doc(alias = "VkPhysicalDeviceFeatures2KHR")]
 pub type PhysicalDeviceFeatures2KHR = PhysicalDeviceFeatures2;
@@ -39,11 +33,9 @@ pub type SparseImageFormatProperties2KHR = SparseImageFormatProperties2;
 ///See [`PhysicalDeviceSparseImageFormatInfo2`]
 #[doc(alias = "VkPhysicalDeviceSparseImageFormatInfo2KHR")]
 pub type PhysicalDeviceSparseImageFormatInfo2KHR = PhysicalDeviceSparseImageFormatInfo2;
-#[doc(alias = "VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION")]
-pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION: u32 = 2;
-#[doc(alias = "VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME")]
-pub const KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME: &'static CStr =
-    cstr!("VK_KHR_get_physical_device_properties2");
+pub use crate::common::extensions::khr_get_physical_device_properties2::{
+    KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME, KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_SPEC_VERSION,
+};
 ///See [`get_physical_device_features2`]
 #[doc(alias = "vkGetPhysicalDeviceFeatures2KHR")]
 pub type FNGetPhysicalDeviceFeatures2Khr = FNGetPhysicalDeviceFeatures2;

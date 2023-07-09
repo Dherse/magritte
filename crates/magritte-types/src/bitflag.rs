@@ -70,9 +70,12 @@ impl Bitflag<'static> {
 
 impl<'a> Bitflag<'a> {
     pub fn clear_duplicates(&mut self) {
-        self.aliases.iter_mut().filter(|item| self.bits.contains_key(item.name())).for_each(|item| item.name = Cow::Owned(format!("{}_DUP", item.name)));
+        self.aliases
+            .iter_mut()
+            .filter(|item| self.bits.contains_key(item.name()))
+            .for_each(|item| item.name = Cow::Owned(format!("{}_DUP", item.name)));
     }
-    
+
     /// Get a reference to the bit flags's original name.
     pub fn original_name(&self) -> &str {
         self.original_name.as_ref()
@@ -91,8 +94,10 @@ impl<'a> Bitflag<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -222,10 +227,25 @@ impl<'a> Bit<'a> {
     }
 
     #[cfg(feature = "codegen")]
+    pub fn as_enum_ident(&self) -> proc_macro2::Ident {
+        use heck::ToUpperCamelCase;
+
+        let name = &self.name().to_upper_camel_case();
+
+        if name.starts_with(char::is_numeric) {
+            quote::format_ident!("N{}", name)
+        } else {
+            proc_macro2::Ident::new(&name.to_upper_camel_case(), proc_macro2::Span::call_site())
+        }
+    }
+
+    #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 

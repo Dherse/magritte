@@ -1,10 +1,4 @@
-//!# [VK_KHR_format_feature_flags2](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_KHR_format_feature_flags2.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/khr_format_feature_flags2/VK_KHR_format_feature_flags2.md")]
-use crate::{
-    cstr,
-    vulkan1_3::{FormatFeatureFlagBits2, FormatFeatureFlags2, FormatProperties3},
-};
-use std::ffi::CStr;
+use crate::native::vulkan1_3::{FormatFeatureFlagBits2, FormatFeatureFlags2, FormatProperties3};
 ///See [`FormatFeatureFlags2`]
 #[doc(alias = "VkFormatFeatureFlags2KHR")]
 pub type FormatFeatureFlags2KHR = FormatFeatureFlags2;
@@ -14,7 +8,6 @@ pub type FormatFeatureFlagBits2KHR = FormatFeatureFlagBits2;
 ///See [`FormatProperties3`]
 #[doc(alias = "VkFormatProperties3KHR")]
 pub type FormatProperties3KHR = FormatProperties3;
-#[doc(alias = "VK_KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION")]
-pub const KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME")]
-pub const KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME: &'static CStr = cstr!("VK_KHR_format_feature_flags2");
+pub use crate::common::extensions::khr_format_feature_flags2::{
+    KHR_FORMAT_FEATURE_FLAGS_2_EXTENSION_NAME, KHR_FORMAT_FEATURE_FLAGS_2_SPEC_VERSION,
+};

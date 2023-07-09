@@ -194,7 +194,9 @@ impl<'a: 'b, 'b> Ref<'a, 'b> {
     #[cfg(feature = "codegen")]
     pub fn as_ident(&self) -> proc_macro2::Ident {
         match self {
-            Ref::Vendor(_) | Ref::Extension(_) | Ref::Tag(_) | Ref::Origin(_) => unreachable!("cannot be made into an identifier"),
+            Ref::Vendor(_) | Ref::Extension(_) | Ref::Tag(_) | Ref::Origin(_) => {
+                unreachable!("cannot be made into an identifier")
+            },
             Ref::OpaqueType(ty) => ty.as_ident(),
             Ref::Alias(alias) => alias.as_ident(),
             Ref::Struct(struct_) => struct_.as_ident(),
@@ -470,6 +472,7 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     pub fn has_opaque(&self, source: &Source<'a>) -> bool {
         match self {
             TypeRef::OpaqueType(_) => true,
+            TypeRef::Basetype(b) => b.of().is_opaque(source),
             TypeRef::Alias(alias) => source
                 .find(alias.of())
                 .expect("unknown alias")
@@ -479,11 +482,40 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
             TypeRef::Struct(s) => s.has_opaque(source),
             TypeRef::Union(u) => u.has_opaque(source),
             TypeRef::FunctionPointer(f) => f.has_opaque(source),
-            TypeRef::Handle(_)
-            | TypeRef::Basetype(_)
-            | TypeRef::Bitmask(_)
-            | TypeRef::Bitflag(_)
-            | TypeRef::Enum(_) => false,
+            TypeRef::Handle(_) | TypeRef::Bitmask(_) | TypeRef::Bitflag(_) | TypeRef::Enum(_) => false,
+        }
+    }
+
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Basetype(b) => b.of().is_opaque(source),
+            TypeRef::Alias(alias) => source
+                .find(alias.of())
+                .expect("unknown alias")
+                .as_type_ref()
+                .expect("not a type")
+                .is_copy(source),
+            TypeRef::Struct(s) => s.is_copy(source),
+            TypeRef::Union(u) => u.is_copy(source),
+            TypeRef::Handle(_) | TypeRef::FunctionPointer(_) => false,
+            TypeRef::Bitmask(_) | TypeRef::Bitflag(_) | TypeRef::Enum(_) => true,
+        }
+    }
+
+    pub fn is_default(&self, source: &Source<'a>) -> bool {
+        match self {
+            TypeRef::OpaqueType(_) => false,
+            TypeRef::Basetype(b) => b.of().is_default(source),
+            TypeRef::Alias(alias) => source
+                .find(alias.of())
+                .expect("unknown alias")
+                .as_type_ref()
+                .expect("not a type")
+                .is_default(source),
+            TypeRef::Struct(s) => s.is_default(source),
+            TypeRef::Union(_) | TypeRef::Handle(_) | TypeRef::FunctionPointer(_) => false,
+            TypeRef::Bitmask(_) | TypeRef::Bitflag(_) | TypeRef::Enum(_) => true,
         }
     }
 
@@ -554,8 +586,10 @@ impl<'a: 'b, 'b> TypeRef<'a, 'b> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 

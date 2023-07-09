@@ -10,7 +10,16 @@ path = "src/exec/main.rs"
 [dependencies]
 bitflags = "1.3.2"
 clap = { version = "4.1.1", features = ["derive"] }
+lazy_static = "1.4.0"
 magritte-types = { version = "0.1.0", path = "../crates/magritte-types", features = [ "codegen" ] }
+magritte-parse = { version = "0.1.0", path = "../crates/magritte-parse" }
 proc-macro2 = "1.0.49"
 quote = "1.0.23"
 ron = "0.8.0"
+heck = "0.4.0"
+which = "4.4.0"
+
+# Python runtime to solve length equations
+[dependencies.pyo3]
+version = "0.18.0"
+features = ["auto-initialize"]

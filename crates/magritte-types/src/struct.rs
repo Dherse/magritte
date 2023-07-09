@@ -1,4 +1,7 @@
-use std::borrow::Cow;
+use std::{
+    borrow::Cow,
+    hash::{Hash, Hasher},
+};
 
 use serde::{Deserialize, Serialize};
 
@@ -30,6 +33,12 @@ pub struct Struct<'a> {
 
     /// Structures that extend this structure
     pub extended: Vec<Cow<'a, str>>,
+}
+
+impl<'a> Hash for Struct<'a> {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.original_name.hash(state);
+    }
 }
 
 impl Struct<'static> {
@@ -84,10 +93,17 @@ impl<'a> Struct<'a> {
     }
 
     #[cfg(feature = "codegen")]
+    pub fn as_pointer_chain_ident(&self) -> proc_macro2::Ident {
+        quote::format_ident!("{}Extension", self.name())
+    }
+
+    #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -158,6 +174,14 @@ impl<'a> Struct<'a> {
                 Ty::Pointer(_, _) | Ty::Slice(_, _, _) => false,
                 _ => true,
             })
+    }
+
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().all(|field| field.is_copy(source))
+    }
+
+    pub fn is_default(&self, source: &Source<'a>) -> bool {
+        self.fields().iter().all(|field| field.is_default(source))
     }
 
     /*/// Checks if this structure needs one or more generic type arguments
@@ -243,10 +267,19 @@ impl<'a> Field<'a> {
     }
 
     #[cfg(feature = "codegen")]
+    pub fn as_union_ident(&self) -> proc_macro2::Ident {
+        use heck::ToUpperCamelCase;
+
+        proc_macro2::Ident::new(&self.name().to_upper_camel_case(), proc_macro2::Span::call_site())
+    }
+
+    #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 
@@ -298,6 +331,35 @@ impl<'a> Field<'a> {
     /// Get a reference to the field's value.
     pub fn value(&self) -> Option<&str> {
         self.value.as_deref()
+    }
+
+    pub fn is_copy(&self, source: &Source<'a>) -> bool {
+        if self.original_name() == "pNext"
+            || self.original_name() == "pData"
+            || self.original_name() == "pTag"
+            || self.original_name() == "hostAddress"
+            || self.original_name() == "pInitialData"
+            || self.original_name() == "pShaderGroupCaptureReplayHandle"
+            || self.original_name() == "pUserData"
+        {
+            false
+        } else {
+            self.ty().is_copy(source)
+        }
+    }
+
+    pub fn is_default(&self, source: &Source<'a>) -> bool {
+        self.optional().is_optional() || self.ty().is_default(source)
+    }
+
+    pub fn has_length(&self, name: &str) -> bool {
+        if let Some(len) = self.ty().length() {
+            let vars = len.variables();
+
+            return vars.iter().any(|v| v == name);
+        }
+
+        false
     }
 
     pub fn is_opaque(&self, source: &Source<'a>) -> bool {

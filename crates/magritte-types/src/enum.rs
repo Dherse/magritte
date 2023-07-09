@@ -62,7 +62,10 @@ impl Enum<'static> {
 
 impl<'a> Enum<'a> {
     pub fn clear_duplicates(&mut self) {
-        self.aliases.iter_mut().filter(|item| self.variants.contains_key(item.name())).for_each(|item| item.name = Cow::Owned(format!("{}_DUP", item.name)));
+        self.aliases
+            .iter_mut()
+            .filter(|item| self.variants.contains_key(item.name()))
+            .for_each(|item| item.name = Cow::Owned(format!("{}_DUP", item.name)));
     }
 
     /// Get a reference to the enum's original name.
@@ -83,8 +86,10 @@ impl<'a> Enum<'a> {
     #[cfg(feature = "codegen")]
     pub fn as_alias(&self) -> Option<proc_macro2::TokenStream> {
         let original_name = self.original_name();
-        (self.name() != self.original_name()).then(|| quote::quote! {
-            #[doc(alias = #original_name)]
+        (self.name() != self.original_name()).then(|| {
+            quote::quote! {
+                #[doc(alias = #original_name)]
+            }
         })
     }
 

@@ -1,115 +1,91 @@
-//!# [VK_EXT_line_rasterization](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VK_EXT_line_rasterization.html)
-# ! [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/VK_EXT_line_rasterization.md")]
-use crate::{
-    cstr,
-    vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, StructureType},
-};
-use std::ffi::CStr;
-///# [VkPhysicalDeviceLineRasterizationFeaturesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLineRasterizationFeaturesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/VkPhysicalDeviceLineRasterizationFeaturesEXT.md")]
+use crate::native::vulkan1_0::{BaseInStructure, BaseOutStructure, Bool32, CommandBuffer, StructureType};
 #[doc(alias = "VkPhysicalDeviceLineRasterizationFeaturesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationFeaturesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "rectangularLines")]
-    rectangular_lines: Bool32,
+    pub rectangular_lines: Bool32,
     #[doc(alias = "bresenhamLines")]
-    bresenham_lines: Bool32,
+    pub bresenham_lines: Bool32,
     #[doc(alias = "smoothLines")]
-    smooth_lines: Bool32,
+    pub smooth_lines: Bool32,
     #[doc(alias = "stippledRectangularLines")]
-    stippled_rectangular_lines: Bool32,
+    pub stippled_rectangular_lines: Bool32,
     #[doc(alias = "stippledBresenhamLines")]
-    stippled_bresenham_lines: Bool32,
+    pub stippled_bresenham_lines: Bool32,
     #[doc(alias = "stippledSmoothLines")]
-    stippled_smooth_lines: Bool32,
+    pub stippled_smooth_lines: Bool32,
 }
-///# [VkPhysicalDeviceLineRasterizationPropertiesEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPhysicalDeviceLineRasterizationPropertiesEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/VkPhysicalDeviceLineRasterizationPropertiesEXT.md")]
+impl Default for PhysicalDeviceLineRasterizationFeaturesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceLineRasterizationFeaturesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            rectangular_lines: unsafe { std::mem::zeroed() },
+            bresenham_lines: unsafe { std::mem::zeroed() },
+            smooth_lines: unsafe { std::mem::zeroed() },
+            stippled_rectangular_lines: unsafe { std::mem::zeroed() },
+            stippled_bresenham_lines: unsafe { std::mem::zeroed() },
+            stippled_smooth_lines: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPhysicalDeviceLineRasterizationPropertiesEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PhysicalDeviceLineRasterizationPropertiesEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *mut BaseOutStructure,
+    pub p_next: *mut BaseOutStructure,
     #[doc(alias = "lineSubPixelPrecisionBits")]
-    line_sub_pixel_precision_bits: u32,
+    pub line_sub_pixel_precision_bits: u32,
 }
-///# [VkPipelineRasterizationLineStateCreateInfoEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkPipelineRasterizationLineStateCreateInfoEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/VkPipelineRasterizationLineStateCreateInfoEXT.md")]
+impl Default for PhysicalDeviceLineRasterizationPropertiesEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PhysicalDeviceLineRasterizationPropertiesExt,
+            p_next: unsafe { std::mem::zeroed() },
+            line_sub_pixel_precision_bits: unsafe { std::mem::zeroed() },
+        }
+    }
+}
 #[doc(alias = "VkPipelineRasterizationLineStateCreateInfoEXT")]
 #[derive(Clone, Copy)]
 #[repr(C)]
 pub struct PipelineRasterizationLineStateCreateInfoEXT {
     #[doc(alias = "sType")]
-    s_type: StructureType,
+    pub s_type: StructureType,
     #[doc(alias = "pNext")]
-    p_next: *const BaseInStructure,
+    pub p_next: *const BaseInStructure,
     #[doc(alias = "lineRasterizationMode")]
-    line_rasterization_mode: LineRasterizationModeEXT,
+    pub line_rasterization_mode: LineRasterizationModeEXT,
     #[doc(alias = "stippledLineEnable")]
-    stippled_line_enable: Bool32,
+    pub stippled_line_enable: Bool32,
     #[doc(alias = "lineStippleFactor")]
-    line_stipple_factor: u32,
+    pub line_stipple_factor: u32,
     #[doc(alias = "lineStipplePattern")]
-    line_stipple_pattern: u16,
+    pub line_stipple_pattern: u16,
 }
-#[doc(alias = "VK_EXT_LINE_RASTERIZATION_SPEC_VERSION")]
-pub const EXT_LINE_RASTERIZATION_SPEC_VERSION: u32 = 1;
-#[doc(alias = "VK_EXT_LINE_RASTERIZATION_EXTENSION_NAME")]
-pub const EXT_LINE_RASTERIZATION_EXTENSION_NAME: &'static CStr = cstr!("VK_EXT_line_rasterization");
-///# [VkLineRasterizationModeEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/VkLineRasterizationModeEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/VkLineRasterizationModeEXT.md")]
-#[doc(alias = "VkLineRasterizationModeEXT")]
-#[repr(transparent)]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[non_exhaustive]
-pub struct LineRasterizationModeEXT(i32);
-impl LineRasterizationModeEXT {
-    #[doc(alias = "VK_LINE_RASTERIZATION_MODE_DEFAULT_EXT")]
-    pub const DEFAULT: Self = Self(0);
-    #[doc(alias = "VK_LINE_RASTERIZATION_MODE_RECTANGULAR_EXT")]
-    pub const RECTANGULAR: Self = Self(1);
-    #[doc(alias = "VK_LINE_RASTERIZATION_MODE_BRESENHAM_EXT")]
-    pub const BRESENHAM: Self = Self(2);
-    #[doc(alias = "VK_LINE_RASTERIZATION_MODE_RECTANGULAR_SMOOTH_EXT")]
-    pub const RECTANGULAR_SMOOTH: Self = Self(3);
-    ///Default empty flags
-    #[inline]
-    pub const fn empty() -> Self {
-        Self(0)
-    }
-    ///The bits of this variant
-    #[inline]
-    pub const fn bits(&self) -> i32 {
-        self.0
-    }
-    ///Builds a bitmask from the bits of this variant
-    #[inline]
-    pub const fn from_bits(bits: i32) -> Option<Self> {
-        match bits {
-            x if x == Self::DEFAULT.bits() => Some(Self(x)),
-            x if x == Self::RECTANGULAR.bits() => Some(Self(x)),
-            x if x == Self::BRESENHAM.bits() => Some(Self(x)),
-            x if x == Self::RECTANGULAR_SMOOTH.bits() => Some(Self(x)),
-            _ => None,
+impl Default for PipelineRasterizationLineStateCreateInfoEXT {
+    fn default() -> Self {
+        Self {
+            s_type: StructureType::PipelineRasterizationLineStateCreateInfoExt,
+            p_next: unsafe { std::mem::zeroed() },
+            line_rasterization_mode: unsafe { std::mem::zeroed() },
+            stippled_line_enable: unsafe { std::mem::zeroed() },
+            line_stipple_factor: unsafe { std::mem::zeroed() },
+            line_stipple_pattern: unsafe { std::mem::zeroed() },
         }
     }
-    ///Builds a bitmask from the bits of this variant without validating it
-    #[inline]
-    pub const unsafe fn from_bits_unchecked(bits: i32) -> Self {
-        Self(bits)
-    }
 }
-///# [vkCmdSetLineStippleEXT](https://registry.khronos.org/vulkan/specs/1.3-extensions/man/html/vkCmdSetLineStippleEXT.html)
-# [doc = include_str ! ("../../../../doc/extensions/ext_line_rasterization/vkCmdSetLineStippleEXT.md")]
+pub use crate::common::extensions::ext_line_rasterization::{
+    LineRasterizationModeEXT, EXT_LINE_RASTERIZATION_EXTENSION_NAME, EXT_LINE_RASTERIZATION_SPEC_VERSION,
+};
 #[doc(alias = "vkCmdSetLineStippleEXT")]
 pub type FNCmdSetLineStippleExt =
     unsafe extern "system" fn(command_buffer: CommandBuffer, line_stipple_factor: u32, line_stipple_pattern: u16);
